@@ -1,14 +1,15 @@
 import path from 'node:path'
 import { and, eq, or } from 'drizzle-orm'
 import { parse } from 'goodcodes-parser'
+import { getContextData } from 'waku/middleware/context'
 import { platformMap } from '../constants/platform.ts'
 import { launchboxGame, libretroGame } from '../databases/metadata/schema.ts'
-import { getC, restoreTitleForSorting } from '../utils/misc.ts'
+import { restoreTitleForSorting } from '../utils/misc.ts'
 import { getCompactName } from '../utils/rom.ts'
 
 async function guessLibretroGame(fileName: string, platform: string) {
-  const c = getC()
-  const { metadata } = c.get('db')
+  const { db } = getContextData()
+  const { metadata } = db
 
   const baseName = path.parse(fileName).name
 
@@ -26,8 +27,8 @@ async function guessLibretroGame(fileName: string, platform: string) {
 }
 
 async function guessLaunchboxGame(fileName: string, platform: string) {
-  const c = getC()
-  const { metadata } = c.get('db')
+  const { db } = getContextData()
+  const { metadata } = db
 
   const baseName = path.parse(fileName).name
   const restoredBaseName = restoreTitleForSorting(parse(baseName).rom)

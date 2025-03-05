@@ -1,8 +1,7 @@
-import { getC } from '../../utils/misc.ts'
+import { getContextData } from 'waku/middleware/context'
 
-export async function getFileResponse(fileId: string) {
-  const c = getC()
-  const storage = c.get('storage')
+export async function getFileResponse(fileId: string, c) {
+  const { storage } = getContextData()
 
   const object = await storage.get(fileId)
   if (!object) {

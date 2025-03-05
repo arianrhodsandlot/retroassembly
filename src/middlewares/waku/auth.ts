@@ -1,5 +1,5 @@
 import type { Middleware } from 'waku/config'
-import { getC } from '../../utils/misc.ts'
+import { getContextData } from 'waku/middleware/context'
 import { shouldApplyMiddlware } from './utils.ts'
 
 export default (function authMiddleware() {
@@ -8,11 +8,16 @@ export default (function authMiddleware() {
       return await next()
     }
 
-    const currentUser = getC('currentUser')
+    const { currentUser } = getContextData()
 
     const { pathname, search } = ctx.req.url
     const needAuth = pathname === '/app' || pathname.startsWith('/app/')
     if (!needAuth || currentUser) {
+      return await next()
+    }
+
+    const isApi = pathname.startsWith('/api/')
+    if (isApi) {
       return await next()
     }
 

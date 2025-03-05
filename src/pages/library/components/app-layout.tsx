@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { getC } from '@/utils/misc.ts'
+import { getContext } from 'waku/middleware/context'
 import { ScrollContainer } from './scroll-container.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
 
@@ -11,7 +11,7 @@ interface AppLayoutProps {
 
 const defaultSidebar = <SidebarLinks />
 export default function AppLayout({ append, children, sidebar = defaultSidebar }: AppLayoutProps) {
-  const c = getC()
+  const { req } = getContext()
 
   return (
     <div className='flex h-screen bg-[var(--theme)]'>
@@ -25,7 +25,7 @@ export default function AppLayout({ append, children, sidebar = defaultSidebar }
 
       <div className='flex h-full flex-1'>
         <div className='relative my-4 mr-4 flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
-          <ScrollContainer className='z-1 relative flex-1' key={c.req.path}>
+          <ScrollContainer className='z-1 relative flex-1' key={req.url.pathname}>
             <main className='min-h-full p-4'>{children}</main>
           </ScrollContainer>
           {append}

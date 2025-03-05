@@ -1,5 +1,6 @@
 import { and, eq } from 'drizzle-orm'
 import { isString } from 'es-toolkit'
+import { getContextData } from 'waku/middleware/context'
 import { platformMap } from '../constants/platform.ts'
 import { createRom } from '../controllers/create-rom.ts'
 import { guessGameInfo } from '../controllers/guess-game-info.ts'
@@ -24,7 +25,7 @@ app.post('rom/new', async (c) => {
     return c.json({ message: 'invalid files' })
   }
 
-  const storage = c.get('storage')
+  const { storage } = getContextData()
 
   const roms = await Promise.all(
     files.map(async (file) => {
@@ -46,8 +47,7 @@ app.post('rom/new', async (c) => {
 })
 
 app.get('rom/:id/content', async (c) => {
-  const db = c.get('db')
-  const currentUser = c.get('currentUser')
+  const { currentUser, db } = getContextData()
 
   const [result] = await db.library
     .select()
@@ -58,5 +58,5 @@ app.get('rom/:id/content', async (c) => {
     return c.body('rom not found', 404)
   }
 
-  return getFileResponse(result.file_id)
+  return getFileResponse(result.file_id, c)
 })

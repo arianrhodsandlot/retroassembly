@@ -1,8 +1,9 @@
+import { getContextData } from 'waku/middleware/context'
 import { platformMap } from '../constants/platform.ts'
-import { getC } from '../utils/misc.ts'
 
 export async function getPlatformInfo(platform: string) {
-  const { metadata } = getC().get('db')
+  const { db } = getContextData()
+  const { metadata } = db
 
   const { launchboxName } = platformMap[platform]
   if (launchboxName) {

@@ -1,8 +1,11 @@
 import path from 'node:path'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'waku/config'
-import { enhance } from './src/middlewares/hono/enhance.ts'
-import { middleware } from './src/middlewares/waku/middleware.ts'
+
+const { middleware } = await import('./src/middlewares/waku/middleware.ts')
+
+const enhancePath = './src/middlewares/hono/enhance.ts'
+const { enhance } = await import(/* @vite-ignore */ enhancePath)
 
 export default defineConfig({
   middleware,

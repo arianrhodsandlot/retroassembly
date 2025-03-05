@@ -6,5 +6,5 @@
     "allowImportingTsExtensions": true,
     "types": ["../.wrangler/types/runtime.d.ts"]
   },
-  "exclude": ["./pages", "./entries.tsx"]
+  "exclude": ["./pages", "./api", "./controllers", "entries.ts"]
 }

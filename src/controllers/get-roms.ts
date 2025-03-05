@@ -1,13 +1,12 @@
 import { and, eq, inArray, type InferSelectModel } from 'drizzle-orm'
 import { compact, keyBy } from 'es-toolkit'
+import { getContextData } from 'waku/middleware/context'
 import { rom } from '../databases/library/schema.ts'
 import { launchboxGame, libretroGame } from '../databases/metadata/schema.ts'
-import { getC } from '../utils/misc.ts'
 
 export async function getRoms({ id, platform }: { id?: string; platform?: string } = {}) {
-  const c = getC()
-  const currentUser = c.get('currentUser')
-  const { library, metadata } = c.get('db')
+  const { currentUser, db } = getContextData()
+  const { library, metadata } = db
 
   const conditions = [eq(rom.user_id, currentUser.id)]
   if (id) {

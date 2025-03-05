@@ -1,4 +1,5 @@
 import { and, eq } from 'drizzle-orm'
+import { getContextData } from 'waku/middleware/context'
 import { rom, state } from '../databases/library/schema.ts'
 import { nanoid } from '../utils/misc.ts'
 import { app } from './app.ts'
@@ -7,8 +8,7 @@ import { getFileResponse } from './utils/storage.ts'
 app.get('states', async (c) => {
   const romId = c.req.query('rom_id')
   const type = c.req.query('type')
-  const db = c.get('db')
-  const currentUser = c.get('currentUser')
+  const { currentUser, db } = getContextData()
 
   const conditions = [eq(state.user_id, currentUser.id), eq(state.status, 1)]
   if (romId) {
@@ -40,8 +40,7 @@ app.post('state/new', async (c) => {
     return c.json({ message: 'invalid type' })
   }
 
-  const db = c.get('db')
-  const currentUser = c.get('currentUser')
+  const { currentUser, db, storage } = getContextData()
 
   const [romResult] = await db.library
     .select()
@@ -52,7 +51,6 @@ app.post('state/new', async (c) => {
     return c.json({ message: 'rom not found' })
   }
 
-  const storage = c.get('storage')
   const stateFileId = nanoid()
   await storage.put(stateFileId, stateFile)
   const thumbnailFileId = nanoid()
@@ -74,5 +72,5 @@ app.post('state/new', async (c) => {
 
 app.get('file/:id/content', (c) => {
   const id = c.req.param('id')
-  return getFileResponse(id)
+  return getFileResponse(id, c)
 })

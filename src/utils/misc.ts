@@ -1,7 +1,5 @@
-import { getContext } from 'hono/context-storage'
 import { customAlphabet } from 'nanoid'
 import nanoidDictionary from 'nanoid-dictionary'
-import { getHonoContext } from 'waku/unstable_hono'
 
 export const nanoid = customAlphabet(nanoidDictionary.nolookalikes, 10)
 
@@ -15,12 +13,4 @@ export function restoreTitleForSorting(title: string) {
   }
   // Return original string if no match
   return title
-}
-
-export function getC() {
-  try {
-    return getContext()
-  } catch {
-    return getHonoContext()
-  }
 }

@@ -1,6 +1,6 @@
 import { and, count, eq } from 'drizzle-orm'
+import { getContextData } from 'waku/middleware/context'
 import { rom } from '../databases/library/schema.ts'
-import { getC } from '../utils/misc.ts'
 
 interface CreateRomParams {
   fileId: string
@@ -11,9 +11,8 @@ interface CreateRomParams {
 }
 
 export async function createRom(params: CreateRomParams) {
-  const c = getC()
-  const { library } = c.get('db')
-  const currentUser = c.get('currentUser')
+  const { currentUser, db } = getContextData()
+  const { library } = db
 
   const [countResult] = await library
     .select({ count: count() })

@@ -4,11 +4,12 @@ import { clsx } from 'clsx'
 import { Nostalgist } from 'nostalgist'
 import { useEffect } from 'react'
 import useSWRMutation from 'swr/mutation'
-import { platformCoreMap } from '@/constants/platform.ts'
+import { usePreference } from '../../hooks/use-preference.ts'
 import { GameOverlay } from './game-overlay.tsx'
 
 const directionKeys = new Set(['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp'])
 export function LaunchButton({ rom }) {
+  const preference = usePreference()
   const romUrl = `/api/v1/rom/${rom.id}/content`
 
   const { data: nostalgist, isMutating, trigger } = useSWRMutation(romUrl, prepareEmulator)
@@ -17,6 +18,21 @@ export function LaunchButton({ rom }) {
   const [paused, togglePaused] = useToggle()
 
   const showOverlay = nostalgist && paused
+
+  const { core, shader } = preference.emulator.platform[rom.platform]
+  const retroarchCoreConfig = preference.emulator.core[core]
+  async function prepareEmulator(rom: string) {
+    return await Nostalgist.prepare({
+      core,
+      retroarchCoreConfig,
+      rom,
+      shader,
+      style: {
+        height: '100px',
+        width: '100px',
+      },
+    })
+  }
 
   function exit() {
     togglelaunched(false)
@@ -41,14 +57,6 @@ export function LaunchButton({ rom }) {
   useEffect(() => {
     trigger()
   }, [trigger])
-
-  async function prepareEmulator(romUrl) {
-    return await Nostalgist.prepare({
-      core: platformCoreMap[rom.platform],
-      rom: romUrl,
-      // shader: 'crt/crt-nes-mini',
-    })
-  }
 
   async function start() {
     await nostalgist?.start()
@@ -76,7 +84,7 @@ export function LaunchButton({ rom }) {
         <span className={isMutating ? 'icon-[mdi--loading] animate-spin' : 'icon-[mdi--play]'} />
         {isMutating ? 'Loading...' : 'Press any key to start'}
       </button>
-      {showOverlay ? <GameOverlay nostalgist={nostalgist} rom={rom} /> : null}
+      {showOverlay ? <GameOverlay core={core} nostalgist={nostalgist} rom={rom} /> : null}
     </>
   )
 }

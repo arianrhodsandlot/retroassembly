@@ -8,7 +8,8 @@ export async function LoginPage({ query }) {
   const { redirect, supabase } = getContextData()
 
   if (!supabase) {
-    return redirect('/')
+    redirect('/')
+    return
   }
 
   if (code) {
@@ -17,7 +18,8 @@ export async function LoginPage({ query }) {
       return <div>{error.message}</div>
     }
     if (data) {
-      return redirect(redirectTo)
+      redirect(redirectTo)
+      return
     }
   }
 

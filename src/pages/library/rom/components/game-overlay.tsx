@@ -4,10 +4,10 @@ import type { Nostalgist } from 'nostalgist'
 import { createPortal } from 'react-dom'
 import useSWRImmutable from 'swr/immutable'
 import useSWRMutation from 'swr/mutation'
-import { platformCoreMap } from '@/constants/platform.ts'
+import type { CoreName } from '@/constants/core.ts'
 import { GameOverlayButton } from './game-overlay-button.tsx'
 
-export function GameOverlay({ nostalgist, rom }: { nostalgist: Nostalgist; rom: any }) {
+export function GameOverlay({ core, nostalgist, rom }: { core: CoreName; nostalgist: Nostalgist; rom: any }) {
   const { data: states } = useSWRImmutable('/api/v1/states', (url) =>
     ky(url, { searchParams: { rom_id: rom.id } }).json(),
   )
@@ -22,14 +22,14 @@ export function GameOverlay({ nostalgist, rom }: { nostalgist: Nostalgist; rom: 
         formData.append('thumbnail', thumbnail)
       }
       formData.append('rom_id', rom.id)
-      formData.append('core', platformCoreMap[rom.platform])
+      formData.append('core', core)
       formData.append('type', type)
       await ky.post(url, { body: formData })
     },
   )
 
   return createPortal(
-    <div className='bg-linear-to-b absolute inset-0 z-10 flex h-screen w-screen flex-col bg-black/40'>
+    <div className='bg-linear-to-b absolute inset-0 z-10 flex h-screen w-screen flex-col bg-black/50'>
       <div className='bg-linear-to-b to-text-transparent h-32 w-full from-black' />
       <div className='w-6xl mx-auto flex flex-1 flex-col gap-8'>
         <div className='flex gap-8 text-white'>

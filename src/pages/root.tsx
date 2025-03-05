@@ -1,13 +1,14 @@
 import '@/styles/index.ts'
 import type { ReactNode } from 'react'
+import { getContextData } from 'waku/middleware/context'
 
 export function Root({ children }: { children: ReactNode }) {
+  const { preference } = getContextData()
+
   return (
     <html lang='en'>
-      <head>
-        <title>RetroAssembly</title>
-      </head>
-      <body>{children}</body>
+      <head />
+      <body data-theme={preference.ui.theme}>{children}</body>
     </html>
   )
 }

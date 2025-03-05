@@ -24,13 +24,16 @@ const fileSchema = {
 export const rom = sqliteTable(
   'roms',
   {
+    custom_meta: text({ mode: 'json' }),
     file_name: text().notNull(),
+    launch_records: text({ mode: 'json' }).default(JSON.stringify([])),
+    launch_times: integer().default(0),
     launchbox_game_id: integer(),
     libretro_game_id: text(),
     platform: text().notNull(),
     ...fileSchema,
   },
-  (table) => [index('idx_roms').on(table.id, table.platform, table.user_id)],
+  (table) => [index('idx_roms').on(table.id, table.platform, table.user_id, table.launch_times)],
 )
 
 export const state = sqliteTable(
@@ -56,4 +59,16 @@ export const launchRecord = sqliteTable(
     ...baseSchema,
   },
   (table) => [index('idx_launch_records').on(table.id, table.platform, table.user_id)],
+)
+
+export const userPreference = sqliteTable(
+  'user_preferences',
+  {
+    emulator: text({ mode: 'json' }),
+    ui: text({ mode: 'json' }),
+    user: text({ mode: 'json' }),
+    user_id: text().notNull(),
+    ...baseSchema,
+  },
+  (table) => [index('idx_user_preferences').on(table.id, table.user_id)],
 )

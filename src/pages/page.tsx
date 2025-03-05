@@ -3,6 +3,8 @@ import { Link } from 'waku'
 export function HomePage() {
   return (
     <div>
+      <title>RetroAssembly</title>
+
       <div className='text-center'>
         <div className='p-40 text-4xl'>-</div>
         <div className='flex items-center justify-center'>

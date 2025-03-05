@@ -10,7 +10,7 @@ import { Root } from '@/pages/root.tsx'
 
 const pages: ReturnType<typeof createPages> = createPages(({ createApi, createPage, createRoot }) =>
   Promise.resolve([
-    createRoot({ component: Root, render: 'static' }),
+    createRoot({ component: Root, render: 'dynamic' }),
 
     createPage({ component: HomePage, path: '/', render: 'dynamic' }),
     createPage({ component: LoginPage, path: '/login', render: 'dynamic' }),

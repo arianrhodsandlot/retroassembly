@@ -3,11 +3,13 @@
 @plugin "@tailwindcss/typography";
 
 body {
-  --theme: var(--color-rose-700);
-
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: 'Inter Variable', -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
+}
+
+body[data-theme="rose"] {
+  --theme: var(--color-rose-700);
 }
 
 button {

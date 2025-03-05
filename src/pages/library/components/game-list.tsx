@@ -18,7 +18,7 @@ function getChildWidth(width?: number) {
 }
 
 export function GameList({ roms }: { roms: any[] }) {
-  const [measurements, ref] = useMeasure<HTMLDivElement>()
+  const [measurements, ref] = useMeasure<HTMLDivElement>(true)
   const childWidth = getChildWidth(measurements?.width)
 
   return (

@@ -23,6 +23,7 @@ app.get('states', async (c) => {
 })
 
 app.post('state/new', async (c) => {
+  return c.json({ message: 'invalid state' })
   const { core, rom_id: romId, state: stateFile, thumbnail, type } = await c.req.parseBody()
   if (!(stateFile instanceof Blob)) {
     return c.json({ message: 'invalid state' })
@@ -50,11 +51,13 @@ app.post('state/new', async (c) => {
   if (!romResult) {
     return c.json({ message: 'rom not found' })
   }
+  console.log(100)
 
   const stateFileId = nanoid()
   await storage.put(stateFileId, stateFile)
   const thumbnailFileId = nanoid()
   await storage.put(thumbnailFileId, thumbnail)
+  console.log(111)
   const [result] = await db.library
     .insert(state)
     .values({
@@ -67,6 +70,7 @@ app.post('state/new', async (c) => {
       user_id: currentUser.id,
     })
     .returning()
+    console.log(result)
   return c.json(result)
 })
 

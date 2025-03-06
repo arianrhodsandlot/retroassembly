@@ -6,7 +6,7 @@ import { GameOverlayButton } from './game-overlay-button.tsx'
 
 export function GameOverlayButtons() {
   const { emulator, exit } = useEmulator()
-  const { isSavingState, saveState } = useGameStates()
+  const { saveState } = useGameStates()
   const { setIsPending, toggle } = useGameOverlay()
 
   function handleClickResume() {
@@ -21,13 +21,28 @@ export function GameOverlayButtons() {
 
   async function handleClickSaveState() {
     setIsPending(true)
-    await saveState()
-    setIsPending(false)
+    try {
+      await saveState()
+      toggle()
+    } finally {
+      setIsPending(false)
+    }
   }
 
   function handleClickExit() {
     exit()
     toggle()
+  }
+
+  async function handleClickSaveExit() {
+    setIsPending(true)
+    try {
+      await saveState()
+      toggle()
+      exit()
+    } finally {
+      setIsPending(false)
+    }
   }
 
   return (
@@ -37,7 +52,7 @@ export function GameOverlayButtons() {
         Resume
       </GameOverlayButton>
 
-      <GameOverlayButton isLoading={isSavingState} onClick={handleClickSaveState}>
+      <GameOverlayButton onClick={handleClickSaveState}>
         <span className='icon-[mdi--content-save] size-7' />
         Save State
       </GameOverlayButton>
@@ -53,7 +68,7 @@ export function GameOverlayButtons() {
         Exit
       </GameOverlayButton>
 
-      <GameOverlayButton>
+      <GameOverlayButton onClick={handleClickSaveExit}>
         <span className='icon-[mdi--location-exit] size-7' />
         Save & Exit
       </GameOverlayButton>

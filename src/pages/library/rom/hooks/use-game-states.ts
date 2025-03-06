@@ -1,19 +1,25 @@
 import ky from 'ky'
-import useSWRImmutable from 'swr/immutable'
 import useSWRMutation from 'swr/mutation'
-import { useEmulator } from './use-emulator.tsx'
+import { useEmulator } from './use-emulator.ts'
+import { useGameOverlay } from './use-game-overlay.ts'
 
 export function useGameStates() {
-  const { core, getEmulator, resume, rom } = useEmulator()
+  const { core, emulator, rom } = useEmulator()
+  const { toggle } = useGameOverlay()
 
-  const { data: states, isLoading: isStatesLoading } = useSWRImmutable('/api/v1/states', (url) =>
-    ky(url, { searchParams: { rom_id: rom.id } }).json(),
-  )
+  const {
+    data: states,
+    isMutating: isStatesLoading,
+    trigger: reloadStates,
+  } = useSWRMutation('/api/v1/states', (url) => ky(url, { searchParams: { rom_id: rom.id } }).json())
 
   const { isMutating: isSavingState, trigger: saveState } = useSWRMutation(
     '/api/v1/state/new',
-    async (url, { arg: type }: { arg: string }) => {
-      const { state, thumbnail } = await getEmulator().saveState()
+    async (url) => {
+      if (!emulator || !core) {
+        throw new Error('invalid emulator or core')
+      }
+      const { state, thumbnail } = await emulator.saveState()
       const formData = new FormData()
       formData.append('state', state)
       if (thumbnail) {
@@ -21,17 +27,16 @@ export function useGameStates() {
       }
       formData.append('rom_id', rom.id)
       formData.append('core', core)
-      formData.append('type', type)
+      formData.append('type', 'manual')
       await ky.post(url, { body: formData })
+      await reloadStates()
+    },
+    {
+      onSuccess() {
+        toggle()
+      },
     },
   )
 
-  const { isMutating: isLoadingState, trigger: loadState } = useSWRMutation('', async (url) => {
-    const emulator = getEmulator()
-    const state = await ky(url).blob()
-    await emulator.loadState(state)
-    resume()
-  })
-
-  return { isLoadingState, isSavingState, isStatesLoading, loadState, saveState, states }
+  return { isSavingState, isStatesLoading, reloadStates, saveState, states }
 }

@@ -1,4 +1,6 @@
 import { atom } from 'jotai'
-import type { Preference } from '@/constants/preference'
+import { defaultPreference, type Preference } from '@/constants/preference.ts'
 
-export const preferenceAtom = atom<Preference>()
+export const serverDataAtom = atom<{ [key: string]: any; preference: Preference }>({
+  preference: defaultPreference,
+})

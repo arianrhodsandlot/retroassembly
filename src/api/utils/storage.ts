@@ -1,6 +1,7 @@
+import type { Context } from 'hono'
 import { getContextData } from 'waku/middleware/context'
 
-export async function getFileResponse(fileId: string, c) {
+export async function getFileResponse(fileId: string, c: Context) {
   const { storage } = getContextData()
 
   const object = await storage.get(fileId)

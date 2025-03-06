@@ -1,12 +1,7 @@
-import { useAtom } from 'jotai'
-import { preferenceAtom } from '../atoms.ts'
+import { useServerData } from './use-server-data.ts'
 
 export function usePreference() {
-  const [preference] = useAtom(preferenceAtom)
-
-  if (!preference) {
-    throw new Error('preference is invalid')
-  }
+  const { preference } = useServerData()
 
   return preference
 }

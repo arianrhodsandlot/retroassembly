@@ -9,7 +9,7 @@ body {
 }
 
 body[data-theme="rose"] {
-  --theme: var(--color-rose-700);
+  /* --theme: var(--color-rose-700); */
 }
 
 button {

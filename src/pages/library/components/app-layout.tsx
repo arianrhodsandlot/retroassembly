@@ -1,22 +1,24 @@
-import type { ReactNode } from 'react'
+import { type ReactNode, useMemo } from 'react'
 import { getContext, getContextData } from 'waku/middleware/context'
-import { AtomsHydrator } from './atoms-hydrator.ts'
 import { ScrollContainer } from './scroll-container.tsx'
+import { ServerDataContextProvider } from './server-data-context-provider.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
 
 interface AppLayoutProps {
   append?: ReactNode
   children: ReactNode
+  serverData?: Record<string, unknown>
   sidebar?: ReactNode
 }
 
 const defaultSidebar = <SidebarLinks />
-export default function AppLayout({ append, children, sidebar = defaultSidebar }: AppLayoutProps) {
+export default function AppLayout({ append, children, serverData, sidebar = defaultSidebar }: AppLayoutProps) {
   const { req } = getContext()
   const { preference } = getContextData()
+  const value = useMemo(() => ({ preference, ...serverData }), [preference, serverData])
 
   return (
-    <AtomsHydrator values={{ preference }}>
+    <ServerDataContextProvider value={value}>
       <div className='flex h-screen bg-[var(--theme)]'>
         <aside className='flex flex-col'>
           <div className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold text-white'>
@@ -35,6 +37,6 @@ export default function AppLayout({ append, children, sidebar = defaultSidebar }
           </div>
         </div>
       </div>
-    </AtomsHydrator>
+    </ServerDataContextProvider>
   )
 }

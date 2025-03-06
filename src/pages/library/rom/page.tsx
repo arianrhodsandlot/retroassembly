@@ -6,6 +6,7 @@ import { GameBackground } from './components/game-background.tsx'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
 import { GameMedias } from './components/game-medias.tsx'
+import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
 import { LaunchButton } from './components/launch-button.tsx'
 
 export async function RomPage({ id }) {
@@ -18,7 +19,11 @@ export async function RomPage({ id }) {
   const { launchboxGame } = rom
 
   return (
-    <AppLayout append={<GameBackground rom={rom} />} sidebar={<SidebarLinks platform={rom.platform} />}>
+    <AppLayout
+      append={<GameBackground rom={rom} />}
+      serverData={{ rom }}
+      sidebar={<SidebarLinks platform={rom.platform} />}
+    >
       <div className='z-1 relative flex gap-4'>
         <title>{`${title} - RetroAssembly`}</title>
 
@@ -32,7 +37,7 @@ export async function RomPage({ id }) {
           <GameInfo gameInfo={launchboxGame} rom={rom} />
 
           <div className='px-4'>
-            <LaunchButton rom={rom} />
+            <LaunchButton />
           </div>
 
           <div className='flex flex-col gap-4 pl-4 pr-64'>
@@ -59,6 +64,7 @@ export async function RomPage({ id }) {
           </div>
         </div>
       </div>
+      <GameOverlay />
     </AppLayout>
   )
 }

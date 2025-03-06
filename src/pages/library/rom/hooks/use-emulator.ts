@@ -1,76 +1,34 @@
-import { useAtom } from 'jotai'
-import { useResetAtom } from 'jotai/utils'
-import type { Nostalgist } from 'nostalgist'
-import type { CoreName } from '@/constants/core.ts'
-import { emulatorAtom, emulatorResouceAtom, emulatorStatusAtom } from '../atoms.ts'
+import { Nostalgist } from 'nostalgist'
+import useSWRImmutable from 'swr/immutable'
+import { usePreference } from '../../hooks/use-preference.ts'
+import { useRom } from './use-rom.ts'
 
 export function useEmulator() {
-  const [emulator, setEmulator] = useAtom(emulatorAtom)
-  const resetEmulator = useResetAtom(emulatorAtom)
-  const [status, setEmulatorStatus] = useAtom(emulatorStatusAtom)
-  const resetEmulatorStatus = useResetAtom(emulatorStatusAtom)
-  const [emulatorResouce, setEmulatorResouce] = useAtom(emulatorResouceAtom)
-  const { core, rom } = emulatorResouce
+  const rom = useRom()
+  const preference = usePreference()
+  const romUrl = `/api/v1/rom/${rom.id}/content`
+  const { core, shader } = preference.emulator.platform[rom.platform]
+  const {
+    data: emulator,
+    isLoading: isPreparing,
+    mutate: prepare,
+  } = useSWRImmutable(romUrl, (romUrl: string) => {
+    return Nostalgist.prepare({
+      core,
+      retroarchCoreConfig: preference.emulator.core[core],
+      rom: romUrl,
+      shader,
+      style: {
+        height: '100px',
+        width: '100px',
+      },
+    })
+  })
 
   function exit() {
-    getEmulator().getEmulator().resume()
-    resetEmulator()
-    resetEmulatorStatus()
+    emulator?.exit()
+    prepare()
   }
 
-  function initEmulator({ core, emulator, rom }: { core: CoreName; emulator: Nostalgist; rom: any }) {
-    setEmulator(emulator)
-    setEmulatorResouce({ core, rom })
-    resetEmulatorStatus()
-  }
-
-  function launch() {
-    getEmulator().getEmulator().launch()
-    setEmulatorStatus('running')
-  }
-
-  function pause() {
-    getEmulator().getEmulator().pause()
-    setEmulatorStatus('paused')
-  }
-
-  function restart() {
-    getEmulator().getEmulator().restart()
-    setEmulatorStatus('running')
-  }
-
-  function resume() {
-    getEmulator().getEmulator().resume()
-    setEmulatorStatus('running')
-  }
-
-  function togglePause() {
-    if (status === 'running') {
-      pause()
-    } else if (status === 'paused') {
-      resume()
-    }
-  }
-
-  function getEmulator() {
-    if (!emulator) {
-      throw new Error('emulator is not available')
-    }
-    return emulator
-  }
-
-  return {
-    core,
-    exit,
-    getEmulator,
-    initEmulator,
-    launch,
-    pause,
-    restart,
-    resume,
-    rom,
-    setEmulator,
-    status,
-    togglePause,
-  }
+  return { core, emulator, exit, isPreparing, prepare, rom }
 }

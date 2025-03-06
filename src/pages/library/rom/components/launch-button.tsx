@@ -1,13 +1,12 @@
 'use client'
 import { useKeyboardEvent } from '@react-hookz/web'
 import { clsx } from 'clsx'
-import { useEffect } from 'react'
 import { useEmulator } from '../hooks/use-emulator.ts'
 
 const directionKeys = new Set(['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp'])
 
 export function LaunchButton() {
-  const { emulator, isPreparing, prepare } = useEmulator()
+  const { emulator, isPreparing } = useEmulator()
 
   function launch() {
     emulator?.start()
@@ -24,10 +23,6 @@ export function LaunchButton() {
       }
     }
   })
-
-  useEffect(() => {
-    prepare()
-  }, [prepare])
 
   return (
     <button

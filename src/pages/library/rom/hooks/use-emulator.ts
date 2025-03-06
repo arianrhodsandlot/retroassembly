@@ -14,6 +14,7 @@ export function useEmulator() {
     mutate: prepare,
   } = useSWRImmutable(romUrl, (romUrl: string) => {
     return Nostalgist.prepare({
+      cache: true,
       core,
       retroarchCoreConfig: preference.emulator.core[core],
       rom: romUrl,

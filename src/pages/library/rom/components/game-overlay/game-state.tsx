@@ -31,7 +31,7 @@ export function GameState({ state }) {
 
   return (
     <button
-      className='flex h-36 w-48 shrink-0 flex-col overflow-hidden rounded border-4 border-white bg-white opacity-0 shadow'
+      className='flex h-36 w-48 shrink-0 flex-col overflow-hidden rounded border-4 border-white bg-white shadow'
       key={state.id}
       onClick={handleClick}
       type='button'

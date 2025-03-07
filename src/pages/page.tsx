@@ -6,7 +6,7 @@ export function HomePage() {
       <title>RetroAssembly</title>
 
       <div className='text-center'>
-        <div className='p-40 text-4xl'>-</div>
+        <div className='p-40 text-4xl'>Hi</div>
         <div className='flex items-center justify-center'>
           <Link className='rounded bg-neutral-100 px-8 py-4 text-xl' to='/library'>
             Press any key to start

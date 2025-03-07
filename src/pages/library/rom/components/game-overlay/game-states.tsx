@@ -1,5 +1,5 @@
 import { groupBy } from 'es-toolkit'
-import { ScrollContainer } from '../../../components/scroll-container.tsx'
+import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { useGameStates } from '../../hooks/use-game-states.ts'
 import { GameState } from './game-state.tsx'
 
@@ -18,25 +18,21 @@ export function GameStates() {
         <span className='icon-[mdi--database] size-7' />
         Saved States
       </h3>
-      {manual ? (
-        <ScrollContainer>
-          <div className='flex flex-nowrap gap-8'>
-            {manual.map((state) => (
-              <GameState key={state.id} state={state} />
-            ))}
-          </div>
-        </ScrollContainer>
-      ) : null}
 
-      {auto ? (
-        <div className='overflow-auto'>
-          <div className='flex flex-nowrap gap-8'>
-            {auto.map((state) => (
-              <GameState key={state.id} state={state} />
-            ))}
-          </div>
-        </div>
-      ) : null}
+      {[
+        { states: manual, type: 'manual' },
+        { states: auto, type: 'auto' },
+      ]
+        .filter(({ states }) => states)
+        .map(({ states, type }) => (
+          <ScrollArea key={type}>
+            <div className='flex flex-nowrap gap-8'>
+              {states.map((state) => (
+                <GameState key={state.id} state={state} />
+              ))}
+            </div>
+          </ScrollArea>
+        ))}
     </>
   )
 }

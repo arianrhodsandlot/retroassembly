@@ -1,6 +1,6 @@
 import { type ReactNode, useMemo } from 'react'
 import { getContext, getContextData } from 'waku/middleware/context'
-import { ScrollContainer } from './scroll-container.tsx'
+import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { ServerDataContextProvider } from './server-data-context-provider.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
 
@@ -25,14 +25,16 @@ export default function AppLayout({ append, children, serverData, sidebar = defa
             <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
             RetroAssembly
           </div>
-          <ScrollContainer className='flex-1'>{sidebar}</ScrollContainer>
+          <ScrollArea className='flex-1' size='2'>
+            {sidebar}
+          </ScrollArea>
         </aside>
 
         <div className='flex h-full flex-1'>
-          <div className='relative my-4 mr-4 flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
-            <ScrollContainer className='z-1 relative flex-1' key={req.url.pathname}>
+          <div className='my-4 mr-4 flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
+            <ScrollArea className='flex-1' key={req.url.pathname} size='2'>
               <main className='min-h-full p-4'>{children}</main>
-            </ScrollContainer>
+            </ScrollArea>
             {append}
           </div>
         </div>

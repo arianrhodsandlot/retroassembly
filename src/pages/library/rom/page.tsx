@@ -1,4 +1,5 @@
 import { getRom } from '@/controllers/get-rom.ts'
+import { Portal, Theme } from '@/pages/components/radix-themes.ts'
 import { getRomTitle } from '@/utils/rom.ts'
 import AppLayout from '../components/app-layout.tsx'
 import { SidebarLinks } from '../components/sidebar-links.tsx'
@@ -24,7 +25,7 @@ export async function RomPage({ id }) {
       serverData={{ rom }}
       sidebar={<SidebarLinks platform={rom.platform} />}
     >
-      <div className='z-1 relative flex gap-4'>
+      <div className='flex gap-4'>
         <title>{`${title} - RetroAssembly`}</title>
 
         <div>
@@ -64,7 +65,12 @@ export async function RomPage({ id }) {
           </div>
         </div>
       </div>
-      <GameOverlay />
+
+      <Portal>
+        <Theme>
+          <GameOverlay />
+        </Theme>
+      </Portal>
     </AppLayout>
   )
 }

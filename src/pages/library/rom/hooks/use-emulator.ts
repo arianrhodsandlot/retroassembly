@@ -12,13 +12,13 @@ export function useEmulator() {
 
   globalThis.setLaunched = setLaunched
 
-  const romUrl = `/api/v1/rom/${rom.id}/content`
-  const { core, shader } = preference.emulator.platform[rom.platform]
+  const romUrl = rom ? `/api/v1/rom/${rom.id}/content` : ''
+  const { core, shader } = preference.emulator.platform[rom?.platform] || {}
   const {
     data: emulator,
     isLoading: isPreparing,
     mutate: prepare,
-  } = useSWRImmutable(romUrl, (romUrl: string) => {
+  } = useSWRImmutable(romUrl || false, (romUrl: string) => {
     return Nostalgist.prepare({
       cache: true,
       core,

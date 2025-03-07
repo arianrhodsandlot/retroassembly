@@ -37,7 +37,7 @@ export function GameOverlay() {
             className='bg-linear-to-b backdrop-blur-xs pointer-events-auto absolute inset-0 z-10 flex h-screen w-screen flex-col bg-black/50 text-white'
             exit={{ opacity: 0, scale: 1.1 }}
             initial={{ opacity: 0, scale: 1.1 }}
-            transition={{ duration: 0.1 }}
+            transition={{ duration: 0.2 }}
           >
             <div className='bg-linear-to-b to-text-transparent h-32 w-full from-black' />
             <div className='w-6xl mx-auto flex flex-1 flex-col gap-8'>

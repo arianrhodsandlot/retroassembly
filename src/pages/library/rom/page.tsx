@@ -9,6 +9,7 @@ import { GameInfo } from './components/game-info.tsx'
 import { GameMedias } from './components/game-medias.tsx'
 import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
 import { LaunchButton } from './components/launch-button.tsx'
+import { MainScrollArea } from './components/main-scroll-area.tsx'
 
 export async function RomPage({ id }) {
   const rom = await getRom(id)
@@ -22,6 +23,7 @@ export async function RomPage({ id }) {
   return (
     <AppLayout
       append={<GameBackground rom={rom} />}
+      MainScrollArea={MainScrollArea}
       serverData={{ rom }}
       sidebar={<SidebarLinks platform={rom.platform} />}
     >

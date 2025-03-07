@@ -1,5 +1,6 @@
 import ky from 'ky'
 import useSWRMutation from 'swr/mutation'
+import { humanizeDate } from '@/utils/misc.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 
@@ -30,17 +31,21 @@ export function GameState({ state }) {
 
   return (
     <button
-      className='flex size-52 shrink-0 flex-col overflow-hidden rounded border-4 border-white bg-white shadow'
+      className='flex h-36 w-48 shrink-0 flex-col overflow-hidden rounded border-4 border-white bg-white opacity-0 shadow'
       key={state.id}
       onClick={handleClick}
       type='button'
     >
-      <img
-        alt={state.id}
-        className='block flex-1 object-cover'
-        src={`/api/v1/file/${state.thumbnail_file_id}/content`}
-      />
-      <div className='text-sm'>{state.created_at}</div>
+      <div className='relative flex-1 bg-black'>
+        <img alt={state.id} className='absolute size-full object-contain' src={`/api/v1/state/${state.id}/thumbnail`} />
+
+        {state.type === 'auto' ? (
+          <div className='absolute bottom-0 right-0 rounded-tl bg-black/50 px-3 py-1 text-xs font-semibold text-white'>
+            Auto Saved
+          </div>
+        ) : null}
+      </div>
+      <div className='py-1 text-xs text-zinc-600'>Saved at {humanizeDate(state.created_at)}</div>
     </button>
   )
 }

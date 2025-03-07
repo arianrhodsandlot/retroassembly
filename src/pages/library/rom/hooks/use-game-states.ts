@@ -1,4 +1,5 @@
 import ky from 'ky'
+import useSWRImmutable from 'swr/immutable'
 import useSWRMutation from 'swr/mutation'
 import { useEmulator } from './use-emulator.ts'
 
@@ -7,9 +8,9 @@ export function useGameStates() {
 
   const {
     data: states,
-    isMutating: isStatesLoading,
-    trigger: reloadStates,
-  } = useSWRMutation('/api/v1/states', (url) => ky(url, { searchParams: { rom_id: rom.id } }).json())
+    isLoading: isStatesLoading,
+    mutate: reloadStates,
+  } = useSWRImmutable(`/api/v1/rom/${rom.id}/states`, (url) => ky(url).json())
 
   const { isMutating: isSavingState, trigger: saveState } = useSWRMutation('/api/v1/state/new', async (url) => {
     if (!emulator || !core) {
@@ -24,7 +25,7 @@ export function useGameStates() {
     formData.append('rom_id', rom.id)
     formData.append('core', core)
     formData.append('type', 'manual')
-    await ky.post(url, { body: formData })
+    await ky.put(url, { body: formData })
     await reloadStates()
   })
 

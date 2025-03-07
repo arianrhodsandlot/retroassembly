@@ -20,8 +20,8 @@ export function useEmulator() {
       rom: romUrl,
       shader,
       style: {
-        // height: '100px',
-        // width: '100px',
+        height: '100px',
+        width: '100px',
       },
     })
   })

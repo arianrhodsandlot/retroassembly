@@ -27,7 +27,7 @@ export function LaunchButton() {
   return (
     <button
       className={clsx(
-        'inline-flex h-16 w-72 items-center justify-center gap-1.5 rounded bg-rose-700 text-xl  font-bold text-white',
+        'inline-flex h-16 w-72 items-center justify-center gap-1.5 rounded bg-[var(--theme)] text-xl font-bold text-white',
         { 'opacity-50': isPreparing },
       )}
       disabled={isPreparing}

@@ -8,7 +8,7 @@ export function GameOverlayButton({
 }: { children: ReactNode; isLoading?: boolean; onClick?: any }) {
   return (
     <button
-      className='border-3 flex items-center justify-center gap-2 rounded border-white bg-black/40 px-6 py-4 text-xl font-semibold text-white'
+      className='backdrop-blur-xs flex items-center justify-center gap-2 rounded px-6 py-3 font-semibold text-white shadow-lg hover:bg-rose-700'
       disabled={isLoading}
       onClick={onClick}
       type='button'

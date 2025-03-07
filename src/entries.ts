@@ -1,6 +1,6 @@
 import { createPages } from 'waku'
+import { getContext } from 'waku/middleware/context'
 import type { PathsForPages } from 'waku/router'
-import { getHonoContext } from 'waku/unstable_hono'
 import { api } from '@/api/index.ts'
 import { LibraryPage } from '@/pages/library/page.tsx'
 import { PlatformPage } from '@/pages/library/platform/page.tsx'
@@ -28,8 +28,9 @@ const pages: ReturnType<typeof createPages> = createPages(({ createApi, createPa
 )
 
 async function apiHandler() {
-  const c = getHonoContext()
-  return await api.fetch(c.req.raw.clone())
+  const { req } = getContext()
+  const request = new Request(req.url, req)
+  return await api.fetch(request)
 }
 
 declare module 'waku/router' {

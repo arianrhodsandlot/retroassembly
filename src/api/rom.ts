@@ -1,10 +1,10 @@
-import { and, eq } from 'drizzle-orm'
+import { and, desc, eq } from 'drizzle-orm'
 import { isString } from 'es-toolkit'
 import { getContextData } from 'waku/middleware/context'
 import { platformMap } from '../constants/platform.ts'
 import { createRom } from '../controllers/create-rom.ts'
 import { guessGameInfo } from '../controllers/guess-game-info.ts'
-import { rom } from '../databases/library/schema.ts'
+import { rom, state } from '../databases/library/schema.ts'
 import { nanoid } from '../utils/misc.ts'
 import { app } from './app.ts'
 import { getFileResponse } from './utils/storage.ts'
@@ -13,7 +13,7 @@ function isBlobs(value: unknown): value is File[] {
   return Array.isArray(value) && value.every((item) => item instanceof File)
 }
 
-app.post('rom/new', async (c) => {
+app.put('rom/new', async (c) => {
   // validations
   const body = await c.req.parseBody({ all: true })
   const { platform } = body
@@ -59,4 +59,21 @@ app.get('rom/:id/content', async (c) => {
   }
 
   return getFileResponse(result.file_id, c)
+})
+
+app.get('rom/:id/states', async (c) => {
+  const romId = c.req.param('id')
+  const type = c.req.query('type')
+  const { currentUser, db } = getContextData()
+
+  const conditions = [eq(state.user_id, currentUser.id), eq(state.status, 1)]
+  if (romId) {
+    conditions.push(eq(state.rom_id, romId))
+  }
+  if (type === 'auto' || type === 'manual') {
+    conditions.push(eq(state.type, type))
+  }
+  const where = and(...conditions)
+  const results = await db.library.select().from(state).where(where).orderBy(desc(state.created_at))
+  return c.json(results)
 })

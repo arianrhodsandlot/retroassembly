@@ -22,7 +22,7 @@ app.get('states', async (c) => {
   return c.json(results)
 })
 
-app.post('state/new', async (c) => {
+app.put('state/new', async (c) => {
   const { core, rom_id: romId, state: stateFile, thumbnail, type } = await c.req.parseBody()
   if (!(stateFile instanceof Blob)) {
     return c.json({ message: 'invalid state' })
@@ -83,4 +83,19 @@ app.get('state/:id/content', async (c) => {
   }
 
   return getFileResponse(result.file_id, c)
+})
+
+app.get('state/:id/thumbnail', async (c) => {
+  const { currentUser, db } = getContextData()
+
+  const [result] = await db.library
+    .select()
+    .from(state)
+    .where(and(eq(state.id, c.req.param('id')), eq(state.user_id, currentUser.id), eq(state.status, 1)))
+    .limit(1)
+  if (!result) {
+    return c.body('state not found', 404)
+  }
+
+  return getFileResponse(result.thumbnail_file_id, c)
 })

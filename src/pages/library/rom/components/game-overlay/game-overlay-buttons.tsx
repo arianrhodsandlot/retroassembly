@@ -23,7 +23,6 @@ export function GameOverlayButtons() {
     setIsPending(true)
     try {
       await saveState()
-      toggle()
     } finally {
       setIsPending(false)
     }

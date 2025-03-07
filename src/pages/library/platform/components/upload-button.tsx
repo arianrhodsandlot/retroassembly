@@ -14,7 +14,7 @@ export function UploadButton({ platform }: { platform: string }) {
       formData.append('files', file)
     }
     formData.append('platform', platform)
-    await ky.post(url, { body: formData })
+    await ky.put(url, { body: formData })
   })
 
   async function handleClick() {

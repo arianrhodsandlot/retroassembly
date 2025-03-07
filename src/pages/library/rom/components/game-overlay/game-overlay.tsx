@@ -1,27 +1,58 @@
 'use client'
+import { useIsMounted, useKeyboardEvent } from '@react-hookz/web'
+import { AnimatePresence, motion } from 'motion/react'
 import { createPortal } from 'react-dom'
+import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
+import { useGameStates } from '../../hooks/use-game-states.ts'
 import { GameOverlayButtons } from './game-overlay-buttons.tsx'
 import { GameStates } from './game-states.tsx'
 
 export function GameOverlay() {
-  const { show } = useGameOverlay()
+  const { show, toggle } = useGameOverlay()
+  const isMounted = useIsMounted()
+  const { emulator } = useEmulator()
+  const { reloadStates } = useGameStates()
 
-  if (show) {
+  useKeyboardEvent(true, (event) => {
+    const isEscapeKey = event.key === 'Escape'
+    const status = emulator?.getStatus()
+    if (isEscapeKey) {
+      if (status === 'running') {
+        emulator?.pause()
+        toggle()
+        reloadStates()
+      }
+      if (status === 'paused') {
+        emulator?.resume()
+        toggle()
+      }
+    }
+  })
+
+  if (isMounted()) {
     return createPortal(
-      <div className='bg-linear-to-b absolute inset-0 z-10 flex h-screen w-screen flex-col bg-black/50'>
-        <div className='bg-linear-to-b to-text-transparent h-32 w-full from-black' />
-        <div className='w-6xl mx-auto flex flex-1 flex-col gap-8'>
-          <div className='flex gap-8 text-white'>
-            <GameOverlayButtons />
-          </div>
-          <h3 className='flex items-center gap-2 text-2xl font-semibold text-white'>
-            <span className='icon-[mdi--database] size-7' />
-            States
-          </h3>
-          <GameStates />
-        </div>
-        <div className='bg-linear-to-b h-32 w-full from-transparent to-black text-transparent' />
+      <div className='pointer-events-none absolute inset-0 overflow-hidden'>
+        <AnimatePresence>
+          {show ? (
+            <motion.div
+              animate={{ opacity: 1, scale: 1 }}
+              className='bg-linear-to-b backdrop-blur-xs pointer-events-auto absolute inset-0 z-10 flex h-screen w-screen flex-col bg-black/50 text-white'
+              exit={{ opacity: 0, scale: 1.1 }}
+              initial={{ opacity: 0, scale: 1.1 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className='bg-linear-to-b to-text-transparent h-32 w-full from-black' />
+              <div className='w-6xl mx-auto flex flex-1 flex-col gap-8'>
+                <div className='flex gap-8'>
+                  <GameOverlayButtons />
+                </div>
+                <GameStates />
+              </div>
+              <div className='bg-linear-to-b h-32 w-full from-transparent to-black text-transparent' />
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </div>,
       document.body,
     )

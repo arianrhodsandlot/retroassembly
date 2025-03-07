@@ -1,3 +1,4 @@
+import { isThisYear, isToday, lightFormat } from 'date-fns'
 import { customAlphabet } from 'nanoid'
 import nanoidDictionary from 'nanoid-dictionary'
 
@@ -13,4 +14,14 @@ export function restoreTitleForSorting(title: string) {
   }
   // Return original string if no match
   return title
+}
+
+export function humanizeDate(date: Date) {
+  if (isToday(date)) {
+    return lightFormat(date, 'HH:mm:ss')
+  }
+  if (isThisYear(date)) {
+    return lightFormat(date, 'MM-dd HH:mm')
+  }
+  return lightFormat(date, 'yyyy-MM-dd HH:mm')
 }

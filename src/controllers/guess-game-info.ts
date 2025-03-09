@@ -3,7 +3,7 @@ import { and, eq, or } from 'drizzle-orm'
 import goodcodes from 'goodcodes-parser'
 import { getContextData } from 'waku/middleware/context'
 import { platformMap } from '../constants/platform.ts'
-import { launchboxGame, libretroGame } from '../databases/metadata/schema.ts'
+import { launchboxGame, launchboxGameAlternateName, libretroGame } from '../databases/metadata/schema.ts'
 import { restoreTitleForSorting } from '../utils/misc.ts'
 import { getCompactName } from '../utils/rom.ts'
 
@@ -31,19 +31,41 @@ async function guessLaunchboxGame(fileName: string, platform: string) {
   const { metadata } = db
 
   const baseName = path.parse(fileName).name
-  const restoredBaseName = restoreTitleForSorting(goodcodes.parse(baseName).rom)
-  const results = await metadata
+  const restoredBaseName = restoreTitleForSorting(goodcodes.parse(`0 - ${baseName}`).rom)
+  const exactResults = await metadata
     .select()
     .from(launchboxGame)
     .where(
       and(
-        eq(launchboxGame.compact_name, getCompactName(restoredBaseName)),
+        or(eq(launchboxGame.compact_name, getCompactName(restoredBaseName))),
         eq(launchboxGame.platform, platformMap[platform].launchboxName),
       ),
     )
     .limit(1)
 
-  return results.at(0)
+  const exactResult = exactResults.at(0)
+  if (exactResult) {
+    return exactResult
+  }
+
+  const results = await metadata
+    .select()
+    .from(launchboxGameAlternateName)
+    .where(eq(launchboxGameAlternateName.alternate_name, restoredBaseName))
+    .limit(1)
+  const databaseId = results[0]?.database_id
+  if (databaseId) {
+    const alternateResults = await metadata
+      .select()
+      .from(launchboxGame)
+      .where(
+        and(eq(launchboxGame.database_id, databaseId), eq(launchboxGame.platform, platformMap[platform].launchboxName)),
+      )
+    const alternateResult = alternateResults.at(0)
+    if (alternateResult) {
+      return alternateResult
+    }
+  }
 }
 
 export async function guessGameInfo(fileName: string, platform: string) {
@@ -51,5 +73,6 @@ export async function guessGameInfo(fileName: string, platform: string) {
     guessLibretroGame(fileName, platform),
     guessLaunchboxGame(fileName, platform),
   ])
+
   return { launchbox, libretro }
 }

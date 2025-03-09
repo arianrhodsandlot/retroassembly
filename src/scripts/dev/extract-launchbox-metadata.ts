@@ -172,6 +172,7 @@ async function writeLaunchboxGameAlternateName(records: Records, db: BetterSQLit
     await db.insert(launchboxGameAlternateName).values(
       recordsChunk.map((record) => ({
         ...record,
+        compact_name: getCompactName(record.alternate_name),
         database_id: castInteger(record.database_id),
       })),
     )

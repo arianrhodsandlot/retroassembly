@@ -72,11 +72,19 @@ export const launchboxGameAlternateName = sqliteTable(
   'launchbox_game_alternate_names',
   {
     alternate_name: text(),
+    compact_name: text(),
     database_id: integer(),
     id: text().primaryKey().notNull().$defaultFn(nanoid),
     region: text(),
   },
-  (table) => [index('idx_launchbox_game_alternate_names').on(table.id, table.alternate_name, table.database_id)],
+  (table) => [
+    index('idx_launchbox_game_alternate_names').on(
+      table.id,
+      table.alternate_name,
+      table.compact_name,
+      table.database_id,
+    ),
+  ],
 )
 
 export const libretroGame = sqliteTable(

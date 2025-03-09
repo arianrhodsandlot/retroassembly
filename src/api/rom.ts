@@ -13,6 +13,15 @@ function isBlobs(value: unknown): value is File[] {
   return Array.isArray(value) && value.every((item) => item instanceof File)
 }
 
+app.get('rom/test', async (c) => {
+  const platform = c.req.query('platform') || ''
+  const name = c.req.query('name') || ''
+
+  const result = await guessGameInfo(name, platform)
+
+  return c.json(result)
+})
+
 app.put('rom/new', async (c) => {
   // validations
   const body = await c.req.parseBody({ all: true })

@@ -48,7 +48,7 @@ export function getPlatformGameIcon(platform: string, type = 'game') {
 }
 
 export function getRomTitle(rom) {
-  return rom.launchboxGame?.name || rom.libretroGame?.name || path.parse(rom.file_name).name
+  return path.parse(rom.file_name).name
 }
 
 export function getCompactName(name: string) {

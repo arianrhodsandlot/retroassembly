@@ -1,8 +1,8 @@
 import { getRom } from '@/controllers/get-rom.ts'
 import { Portal, Theme } from '@/pages/components/radix-themes.ts'
 import { getRomTitle } from '@/utils/rom.ts'
-import AppLayout from '../components/app-layout.tsx'
-import { SidebarLinks } from '../components/sidebar-links.tsx'
+import AppLayout from '../../components/app-layout.tsx'
+import { SidebarLinks } from '../../components/sidebar-links.tsx'
 import { GameBackground } from './components/game-background.tsx'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
@@ -11,8 +11,8 @@ import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
 import { LaunchButton } from './components/launch-button.tsx'
 import { MainScrollArea } from './components/main-scroll-area.tsx'
 
-export async function RomPage({ id }) {
-  const rom = await getRom(id)
+export async function RomPage({ fileName, platform }) {
+  const rom = await getRom({ fileName: decodeURIComponent(fileName), platform: decodeURIComponent(platform) })
   if (!rom) {
     return '404'
   }

@@ -1,6 +1,6 @@
 'use client'
-import { MainBackground } from '../../components/main-background.tsx'
-import { useRomCover } from '../../hooks/use-rom-cover.ts'
+import { MainBackground } from '../../../components/main-background.tsx'
+import { useRomCover } from '../../../hooks/use-rom-cover.ts'
 
 export function GameBackground({ rom }) {
   const { data: cover, isLoading } = useRomCover(rom)

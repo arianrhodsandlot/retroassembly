@@ -13,7 +13,7 @@ export function GameEntry({ rom, width }) {
       <Link
         className='block'
         style={{ width: width || 'auto' }}
-        to={`/library/rom/${rom.id}`}
+        to={`/library/platform/${encodeURIComponent(rom.platform)}/rom/${encodeURIComponent(rom.file_name)}`}
         unstable_pending={
           <div className='z-1 absolute inset-0'>
             <div className='grid h-4/5 w-full place-items-center'>

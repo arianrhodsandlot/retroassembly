@@ -4,7 +4,7 @@ import type { PathsForPages } from 'waku/router'
 import { api } from '@/api/index.ts'
 import { LibraryPage } from '@/pages/library/page.tsx'
 import { PlatformPage } from '@/pages/library/platform/page.tsx'
-import { RomPage } from '@/pages/library/rom/page.tsx'
+import { RomPage } from '@/pages/library/platform/rom/page.tsx'
 import { LoginPage } from '@/pages/login/page.tsx'
 import { HomePage } from '@/pages/page.tsx'
 import { Root } from '@/pages/root.tsx'
@@ -17,7 +17,7 @@ const pages: ReturnType<typeof createPages> = createPages(({ createApi, createPa
     createPage({ component: LoginPage, path: '/login', render: 'dynamic' }),
     createPage({ component: LibraryPage, path: '/library', render: 'dynamic' }),
     createPage({ component: PlatformPage, path: '/library/platform/[platform]', render: 'dynamic' }),
-    createPage({ component: RomPage, path: '/library/rom/[id]', render: 'dynamic' }),
+    createPage({ component: RomPage, path: '/library/platform/[platform]/rom/[fileName]', render: 'dynamic' }),
 
     createApi({
       handlers: { DELETE: apiHandler, GET: apiHandler, PATCH: apiHandler, POST: apiHandler, PUT: apiHandler },

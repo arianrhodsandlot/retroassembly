@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai'
 import { Nostalgist } from 'nostalgist'
 import useSWRImmutable from 'swr/immutable'
-import { usePreference } from '../../hooks/use-preference.ts'
+import { usePreference } from '../../../hooks/use-preference.ts'
 import { emulatorLaunchedAtom } from '../atoms.ts'
 import { useRom } from './use-rom.ts'
 

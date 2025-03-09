@@ -1,7 +1,7 @@
 'use client'
 import { AnimatePresence, motion } from 'motion/react'
 import { type ReactNode, type UIEventHandler, useState } from 'react'
-import AppLayout from '../../components/app-layout.tsx'
+import AppLayout from '../../../components/app-layout.tsx'
 import { useEmulator } from '../hooks/use-emulator.ts'
 
 interface RomAppLayoutProps {

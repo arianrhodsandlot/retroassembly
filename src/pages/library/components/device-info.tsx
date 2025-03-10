@@ -3,7 +3,7 @@ import { getCDNUrl } from '@/utils/cdn.ts'
 
 export async function DeviceInfo({ platform }: { platform: string }) {
   const platformInfo = await getPlatformInfo(platform)
-  if (!platformInfo) {
+  if (platformInfo) {
     return
   }
 

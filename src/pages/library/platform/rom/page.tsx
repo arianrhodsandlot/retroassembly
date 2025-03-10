@@ -1,6 +1,6 @@
 import { getRom } from '@/controllers/get-rom.ts'
 import { Portal, Theme } from '@/pages/components/radix-themes.ts'
-import { getRomTitle } from '@/utils/rom.ts'
+import { getRomGoodcodes } from '@/utils/rom.ts'
 import AppLayout from '../../components/app-layout.tsx'
 import { SidebarLinks } from '../../components/sidebar-links.tsx'
 import { GameBackground } from './components/game-background.tsx'
@@ -17,7 +17,7 @@ export async function RomPage({ fileName, platform }) {
     return '404'
   }
 
-  const title = getRomTitle(rom)
+  const goodcodes = getRomGoodcodes(rom)
   const { launchboxGame } = rom
 
   return (
@@ -28,14 +28,14 @@ export async function RomPage({ fileName, platform }) {
       sidebar={<SidebarLinks platform={rom.platform} />}
     >
       <div className='flex gap-4'>
-        <title>{`${title} - RetroAssembly`}</title>
+        <title>{`${goodcodes.rom} - RetroAssembly`}</title>
 
         <div>
           <GameCover rom={rom} />
         </div>
 
         <div className='flex flex-1 flex-col gap-8'>
-          <h1 className='px-8 pt-4 text-3xl font-bold'>{title}</h1>
+          <h1 className='px-8 pt-4 text-3xl font-bold'>{goodcodes.rom}</h1>
 
           <GameInfo gameInfo={launchboxGame} rom={rom} />
 
@@ -69,7 +69,7 @@ export async function RomPage({ fileName, platform }) {
       </div>
 
       <Portal>
-        <Theme>
+        <Theme accentColor='red'>
           <GameOverlay />
         </Theme>
       </Portal>

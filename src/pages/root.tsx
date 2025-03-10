@@ -10,7 +10,7 @@ export function Root({ children }: { children: ReactNode }) {
     <html lang='en'>
       <head />
       <body data-theme={preference.ui.theme}>
-        <Theme>{children}</Theme>
+        <Theme accentColor='red'>{children}</Theme>
       </body>
     </html>
   )

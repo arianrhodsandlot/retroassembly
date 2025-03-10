@@ -17,7 +17,7 @@ export function SidebarLinks({ platform }: { platform?: string }) {
 
   return (
     <>
-      <div className='flex flex-col'>
+      <div className='invisible flex flex-col'>
         {[{ href: '/library', icon: <span className='icon-[mdi--bookshelf] size-5' />, text: 'Library' }].map(
           ({ href, icon, text }) => (
             <SidebarLink active={!platform} href={href} key={text}>

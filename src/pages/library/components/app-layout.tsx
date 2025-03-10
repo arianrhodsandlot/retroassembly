@@ -7,7 +7,7 @@ import { SidebarLinks } from './sidebar-links.tsx'
 interface AppLayoutProps {
   append?: ReactNode
   children: ReactNode
-  MainScrollArea: typeof ScrollArea
+  MainScrollArea?: typeof ScrollArea
   onMainScroll?: UIEventHandler<HTMLDivElement>
   serverData?: Record<string, unknown>
   sidebar?: ReactNode
@@ -27,7 +27,7 @@ export default function AppLayout({
   return (
     <ServerDataContextProvider value={value}>
       <div className='flex h-screen bg-[var(--theme)]'>
-        <aside className='flex flex-col'>
+        <aside className='invisible flex flex-col'>
           <div className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold text-white'>
             <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
             RetroAssembly

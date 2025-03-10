@@ -14,21 +14,29 @@ async function guessLibretroGame(fileName: string, platform: string) {
   const baseName = path.parse(fileName).name
   const goodcodes = parse(`0 - ${baseName}`)
   const goodcodesCompactName = getCompactName(goodcodes.rom)
+
   const filters = [
-    eq(libretroGame.rom_name, fileName),
-    eq(libretroGame.compact_name, getCompactName(baseName)),
-    eq(libretroGame.goodcodes_base_compact_name, goodcodesCompactName),
+    { column: libretroGame.rom_name, value: fileName },
+    { column: libretroGame.name, value: baseName },
+    { column: libretroGame.compact_name, value: getCompactName(baseName) },
+    { column: libretroGame.goodcodes_base_compact_name, value: goodcodesCompactName },
   ]
   if (goodcodesCompactName.startsWith('the')) {
-    filters.push(eq(libretroGame.goodcodes_base_compact_name, `${goodcodesCompactName.replace(/^the/, '')}the`))
+    filters.push({
+      column: libretroGame.goodcodes_base_compact_name,
+      value: `${goodcodesCompactName.replace(/^the/, '')}the`,
+    })
   }
 
-  const results = await metadata
-    .select()
-    .from(libretroGame)
-    .where(and(or(...filters), eq(libretroGame.platform, platformMap[platform].libretroName)))
-    .limit(1)
-  return results.at(0)
+  for (const { column, value } of filters) {
+    const results = await metadata
+      .select()
+      .from(libretroGame)
+      .where(and(eq(column, value), eq(libretroGame.platform, platformMap[platform].libretroName)))
+    if (results.length > 0) {
+      return results.at(0)
+    }
+  }
 }
 
 async function guessLaunchboxGame(fileName: string, platform: string) {

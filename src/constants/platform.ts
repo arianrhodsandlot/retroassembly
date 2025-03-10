@@ -42,7 +42,7 @@ const platforms: Platform[] = [
       'fbneo',
     ],
     displayName: 'Arcade',
-    fileExtensions: ['zip'],
+    fileExtensions: ['zip'].map((name) => `.${name}`),
     launchboxName: 'Arcade',
     libretroName: 'FBNeo - Arcade Games',
     name: 'arcade',
@@ -50,7 +50,7 @@ const platforms: Platform[] = [
   {
     cores: ['stella2014'],
     displayName: 'Atari 2600',
-    fileExtensions: ['a26', 'zip'],
+    fileExtensions: ['a26', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Atari 2600',
     libretroName: 'Atari - 2600',
     name: 'atari2600',
@@ -58,7 +58,7 @@ const platforms: Platform[] = [
   {
     cores: ['a5200'],
     displayName: 'Atari 5200',
-    fileExtensions: ['a52', 'xfd', 'atr', 'atx', 'cdm', 'cas', 'xex', 'zip'],
+    fileExtensions: ['a52', 'xfd', 'atr', 'atx', 'cdm', 'cas', 'xex', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Atari - 5200',
     libretroName: 'Atari - 5200',
     name: 'atari5200',
@@ -66,7 +66,7 @@ const platforms: Platform[] = [
   {
     cores: ['prosystem'],
     displayName: 'Atari 7800',
-    fileExtensions: ['a78', '', 'zip'],
+    fileExtensions: ['a78', '', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Atari - 7800',
     libretroName: 'Atari - 7800',
     name: 'atari7800',
@@ -74,7 +74,7 @@ const platforms: Platform[] = [
   {
     cores: ['fceumm', 'nestopia'],
     displayName: 'Family Computer Disk System',
-    fileExtensions: ['fds', 'zip'],
+    fileExtensions: ['fds', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Nintendo Famicom Disk System',
     libretroName: 'Nintendo - Family Computer Disk System',
     name: 'fds',
@@ -82,7 +82,7 @@ const platforms: Platform[] = [
   {
     cores: ['genesis_plus_gx', 'gearsystem'],
     displayName: 'Game Gear',
-    fileExtensions: ['gg', 'zip'],
+    fileExtensions: ['gg', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Sega Game Gear',
     libretroName: 'Sega - Game Gear',
     name: 'gamegear',
@@ -90,7 +90,7 @@ const platforms: Platform[] = [
   {
     cores: ['mgba', 'gearboy', 'gambatte', 'tgbdual'],
     displayName: 'Game Boy',
-    fileExtensions: ['gb', 'zip'],
+    fileExtensions: ['gb', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Nintendo Game Boy',
     libretroName: 'Nintendo - Game Boy',
     name: 'gb',
@@ -98,7 +98,7 @@ const platforms: Platform[] = [
   {
     cores: ['mgba', 'vba_next'],
     displayName: 'Game Boy Advance',
-    fileExtensions: ['gba', 'zip'],
+    fileExtensions: ['gba', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Nintendo Game Boy Advance',
     libretroName: 'Nintendo - Game Boy Advance',
     name: 'gba',
@@ -106,7 +106,7 @@ const platforms: Platform[] = [
   {
     cores: ['mgba', 'gearboy', 'gambatte', 'tgbdual'],
     displayName: 'Game Boy Color',
-    fileExtensions: ['gb', 'gbc', 'cgb', 'sgb', 'zip'],
+    fileExtensions: ['gb', 'gbc', 'cgb', 'sgb', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Nintendo Game Boy Color',
     libretroName: 'Nintendo - Game Boy Color',
     name: 'gbc',
@@ -114,7 +114,7 @@ const platforms: Platform[] = [
   {
     cores: ['genesis_plus_gx', 'picodrive', 'gearsystem'],
     displayName: 'Genesis',
-    fileExtensions: ['md', 'gen', 'zip'],
+    fileExtensions: ['md', 'gen', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Sega Genesis',
     libretroName: 'Sega - Mega Drive - Genesis',
     name: 'megadrive',
@@ -122,7 +122,7 @@ const platforms: Platform[] = [
   {
     cores: ['fceumm', 'nestopia', 'quicknes'],
     displayName: 'NES',
-    fileExtensions: ['nes', 'unif', 'unf', 'zip'],
+    fileExtensions: ['nes', 'unif', 'unf', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Nintendo Entertainment System',
     libretroName: 'Nintendo - Nintendo Entertainment System',
     name: 'nes',
@@ -130,7 +130,7 @@ const platforms: Platform[] = [
   {
     cores: ['mednafen_ngp'],
     displayName: 'Neo Geo Pocket',
-    fileExtensions: ['ngp', 'zip'],
+    fileExtensions: ['ngp', 'zip'].map((name) => `.${name}`),
     launchboxName: 'SNK Neo Geo Pocket',
     libretroName: 'SNK - Neo Geo Pocket',
     name: 'ngp',
@@ -138,7 +138,7 @@ const platforms: Platform[] = [
   {
     cores: ['mednafen_ngp'],
     displayName: 'Neo Geo Pocket Color',
-    fileExtensions: ['ngc', 'zip'],
+    fileExtensions: ['ngc', 'zip'].map((name) => `.${name}`),
     launchboxName: 'SNK Neo Geo Pocket Color',
     libretroName: 'SNK - Neo Geo Pocket Color',
     name: 'ngpc',
@@ -146,7 +146,7 @@ const platforms: Platform[] = [
   {
     cores: ['genesis_plus_gx', 'picodrive', 'gearsystem'],
     displayName: 'Master System',
-    fileExtensions: ['sms', 'zip'],
+    fileExtensions: ['sms', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Sega Master System',
     libretroName: 'Sega - Master System - Mark III',
     name: 'sms',
@@ -154,7 +154,7 @@ const platforms: Platform[] = [
   {
     cores: ['snes9x', 'snes9x2002', 'snes9x2005', 'snes9x2010'],
     displayName: 'Super Nintendo',
-    fileExtensions: ['smc', 'sfc'],
+    fileExtensions: ['smc', 'sfc'].map((name) => `.${name}`),
     launchboxName: 'Super Nintendo Entertainment System',
     libretroName: 'Nintendo - Super Nintendo Entertainment System',
     name: 'snes',
@@ -162,7 +162,7 @@ const platforms: Platform[] = [
   {
     cores: ['mednafen_vb'],
     displayName: 'Virtual Boy',
-    fileExtensions: ['vb', 'vboy', 'zip'],
+    fileExtensions: ['vb', 'vboy', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Nintendo Virtual Boy',
     libretroName: 'Nintendo - Virtual Boy',
     name: 'vb',
@@ -170,7 +170,7 @@ const platforms: Platform[] = [
   {
     cores: ['mednafen_wswan'],
     displayName: 'WonderSwan',
-    fileExtensions: ['ws', 'zip'],
+    fileExtensions: ['ws', 'zip'].map((name) => `.${name}`),
     launchboxName: 'WonderSwan',
     libretroName: 'Bandai - WonderSwan',
     name: 'wonderswan',
@@ -178,7 +178,7 @@ const platforms: Platform[] = [
   {
     cores: ['mednafen_wswan'],
     displayName: 'WonderSwan Color',
-    fileExtensions: ['wsc', 'zip'],
+    fileExtensions: ['wsc', 'zip'].map((name) => `.${name}`),
     launchboxName: 'WonderSwan Color',
     libretroName: 'Bandai - WonderSwan Color',
     name: 'wonderswancolor',

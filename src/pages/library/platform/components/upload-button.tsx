@@ -1,39 +1,30 @@
 'use client'
-import { fileOpen } from 'browser-fs-access'
+import { Dialog } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import ky from 'ky'
-import useSWRMutation from 'swr/mutation'
-import { useRouter_UNSTABLE } from 'waku/router/client'
+import { useState } from 'react'
+import { UploadDialog } from './upload-dialog.tsx'
 
 export function UploadButton({ platform }: { platform: string }) {
-  const router = useRouter_UNSTABLE()
+  const [key, setKey] = useState(Date.now)
 
-  const { isMutating, trigger } = useSWRMutation('/api/v1/rom/new', async (url, { arg: files }: { arg: File[] }) => {
-    const formData = new FormData()
-    for (const file of files) {
-      formData.append('files', file)
-    }
-    formData.append('platform', platform)
-    await ky.put(url, { body: formData })
-  })
-
-  async function handleClick() {
-    const files = await fileOpen({ multiple: true })
-    await trigger(files)
-    router.reload()
+  function handleClick() {
+    setKey(Date.now)
   }
 
   return (
-    <button
-      className={clsx(
-        'fixed bottom-12 right-12 flex size-12 items-center justify-center rounded-full bg-rose-700 text-2xl text-white shadow',
-        { 'opacity-50': isMutating },
-      )}
-      disabled={isMutating}
-      onClick={handleClick}
-      type='button'
-    >
-      {isMutating ? <span className='icon-[svg-spinners--180-ring]' /> : <span className='icon-[mdi--upload]' />}
-    </button>
+    <Dialog.Root>
+      <Dialog.Trigger>
+        <button
+          className={clsx(
+            'fixed bottom-12 right-12 flex size-12 items-center justify-center rounded-full bg-rose-700 text-2xl text-white shadow',
+          )}
+          onClick={handleClick}
+          type='button'
+        >
+          <span className='icon-[mdi--upload]' />
+        </button>
+      </Dialog.Trigger>
+      <UploadDialog key={key} platform={platform} />
+    </Dialog.Root>
   )
 }

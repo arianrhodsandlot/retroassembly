@@ -2,11 +2,11 @@
 import clsx from 'clsx'
 import { Link } from 'waku/router/client'
 import { encodeRFC3986URIComponent } from '@/utils/misc.ts'
-import { getRomTitle } from '@/utils/rom.ts'
+import { getRomGoodcodes } from '@/utils/rom.ts'
 import { useRomCover } from '../hooks/use-rom-cover.ts'
 
 export function GameEntry({ rom, width }) {
-  const name = getRomTitle(rom)
+  const goodcodes = getRomGoodcodes(rom)
   const { data: cover, isLoading } = useRomCover(rom)
 
   return (
@@ -30,7 +30,7 @@ export function GameEntry({ rom, width }) {
 
           {cover ? (
             <img
-              alt={name}
+              alt={goodcodes.rom}
               className={clsx('max-w-4/5 max-h-full rounded object-contain drop-shadow-lg', {
                 rounded: cover.type === 'rom',
               })}
@@ -39,7 +39,7 @@ export function GameEntry({ rom, width }) {
           ) : null}
         </div>
 
-        <div className='mt-2 line-clamp-2 text-center text-sm font-semibold'>{name}</div>
+        <div className='mt-2 line-clamp-2 text-center text-sm font-semibold'>{goodcodes.rom} {goodcodes.codes.languages}</div>
       </Link>
     </div>
   )

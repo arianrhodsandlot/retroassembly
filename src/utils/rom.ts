@@ -48,8 +48,8 @@ export function getPlatformGameIcon(platform: string, type = 'game') {
   return getCDNUrl(repo, `themes/batocera/${platform}/_data/svg/${type}.svg`)
 }
 
-export function getRomTitle(rom) {
-  return parse(`0 - ${path.parse(rom.file_name).name}`).rom
+export function getRomGoodcodes(rom) {
+  return parse(`0 - ${path.parse(rom.file_name).name}`)
 }
 
 export function getCompactName(name: string) {

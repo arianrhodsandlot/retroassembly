@@ -18,6 +18,7 @@ const pages: ReturnType<typeof createPages> = createPages(({ createApi, createPa
     createPage({ component: LibraryPage, path: '/library', render: 'dynamic' }),
     createPage({ component: PlatformPage, path: '/library/platform/[platform]', render: 'dynamic' }),
     createPage({ component: RomPage, path: '/library/platform/[platform]/rom/[fileName]', render: 'dynamic' }),
+    createPage({ component: RomPage, path: '/library/rom/[id]', render: 'dynamic' }),
 
     createApi({
       handlers: { DELETE: apiHandler, GET: apiHandler, PATCH: apiHandler, POST: apiHandler, PUT: apiHandler },

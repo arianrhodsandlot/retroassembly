@@ -27,7 +27,7 @@ export default function AppLayout({
   return (
     <ServerDataContextProvider value={value}>
       <div className='flex h-screen bg-[var(--theme)]'>
-        <aside className='flex flex-col'>
+        <aside className='flex shrink-0 flex-col'>
           <div className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold text-white'>
             <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
             RetroAssembly

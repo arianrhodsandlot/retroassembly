@@ -11,8 +11,8 @@ import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
 import { LaunchButton } from './components/launch-button.tsx'
 import { MainScrollArea } from './components/main-scroll-area.tsx'
 
-export async function RomPage({ fileName, platform }) {
-  const rom = await getRom({ fileName: decodeURIComponent(fileName), platform: decodeURIComponent(platform) })
+export async function RomPage({ fileName, id, platform }) {
+  const rom = await getRom({ fileName: decodeURIComponent(fileName), id, platform: decodeURIComponent(platform) })
   if (!rom) {
     return '404'
   }

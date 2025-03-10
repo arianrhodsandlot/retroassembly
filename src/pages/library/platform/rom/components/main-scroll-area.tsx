@@ -1,7 +1,7 @@
 'use client'
 import type { ScrollAreaProps } from '@radix-ui/themes'
 import { AnimatePresence, motion } from 'motion/react'
-import { type UIEvent, useEffect, useRef, useState } from 'react'
+import { type UIEvent, useLayoutEffect, useRef, useState } from 'react'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 
@@ -11,7 +11,7 @@ export function MainScrollArea({ children, ...props }: ScrollAreaProps) {
   const animateStyle = { height: '100%', left: 0, top: 0, width: '100%' }
   const ref = useRef<HTMLButtonElement>()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const button = ref.current?.querySelector<HTMLButtonElement>('button')
     if (button) {
       const rect = button.getBoundingClientRect()
@@ -47,7 +47,7 @@ export function MainScrollArea({ children, ...props }: ScrollAreaProps) {
             exit={{ ...initialStyle, backgroundColor: 'oklch(0.514 0.222 16.935)', opacity: 1 }}
             initial={{ ...initialStyle, backgroundColor: 'oklch(0.514 0.222 16.935)', opacity: 1 }}
             onAnimationComplete={handleAnimationComplete}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.3 }}
           />
         ) : null}
       </AnimatePresence>

@@ -1,6 +1,6 @@
 'use client'
 import clsx from 'clsx'
-import { Link } from 'waku/router/client'
+import { Link } from 'waku'
 import { getRomGoodcodes } from '@/utils/rom.ts'
 import { useRomCover } from '../hooks/use-rom-cover.ts'
 import { GameTitle } from './game-title.tsx'
@@ -14,7 +14,7 @@ export function GameEntry({ rom, width }) {
       <Link
         className='block'
         style={{ width: width || 'auto' }}
-        to={`/library/platform/${encodeURIComponent(rom.platform)}/rom/${encodeURIComponent(rom.file_name)}`}
+        to={`/library/rom/${encodeURIComponent(rom.id)}`}
         unstable_pending={
           <div className='z-1 absolute inset-0'>
             <div className='grid h-4/5 w-full place-items-center'>

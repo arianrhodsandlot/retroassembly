@@ -25,3 +25,7 @@ export function humanizeDate(date: Date) {
   }
   return lightFormat(date, 'yyyy-MM-dd HH:mm')
 }
+
+export function encodeRFC3986URIComponent(str: string) {
+  return encodeURIComponent(str).replaceAll(/[!'()*]/g, (c) => `%${c.codePointAt(0)?.toString(16).toUpperCase()}`)
+}

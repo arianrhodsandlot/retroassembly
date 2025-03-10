@@ -1,3 +1,5 @@
+import { encodeRFC3986URIComponent } from './misc.ts'
+
 const repositoryVersions = {
   'batocera-linux/batocera-themes': 'cc0de2f',
   'HerbFargus/es-theme-tronkyfran': 'a270311',
@@ -14,10 +16,6 @@ const repositoryVersions = {
   'Mattersons/es-theme-neutral': 'c9b38e7',
   'RetroPie/es-theme-carbon': 'b09973e',
 } as const
-
-function encodeRFC3986URIComponent(str: string) {
-  return encodeURIComponent(str).replaceAll(/[!'()*]/g, (c) => `%${c.codePointAt(0)?.toString(16).toUpperCase()}`)
-}
 
 export function getCDNUrl(repo: keyof typeof repositoryVersions, filePpath: string) {
   const [ghUser, ghRepoName] = repo.split('/')

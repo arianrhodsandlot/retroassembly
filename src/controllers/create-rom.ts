@@ -14,14 +14,12 @@ export async function createRom(params: CreateRomParams) {
   const { currentUser, db } = getContextData()
   const { library } = db
 
-  const [countResult] = await library
-    .select({ count: count() })
-    .from(rom)
-    .where(and(eq(rom.user_id, currentUser.id), eq(rom.file_name, params.fileName), eq(rom.platform, params.platform)))
-
-  if (countResult.count) {
-    return
-  }
+  const where = and(
+    eq(rom.user_id, currentUser.id),
+    eq(rom.file_name, params.fileName),
+    eq(rom.platform, params.platform),
+  )
+  const [countResult] = await library.select({ count: count() }).from(rom).where(where)
 
   const value = {
     file_id: params.fileId,
@@ -31,6 +29,12 @@ export async function createRom(params: CreateRomParams) {
     platform: params.platform,
     user_id: currentUser.id,
   }
+
+  if (countResult.count) {
+    await library.update(rom).set(value).where(where)
+    return
+  }
+
   const [result] = await library.insert(rom).values(value).returning()
 
   return result

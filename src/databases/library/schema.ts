@@ -26,7 +26,6 @@ export const rom = sqliteTable(
   {
     custom_meta: text({ mode: 'json' }),
     file_name: text().notNull(),
-    launch_records: text({ mode: 'json' }).default(JSON.stringify([])),
     launch_times: integer().default(0),
     launchbox_game_id: integer(),
     libretro_game_id: text(),

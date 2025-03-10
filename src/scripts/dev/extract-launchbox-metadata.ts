@@ -3,6 +3,7 @@ import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { type BetterSQLite3Database, drizzle } from 'drizzle-orm/better-sqlite3'
 import { chunk, noop, snakeCase } from 'es-toolkit'
+import { parse } from 'goodcodes-parser'
 import sax from 'sax'
 import {
   launchboxGame,
@@ -137,10 +138,7 @@ function castDate(value) {
 }
 
 function getCompactName(name: string) {
-  return name
-    .replaceAll(/[^a-z0-9 ]/gi, '')
-    .toLowerCase()
-    .replaceAll(/\s+/g, '')
+  return name.replaceAll(/[^\p{Letter}\p{Mark}\p{Number}]/gu, '').toLowerCase()
 }
 
 async function writeLaunchboxPlatform(records: Records, db: BetterSQLite3Database) {
@@ -170,11 +168,13 @@ async function writeLaunchboxPlatformAlternateName(records: Records, db: BetterS
 async function writeLaunchboxGameAlternateName(records: Records, db: BetterSQLite3Database) {
   for (const recordsChunk of chunk(records, 1000)) {
     await db.insert(launchboxGameAlternateName).values(
-      recordsChunk.map((record) => ({
-        ...record,
-        compact_name: getCompactName(record.alternate_name),
-        database_id: castInteger(record.database_id),
-      })),
+      recordsChunk
+        .filter((record) => record.alternate_name && getCompactName(record.alternate_name))
+        .map((record) => ({
+          ...record,
+          compact_name: getCompactName(record.alternate_name),
+          database_id: castInteger(record.database_id),
+        })),
     )
   }
 }
@@ -189,6 +189,7 @@ async function writeLaunchboxGame(records: Records, db: BetterSQLite3Database) {
         compact_name: getCompactName(record.name),
         cooperative: castBoolean(record.cooperative),
         database_id: castInteger(record.database_id) as number,
+        goodcodes_base_compact_name: getCompactName(parse(`0 - ${record.name}`).rom),
         max_players: castInteger(record.max_players),
         name: record.name,
         release_date: castDate(record.release_date),
@@ -197,7 +198,7 @@ async function writeLaunchboxGame(records: Records, db: BetterSQLite3Database) {
   }
 }
 
-const loadMetadataFromCache = false
+const loadMetadataFromCache = true
 const cachePathMap = {
   Game: path.resolve(import.meta.dirname, '../artifacts/launchbox-metadata-game.json'),
   GameAlternateName: path.resolve(import.meta.dirname, '../artifacts/launchbox-metadata-game-alternate-names.json'),
@@ -210,12 +211,14 @@ const cachePathMap = {
 
 async function getMetadata() {
   if (loadMetadataFromCache) {
-    const metadata: Record<string, Records> = {}
-    metadata.Game = JSON.parse(await readFile(cachePathMap.Game, 'utf8'))
-    metadata.Platform = JSON.parse(await readFile(cachePathMap.Platform, 'utf8'))
-    metadata.PlatformAlternateName = JSON.parse(await readFile(cachePathMap.PlatformAlternateName, 'utf8'))
-    metadata.GameAlternateName = JSON.parse(await readFile(cachePathMap.GameAlternateName, 'utf8'))
-    return metadata
+    try {
+      const metadata: Record<string, Records> = {}
+      metadata.Game = JSON.parse(await readFile(cachePathMap.Game, 'utf8'))
+      metadata.Platform = JSON.parse(await readFile(cachePathMap.Platform, 'utf8'))
+      metadata.PlatformAlternateName = JSON.parse(await readFile(cachePathMap.PlatformAlternateName, 'utf8'))
+      metadata.GameAlternateName = JSON.parse(await readFile(cachePathMap.GameAlternateName, 'utf8'))
+      return metadata
+    } catch {}
   }
   const metadata = await parseMetadata(xmlPath)
 

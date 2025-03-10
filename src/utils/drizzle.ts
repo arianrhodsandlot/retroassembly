@@ -11,7 +11,7 @@ export const createDrizzle = memoize(function createDrizzle() {
     console.info('Found DB_LIBRARY and DB_METADATA in environment, using it as our database.')
     return {
       library: drizzle(DB_LIBRARY, { schema: librarySchema }),
-      metadata: drizzle(DB_LIBRARY, { schema: metadataSchema }),
+      metadata: drizzle(DB_METADATA, { schema: metadataSchema }),
     }
   }
   throw new Error('Could not initialize db')

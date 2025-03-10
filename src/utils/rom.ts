@@ -1,4 +1,5 @@
 import { capitalize } from 'es-toolkit'
+import { parse } from 'goodcodes-parser'
 import { Nostalgist } from 'nostalgist'
 import { platformMap } from '../constants/platform.ts'
 import { getCDNUrl } from './cdn.ts'
@@ -48,12 +49,9 @@ export function getPlatformGameIcon(platform: string, type = 'game') {
 }
 
 export function getRomTitle(rom) {
-  return path.parse(rom.file_name).name
+  return parse(`0 - ${path.parse(rom.file_name).name}`).rom
 }
 
 export function getCompactName(name: string) {
-  return name
-    .replaceAll(/[^a-z0-9 ]/gi, '')
-    .toLowerCase()
-    .replaceAll(/\s+/g, '')
+  return name.replaceAll(/[^\p{Letter}\p{Mark}\p{Number}]/gu, '').toLowerCase()
 }

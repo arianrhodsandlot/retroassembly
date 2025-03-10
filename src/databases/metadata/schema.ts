@@ -16,6 +16,7 @@ export const launchboxGame = sqliteTable(
     dos: text(),
     esrb: text(),
     genres: text(),
+    goodcodes_base_compact_name: text().notNull(),
     max_players: integer(),
     name: text().notNull(),
     overview: text(),
@@ -33,7 +34,15 @@ export const launchboxGame = sqliteTable(
     video_url: text(),
     wikipedia_url: text(),
   },
-  (table) => [index('idx_launchbox_games').on(table.database_id, table.compact_name, table.name, table.platform)],
+  (table) => [
+    index('idx_launchbox_games').on(
+      table.database_id,
+      table.compact_name,
+      table.goodcodes_base_compact_name,
+      table.name,
+      table.platform,
+    ),
+  ],
 )
 
 export const launchboxPlatform = sqliteTable(
@@ -97,6 +106,7 @@ export const libretroGame = sqliteTable(
     esrb_rating: text(),
     franchise: text(),
     genre: text(),
+    goodcodes_base_compact_name: text().notNull(),
     id: text().primaryKey().notNull(),
     md5: text(),
     name: text(),
@@ -110,5 +120,5 @@ export const libretroGame = sqliteTable(
     size: integer(),
     users: integer(),
   },
-  (table) => [index('idx_libretro_game').on(table.id, table.name, table.rom_name)],
+  (table) => [index('idx_libretro_game').on(table.id, table.name, table.goodcodes_base_compact_name, table.rom_name)],
 )

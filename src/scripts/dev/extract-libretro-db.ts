@@ -2,6 +2,7 @@ import crypto from 'node:crypto'
 import path from 'node:path'
 import { type BetterSQLite3Database, drizzle } from 'drizzle-orm/better-sqlite3'
 import { chunk } from 'es-toolkit'
+import { parse } from 'goodcodes-parser'
 import { Libretrodb } from 'libretrodb'
 import { globby } from 'zx'
 import { libretroGame } from '../../databases/metadata/schema.ts'
@@ -30,10 +31,7 @@ const nonSupportedPlatforms = new Set([
 ])
 
 function getCompactName(name: string) {
-  return name
-    .replaceAll(/[^a-z0-9 ]/gi, '')
-    .toLowerCase()
-    .replaceAll(/\s+/g, '')
+  return name.replaceAll(/[^\p{Letter}\p{Mark}\p{Number}]/gu, '').toLowerCase()
 }
 
 async function extractLibretroDb(rdbPath: string, db: BetterSQLite3Database) {
@@ -42,16 +40,18 @@ async function extractLibretroDb(rdbPath: string, db: BetterSQLite3Database) {
   const entries = libretrodb.getEntries()
 
   for (const recordsChunk of chunk(entries, 1000)) {
-    await db.insert(libretroGame).values(
-      recordsChunk
-        .filter(({ name }) => name)
-        .map((record) => ({
-          ...record,
-          compact_name: getCompactName(`${record.name}`),
-          id: crypto.hash('sha1', JSON.stringify(record)),
-          platform,
-        })),
-    )
+    const values = recordsChunk
+      .filter(({ name }) => name)
+      .map((record) => ({
+        ...record,
+        compact_name: getCompactName(`${record.name}`),
+        goodcodes_base_compact_name: getCompactName(parse(`0 - ${record.name}`).rom),
+        id: crypto.hash('sha1', JSON.stringify({ ...record, platform })),
+        platform,
+      }))
+    if (values.length > 0) {
+      await db.insert(libretroGame).values(values).onConflictDoNothing()
+    }
   }
 }
 

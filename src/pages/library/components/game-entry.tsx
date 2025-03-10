@@ -4,6 +4,7 @@ import { Link } from 'waku/router/client'
 import { encodeRFC3986URIComponent } from '@/utils/misc.ts'
 import { getRomGoodcodes } from '@/utils/rom.ts'
 import { useRomCover } from '../hooks/use-rom-cover.ts'
+import { GameTitle } from './game-title.tsx'
 
 export function GameEntry({ rom, width }) {
   const goodcodes = getRomGoodcodes(rom)
@@ -39,7 +40,7 @@ export function GameEntry({ rom, width }) {
           ) : null}
         </div>
 
-        <div className='mt-2 line-clamp-2 text-center text-sm font-semibold'>{goodcodes.rom} {goodcodes.codes.languages}</div>
+        <GameTitle rom={rom} />
       </Link>
     </div>
   )

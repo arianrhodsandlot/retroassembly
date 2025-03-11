@@ -9,6 +9,7 @@ export function SidebarLink({ active = false, children, href }) {
           'mx-2 flex items-center gap-2 rounded px-4 py-2.5 font-semibold  transition-colors  hover:text-white',
           active ? 'cursor-default bg-rose-900 font-semibold text-white' : 'text-white/80 ',
         )}
+        scroll
         to={href}
         unstable_pending={<div className='z-1 absolute top-0 size-full' />}
       >

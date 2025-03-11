@@ -50,10 +50,11 @@ export async function DeviceInfo({ platform }: { platform: string }) {
           {platformInfo.notes}
         </div>
       </div>
+
       <div className='w-lg shrink-0'>
         <img
           alt={platformInfo.name}
-          className='h-auto w-full drop-shadow-2xl'
+          className='motion-preset-oscillate motion-duration-2400 h-auto w-full drop-shadow-2xl [--motion-loop-translate-y:8px]'
           src={getCDNUrl('Mattersons/es-theme-neutral', `systems/device/${platform}.png`)}
         />
       </div>

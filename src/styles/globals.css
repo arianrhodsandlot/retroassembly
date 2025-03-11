@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @plugin "@iconify/tailwind4";
 @plugin "@tailwindcss/typography";
+@plugin "tailwindcss-motion";
 
 body {
   -moz-osx-font-smoothing: grayscale;

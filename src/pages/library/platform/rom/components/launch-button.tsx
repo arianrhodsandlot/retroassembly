@@ -23,14 +23,20 @@ export function LaunchButton() {
   return (
     <button
       className={clsx(
-        'inline-flex h-16 w-72 items-center justify-center gap-1.5 rounded bg-[var(--theme)] text-xl font-bold text-white',
+        'inline-flex h-16 w-72 items-center justify-center gap-3 rounded bg-[var(--theme)] text-xl font-bold text-white',
         { 'opacity-50': isPreparing },
       )}
       disabled={isPreparing}
       onClick={launch}
       type='button'
     >
-      <span className={isPreparing ? 'icon-[mdi--loading] animate-spin' : 'icon-[mdi--play]'} />
+      <span
+        className={
+          isPreparing
+            ? 'icon-[mdi--loading] animate-spin'
+            : 'icon-[mdi--play] motion-preset-pulse-lg motion-duration-1000'
+        }
+      />
       {isPreparing ? 'Loading...' : 'Press any key to start'}
     </button>
   )

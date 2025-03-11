@@ -34,7 +34,7 @@ export function GameOverlay() {
         {show ? (
           <motion.div
             animate={{ opacity: 1, scale: 1 }}
-            className='bg-linear-to-b backdrop-blur-xs pointer-events-auto absolute inset-0 z-10 flex h-screen w-screen flex-col bg-black/50 text-white'
+            className='bg-linear-to-b pointer-events-auto absolute inset-0 z-10 flex h-screen w-screen flex-col bg-black/70 text-white'
             exit={{ opacity: 0, scale: 1.1 }}
             initial={{ opacity: 0, scale: 1.1 }}
             transition={{ duration: 0.2 }}

@@ -1,5 +1,5 @@
 import { type ReactNode, type UIEventHandler, useMemo } from 'react'
-import { getContextData } from 'waku/middleware/context'
+import { getContext, getContextData } from 'waku/middleware/context'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { ServerDataContextProvider } from './server-data-context-provider.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
@@ -21,6 +21,7 @@ export default function AppLayout({
   serverData,
   sidebar = defaultSidebar,
 }: AppLayoutProps) {
+  const { req } = getContext()
   const { preference } = getContextData()
   const value = useMemo(() => ({ preference, ...serverData }), [preference, serverData])
 
@@ -39,7 +40,7 @@ export default function AppLayout({
 
         <div className='flex h-full flex-1'>
           <div className='relative my-4 mr-4 flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
-            <MainScrollArea className='z-1 relative flex-1 p-4' size='2'>
+            <MainScrollArea className='z-1 relative flex-1 p-4' key={req.url.pathname} size='2'>
               <main className='min-h-full'>{children}</main>
             </MainScrollArea>
             {append}

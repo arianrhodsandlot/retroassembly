@@ -1,5 +1,6 @@
 import { zValidator } from '@hono/zod-validator'
 import { z } from 'zod'
+import { deleteRom } from '@/controllers/delete-rom.ts'
 import { createRoms } from '../controllers/create-roms.ts'
 import { createState } from '../controllers/create-state.ts'
 import { getRomContent } from '../controllers/get-rom-content.ts'
@@ -8,101 +9,105 @@ import { getStates } from '../controllers/get-states.ts'
 import { app } from './app.ts'
 import { createFileResponse } from './utils.ts'
 
-app
-  .put(
-    'rom/new',
+app.put(
+  'rom/new',
 
-    zValidator(
-      'form',
-      z.object({
-        'files[]': z.instanceof(File).array().max(10),
-        platform: z.string(),
-      }),
-    ),
+  zValidator(
+    'form',
+    z.object({
+      'files[]': z.instanceof(File).array().max(10),
+      platform: z.string(),
+    }),
+  ),
 
-    async (c) => {
-      const form = c.req.valid('form')
-      const roms = await createRoms({ files: form['files[]'], platform: form.platform })
-      return c.json(roms)
-    },
-  )
+  async (c) => {
+    const form = c.req.valid('form')
+    const roms = await createRoms({ files: form['files[]'], platform: form.platform })
+    return c.json(roms)
+  },
+)
 
-  .get('rom/:id/content', async (c) => {
-    const object = await getRomContent(c.req.param('id'))
-    if (object) {
-      return createFileResponse(object)
-    }
-  })
+app.get('rom/:id/content', async (c) => {
+  const object = await getRomContent(c.req.param('id'))
+  if (object) {
+    return createFileResponse(object)
+  }
+})
 
-  .get(
-    'rom/:id/states',
+app.get(
+  'rom/:id/states',
 
-    zValidator(
-      'query',
-      z.object({
-        type: z.enum(['auto', 'manual']).optional(),
-      }),
-    ),
+  zValidator(
+    'query',
+    z.object({
+      type: z.enum(['auto', 'manual']).optional(),
+    }),
+  ),
 
-    async (c) => {
-      const query = c.req.valid('query')
-      const rom = c.req.param('id')
-      const states = await getStates({ rom, type: query.type })
-      return c.json(states)
-    },
-  )
+  async (c) => {
+    const query = c.req.valid('query')
+    const rom = c.req.param('id')
+    const states = await getStates({ rom, type: query.type })
+    return c.json(states)
+  },
+)
 
-  .get(
-    'states',
+app.delete('rom/:id', async (c) => {
+  await deleteRom(c.req.param('id'))
+  return c.json(null)
+})
 
-    zValidator(
-      'query',
-      z.object({
-        rom: z.string(),
-        type: z.enum(['manual', 'auto']),
-      }),
-    ),
+app.get(
+  'states',
 
-    async (c) => {
-      const query = c.req.valid('query')
-      const states = await getStates({ rom: query.rom, type: query.type })
-      return c.json(states)
-    },
-  )
+  zValidator(
+    'query',
+    z.object({
+      rom: z.string(),
+      type: z.enum(['manual', 'auto']),
+    }),
+  ),
 
-  .put(
-    'state/new',
+  async (c) => {
+    const query = c.req.valid('query')
+    const states = await getStates({ rom: query.rom, type: query.type })
+    return c.json(states)
+  },
+)
 
-    zValidator(
-      'form',
-      z.object({
-        core: z.string(),
-        rom: z.string(),
-        state: z.instanceof(File),
-        thumbnail: z.instanceof(File),
-        type: z.enum(['auto', 'manual']),
-      }),
-    ),
+app.put(
+  'state/new',
 
-    async (c) => {
-      const form = c.req.valid('form')
-      const state = await createState(form)
-      return c.json(state)
-    },
-  )
+  zValidator(
+    'form',
+    z.object({
+      core: z.string(),
+      rom: z.string(),
+      state: z.instanceof(File),
+      thumbnail: z.instanceof(File),
+      type: z.enum(['auto', 'manual']),
+    }),
+  ),
 
-  .get('state/:id/content', async (c) => {
-    const state = await getStateContent(c.req.param('id'))
-    if (state) {
-      return createFileResponse(state)
-    }
-  })
+  async (c) => {
+    const form = c.req.valid('form')
+    const state = await createState(form)
+    return c.json(state)
+  },
+)
 
-  .get('state/:id/thumbnail', async (c) => {
-    const file = await getStateContent(c.req.param('id'), 'thumbnail')
-    if (file) {
-      return createFileResponse(file)
-    }
-  })
+app.get('state/:id/content', async (c) => {
+  const state = await getStateContent(c.req.param('id'))
+  if (state) {
+    return createFileResponse(state)
+  }
+})
+
+app.get('state/:id/thumbnail', async (c) => {
+  const file = await getStateContent(c.req.param('id'), 'thumbnail')
+  if (file) {
+    return createFileResponse(file)
+  }
+})
 
 export { app as api }

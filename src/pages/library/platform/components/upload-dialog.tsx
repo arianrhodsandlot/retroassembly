@@ -129,7 +129,7 @@ export function UploadDialog({ platform }: { platform: string }) {
               <div className='mt-4 flex justify-end'>
                 <Dialog.Close>
                   <Button type='button' variant='soft'>
-                    <span className='icon-[mdi--cancel]' />
+                    <span className='icon-[mdi--close]' />
                     Cancel
                   </Button>
                 </Dialog.Close>

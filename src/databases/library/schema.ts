@@ -21,7 +21,7 @@ const fileSchema = {
   user_id: text().notNull(),
 }
 
-export const rom = sqliteTable(
+export const romTable = sqliteTable(
   'roms',
   {
     custom_meta: text({ mode: 'json' }),
@@ -35,7 +35,7 @@ export const rom = sqliteTable(
   (table) => [index('idx_roms').on(table.id, table.platform, table.user_id, table.launch_times)],
 )
 
-export const state = sqliteTable(
+export const stateTable = sqliteTable(
   'states',
   {
     core: text().notNull(),
@@ -48,7 +48,7 @@ export const state = sqliteTable(
   (table) => [index('idx_states').on(table.id, table.platform, table.user_id)],
 )
 
-export const launchRecord = sqliteTable(
+export const launchRecordTable = sqliteTable(
   'launch_records',
   {
     core: text().notNull(),
@@ -60,7 +60,7 @@ export const launchRecord = sqliteTable(
   (table) => [index('idx_launch_records').on(table.id, table.platform, table.user_id)],
 )
 
-export const userPreference = sqliteTable(
+export const userPreferenceTable = sqliteTable(
   'user_preferences',
   {
     emulator: text({ mode: 'json' }),

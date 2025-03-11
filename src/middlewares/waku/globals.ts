@@ -2,7 +2,7 @@ import { eq } from 'drizzle-orm'
 import { merge } from 'es-toolkit'
 import type { Middleware } from 'waku/config'
 import { defaultPreference } from '../../constants/preference.ts'
-import { userPreference } from '../../databases/library/schema.ts'
+import { userPreferenceTable } from '../../databases/library/schema.ts'
 import { createDrizzle } from '../../utils/drizzle.ts'
 import { createStorage } from '../../utils/storage.ts'
 import { createSupabase } from '../../utils/supabase.ts'
@@ -35,8 +35,8 @@ export default (function globalsMiddleware() {
     const currentUser = { id: '567a53eb-c109-4142-8700-00f58db9853f' }
     const customPreference = await db.library
       .select()
-      .from(userPreference)
-      .where(eq(userPreference.user_id, currentUser.id))
+      .from(userPreferenceTable)
+      .where(eq(userPreferenceTable.user_id, currentUser.id))
     const preference = merge(defaultPreference, customPreference)
 
     function redirect(location: string, status?: number) {

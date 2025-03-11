@@ -4,7 +4,7 @@ import nanoidDictionary from 'nanoid-dictionary'
 
 const nanoid = customAlphabet(nanoidDictionary.nolookalikes, 10)
 
-export const launchboxGame = sqliteTable(
+export const launchboxGameTable = sqliteTable(
   'launchbox_games',
   {
     community_rating: real(),
@@ -45,7 +45,7 @@ export const launchboxGame = sqliteTable(
   ],
 )
 
-export const launchboxPlatform = sqliteTable(
+export const launchboxPlatformTable = sqliteTable(
   'launchbox_platforms',
   {
     category: text(),
@@ -67,7 +67,7 @@ export const launchboxPlatform = sqliteTable(
   (table) => [index('idx_launchbox_platforms').on(table.name)],
 )
 
-export const launchboxPlatformAlternateName = sqliteTable(
+export const launchboxPlatformAlternateNameTable = sqliteTable(
   'launchbox_platform_alternate_names',
   {
     alternate: text().notNull(),
@@ -77,7 +77,7 @@ export const launchboxPlatformAlternateName = sqliteTable(
   (table) => [index('idx_launchbox_platform_alternate_names').on(table.id, table.alternate, table.name)],
 )
 
-export const launchboxGameAlternateName = sqliteTable(
+export const launchboxGameAlternateNameTable = sqliteTable(
   'launchbox_game_alternate_names',
   {
     alternate_name: text(),
@@ -96,7 +96,7 @@ export const launchboxGameAlternateName = sqliteTable(
   ],
 )
 
-export const libretroGame = sqliteTable(
+export const libretroGameTable = sqliteTable(
   'libretro_games',
   {
     compact_name: text().notNull(),

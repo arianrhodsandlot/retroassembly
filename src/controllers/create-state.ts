@@ -1,6 +1,6 @@
 import { and, eq } from 'drizzle-orm'
 import { getContextData } from 'waku/middleware/context'
-import { rom as romTable, state as stateTable } from '../databases/library/schema.ts'
+import { romTable, stateTable } from '../databases/library/schema.ts'
 import { nanoid } from '../utils/misc.ts'
 
 interface CreateStateParams {

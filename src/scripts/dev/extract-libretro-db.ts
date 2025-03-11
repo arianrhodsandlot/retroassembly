@@ -5,7 +5,7 @@ import { chunk } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
 import { Libretrodb } from 'libretrodb'
 import { globby } from 'zx'
-import { libretroGame } from '../../databases/metadata/schema.ts'
+import { libretroGameTable } from '../../databases/metadata/schema.ts'
 
 const nonSupportedPlatforms = new Set([
   'Commodore - Amiga',
@@ -50,7 +50,7 @@ async function extractLibretroDb(rdbPath: string, db: BetterSQLite3Database) {
         platform,
       }))
     if (values.length > 0) {
-      await db.insert(libretroGame).values(values).onConflictDoNothing()
+      await db.insert(libretroGameTable).values(values).onConflictDoNothing()
     }
   }
 }

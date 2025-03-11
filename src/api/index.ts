@@ -15,7 +15,7 @@ app
     zValidator(
       'form',
       z.object({
-        'files[]': z.instanceof(File).array(),
+        'files[]': z.instanceof(File).array().max(10),
         platform: z.string(),
       }),
     ),

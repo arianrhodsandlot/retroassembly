@@ -1,6 +1,6 @@
 import { and, eq } from 'drizzle-orm'
 import { getContextData } from 'waku/middleware/context'
-import { rom } from '@/databases/library/schema.ts'
+import { romTable } from '@/databases/library/schema.ts'
 import { getRoms } from './get-roms.ts'
 
 export async function getRom({ fileName, id, platform }: { fileName: string; id: string; platform: string }) {
@@ -10,14 +10,14 @@ export async function getRom({ fileName, id, platform }: { fileName: string; id:
     const { currentUser, db } = getContextData()
     const [result] = await db.library
       .select()
-      .from(rom)
-      .orderBy(rom.file_name)
+      .from(romTable)
+      .orderBy(romTable.file_name)
       .where(
         and(
-          eq(rom.file_name, fileName),
-          eq(rom.platform, platform),
-          eq(rom.user_id, currentUser.id),
-          eq(rom.status, 1),
+          eq(romTable.file_name, fileName),
+          eq(romTable.platform, platform),
+          eq(romTable.user_id, currentUser.id),
+          eq(romTable.status, 1),
         ),
       )
     if (result) {

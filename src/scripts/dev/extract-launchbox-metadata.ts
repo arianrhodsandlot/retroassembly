@@ -6,10 +6,10 @@ import { chunk, noop, snakeCase } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
 import sax from 'sax'
 import {
-  launchboxGame,
-  launchboxGameAlternateName,
-  launchboxPlatform,
-  launchboxPlatformAlternateName,
+  launchboxGameAlternateNameTable,
+  launchboxGameTable,
+  launchboxPlatformAlternateNameTable,
+  launchboxPlatformTable,
 } from '../../databases/metadata/schema.ts'
 
 const xmlPath = path.resolve(import.meta.dirname, '../inputs/launchbox/metadata/Metadata.xml')
@@ -143,7 +143,7 @@ function getCompactName(name: string) {
 
 async function writeLaunchboxPlatform(records: Records, db: BetterSQLite3Database) {
   await db
-    .insert(launchboxPlatform)
+    .insert(launchboxPlatformTable)
     .values(
       records.map((record) => ({
         ...record,
@@ -157,7 +157,7 @@ async function writeLaunchboxPlatform(records: Records, db: BetterSQLite3Databas
 }
 
 async function writeLaunchboxPlatformAlternateName(records: Records, db: BetterSQLite3Database) {
-  await db.insert(launchboxPlatformAlternateName).values(
+  await db.insert(launchboxPlatformAlternateNameTable).values(
     records.map((record) => ({
       ...record,
       alternate: record.alternate,
@@ -167,7 +167,7 @@ async function writeLaunchboxPlatformAlternateName(records: Records, db: BetterS
 
 async function writeLaunchboxGameAlternateName(records: Records, db: BetterSQLite3Database) {
   for (const recordsChunk of chunk(records, 1000)) {
-    await db.insert(launchboxGameAlternateName).values(
+    await db.insert(launchboxGameAlternateNameTable).values(
       recordsChunk
         .filter((record) => record.alternate_name && getCompactName(record.alternate_name))
         .map((record) => ({
@@ -181,7 +181,7 @@ async function writeLaunchboxGameAlternateName(records: Records, db: BetterSQLit
 
 async function writeLaunchboxGame(records: Records, db: BetterSQLite3Database) {
   for (const recordsChunk of chunk(records, 1000)) {
-    await db.insert(launchboxGame).values(
+    await db.insert(launchboxGameTable).values(
       recordsChunk.map((record) => ({
         ...record,
         community_rating: castDecimal(record.community_rating),

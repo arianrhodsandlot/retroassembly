@@ -3,7 +3,7 @@ import { and, eq, or } from 'drizzle-orm'
 import { parse } from 'goodcodes-parser'
 import { getContextData } from 'waku/middleware/context'
 import { platformMap } from '../constants/platform.ts'
-import { launchboxGame, launchboxGameAlternateName, libretroGame } from '../databases/metadata/schema.ts'
+import { launchboxGameAlternateNameTable, launchboxGameTable, libretroGameTable } from '../databases/metadata/schema.ts'
 import { restoreTitleForSorting } from '../utils/misc.ts'
 import { getCompactName } from '../utils/rom.ts'
 
@@ -16,14 +16,14 @@ async function guessLibretroGame(fileName: string, platform: string) {
   const goodcodesCompactName = getCompactName(goodcodes.rom)
 
   const filters = [
-    { column: libretroGame.rom_name, value: fileName },
-    { column: libretroGame.name, value: baseName },
-    { column: libretroGame.compact_name, value: getCompactName(baseName) },
-    { column: libretroGame.goodcodes_base_compact_name, value: goodcodesCompactName },
+    { column: libretroGameTable.rom_name, value: fileName },
+    { column: libretroGameTable.name, value: baseName },
+    { column: libretroGameTable.compact_name, value: getCompactName(baseName) },
+    { column: libretroGameTable.goodcodes_base_compact_name, value: goodcodesCompactName },
   ]
   if (goodcodesCompactName.startsWith('the')) {
     filters.push({
-      column: libretroGame.goodcodes_base_compact_name,
+      column: libretroGameTable.goodcodes_base_compact_name,
       value: `${goodcodesCompactName.replace(/^the/, '')}the`,
     })
   }
@@ -31,8 +31,8 @@ async function guessLibretroGame(fileName: string, platform: string) {
   for (const { column, value } of filters) {
     const results = await metadata
       .select()
-      .from(libretroGame)
-      .where(and(eq(column, value), eq(libretroGame.platform, platformMap[platform].libretroName)))
+      .from(libretroGameTable)
+      .where(and(eq(column, value), eq(libretroGameTable.platform, platformMap[platform].libretroName)))
     if (results.length > 0) {
       return results.at(0)
     }
@@ -48,14 +48,14 @@ async function guessLaunchboxGame(fileName: string, platform: string) {
   const goodcodes = parse(`0 - ${restoredBaseName}`)
   const exactResults = await metadata
     .select()
-    .from(launchboxGame)
+    .from(launchboxGameTable)
     .where(
       and(
         or(
-          eq(launchboxGame.compact_name, getCompactName(restoredBaseName)),
-          eq(launchboxGame.goodcodes_base_compact_name, getCompactName(goodcodes.rom)),
+          eq(launchboxGameTable.compact_name, getCompactName(restoredBaseName)),
+          eq(launchboxGameTable.goodcodes_base_compact_name, getCompactName(goodcodes.rom)),
         ),
-        eq(launchboxGame.platform, platformMap[platform].launchboxName),
+        eq(launchboxGameTable.platform, platformMap[platform].launchboxName),
       ),
     )
     .limit(1)
@@ -67,16 +67,19 @@ async function guessLaunchboxGame(fileName: string, platform: string) {
 
   const results = await metadata
     .select()
-    .from(launchboxGameAlternateName)
-    .where(eq(launchboxGameAlternateName.compact_name, getCompactName(restoredBaseName)))
+    .from(launchboxGameAlternateNameTable)
+    .where(eq(launchboxGameAlternateNameTable.compact_name, getCompactName(restoredBaseName)))
     .limit(1)
   const databaseId = results[0]?.database_id
   if (databaseId) {
     const alternateResults = await metadata
       .select()
-      .from(launchboxGame)
+      .from(launchboxGameTable)
       .where(
-        and(eq(launchboxGame.database_id, databaseId), eq(launchboxGame.platform, platformMap[platform].launchboxName)),
+        and(
+          eq(launchboxGameTable.database_id, databaseId),
+          eq(launchboxGameTable.platform, platformMap[platform].launchboxName),
+        ),
       )
     const alternateResult = alternateResults.at(0)
     if (alternateResult) {

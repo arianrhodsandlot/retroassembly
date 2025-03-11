@@ -1,7 +1,7 @@
 import { and, count, eq } from 'drizzle-orm'
 import { getContextData } from 'waku/middleware/context'
 import { guessGameInfo } from '../controllers/guess-game-info.ts'
-import { rom } from '../databases/library/schema.ts'
+import { romTable } from '../databases/library/schema.ts'
 import { nanoid } from '../utils/misc.ts'
 
 interface CreateRomParams {
@@ -17,11 +17,11 @@ async function createRom(params: CreateRomParams) {
   const { library } = db
 
   const where = and(
-    eq(rom.user_id, currentUser.id),
-    eq(rom.file_name, params.fileName),
-    eq(rom.platform, params.platform),
+    eq(romTable.user_id, currentUser.id),
+    eq(romTable.file_name, params.fileName),
+    eq(romTable.platform, params.platform),
   )
-  const [countResult] = await library.select({ count: count() }).from(rom).where(where)
+  const [countResult] = await library.select({ count: count() }).from(romTable).where(where)
 
   const value = {
     file_id: params.fileId,
@@ -33,11 +33,11 @@ async function createRom(params: CreateRomParams) {
   }
 
   if (countResult.count) {
-    await library.update(rom).set(value).where(where)
+    await library.update(romTable).set(value).where(where)
     return
   }
 
-  const [result] = await library.insert(rom).values(value).returning()
+  const [result] = await library.insert(romTable).values(value).returning()
 
   return result
 }

@@ -9,6 +9,12 @@ import { LoginPage } from '@/pages/login/page.tsx'
 import { HomePage } from '@/pages/page.tsx'
 import { Root } from '@/pages/root.tsx'
 
+async function apiHandler() {
+  const { req } = getContext()
+  const request = new Request(req.url, req)
+  return await api.fetch(request)
+}
+
 const pages: ReturnType<typeof createPages> = createPages(({ createApi, createPage, createRoot }) =>
   Promise.resolve([
     createRoot({ component: Root, render: 'dynamic' }),
@@ -27,12 +33,6 @@ const pages: ReturnType<typeof createPages> = createPages(({ createApi, createPa
     }),
   ]),
 )
-
-async function apiHandler() {
-  const { req } = getContext()
-  const request = new Request(req.url, req)
-  return await api.fetch(request)
-}
 
 declare module 'waku/router' {
   interface RouteConfig {

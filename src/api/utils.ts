@@ -1,14 +1,4 @@
-import type { Context } from 'hono'
-import { getContextData } from 'waku/middleware/context'
-
-export async function getFileResponse(fileId: string, c: Context) {
-  const { storage } = getContextData()
-
-  const object = await storage.get(fileId)
-  if (!object) {
-    return c.body('file not found', 404)
-  }
-
+export function createFileResponse(object: R2ObjectBody) {
   const headers = new Headers()
   // this may fail when using miniflare
   try {

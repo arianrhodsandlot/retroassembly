@@ -20,7 +20,7 @@ export function UploadDialog({ platform }: { platform: string }) {
   async function uploadFiles(url: string, files: File[]) {
     const formData = new FormData()
     for (const file of files) {
-      formData.append('files', file)
+      formData.append('files[]', file)
     }
     formData.append('platform', platform)
     await ky.put(url, { body: formData })

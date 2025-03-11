@@ -43,7 +43,7 @@
       --red-6: oklch(85.8% 0.072 18.94);
       --red-7: oklch(81% 0.0868 18.94);
       --red-8: oklch(74.8% 0.1102 18.94);
-      --red-9: oklch(52.5% 0.2107 18.94);
+      --red-9: var(--theme)
       --red-10: oklch(47.7% 0.2107 18.94);
       --red-11: oklch(55.1% 0.2107 18.94);
       --red-12: oklch(34.1% 0.1165 18.94);
@@ -63,8 +63,8 @@
 
       --red-contrast: #fff;
       --red-surface: color(display-p3 0.9961 0.9608 0.9608 / 0.8);
-      --red-indicator: oklch(52.5% 0.2107 18.94);
-      --red-track: oklch(52.5% 0.2107 18.94);
+      --red-indicator: var(--theme)
+      --red-track: var(--theme)
     }
   }
 }

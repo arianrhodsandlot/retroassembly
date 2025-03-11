@@ -12,7 +12,14 @@ export async function getRom({ fileName, id, platform }: { fileName: string; id:
       .select()
       .from(rom)
       .orderBy(rom.file_name)
-      .where(and(eq(rom.file_name, fileName), eq(rom.platform, platform), eq(rom.user_id, currentUser.id)))
+      .where(
+        and(
+          eq(rom.file_name, fileName),
+          eq(rom.platform, platform),
+          eq(rom.user_id, currentUser.id),
+          eq(rom.status, 1),
+        ),
+      )
     if (result) {
       romId = result.id
     }

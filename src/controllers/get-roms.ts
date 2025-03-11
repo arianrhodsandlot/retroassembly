@@ -4,20 +4,9 @@ import { getContextData } from 'waku/middleware/context'
 import { rom } from '../databases/library/schema.ts'
 import { launchboxGame, libretroGame } from '../databases/metadata/schema.ts'
 
-export async function getRoms({ id, platform }: { id?: string; platform?: string } = {}) {
-  const { currentUser, db } = getContextData()
-  const { library, metadata } = db
-
-  const conditions = [eq(rom.user_id, currentUser.id)]
-  if (id) {
-    conditions.push(eq(rom.id, id))
-  }
-  if (platform) {
-    conditions.push(eq(rom.platform, platform))
-  }
-  const where = and(...conditions)
-  const romResults = await library.select().from(rom).orderBy(rom.file_name).where(where).limit(100)
-
+async function getMetadata(romResults: InferSelectModel<typeof rom>[]) {
+  const { db } = getContextData()
+  const { metadata } = db
   const launchboxGameIds = compact(romResults.map((romResult) => romResult.launchbox_game_id))
   const launchboxResults = await metadata
     .select()
@@ -44,5 +33,23 @@ export async function getRoms({ id, platform }: { id?: string; platform?: string
     }
   }
 
+  return results
+}
+
+export async function getRoms({ id, platform }: { id?: string; platform?: string } = {}) {
+  const { currentUser, db } = getContextData()
+  const { library } = db
+
+  const conditions = [eq(rom.user_id, currentUser.id), eq(rom.status, 1)]
+  if (id) {
+    conditions.push(eq(rom.id, id))
+  }
+  if (platform) {
+    conditions.push(eq(rom.platform, platform))
+  }
+  const where = and(...conditions)
+  const romResults = await library.select().from(rom).orderBy(rom.file_name).where(where).limit(100)
+
+  const results = await getMetadata(romResults)
   return results
 }

@@ -21,9 +21,11 @@ const districtsIconMap = {
   R: <span className='icon-[twemoji--flag-russia] mr-2 size-4 align-middle' />,
   S: <span className='icon-[twemoji--flag-spain] mr-2 size-4 align-middle' />,
   Sw: <span className='icon-[twemoji--flag-sweden] mr-2 size-4 align-middle' />,
+  Tw: <span className='icon-[twemoji--flag-taiwan] mr-2 size-4 align-middle' />,
   U: <span className='icon-[twemoji--flag-united-states] mr-2 size-4 align-middle' />,
   UK: <span className='icon-[twemoji--flag-united-kingdom] mr-2 size-4 align-middle' />,
   Unk: <span className='icon-[twemoji--red-question-mark] mr-2 size-4 align-middle' />,
+  Unl: <span className='icon-[twemoji--pirate-flag] mr-2 size-4 align-middle' />,
   W: <span className='icon-[twemoji--flag-united-nations] mr-2 size-4 align-middle' />,
 }
 

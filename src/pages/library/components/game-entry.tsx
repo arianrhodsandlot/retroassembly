@@ -1,21 +1,28 @@
 'use client'
 import clsx from 'clsx'
+import { useState } from 'react'
 import { Link } from 'waku'
-import { getRomGoodcodes } from '@/utils/rom.ts'
-import { useRomCover } from '../hooks/use-rom-cover.ts'
+import { getPlatformGameIcon, getRomGoodcodes, getRomLibretroThumbnail } from '@/utils/rom.ts'
 import { GameEntryContextMenu } from './game-entry-context-menu.tsx'
 import { GameTitle } from './game-title.tsx'
 
-export function GameEntry({ rom, width }) {
+export function GameEntry({ rom }) {
   const goodcodes = getRomGoodcodes(rom)
-  const { data: cover, isLoading } = useRomCover(rom)
+  const [cover, setCover] = useState(() => getRomLibretroThumbnail(rom))
+
+  function handleError() {
+    const platformCover = getPlatformGameIcon(rom.platform)
+    if (cover !== platformCover) {
+      setCover(getPlatformGameIcon(rom.platform))
+    }
+  }
 
   return (
     <GameEntryContextMenu rom={rom}>
       <div className='relative'>
         <Link
           className='block'
-          style={{ width: width || 'auto' }}
+          title={rom.file_name}
           to={`/library/rom/${encodeURIComponent(rom.id)}`}
           unstable_pending={
             <div className='z-1 absolute inset-0'>
@@ -28,17 +35,13 @@ export function GameEntry({ rom, width }) {
           }
         >
           <div className='flex aspect-square size-full items-center justify-center'>
-            {isLoading ? <div className='size-4/5 rounded bg-zinc-200' /> : null}
-
-            {cover ? (
-              <img
-                alt={goodcodes.rom}
-                className={clsx('max-w-4/5 max-h-full rounded object-contain drop-shadow-lg', {
-                  rounded: cover.type === 'rom',
-                })}
-                src={cover.src}
-              />
-            ) : null}
+            <img
+              alt={goodcodes.rom}
+              className={clsx('max-w-4/5 max-h-full rounded object-contain drop-shadow-lg')}
+              loading='lazy'
+              onError={handleError}
+              src={cover}
+            />
           </div>
 
           <GameTitle rom={rom} />

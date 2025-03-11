@@ -6,4 +6,4 @@ export const serverDataAtom = atom<{ [key: string]: any; preference: Preference 
   preference: defaultPreference,
 })
 
-export const romsAtom = atom<Awaited<ReturnType<typeof getRoms>>>([])
+export const romsAtom = atom<Awaited<ReturnType<typeof getRoms>>>()

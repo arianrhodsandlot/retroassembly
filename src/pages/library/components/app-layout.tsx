@@ -40,7 +40,7 @@ export default function AppLayout({
 
         <div className='flex h-full flex-1'>
           <div className='relative my-4 mr-4 flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
-            <MainScrollArea className='z-1 relative flex-1 p-4' key={req.url.pathname} size='2'>
+            <MainScrollArea className='z-1 relative flex-1 p-4' key={req.url.href} size='2'>
               <main className='min-h-full'>{children}</main>
             </MainScrollArea>
             {append}

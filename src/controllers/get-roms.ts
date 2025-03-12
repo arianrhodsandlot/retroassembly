@@ -1,4 +1,4 @@
-import { and, eq, inArray, type InferSelectModel } from 'drizzle-orm'
+import { and, count, eq, inArray, type InferSelectModel } from 'drizzle-orm'
 import { compact, keyBy } from 'es-toolkit'
 import { getContextData } from 'waku/middleware/context'
 import { romTable } from '../databases/library/schema.ts'
@@ -39,7 +39,16 @@ async function getMetadata(romResults: InferSelectModel<typeof romTable>[]) {
   return results
 }
 
-export async function getRoms({ id, platform }: { id?: string; platform?: string } = {}) {
+type GetRomsReturning = Awaited<ReturnType<typeof getRoms>>
+export type Roms = GetRomsReturning['roms']
+export type RomsPagination = GetRomsReturning['pagination']
+
+export async function getRoms({
+  id,
+  page = 1,
+  pageSize = 100,
+  platform,
+}: { id?: string; page?: number; pageSize?: number; platform?: string } = {}) {
   const { currentUser, db } = getContextData()
   const { library } = db
 
@@ -51,8 +60,19 @@ export async function getRoms({ id, platform }: { id?: string; platform?: string
     conditions.push(eq(romTable.platform, platform))
   }
   const where = and(...conditions)
-  const romResults = await library.select().from(romTable).orderBy(romTable.file_name).where(where).limit(100)
+
+  const offset = (page - 1) * pageSize
+  const romResults = await library
+    .select()
+    .from(romTable)
+    .orderBy(romTable.file_name)
+    .where(where)
+    .offset(offset)
+    .limit(pageSize)
+
+  const [{ total }] = await library.select({ total: count() }).from(romTable).orderBy(romTable.file_name).where(where)
 
   const results = await getMetadata(romResults)
-  return results
+
+  return { pagination: { current: page, pages: Math.ceil(total / pageSize), size: pageSize, total }, roms: results }
 }

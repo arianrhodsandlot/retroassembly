@@ -1,7 +1,1 @@
-import '@fontsource-variable/inter/index.css'
-import '@fontsource-variable/oswald/index.css'
-import '@fontsource-variable/roboto-slab/index.css'
-import '@fontsource/dseg7-modern/700.css'
-import '@radix-ui/themes/styles.css'
 import './globals.css'
-import './radix-theme.css'

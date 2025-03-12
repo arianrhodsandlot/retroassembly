@@ -1,7 +1,7 @@
 'use client'
 import { Button, Callout, Code, Dialog, Progress } from '@radix-ui/themes'
-import { useToggle } from '@react-hookz/web'
 import { fileOpen } from 'browser-fs-access'
+import confetti from 'canvas-confetti'
 import clsx from 'clsx'
 import { chunk } from 'es-toolkit'
 import ky from 'ky'
@@ -10,10 +10,9 @@ import useSWRMutation from 'swr/mutation'
 import { useRouter_UNSTABLE } from 'waku/router/client'
 import { platformMap } from '@/constants/platform.ts'
 
-export function UploadDialog({ platform }: { platform: string }) {
+export function UploadDialog({ platform, toggleOpen }: { platform: string; toggleOpen: any }) {
   const router = useRouter_UNSTABLE()
 
-  const [done, toggleDone] = useToggle()
   const [files, setFiles] = useState<File[]>([])
   const [uploadedFiles, setUploadedFiles] = useState<Record<string, File[]>>({ failure: [], success: [] })
 
@@ -26,7 +25,7 @@ export function UploadDialog({ platform }: { platform: string }) {
     await ky.put(url, { body: formData })
   }
 
-  const { isMutating, trigger } = useSWRMutation('/api/v1/rom/new', async (url, { arg: files }: { arg: File[] }) => {
+  const { trigger } = useSWRMutation('/api/v1/rom/new', async (url, { arg: files }: { arg: File[] }) => {
     for (const filesChunk of chunk(files, 10)) {
       const newUploadedFiles = { ...uploadedFiles }
       try {
@@ -36,87 +35,64 @@ export function UploadDialog({ platform }: { platform: string }) {
         newUploadedFiles.failure.push(...filesChunk)
       }
       setUploadedFiles(newUploadedFiles)
-      if (newUploadedFiles.success.length + newUploadedFiles.failure.length === files.length) {
-        toggleDone()
-      }
     }
   })
-
-  function handleClickOk() {
-    router.reload()
-  }
 
   async function handleClickSelect() {
     const files = await fileOpen({ extensions: platformMap[platform].fileExtensions, multiple: true })
     setFiles(files)
     await trigger(files)
-    // router.reload()
+    toggleOpen()
+    confetti()
+    router.reload()
   }
 
-  let status = ''
+  function prevendDefaultWhenUploading(event: Event) {
+    if (files.length > 0) {
+      event.preventDefault()
+    }
+  }
+
+  let status = 'loading'
   if (files.length === 0) {
     status = 'initial'
-  } else if (isMutating) {
-    status = 'loading'
-  } else if (done) {
-    status = 'done'
   }
 
   return (
-    <Dialog.Content>
+    <Dialog.Content
+      aria-describedby={undefined}
+      onEscapeKeyDown={prevendDefaultWhenUploading}
+      onPointerDownOutside={prevendDefaultWhenUploading}
+    >
       <Dialog.Title>
         {
           {
-            done: 'Done',
             initial: 'Select ROMs',
             loading: 'Uploading ROMs',
           }[status]
         }
       </Dialog.Title>
 
-      <Dialog.Description>
-        {status === 'initial' ? (
-          <Callout.Root className={clsx({ hidden: status !== 'initial' })} size='1'>
-            <Callout.Icon>
-              <span className='icon-[mdi--information]' />
-            </Callout.Icon>
-            <Callout.Text>
-              <div className='text-xs'>
-                <div>
-                  You are going to upload ROMs for <b>{platformMap[platform].displayName}</b>.
-                </div>
-                <div>We support these file extensions for this platform:</div>
-                <div className='mt-0.5 flex gap-1'>
-                  {platformMap[platform].fileExtensions.map((extention) => (
-                    <Code key={extention}>{extention}</Code>
-                  ))}
-                </div>
-              </div>
-            </Callout.Text>
-          </Callout.Root>
-        ) : null}
-      </Dialog.Description>
+      {status === 'initial' ? (
+        <Callout.Root className={clsx({ hidden: status !== 'initial' })} size='1'>
+          <Callout.Icon>
+            <span className='icon-[mdi--information]' />
+          </Callout.Icon>
+          <Callout.Text className='text-xs'>
+            You are uploading ROMs for <b>{platformMap[platform].displayName}</b>. We support these file extensions for
+            this platform:
+            <br />
+            <span className='inline-flex gap-1 py-2'>
+              {platformMap[platform].fileExtensions.map((extention) => (
+                <Code key={extention}>{extention}</Code>
+              ))}
+            </span>
+          </Callout.Text>
+        </Callout.Root>
+      ) : null}
 
       {
         {
-          done: (
-            <div>
-              <div className='my-8 flex items-center justify-center gap-2 text-lg text-[var(--theme)]'>
-                <span>🎉</span>
-                ROMs uploaded. Enjoy!
-              </div>
-
-              <div className='mt-4 flex justify-end'>
-                <Dialog.Close onClick={handleClickOk}>
-                  <Button>
-                    <span className='icon-[mdi--check]' />
-                    OK
-                  </Button>
-                </Dialog.Close>
-              </div>
-            </div>
-          ),
-
           initial: (
             <div>
               <div className='mt-4 flex justify-center'>
@@ -128,7 +104,7 @@ export function UploadDialog({ platform }: { platform: string }) {
 
               <div className='mt-4 flex justify-end'>
                 <Dialog.Close>
-                  <Button type='button' variant='soft'>
+                  <Button variant='soft'>
                     <span className='icon-[mdi--close]' />
                     Cancel
                   </Button>
@@ -140,6 +116,7 @@ export function UploadDialog({ platform }: { platform: string }) {
           loading: (
             <div className='my-4'>
               <Progress
+                duration='1s'
                 size='3'
                 value={((uploadedFiles.success.length + uploadedFiles.failure.length) / files.length) * 100}
               />

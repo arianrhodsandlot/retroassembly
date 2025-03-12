@@ -46,16 +46,16 @@ export function GameEntryContextMenu({ children, rom }: { children: ReactNode; r
           </AlertDialog.Description>
 
           <div className='mt-4 flex justify-end gap-3'>
-            <Button disabled={isMutating} onClick={handleClickConfirmDelete} variant='soft'>
-              <span className='icon-[mdi--delete]' />
-              Delete
-            </Button>
             <AlertDialog.Cancel>
               <Button disabled={isMutating}>
                 <span className='icon-[mdi--close]' />
                 Cancel
               </Button>
             </AlertDialog.Cancel>
+            <Button disabled={isMutating} onClick={handleClickConfirmDelete} variant='soft'>
+              <span className='icon-[mdi--delete]' />
+              Delete
+            </Button>
           </div>
         </AlertDialog.Content>
       </AlertDialog.Root>

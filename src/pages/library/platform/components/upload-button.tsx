@@ -1,30 +1,27 @@
 'use client'
-import { Dialog } from '@radix-ui/themes'
-import { clsx } from 'clsx'
+import { Dialog, IconButton } from '@radix-ui/themes'
+import { useToggle } from '@react-hookz/web'
 import { useState } from 'react'
 import { UploadDialog } from './upload-dialog.tsx'
 
 export function UploadButton({ platform }: { platform: string }) {
   const [key, setKey] = useState(Date.now)
+  const [open, toggleOpen] = useToggle()
 
   function handleClick() {
     setKey(Date.now)
   }
 
   return (
-    <Dialog.Root>
-      <Dialog.Trigger>
-        <button
-          className={clsx(
-            'fixed bottom-12 right-12 flex size-12 items-center justify-center rounded-full bg-rose-700 text-2xl text-white shadow',
-          )}
-          onClick={handleClick}
-          type='button'
-        >
-          <span className='icon-[mdi--upload]' />
-        </button>
-      </Dialog.Trigger>
-      <UploadDialog key={key} platform={platform} />
-    </Dialog.Root>
+    <div className='fixed bottom-12 right-12'>
+      <Dialog.Root onOpenChange={toggleOpen} open={open}>
+        <Dialog.Trigger>
+          <IconButton onClick={handleClick} radius='full' size='4' variant='solid'>
+            <span className='icon-[mdi--upload] size-5' />
+          </IconButton>
+        </Dialog.Trigger>
+        <UploadDialog key={key} platform={platform} toggleOpen={toggleOpen} />
+      </Dialog.Root>
+    </div>
   )
 }

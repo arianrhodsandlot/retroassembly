@@ -55,7 +55,7 @@ export async function RomPage({ fileName, id, platform }) {
             {launchboxGame?.wikipedia_url ? (
               <div>
                 <a
-                  className='inline-flex items-center gap-2 underline'
+                  className='inline-flex items-center gap-2 text-[var(--theme)] underline'
                   href={launchboxGame.wikipedia_url}
                   rel='noreferrer'
                   target='_blank'

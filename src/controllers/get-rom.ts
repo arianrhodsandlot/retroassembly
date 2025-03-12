@@ -26,7 +26,9 @@ export async function getRom({ fileName, id, platform }: { fileName: string; id:
   }
 
   if (romId) {
-    const [r] = await getRoms({ id: romId })
-    return r
+    const {
+      roms: [rom],
+    } = await getRoms({ id: romId })
+    return rom
   }
 }

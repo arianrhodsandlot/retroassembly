@@ -70,7 +70,7 @@ export async function RomPage({ fileName, id, platform }) {
 
       <Portal>
         <Theme accentColor='red'>
-          <GameOverlay />
+          <GameOverlay rom={rom} />
         </Theme>
       </Portal>
     </AppLayout>

@@ -7,7 +7,7 @@ import { useGameStates } from '../../hooks/use-game-states.ts'
 import { GameOverlayButtons } from './game-overlay-buttons.tsx'
 import { GameStates } from './game-states.tsx'
 
-export function GameOverlay() {
+export function GameOverlay({ rom }) {
   const { show, toggle } = useGameOverlay()
   const { emulator } = useEmulator()
   const { reloadStates } = useGameStates()
@@ -41,6 +41,7 @@ export function GameOverlay() {
           >
             <div className='bg-linear-to-b to-text-transparent h-32 w-full from-black' />
             <div className='w-6xl mx-auto flex flex-1 flex-col gap-8'>
+              <div className='text-5xl'>{rom.file_name}</div>
               <div className='flex gap-8'>
                 <GameOverlayButtons />
               </div>

@@ -22,7 +22,7 @@ export function useGameStates() {
     if (thumbnail) {
       formData.append('thumbnail', thumbnail)
     }
-    formData.append('rom_id', rom.id)
+    formData.append('rom', rom.id)
     formData.append('core', core)
     formData.append('type', 'manual')
     await ky.put(url, { body: formData })

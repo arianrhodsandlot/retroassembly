@@ -1,4 +1,5 @@
 'use client'
+import { Button } from '@radix-ui/themes'
 import { useKeyboardEvent } from '@react-hookz/web'
 import { clsx } from 'clsx'
 import { useEmulator } from '../hooks/use-emulator.ts'
@@ -21,23 +22,19 @@ export function LaunchButton() {
   })
 
   return (
-    <button
-      className={clsx(
-        'inline-flex h-16 w-72 items-center justify-center gap-3 rounded bg-[var(--theme)] text-xl font-bold text-white',
-        { 'opacity-50': isPreparing },
-      )}
-      disabled={isPreparing}
-      onClick={launch}
-      type='button'
-    >
-      <span
-        className={
-          isPreparing
-            ? 'icon-[mdi--loading] animate-spin'
-            : 'icon-[mdi--play] motion-preset-pulse-lg motion-duration-1000'
-        }
-      />
-      {isPreparing ? 'Loading...' : 'Press any key to start'}
+    <button className={clsx({ 'opacity-50': isPreparing })} disabled={isPreparing} onClick={launch} type='button'>
+      <Button asChild className='!h-16' radius='small' size='4' type='button'>
+        <div>
+          <span
+            className={
+              isPreparing
+                ? 'icon-[mdi--loading] animate-spin'
+                : 'icon-[mdi--play] motion-preset-pulse-lg motion-duration-1500'
+            }
+          />
+          <span className='w-[228px] text-2xl'>{isPreparing ? 'Loading...' : 'Press any key to start'}</span>
+        </div>
+      </Button>
     </button>
   )
 }

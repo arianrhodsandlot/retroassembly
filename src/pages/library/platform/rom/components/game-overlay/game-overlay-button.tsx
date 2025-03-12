@@ -1,3 +1,4 @@
+import { Button } from '@radix-ui/themes'
 import { noop } from 'es-toolkit'
 import type { ReactNode } from 'react'
 
@@ -7,13 +8,16 @@ export function GameOverlayButton({
   onClick = noop,
 }: { children: ReactNode; isLoading?: boolean; onClick?: any }) {
   return (
-    <button
-      className='backdrop-blur-xs flex items-center justify-center gap-2 rounded px-6 py-3 font-semibold text-white shadow-lg hover:bg-rose-700'
+    <Button
+      className='[--accent-a11:white] [--accent-a3:rgba(255,255,255,.3)] [--accent-a4:rgba(255,255,255,.3)] [--accent-a5:rgba(255,255,255,.2)]'
       disabled={isLoading}
       onClick={onClick}
+      radius='full'
+      size='4'
       type='button'
+      variant='soft'
     >
       {children}
-    </button>
+    </Button>
   )
 }

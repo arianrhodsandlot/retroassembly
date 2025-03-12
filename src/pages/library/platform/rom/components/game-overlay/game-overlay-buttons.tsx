@@ -47,28 +47,28 @@ export function GameOverlayButtons() {
   return (
     <>
       <GameOverlayButton onClick={handleClickResume}>
-        <span className='icon-[material-symbols--resume] size-7' />
+        <span className='icon-[material-symbols--resume] size-5' />
         Resume
       </GameOverlayButton>
 
       <GameOverlayButton onClick={handleClickSaveState}>
-        <span className='icon-[mdi--content-save] size-7' />
+        <span className='icon-[mdi--content-save] size-5' />
         Save State
       </GameOverlayButton>
 
       <div className='flex-1' />
       <GameOverlayButton onClick={handleClickRestart}>
-        <span className='icon-[mdi--restart] size-7' />
+        <span className='icon-[mdi--restart] size-5' />
         Restart
       </GameOverlayButton>
 
       <GameOverlayButton onClick={handleClickExit}>
-        <span className='icon-[mdi--exit-to-app] size-7' />
+        <span className='icon-[mdi--exit-to-app] size-5' />
         Exit
       </GameOverlayButton>
 
       <GameOverlayButton onClick={handleClickSaveExit}>
-        <span className='icon-[mdi--location-exit] size-7' />
+        <span className='icon-[mdi--location-exit] size-5' />
         Save & Exit
       </GameOverlayButton>
     </>

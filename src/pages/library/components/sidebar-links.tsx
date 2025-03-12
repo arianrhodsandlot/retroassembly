@@ -31,10 +31,10 @@ export function SidebarLinks({ platform }: { platform?: string }) {
       <div className='mt-4'>
         <h3 className='px-4 text-white/60'>Platforms</h3>
 
-        <div className='mt-2 flex flex-col gap-y-1'>
+        <div className='mt-2 flex flex-col gap-y-2'>
           {platformLinks.map(({ href, icon, name, text }) => (
             <SidebarLink active={platform === name} href={href} key={text}>
-              {icon ? <img alt='icon' height='20' src={icon} width='20' /> : null}
+              {icon ? <img alt='icon' className='shrink-0' height='20' src={icon} width='20' /> : null}
               {text}
             </SidebarLink>
           ))}

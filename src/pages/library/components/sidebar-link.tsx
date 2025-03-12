@@ -1,20 +1,19 @@
+'use client'
+import { Button } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { Link } from 'waku/router/client'
 
 export function SidebarLink({ active = false, children, href }) {
   return (
-    <div className='relative'>
+    <Button asChild size='3' variant={active ? 'ghost' : 'solid'}>
       <Link
-        className={clsx(
-          'mx-2 flex items-center gap-2 rounded px-4 py-2.5 font-semibold  transition-colors  hover:text-white',
-          active ? 'cursor-default bg-rose-900 font-semibold text-white' : 'text-white/80 ',
-        )}
+        className={clsx('!mx-2 !my-0 !h-auto !px-4 !py-2.5', { '!bg-white': active })}
         scroll
         to={href}
-        unstable_pending={<div className='z-1 absolute top-0 size-full' />}
+        unstable_pending={<div className='z-1 absolute top-0 size-full bg-white' />}
       >
-        {children}
+        <div className='flex h-auto w-full justify-start gap-2 font-semibold'>{children}</div>
       </Link>
-    </div>
+    </Button>
   )
 }

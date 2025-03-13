@@ -1,22 +1,15 @@
 'use client'
+import { Skeleton } from '@radix-ui/themes'
 import clsx from 'clsx'
-import { useState } from 'react'
 import { Link } from 'waku'
-import { getPlatformGameIcon, getRomGoodcodes, getRomLibretroThumbnail } from '@/utils/rom.ts'
+import { getRomGoodcodes } from '@/utils/rom.ts'
+import { useRomCover } from '../hooks/use-rom-cover.ts'
 import { GameEntryContextMenu } from './game-entry-context-menu.tsx'
 import { GameTitle } from './game-title.tsx'
 
 export function GameEntry({ rom }) {
   const goodcodes = getRomGoodcodes(rom)
-  const [cover, setCover] = useState(() => getRomLibretroThumbnail(rom))
-
-  function handleError() {
-    const platformCover = getPlatformGameIcon(rom.platform)
-    if (cover !== platformCover) {
-      setCover(getPlatformGameIcon(rom.platform))
-    }
-  }
-
+  const { data: cover, isLoading } = useRomCover(rom)
   return (
     <GameEntryContextMenu rom={rom}>
       <div className='relative'>
@@ -35,13 +28,17 @@ export function GameEntry({ rom }) {
           }
         >
           <div className='flex aspect-square size-full items-center justify-center'>
-            <img
-              alt={goodcodes.rom}
-              className={clsx('max-w-4/5 max-h-full rounded object-contain drop-shadow-lg')}
-              loading='lazy'
-              onError={handleError}
-              src={cover}
-            />
+            {isLoading ? <Skeleton className='!size-4/5' loading /> : null}
+            {cover?.src ? (
+              <img
+                alt={goodcodes.rom}
+                className={clsx('max-w-4/5 max-h-full  rounded object-contain drop-shadow-lg', {
+                  'bg-[var(--gray-a3)]': cover.type === 'rom',
+                })}
+                loading='lazy'
+                src={cover.src}
+              />
+            ) : null}
           </div>
 
           <GameTitle rom={rom} />

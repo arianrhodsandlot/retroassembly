@@ -27,9 +27,8 @@ export async function RomPage({ fileName, id, platform }) {
       serverData={{ rom }}
       sidebar={<SidebarLinks platform={rom.platform} />}
     >
+      <title>{`${goodcodes.rom} - RetroAssembly`}</title>
       <div className='flex gap-4'>
-        <title>{`${goodcodes.rom} - RetroAssembly`}</title>
-
         <div>
           <GameCover rom={rom} />
         </div>

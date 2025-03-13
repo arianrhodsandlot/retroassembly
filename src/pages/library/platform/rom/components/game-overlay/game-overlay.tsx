@@ -1,6 +1,8 @@
 'use client'
 import { useKeyboardEvent } from '@react-hookz/web'
 import { AnimatePresence, motion } from 'motion/react'
+import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
+import { getRomGoodcodes } from '@/utils/rom.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 import { useGameStates } from '../../hooks/use-game-states.ts'
@@ -11,6 +13,9 @@ export function GameOverlay({ rom }) {
   const { show, toggle } = useGameOverlay()
   const { emulator } = useEmulator()
   const { reloadStates } = useGameStates()
+
+  const goodcodes = getRomGoodcodes(rom)
+  const { data: cover } = useRomCover(rom)
 
   useKeyboardEvent(true, (event) => {
     const isEscapeKey = event.key === 'Escape'
@@ -41,7 +46,14 @@ export function GameOverlay({ rom }) {
           >
             <div className='bg-linear-to-b to-text-transparent h-32 w-full from-black' />
             <div className='w-6xl mx-auto flex flex-1 flex-col gap-8'>
-              <div className='text-5xl'>{rom.file_name}</div>
+              <div className='flex items-center gap-4'>
+                <div className='size-30 shrink-0'>
+                  {cover ? (
+                    <img alt={goodcodes.rom} className='size-30 object-contain object-center' src={cover.src} />
+                  ) : null}
+                </div>
+                <div className='text-3xl font-semibold'>{goodcodes.rom}</div>
+              </div>
               <div className='flex gap-8'>
                 <GameOverlayButtons />
               </div>

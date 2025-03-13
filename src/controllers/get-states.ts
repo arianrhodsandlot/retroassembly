@@ -1,4 +1,4 @@
-import { and, eq } from 'drizzle-orm'
+import { and, desc, eq } from 'drizzle-orm'
 import { getContextData } from 'waku/middleware/context'
 import { stateTable } from '../databases/library/schema.ts'
 
@@ -13,6 +13,6 @@ export async function getStates({ rom, type }: { rom: string; type?: 'auto' | 'm
     conditions.push(eq(stateTable.type, type))
   }
   const where = and(...conditions)
-  const results = await db.library.select().from(stateTable).where(where)
+  const results = await db.library.select().from(stateTable).where(where).orderBy(desc(stateTable.created_at))
   return results
 }

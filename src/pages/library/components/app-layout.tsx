@@ -28,7 +28,7 @@ export default function AppLayout({
   return (
     <ServerDataContextProvider value={value}>
       <div className='flex h-screen bg-[var(--theme)]'>
-        <aside className='flex w-64 shrink-0 flex-col'>
+        <aside className='ml-4 flex w-64 shrink-0 flex-col'>
           <div className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold text-white'>
             <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
             RetroAssembly
@@ -38,10 +38,10 @@ export default function AppLayout({
           </ScrollArea>
         </aside>
 
-        <div className='flex h-full flex-1'>
-          <div className='relative my-4 mr-4 flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
-            <MainScrollArea className='z-1 relative flex-1 p-4' key={req.url.href} size='2'>
-              <main className='min-h-full'>{children}</main>
+        <div className='m-4 flex min-w-0 flex-1'>
+          <div className='relative flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
+            <MainScrollArea className='z-1 relative flex flex-1' key={req.url.href} size='2'>
+              <main className='min-h-full w-full p-4'>{children}</main>
             </MainScrollArea>
             {append}
           </div>

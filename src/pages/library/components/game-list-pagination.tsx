@@ -11,8 +11,8 @@ export function GameListPagination({ pagination }: { pagination: RomsPagination 
   }
 
   return (
-    <ul className='mt-8 flex flex-wrap justify-center gap-2 px-10'>
-      {range(1, pages + 1).map((page) => (
+    <ul className='flex flex-wrap justify-center gap-2 px-10'>
+      {range(1, pages).map((page) => (
         <li key={page}>
           <Button asChild size='3' variant={current === page ? 'solid' : 'soft'}>
             {current === page ? (

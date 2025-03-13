@@ -7,7 +7,7 @@ import { GameOverlayButton } from './game-overlay-button.tsx'
 export function GameOverlayButtons() {
   const { emulator, exit } = useEmulator()
   const { saveState } = useGameStates()
-  const { setIsPending, toggle } = useGameOverlay()
+  const { isPending, setIsPending, toggle } = useGameOverlay()
 
   function handleClickResume() {
     emulator?.resume()
@@ -46,28 +46,28 @@ export function GameOverlayButtons() {
 
   return (
     <>
-      <GameOverlayButton onClick={handleClickResume}>
+      <GameOverlayButton isLoading={isPending} onClick={handleClickResume}>
         <span className='icon-[material-symbols--resume] size-5' />
         Resume
       </GameOverlayButton>
 
-      <GameOverlayButton onClick={handleClickSaveState}>
+      <GameOverlayButton isLoading={isPending} onClick={handleClickSaveState}>
         <span className='icon-[mdi--content-save] size-5' />
         Save State
       </GameOverlayButton>
 
       <div className='flex-1' />
-      <GameOverlayButton onClick={handleClickRestart}>
+      <GameOverlayButton isLoading={isPending} onClick={handleClickRestart}>
         <span className='icon-[mdi--restart] size-5' />
         Restart
       </GameOverlayButton>
 
-      <GameOverlayButton onClick={handleClickExit}>
+      <GameOverlayButton isLoading={isPending} onClick={handleClickExit}>
         <span className='icon-[mdi--exit-to-app] size-5' />
         Exit
       </GameOverlayButton>
 
-      <GameOverlayButton onClick={handleClickSaveExit}>
+      <GameOverlayButton isLoading={isPending} onClick={handleClickSaveExit}>
         <span className='icon-[mdi--location-exit] size-5' />
         Save & Exit
       </GameOverlayButton>

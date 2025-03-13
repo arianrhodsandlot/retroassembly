@@ -1,6 +1,8 @@
 import { zValidator } from '@hono/zod-validator'
 import { z } from 'zod'
+import { createLaunchRecord } from '@/controllers/create-launch-record.ts'
 import { deleteRom } from '@/controllers/delete-rom.ts'
+import { getLaunchRecords } from '@/controllers/get-launch-records.ts'
 import { createRoms } from '../controllers/create-roms.ts'
 import { createState } from '../controllers/create-state.ts'
 import { getRomContent } from '../controllers/get-rom-content.ts'
@@ -109,5 +111,42 @@ app.get('state/:id/thumbnail', async (c) => {
     return createFileResponse(file)
   }
 })
+
+app.post(
+  'launch_record/new',
+
+  zValidator(
+    'form',
+    z.object({
+      core: z.string(),
+      platform: z.string(),
+      rom: z.string(),
+    }),
+  ),
+
+  async (c) => {
+    const form = c.req.valid('form')
+    await createLaunchRecord(form)
+    return c.json(null)
+  },
+)
+
+app.get(
+  'launch_records',
+
+  zValidator(
+    'query',
+    z.object({
+      page: z.number().default(1),
+      page_size: z.number().default(50),
+    }),
+  ),
+
+  async (c) => {
+    const query = c.req.valid('query')
+    const result = await getLaunchRecords(query)
+    return c.json(result)
+  },
+)
 
 export { app as api }

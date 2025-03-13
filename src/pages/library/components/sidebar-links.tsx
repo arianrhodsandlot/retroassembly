@@ -17,7 +17,7 @@ export function SidebarLinks() {
 
   return (
     <>
-      <div className='flex flex-col'>
+      <div className='flex flex-col gap-y-2'>
         {[
           { href: '/library', icon: <span className='icon-[mdi--bookshelf] size-5' />, text: 'Library' },
           { href: '/library/history', icon: <span className='icon-[mdi--history] size-5' />, text: 'History' },
@@ -37,7 +37,7 @@ export function SidebarLinks() {
 
         <div className='mt-2 flex flex-col gap-y-2'>
           {platformLinks.map(({ href, icon, name, text }) => (
-            <SidebarLink href={href} key={text}>
+            <SidebarLink href={href} key={name}>
               {icon ? <img alt='icon' className='size-5' src={icon} /> : null}
               {text}
             </SidebarLink>

@@ -119,7 +119,6 @@ app.post(
     'form',
     z.object({
       core: z.string(),
-      platform: z.string(),
       rom: z.string(),
     }),
   ),

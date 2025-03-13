@@ -1,9 +1,9 @@
+import { eq } from 'drizzle-orm'
 import { getContextData } from 'waku/middleware/context'
-import { launchRecordTable } from '../databases/library/schema.ts'
+import { launchRecordTable, romTable } from '../databases/library/schema.ts'
 
 interface CreateRomParams {
   core: string
-  platform: string
   rom: string
 }
 
@@ -11,12 +11,15 @@ export async function createLaunchRecord(params: CreateRomParams) {
   const { currentUser, db } = getContextData()
   const { library } = db
 
+  const results = await library.select().from(romTable).where(eq(romTable.id, params.rom))
+  const [rom] = results
+
   const [result] = await library
     .insert(launchRecordTable)
     .values({
       core: params.core,
-      platform: params.platform,
-      rom_id: params.rom,
+      platform: rom.platform,
+      rom_id: rom.id,
       user_id: currentUser.id,
     })
     .returning()

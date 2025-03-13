@@ -3,7 +3,6 @@ import { getRoms } from '@/controllers/get-roms.ts'
 import AppLayout from '../components/app-layout.tsx'
 import { DeviceInfo } from '../components/device-info.tsx'
 import { GameList } from '../components/game-list.tsx'
-import { SidebarLinks } from '../components/sidebar-links.tsx'
 import { PlatformBackground } from './components/platform-background.tsx'
 import { UploadButton } from './components/upload-button.tsx'
 
@@ -25,7 +24,7 @@ export async function PlatformPage({ platform, query }: PlatformPageProps) {
   }
 
   return (
-    <AppLayout append={<PlatformBackground platform={platform} />} sidebar={<SidebarLinks platform={platform} />}>
+    <AppLayout append={<PlatformBackground platform={platform} />}>
       <title>{`${platformMap[platform].displayName} - RetroAssembly`}</title>
 
       <div className='flex flex-col gap-5'>

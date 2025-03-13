@@ -1,4 +1,5 @@
 import { useAtom } from 'jotai'
+import ky from 'ky'
 import { Nostalgist } from 'nostalgist'
 import useSWRImmutable from 'swr/immutable'
 import { usePreference } from '../../../hooks/use-preference.ts'
@@ -32,9 +33,15 @@ export function useEmulator() {
     })
   })
 
-  function launch() {
-    emulator?.start()
+  async function launch() {
+    await emulator?.start()
     setLaunched(true)
+    const formData = new FormData()
+    formData.append('core', core)
+    formData.append('rom', rom.id)
+    await ky.post('/api/v1/launch_record/new', {
+      body: formData,
+    })
   }
 
   function exit() {

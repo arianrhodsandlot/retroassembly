@@ -9,14 +9,14 @@ const directionKeys = new Set(['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp'
 export function LaunchButton() {
   const { emulator, isPreparing, launch } = useEmulator()
 
-  useKeyboardEvent(true, (event) => {
+  useKeyboardEvent(true, async (event) => {
     if (emulator?.getStatus() === 'initial') {
       const isEscapeKey = event.key === 'Escape'
       const isSpecialKey = event.ctrlKey || event.metaKey || event.altKey || event.shiftKey
       const isDirectionKey = directionKeys.has(event.key)
       const shoudLaunch = !isSpecialKey && !isDirectionKey && !isEscapeKey
       if (shoudLaunch) {
-        launch()
+        await launch()
       }
     }
   })

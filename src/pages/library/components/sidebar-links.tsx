@@ -3,7 +3,7 @@ import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/rom.ts'
 import { SidebarLink } from './sidebar-link.tsx'
 
-export function SidebarLinks({ platform }: { platform?: string }) {
+export function SidebarLinks() {
   const { preference } = getContextData()
 
   const platformLinks = preference.ui.platforms
@@ -18,14 +18,15 @@ export function SidebarLinks({ platform }: { platform?: string }) {
   return (
     <>
       <div className='flex flex-col'>
-        {[{ href: '/library', icon: <span className='icon-[mdi--bookshelf] size-5' />, text: 'Library' }].map(
-          ({ href, icon, text }) => (
-            <SidebarLink active={!platform} href={href} key={text}>
-              <div className='flex size-5 items-center justify-center'>{icon}</div>
-              {text}
-            </SidebarLink>
-          ),
-        )}
+        {[
+          { href: '/library', icon: <span className='icon-[mdi--bookshelf] size-5' />, text: 'Library' },
+          { href: '/library/history', icon: <span className='icon-[mdi--history] size-5' />, text: 'History' },
+        ].map(({ href, icon, text }) => (
+          <SidebarLink href={href} key={text}>
+            {icon}
+            {text}
+          </SidebarLink>
+        ))}
       </div>
 
       <div className='mt-4'>
@@ -36,7 +37,7 @@ export function SidebarLinks({ platform }: { platform?: string }) {
 
         <div className='mt-2 flex flex-col gap-y-2'>
           {platformLinks.map(({ href, icon, name, text }) => (
-            <SidebarLink active={platform === name} href={href} key={text}>
+            <SidebarLink href={href} key={text}>
               {icon ? <img alt='icon' className='size-5' src={icon} /> : null}
               {text}
             </SidebarLink>

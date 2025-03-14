@@ -1,6 +1,7 @@
 import { zValidator } from '@hono/zod-validator'
 import { z } from 'zod'
 import { createLaunchRecord } from '@/controllers/create-launch-record.ts'
+import { deleteLaunchRecord } from '@/controllers/delete-launch-record.ts'
 import { deleteRom } from '@/controllers/delete-rom.ts'
 import { getLaunchRecords } from '@/controllers/get-launch-records.ts'
 import { createRoms } from '../controllers/create-roms.ts'
@@ -51,6 +52,16 @@ app.get(
     const rom = c.req.param('id')
     const states = await getStates({ rom, type: query.type })
     return c.json(states)
+  },
+)
+
+app.delete(
+  'rom/:id/launch_records',
+
+  async (c) => {
+    const rom = c.req.param('id')
+    await deleteLaunchRecord({ rom })
+    return c.json(null)
   },
 )
 

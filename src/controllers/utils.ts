@@ -4,6 +4,7 @@ import { getContextData } from 'waku/middleware/context'
 import { launchboxGameTable, libretroGameTable } from '../databases/metadata/schema.ts'
 
 interface RomModelLike {
+  id: string
   launchbox_game_id: null | number
   libretro_game_id: null | string
 }

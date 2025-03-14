@@ -1,4 +1,4 @@
-import { count, countDistinct, desc, eq, max } from 'drizzle-orm'
+import { and, count, countDistinct, desc, eq, max } from 'drizzle-orm'
 import { getContextData } from 'waku/middleware/context'
 import { launchRecordTable, romTable } from '../databases/library/schema.ts'
 import { getRomsMetadata } from './utils.ts'
@@ -8,19 +8,22 @@ export async function getLaunchRecords({ page = 1, pageSize = 50 }: { page?: num
   const { library } = db
 
   const offset = (page - 1) * pageSize
+
+  const where = and(eq(launchRecordTable.user_id, currentUser.id), eq(launchRecordTable.status, 1))
+
   const results = await library
     .select({
       core: launchRecordTable.core,
       count: count(launchRecordTable.id),
       file_name: romTable.file_name,
+      id: launchRecordTable.rom_id,
       lastLaunched: max(launchRecordTable.created_at),
       launchbox_game_id: romTable.launchbox_game_id,
       libretro_game_id: romTable.libretro_game_id,
       platform: launchRecordTable.platform,
-      romId: launchRecordTable.rom_id,
     })
     .from(launchRecordTable)
-    .where(eq(launchRecordTable.user_id, currentUser.id))
+    .where(where)
     .leftJoin(romTable, eq(launchRecordTable.rom_id, romTable.id))
     .groupBy(launchRecordTable.rom_id, romTable.file_name, romTable.launchbox_game_id, romTable.libretro_game_id)
     .orderBy(desc(max(launchRecordTable.created_at)))
@@ -28,11 +31,9 @@ export async function getLaunchRecords({ page = 1, pageSize = 50 }: { page?: num
     .limit(pageSize)
 
   const [{ total }] = await library
-    .select({
-      total: countDistinct(launchRecordTable.rom_id),
-    })
+    .select({ total: countDistinct(launchRecordTable.rom_id) })
     .from(launchRecordTable)
-    .where(eq(launchRecordTable.user_id, currentUser.id))
+    .where(where)
   const pagination = { current: page, pages: Math.ceil(total / pageSize), size: pageSize, total }
   const roms = await getRomsMetadata(results)
   return {

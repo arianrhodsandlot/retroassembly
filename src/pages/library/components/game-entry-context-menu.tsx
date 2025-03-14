@@ -5,12 +5,32 @@ import { useAtom } from 'jotai'
 import ky from 'ky'
 import type { ReactNode } from 'react'
 import useSWRMutation from 'swr/mutation'
+import { useRouter_UNSTABLE } from 'waku'
 import { romsAtom } from '../atoms.ts'
 
 export function GameEntryContextMenu({ children, rom }: { children: ReactNode; rom: any }) {
+  const router = useRouter_UNSTABLE()
+
   const [deleteDialogOpen, toggleDeleteDialog] = useToggle(false)
 
-  const { isMutating, trigger } = useSWRMutation(`/api/v1/rom/${rom.id}`, (url) => ky.delete(url))
+  const pageType = router.path === '/library/history' ? 'history' : 'library'
+  const { confirmDescription, confirmTitle, deleteApi, menuText } = {
+    history: {
+      confirmDescription:
+        'Are you sure to proceed?\nThe deleted history item cannot be restored.\nThe ROM related to this history item will NOT be deleted.',
+      confirmTitle: 'Delete the history item',
+      deleteApi: `/api/v1/rom/${rom.id}/launch_records`,
+      menuText: 'Delete the history item',
+    },
+    library: {
+      confirmDescription: 'Are you sure to proceed?\nThe deleted ROM cannot be restored.',
+      confirmTitle: 'Delete the ROM',
+      deleteApi: `/api/v1/rom/${rom.id}`,
+      menuText: 'Delete the ROM',
+    },
+  }[pageType]
+
+  const { isMutating, trigger } = useSWRMutation(deleteApi, (url) => ky.delete(url))
 
   const [, setAtoms] = useAtom(romsAtom)
 
@@ -23,7 +43,7 @@ export function GameEntryContextMenu({ children, rom }: { children: ReactNode; r
   async function handleClickConfirmDelete() {
     await trigger()
     closeDeleteDialog()
-    setAtoms((roms) => roms.filter(({ id }) => id !== rom.id))
+    setAtoms((roms) => roms?.filter(({ id }) => id !== rom.id))
   }
 
   return (
@@ -33,21 +53,21 @@ export function GameEntryContextMenu({ children, rom }: { children: ReactNode; r
         <ContextMenu.Content>
           <ContextMenu.Item color='red' onClick={toggleDeleteDialog}>
             <span className='icon-[mdi--delete]' />
-            Delete
+            {menuText}
           </ContextMenu.Item>
         </ContextMenu.Content>
       </ContextMenu.Root>
 
       <AlertDialog.Root onOpenChange={toggleDeleteDialog} open={deleteDialogOpen}>
         <AlertDialog.Content maxWidth='450px'>
-          <AlertDialog.Title>Delete the ROM</AlertDialog.Title>
-          <AlertDialog.Description size='2'>
-            Are you sure to proceed? The deleted ROM and its saved states cannot be restored.
+          <AlertDialog.Title>{confirmTitle}</AlertDialog.Title>
+          <AlertDialog.Description className='whitespace-pre-line' size='2'>
+            {confirmDescription}
           </AlertDialog.Description>
 
           <div className='mt-4 flex justify-end gap-3'>
             <AlertDialog.Cancel>
-              <Button disabled={isMutating}>
+              <Button disabled={isMutating} variant='soft'>
                 <span className='icon-[mdi--close]' />
                 Cancel
               </Button>

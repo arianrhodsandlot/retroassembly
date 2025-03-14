@@ -1,16 +1,14 @@
 import { getPlatformInfo } from '@/controllers/get-platform-info.ts'
 import { getCDNUrl } from '@/utils/cdn.ts'
 import { CompanyLogo } from '../platform/components/company-logo.tsx'
+import { DeviceNotes } from './device-notes.tsx'
 
 // todo: move to constants
 const platformImageMap = {
   arcade: { logoFilePath: 'arcade/art/system.svg', logoRepo: 'RetroPie/es-theme-carbon' },
-  atarilynx: {
-    logoFilePath: 'themes/batocera/lynx/_data/svg/logo.svg',
-  },
-  'sg-1000': {
-    logoFilePath: 'themes/batocera/sg1000/_data/svg/logo.svg',
-  },
+  atarilynx: { logoFilePath: 'themes/batocera/lynx/_data/svg/logo.svg' },
+  megadrive: { logoFilePath: 'genesis/art/system.svg', logoRepo: 'RetroPie/es-theme-carbon' },
+  'sg-1000': { logoFilePath: 'themes/batocera/sg1000/_data/svg/logo.svg' },
   sms: {
     devicePhotoFilePath: 'systems/device/mastersystem.png',
     logoFilePath: 'themes/batocera/mastersystem/_data/svg/logo.svg',
@@ -47,18 +45,7 @@ export async function DeviceInfo({ platform }: { platform: string }) {
                 <span className='icon-[mdi--calendar]' />
                 Released
               </div>
-              <div className='pl-6'>{platformInfo.release_date?.toLocaleDateString() || 'unknown'}</div>
-            </div>
-
-            <div>
-              <div className='flex items-center gap-2 font-semibold'>
-                <span className='icon-[mdi--chip]' />
-                Developer
-              </div>
-              <div className='pl-6'>
-                <CompanyLogo company={platformInfo.developer || ''} />
-                {platformInfo.developer || 'unknown'}
-              </div>
+              <div className='mt-1 pl-6'>{platformInfo.release_date?.toLocaleDateString() || 'unknown'}</div>
             </div>
 
             <div>
@@ -66,16 +53,17 @@ export async function DeviceInfo({ platform }: { platform: string }) {
                 <span className='icon-[mdi--factory]' />
                 Manufacturer
               </div>
-              <div className='pl-6'>
-                <CompanyLogo company={platformInfo.manufacturer || ''} />
-                {platformInfo.manufacturer || 'unknown'}
+              <div className='mt-1 pl-6'>
+                <CompanyLogo
+                  className='h-5'
+                  company={platformInfo.manufacturer || ''}
+                  fallback={platformInfo.developer || 'unknown'}
+                />
               </div>
             </div>
           </div>
         </div>
-        <div className='prose-neutral prose max-w-none whitespace-pre-line px-8 text-justify text-sm font-[Roboto_Slab_Variable] leading-relaxed'>
-          {platformInfo.notes}
-        </div>
+        <DeviceNotes notes={platformInfo.notes || ''} />
       </div>
 
       <div className='w-lg shrink-0'>

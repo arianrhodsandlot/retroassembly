@@ -21,7 +21,7 @@ export function GameEntry({ rom }) {
             <div className='z-1 absolute inset-0'>
               <div className='grid h-4/5 w-full place-items-center'>
                 <div className='backdrop-blur-xs rounded-full bg-white/40 p-1.5'>
-                  <span className='icon-[svg-spinners--180-ring] block size-6 text-[var(--theme)]' />
+                  <span className='icon-[svg-spinners--180-ring] block size-6 text-[var(--accent-9)]' />
                 </div>
               </div>
             </div>

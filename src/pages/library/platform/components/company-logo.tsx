@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { getCDNUrl } from '@/utils/cdn.ts'
 
@@ -50,9 +51,21 @@ function getCompanyLogo(company: string) {
   }
 }
 
-export function CompanyLogo({ className, company }: { className?: string; company: string }) {
+export function CompanyLogo({
+  className,
+  company,
+  fallback,
+}: { className?: string; company: string; fallback?: ReactNode }) {
   const companyLogo = getCompanyLogo(company)
   if (companyLogo) {
-    return <img alt={company} className={clsx(twMerge('object-contain object-center', className))} src={companyLogo} />
+    return (
+      <img
+        alt={company}
+        className={clsx(twMerge('object-contain object-center', className))}
+        src={companyLogo}
+        title={company}
+      />
+    )
   }
+  return fallback
 }

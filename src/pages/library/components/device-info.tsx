@@ -1,16 +1,36 @@
 import { getPlatformInfo } from '@/controllers/get-platform-info.ts'
 import { getCDNUrl } from '@/utils/cdn.ts'
 
+// todo: move to constants
+const platformImageMap = {
+  arcade: { logoFilePath: 'arcade/art/system.svg', logoRepo: 'RetroPie/es-theme-carbon' },
+  atarilynx: {
+    logoFilePath: 'themes/batocera/lynx/_data/svg/logo.svg',
+  },
+  'sg-1000': {
+    logoFilePath: 'themes/batocera/sg1000/_data/svg/logo.svg',
+  },
+  sms: {
+    devicePhotoFilePath: 'systems/device/mastersystem.png',
+    logoFilePath: 'themes/batocera/mastersystem/_data/svg/logo.svg',
+  },
+  vb: {
+    devicePhotoFilePath: 'systems/device/virtualboy.png',
+    logoFilePath: 'themes/batocera/virtualboy/_data/svg/logo.svg',
+  },
+}
+
 export async function DeviceInfo({ platform }: { platform: string }) {
   const platformInfo = await getPlatformInfo(platform)
   if (!platformInfo) {
     return
   }
 
-  const logo =
-    platform === 'arcade'
-      ? getCDNUrl('RetroPie/es-theme-carbon', `${platform}/art/system.svg`)
-      : getCDNUrl('batocera-linux/batocera-themes', `themes/batocera/${platform}/_data/svg/logo.svg`)
+  const logoRepo = platformImageMap[platform]?.logoRepo || 'batocera-linux/batocera-themes'
+  const logoFilePath = platformImageMap[platform]?.logoFilePath || `themes/batocera/${platform}/_data/svg/logo.svg`
+  const logo = getCDNUrl(logoRepo, logoFilePath)
+  const devicePhotoFilePath = platformImageMap[platform]?.devicePhotoFilePath || `systems/device/${platform}.png`
+  const devicePhoto = getCDNUrl('Mattersons/es-theme-neutral', devicePhotoFilePath)
 
   return (
     <div className='flex'>
@@ -46,7 +66,7 @@ export async function DeviceInfo({ platform }: { platform: string }) {
             </div>
           </div>
         </div>
-        <div className='prose-neutral prose line-clamp-4 max-w-none whitespace-pre-line px-8 text-justify text-sm font-[Roboto_Slab_Variable] leading-relaxed'>
+        <div className='prose-neutral prose max-w-none whitespace-pre-line px-8 text-justify text-sm font-[Roboto_Slab_Variable] leading-relaxed'>
           {platformInfo.notes}
         </div>
       </div>
@@ -55,7 +75,7 @@ export async function DeviceInfo({ platform }: { platform: string }) {
         <img
           alt={platformInfo.name}
           className='motion-preset-oscillate motion-duration-2400 h-auto w-full drop-shadow-2xl [--motion-loop-translate-y:8px]'
-          src={getCDNUrl('Mattersons/es-theme-neutral', `systems/device/${platform}.png`)}
+          src={devicePhoto}
         />
       </div>
     </div>

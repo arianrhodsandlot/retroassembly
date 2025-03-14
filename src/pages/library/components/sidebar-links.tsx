@@ -6,14 +6,13 @@ import { SidebarLink } from './sidebar-link.tsx'
 export function SidebarLinks() {
   const { preference } = getContextData()
 
-  const platformLinks = preference.ui.platforms
-    .map((platform) => ({
-      href: `/library/platform/${encodeURIComponent(platform)}`,
-      icon: getPlatformIcon(platform, ''),
-      name: platform,
-      text: platformMap[platform].displayName,
-    }))
-    .sort((a, b) => (a.text.codePointAt(0) ?? 0) - (b.text.codePointAt(0) ?? 0))
+  const platformLinks = preference.ui.platforms.map((platform) => ({
+    href: `/library/platform/${encodeURIComponent(platform)}`,
+    icon: getPlatformIcon(platform, ''),
+    name: platform,
+    text: platformMap[platform].displayName,
+  }))
+  // .sort((a, b) => (a.text.codePointAt(0) ?? 0) - (b.text.codePointAt(0) ?? 0))
 
   return (
     <>

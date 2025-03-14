@@ -28,7 +28,7 @@ export function getRomLibretroThumbnail(rom, type: LibretroThumbnailType = 'boxa
   return getCDNUrl(repo, filePath)
 }
 
-export function getPlatformIcon(platform: string, type = 'content', directory = 'xmb/flatui/png') {
+export function getPlatformIcon(platform: string, type = 'content', directory = 'xmb/systematic/png') {
   const platformFullName = platformMap[platform].libretroName
   if (!platformFullName) {
     return ''
@@ -44,8 +44,11 @@ export function getPlatformGameIcon(platform: string, type = 'game') {
   if (!platformFullName) {
     return ''
   }
+  // todo: move to constants
   const repo = 'batocera-linux/batocera-themes'
-  return getCDNUrl(repo, `themes/batocera/${platform}/_data/svg/${type}.svg`)
+  const platformAlias =
+    { atarilynx: 'lynx', 'sg-1000': 'sg1000', sms: 'mastersystem', vb: 'virtualboy' }[platform] || platform
+  return getCDNUrl(repo, `themes/batocera/${platformAlias}/_data/svg/${type}.svg`)
 }
 
 export function getRomGoodcodes(rom) {

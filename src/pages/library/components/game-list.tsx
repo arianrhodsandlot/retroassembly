@@ -15,6 +15,15 @@ export function GameList({ pagination, roms: initialRoms }: { pagination: RomsPa
     setRoms(initialRoms)
   }, [setRoms, initialRoms])
 
+  if (renderedRoms.length === 0) {
+    return (
+      <div className='flex items-center justify-center gap-2 py-16 text-4xl text-zinc-300'>
+        <span className='icon-[mdi--package-variant] size-14' />
+        Nothing here yet.
+      </div>
+    )
+  }
+
   return (
     <div>
       <div className='grid gap-x-4 gap-y-2 [grid-template-columns:repeat(auto-fill,minmax(calc(var(--spacing)*40),1fr))]'>

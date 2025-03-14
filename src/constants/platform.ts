@@ -5,6 +5,7 @@ export type PlatformName =
   | 'atari2600'
   | 'atari5200'
   | 'atari7800'
+  | 'atarilynx'
   | 'fds'
   | 'gamegear'
   | 'gb'
@@ -14,6 +15,8 @@ export type PlatformName =
   | 'nes'
   | 'ngp'
   | 'ngpc'
+  | 'sega32x'
+  | 'sg-1000'
   | 'sms'
   | 'snes'
   | 'vb'
@@ -29,6 +32,8 @@ interface Platform {
   name: PlatformName
 }
 
+// This link can be used as a reference for the array, but they may be not identical.
+// https://github.com/RetroPie/RetroPie-Setup/blob/master/platforms.cfg
 const platforms: Platform[] = [
   {
     cores: [
@@ -59,17 +64,25 @@ const platforms: Platform[] = [
     cores: ['a5200'],
     displayName: 'Atari 5200',
     fileExtensions: ['a52', 'xfd', 'atr', 'atx', 'cdm', 'cas', 'xex', 'zip'].map((name) => `.${name}`),
-    launchboxName: 'Atari - 5200',
+    launchboxName: 'Atari 5200',
     libretroName: 'Atari - 5200',
     name: 'atari5200',
   },
   {
     cores: ['prosystem'],
     displayName: 'Atari 7800',
-    fileExtensions: ['a78', '', 'zip'].map((name) => `.${name}`),
-    launchboxName: 'Atari - 7800',
+    fileExtensions: ['a78', 'zip'].map((name) => `.${name}`),
+    launchboxName: 'Atari 7800',
     libretroName: 'Atari - 7800',
     name: 'atari7800',
+  },
+  {
+    cores: ['mednafen_lynx', 'handy'],
+    displayName: 'Atari Lynx',
+    fileExtensions: ['lnx', 'zip'].map((name) => `.${name}`),
+    launchboxName: 'Atari Lynx',
+    libretroName: 'Atari - Lynx',
+    name: 'atarilynx',
   },
   {
     cores: ['fceumm', 'nestopia'],
@@ -144,6 +157,22 @@ const platforms: Platform[] = [
     name: 'ngpc',
   },
   {
+    cores: ['picodrive'],
+    displayName: 'Sega 32X',
+    fileExtensions: ['32x', 'zip'].map((name) => `.${name}`),
+    launchboxName: 'Sega 32X',
+    libretroName: 'Sega - 32X',
+    name: 'sega32x',
+  },
+  {
+    cores: ['gearsystem'],
+    displayName: 'Sega SG-1000',
+    fileExtensions: ['sg', 'zip'].map((name) => `.${name}`),
+    launchboxName: 'Sega SG-1000',
+    libretroName: 'Sega - SG-1000',
+    name: 'sg-1000',
+  },
+  {
     cores: ['genesis_plus_gx', 'picodrive', 'gearsystem'],
     displayName: 'Master System',
     fileExtensions: ['sms', 'zip'].map((name) => `.${name}`),
@@ -153,7 +182,7 @@ const platforms: Platform[] = [
   },
   {
     cores: ['snes9x', 'snes9x2002', 'snes9x2005', 'snes9x2010'],
-    displayName: 'Super Nintendo',
+    displayName: 'Super NES',
     fileExtensions: ['smc', 'sfc'].map((name) => `.${name}`),
     launchboxName: 'Super Nintendo Entertainment System',
     libretroName: 'Nintendo - Super Nintendo Entertainment System',

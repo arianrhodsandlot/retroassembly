@@ -1,5 +1,6 @@
 import { getPlatformInfo } from '@/controllers/get-platform-info.ts'
 import { getCDNUrl } from '@/utils/cdn.ts'
+import { CompanyLogo } from '../platform/components/company-logo.tsx'
 
 // todo: move to constants
 const platformImageMap = {
@@ -54,7 +55,10 @@ export async function DeviceInfo({ platform }: { platform: string }) {
                 <span className='icon-[mdi--chip]' />
                 Developer
               </div>
-              <div className='pl-6'>{platformInfo.developer || 'unknown'}</div>
+              <div className='pl-6'>
+                <CompanyLogo company={platformInfo.developer || ''} />
+                {platformInfo.developer || 'unknown'}
+              </div>
             </div>
 
             <div>
@@ -62,7 +66,10 @@ export async function DeviceInfo({ platform }: { platform: string }) {
                 <span className='icon-[mdi--factory]' />
                 Manufacturer
               </div>
-              <div className='pl-6'>{platformInfo.manufacturer || 'unknown'}</div>
+              <div className='pl-6'>
+                <CompanyLogo company={platformInfo.manufacturer || ''} />
+                {platformInfo.manufacturer || 'unknown'}
+              </div>
             </div>
           </div>
         </div>

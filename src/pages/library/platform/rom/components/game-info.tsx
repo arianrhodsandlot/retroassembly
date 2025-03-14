@@ -1,4 +1,5 @@
 import { platformMap } from '@/constants/platform.ts'
+import { CompanyLogo } from '../../components/company-logo.tsx'
 
 export function GameInfo({ gameInfo, rom }) {
   return (
@@ -29,7 +30,10 @@ export function GameInfo({ gameInfo, rom }) {
             <span className='icon-[mdi--chip]' />
             Developer
           </div>
-          <div className='pl-6'>{gameInfo?.developer || <span className='opacity-40'>Unknown</span>}</div>
+          <div className='pl-6'>
+            <CompanyLogo company={gameInfo?.developer} />
+            {gameInfo?.developer || <span className='opacity-40'>Unknown</span>}
+          </div>
         </div>
 
         <div>
@@ -37,7 +41,10 @@ export function GameInfo({ gameInfo, rom }) {
             <span className='icon-[mdi--earth]' />
             Publisher
           </div>
-          <div className='pl-6'>{gameInfo?.publisher || <span className='opacity-40'>Unknown</span>}</div>
+          <div className='pl-6'>
+            <CompanyLogo company={gameInfo?.publisher} />
+            {gameInfo?.publisher || <span className='opacity-40'>Unknown</span>}
+          </div>
         </div>
 
         <div>

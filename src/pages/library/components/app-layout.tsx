@@ -2,6 +2,7 @@ import { type ReactNode, type UIEventHandler, useMemo } from 'react'
 import { getContext, getContextData } from 'waku/middleware/context'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { ServerDataContextProvider } from './server-data-context-provider.tsx'
+import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
 
 interface AppLayoutProps {
@@ -28,14 +29,15 @@ export default function AppLayout({
   return (
     <ServerDataContextProvider value={value}>
       <div className='flex h-screen bg-[var(--accent-9)]'>
-        <aside className='ml-4 flex w-64 shrink-0 flex-col'>
-          <div className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold text-white'>
+        <aside className='ml-4 flex w-64 shrink-0 flex-col py-4 text-white'>
+          <div className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold'>
             <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
             RetroAssembly
           </div>
           <ScrollArea className='flex-1' size='2'>
             {sidebar}
           </ScrollArea>
+          <SidebarFooter />
         </aside>
 
         <div className='m-4 flex min-w-0 flex-1'>

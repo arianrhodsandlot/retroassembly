@@ -34,7 +34,7 @@ interface Platform {
 
 // This link can be used as a reference for the array, but they may be not identical.
 // https://github.com/RetroPie/RetroPie-Setup/blob/master/platforms.cfg
-const platforms: Platform[] = [
+export const platforms: Platform[] = [
   {
     cores: [
       'mame2000',

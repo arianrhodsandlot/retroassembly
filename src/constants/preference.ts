@@ -65,7 +65,6 @@ export const defaultPreference: Preference = {
       'megadrive',
       'nes',
       'snes',
-
       'vb',
       'wonderswan',
       'wonderswancolor',

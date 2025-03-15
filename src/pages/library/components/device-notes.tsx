@@ -25,8 +25,8 @@ export function DeviceNotes({ notes }: { notes: string }) {
       >
         {notes}
       </div>
-      <div className=' mt-1 flex justify-end px-6'>
-        <div className='absolute -mt-2'>
+      <div className='relative mt-1 flex justify-end px-6'>
+        <div className='absolute -mt-1.5'>
           {showExpandButton ? (
             <Button onClick={() => toggleExpanded()} size='1' type='button' variant='ghost'>
               <span className='motion-duration-1000 icon-[mdi--menu-down] motion-preset-blink size-5' />

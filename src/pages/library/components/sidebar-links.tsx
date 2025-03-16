@@ -6,7 +6,7 @@ import { SidebarLink } from './sidebar-link.tsx'
 export function SidebarLinks() {
   const { preference } = getContextData()
 
-  const platformLinks = preference.ui.platforms.map((platform) => ({
+  const platformLinks = preference.platforms.map((platform) => ({
     href: `/library/platform/${encodeURIComponent(platform)}`,
     icon: getPlatformIcon(platform, ''),
     name: platform,

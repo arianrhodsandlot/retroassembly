@@ -1,53 +1,99 @@
-import { Select } from '@radix-ui/themes'
-import { platforms } from '@/constants/platform.ts'
+import { Code, Select } from '@radix-ui/themes'
+import { useState } from 'react'
+import { coreOptionsMap } from '@/constants/core.ts'
+import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/rom.ts'
+import { usePreference } from '../hooks/use-preference.ts'
 
 export function EmulatingSettings() {
+  const preference = usePreference()
+  const [selectedPlatform, setSelectedPlatform] = useState(preference.platforms?.[0])
+  console.log(preference)
+
+  if (!preference.platforms?.length) {
+    return
+  }
+
+  const { core } = preference.emulator.platform[selectedPlatform]
+  const coreOptions = coreOptionsMap[core] || []
+
   return (
     <div className='mt-4'>
+      <label>
+        <h3 className='flex items-center gap-2 py-2 text-lg font-semibold'>
+          <span className='icon-[mdi--computer-classic]' /> Platform
+        </h3>
+        <div className='flex flex-col gap-2 px-6'>
+          <Select.Root
+            onValueChange={(value: typeof selectedPlatform) => setSelectedPlatform(value)}
+            size='3'
+            value={selectedPlatform}
+          >
+            <Select.Trigger variant='ghost' />
+            <Select.Content>
+              {preference.platforms.map((platform) => (
+                <Select.Item key={platformMap[platform].name} value={platformMap[platform].name}>
+                  <div className='flex items-center gap-2'>
+                    <img
+                      alt={platformMap[platform].displayName}
+                      className='size-6 object-contain object-center'
+                      src={getPlatformIcon(platformMap[platform].name, '')}
+                    />
+                    {platformMap[platform].displayName}
+                  </div>
+                </Select.Item>
+              ))}
+            </Select.Content>
+          </Select.Root>
+        </div>
+      </label>
+
+      <label>
+        <h3 className='flex items-center gap-2 py-2 text-lg font-semibold'>
+          <span className='icon-[mdi--monitor-screenshot]' /> Emulator
+        </h3>
+        <div className='flex flex-col gap-2 px-6'>
+          <Select.Root size='3' value={core}>
+            <Select.Trigger variant='ghost' />
+            <Select.Content>
+              {platformMap[selectedPlatform].cores.map((core) => (
+                <Select.Item key={core} value={core}>
+                  <div className='flex items-center gap-2'>
+                    <span className='icon-[mdi--jigsaw]' />
+                    {core}
+                  </div>
+                </Select.Item>
+              ))}
+            </Select.Content>
+          </Select.Root>
+        </div>
+      </label>
+
       <h3 className='flex items-center gap-2 py-2 text-lg font-semibold'>
-        <span className='icon-[mdi--computer-classic]' /> Platform
+        <span className='icon-[mdi--wrench]' /> Options
       </h3>
-      <Select.Root defaultValue='arcade' size='3'>
-        <Select.Trigger variant='ghost' />
-        <Select.Content>
-          {platforms.map((platform) => (
-            <Select.Item key={platform.name} value={platform.name}>
-              <div className='flex items-center gap-2'>
-                <img
-                  alt={platform.displayName}
-                  className='size-6 object-contain object-center'
-                  src={getPlatformIcon(platform.name, '')}
-                />
-                {platform.displayName}
+      <div className='flex flex-col gap-2 px-6'>
+        {coreOptions.map(({ name, options }) => {
+          return (
+            <label className='flex w-fit items-center gap-4'>
+              <Code>{name}</Code>
+
+              <div>
+                <Select.Root size='3' value={options[0]}>
+                  <Select.Trigger variant='ghost' />
+                  <Select.Content>
+                    {options.map((option) => (
+                      <Select.Item key={option} value={option}>
+                        {option}
+                      </Select.Item>
+                    ))}
+                  </Select.Content>
+                </Select.Root>
               </div>
-            </Select.Item>
-          ))}
-        </Select.Content>
-      </Select.Root>
-
-      <h3 className='flex items-center gap-2 py-2 text-lg font-semibold'>
-        <span className='icon-[mdi--monitor-screenshot]' /> Emulator
-      </h3>
-      <Select.Root defaultValue='arcade' size='3'>
-        <Select.Trigger variant='ghost' />
-        <Select.Content>
-          {platforms
-            .find(({ name }) => name === 'nes')
-            .cores.map((core) => (
-              <Select.Item key={core} value={core}>
-                <div className='flex items-center gap-2'>
-                  <span className='icon-[mdi--jigsaw]' />
-                  {core}
-                </div>
-              </Select.Item>
-            ))}
-        </Select.Content>
-      </Select.Root>
-
-      <h3 className='flex items-center gap-2 py-2 text-lg font-semibold'>
-        <span className='icon-[mdi--wrench]' /> Emulator Options
-      </h3>
+            </label>
+          )
+        })}
+      </div>
     </div>
   )
 }

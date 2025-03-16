@@ -9,13 +9,10 @@ export interface Preference {
     core: Partial<Record<CoreName, Record<string, string>>>
     platform: Record<PlatformName, { core: CoreName; shader?: string }>
   }
-  ui: {
-    libraryCoverType: 'boxart'
-    platformInfoDisplayType: 0
-    platforms: PlatformName[]
-    theme: 'rose'
-  }
-  user: unknown
+  libraryCoverType: 'boxart'
+  platformInfoDisplayType: 0
+  platforms: PlatformName[]
+  theme: 'rose'
 }
 
 export const defaultPreference: Preference = {
@@ -53,32 +50,29 @@ export const defaultPreference: Preference = {
       wonderswancolor: { core: 'mednafen_wswan' },
     },
   },
-  ui: {
-    libraryCoverType: 'boxart',
-    platformInfoDisplayType: 0,
-    platforms: [
-      'arcade',
-      'atari2600',
-      'gb',
-      'gba',
-      'gbc',
-      'megadrive',
-      'nes',
-      'snes',
-      'vb',
-      'wonderswan',
-      'wonderswancolor',
-      'sms',
-      'ngp',
-      'ngpc',
-      'gamegear',
-      'atari5200',
-      'atari7800',
-      'atarilynx',
-      'sega32x',
-      'sg-1000',
-    ],
-    theme: 'rose',
-  },
-  user: {},
+  libraryCoverType: 'boxart',
+  platformInfoDisplayType: 0,
+  platforms: [
+    'arcade',
+    'atari2600',
+    'gb',
+    'gba',
+    'gbc',
+    'megadrive',
+    'nes',
+    'snes',
+    'vb',
+    'wonderswan',
+    'wonderswancolor',
+    'sms',
+    'ngp',
+    'ngpc',
+    'gamegear',
+    'atari5200',
+    'atari7800',
+    'atarilynx',
+    'sega32x',
+    'sg-1000',
+  ],
+  theme: 'rose',
 }

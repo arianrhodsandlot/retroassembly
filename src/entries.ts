@@ -1,7 +1,7 @@
 import { createPages } from 'waku'
 import { getContext } from 'waku/middleware/context'
 import type { PathsForPages } from 'waku/router'
-import { api } from '@/api/index.ts'
+import { createApp } from '@/api/app.ts'
 import { HistoryPage } from '@/pages/library/history/page.tsx'
 import { LibraryPage } from '@/pages/library/page.tsx'
 import { PlatformPage } from '@/pages/library/platform/page.tsx'
@@ -13,6 +13,7 @@ import { Root } from '@/pages/root.tsx'
 async function apiHandler() {
   const { req } = getContext()
   const request = new Request(req.url, req)
+  const api = createApp()
   return await api.fetch(request)
 }
 

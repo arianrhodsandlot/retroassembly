@@ -30,13 +30,15 @@ const repositoryVersions = {
   'RetroPie/es-theme-carbon': 'b09973e',
 } as const
 
+export const cdnHost = 'https://cdn.jsdelivr.net'
+
 export function getCDNUrl(repo: keyof typeof repositoryVersions, filePpath: string) {
   const [ghUser, ghRepoName] = repo.split('/')
   const version = repositoryVersions[repo]
-  const url = new URL('', 'https://cdn.jsdelivr.net')
+  const url = new URL('', cdnHost)
   const encode = encodeRFC3986URIComponent
-  const urlPathSecments = ['gh', encode(ghUser), `${encode(ghRepoName)}@${encode(version)}`, filePpath]
-  const urlPath = urlPathSecments.join('/')
+  const urlPathSegments = ['gh', encode(ghUser), `${encode(ghRepoName)}@${encode(version)}`, filePpath]
+  const urlPath = urlPathSegments.join('/')
   url.pathname = urlPath
   return url.href
 }

@@ -96,6 +96,9 @@ export async function guessGameInfo(fileName: string, platform: string) {
   if (launchbox && !libretro) {
     libretro = await guessLibretroGame(launchbox.name, platform)
   }
+  if (libretro && !launchbox && libretro.name) {
+    launchbox = await guessLaunchboxGame(libretro.goodcodes_base_compact_name, platform)
+  }
 
   return { launchbox, libretro }
 }

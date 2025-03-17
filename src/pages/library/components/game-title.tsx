@@ -12,6 +12,10 @@ export function GameTitle({ rom }) {
     .filter((text) => text !== 'stable')
     .join(' ')
 
+  if (rom.platform === 'arcade') {
+    return <div className='mt-2 text-center text-sm font-semibold'>{goodcodes.file.slice(4)}</div>
+  }
+
   return (
     <div className='mt-2 text-center text-sm font-semibold'>
       {[...districts].map((district) => (

@@ -1,3 +1,5 @@
+import { cdnHost } from '@/utils/cdn.ts'
+
 export type CoreName =
   | 'a5200'
   | 'fbalpha2012_cps1'
@@ -300,3 +302,24 @@ export const coreOptionsMap: Partial<Record<CoreName, { defaultOption?: string; 
     ],
     vba_next: [{ name: 'vbanext_bios', options: ['On', 'Off'] }],
   }
+
+const vendorsVersionInfo = {
+  name: 'retro-assembly-vendors',
+  version: '1.17.0-20240225183742',
+}
+
+function getCoreCDNUrl(core: string, ext: string) {
+  const { name, version } = vendorsVersionInfo
+  const url = new URL('', cdnHost)
+  const urlPathSegments = ['npm', `${name}@${version}`, 'dist', 'cores', `${core}_libretro.${ext}`]
+  const urlPath = urlPathSegments.join('/')
+  url.pathname = urlPath
+  return url.href
+}
+
+export const coreUrlMap: Partial<Record<CoreName, { js: string; name: string; wasm: string }>> = {
+  a5200: { js: getCoreCDNUrl('a5200', 'js'), name: 'a5200', wasm: getCoreCDNUrl('a5200', 'wasm') },
+  fbneo: { js: getCoreCDNUrl('fbneo', 'js'), name: 'fbneo', wasm: getCoreCDNUrl('fbneo', 'wasm') },
+  prosystem: { js: getCoreCDNUrl('prosystem', 'js'), name: 'prosystem', wasm: getCoreCDNUrl('prosystem', 'wasm') },
+  stella2014: { js: getCoreCDNUrl('stella2014', 'js'), name: 'stella2014', wasm: getCoreCDNUrl('stella2014', 'wasm') },
+}

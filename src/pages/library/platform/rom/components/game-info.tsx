@@ -18,7 +18,9 @@ export function GameInfo({ gameInfo, rom }) {
             Released
           </div>
           <div className='pl-6'>
-            {gameInfo?.release_date?.toLocaleDateString() || <span className='opacity-40'>Unknown</span>}
+            {gameInfo?.release_date?.toLocaleDateString() || gameInfo?.release_year || (
+              <span className='opacity-40'>Unknown</span>
+            )}
           </div>
         </div>
 

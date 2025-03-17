@@ -2,6 +2,7 @@ import { useAtom } from 'jotai'
 import ky from 'ky'
 import { Nostalgist } from 'nostalgist'
 import useSWRImmutable from 'swr/immutable'
+import { coreUrlMap } from '@/constants/core.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
 import { emulatorLaunchedAtom } from '../atoms.ts'
 import { useRom } from './use-rom.ts'
@@ -17,14 +18,15 @@ export function useEmulator() {
   const { core, shader } = preference.emulator.platform[rom?.platform] || {}
   const {
     data: emulator,
+    error,
     isLoading: isPreparing,
     mutate: prepare,
   } = useSWRImmutable(romUrl || false, (romUrl: string) => {
     return Nostalgist.prepare({
       cache: true,
-      core,
+      core: coreUrlMap[core] || core,
       retroarchCoreConfig: preference.emulator.core[core],
-      rom: romUrl,
+      rom: { fileContent: romUrl, fileName: rom.file_name },
       shader,
       style: {
         opacity: '0',
@@ -48,6 +50,10 @@ export function useEmulator() {
     emulator?.exit()
     setLaunched(false)
     prepare()
+  }
+
+  if (error) {
+    console.error(error)
   }
 
   return { core, emulator, exit, isPreparing, launch, launched, prepare, rom, setLaunched }

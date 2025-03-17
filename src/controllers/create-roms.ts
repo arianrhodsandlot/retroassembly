@@ -20,6 +20,7 @@ async function createRom(params: CreateRomParams) {
     eq(romTable.user_id, currentUser.id),
     eq(romTable.file_name, params.fileName),
     eq(romTable.platform, params.platform),
+    eq(romTable.status, 1),
   )
   const [countResult] = await library.select({ count: count() }).from(romTable).where(where)
 

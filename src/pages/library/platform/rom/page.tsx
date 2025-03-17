@@ -2,7 +2,6 @@ import { getRom } from '@/controllers/get-rom.ts'
 import { Portal, Theme } from '@/pages/components/radix-themes.ts'
 import { getRomGoodcodes } from '@/utils/rom.ts'
 import AppLayout from '../../components/app-layout.tsx'
-import { SidebarLinks } from '../../components/sidebar-links.tsx'
 import { GameBackground } from './components/game-background.tsx'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
@@ -21,12 +20,7 @@ export async function RomPage({ fileName, id, platform }) {
   const { launchboxGame } = rom
 
   return (
-    <AppLayout
-      append={<GameBackground rom={rom} />}
-      MainScrollArea={MainScrollArea}
-      serverData={{ rom }}
-      sidebar={<SidebarLinks platform={rom.platform} />}
-    >
+    <AppLayout append={<GameBackground rom={rom} />} MainScrollArea={MainScrollArea} serverData={{ rom }}>
       <title>{`${goodcodes.rom} - RetroAssembly`}</title>
       <div className='flex gap-4'>
         <div>

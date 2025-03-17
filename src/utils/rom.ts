@@ -47,12 +47,17 @@ export function getPlatformGameIcon(platform: string, type = 'game') {
   // todo: move to constants
   const repo = 'batocera-linux/batocera-themes'
   const platformAlias =
-    { atarilynx: 'lynx', 'sg-1000': 'sg1000', sms: 'mastersystem', vb: 'virtualboy' }[platform] || platform
+    { arcade: 'fba', atarilynx: 'lynx', 'sg-1000': 'sg1000', sms: 'mastersystem', vb: 'virtualboy' }[platform] ||
+    platform
   return getCDNUrl(repo, `themes/batocera/${platformAlias}/_data/svg/${type}.svg`)
 }
 
 export function getRomGoodcodes(rom) {
-  return parse(`0 - ${path.parse(rom.file_name).name}`)
+  let { name } = path.parse(rom.file_name)
+  if (rom.platform === 'arcade' && rom.libretroGame?.name) {
+    name = rom.libretroGame.name
+  }
+  return parse(`0 - ${name}`)
 }
 
 export function getCompactName(name: string) {

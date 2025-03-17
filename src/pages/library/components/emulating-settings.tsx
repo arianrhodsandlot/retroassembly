@@ -7,10 +7,9 @@ import { usePreference } from '../hooks/use-preference.ts'
 
 export function EmulatingSettings() {
   const preference = usePreference()
-  const [selectedPlatform, setSelectedPlatform] = useState(preference.platforms?.[0])
-  console.log(preference)
+  const [selectedPlatform, setSelectedPlatform] = useState(preference.ui.platforms?.[0])
 
-  if (!preference.platforms?.length) {
+  if (!preference.ui.platforms?.length) {
     return
   }
 
@@ -31,7 +30,7 @@ export function EmulatingSettings() {
           >
             <Select.Trigger variant='ghost' />
             <Select.Content>
-              {preference.platforms.map((platform) => (
+              {preference.ui.platforms.map((platform) => (
                 <Select.Item key={platformMap[platform].name} value={platformMap[platform].name}>
                   <div className='flex items-center gap-2'>
                     <img

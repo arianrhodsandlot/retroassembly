@@ -8,9 +8,12 @@ export async function getPreference() {
   const { currentUser, db } = getContextData()
 
   const where = eq(userPreferenceTable.user_id, currentUser.id)
-  const results = await db.library.select().from(userPreferenceTable).where(where)
+  const results = await db.library
+    .select({ emulator: userPreferenceTable.emulator, ui: userPreferenceTable.ui })
+    .from(userPreferenceTable)
+    .where(where)
   const preference = structuredClone(defaultPreference)
-  const userPreference = results[0].content
-  merge(preference, userPreference as any)
+  const userPreference = results[0]
+  merge(preference, (userPreference as any) || {})
   return preference
 }

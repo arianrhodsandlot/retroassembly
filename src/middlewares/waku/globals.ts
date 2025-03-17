@@ -1,8 +1,6 @@
-import { eq } from 'drizzle-orm'
-import { merge } from 'es-toolkit'
 import type { Middleware } from 'waku/config'
-import { defaultPreference } from '../../constants/preference.ts'
-import { userPreferenceTable } from '../../databases/library/schema.ts'
+import type { defaultPreference } from '../../constants/preference.ts'
+import { getPreference } from '../../controllers/get-preference.ts'
 import { createDrizzle } from '../../utils/drizzle.ts'
 import { createStorage } from '../../utils/storage.ts'
 import { createSupabase } from '../../utils/supabase.ts'
@@ -33,11 +31,6 @@ export default (function globalsMiddleware() {
     // const { data } = await ctx.data.supabase.auth.getUser()
     // const currentUser = data?.user
     const currentUser = { id: '567a53eb-c109-4142-8700-00f58db9853f' }
-    const customPreference = await db.library
-      .select()
-      .from(userPreferenceTable)
-      .where(eq(userPreferenceTable.user_id, currentUser.id))
-    const preference = merge(defaultPreference, customPreference)
 
     function redirect(location: string, status?: number) {
       ctx.res.status = status ?? 302
@@ -45,10 +38,11 @@ export default (function globalsMiddleware() {
       ctx.res.headers.location = location
     }
 
-    const contextData: ContextData = { currentUser, db, preference, redirect, storage, supabase }
+    const contextData: Omit<ContextData, 'preference'> = { currentUser, db, redirect, storage, supabase }
 
     Object.assign(ctx.data, contextData)
-
+    const preference = await getPreference()
+    Object.assign(ctx.data, { preference })
     await next()
   }
 } as Middleware)

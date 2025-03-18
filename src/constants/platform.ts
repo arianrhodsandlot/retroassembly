@@ -23,7 +23,7 @@ export type PlatformName =
   | 'wonderswan'
   | 'wonderswancolor'
 
-interface Platform {
+export interface Platform {
   cores: CoreName[]
   displayName: string
   fileExtensions: string[]
@@ -86,7 +86,7 @@ export const platforms: Platform[] = [
   },
   {
     cores: ['fceumm', 'nestopia'],
-    displayName: 'Family Computer Disk System',
+    displayName: 'Famicom Disk System',
     fileExtensions: ['fds', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Nintendo Famicom Disk System',
     libretroName: 'Nintendo - Family Computer Disk System',

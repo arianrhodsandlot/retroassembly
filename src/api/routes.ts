@@ -5,6 +5,7 @@ import { createLaunchRecord } from '@/controllers/create-launch-record.ts'
 import { deleteLaunchRecord } from '@/controllers/delete-launch-record.ts'
 import { deleteRom } from '@/controllers/delete-rom.ts'
 import { getLaunchRecords } from '@/controllers/get-launch-records.ts'
+import { getPreference } from '@/controllers/get-preference.ts'
 import { updatePreference } from '@/controllers/update-preference.ts'
 import { createRoms } from '../controllers/create-roms.ts'
 import { createState } from '../controllers/create-state.ts'
@@ -162,9 +163,13 @@ export function addRoutes(app: Hono) {
     },
   )
 
+  app.get('preference', async (c) => {
+    const result = await getPreference()
+    return c.json(result)
+  })
+
   app.post('preference', async (c) => {
-    const formData = await c.req.formData()
-    const preference = formData.get('preference')
+    const preference = await c.req.json()
     const result = await updatePreference(preference)
     return c.json(result)
   })

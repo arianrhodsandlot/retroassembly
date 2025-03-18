@@ -5,6 +5,10 @@ const select = <TextField.Root className='w-10' />
 export function KeyboardInputs() {
   return (
     <div>
+      <h3 className='flex items-center gap-2 py-2 text-lg font-semibold'>
+        <span className='icon-[mdi--keyboard]' /> Keyboard Inputs
+      </h3>
+
       <div className='flex gap-4'>
         <label className='flex items-center gap-2'>
           <span className='icon-[mdi--gamepad-left] size-8' />
@@ -23,6 +27,7 @@ export function KeyboardInputs() {
           {select}
         </label>
       </div>
+
       <div className='mt-2 flex gap-4'>
         <label className='flex items-center gap-2'>
           <span className='icon-[mdi--gamepad-circle-down] size-8' />

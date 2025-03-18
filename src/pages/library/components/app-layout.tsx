@@ -8,26 +8,24 @@ import { SidebarLinks } from './sidebar-links.tsx'
 interface AppLayoutProps {
   append?: ReactNode
   children: ReactNode
+  extendedServerData?: Record<string, unknown>
   MainScrollArea?: typeof ScrollArea
   onMainScroll?: UIEventHandler<HTMLDivElement>
-  serverData?: Record<string, unknown>
   sidebar?: ReactNode
 }
 
-const defaultSidebar = <SidebarLinks />
 export default function AppLayout({
   append,
   children,
+  extendedServerData,
   MainScrollArea = ScrollArea,
-  serverData,
-  sidebar = defaultSidebar,
 }: AppLayoutProps) {
   const { req } = getContext()
   const { preference } = getContextData()
-  const value = useMemo(() => ({ preference, ...serverData }), [preference, serverData])
+  const serverData = useMemo(() => ({ preference, ...extendedServerData }), [preference, extendedServerData])
 
   return (
-    <ServerDataContextProvider value={value}>
+    <ServerDataContextProvider initial={serverData}>
       <div className='flex h-screen bg-[var(--accent-9)]'>
         <aside className='ml-4 flex w-64 shrink-0 flex-col py-4 text-white'>
           <div className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold'>
@@ -35,7 +33,7 @@ export default function AppLayout({
             RetroAssembly
           </div>
           <ScrollArea className='flex-1' size='2'>
-            {sidebar}
+            <SidebarLinks />
           </ScrollArea>
           <SidebarFooter />
         </aside>

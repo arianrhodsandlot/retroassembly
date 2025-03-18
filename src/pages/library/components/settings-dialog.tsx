@@ -1,7 +1,7 @@
 import { Button, Dialog, ScrollArea, Tabs } from '@radix-ui/themes'
 import { EmulatingSettings } from './emulating-settings.tsx'
 import { KeyboardInputs } from './keyboard-inputs.tsx'
-import { PlatformCheckbox } from './platform-checkbox.tsx'
+import { PlatformCheckboxGroup } from './platform-checkbox-group.tsx'
 
 export function SettingsDialog(props: Dialog.RootProps) {
   return (
@@ -14,8 +14,16 @@ export function SettingsDialog(props: Dialog.RootProps) {
           </div>
         </Dialog.Title>
 
-        <div className='py-4'>
-          <Tabs.Root defaultValue='account'>
+        <div className='absolute right-6 top-6'>
+          <Dialog.Close>
+            <Button variant='ghost'>
+              <span className='icon-[mdi--close] size-5' />
+            </Button>
+          </Dialog.Close>
+        </div>
+
+        <div className='py-0'>
+          <Tabs.Root defaultValue='library'>
             <Tabs.List>
               <Tabs.Trigger value='library'>
                 <span className='icon-[mdi--library-shelves] mr-2 size-5' />
@@ -34,19 +42,10 @@ export function SettingsDialog(props: Dialog.RootProps) {
             <div className='h-[60vh]'>
               <ScrollArea>
                 <Tabs.Content value='library'>
-                  <label>
-                    <h3 className='flex items-center gap-2 py-2 text-lg font-semibold'>
-                      <span className='icon-[mdi--order-checkbox-ascending]' />
-                      Enabled Platforms
-                    </h3>
-                    <PlatformCheckbox />
-                  </label>
+                  <PlatformCheckboxGroup />
                 </Tabs.Content>
 
                 <Tabs.Content value='inputs'>
-                  <h3 className='flex items-center gap-2 py-2 text-lg font-semibold'>
-                    <span className='icon-[mdi--keyboard]' /> Keyboard Inputs
-                  </h3>
                   <KeyboardInputs />
                 </Tabs.Content>
 
@@ -63,12 +62,6 @@ export function SettingsDialog(props: Dialog.RootProps) {
             <span className='icon-[mdi--info]' />
             Your settings will be saved automatically once changed.
           </div>
-          <Dialog.Close>
-            <Button variant='soft'>
-              <span className='icon-[mdi--check]' />
-              Done
-            </Button>
-          </Dialog.Close>
         </div>
       </Dialog.Content>
     </Dialog.Root>

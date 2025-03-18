@@ -1,10 +1,11 @@
-import { getContextData } from 'waku/middleware/context'
+'use client'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/rom.ts'
+import { usePreference } from '../hooks/use-preference.ts'
 import { SidebarLink } from './sidebar-link.tsx'
 
 export function SidebarLinks() {
-  const { preference } = getContextData()
+  const { preference } = usePreference()
 
   const platformLinks = preference.ui.platforms.map((platform) => ({
     href: `/library/platform/${encodeURIComponent(platform)}`,

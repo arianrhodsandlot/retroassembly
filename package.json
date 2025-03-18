@@ -66,7 +66,7 @@
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.18.4",
     "@eslint/config-inspector": "1.0.2",
-    "@iconify/json": "2.2.317",
+    "@iconify/json": "2.2.318",
     "@iconify/tailwind4": "1.0.6",
     "@tailwindcss/vite": "4.0.14",
     "@tsconfig/vite-react": "3.4.0",
@@ -76,7 +76,7 @@
     "@types/react": "19.0.11",
     "@types/react-dom": "19.0.4",
     "@types/sax": "1.2.7",
-    "better-sqlite3": "11.9.0",
+    "better-sqlite3": "11.9.1",
     "drizzle-kit": "0.30.5",
     "eslint": "9.22.0",
     "libretrodb": "1.0.0",

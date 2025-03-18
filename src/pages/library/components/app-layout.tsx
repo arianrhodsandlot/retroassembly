@@ -14,15 +14,10 @@ interface AppLayoutProps {
   sidebar?: ReactNode
 }
 
-export default function AppLayout({
-  append,
-  children,
-  extendedServerData,
-  MainScrollArea = ScrollArea,
-}: AppLayoutProps) {
+export default function AppLayout({ append, children, MainScrollArea = ScrollArea }: AppLayoutProps) {
   const { req } = getContext()
   const { preference } = getContextData()
-  const serverData = useMemo(() => ({ preference, ...extendedServerData }), [preference, extendedServerData])
+  const serverData = useMemo(() => ({ preference }), [preference])
 
   return (
     <ServerDataContextProvider initial={serverData}>

@@ -1,6 +1,7 @@
-import { useServerData } from '../../../hooks/use-server-data.ts'
+import { use } from 'react'
+import { RomContext } from '../components/rom-context.ts'
 
 export function useRom() {
-  const { rom } = useServerData()
+  const rom = use(RomContext)
   return rom
 }

@@ -7,3 +7,5 @@ export const serverDataAtom = atom<{ [key: string]: any; preference: Preference 
 })
 
 export const romsAtom = atom<Roms>()
+
+export const settingsDialogOpenAtom = atom(false)

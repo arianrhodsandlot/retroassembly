@@ -6,19 +6,19 @@ import { KeyboardInput } from './keyboard-input.tsx'
 const buttonGroups = [
   {
     buttons: [
-      { iconClass: 'icon-[mdi--gamepad-up]', name: 'up' },
-      { iconClass: 'icon-[mdi--gamepad-down]', name: 'down' },
-      { iconClass: 'icon-[mdi--gamepad-left]', name: 'left' },
-      { iconClass: 'icon-[mdi--gamepad-right]', name: 'right' },
+      { iconClass: 'icon-[mdi--gamepad-up]', name: 'input_player1_up' },
+      { iconClass: 'icon-[mdi--gamepad-down]', name: 'input_player1_down' },
+      { iconClass: 'icon-[mdi--gamepad-left]', name: 'input_player1_left' },
+      { iconClass: 'icon-[mdi--gamepad-right]', name: 'input_player1_right' },
     ],
     type: 'dpad',
   },
   {
     buttons: [
-      { iconClass: 'icon-[mdi--gamepad-circle-left]', name: 'y' },
-      { iconClass: 'icon-[mdi--gamepad-circle-up]', name: 'x' },
-      { iconClass: 'icon-[mdi--gamepad-circle-down]', name: 'b' },
-      { iconClass: 'icon-[mdi--gamepad-circle-right]', name: 'a' },
+      { iconClass: 'icon-[mdi--gamepad-circle-left]', name: 'input_player1_y' },
+      { iconClass: 'icon-[mdi--gamepad-circle-up]', name: 'input_player1_x' },
+      { iconClass: 'icon-[mdi--gamepad-circle-down]', name: 'input_player1_b' },
+      { iconClass: 'icon-[mdi--gamepad-circle-right]', name: 'input_player1_a' },
     ],
     type: 'actions',
   },
@@ -31,26 +31,38 @@ const buttonGroups = [
   },
   {
     buttons: [
-      { iconNode: <div className='rounded rounded-bl-xl border-2 border-current px-2'>L1</div>, name: 'l1' },
-      { iconNode: <div className='rounded rounded-tl-xl border-2 border-current px-2'>L2</div>, name: 'l2' },
+      {
+        iconNode: <div className='rounded rounded-bl-xl border-2 border-current px-2'>L1</div>,
+        name: 'input_player1_l1',
+      },
+      {
+        iconNode: <div className='rounded rounded-tl-xl border-2 border-current px-2'>L2</div>,
+        name: 'input_player1_l2',
+      },
       {
         iconNode: (
           <div className='inline-flex size-7 items-center justify-center rounded-full border-2 border-current'>L3</div>
         ),
-        name: 'l3',
+        name: 'input_player1_l3',
       },
     ],
     type: 'l',
   },
   {
     buttons: [
-      { iconNode: <div className='rounded rounded-br-xl border-2 border-current px-2'>R1</div>, name: 'r1' },
-      { iconNode: <div className='rounded rounded-tr-xl border-2 border-current px-2'>R2</div>, name: 'r2' },
+      {
+        iconNode: <div className='rounded rounded-br-xl border-2 border-current px-2'>R1</div>,
+        name: 'input_player1_r1',
+      },
+      {
+        iconNode: <div className='rounded rounded-tr-xl border-2 border-current px-2'>R2</div>,
+        name: 'input_player1_r2',
+      },
       {
         iconNode: (
           <div className='inline-flex size-7 items-center justify-center rounded-full border-2 border-current'>R3</div>
         ),
-        name: 'r3',
+        name: 'input_player1_r3',
       },
     ],
     type: 'r',

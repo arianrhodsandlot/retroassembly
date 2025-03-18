@@ -1,11 +1,13 @@
 'use client'
 import { Button, DropdownMenu } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
+import { useAtom } from 'jotai'
+import { settingsDialogOpenAtom } from '../atoms.ts'
 import { LogoutDialog } from './logout-dialog.tsx'
 import { SettingsDialog } from './settings-dialog.tsx'
 
 export function SidebarFooter() {
-  const [settingsDialogOpen, toggleSettingsDialog] = useToggle()
+  const [settingsDialogOpen, setSettingsDialogOpenAtom] = useAtom(settingsDialogOpenAtom)
   const [logoutDialogOpen, toggleLogoutDialog] = useToggle()
 
   return (
@@ -18,7 +20,7 @@ export function SidebarFooter() {
             </Button>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content variant='solid'>
-            <DropdownMenu.Item onClick={() => toggleSettingsDialog(true)}>
+            <DropdownMenu.Item onClick={() => setSettingsDialogOpenAtom(true)}>
               <span className='icon-[mdi--cog]' />
               Settings
             </DropdownMenu.Item>
@@ -37,7 +39,7 @@ export function SidebarFooter() {
         </Button>
       </div>
 
-      <SettingsDialog onOpenChange={toggleSettingsDialog} open={settingsDialogOpen} />
+      <SettingsDialog onOpenChange={setSettingsDialogOpenAtom} open={settingsDialogOpen} />
       <LogoutDialog onOpenChange={toggleLogoutDialog} open={logoutDialogOpen} />
     </>
   )

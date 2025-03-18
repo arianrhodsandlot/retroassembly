@@ -5,6 +5,7 @@ import { getRomsMetadata } from './utils.ts'
 
 type GetRomsReturning = Awaited<ReturnType<typeof getRoms>>
 export type Roms = GetRomsReturning['roms']
+export type Rom = GetRomsReturning['roms'][number]
 export type RomsPagination = GetRomsReturning['pagination']
 
 export async function getRoms({

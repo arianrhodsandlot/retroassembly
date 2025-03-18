@@ -1,6 +1,7 @@
 import { useAtom } from 'jotai'
 import ky from 'ky'
 import { Nostalgist } from 'nostalgist'
+import { useMemo } from 'react'
 import useSWRImmutable from 'swr/immutable'
 import { coreUrlMap } from '@/constants/core.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
@@ -9,31 +10,30 @@ import { useRom } from './use-rom.ts'
 
 export function useEmulator() {
   const rom = useRom()
-  const preference = usePreference()
+  const { preference } = usePreference()
   const [launched, setLaunched] = useAtom(emulatorLaunchedAtom)
-
-  globalThis.setLaunched = setLaunched
 
   const romUrl = rom ? `/api/v1/rom/${rom.id}/content` : ''
   const { core, shader } = preference.emulator.platform[rom?.platform] || {}
+  const options = useMemo(
+    () => ({
+      cache: true,
+      core: coreUrlMap[core] || core,
+      retroarchConfig: preference.emulator.keyboardMapping,
+      retroarchCoreConfig: preference.emulator.core[core],
+      rom: { fileContent: romUrl, fileName: rom?.file_name },
+      shader,
+      style: { opacity: '0', transition: 'opacity .1s' },
+    }),
+    [rom, core, preference.emulator.core, preference.emulator.keyboardMapping, romUrl, shader],
+  )
+
   const {
     data: emulator,
     error,
     isLoading: isPreparing,
     mutate: prepare,
-  } = useSWRImmutable(romUrl || false, (romUrl: string) => {
-    return Nostalgist.prepare({
-      cache: true,
-      core: coreUrlMap[core] || core,
-      retroarchCoreConfig: preference.emulator.core[core],
-      rom: { fileContent: romUrl, fileName: rom.file_name },
-      shader,
-      style: {
-        opacity: '0',
-        transition: 'opacity .1s',
-      },
-    })
-  })
+  } = useSWRImmutable(rom ? options : false, () => Nostalgist.prepare(options))
 
   async function launch() {
     await emulator?.start()
@@ -56,5 +56,5 @@ export function useEmulator() {
     console.error(error)
   }
 
-  return { core, emulator, exit, isPreparing, launch, launched, prepare, rom, setLaunched }
+  return { core, emulator, exit, isPreparing, launch, launched, prepare, setLaunched }
 }

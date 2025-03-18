@@ -1,5 +1,6 @@
 import { platformMap } from '@/constants/platform.ts'
 import { getRoms } from '@/controllers/get-roms.ts'
+import { ScrollArea } from '../../components/radix-themes.ts'
 import AppLayout from '../components/app-layout.tsx'
 import { DeviceInfo } from '../components/device-info.tsx'
 import { GameList } from '../components/game-list.tsx'
@@ -24,15 +25,16 @@ export async function PlatformPage({ platform, query }: PlatformPageProps) {
   }
 
   return (
-    <AppLayout append={<PlatformBackground platform={platform} />}>
-      <title>{`${platformMap[platform].displayName} - RetroAssembly`}</title>
-
-      <div className='flex flex-col gap-5'>
-        <DeviceInfo platform={platform} />
-        <hr className='border-t-1 border-t-black/20' />
-        <GameList pagination={pagination} roms={roms} />
-        <UploadButton platform={platform} />
-      </div>
+    <AppLayout title={platformMap[platform].displayName}>
+      <ScrollArea className='z-1 relative flex flex-1' size='2'>
+        <main className='flex min-h-full w-full flex-col gap-5 p-4'>
+          <DeviceInfo platform={platform} />
+          <hr className='border-t-1 border-t-black/20' />
+          <GameList pagination={pagination} roms={roms} />
+          <UploadButton platform={platform} />
+        </main>
+      </ScrollArea>
+      <PlatformBackground platform={platform} />
     </AppLayout>
   )
 }

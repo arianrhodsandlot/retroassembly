@@ -13,7 +13,6 @@ export function SidebarLinks() {
     name: platform,
     text: platformMap[platform].displayName,
   }))
-  // .sort((a, b) => (a.text.codePointAt(0) ?? 0) - (b.text.codePointAt(0) ?? 0))
 
   return (
     <>

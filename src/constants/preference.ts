@@ -1,3 +1,4 @@
+import type { PartialDeep } from 'type-fest'
 import type { CoreName } from './core'
 import type { PlatformName } from './platform'
 
@@ -7,7 +8,29 @@ export type PlatformSortOrder = 'ascending' | 'descending'
 export interface Preference {
   emulator: {
     core: Partial<Record<CoreName, Record<string, string>>>
-    platform: Record<PlatformName, { core: CoreName; shader?: string }>
+    keyboardMapping: {
+      a: string
+      b: string
+      down: string
+      fastforward: string
+      l1: string
+      l2: string
+      l3: string
+      left: string
+      pause: string
+      r1: string
+      r2: string
+      r3: string
+      rewind: string
+      right: string
+      select: string
+      start: string
+      up: string
+      x: string
+      y: string
+    }
+    platform: Record<PlatformName, { core: CoreName }>
+    shader: string
   }
   ui: {
     libraryCoverType: 'boxart'
@@ -16,6 +39,8 @@ export interface Preference {
     theme: 'rose'
   }
 }
+
+export type PreferenceSnippet = PartialDeep<Preference>
 
 export const defaultPreference: Preference = {
   emulator: {
@@ -27,6 +52,41 @@ export const defaultPreference: Preference = {
         mgba_gb_colors: 'DMG Green',
         mgba_skip_bios: 'ON',
       },
+    },
+    /**
+    input_player1_a = "x"
+    input_player1_b = "z"
+    input_player1_down = "down"
+    input_player1_l = "q"
+    input_player1_left = "left"
+    input_player1_r = "w"
+    input_player1_right = "right"
+    input_player1_select = "rshift"
+    input_player1_start = "enter"
+    input_player1_up = "up"
+    input_player1_x = "s"
+    input_player1_y = "a"
+     */
+    keyboardMapping: {
+      a: 'x',
+      b: 'z',
+      down: 'down',
+      fastforward: 'space',
+      l1: 'q',
+      l2: '',
+      l3: '',
+      left: 'left',
+      pause: 'esc',
+      r1: 'w',
+      r2: '',
+      r3: '',
+      rewind: 'r',
+      right: 'right',
+      select: 'rshift',
+      start: 'enter',
+      up: 'up',
+      x: 's',
+      y: 'a',
     },
     platform: {
       arcade: { core: 'fbneo' },

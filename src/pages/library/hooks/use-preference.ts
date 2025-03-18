@@ -1,22 +1,21 @@
 import ky from 'ky'
 import useSWRMutation from 'swr/mutation'
+import type { Preference, PreferenceSnippet } from '@/constants/preference.ts'
 import { useServerData } from './use-server-data.ts'
 
 export function usePreference() {
   const [{ preference }, setServerData] = useServerData()
 
-  const { data, isMutating: isLoading, trigger } = useSWRMutation('/api/v1/preference', async (url) => ky(url).json())
+  const { isMutating: isLoading, trigger } = useSWRMutation('/api/v1/preference', (url, { arg }: { arg: unknown }) =>
+    ky.post<Preference>(url, { json: arg }).json(),
+  )
 
-  function update(value) {
+  async function update(value: PreferenceSnippet) {
     if (value) {
-      setServerData((prev) => ({ ...prev, preference: value }))
+      const newPreference = await trigger(value)
+      setServerData((prev) => ({ ...prev, preference: newPreference }))
     }
   }
 
-  async function sync() {
-    await trigger()
-    update(data)
-  }
-
-  return { isLoading, preference, sync, update }
+  return { isLoading, preference, update }
 }

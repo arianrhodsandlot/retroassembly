@@ -1,19 +1,13 @@
 import { CheckboxCards } from '@radix-ui/themes'
-import ky from 'ky'
-import useSWRMutation from 'swr/mutation'
 import type { Platform } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/rom.ts'
 import { usePreference } from '../hooks/use-preference.ts'
 
 export function PlatformCheckboxItem({ disabled, platform }: { disabled: boolean; platform: Platform }) {
-  const { preference, update } = usePreference()
-
-  const { isMutating, trigger } = useSWRMutation('/api/v1/preference', (url, { arg }: { arg: unknown }) =>
-    ky.post(url, { json: arg }).json(),
-  )
+  const { isLoading, preference, update } = usePreference()
 
   async function handleClick() {
-    if (isMutating) {
+    if (isLoading) {
       return
     }
 
@@ -23,14 +17,12 @@ export function PlatformCheckboxItem({ disabled, platform }: { disabled: boolean
     } else {
       platforms.add(platform.name)
     }
-    const changedPreference = { ui: { platforms: [...platforms] } }
-    const result = await trigger(changedPreference)
-    update(result)
+    await update({ ui: { platforms: [...platforms] } })
   }
 
   return (
     <CheckboxCards.Item
-      disabled={isMutating || disabled}
+      disabled={isLoading || disabled}
       key={platform.name}
       onClick={handleClick}
       value={platform.name}

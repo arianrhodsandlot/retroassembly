@@ -1,5 +1,5 @@
 import { inArray, type InferSelectModel } from 'drizzle-orm'
-import { compact, keyBy, mergeWith } from 'es-toolkit'
+import { compact, isNil, isPrimitive, keyBy, mergeWith } from 'es-toolkit'
 import { getContextData } from 'waku/middleware/context'
 import { launchboxGameTable, libretroGameTable } from '../databases/metadata/schema.ts'
 
@@ -45,9 +45,19 @@ export async function getRomsMetadata<T extends RomModelLike[]>(romResults: T) {
 }
 
 export function mergePreference(target: any, source: any) {
-  mergeWith(target, source || {}, (targetValue, sourceValue) => {
-    if (Array.isArray(targetValue) && Array.isArray(sourceValue)) {
+  const safeTarget = target || {}
+  mergeWith(safeTarget, source || {}, (targetValue, sourceValue) => {
+    if (isNil(sourceValue)) {
+      return targetValue
+    }
+    if (Array.isArray(sourceValue)) {
       return sourceValue
     }
+    if (isPrimitive(sourceValue)) {
+      return sourceValue
+    }
+    mergePreference(targetValue, sourceValue)
+    return targetValue
   })
+  return safeTarget
 }

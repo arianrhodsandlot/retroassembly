@@ -1,14 +1,17 @@
 import { eq, type InferInsertModel } from 'drizzle-orm'
 import { getContextData } from 'waku/middleware/context'
 import { platforms } from '@/constants/platform.ts'
+import { defaultPreference, type PreferenceSnippet } from '@/constants/preference.ts'
 import { userPreferenceTable } from '@/databases/library/schema.ts'
 import { mergePreference } from './utils.ts'
 
 function normalize(preference) {
-  preference.ui.platforms = platforms.map(({ name }) => name).filter((name) => preference.ui.platforms.includes(name))
+  if (preference.ui?.platforms) {
+    preference.ui.platforms = platforms.map(({ name }) => name).filter((name) => preference.ui.platforms.includes(name))
+  }
 }
 
-export async function updatePreference(preference) {
+export async function updatePreference(preference: PreferenceSnippet) {
   const { currentUser, db } = getContextData()
 
   const where = eq(userPreferenceTable.user_id, currentUser.id)
@@ -20,13 +23,11 @@ export async function updatePreference(preference) {
   if (results.length > 0) {
     const [{ emulator, ui }] = results
     const newPreference: any = {}
-    if (emulator) {
-      mergePreference(emulator, preference.emulator)
-      newPreference.emulator = emulator
+    if (preference.emulator) {
+      newPreference.emulator = mergePreference(emulator, preference.emulator)
     }
-    if (ui) {
-      mergePreference(ui, preference.ui)
-      newPreference.ui = ui
+    if (preference.ui) {
+      newPreference.ui = mergePreference(ui, preference.ui)
     }
 
     normalize(newPreference)
@@ -47,5 +48,7 @@ export async function updatePreference(preference) {
       .returning(returning)
   }
 
-  return newPreferenceResults[0]
+  const updatedPreference = structuredClone(defaultPreference)
+  mergePreference(updatedPreference, newPreferenceResults[0])
+  return updatedPreference
 }

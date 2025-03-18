@@ -1,12 +1,13 @@
-import { Code, Select } from '@radix-ui/themes'
+import { Select } from '@radix-ui/themes'
 import { useState } from 'react'
 import { coreOptionsMap } from '@/constants/core.ts'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/rom.ts'
 import { usePreference } from '../hooks/use-preference.ts'
+import { CoreOptions } from './core-options.tsx'
 
 export function EmulatingSettings() {
-  const preference = usePreference()
+  const { preference } = usePreference()
   const [selectedPlatform, setSelectedPlatform] = useState(preference.ui.platforms?.[0])
 
   if (!preference.ui.platforms?.length) {
@@ -58,7 +59,9 @@ export function EmulatingSettings() {
               {platformMap[selectedPlatform].cores.map((core) => (
                 <Select.Item key={core} value={core}>
                   <div className='flex items-center gap-2'>
-                    <span className='icon-[mdi--jigsaw]' />
+                    <div className='flex size-6 items-center justify-center'>
+                      <span className='icon-[mdi--jigsaw] size-5' />
+                    </div>
                     {core}
                   </div>
                 </Select.Item>
@@ -68,31 +71,7 @@ export function EmulatingSettings() {
         </div>
       </label>
 
-      <h3 className='flex items-center gap-2 py-2 text-lg font-semibold'>
-        <span className='icon-[mdi--wrench]' /> Options
-      </h3>
-      <div className='flex flex-col gap-2 px-6'>
-        {coreOptions.map(({ name, options }) => {
-          return (
-            <label className='flex w-fit items-center gap-4'>
-              <Code>{name}</Code>
-
-              <div>
-                <Select.Root size='3' value={options[0]}>
-                  <Select.Trigger variant='ghost' />
-                  <Select.Content>
-                    {options.map((option) => (
-                      <Select.Item key={option} value={option}>
-                        {option}
-                      </Select.Item>
-                    ))}
-                  </Select.Content>
-                </Select.Root>
-              </div>
-            </label>
-          )
-        })}
-      </div>
+      {coreOptions.length > 0 ? <CoreOptions coreOptions={coreOptions} /> : null}
     </div>
   )
 }

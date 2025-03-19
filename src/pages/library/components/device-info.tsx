@@ -3,7 +3,6 @@ import { getCDNUrl } from '@/utils/cdn.ts'
 import { CompanyLogo } from '../platform/components/company-logo.tsx'
 import { DeviceNotes } from './device-notes.tsx'
 
-// todo: move to constants
 const platformImageMap = {
   arcade: { logoFilePath: 'arcade/art/system.svg', logoRepo: 'RetroPie/es-theme-carbon' },
   atarilynx: { logoFilePath: 'themes/batocera/lynx/_data/svg/logo.svg' },
@@ -63,7 +62,7 @@ export async function DeviceInfo({ platform }: { platform: string }) {
             </div>
           </div>
         </div>
-        <DeviceNotes notes={platformInfo.notes || ''} />
+        {platformInfo.notes ? <DeviceNotes key={platform} notes={platformInfo.notes} /> : null}
       </div>
 
       <div className='w-lg shrink-0'>

@@ -8,8 +8,8 @@ import { GameInfo } from './components/game-info.tsx'
 import { GameMedias } from './components/game-medias.tsx'
 import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
 import { LaunchButton } from './components/launch-button.tsx'
-import { MainScrollArea } from './components/main-scroll-area.tsx'
 import { RomContextProvider } from './components/rom-context-provider.tsx'
+import { RomPageMainScrollArea } from './components/rom-page-main-scroll-area.tsx'
 
 export async function RomPage({ fileName, id, platform }) {
   const rom = await getRom({ fileName: decodeURIComponent(fileName), id, platform: decodeURIComponent(platform) })
@@ -23,7 +23,7 @@ export async function RomPage({ fileName, id, platform }) {
   return (
     <RomContextProvider value={rom}>
       <AppLayout title={goodcodes.rom}>
-        <MainScrollArea className='z-1 relative flex flex-1' size='2'>
+        <RomPageMainScrollArea className='z-1 relative flex flex-1' size='2'>
           <main className='flex min-h-full w-full gap-4 p-4'>
             <div>
               <GameCover rom={rom} />
@@ -62,7 +62,7 @@ export async function RomPage({ fileName, id, platform }) {
               </div>
             </div>
           </main>
-        </MainScrollArea>
+        </RomPageMainScrollArea>
         <GameBackground rom={rom} />
         <Portal>
           <Theme accentColor='red'>

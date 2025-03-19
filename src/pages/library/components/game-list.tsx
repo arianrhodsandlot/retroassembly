@@ -25,7 +25,7 @@ export function GameList({ pagination, roms: initialRoms }: { pagination: RomsPa
   }
 
   return (
-    <div>
+    <div className='flex flex-col gap-4'>
       <div className='grid gap-x-4 gap-y-2 [grid-template-columns:repeat(auto-fill,minmax(calc(var(--spacing)*40),1fr))]'>
         {renderedRoms.map((rom) => (
           <GameEntry key={rom.id} rom={rom} />

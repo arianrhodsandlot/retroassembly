@@ -5,6 +5,11 @@ import { ServerDataContextProvider } from './server-data-context-provider.tsx'
 import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
 
+const siteTitle = 'RetroAssembly'
+function getPostfixedTitle(title: string) {
+  return title ? `${title} - ${siteTitle}` : siteTitle
+}
+
 interface AppLayoutProps {
   children: ReactNode
   title: string
@@ -16,7 +21,7 @@ export default function AppLayout({ children, title }: AppLayoutProps) {
 
   return (
     <ServerDataContextProvider initial={serverData}>
-      <title>{'title'} - RetroAssembly</title>
+      <title>{getPostfixedTitle(title)}</title>
       <div className='flex h-screen bg-[var(--accent-9)]'>
         <aside className='ml-4 flex w-64 shrink-0 flex-col py-4 text-white'>
           <div className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold'>

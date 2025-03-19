@@ -82,7 +82,7 @@
     "libretrodb": "1.0.0",
     "lint-staged": "15.5.0",
     "miniflare": "4.20250317.0",
-    "nanoid": "5.1.4",
+    "nanoid": "5.1.5",
     "react-server-dom-webpack": "19.0.0",
     "sax": "1.4.1",
     "simple-git-hooks": "2.11.1",

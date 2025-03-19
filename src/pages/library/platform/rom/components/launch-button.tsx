@@ -13,7 +13,10 @@ export function LaunchButton() {
   const { emulator, isPreparing, launch } = useEmulator()
 
   const shouldListenKeyboard = settingsDialogOpen === false && emulator?.getStatus() === 'initial'
-  useKeyboardEvent(shouldListenKeyboard, async (event) => {
+  useKeyboardEvent(true, async (event) => {
+    if (!shouldListenKeyboard) {
+      return
+    }
     const isEscapeKey = event.key === 'Escape'
     const isSpecialKey = event.ctrlKey || event.metaKey || event.altKey || event.shiftKey
     const isDirectionKey = directionKeys.has(event.key)

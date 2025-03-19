@@ -2,14 +2,14 @@
 import type { ScrollAreaProps } from '@radix-ui/themes'
 import { AnimatePresence, motion } from 'motion/react'
 import { type UIEvent, useLayoutEffect, useRef, useState } from 'react'
-import { ScrollArea } from '@/pages/components/radix-themes.ts'
+import { MainScrollArea } from '@/pages/library/components/main-scroll-area.tsx'
 import { useEmulator } from '../hooks/use-emulator.ts'
 
-export function MainScrollArea({ children, ...props }: ScrollAreaProps) {
+export function RomPageMainScrollArea({ children, ...props }: ScrollAreaProps) {
   const { emulator, launched } = useEmulator()
   const [initialStyle, setInitialStyle] = useState<any>()
   const animateStyle = { height: '100%', left: 0, top: 0, width: '100%' }
-  const ref = useRef<HTMLButtonElement>()
+  const ref = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
     const button = ref.current?.querySelector<HTMLButtonElement>('button')
@@ -36,7 +36,7 @@ export function MainScrollArea({ children, ...props }: ScrollAreaProps) {
     }
   }
   return (
-    <ScrollArea {...props} onScroll={handlerScroll} ref={ref}>
+    <MainScrollArea {...props} onScroll={handlerScroll} ref={ref}>
       {children}
 
       <AnimatePresence>
@@ -51,6 +51,6 @@ export function MainScrollArea({ children, ...props }: ScrollAreaProps) {
           />
         ) : null}
       </AnimatePresence>
-    </ScrollArea>
+    </MainScrollArea>
   )
 }

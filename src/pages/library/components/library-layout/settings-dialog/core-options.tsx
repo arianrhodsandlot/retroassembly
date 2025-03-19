@@ -9,7 +9,7 @@ export function CoreOptions({ coreOptions }: { coreOptions: { name: string; opti
       <div className='flex flex-col gap-2 px-6'>
         {coreOptions.map(({ name, options }) => {
           return (
-            <label className='flex w-fit items-center gap-4'>
+            <label className='flex w-fit items-center gap-4' key={name}>
               <Code>{name}</Code>
 
               <div>

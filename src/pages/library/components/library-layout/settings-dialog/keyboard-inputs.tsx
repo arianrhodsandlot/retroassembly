@@ -1,6 +1,6 @@
 import { Button, Card } from '@radix-ui/themes'
 import { defaultPreference } from '@/constants/preference.ts'
-import { usePreference } from '../hooks/use-preference.ts'
+import { usePreference } from '../../../hooks/use-preference.ts'
 import { KeyboardInput } from './keyboard-input.tsx'
 
 const buttonGroups = [

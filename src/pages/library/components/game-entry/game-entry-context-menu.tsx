@@ -6,7 +6,7 @@ import ky from 'ky'
 import type { ReactNode } from 'react'
 import useSWRMutation from 'swr/mutation'
 import { useRouter_UNSTABLE } from 'waku'
-import { romsAtom } from '../atoms.ts'
+import { romsAtom } from '../../atoms.ts'
 
 export function GameEntryContextMenu({ children, rom }: { children: ReactNode; rom: any }) {
   const router = useRouter_UNSTABLE()

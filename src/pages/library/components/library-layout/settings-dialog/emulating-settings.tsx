@@ -2,8 +2,8 @@ import { Select } from '@radix-ui/themes'
 import { useState } from 'react'
 import { coreOptionsMap } from '@/constants/core.ts'
 import { platformMap } from '@/constants/platform.ts'
+import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { getPlatformIcon } from '@/utils/rom.ts'
-import { usePreference } from '../hooks/use-preference.ts'
 import { CoreOptions } from './core-options.tsx'
 
 export function EmulatingSettings() {

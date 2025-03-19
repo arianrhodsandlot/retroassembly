@@ -2,9 +2,9 @@
 import { Button, DropdownMenu } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { useAtom } from 'jotai'
-import { settingsDialogOpenAtom } from '../atoms.ts'
+import { settingsDialogOpenAtom } from '../../atoms.ts'
 import { LogoutDialog } from './logout-dialog.tsx'
-import { SettingsDialog } from './settings-dialog.tsx'
+import { SettingsDialog } from './settings-dialog/settings-dialog.tsx'
 
 export function SidebarFooter() {
   const [settingsDialogOpen, setSettingsDialogOpenAtom] = useAtom(settingsDialogOpenAtom)

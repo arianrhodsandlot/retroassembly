@@ -1,7 +1,7 @@
 import { Button, TextField } from '@radix-ui/themes'
 import clsx from 'clsx'
 import type { ChangeEvent, KeyboardEvent, ReactNode } from 'react'
-import { usePreference } from '../hooks/use-preference.ts'
+import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 
 function handleChange(event: ChangeEvent<HTMLInputElement>) {
   event.preventDefault()

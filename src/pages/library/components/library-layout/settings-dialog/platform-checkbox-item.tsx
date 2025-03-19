@@ -1,7 +1,7 @@
 import { CheckboxCards } from '@radix-ui/themes'
 import type { Platform } from '@/constants/platform.ts'
+import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { getPlatformIcon } from '@/utils/rom.ts'
-import { usePreference } from '../hooks/use-preference.ts'
 
 export function PlatformCheckboxItem({ disabled, platform }: { disabled: boolean; platform: Platform }) {
   const { isLoading, preference, update } = usePreference()

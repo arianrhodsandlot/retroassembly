@@ -1,7 +1,7 @@
 import { use } from 'react'
-import { ServerDataContext } from '../components/server-data-context.ts'
+import { PreferenceContext } from '../components/preference-context/preference-context.ts'
 
 export function useServerData() {
-  const serverData = use(ServerDataContext)
+  const serverData = use(PreferenceContext)
   return serverData
 }

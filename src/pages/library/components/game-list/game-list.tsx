@@ -2,8 +2,8 @@
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'
 import type { Roms, RomsPagination } from '@/controllers/get-roms.ts'
-import { romsAtom } from '../atoms.ts'
-import { GameEntry } from './game-entry.tsx'
+import { romsAtom } from '../../atoms.ts'
+import { GameEntry } from '../game-entry/game-entry.tsx'
 import { GameListPagination } from './game-list-pagination.tsx' // Import the Pagination component
 
 export function GameList({ pagination, roms: initialRoms }: { pagination: RomsPagination; roms: Roms }) {

@@ -1,7 +1,7 @@
 import { type ReactNode, useMemo } from 'react'
 import { getContextData } from 'waku/middleware/context'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
-import { ServerDataContextProvider } from './server-data-context-provider.tsx'
+import { PreferenceContextProvider } from '../preference-context/preference-context-provider.tsx'
 import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
 
@@ -15,12 +15,12 @@ interface AppLayoutProps {
   title: string
 }
 
-export default function AppLayout({ children, title }: AppLayoutProps) {
+export default function LibraryLayout({ children, title }: AppLayoutProps) {
   const { preference } = getContextData()
   const serverData = useMemo(() => ({ preference }), [preference])
 
   return (
-    <ServerDataContextProvider initial={serverData}>
+    <PreferenceContextProvider initial={serverData}>
       <title>{getPostfixedTitle(title)}</title>
       <div className='flex h-screen bg-[var(--accent-9)]'>
         <aside className='ml-4 flex w-64 shrink-0 flex-col py-4 text-white'>
@@ -40,6 +40,6 @@ export default function AppLayout({ children, title }: AppLayoutProps) {
           </div>
         </div>
       </div>
-    </ServerDataContextProvider>
+    </PreferenceContextProvider>
   )
 }

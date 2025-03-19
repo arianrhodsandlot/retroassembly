@@ -1,6 +1,6 @@
 import { getPlatformInfo } from '@/controllers/get-platform-info.ts'
 import { getCDNUrl } from '@/utils/cdn.ts'
-import { CompanyLogo } from '../platform/components/company-logo.tsx'
+import { CompanyLogo } from '../../platform/components/company-logo.tsx'
 import { DeviceNotes } from './device-notes.tsx'
 
 const platformImageMap = {

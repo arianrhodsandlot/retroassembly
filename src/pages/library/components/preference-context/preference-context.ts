@@ -6,7 +6,7 @@ const defaultValue = {
   preference: defaultPreference,
 }
 
-export const ServerDataContext = createContext([
+export const PreferenceContext = createContext([
   defaultValue,
   noop as unknown as Dispatch<SetStateAction<typeof defaultValue>>,
 ] as const)

@@ -64,7 +64,7 @@
     "zod": "3.24.2"
   },
   "devDependencies": {
-    "@arianrhodsandlot/eslint-config": "0.18.4",
+    "@arianrhodsandlot/eslint-config": "0.18.5",
     "@eslint/config-inspector": "1.0.2",
     "@iconify/json": "2.2.318",
     "@iconify/tailwind4": "1.0.6",

@@ -1,13 +1,13 @@
 import { getRom } from '@/controllers/get-rom.ts'
 import { Portal, Theme } from '@/pages/components/radix-themes.ts'
 import { getRomGoodcodes } from '@/utils/rom.ts'
-import AppLayout from '../../components/app-layout.tsx'
-import { GameBackground } from './components/game-background.tsx'
+import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
-import { GameMedias } from './components/game-medias.tsx'
+import { GameMedias } from './components/game-medias/game-medias.tsx'
 import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
 import { LaunchButton } from './components/launch-button.tsx'
+import { RomBackground } from './components/rom-background.tsx'
 import { RomContextProvider } from './components/rom-context-provider.tsx'
 import { RomPageMainScrollArea } from './components/rom-page-main-scroll-area.tsx'
 
@@ -22,7 +22,7 @@ export async function RomPage({ fileName, id, platform }) {
 
   return (
     <RomContextProvider value={rom}>
-      <AppLayout title={goodcodes.rom}>
+      <LibraryLayout title={goodcodes.rom}>
         <RomPageMainScrollArea className='z-1 relative flex flex-1' size='2'>
           <main className='flex min-h-full w-full gap-4 p-4'>
             <div>
@@ -63,13 +63,13 @@ export async function RomPage({ fileName, id, platform }) {
             </div>
           </main>
         </RomPageMainScrollArea>
-        <GameBackground rom={rom} />
+        <RomBackground rom={rom} />
         <Portal>
           <Theme accentColor='red'>
             <GameOverlay rom={rom} />
           </Theme>
         </Portal>
-      </AppLayout>
+      </LibraryLayout>
     </RomContextProvider>
   )
 }

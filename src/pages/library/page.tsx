@@ -1,7 +1,7 @@
 import { getRomPlatformCount } from '@/controllers/get-rom-platform-count.ts'
 import { getRoms } from '@/controllers/get-roms.ts'
-import AppLayout from './components/app-layout.tsx'
-import { GameList } from './components/game-list.tsx'
+import { GameList } from './components/game-list/game-list.tsx'
+import LibraryLayout from './components/library-layout/library-layout.tsx'
 import { MainScrollArea } from './components/main-scroll-area.tsx'
 
 export async function LibraryPage({ query }: { query: string }) {
@@ -13,7 +13,7 @@ export async function LibraryPage({ query }: { query: string }) {
   }
 
   return (
-    <AppLayout title='Library'>
+    <LibraryLayout title='Library'>
       <MainScrollArea className='z-1 relative flex flex-1' size='2'>
         <main className='flex min-h-full w-full flex-col gap-5 p-4'>
           <div className='relative flex justify-between px-4 pt-4'>
@@ -29,6 +29,6 @@ export async function LibraryPage({ query }: { query: string }) {
           <GameList pagination={pagination} roms={roms} />
         </main>
       </MainScrollArea>
-    </AppLayout>
+    </LibraryLayout>
   )
 }

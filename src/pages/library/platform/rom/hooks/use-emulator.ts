@@ -14,7 +14,8 @@ export function useEmulator() {
   const [launched, setLaunched] = useAtom(emulatorLaunchedAtom)
 
   const romUrl = rom ? `/api/v1/rom/${rom.id}/content` : ''
-  const { core, shader } = preference.emulator.platform[rom.platform] || {}
+  const { core } = preference.emulator.platform[rom.platform] || {}
+  const shader = preference.emulator.platform[rom.platform].shader || preference.emulator.shader
   const options = useMemo(
     () => ({
       cache: true,

@@ -97,6 +97,7 @@ export const defaultPreference: Preference = {
       wonderswan: { core: 'mednafen_wswan' },
       wonderswancolor: { core: 'mednafen_wswan' },
     },
+    shader: '',
   },
   ui: {
     libraryCoverType: 'boxart',

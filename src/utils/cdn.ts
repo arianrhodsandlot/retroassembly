@@ -25,6 +25,7 @@ const repositoryVersions = {
   'libretro-thumbnails/Sega_-_SG-1000': '3a0e965',
   'libretro-thumbnails/SNK_-_Neo_Geo_Pocket': '3932af2',
   'libretro-thumbnails/SNK_-_Neo_Geo_Pocket_Color': '2b397b7',
+  'libretro/docs': '57b4824',
   'libretro/retroarch-assets': '9afd2b8',
   'Mattersons/es-theme-neutral': 'c9b38e7',
   'RetroPie/es-theme-carbon': 'b09973e',

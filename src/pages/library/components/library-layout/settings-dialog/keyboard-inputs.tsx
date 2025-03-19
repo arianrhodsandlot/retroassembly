@@ -1,9 +1,13 @@
-import { Button, Card } from '@radix-ui/themes'
+import { Card } from '@radix-ui/themes'
+import type { ReactNode } from 'react'
 import { defaultPreference } from '@/constants/preference.ts'
-import { usePreference } from '../../../hooks/use-preference.ts'
 import { KeyboardInput } from './keyboard-input.tsx'
+import { UpdateButton } from './update-button.tsx'
 
-const buttonGroups = [
+const buttonGroups: {
+  buttons: { iconClass?: string; iconNode?: ReactNode; name: string; text?: string }[]
+  type: string
+}[] = [
   {
     buttons: [
       { iconClass: 'icon-[mdi--gamepad-up]', name: 'input_player1_up' },
@@ -78,12 +82,6 @@ const buttonGroups = [
 ]
 
 export function KeyboardInputs() {
-  const { isLoading, update } = usePreference()
-
-  async function handleClickReset() {
-    await update({ emulator: { keyboardMapping: defaultPreference.emulator.keyboardMapping } })
-  }
-
   return (
     <div>
       <div className='flex items-center gap-2 py-2 text-lg font-semibold'>
@@ -103,10 +101,16 @@ export function KeyboardInputs() {
           ))}
 
           <div className='flex justify-end'>
-            <Button disabled={isLoading} onClick={handleClickReset} size='2' variant='soft'>
+            <UpdateButton
+              preference={{
+                emulator: {
+                  keyboardMapping: defaultPreference.emulator.keyboardMapping,
+                },
+              }}
+            >
               <span className='icon-[mdi--undo]' />
               Reset to defaults
-            </Button>
+            </UpdateButton>
           </div>
         </div>
       </Card>

@@ -26,7 +26,7 @@ export function SettingsDialog(props: Dialog.RootProps) {
           <Tabs.Root defaultValue='library'>
             <Tabs.List>
               <Tabs.Trigger value='library'>
-                <span className='icon-[mdi--library-shelves] mr-2 size-5' />
+                <span className='icon-[mdi--bookshelf] mr-2 size-5' />
                 <span className='text-lg'>Library</span>
               </Tabs.Trigger>
               <Tabs.Trigger value='inputs'>

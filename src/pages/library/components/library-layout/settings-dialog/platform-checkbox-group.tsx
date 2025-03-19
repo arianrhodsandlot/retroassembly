@@ -1,7 +1,9 @@
 import { Card, CheckboxCards } from '@radix-ui/themes'
 import { platforms } from '@/constants/platform.ts'
+import { defaultPreference } from '@/constants/preference.ts'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { PlatformCheckboxItem } from './platform-checkbox-item.tsx'
+import { UpdateButton } from './update-button.tsx'
 
 export function PlatformCheckboxGroup() {
   const { preference } = usePreference()
@@ -22,6 +24,13 @@ export function PlatformCheckboxGroup() {
             />
           ))}
         </CheckboxCards.Root>
+
+        <div className='flex justify-end'>
+          <UpdateButton preference={{ ui: { platforms: defaultPreference.ui.platforms } }}>
+            <span className='icon-[mdi--undo]' />
+            Reset to defaults
+          </UpdateButton>
+        </div>
       </Card>
     </label>
   )

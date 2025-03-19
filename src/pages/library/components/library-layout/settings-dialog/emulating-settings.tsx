@@ -53,7 +53,7 @@ export function EmulatingSettings() {
                 <span className='font-semibold'>{shader.name}</span>
               </RadioCards.Item>
               {shader.thumbnail ? (
-                <div className='text-right'>
+                <div className='text-center'>
                   <HoverCard.Root>
                     <HoverCard.Trigger>
                       <div className='inline-flex items-center gap-1 text-xs text-black/40 opacity-0 group-hover:opacity-100'>

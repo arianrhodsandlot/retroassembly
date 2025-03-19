@@ -1,3 +1,5 @@
+import { Badge } from '@radix-ui/themes'
+import { compact } from 'es-toolkit'
 import { getRomGoodcodes } from '@/utils/rom.ts'
 import { DistrictIcon } from './district-icon.tsx'
 
@@ -21,11 +23,14 @@ export function GameTitle({ rom }) {
       {[...districts].map((district) => (
         <DistrictIcon district={district} key={district} />
       ))}
+
       {goodcodes.rom}
-      {revisionText ? <div className='mx-1.5 inline-block rounded bg-gray-300 px-2'>{revisionText}</div> : null}
-      {versionText ? (
-        <div className='mx-1.5 inline-block rounded bg-gray-300 px-2 capitalize'>{versionText}</div>
-      ) : null}
+
+      {compact([revisionText, versionText]).map((text) => (
+        <Badge className='mx-0.5 capitalize' key={text} size='2'>
+          {text}
+        </Badge>
+      ))}
     </div>
   )
 }

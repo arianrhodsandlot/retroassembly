@@ -9,29 +9,29 @@ export async function getLaunchRecords({ page = 1, pageSize = 50 }: { page?: num
 
   const offset = (page - 1) * pageSize
 
-  const where = and(eq(launchRecordTable.user_id, currentUser.id), eq(launchRecordTable.status, 1))
+  const where = and(eq(launchRecordTable.userId, currentUser.id), eq(launchRecordTable.status, 1))
 
   const results = await library
     .select({
       core: launchRecordTable.core,
       count: count(launchRecordTable.id),
-      file_name: romTable.file_name,
-      id: launchRecordTable.rom_id,
-      lastLaunched: max(launchRecordTable.created_at),
-      launchbox_game_id: romTable.launchbox_game_id,
-      libretro_game_id: romTable.libretro_game_id,
+      file_name: romTable.fileName,
+      id: launchRecordTable.romId,
+      lastLaunched: max(launchRecordTable.createdAt),
+      launchbox_game_id: romTable.launchboxGameId,
+      libretro_game_id: romTable.libretroGameId,
       platform: launchRecordTable.platform,
     })
     .from(launchRecordTable)
     .where(where)
-    .leftJoin(romTable, eq(launchRecordTable.rom_id, romTable.id))
-    .groupBy(launchRecordTable.rom_id, romTable.file_name, romTable.launchbox_game_id, romTable.libretro_game_id)
-    .orderBy(desc(max(launchRecordTable.created_at)))
+    .leftJoin(romTable, eq(launchRecordTable.romId, romTable.id))
+    .groupBy(launchRecordTable.romId, romTable.fileName, romTable.launchboxGameId, romTable.libretroGameId)
+    .orderBy(desc(max(launchRecordTable.createdAt)))
     .offset(offset)
     .limit(pageSize)
 
   const [{ total }] = await library
-    .select({ total: countDistinct(launchRecordTable.rom_id) })
+    .select({ total: countDistinct(launchRecordTable.romId) })
     .from(launchRecordTable)
     .where(where)
   const pagination = { current: page, pages: Math.ceil(total / pageSize), size: pageSize, total }

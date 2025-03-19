@@ -14,7 +14,7 @@ function normalize(preference) {
 export async function updatePreference(preference: PreferenceSnippet) {
   const { currentUser, db } = getContextData()
 
-  const where = eq(userPreferenceTable.user_id, currentUser.id)
+  const where = eq(userPreferenceTable.userId, currentUser.id)
   const returning = { emulator: userPreferenceTable.emulator, ui: userPreferenceTable.ui }
 
   const results = await db.library.select().from(userPreferenceTable).where(where)
@@ -34,7 +34,7 @@ export async function updatePreference(preference: PreferenceSnippet) {
 
     newPreferenceResults = await db.library
       .update(userPreferenceTable)
-      .set({ ...newPreference, user_id: currentUser.id })
+      .set({ ...newPreference, userId: currentUser.id })
       .where(where)
       .returning(returning)
   } else {
@@ -44,7 +44,7 @@ export async function updatePreference(preference: PreferenceSnippet) {
 
     newPreferenceResults = await db.library
       .insert(userPreferenceTable)
-      .values({ ...preference, user_id: currentUser.id })
+      .values({ ...preference, userId: currentUser.id })
       .returning(returning)
   }
 

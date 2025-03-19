@@ -13,7 +13,7 @@ export async function deleteLaunchRecord(params: DeleteRomParams) {
   const roms = await library
     .select({ id: romTable.id })
     .from(romTable)
-    .where(and(eq(romTable.id, params.rom), eq(romTable.user_id, currentUser.id), eq(romTable.status, 1)))
+    .where(and(eq(romTable.id, params.rom), eq(romTable.userId, currentUser.id), eq(romTable.status, 1)))
   const [rom] = roms
 
   const result = await library
@@ -21,8 +21,8 @@ export async function deleteLaunchRecord(params: DeleteRomParams) {
     .set({ status: 0 })
     .where(
       and(
-        eq(launchRecordTable.rom_id, rom.id),
-        eq(launchRecordTable.user_id, currentUser.id),
+        eq(launchRecordTable.romId, rom.id),
+        eq(launchRecordTable.userId, currentUser.id),
         eq(launchRecordTable.status, 1),
       ),
     )

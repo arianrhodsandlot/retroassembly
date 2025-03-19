@@ -1,6 +1,7 @@
 import { capitalize } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
 import { Nostalgist } from 'nostalgist'
+import type { Rom } from '@/controllers/get-roms.ts'
 import { platformMap } from '../constants/platform.ts'
 import { getCDNUrl } from './cdn.ts'
 
@@ -25,6 +26,7 @@ export function getRomLibretroThumbnail(rom, type: LibretroThumbnailType = 'boxa
   const normalizedFileName = `${name.replaceAll(/[&*/:`<>?\\]|\|"/g, '_')}.png`
   const filePath = path.join(fileDirectory, normalizedFileName)
 
+  // @ts-expect-error assume repo is valid here
   return getCDNUrl(repo, filePath)
 }
 
@@ -52,8 +54,8 @@ export function getPlatformGameIcon(platform: string, type = 'game') {
   return getCDNUrl(repo, `themes/batocera/${platformAlias}/_data/svg/${type}.svg`)
 }
 
-export function getRomGoodcodes(rom) {
-  let { name } = path.parse(rom.file_name)
+export function getRomGoodcodes(rom: Rom) {
+  let { name } = path.parse(rom.fileName)
   if (rom.platform === 'arcade' && rom.libretroGame?.name) {
     name = rom.libretroGame.name
   }

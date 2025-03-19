@@ -14,14 +14,14 @@ export function useEmulator() {
   const [launched, setLaunched] = useAtom(emulatorLaunchedAtom)
 
   const romUrl = rom ? `/api/v1/rom/${rom.id}/content` : ''
-  const { core, shader } = preference.emulator.platform[rom?.platform] || {}
+  const { core, shader } = preference.emulator.platform[rom.platform] || {}
   const options = useMemo(
     () => ({
       cache: true,
       core: coreUrlMap[core] || core,
       retroarchConfig: preference.emulator.keyboardMapping,
       retroarchCoreConfig: preference.emulator.core[core],
-      rom: { fileContent: romUrl, fileName: rom?.file_name },
+      rom: { fileContent: romUrl, fileName: rom?.fileName },
       shader,
       style: { opacity: '0', transition: 'opacity .1s' },
     }),

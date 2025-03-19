@@ -16,14 +16,14 @@ async function guessLibretroGame(fileName: string, platform: string) {
   const goodcodesCompactName = getCompactName(goodcodes.rom)
 
   const filters = [
-    { column: libretroGameTable.rom_name, value: fileName },
+    { column: libretroGameTable.romName, value: fileName },
     { column: libretroGameTable.name, value: baseName },
-    { column: libretroGameTable.compact_name, value: getCompactName(baseName) },
-    { column: libretroGameTable.goodcodes_base_compact_name, value: goodcodesCompactName },
+    { column: libretroGameTable.compactName, value: getCompactName(baseName) },
+    { column: libretroGameTable.goodcodesBaseCompactName, value: goodcodesCompactName },
   ]
   if (goodcodesCompactName.startsWith('the')) {
     filters.push({
-      column: libretroGameTable.goodcodes_base_compact_name,
+      column: libretroGameTable.goodcodesBaseCompactName,
       value: `${goodcodesCompactName.replace(/^the/, '')}the`,
     })
   }
@@ -52,8 +52,8 @@ async function guessLaunchboxGame(fileName: string, platform: string) {
     .where(
       and(
         or(
-          eq(launchboxGameTable.compact_name, getCompactName(restoredBaseName)),
-          eq(launchboxGameTable.goodcodes_base_compact_name, getCompactName(goodcodes.rom)),
+          eq(launchboxGameTable.compactName, getCompactName(restoredBaseName)),
+          eq(launchboxGameTable.goodcodesBaseCompactName, getCompactName(goodcodes.rom)),
         ),
         eq(launchboxGameTable.platform, platformMap[platform].launchboxName),
       ),
@@ -68,16 +68,16 @@ async function guessLaunchboxGame(fileName: string, platform: string) {
   const results = await metadata
     .select()
     .from(launchboxGameAlternateNameTable)
-    .where(eq(launchboxGameAlternateNameTable.compact_name, getCompactName(restoredBaseName)))
+    .where(eq(launchboxGameAlternateNameTable.compactName, getCompactName(restoredBaseName)))
     .limit(1)
-  const databaseId = results[0]?.database_id
+  const databaseId = results[0]?.databaseId
   if (databaseId) {
     const alternateResults = await metadata
       .select()
       .from(launchboxGameTable)
       .where(
         and(
-          eq(launchboxGameTable.database_id, databaseId),
+          eq(launchboxGameTable.databaseId, databaseId),
           eq(launchboxGameTable.platform, platformMap[platform].launchboxName),
         ),
       )
@@ -97,7 +97,7 @@ export async function guessGameInfo(fileName: string, platform: string) {
     libretro = await guessLibretroGame(launchbox.name, platform)
   }
   if (libretro && !launchbox && libretro.name) {
-    launchbox = await guessLaunchboxGame(libretro.goodcodes_base_compact_name, platform)
+    launchbox = await guessLaunchboxGame(libretro.goodcodesBaseCompactName, platform)
   }
 
   return { launchbox, libretro }

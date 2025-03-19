@@ -11,12 +11,12 @@ export async function getRom({ fileName, id, platform }: { fileName: string; id:
     const [result] = await db.library
       .select()
       .from(romTable)
-      .orderBy(romTable.file_name)
+      .orderBy(romTable.fileName)
       .where(
         and(
-          eq(romTable.file_name, fileName),
+          eq(romTable.fileName, fileName),
           eq(romTable.platform, platform),
-          eq(romTable.user_id, currentUser.id),
+          eq(romTable.userId, currentUser.id),
           eq(romTable.status, 1),
         ),
       )

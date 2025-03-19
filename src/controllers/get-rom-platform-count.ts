@@ -9,8 +9,8 @@ export async function getRomPlatformCount() {
   const results = await library
     .selectDistinct({ platform: romTable.platform })
     .from(romTable)
-    .orderBy(romTable.file_name)
-    .where(and(eq(romTable.user_id, currentUser.id), eq(romTable.status, 1)))
+    .orderBy(romTable.fileName)
+    .where(and(eq(romTable.userId, currentUser.id), eq(romTable.status, 1)))
 
   return results.length
 }

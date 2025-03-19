@@ -5,34 +5,34 @@ import nanoidDictionary from 'nanoid-dictionary'
 const nanoid = customAlphabet(nanoidDictionary.nolookalikes, 10)
 
 const baseSchema = {
-  created_at: integer({ mode: 'timestamp_ms' })
+  createdAt: integer({ mode: 'timestamp_ms' })
     .notNull()
     .$defaultFn(() => new Date()),
   id: text('id').primaryKey().notNull().$defaultFn(nanoid),
   status: integer().notNull().default(1),
-  updated_at: integer({ mode: 'timestamp_ms' })
+  updatedAt: integer({ mode: 'timestamp_ms' })
     .notNull()
     .$onUpdateFn(() => new Date()),
 }
 
 const fileSchema = {
   ...baseSchema,
-  file_id: text().notNull(),
-  user_id: text().notNull(),
+  fileId: text().notNull(),
+  userId: text().notNull(),
 }
 
 export const romTable = sqliteTable(
   'roms',
   {
-    custom_meta: text({ mode: 'json' }),
-    file_name: text().notNull(),
-    launch_times: integer().default(0),
-    launchbox_game_id: integer(),
-    libretro_game_id: text(),
+    customMeta: text({ mode: 'json' }),
+    fileName: text().notNull(),
+    launchboxGameId: integer(),
+    launchTimes: integer().default(0),
+    libretroGameId: text(),
     platform: text().notNull(),
     ...fileSchema,
   },
-  (table) => [index('idx_roms').on(table.id, table.platform, table.user_id, table.launch_times)],
+  (table) => [index('idx_roms').on(table.id, table.platform, table.userId, table.launchTimes)],
 )
 
 export const stateTable = sqliteTable(
@@ -40,12 +40,12 @@ export const stateTable = sqliteTable(
   {
     core: text().notNull(),
     platform: text().notNull(),
-    rom_id: text().notNull(),
-    thumbnail_file_id: text().notNull(),
+    romId: text().notNull(),
+    thumbnailFileId: text().notNull(),
     type: text({ enum: ['auto', 'manual'] }).notNull(),
     ...fileSchema,
   },
-  (table) => [index('idx_states').on(table.id, table.platform, table.user_id)],
+  (table) => [index('idx_states').on(table.id, table.platform, table.userId)],
 )
 
 export const launchRecordTable = sqliteTable(
@@ -53,11 +53,11 @@ export const launchRecordTable = sqliteTable(
   {
     core: text().notNull(),
     platform: text().notNull(),
-    rom_id: text().notNull(),
-    user_id: text().notNull(),
+    romId: text().notNull(),
+    userId: text().notNull(),
     ...baseSchema,
   },
-  (table) => [index('idx_launch_records').on(table.id, table.platform, table.user_id)],
+  (table) => [index('idx_launch_records').on(table.id, table.platform, table.userId)],
 )
 
 export const userPreferenceTable = sqliteTable(
@@ -66,8 +66,8 @@ export const userPreferenceTable = sqliteTable(
     emulator: text({ mode: 'json' }),
     ui: text({ mode: 'json' }),
     user: text({ mode: 'json' }),
-    user_id: text().notNull(),
+    userId: text().notNull(),
     ...baseSchema,
   },
-  (table) => [index('idx_user_preferences').on(table.id, table.user_id)],
+  (table) => [index('idx_user_preferences').on(table.id, table.userId)],
 )

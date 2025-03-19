@@ -17,7 +17,7 @@ export async function createState({ core, rom, state, thumbnail, type }: CreateS
   const [romResult] = await db.library
     .select()
     .from(romTable)
-    .where(and(eq(romTable.id, rom), eq(romTable.user_id, currentUser.id)))
+    .where(and(eq(romTable.id, rom), eq(romTable.userId, currentUser.id)))
     .limit(1)
 
   const stateFileId = nanoid()
@@ -28,12 +28,12 @@ export async function createState({ core, rom, state, thumbnail, type }: CreateS
     .insert(stateTable)
     .values({
       core,
-      file_id: stateFileId,
+      fileId: stateFileId,
       platform: romResult.platform,
-      rom_id: romResult.id,
-      thumbnail_file_id: thumbnailFileId,
+      romId: romResult.id,
+      thumbnailFileId,
       type,
-      user_id: currentUser.id,
+      userId: currentUser.id,
     })
     .returning()
   return stateResult

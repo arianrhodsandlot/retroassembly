@@ -5,7 +5,7 @@ import { getRomsMetadata } from './utils.ts'
 
 type GetRomsReturning = Awaited<ReturnType<typeof getRoms>>
 export type Roms = GetRomsReturning['roms']
-export type Rom = GetRomsReturning['roms'][number]
+export type Rom = Roms[number]
 export type RomsPagination = GetRomsReturning['pagination']
 
 export async function getRoms({
@@ -17,7 +17,7 @@ export async function getRoms({
   const { currentUser, db } = getContextData()
   const { library } = db
 
-  const conditions = [eq(romTable.user_id, currentUser.id), eq(romTable.status, 1)]
+  const conditions = [eq(romTable.userId, currentUser.id), eq(romTable.status, 1)]
   if (id) {
     conditions.push(eq(romTable.id, id))
   }
@@ -30,12 +30,12 @@ export async function getRoms({
   const romResults = await library
     .select()
     .from(romTable)
-    .orderBy(romTable.file_name)
+    .orderBy(romTable.fileName)
     .where(where)
     .offset(offset)
     .limit(pageSize)
 
-  const [{ total }] = await library.select({ total: count() }).from(romTable).orderBy(romTable.file_name).where(where)
+  const [{ total }] = await library.select({ total: count() }).from(romTable).orderBy(romTable.fileName).where(where)
 
   const results = await getRomsMetadata(romResults)
 

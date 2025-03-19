@@ -18,7 +18,7 @@ export function GameInfo({ gameInfo, rom }) {
             Released
           </div>
           <div className='pl-6'>
-            {gameInfo?.release_date?.toLocaleDateString() || gameInfo?.release_year || (
+            {gameInfo?.releaseDate?.toLocaleDateString() || gameInfo?.releaseYear || (
               <span className='opacity-40'>Unknown</span>
             )}
           </div>
@@ -37,7 +37,7 @@ export function GameInfo({ gameInfo, rom }) {
             <span className='icon-[mdi--person-multiple]' />
             Players
           </div>
-          <div className='pl-6'>{gameInfo?.max_players || <span className='opacity-40'>Unknown</span>}</div>
+          <div className='pl-6'>{gameInfo?.maxPlayers || <span className='opacity-40'>Unknown</span>}</div>
         </div>
       </div>
 

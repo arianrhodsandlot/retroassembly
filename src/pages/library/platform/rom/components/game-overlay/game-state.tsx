@@ -60,7 +60,7 @@ export function GameState({ state }) {
           <span className='icon-[svg-spinners--180-ring] block size-3 text-[var(--accent-9)]' />
         ) : (
           <div>
-            Saved at <Badge>{humanizeDate(state.created_at)}</Badge>
+            Saved at <Badge>{humanizeDate(state.createdAt)}</Badge>
           </div>
         )}
       </div>

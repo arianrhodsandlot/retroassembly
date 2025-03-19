@@ -15,7 +15,7 @@ export function GameEntry({ rom }) {
       <div className='relative'>
         <Link
           className='block'
-          title={rom.file_name}
+          title={rom.fileName}
           to={`/library/rom/${encodeURIComponent(rom.id)}`}
           unstable_pending={
             <div className='z-1 absolute inset-0'>

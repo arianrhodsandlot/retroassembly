@@ -10,7 +10,7 @@ export async function getPreference() {
   const results = await db.library
     .select({ emulator: userPreferenceTable.emulator, ui: userPreferenceTable.ui })
     .from(userPreferenceTable)
-    .where(and(eq(userPreferenceTable.user_id, currentUser.id), eq(userPreferenceTable.status, 1)))
+    .where(and(eq(userPreferenceTable.userId, currentUser.id), eq(userPreferenceTable.status, 1)))
 
   const preference = structuredClone(defaultPreference)
   const [userPreference] = results

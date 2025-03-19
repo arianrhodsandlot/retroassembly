@@ -19,8 +19,8 @@ export async function createLaunchRecord(params: CreateRomParams) {
     .values({
       core: params.core,
       platform: rom.platform,
-      rom_id: rom.id,
-      user_id: currentUser.id,
+      romId: rom.id,
+      userId: currentUser.id,
     })
     .returning()
 

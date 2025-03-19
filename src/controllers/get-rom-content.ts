@@ -8,9 +8,9 @@ export async function getRomContent(id: string) {
   const [result] = await db.library
     .select()
     .from(romTable)
-    .orderBy(romTable.file_name)
-    .where(and(eq(romTable.id, id), eq(romTable.user_id, currentUser.id), eq(romTable.status, 1)))
+    .orderBy(romTable.fileName)
+    .where(and(eq(romTable.id, id), eq(romTable.userId, currentUser.id), eq(romTable.status, 1)))
 
-  const object = await storage.get(result.file_id)
+  const object = await storage.get(result.fileId)
   return object
 }

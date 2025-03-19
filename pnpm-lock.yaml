@@ -68,6 +68,9 @@ importers:
       jotai:
         specifier: 2.12.2
         version: 2.12.2(@types/react@19.0.11)(react@19.0.0)
+      jotai-ssr:
+        specifier: 0.2.0
+        version: 0.2.0(jotai@2.12.2(@types/react@19.0.11)(react@19.0.0))(react@19.0.0)
       ky:
         specifier: 1.7.5
         version: 1.7.5
@@ -112,7 +115,7 @@ importers:
         version: 4.37.0
       waku:
         specifier: 0.21.23
-        version: 0.21.23(@swc/helpers@0.5.15)(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(react-dom@19.0.0(react@19.0.0))(react-server-dom-webpack@19.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(webpack@5.98.0(esbuild@0.19.12)))(react@19.0.0)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.0)
+        version: 0.21.23(@swc/helpers@0.5.15)(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(react-dom@19.0.0(react@19.0.0))(react-server-dom-webpack@19.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(webpack@5.98.0(esbuild@0.25.1)))(react@19.0.0)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.0)
       zod:
         specifier: 3.24.2
         version: 3.24.2
@@ -176,7 +179,7 @@ importers:
         version: 5.1.5
       react-server-dom-webpack:
         specifier: 19.0.0
-        version: 19.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(webpack@5.98.0(esbuild@0.19.12))
+        version: 19.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(webpack@5.98.0(esbuild@0.25.1))
       sax:
         specifier: 1.4.1
         version: 1.4.1
@@ -6634,6 +6637,12 @@ packages:
 
   jju@1.4.0:
     resolution: {integrity: sha512-8wb9Yw966OSxApiCt0K3yNJL8pnNeIv+OEq2YMidz4FKP6nonSRoOXc80iXY4JaN2FC11B9qsNmDsm+ZOfMROA==}
+
+  jotai-ssr@0.2.0:
+    resolution: {integrity: sha512-WZAisk8i4K2ITykAkyOR2EP3j2W4QGaeJrez+udcg5uELLzTEtGvqzo5/rgd7CFUCM4ONaqBJrmLuLWBiseI8g==}
+    peerDependencies:
+      jotai: '>=2.0.0'
+      react: '>=18.0.0'
 
   jotai@2.12.1:
     resolution: {integrity: sha512-VUW0nMPYIru5g89tdxwr9ftiVdc/nGV9jvHISN8Ucx+m1vI9dBeHemfqYzEuw5XSkmYjD/MEyApN9k6yrATsZQ==}
@@ -14963,6 +14972,11 @@ snapshots:
 
   jju@1.4.0: {}
 
+  jotai-ssr@0.2.0(jotai@2.12.2(@types/react@19.0.11)(react@19.0.0))(react@19.0.0):
+    dependencies:
+      jotai: 2.12.2(@types/react@19.0.11)(react@19.0.0)
+      react: 19.0.0
+
   jotai@2.12.1(@types/react@18.3.1)(react@18.3.1):
     optionalDependencies:
       '@types/react': 18.3.1
@@ -16303,13 +16317,13 @@ snapshots:
       webpack: 5.98.0(esbuild@0.17.19)
       webpack-sources: 3.2.3
 
-  react-server-dom-webpack@19.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(webpack@5.98.0(esbuild@0.19.12)):
+  react-server-dom-webpack@19.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(webpack@5.98.0(esbuild@0.25.1)):
     dependencies:
       acorn-loose: 8.4.0
       neo-async: 2.6.2
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
-      webpack: 5.98.0(esbuild@0.19.12)
+      webpack: 5.98.0(esbuild@0.25.1)
       webpack-sources: 3.2.3
 
   react-side-effect@2.1.2(react@18.3.1):
@@ -17091,16 +17105,16 @@ snapshots:
     optionalDependencies:
       esbuild: 0.17.19
 
-  terser-webpack-plugin@5.3.14(esbuild@0.19.12)(webpack@5.98.0(esbuild@0.19.12)):
+  terser-webpack-plugin@5.3.14(esbuild@0.25.1)(webpack@5.98.0(esbuild@0.25.1)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       jest-worker: 27.5.1
       schema-utils: 4.3.0
       serialize-javascript: 6.0.2
       terser: 5.39.0
-      webpack: 5.98.0(esbuild@0.19.12)
+      webpack: 5.98.0(esbuild@0.25.1)
     optionalDependencies:
-      esbuild: 0.19.12
+      esbuild: 0.25.1
 
   terser@5.39.0:
     dependencies:
@@ -17504,7 +17518,7 @@ snapshots:
       - tsx
       - yaml
 
-  waku@0.21.23(@swc/helpers@0.5.15)(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(react-dom@19.0.0(react@19.0.0))(react-server-dom-webpack@19.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(webpack@5.98.0(esbuild@0.19.12)))(react@19.0.0)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.0):
+  waku@0.21.23(@swc/helpers@0.5.15)(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(react-dom@19.0.0(react@19.0.0))(react-server-dom-webpack@19.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(webpack@5.98.0(esbuild@0.25.1)))(react@19.0.0)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.0):
     dependencies:
       '@hono/node-server': 1.13.8(hono@4.7.4)
       '@swc/core': 1.11.8(@swc/helpers@0.5.15)
@@ -17513,7 +17527,7 @@ snapshots:
       hono: 4.7.4
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
-      react-server-dom-webpack: 19.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(webpack@5.98.0(esbuild@0.19.12))
+      react-server-dom-webpack: 19.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(webpack@5.98.0(esbuild@0.25.1))
       rsc-html-stream: 0.0.4
       vite: 6.2.1(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.0)
     transitivePeerDependencies:
@@ -17572,7 +17586,7 @@ snapshots:
       - esbuild
       - uglify-js
 
-  webpack@5.98.0(esbuild@0.19.12):
+  webpack@5.98.0(esbuild@0.25.1):
     dependencies:
       '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.6
@@ -17594,7 +17608,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.14(esbuild@0.19.12)(webpack@5.98.0(esbuild@0.19.12))
+      terser-webpack-plugin: 5.3.14(esbuild@0.25.1)(webpack@5.98.0(esbuild@0.25.1))
       watchpack: 2.4.2
       webpack-sources: 3.2.3
     transitivePeerDependencies:

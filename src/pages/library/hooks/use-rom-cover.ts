@@ -1,5 +1,6 @@
 'use client'
 import useSWRImmutable from 'swr/immutable'
+import type { Rom } from '@/controllers/get-roms'
 import { getPlatformGameIcon, getRomLibretroThumbnail } from '@/utils/rom.ts'
 
 const validImages = new Set<string>([])
@@ -14,7 +15,7 @@ function imageLoaded(src) {
   })
 }
 
-export function useRomCover(rom) {
+export function useRomCover(rom: Rom) {
   const romCover = getRomLibretroThumbnail(rom)
   const platformCover = getPlatformGameIcon(rom.platform)
 

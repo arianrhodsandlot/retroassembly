@@ -1,8 +1,8 @@
 import ky from 'ky'
 import useSWRImmutable from 'swr/immutable'
 import useSWRMutation from 'swr/mutation'
+import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { useEmulator } from './use-emulator.ts'
-import { useRom } from './use-rom.ts'
 
 export function useGameStates() {
   const rom = useRom()

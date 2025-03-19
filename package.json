@@ -46,6 +46,7 @@
     "googleapis": "146.0.0",
     "hono": "4.7.4",
     "jotai": "2.12.2",
+    "jotai-ssr": "0.2.0",
     "ky": "1.7.5",
     "motion": "12.5.0",
     "nanoid-dictionary": "4.3.0",

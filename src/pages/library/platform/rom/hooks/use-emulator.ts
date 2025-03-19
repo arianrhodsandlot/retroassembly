@@ -4,9 +4,9 @@ import { Nostalgist } from 'nostalgist'
 import { useMemo } from 'react'
 import useSWRImmutable from 'swr/immutable'
 import { coreUrlMap } from '@/constants/core.ts'
+import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
 import { emulatorLaunchedAtom } from '../atoms.ts'
-import { useRom } from './use-rom.ts'
 
 export function useEmulator() {
   const rom = useRom()

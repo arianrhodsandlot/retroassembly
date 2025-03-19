@@ -1,6 +1,8 @@
+import { HydrationBoundary } from 'jotai-ssr'
 import { getRom } from '@/controllers/get-rom.ts'
 import { Portal, Theme } from '@/pages/components/radix-themes.ts'
 import { getRomGoodcodes } from '@/utils/rom.ts'
+import { romAtom } from '../../atoms.ts'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
@@ -8,7 +10,6 @@ import { GameMedias } from './components/game-medias/game-medias.tsx'
 import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
 import { LaunchButton } from './components/launch-button.tsx'
 import { RomBackground } from './components/rom-background.tsx'
-import { RomContextProvider } from './components/rom-context-provider.tsx'
 import { RomPageMainScrollArea } from './components/rom-page-main-scroll-area.tsx'
 
 export async function RomPage({ fileName, id, platform }) {
@@ -21,7 +22,7 @@ export async function RomPage({ fileName, id, platform }) {
   const { launchboxGame } = rom
 
   return (
-    <RomContextProvider value={rom}>
+    <HydrationBoundary hydrateAtoms={[[romAtom, rom]]} options={{ enableReHydrate: true }}>
       <LibraryLayout title={goodcodes.rom}>
         <RomPageMainScrollArea className='z-1 relative flex flex-1' size='2'>
           <main className='flex min-h-full w-full gap-4 p-4'>
@@ -39,7 +40,7 @@ export async function RomPage({ fileName, id, platform }) {
               </div>
 
               <div className='flex flex-col gap-4 pl-4 pr-64'>
-                <GameMedias rom={rom} video={launchboxGame?.video_url} />
+                <GameMedias rom={rom} video={launchboxGame?.videoUrl} />
 
                 {launchboxGame?.overview ? (
                   <div className='prose-neutral prose max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable]'>
@@ -47,11 +48,11 @@ export async function RomPage({ fileName, id, platform }) {
                   </div>
                 ) : null}
 
-                {launchboxGame?.wikipedia_url ? (
+                {launchboxGame?.wikipediaUrl ? (
                   <div>
                     <a
                       className='inline-flex items-center gap-2 text-[var(--accent-9)] underline'
-                      href={launchboxGame.wikipedia_url}
+                      href={launchboxGame.wikipediaUrl}
                       rel='noreferrer'
                       target='_blank'
                     >
@@ -70,6 +71,6 @@ export async function RomPage({ fileName, id, platform }) {
           </Theme>
         </Portal>
       </LibraryLayout>
-    </RomContextProvider>
+    </HydrationBoundary>
   )
 }

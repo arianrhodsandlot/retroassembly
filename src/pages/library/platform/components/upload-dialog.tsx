@@ -1,4 +1,3 @@
-'use client'
 import { Button, Callout, Code, Dialog, Progress } from '@radix-ui/themes'
 import { fileOpen } from 'browser-fs-access'
 import confetti from 'canvas-confetti'
@@ -43,7 +42,7 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
     setFiles(files)
     await trigger(files)
     toggleOpen()
-    confetti()
+    await confetti({ disableForReducedMotion: true, particleCount: 150, spread: 180 })
     router.reload()
   }
 

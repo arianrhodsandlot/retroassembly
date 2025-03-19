@@ -1,11 +1,7 @@
+'use client'
 import { atom } from 'jotai'
-import { defaultPreference, type Preference } from '@/constants/preference.ts'
-import type { Roms } from '@/controllers/get-roms'
-
-export const serverDataAtom = atom<{ [key: string]: any; preference: Preference }>({
-  preference: defaultPreference,
-})
+import type { Rom, Roms } from '@/controllers/get-roms'
 
 export const romsAtom = atom<Roms>()
-
+export const romAtom = atom<Rom>()
 export const settingsDialogOpenAtom = atom(false)

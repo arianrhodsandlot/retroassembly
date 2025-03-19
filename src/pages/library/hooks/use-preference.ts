@@ -1,10 +1,11 @@
+import { useAtom } from 'jotai'
 import ky from 'ky'
 import useSWRMutation from 'swr/mutation'
 import type { Preference, PreferenceSnippet } from '@/constants/preference.ts'
-import { useServerData } from './use-server-data.ts'
+import { preferenceAtom } from '@/pages/atoms.ts'
 
 export function usePreference() {
-  const [{ preference }, setServerData] = useServerData()
+  const [preference, setPreference] = useAtom(preferenceAtom)
 
   const { isMutating: isLoading, trigger } = useSWRMutation('/api/v1/preference', (url, { arg }: { arg: unknown }) =>
     ky.post<Preference>(url, { json: arg }).json(),
@@ -13,8 +14,12 @@ export function usePreference() {
   async function update(value: PreferenceSnippet) {
     if (value) {
       const newPreference = await trigger(value)
-      setServerData((prev) => ({ ...prev, preference: newPreference }))
+      setPreference(newPreference)
     }
+  }
+
+  if (!preference) {
+    throw new Error('preference should not be falsy')
   }
 
   return { isLoading, preference, update }

@@ -23,7 +23,7 @@ export async function RomPage({ fileName, id, platform }) {
 
   return (
     <HydrationBoundary hydrateAtoms={[[romAtom, rom]]} options={{ enableReHydrate: true }}>
-      <LibraryLayout title={goodcodes.rom}>
+      <LibraryLayout currentPlatform={rom.platform} title={goodcodes.rom}>
         <RomPageMainScrollArea className='z-1 relative flex flex-1' size='2'>
           <main className='flex min-h-full w-full gap-4 p-4'>
             <div>

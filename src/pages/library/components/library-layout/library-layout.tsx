@@ -14,10 +14,11 @@ function getPostfixedTitle(title: string) {
 
 interface AppLayoutProps {
   children: ReactNode
+  currentPlatform?: string
   title: string
 }
 
-export default function LibraryLayout({ children, title }: AppLayoutProps) {
+export default function LibraryLayout({ children, currentPlatform, title }: AppLayoutProps) {
   const { preference } = getContextData()
 
   return (
@@ -31,7 +32,7 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
               RetroAssembly
             </div>
             <ScrollArea className='flex-1' size='2'>
-              <SidebarLinks />
+              <SidebarLinks currentPlatform={currentPlatform} />
             </ScrollArea>
             <SidebarFooter />
           </aside>

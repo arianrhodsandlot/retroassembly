@@ -34,12 +34,11 @@ async function createRom(params: CreateRomParams) {
   }
 
   if (countResult.count) {
-    await library.update(romTable).set(value).where(where)
-    return
+    const [result] = await library.update(romTable).set(value).where(where).returning()
+    return result
   }
 
   const [result] = await library.insert(romTable).values(value).returning()
-
   return result
 }
 

@@ -27,6 +27,7 @@ export function ShaderSettings() {
         <span className='icon-[mdi--monitor-shimmer]' />
         Shader
       </SettingsTitle>
+
       <Card>
         <RadioCards.Root
           columns='6'

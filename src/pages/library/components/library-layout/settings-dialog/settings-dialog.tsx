@@ -1,5 +1,6 @@
 import { Button, Dialog, ScrollArea, Tabs } from '@radix-ui/themes'
 import { clsx } from 'clsx'
+import { useState } from 'react'
 import { EmulatingSettings } from './emulating-settings/emulating-settings.tsx'
 import { KeyboardInputs } from './keyboard-inputs.tsx'
 import { PlatformCheckboxGroup } from './platform-checkbox-group.tsx'
@@ -11,6 +12,8 @@ const settingsTabs = [
 ]
 
 export function SettingsDialog(props: Dialog.RootProps) {
+  const [tab, setTab] = useState(settingsTabs[0].name)
+
   return (
     <Dialog.Root {...props}>
       <Dialog.Content aria-describedby={undefined} className='!w-7xl !max-w-screen'>
@@ -22,20 +25,20 @@ export function SettingsDialog(props: Dialog.RootProps) {
         </Dialog.Title>
 
         <div className='py-0'>
-          <Tabs.Root defaultValue='library'>
-            <Tabs.List>
-              {settingsTabs.map(({ iconClass, name }) => (
-                <Tabs.Trigger key={name} value={name}>
-                  <span className={clsx('mr-2 size-5', iconClass)} />
-                  <span className='text-lg capitalize'>{name}</span>
-                </Tabs.Trigger>
-              ))}
-            </Tabs.List>
-
+          <Tabs.Root asChild onValueChange={setTab} value={tab}>
             <div className='h-[60vh]'>
+              <Tabs.List>
+                {settingsTabs.map(({ iconClass, name }) => (
+                  <Tabs.Trigger key={name} value={name}>
+                    <span className={clsx('mr-2 size-5', iconClass)} />
+                    <span className='text-lg capitalize'>{name}</span>
+                  </Tabs.Trigger>
+                ))}
+              </Tabs.List>
+
               <ScrollArea size='2'>
                 {settingsTabs.map((tab) => (
-                  <Tabs.Content key={tab.name} value={tab.name}>
+                  <Tabs.Content asChild key={tab.name} value={tab.name}>
                     <tab.content />
                   </Tabs.Content>
                 ))}

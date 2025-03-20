@@ -98,11 +98,13 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@prisma/client",
+      "@prisma/engines",
       "@swc/core",
       "better-sqlite3",
       "esbuild",
       "prisma",
       "sharp",
+      "simple-git-hooks",
       "supabase",
       "workerd"
     ]

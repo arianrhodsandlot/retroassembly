@@ -44,8 +44,8 @@ async function extractLibretroDb(rdbPath: string, db: BetterSQLite3Database) {
       .filter(({ name }) => name)
       .map((record) => ({
         ...record,
-        compact_name: getCompactName(`${record.name}`),
-        goodcodes_base_compact_name: getCompactName(parse(`0 - ${record.name}`).rom),
+        compactName: getCompactName(`${record.name}`),
+        goodcodesBaseCompactName: getCompactName(parse(`0 - ${record.name}`).rom),
         id: crypto.hash('sha1', JSON.stringify({ ...record, platform })),
         platform,
       }))
@@ -56,7 +56,10 @@ async function extractLibretroDb(rdbPath: string, db: BetterSQLite3Database) {
 }
 
 async function extractLibretroDbs() {
-  const db = drizzle({ connection: path.resolve(import.meta.dirname, '../artifacts/metadata.db') })
+  const db = drizzle({
+    casing: 'snake_case',
+    connection: path.resolve(import.meta.dirname, '../artifacts/metadata.db'),
+  })
   const libretroDbDirectory = path.resolve(import.meta.dirname, '../inputs/libretro/database-rdb/')
   const rdbPaths = await globby(libretroDbDirectory)
   for (const rdbPath of rdbPaths) {

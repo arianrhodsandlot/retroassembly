@@ -2,7 +2,7 @@ import { createReadStream } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { type BetterSQLite3Database, drizzle } from 'drizzle-orm/better-sqlite3'
-import { chunk, noop, snakeCase } from 'es-toolkit'
+import { camelCase, chunk, noop } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
 import sax from 'sax'
 import {
@@ -72,7 +72,7 @@ function parseMetadata(filePath: string) {
     .createStream(true, { trim: true })
     .on('opentag', (tag) => {
       openingTags.push(tag.name)
-      field = snakeCase(tag.name).replace('md_5', 'md5').replace('crc_32', 'crc32')
+      field = camelCase(tag.name)
       isRecording = openingTags.length > 2 && openingTags[1] in recordsMap
     })
     .on('text', (text) => {
@@ -149,8 +149,8 @@ async function writeLaunchboxPlatform(records: Records, db: BetterSQLite3Databas
         ...record,
         emulated: castBoolean(record.emulated),
         name: record.name,
-        release_date: castDate(record.release_date),
-        use_mame_files: castBoolean(record.use_mame_files),
+        releaseDate: castDate(record.releaseDate),
+        useMameFiles: castBoolean(record.useMameFiles),
       })),
     )
     .onConflictDoNothing()
@@ -169,11 +169,11 @@ async function writeLaunchboxGameAlternateName(records: Records, db: BetterSQLit
   for (const recordsChunk of chunk(records, 1000)) {
     await db.insert(launchboxGameAlternateNameTable).values(
       recordsChunk
-        .filter((record) => record.alternate_name && getCompactName(record.alternate_name))
+        .filter((record) => record.alternateName && getCompactName(record.alternateName))
         .map((record) => ({
           ...record,
-          compact_name: getCompactName(record.alternate_name),
-          database_id: castInteger(record.database_id),
+          compactName: getCompactName(record.alternateName),
+          databaseId: castInteger(record.databaseId),
         })),
     )
   }
@@ -184,15 +184,15 @@ async function writeLaunchboxGame(records: Records, db: BetterSQLite3Database) {
     await db.insert(launchboxGameTable).values(
       recordsChunk.map((record) => ({
         ...record,
-        community_rating: castDecimal(record.community_rating),
-        community_rating_count: castInteger(record.community_rating_count),
-        compact_name: getCompactName(record.name),
+        communityRating: castDecimal(record.communityRating),
+        communityRatingCount: castInteger(record.communityRatingCount),
+        compactName: getCompactName(record.name),
         cooperative: castBoolean(record.cooperative),
-        database_id: castInteger(record.database_id) as number,
-        goodcodes_base_compact_name: getCompactName(parse(`0 - ${record.name}`).rom),
-        max_players: castInteger(record.max_players),
+        databaseId: castInteger(record.databaseId) as number,
+        goodcodesBaseCompactName: getCompactName(parse(`0 - ${record.name}`).rom),
+        maxPlayers: castInteger(record.maxPlayers),
         name: record.name,
-        release_date: castDate(record.release_date),
+        releaseDate: castDate(record.releaseDate),
       })),
     )
   }
@@ -224,9 +224,9 @@ async function getMetadata() {
 
   const gameIdMap = new Map<string, boolean>()
   for (const game of metadata.Game) {
-    gameIdMap.set(game.database_id, true)
+    gameIdMap.set(game.databaseId, true)
   }
-  metadata.GameAlternateName = metadata.GameAlternateName.filter((alternate) => gameIdMap.has(alternate.database_id))
+  metadata.GameAlternateName = metadata.GameAlternateName.filter((alternate) => gameIdMap.has(alternate.databaseId))
 
   await Promise.all([
     writeFile(path.resolve(cachePathMap.Game), JSON.stringify(metadata.Game), 'utf8'),
@@ -240,7 +240,10 @@ async function getMetadata() {
 async function extractLaunchboxMetadata() {
   const metadata = await getMetadata()
 
-  const db = drizzle({ connection: path.resolve(import.meta.dirname, '../artifacts/metadata.db') })
+  const db = drizzle({
+    casing: 'snake_case',
+    connection: path.resolve(import.meta.dirname, '../artifacts/metadata.db'),
+  })
 
   console.info('writing metadata.Platform...')
   await writeLaunchboxPlatform(metadata.Platform, db)

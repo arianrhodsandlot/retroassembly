@@ -1,4 +1,5 @@
 import { Button, Dialog, ScrollArea, Tabs } from '@radix-ui/themes'
+import { useToggle } from '@react-hookz/web'
 import { clsx } from 'clsx'
 import { useState } from 'react'
 import { EmulatingSettings } from './emulating-settings/emulating-settings.tsx'
@@ -11,11 +12,25 @@ const settingsTabs = [
   { content: EmulatingSettings, iconClass: 'icon-[simple-icons--retroarch]', name: 'Emulating' },
 ]
 
-export function SettingsDialog(props: Dialog.RootProps) {
-  const [tab, setTab] = useState(settingsTabs[0].name)
+export function SettingsDialog({ onOpenChange, ...props }: Dialog.RootProps) {
+  const [tab, setTab] = useState(settingsTabs[0])
+  const [enableTabAnimation, toggleTabAnimation] = useToggle()
+
+  function handleOpenChange(open) {
+    toggleTabAnimation(open)
+    onOpenChange?.(open)
+  }
+
+  function handleValueChange(tabName: string) {
+    toggleTabAnimation(true)
+    const clickedTab = settingsTabs.find((tab) => tabName === tab.name)
+    if (clickedTab) {
+      setTab(clickedTab)
+    }
+  }
 
   return (
-    <Dialog.Root {...props}>
+    <Dialog.Root {...props} onOpenChange={handleOpenChange}>
       <Dialog.Content aria-describedby={undefined} className='!w-7xl !max-w-screen'>
         <Dialog.Title>
           <div className='flex items-center gap-2'>
@@ -25,8 +40,8 @@ export function SettingsDialog(props: Dialog.RootProps) {
         </Dialog.Title>
 
         <div className='py-0'>
-          <Tabs.Root asChild onValueChange={setTab} value={tab}>
-            <div className='h-[60vh]'>
+          <Tabs.Root asChild onValueChange={handleValueChange} value={tab.name}>
+            <div>
               <Tabs.List>
                 {settingsTabs.map(({ iconClass, name }) => (
                   <Tabs.Trigger key={name} value={name}>
@@ -36,13 +51,13 @@ export function SettingsDialog(props: Dialog.RootProps) {
                 ))}
               </Tabs.List>
 
-              <ScrollArea size='2'>
-                {settingsTabs.map((tab) => (
-                  <Tabs.Content asChild key={tab.name} value={tab.name}>
+              <div className='h-[60vh]'>
+                <ScrollArea size='2'>
+                  <div className={clsx({ 'motion-preset-slide-up-sm': enableTabAnimation })} key={tab.name}>
                     <tab.content />
-                  </Tabs.Content>
-                ))}
-              </ScrollArea>
+                  </div>
+                </ScrollArea>
+              </div>
             </div>
           </Tabs.Root>
         </div>

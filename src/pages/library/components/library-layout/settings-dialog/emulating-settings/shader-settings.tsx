@@ -18,7 +18,9 @@ export function ShaderSettings() {
   const { isLoading, preference, update } = usePreference()
 
   async function handleShaderChange(shader: string) {
-    await update({ emulator: { shader } })
+    if (shader !== preference.emulator.shader) {
+      await update({ emulator: { shader } })
+    }
   }
 
   return (
@@ -54,12 +56,14 @@ export function ShaderSettings() {
                         select {shader.name}
                       </button>
                     </HoverCard.Trigger>
-                    <HoverCard.Content size='1'>
-                      <img
-                        alt={shader.name}
-                        className='size-96 rounded bg-zinc-400 object-contain object-center'
-                        src={shader.thumbnail}
-                      />
+                    <HoverCard.Content align='center' hideWhenDetached side='top' size='1'>
+                      <a href={shader.thumbnail} rel='noreferrer noopener' target='_blank'>
+                        <img
+                          alt={shader.name}
+                          className='size-48 rounded bg-zinc-400 object-contain object-center'
+                          src={shader.thumbnail}
+                        />
+                      </a>
                     </HoverCard.Content>
                   </HoverCard.Root>
                 </div>

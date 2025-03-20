@@ -2,12 +2,20 @@ import { Card } from '@radix-ui/themes'
 import type { ReactNode } from 'react'
 import { defaultPreference } from '@/constants/preference.ts'
 import { KeyboardInput } from './keyboard-input.tsx'
+import { SettingsTitle } from './settings-title.tsx'
 import { UpdateButton } from './update-button.tsx'
 
-const buttonGroups: {
-  buttons: { iconClass?: string; iconNode?: ReactNode; name: string; text?: string }[]
+interface ButtonGroup {
+  buttons: {
+    iconClass?: string
+    iconNode?: ReactNode
+    name: string
+    text?: string
+  }[]
   type: string
-}[] = [
+}
+
+const buttonGroups: ButtonGroup[] = [
   {
     buttons: [
       { iconClass: 'icon-[mdi--gamepad-up]', name: 'input_player1_up' },
@@ -84,11 +92,9 @@ const buttonGroups: {
 export function KeyboardInputs() {
   return (
     <div>
-      <div className='flex items-center gap-2 py-2 text-lg font-semibold'>
-        <h3 className='flex items-center gap-2'>
-          <span className='icon-[mdi--keyboard]' /> Keyboard Inputs
-        </h3>
-      </div>
+      <SettingsTitle>
+        <span className='icon-[mdi--keyboard]' /> Keyboard Inputs
+      </SettingsTitle>
 
       <Card>
         <div className='flex flex-col gap-4 p-4'>

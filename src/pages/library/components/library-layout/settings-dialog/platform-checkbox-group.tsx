@@ -3,17 +3,18 @@ import { platforms } from '@/constants/platform.ts'
 import { defaultPreference } from '@/constants/preference.ts'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { PlatformCheckboxItem } from './platform-checkbox-item.tsx'
+import { SettingsTitle } from './settings-title.tsx'
 import { UpdateButton } from './update-button.tsx'
 
 export function PlatformCheckboxGroup() {
   const { preference } = usePreference()
 
   return (
-    <label>
-      <h3 className='flex items-center gap-2 py-2 text-lg font-semibold'>
+    <div>
+      <SettingsTitle>
         <span className='icon-[mdi--order-checkbox-ascending]' />
         Enabled Platforms
-      </h3>
+      </SettingsTitle>
       <Card>
         <CheckboxCards.Root columns='4' size='1' value={preference.ui.platforms}>
           {platforms.map((platform) => (
@@ -32,6 +33,6 @@ export function PlatformCheckboxGroup() {
           </UpdateButton>
         </div>
       </Card>
-    </label>
+    </div>
   )
 }

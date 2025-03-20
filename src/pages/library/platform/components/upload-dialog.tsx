@@ -1,7 +1,7 @@
 import { Button, Callout, Code, Dialog, Progress } from '@radix-ui/themes'
 import { fileOpen } from 'browser-fs-access'
 import confetti from 'canvas-confetti'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { chunk } from 'es-toolkit'
 import ky from 'ky'
 import { useState } from 'react'

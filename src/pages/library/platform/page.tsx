@@ -25,7 +25,7 @@ export async function PlatformPage({ platform, query }: PlatformPageProps) {
   }
 
   return (
-    <LibraryLayout title={platformMap[platform].displayName}>
+    <LibraryLayout currentPlatform={platform} title={platformMap[platform].displayName}>
       <MainScrollArea className='z-1 relative flex flex-1' size='2'>
         <main className='flex min-h-full w-full flex-col gap-5 p-4'>
           <DeviceInfo platform={platform} />

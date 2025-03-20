@@ -6,7 +6,7 @@ import { GameState } from './game-state.tsx'
 export function GameStates() {
   const { states } = useGameStates()
 
-  if (states.length === 0) {
+  if (!states || states.length === 0) {
     return
   }
 
@@ -25,7 +25,7 @@ export function GameStates() {
       ]
         .filter(({ states }) => states)
         .map(({ states, type }) => (
-          <ScrollArea key={type}>
+          <ScrollArea key={type} size='2'>
             <div className='flex flex-nowrap gap-8'>
               {states.map((state) => (
                 <GameState key={state.id} state={state} />

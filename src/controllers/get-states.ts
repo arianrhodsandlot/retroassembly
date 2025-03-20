@@ -2,6 +2,8 @@ import { and, desc, eq } from 'drizzle-orm'
 import { getContextData } from 'waku/middleware/context'
 import { stateTable } from '../databases/library/schema.ts'
 
+export type States = Awaited<ReturnType<typeof getStates>>
+
 export async function getStates({ rom, type }: { rom: string; type?: 'auto' | 'manual' }) {
   const { currentUser, db } = getContextData()
 

@@ -2,7 +2,7 @@ import { Provider } from 'jotai'
 import { HydrationBoundary } from 'jotai-ssr'
 import type { ReactNode } from 'react'
 import { getContextData } from 'waku/middleware/context'
-import { preferenceAtom } from '@/pages/atoms.ts'
+import { currentPlatformAtom, preferenceAtom } from '@/pages/atoms.ts'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
@@ -23,7 +23,13 @@ export default function LibraryLayout({ children, currentPlatform, title }: AppL
 
   return (
     <Provider>
-      <HydrationBoundary hydrateAtoms={[[preferenceAtom, preference]]} options={{ enableReHydrate: true }}>
+      <HydrationBoundary
+        hydrateAtoms={[
+          [preferenceAtom, preference],
+          [currentPlatformAtom, currentPlatform],
+        ]}
+        options={{ enableReHydrate: true }}
+      >
         <div className='flex h-screen bg-[var(--accent-9)]'>
           <title>{getPostfixedTitle(title)}</title>
           <aside className='ml-4 flex w-64 shrink-0 flex-col py-4 text-white'>

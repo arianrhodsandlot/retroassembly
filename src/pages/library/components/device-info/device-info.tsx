@@ -44,7 +44,7 @@ export async function DeviceInfo({ platform }: { platform: string }) {
                 <span className='icon-[mdi--calendar]' />
                 Released
               </div>
-              <div className='mt-1 pl-6'>{platformInfo.release_date?.toLocaleDateString() || 'unknown'}</div>
+              <div className='mt-1 pl-6'>{platformInfo.releaseDate?.toLocaleDateString() || 'unknown'}</div>
             </div>
 
             <div>

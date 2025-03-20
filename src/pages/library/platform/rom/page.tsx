@@ -22,8 +22,8 @@ export async function RomPage({ fileName, id, platform }) {
   const { launchboxGame } = rom
 
   return (
-    <HydrationBoundary hydrateAtoms={[[romAtom, rom]]} options={{ enableReHydrate: true }}>
-      <LibraryLayout currentPlatform={rom.platform} title={goodcodes.rom}>
+    <LibraryLayout currentPlatform={rom.platform} title={goodcodes.rom}>
+      <HydrationBoundary hydrateAtoms={[[romAtom, rom]]} options={{ enableReHydrate: true }}>
         <RomPageMainScrollArea className='z-1 relative flex flex-1' size='2'>
           <main className='flex min-h-full w-full gap-4 p-4'>
             <div>
@@ -70,7 +70,7 @@ export async function RomPage({ fileName, id, platform }) {
             <GameOverlay rom={rom} />
           </Theme>
         </Portal>
-      </LibraryLayout>
-    </HydrationBoundary>
+      </HydrationBoundary>
+    </LibraryLayout>
   )
 }

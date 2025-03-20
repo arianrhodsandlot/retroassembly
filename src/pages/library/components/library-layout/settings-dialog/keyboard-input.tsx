@@ -1,5 +1,5 @@
 import { Button, TextField } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import type { ChangeEvent, KeyboardEvent, ReactNode } from 'react'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 

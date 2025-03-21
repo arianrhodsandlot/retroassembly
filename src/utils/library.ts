@@ -50,6 +50,7 @@ export function getPlatformGameIcon(platform: string) {
 
 const platformBannerMap = {
   ngp: { filePath: 'ngp/art/system.svg', repo: 'RetroPie/es-theme-carbon' },
+  sfc: { filePath: 'themes/batocera/snes/_data/svg/logo.svg', repo: 'batocera-linux/batocera-themes' },
   wonderswan: { filePath: 'wonderswan/art/system.svg', repo: 'RetroPie/es-theme-carbon' },
 }
 export function getPlatformBanner(platform: string) {

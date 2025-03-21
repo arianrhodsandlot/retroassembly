@@ -9,7 +9,8 @@ export interface Preference {
   emulator: {
     core: Partial<Record<CoreName, Record<string, string>>>
     keyboardMapping: {
-      fastforward: string
+      $pause: string
+      input_hold_fast_forward: string
       input_player1_a: string
       input_player1_b: string
       input_player1_down: string
@@ -26,8 +27,7 @@ export interface Preference {
       input_player1_up: string
       input_player1_x: string
       input_player1_y: string
-      pause: string
-      rewind: string
+      input_rewind: string
     }
     platform: Record<PlatformName, { core: CoreName }>
     shader: string
@@ -54,7 +54,8 @@ export const defaultPreference: Preference = {
       },
     },
     keyboardMapping: {
-      fastforward: 'space',
+      $pause: 'esc',
+      input_hold_fast_forward: 'space',
       input_player1_a: 'x',
       input_player1_b: 'z',
       input_player1_down: 'down',
@@ -71,8 +72,7 @@ export const defaultPreference: Preference = {
       input_player1_up: 'up',
       input_player1_x: 's',
       input_player1_y: 'a',
-      pause: 'esc',
-      rewind: 'r',
+      input_rewind: 'r',
     },
     platform: {
       arcade: { core: 'fbneo' },

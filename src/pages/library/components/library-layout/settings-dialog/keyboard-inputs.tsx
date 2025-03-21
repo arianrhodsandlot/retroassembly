@@ -81,9 +81,9 @@ const buttonGroups: ButtonGroup[] = [
   },
   {
     buttons: [
-      { iconClass: 'icon-[mdi--pause]', name: 'pause', text: 'Pause' },
-      { iconClass: 'icon-[mdi--rewind]', name: 'rewind', text: 'Rewind' },
-      { iconClass: 'icon-[mdi--fast-forward]', name: 'fastforward', text: 'Fast forward' },
+      { iconClass: 'icon-[mdi--pause]', name: '$pause', text: 'Pause' },
+      { iconClass: 'icon-[mdi--rewind]', name: 'input_rewind', text: 'Rewind' },
+      { iconClass: 'icon-[mdi--fast-forward]', name: 'input_hold_fast_forward', text: 'Fast forward' },
     ],
     type: 'time',
   },

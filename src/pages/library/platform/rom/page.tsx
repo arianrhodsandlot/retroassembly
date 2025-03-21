@@ -9,6 +9,7 @@ import { GameInfo } from './components/game-info.tsx'
 import { GameMedias } from './components/game-medias/game-medias.tsx'
 import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
 import { LaunchButton } from './components/launch-button.tsx'
+import { PageHooks } from './components/page-hooks.ts'
 import { RomBackground } from './components/rom-background.tsx'
 import { RomPageMainScrollArea } from './components/rom-page-main-scroll-area.tsx'
 
@@ -70,6 +71,7 @@ export async function RomPage({ fileName, id, platform }) {
             <GameOverlay rom={rom} />
           </Theme>
         </Portal>
+        <PageHooks />
       </HydrationBoundary>
     </LibraryLayout>
   )

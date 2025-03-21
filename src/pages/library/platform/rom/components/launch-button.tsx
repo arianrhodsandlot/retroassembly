@@ -1,30 +1,10 @@
 'use client'
 import { Button } from '@radix-ui/themes'
-import { useKeyboardEvent } from '@react-hookz/web'
 import { clsx } from 'clsx'
-import { useAtom } from 'jotai'
-import { settingsDialogOpenAtom } from '@/pages/library/atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 
-const directionKeys = new Set(['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp'])
-
 export function LaunchButton() {
-  const [settingsDialogOpen] = useAtom(settingsDialogOpenAtom)
-  const { emulator, isPreparing, launch } = useEmulator()
-
-  const shouldListenKeyboard = settingsDialogOpen === false && emulator?.getStatus() === 'initial'
-  useKeyboardEvent(true, async (event) => {
-    if (!shouldListenKeyboard) {
-      return
-    }
-    const isEscapeKey = event.key === 'Escape'
-    const isSpecialKey = event.ctrlKey || event.metaKey || event.altKey || event.shiftKey
-    const isDirectionKey = directionKeys.has(event.key)
-    const shoudLaunch = !isSpecialKey && !isDirectionKey && !isEscapeKey
-    if (shoudLaunch) {
-      await launch()
-    }
-  })
+  const { isPreparing, launch } = useEmulator()
 
   return (
     <button className={clsx({ 'opacity-50': isPreparing })} disabled={isPreparing} onClick={launch} type='button'>

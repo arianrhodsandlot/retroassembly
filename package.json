@@ -21,10 +21,6 @@
     "*.?(m|c)@(j|t)s?(x)": "eslint --fix",
     "package.json": "pnpm dlx sort-package-json"
   },
-  "browserslist": [
-    "defaults",
-    "not op_mini all"
-  ],
   "dependencies": {
     "@fontsource-variable/inter": "5.2.5",
     "@fontsource-variable/oswald": "5.2.5",
@@ -56,6 +52,7 @@
     "radix-ui": "1.1.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "smooth-scroll-into-view-if-needed": "2.0.2",
     "swr": "2.3.3",
     "tailwind-merge": "3.0.2",
     "tailwindcss-motion": "1.1.0",

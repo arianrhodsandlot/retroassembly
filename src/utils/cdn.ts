@@ -3,7 +3,6 @@ import { encodeRFC3986URIComponent } from './misc.ts'
 const repositoryVersions = {
   'batocera-linux/batocera-themes': 'cc0de2f',
   'HerbFargus/es-theme-tronkyfran': 'a270311',
-  'KyleBing/retro-game-console-icons': 'b0f42b0',
   'libretro-thumbnails/Atari_-_2600': 'a6a54d3',
   'libretro-thumbnails/Atari_-_5200': '972acae',
   'libretro-thumbnails/Atari_-_7800': '8485e01',
@@ -29,6 +28,9 @@ const repositoryVersions = {
   'libretro/retroarch-assets': '9afd2b8',
   'Mattersons/es-theme-neutral': 'c9b38e7',
   'RetroPie/es-theme-carbon': 'b09973e',
+  'Weestuarty/codywheel-es-de': '7aa24c4',
+  'Weestuarty/diamond-es-de': '553c913',
+  'Weestuarty/lcars-es-de': 'bdb7340',
 } as const
 
 export const cdnHost = 'https://cdn.jsdelivr.net'

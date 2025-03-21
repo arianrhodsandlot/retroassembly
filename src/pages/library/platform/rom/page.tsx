@@ -1,7 +1,7 @@
 import { HydrationBoundary } from 'jotai-ssr'
 import { getRom } from '@/controllers/get-rom.ts'
 import { Portal, Theme } from '@/pages/components/radix-themes.ts'
-import { getRomGoodcodes } from '@/utils/rom.ts'
+import { getRomGoodcodes } from '@/utils/library.ts'
 import { romAtom } from '../../atoms.ts'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { GameCover } from './components/game-cover.tsx'

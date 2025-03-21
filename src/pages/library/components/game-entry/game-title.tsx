@@ -1,6 +1,6 @@
 import { Badge } from '@radix-ui/themes'
 import { compact } from 'es-toolkit'
-import { getRomGoodcodes } from '@/utils/rom.ts'
+import { getRomGoodcodes } from '@/utils/library.ts'
 import { DistrictIcon } from './district-icon.tsx'
 
 export function GameTitle({ rom }) {

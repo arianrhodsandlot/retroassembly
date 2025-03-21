@@ -1,7 +1,7 @@
 'use client'
 import useSWRImmutable from 'swr/immutable'
 import type { Rom } from '@/controllers/get-roms'
-import { getPlatformGameIcon, getRomLibretroThumbnail } from '@/utils/rom.ts'
+import { getPlatformGameIcon, getRomLibretroThumbnail } from '@/utils/library.ts'
 
 const validImages = new Set<string>([])
 const invalidImages = new Set<string>([])

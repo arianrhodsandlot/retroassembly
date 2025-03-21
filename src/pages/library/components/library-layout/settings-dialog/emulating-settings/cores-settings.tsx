@@ -5,7 +5,7 @@ import { type CoreName, coreOptionsMap } from '@/constants/core.ts'
 import { platformMap } from '@/constants/platform.ts'
 import { currentPlatformAtom } from '@/pages/atoms.ts'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
-import { getPlatformIcon } from '@/utils/rom.ts'
+import { getPlatformIcon } from '@/utils/library.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 import { CoreOptions } from './core-options.tsx'
 
@@ -52,7 +52,7 @@ export function CoresSettings() {
                     <img
                       alt={platformMap[platform].displayName}
                       className='size-5 object-contain object-center'
-                      src={getPlatformIcon(platformMap[platform].name, '')}
+                      src={getPlatformIcon(platformMap[platform].name)}
                     />
                     {platformMap[platform].displayName}
                   </div>

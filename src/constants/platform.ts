@@ -6,16 +6,19 @@ export type PlatformName =
   | 'atari5200'
   | 'atari7800'
   | 'atarilynx'
+  | 'famicom'
   | 'fds'
   | 'gamegear'
   | 'gb'
   | 'gba'
   | 'gbc'
+  | 'genesis'
   | 'megadrive'
   | 'nes'
   | 'ngp'
   | 'ngpc'
   | 'sega32x'
+  | 'sfc'
   | 'sg-1000'
   | 'sms'
   | 'snes'
@@ -85,6 +88,14 @@ export const platforms: Platform[] = [
     name: 'atarilynx',
   },
   {
+    cores: ['fceumm', 'nestopia', 'quicknes'],
+    displayName: 'Family Computer',
+    fileExtensions: ['nes', 'unif', 'unf', 'zip'].map((name) => `.${name}`),
+    launchboxName: 'Nintendo Entertainment System',
+    libretroName: 'Nintendo - Nintendo Entertainment System',
+    name: 'famicom',
+  },
+  {
     cores: ['fceumm', 'nestopia'],
     displayName: 'Famicom Disk System',
     fileExtensions: ['fds', 'zip'].map((name) => `.${name}`),
@@ -130,6 +141,14 @@ export const platforms: Platform[] = [
     fileExtensions: ['md', 'gen', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Sega Genesis',
     libretroName: 'Sega - Mega Drive - Genesis',
+    name: 'genesis',
+  },
+  {
+    cores: ['genesis_plus_gx', 'picodrive', 'gearsystem'],
+    displayName: 'Megadrive',
+    fileExtensions: ['md', 'gen', 'zip'].map((name) => `.${name}`),
+    launchboxName: 'Sega Genesis',
+    libretroName: 'Sega - Mega Drive - Genesis',
     name: 'megadrive',
   },
   {
@@ -163,6 +182,14 @@ export const platforms: Platform[] = [
     launchboxName: 'Sega 32X',
     libretroName: 'Sega - 32X',
     name: 'sega32x',
+  },
+  {
+    cores: ['snes9x', 'snes9x2002', 'snes9x2005', 'snes9x2010'],
+    displayName: 'Super Famicom',
+    fileExtensions: ['smc', 'sfc'].map((name) => `.${name}`),
+    launchboxName: 'Super Nintendo Entertainment System',
+    libretroName: 'Nintendo - Super Nintendo Entertainment System',
+    name: 'sfc',
   },
   {
     cores: ['gearsystem'],

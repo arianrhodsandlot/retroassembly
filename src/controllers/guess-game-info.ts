@@ -4,8 +4,8 @@ import { parse } from 'goodcodes-parser'
 import { getContextData } from 'waku/middleware/context'
 import { platformMap } from '../constants/platform.ts'
 import { launchboxGameAlternateNameTable, launchboxGameTable, libretroGameTable } from '../databases/metadata/schema.ts'
+import { getCompactName } from '../utils/library.ts'
 import { restoreTitleForSorting } from '../utils/misc.ts'
-import { getCompactName } from '../utils/rom.ts'
 
 async function guessLibretroGame(fileName: string, platform: string) {
   const { db } = getContextData()

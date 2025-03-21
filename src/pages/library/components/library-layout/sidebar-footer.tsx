@@ -13,6 +13,18 @@ export function SidebarFooter() {
   return (
     <>
       <div className='flex justify-center gap-2 border-t border-t-white/30 pt-4'>
+        <Button>
+          <span className='icon-[mdi--information]' />
+        </Button>
+
+        <Button
+          onClick={() => {
+            setSettingsDialogOpenAtom(true)
+          }}
+        >
+          <span className='icon-[mdi--cog]' />
+        </Button>
+
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
             <Button>
@@ -20,23 +32,12 @@ export function SidebarFooter() {
             </Button>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content variant='solid'>
-            <DropdownMenu.Item onClick={() => setSettingsDialogOpenAtom(true)}>
-              <span className='icon-[mdi--cog]' />
-              Settings
-            </DropdownMenu.Item>
-
-            <DropdownMenu.Separator />
-
             <DropdownMenu.Item color='red' onClick={() => toggleLogoutDialog(true)}>
               <span className='icon-[mdi--logout]' />
               Log out
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Root>
-
-        <Button>
-          <span className='icon-[mdi--information]' />
-        </Button>
       </div>
 
       <SettingsDialog onOpenChange={setSettingsDialogOpenAtom} open={settingsDialogOpen} />

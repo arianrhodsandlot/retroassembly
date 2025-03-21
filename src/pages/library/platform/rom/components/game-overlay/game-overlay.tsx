@@ -2,7 +2,7 @@
 import { useKeyboardEvent } from '@react-hookz/web'
 import { AnimatePresence, motion } from 'motion/react'
 import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
-import { getRomGoodcodes } from '@/utils/rom.ts'
+import { getRomGoodcodes } from '@/utils/library.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 import { useGameStates } from '../../hooks/use-game-states.ts'

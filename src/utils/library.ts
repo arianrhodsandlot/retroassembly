@@ -30,28 +30,46 @@ export function getRomLibretroThumbnail(rom, type: LibretroThumbnailType = 'boxa
   return getCDNUrl(repo, filePath)
 }
 
-export function getPlatformIcon(platform: string, type = 'content', directory = 'xmb/systematic/png') {
-  const platformFullName = platformMap[platform].libretroName
-  if (!platformFullName) {
-    return ''
-  }
-  const repo = 'libretro/retroarch-assets'
-  const fileName = type === 'content' ? `${platformFullName}-content.png` : `${platformFullName}.png`
-  const filePath = path.join(directory, fileName)
-  return getCDNUrl(repo, filePath)
+const esdeAlias = { sms: 'mastersystem', snes: 'snesna', vb: 'virtualboy' }
+
+export function getPlatformIcon(platform: string) {
+  return getCDNUrl('Weestuarty/lcars-es-de', `system/icons/${esdeAlias[platform] || platform}.png`)
 }
 
-export function getPlatformGameIcon(platform: string, type = 'game') {
+export function getPlatformGameIcon(platform: string) {
   const platformFullName = platformMap[platform].libretroName
   if (!platformFullName) {
     return ''
   }
-  // todo: move to constants
   const repo = 'batocera-linux/batocera-themes'
-  const platformAlias =
-    { arcade: 'fba', atarilynx: 'lynx', 'sg-1000': 'sg1000', sms: 'mastersystem', vb: 'virtualboy' }[platform] ||
+  const alias = { arcade: 'fba', atarilynx: 'lynx', 'sg-1000': 'sg1000', sms: 'mastersystem', vb: 'virtualboy' }[
     platform
-  return getCDNUrl(repo, `themes/batocera/${platformAlias}/_data/svg/${type}.svg`)
+  ]
+  return getCDNUrl(repo, `themes/batocera/${alias || platform}/_data/svg/game.svg`)
+}
+
+const platformBannerMap = {
+  arcade: { filePath: 'arcade/art/system.svg', repo: 'RetroPie/es-theme-carbon' },
+  atarilynx: { filePath: 'themes/batocera/lynx/_data/svg/logo.svg' },
+  megadrive: { filePath: 'genesis/art/system.svg', repo: 'RetroPie/es-theme-carbon' },
+  'sg-1000': { alias: 'sg1000' },
+  sms: { alias: 'mastersystem' },
+  vb: { alias: 'virtualboy' },
+}
+export function getPlatformBanner(platform: string) {
+  const alias = platformBannerMap[platform]?.alias
+  const repo = platformBannerMap[platform]?.repo || 'batocera-linux/batocera-themes'
+  const filePath = platformBannerMap[platform]?.filePath || `themes/batocera/${alias || platform}/_data/svg/logo.svg`
+  const url = getCDNUrl(repo, filePath)
+  return url
+}
+
+export function getPlatformDevicePhoto(platform: string) {
+  return getCDNUrl('Weestuarty/codywheel-es-de', `assets/systemimages/${esdeAlias[platform] || platform}.png`)
+}
+
+export function getPlatformDeviceBackground(platform: string) {
+  return getCDNUrl('Weestuarty/diamond-es-de', `assets/backgrounds/${esdeAlias[platform] || platform}.png`)
 }
 
 export function getRomGoodcodes(rom: Rom) {

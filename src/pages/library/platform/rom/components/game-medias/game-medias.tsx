@@ -1,6 +1,6 @@
 import ky from 'ky'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
-import { getRomLibretroThumbnail } from '@/utils/rom.ts'
+import { getRomLibretroThumbnail } from '@/utils/library.ts'
 import { YouTubeEmbed } from './youtube-embed.tsx'
 
 async function checkImage(url: string) {

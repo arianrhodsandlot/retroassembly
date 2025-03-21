@@ -2,7 +2,7 @@
 import { Skeleton } from '@radix-ui/themes'
 import clsx from 'clsx'
 import { Link } from 'waku'
-import { getRomGoodcodes } from '@/utils/rom.ts'
+import { getRomGoodcodes } from '@/utils/library.ts'
 import { useRomCover } from '../../hooks/use-rom-cover.ts'
 import { GameEntryContextMenu } from './game-entry-context-menu.tsx'
 import { GameTitle } from './game-title.tsx'

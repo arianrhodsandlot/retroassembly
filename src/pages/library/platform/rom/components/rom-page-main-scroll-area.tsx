@@ -1,7 +1,7 @@
 'use client'
 import type { ScrollAreaProps } from '@radix-ui/themes'
 import { AnimatePresence, motion } from 'motion/react'
-import { type UIEvent, useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { MainScrollArea } from '@/pages/library/components/main-scroll-area.tsx'
 import { useEmulator } from '../hooks/use-emulator.ts'
 
@@ -11,17 +11,8 @@ export function RomPageMainScrollArea({ children, ...props }: ScrollAreaProps) {
   const animateStyle = { height: '100%', left: 0, top: 0, width: '100%' }
   const ref = useRef<HTMLDivElement>(null)
 
-  useLayoutEffect(() => {
+  function syncInitialStyle() {
     const button = ref.current?.querySelector<HTMLButtonElement>('button')
-    if (button) {
-      const rect = button.getBoundingClientRect()
-      const newInitialStyle = { height: rect.height, left: rect.left, top: rect.top, width: rect.width }
-      setInitialStyle(newInitialStyle)
-    }
-  }, [])
-
-  function handlerScroll(event: UIEvent<HTMLDivElement>) {
-    const button = event.currentTarget.querySelector<HTMLButtonElement>('button')
     if (button) {
       const rect = button.getBoundingClientRect()
       const newInitialStyle = { height: rect.height, left: rect.left, top: rect.top, width: rect.width }
@@ -35,8 +26,11 @@ export function RomPageMainScrollArea({ children, ...props }: ScrollAreaProps) {
       canvas.style.opacity = '1'
     }
   }
+
+  useLayoutEffect(syncInitialStyle, [])
+
   return (
-    <MainScrollArea {...props} onScroll={handlerScroll} ref={ref}>
+    <MainScrollArea {...props} onScroll={syncInitialStyle} ref={ref}>
       {children}
 
       <AnimatePresence>

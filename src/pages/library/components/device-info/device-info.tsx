@@ -47,10 +47,10 @@ export async function DeviceInfo({ platform }: { platform: string }) {
         {platformInfo.notes ? <DeviceNotes key={platform} notes={platformInfo.notes} /> : null}
       </div>
 
-      <div className='w-lg shrink-0'>
+      <div className='w-lg shrink-0 pt-20'>
         <img
           alt={platformInfo.name}
-          className='motion-preset-oscillate motion-duration-2400 mx-auto aspect-square w-4/5 object-contain object-center drop-shadow-2xl [--motion-loop-translate-y:8px]'
+          className='motion-preset-oscillate motion-duration-2400 mx-auto aspect-video w-4/5 object-contain object-center drop-shadow-2xl [--motion-loop-translate-y:8px]'
           src={devicePhoto}
         />
       </div>

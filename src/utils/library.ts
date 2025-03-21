@@ -49,19 +49,14 @@ export function getPlatformGameIcon(platform: string) {
 }
 
 const platformBannerMap = {
-  arcade: { filePath: 'arcade/art/system.svg', repo: 'RetroPie/es-theme-carbon' },
-  atarilynx: { filePath: 'themes/batocera/lynx/_data/svg/logo.svg' },
-  megadrive: { filePath: 'genesis/art/system.svg', repo: 'RetroPie/es-theme-carbon' },
-  'sg-1000': { alias: 'sg1000' },
-  sms: { alias: 'mastersystem' },
-  vb: { alias: 'virtualboy' },
+  ngp: { filePath: 'ngp/art/system.svg', repo: 'RetroPie/es-theme-carbon' },
+  wonderswan: { filePath: 'wonderswan/art/system.svg', repo: 'RetroPie/es-theme-carbon' },
 }
 export function getPlatformBanner(platform: string) {
-  const alias = platformBannerMap[platform]?.alias
-  const repo = platformBannerMap[platform]?.repo || 'batocera-linux/batocera-themes'
-  const filePath = platformBannerMap[platform]?.filePath || `themes/batocera/${alias || platform}/_data/svg/logo.svg`
-  const url = getCDNUrl(repo, filePath)
-  return url
+  const repo = platformBannerMap[platform]?.repo || 'Weestuarty/lcars-es-de'
+  const filePath =
+    platformBannerMap[platform]?.filePath || `system/logos/system-logo-color/${esdeAlias[platform] || platform}.svg`
+  return getCDNUrl(repo, filePath)
 }
 
 export function getPlatformDevicePhoto(platform: string) {

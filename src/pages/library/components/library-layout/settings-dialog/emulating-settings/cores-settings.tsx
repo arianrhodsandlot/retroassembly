@@ -1,4 +1,5 @@
 import { Card, Select } from '@radix-ui/themes'
+import clsx from 'clsx'
 import { useAtom } from 'jotai'
 import { useState } from 'react'
 import { type CoreName, coreOptionsMap } from '@/constants/core.ts'
@@ -44,14 +45,27 @@ export function CoresSettings() {
             size='3'
             value={selectedPlatform}
           >
-            <Select.Trigger disabled={isLoading} variant='ghost' />
+            <Select.Trigger disabled={isLoading} variant='ghost'>
+              <div className='flex items-center gap-2'>
+                <img
+                  alt={platformMap[selectedPlatform].displayName}
+                  className={clsx('size-5 object-contain object-center', {
+                    invert: ['ngp', 'wonderswan'].includes(selectedPlatform),
+                  })}
+                  src={getPlatformIcon(platformMap[selectedPlatform].name)}
+                />
+                {platformMap[selectedPlatform].displayName}
+              </div>
+            </Select.Trigger>
             <Select.Content>
               {preference.ui.platforms.map((platform) => (
                 <Select.Item key={platformMap[platform].name} value={platformMap[platform].name}>
                   <div className='flex items-center gap-2'>
                     <img
                       alt={platformMap[platform].displayName}
-                      className='size-5 object-contain object-center'
+                      className={clsx('size-5 object-contain object-center', {
+                        invert: ['ngp', 'wonderswan'].includes(platform),
+                      })}
                       src={getPlatformIcon(platformMap[platform].name)}
                     />
                     {platformMap[platform].displayName}

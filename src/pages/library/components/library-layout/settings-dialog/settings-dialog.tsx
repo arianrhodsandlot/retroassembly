@@ -1,7 +1,7 @@
 import { Button, Dialog, ScrollArea, Tabs } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { clsx } from 'clsx'
-import { useState } from 'react'
+import { useState, useTransition } from 'react'
 import { EmulatingSettings } from './emulating-settings/emulating-settings.tsx'
 import { KeyboardInputs } from './keyboard-inputs.tsx'
 import { PlatformCheckboxGroup } from './platform-checkbox-group.tsx'
@@ -14,7 +14,9 @@ const settingsTabs = [
 
 export function SettingsDialog({ onOpenChange, ...props }: Dialog.RootProps) {
   const [tab, setTab] = useState(settingsTabs[0])
+  const [TabContent, setTabContent] = useState(() => settingsTabs[0].content)
   const [enableTabAnimation, toggleTabAnimation] = useToggle()
+  const [isPending, startTransition] = useTransition()
 
   function handleOpenChange(open) {
     toggleTabAnimation(open)
@@ -26,6 +28,9 @@ export function SettingsDialog({ onOpenChange, ...props }: Dialog.RootProps) {
     const clickedTab = settingsTabs.find((tab) => tabName === tab.name)
     if (clickedTab) {
       setTab(clickedTab)
+      startTransition(() => {
+        setTabContent(() => clickedTab.content)
+      })
     }
   }
 
@@ -53,16 +58,18 @@ export function SettingsDialog({ onOpenChange, ...props }: Dialog.RootProps) {
 
               <div className='h-[60vh]'>
                 <ScrollArea size='2'>
-                  <div className={clsx({ 'motion-preset-slide-up-sm': enableTabAnimation })} key={tab.name}>
-                    <tab.content />
-                  </div>
+                  {isPending ? null : (
+                    <div className={clsx({ 'motion-preset-slide-up-sm': enableTabAnimation })} key={tab.name}>
+                      <TabContent />
+                    </div>
+                  )}
                 </ScrollArea>
               </div>
             </div>
           </Tabs.Root>
         </div>
 
-        <div className='flex justify-between'>
+        <div className='mt-4 flex justify-between'>
           <div className='flex items-center gap-2 text-xs text-[var(--accent-9)]'>
             <span className='icon-[mdi--info]' />
             Your settings will be saved and take effect immediately once changed.

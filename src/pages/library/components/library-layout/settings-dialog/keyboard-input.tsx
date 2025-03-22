@@ -93,27 +93,16 @@ export function KeyboardInput({ button }: KeyboardInputProps) {
 
   const value = keyboardMapping[button.name]
 
-  function updateKeyMapping(key: string) {
-    const newKeyboardMapping = { ...keyboardMapping }
-    for (const buttonName in newKeyboardMapping) {
-      if (newKeyboardMapping[buttonName] === key) {
-        newKeyboardMapping[buttonName] = ''
-      }
-    }
-    newKeyboardMapping[button.name] = key
-    update({ emulator: { keyboardMapping: newKeyboardMapping } })
-  }
-
   function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
     event.preventDefault()
     const keyName = getKeyNameFromEvent(event)
     if (keyName) {
-      updateKeyMapping(keyName)
+      update({ emulator: { keyboardMapping: { [button.name]: keyName } } })
     }
   }
 
   function handleClickClear() {
-    updateKeyMapping('')
+    update({ emulator: { keyboardMapping: { [button.name]: null } } })
   }
 
   return (

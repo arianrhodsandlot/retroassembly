@@ -8,6 +8,7 @@ import { currentPlatformAtom } from '@/pages/atoms.ts'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
 import { SettingsTitle } from '../settings-title.tsx'
+import { UpdateButton } from '../update-button.tsx'
 import { CoreOptions } from './core-options.tsx'
 
 export function CoresSettings() {
@@ -101,6 +102,20 @@ export function CoresSettings() {
         </label>
 
         {coreOptions.length > 0 ? <CoreOptions core={core} coreOptions={coreOptions} /> : null}
+
+        <div className='flex justify-end'>
+          <UpdateButton
+            preference={{
+              emulator: {
+                core: { [core]: null },
+                platform: { [selectedPlatform]: { core: null } },
+              },
+            }}
+          >
+            <span className='icon-[mdi--undo]' />
+            Reset to defaults
+          </UpdateButton>
+        </div>
       </Card>
     </div>
   )

@@ -29,7 +29,6 @@ export async function updatePreference(preference: PreferenceSnippet) {
     if (preference.ui) {
       newPreference.ui = mergePreference(ui, preference.ui)
     }
-
     normalize(newPreference)
 
     newPreferenceResults = await db.library
@@ -48,7 +47,5 @@ export async function updatePreference(preference: PreferenceSnippet) {
       .returning(returning)
   }
 
-  const updatedPreference = structuredClone(defaultPreference)
-  mergePreference(updatedPreference, newPreferenceResults[0])
-  return updatedPreference
+  return mergePreference(defaultPreference, newPreferenceResults[0])
 }

@@ -15,7 +15,5 @@ export async function getPreference() {
   const preference = structuredClone(defaultPreference)
   const [userPreference] = results
 
-  mergePreference(preference, userPreference)
-
-  return preference
+  return mergePreference(preference, userPreference)
 }

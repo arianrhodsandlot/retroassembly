@@ -22,26 +22,57 @@ export async function DeviceInfo({ platform }: { platform: string }) {
         <div className='rounded bg-zinc-600/10 px-8 py-4'>
           <div className='flex gap-8 *:min-w-36'>
             <div>
-              <div className='flex items-center gap-2 font-semibold'>
+              <div className='flex h-6 items-center gap-2 font-semibold'>
                 <span className='icon-[mdi--calendar]' />
-                Released
+                <span className='text-xs'>Released</span>
               </div>
               <div className='mt-1 pl-6'>{platformInfo.releaseDate?.toLocaleDateString() || 'unknown'}</div>
             </div>
 
-            <div>
-              <div className='flex items-center gap-2 font-semibold'>
-                <span className='icon-[mdi--factory]' />
-                Manufacturer
+            {platformInfo.manufacturer === platformInfo.developer ? (
+              <div>
+                <div className='flex h-6 items-center gap-2 font-semibold'>
+                  <span className='icon-[mdi--factory]' />
+                  <span className='text-xs'>Developer & Manufacturer</span>
+                </div>
+                <div className='mt-1 pl-6'>
+                  <CompanyLogo
+                    className='h-5'
+                    company={platformInfo.manufacturer || ''}
+                    fallback={platformInfo.manufacturer || 'unknown'}
+                  />
+                </div>
               </div>
-              <div className='mt-1 pl-6'>
-                <CompanyLogo
-                  className='h-5'
-                  company={platformInfo.manufacturer || ''}
-                  fallback={platformInfo.developer || 'unknown'}
-                />
-              </div>
-            </div>
+            ) : (
+              <>
+                <div>
+                  <div className='flex h-6 items-center gap-2 font-semibold'>
+                    <span className='icon-[mdi--factory]' />
+                    <span className='text-xs'>Developer</span>
+                  </div>
+                  <div className='mt-1 pl-6'>
+                    <CompanyLogo
+                      className='h-5'
+                      company={platformInfo.developer || ''}
+                      fallback={platformInfo.developer || 'unknown'}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className='flex h-6 items-center gap-2 font-semibold'>
+                    <span className='icon-[mdi--factory]' />
+                    <span className='text-xs'>Manufacturer</span>
+                  </div>
+                  <div className='mt-1 pl-6'>
+                    <CompanyLogo
+                      className='h-5'
+                      company={platformInfo.manufacturer || ''}
+                      fallback={platformInfo.manufacturer || 'unknown'}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
         {platformInfo.notes ? <DeviceNotes key={platform} notes={platformInfo.notes} /> : null}

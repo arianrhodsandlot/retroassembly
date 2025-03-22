@@ -119,10 +119,11 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
                 size='3'
                 value={((uploadedFiles.success.length + uploadedFiles.failure.length) / files.length) * 100}
               />
-              <div className='mt-4 flex items-center justify-end gap-2 text-sm text-zinc-400'>
+              <div className='mt-4 flex items-center gap-2 text-sm text-zinc-400'>
                 <span className='icon-[svg-spinners--180-ring] text-zinc' />
-                Uploading {uploadedFiles.success.length + uploadedFiles.failure.length}/{files.length}
-                {uploadedFiles.failure.length > 0 ? <span>{uploadedFiles.failure.length} Failed</span> : null}
+                Uploading {uploadedFiles.success.length + uploadedFiles.failure.length}/{files.length},
+                {uploadedFiles.failure.length > 0 ? <span>{uploadedFiles.failure.length} Failed.</span> : null}
+                <span>Please do not turn off your device!</span>
               </div>
             </div>
           ),

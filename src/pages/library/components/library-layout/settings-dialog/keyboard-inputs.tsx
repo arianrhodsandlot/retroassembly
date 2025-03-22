@@ -1,6 +1,5 @@
 import { Card } from '@radix-ui/themes'
 import type { ReactNode } from 'react'
-import { defaultPreference } from '@/constants/preference.ts'
 import { KeyboardInput } from './keyboard-input.tsx'
 import { SettingsTitle } from './settings-title.tsx'
 import { UpdateButton } from './update-button.tsx'
@@ -36,8 +35,11 @@ const buttonGroups: ButtonGroup[] = [
   },
   {
     buttons: [
-      { iconNode: <div className='rounded rounded-r-2xl border-2 border-current px-1'>Start</div>, name: 'start' },
-      { iconNode: <div className='rounded border-2 border-current px-1'>Select</div>, name: 'select' },
+      {
+        iconNode: <div className='rounded rounded-r-2xl border-2 border-current px-1'>Start</div>,
+        name: 'input_player1_start',
+      },
+      { iconNode: <div className='rounded border-2 border-current px-1'>Select</div>, name: 'input_player1_select' },
     ],
     type: 'functions',
   },
@@ -107,13 +109,7 @@ export function KeyboardInputs() {
           ))}
 
           <div className='flex justify-end'>
-            <UpdateButton
-              preference={{
-                emulator: {
-                  keyboardMapping: defaultPreference.emulator.keyboardMapping,
-                },
-              }}
-            >
+            <UpdateButton preference={{ emulator: { keyboardMapping: null } }}>
               <span className='icon-[mdi--undo]' />
               Reset to defaults
             </UpdateButton>

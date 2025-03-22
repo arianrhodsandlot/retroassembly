@@ -1,7 +1,10 @@
 'use client'
 import { useKeyboardEvent } from '@react-hookz/web'
 import { AnimatePresence, motion } from 'motion/react'
+import { useEffect } from 'react'
+import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
+import { Gamepad } from '@/utils/gamepad.ts'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
@@ -13,6 +16,7 @@ export function GameOverlay({ rom }) {
   const { show, toggle } = useGameOverlay()
   const { emulator } = useEmulator()
   const { reloadStates } = useGameStates()
+  const gamepadMapping = useGamepadMapping()
 
   const goodcodes = getRomGoodcodes(rom)
   const { data: cover } = useRomCover(rom)
@@ -32,6 +36,19 @@ export function GameOverlay({ rom }) {
       }
     }
   })
+
+  useEffect(
+    () =>
+      Gamepad.onPress((event) => {
+        const { buttons } = event.gamepad
+        const expectedButtons = [gamepadMapping.input_player1_l1_btn, gamepadMapping.input_player1_r1_btn]
+        const areExpectedButtonPressed = expectedButtons.every((code) => buttons[code].pressed)
+        if (areExpectedButtonPressed) {
+          toggle()
+        }
+      }),
+    [gamepadMapping, toggle],
+  )
 
   return (
     <div className='pointer-events-none fixed inset-0 z-10 overflow-hidden'>

@@ -96,7 +96,7 @@ export function KeyboardInputs() {
   return (
     <div>
       <SettingsTitle>
-        <span className='icon-[mdi--keyboard]' /> Keyboard Inputs
+        <span className='icon-[mdi--keyboard]' /> Keyboard
       </SettingsTitle>
 
       <Card>

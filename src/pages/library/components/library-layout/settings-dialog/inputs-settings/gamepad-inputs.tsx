@@ -5,6 +5,7 @@ import { useGamepads } from '@/pages/library/hooks/use-gamepads.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 import { UpdateButton } from '../update-button.tsx'
 import { GamepadInput } from './gamepad-input.tsx'
+import { GamepadTitle } from './gamepad-title.tsx'
 
 interface ButtonGroup {
   buttons: {
@@ -101,14 +102,16 @@ export function GamepadInputs() {
   return (
     <div>
       <SettingsTitle>
-        <span className='icon-[mdi--gamepad]' /> Gamepad Inputs
+        <span className='icon-[mdi--gamepad]' /> Gamepad
       </SettingsTitle>
 
       <Card>
         {gamepad?.id ? (
           <SettingsTitle>
             <span className='icon-[mdi--google-gamepad]' />
-            {gamepad.id}
+            <div className='flex items-baseline gap-2'>
+              <GamepadTitle id={gamepad.id} />
+            </div>
           </SettingsTitle>
         ) : null}
 
@@ -132,7 +135,7 @@ export function GamepadInputs() {
         ) : (
           <div className='flex items-center justify-center gap-2 py-10 text-2xl opacity-50'>
             <span className='icon-[svg-spinners--180-ring]' />
-            Press any key on your gamepad to get started
+            Press any key on your gamepad
           </div>
         )}
       </Card>

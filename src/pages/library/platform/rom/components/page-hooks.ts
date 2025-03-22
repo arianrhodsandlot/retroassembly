@@ -3,6 +3,7 @@ import { useDebouncedCallback, useEventListener, useKeyboardEvent } from '@react
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'
 import { settingsDialogOpenAtom } from '@/pages/library/atoms.ts'
+import { Gamepad } from '@/utils/gamepad.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 import { useMouseIdle } from '../hooks/use-mouse-idle.ts'
 
@@ -11,26 +12,42 @@ const directionKeys = new Set(['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp'
 export function PageHooks(): undefined {
   const [settingsDialogOpen] = useAtom(settingsDialogOpenAtom)
   const { emulator, launch } = useEmulator()
-  const idle = useMouseIdle(5000)
+  const idle = useMouseIdle()
 
-  const shouldListenKeyboard = settingsDialogOpen === false && emulator?.getStatus() === 'initial'
+  const activeElement = globalThis.document?.activeElement
+  const isFocusingLaunchButton = activeElement === globalThis.document?.querySelector('main button')
+  const hasFocusing = activeElement && ['A', 'BUTTON'].includes(activeElement.tagName)
+  const emulatorStatus = emulator?.getStatus()
+
+  const canLaunch =
+    (isFocusingLaunchButton || !hasFocusing) && settingsDialogOpen === false && emulator?.getStatus() === 'initial'
 
   const updateEmulatorSizeLazy = useDebouncedCallback(
     () => {
       emulator?.resize({ height: innerHeight, width: innerWidth })
     },
     [emulator],
-    3000,
+    500,
   )
 
   useEffect(() => {
-    if (emulator && emulator.getStatus() !== 'initial') {
+    if (emulator && emulatorStatus !== 'initial') {
       emulator.getCanvas().style.cursor = idle ? 'none' : 'default'
     }
-  }, [idle, emulator])
+  }, [idle, emulator, emulatorStatus])
+
+  useEffect(
+    () =>
+      Gamepad.onPress(async () => {
+        if (canLaunch) {
+          await launch()
+        }
+      }),
+    [canLaunch, launch],
+  )
 
   useKeyboardEvent(true, async (event) => {
-    if (!shouldListenKeyboard) {
+    if (!canLaunch) {
       return
     }
     const isEscapeKey = event.key === 'Escape'

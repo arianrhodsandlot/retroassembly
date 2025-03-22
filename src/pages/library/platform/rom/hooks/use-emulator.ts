@@ -4,50 +4,65 @@ import { Nostalgist } from 'nostalgist'
 import { useMemo } from 'react'
 import useSWRImmutable from 'swr/immutable'
 import { coreUrlMap } from '@/constants/core.ts'
-import { useGamepads } from '@/pages/library/hooks/use-gamepads.ts'
+import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
 import { emulatorLaunchedAtom } from '../atoms.ts'
 
+type NostalgistOption = Parameters<typeof Nostalgist.prepare>[0]
+
 export function useEmulator() {
-  const { gamepad } = useGamepads()
   const rom = useRom()
   const { data: cover } = useRomCover(rom)
   const { preference } = usePreference()
+  const gamepadMapping = useGamepadMapping()
   const [launched, setLaunched] = useAtom(emulatorLaunchedAtom)
 
   const romUrl = rom ? `/api/v1/rom/${rom.id}/content` : ''
   const { core } = preference.emulator.platform[rom.platform] || {}
   const shader = preference.emulator.platform[rom.platform].shader || preference.emulator.shader
-  const options: Parameters<typeof Nostalgist.prepare>[0] = useMemo(
+
+  const retroarchConfig: NostalgistOption['retroarchConfig'] = useMemo(
+    () => ({
+      input_enable_hotkey_btn: 8, // select
+      input_hold_fast_forward_btn: 7, // R2
+      input_player1_analog_dpad_mode: 1,
+      input_player2_analog_dpad_mode: 1,
+      input_player3_analog_dpad_mode: 1,
+      input_player4_analog_dpad_mode: 1,
+      input_rewind_btn: 6, // L2
+      rewind_enable: true,
+      rewind_granularity: 2,
+      ...preference.emulator.keyboardMapping,
+      ...gamepadMapping,
+    }),
+    [preference.emulator.keyboardMapping, gamepadMapping],
+  )
+
+  const style: NostalgistOption['style'] = useMemo(
+    () => ({
+      backgroundImage: cover?.type === 'rom' ? Array.from({ length: 2 }).fill(`url('${cover.src}')`).join(',') : 'none',
+      backgroundPosition: ['left center', 'right center'].join(','),
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'contain',
+      opacity: '0',
+      transition: 'opacity .1s',
+    }),
+    [cover],
+  )
+
+  const options: NostalgistOption = useMemo(
     () => ({
       cache: true,
       core: coreUrlMap[core] || core,
-      retroarchConfig: {
-        input_player1_analog_dpad_mode: 1,
-        input_player2_analog_dpad_mode: 1,
-        input_player3_analog_dpad_mode: 1,
-        input_player4_analog_dpad_mode: 1,
-        rewind_enable: true,
-        rewind_granularity: 2,
-        ...preference.emulator.keyboardMapping,
-        ...(gamepad?.id ? preference.emulator.gamepadMappings[gamepad.id] : {}),
-      },
+      retroarchConfig,
       retroarchCoreConfig: preference.emulator.core[core],
       rom: { fileContent: romUrl, fileName: rom?.fileName },
       shader,
-      style: {
-        backgroundImage:
-          cover?.type === 'rom' ? Array.from({ length: 2 }).fill(`url('${cover.src}')`).join(',') : 'none',
-        backgroundPosition: ['left center', 'right center'].join(','),
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'contain',
-        opacity: '0',
-        transition: 'opacity .1s',
-      },
+      style,
     }),
-    [rom, core, gamepad?.id, preference.emulator, romUrl, shader, cover],
+    [rom, core, retroarchConfig, preference.emulator.core, romUrl, shader, style],
   )
 
   const shouldPrepare = Boolean(rom && cover)

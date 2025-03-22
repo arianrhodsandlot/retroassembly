@@ -1,6 +1,5 @@
 import { Button, TextField } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import { isNil } from 'es-toolkit'
 import type { ChangeEvent, KeyboardEvent, ReactNode } from 'react'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 
@@ -93,6 +92,7 @@ export function KeyboardInput({ button }: KeyboardInputProps) {
   const { keyboardMapping } = preference.emulator
 
   const value = keyboardMapping[button.name]
+  const clearable = Boolean(value)
 
   async function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
     event.preventDefault()
@@ -124,16 +124,16 @@ export function KeyboardInput({ button }: KeyboardInputProps) {
           disabled={isLoading}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          size='2'
+          size='1'
           value={value ?? ''}
         >
           <TextField.Slot />
           <TextField.Slot>
-            {isNil(value) ? null : (
+            {clearable ? (
               <Button className='!-translate-x-1' onClick={handleClickClear} size='1' variant='ghost'>
                 <span className='icon-[mdi--close]' />
               </Button>
-            )}
+            ) : null}
           </TextField.Slot>
         </TextField.Root>
         {button.text ? <span className='absolute ml-2 mt-0.5 text-xs opacity-50'>{button.text}</span> : null}

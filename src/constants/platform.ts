@@ -186,7 +186,7 @@ export const platforms: Platform[] = [
   {
     cores: ['snes9x', 'snes9x2002', 'snes9x2005', 'snes9x2010'],
     displayName: 'Super Famicom',
-    fileExtensions: ['smc', 'sfc'].map((name) => `.${name}`),
+    fileExtensions: ['smc', 'sfc', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Super Nintendo Entertainment System',
     libretroName: 'Nintendo - Super Nintendo Entertainment System',
     name: 'sfc',
@@ -210,7 +210,7 @@ export const platforms: Platform[] = [
   {
     cores: ['snes9x', 'snes9x2002', 'snes9x2005', 'snes9x2010'],
     displayName: 'Super NES',
-    fileExtensions: ['smc', 'sfc'].map((name) => `.${name}`),
+    fileExtensions: ['smc', 'sfc', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Super Nintendo Entertainment System',
     libretroName: 'Nintendo - Super Nintendo Entertainment System',
     name: 'snes',

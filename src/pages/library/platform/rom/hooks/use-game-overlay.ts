@@ -11,7 +11,7 @@ export function useGameOverlay() {
 
   const status = emulator?.getStatus()
 
-  function toggle() {
+  async function toggle() {
     if (isPending) {
       return
     }
@@ -19,7 +19,7 @@ export function useGameOverlay() {
     if (status === 'running') {
       emulator?.pause()
       setShow((show) => !show)
-      reloadStates()
+      await reloadStates()
     } else if (status === 'paused') {
       emulator?.resume()
       setShow((show) => !show)

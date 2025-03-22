@@ -27,7 +27,7 @@ export function PageHooks(): undefined {
       emulator?.resize({ height: innerHeight, width: innerWidth })
     },
     [emulator],
-    500,
+    100,
   )
 
   useEffect(() => {

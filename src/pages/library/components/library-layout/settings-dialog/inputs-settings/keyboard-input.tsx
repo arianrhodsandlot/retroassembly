@@ -120,11 +120,12 @@ export function KeyboardInput({ button }: KeyboardInputProps) {
       </div>
       <div>
         <TextField.Root
-          className='w-24'
-          disabled={isLoading}
+          className='w-28'
           onChange={handleChange}
+          onFocus={(event) => event.target.select()}
           onKeyDown={handleKeyDown}
-          size='1'
+          readOnly={isLoading}
+          size='2'
           value={value ?? ''}
         >
           <TextField.Slot />

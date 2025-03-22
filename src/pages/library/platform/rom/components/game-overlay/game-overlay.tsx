@@ -1,21 +1,18 @@
 'use client'
 import { useKeyboardEvent } from '@react-hookz/web'
+import { debounce } from 'es-toolkit'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect } from 'react'
 import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
 import { Gamepad } from '@/utils/gamepad.ts'
 import { getRomGoodcodes } from '@/utils/library.ts'
-import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
-import { useGameStates } from '../../hooks/use-game-states.ts'
 import { GameOverlayButtons } from './game-overlay-buttons.tsx'
 import { GameStates } from './game-states.tsx'
 
 export function GameOverlay({ rom }) {
   const { show, toggle } = useGameOverlay()
-  const { emulator } = useEmulator()
-  const { reloadStates } = useGameStates()
   const gamepadMapping = useGamepadMapping()
 
   const goodcodes = getRomGoodcodes(rom)
@@ -23,30 +20,23 @@ export function GameOverlay({ rom }) {
 
   useKeyboardEvent(true, (event) => {
     const isEscapeKey = event.key === 'Escape'
-    const status = emulator?.getStatus()
     if (isEscapeKey) {
-      if (status === 'running') {
-        emulator?.pause()
-        toggle()
-        reloadStates()
-      }
-      if (status === 'paused') {
-        emulator?.resume()
-        toggle()
-      }
+      toggle()
     }
   })
 
   useEffect(
     () =>
-      Gamepad.onPress((event) => {
-        const { buttons } = event.gamepad
-        const expectedButtons = [gamepadMapping.input_player1_l1_btn, gamepadMapping.input_player1_r1_btn]
-        const areExpectedButtonPressed = expectedButtons.every((code) => buttons[code].pressed)
-        if (areExpectedButtonPressed) {
-          toggle()
-        }
-      }),
+      Gamepad.onPress(
+        debounce((event) => {
+          const { buttons } = event.gamepad
+          const expectedButtons = [gamepadMapping.input_player1_l1_btn, gamepadMapping.input_player1_r1_btn]
+          const areExpectedButtonPressed = expectedButtons.every((code) => buttons[code].pressed)
+          if (areExpectedButtonPressed) {
+            toggle()
+          }
+        }, 100),
+      ),
     [gamepadMapping, toggle],
   )
 

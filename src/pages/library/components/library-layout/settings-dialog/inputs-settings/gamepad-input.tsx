@@ -25,8 +25,8 @@ export function GamepadInput({ button }: GamepadInputProps) {
   const gamepadMapping = useGamepadMapping()
 
   const value = gamepadMapping[button.name]
-  const readOnly = button.name.startsWith('$')
-  const clearable = !readOnly && Boolean(value)
+  const disabled = button.name.startsWith('$')
+  const clearable = !disabled && Boolean(value)
 
   async function handleClickClear() {
     if (gamepad?.id) {
@@ -68,14 +68,15 @@ export function GamepadInput({ button }: GamepadInputProps) {
       </div>
       <div>
         <TextField.Root
-          className='w-24'
-          disabled={isLoading}
-          onBeforeInput={(e) => e.preventDefault()}
-          onChange={(e) => e.preventDefault()}
-          onKeyDown={(e) => e.preventDefault()}
-          readOnly={readOnly}
+          className='w-28'
+          disabled={disabled}
+          onBeforeInput={(event) => event.preventDefault()}
+          onChange={(event) => event.preventDefault()}
+          onFocus={(event) => event.target.select()}
+          onKeyDown={(event) => event.preventDefault()}
+          readOnly={isLoading}
           ref={textField}
-          size='1'
+          size='2'
           value={value ?? ''}
         >
           <TextField.Slot />

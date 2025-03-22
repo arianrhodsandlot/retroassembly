@@ -1,7 +1,6 @@
 import { Card } from '@radix-ui/themes'
 import type { ReactNode } from 'react'
 import type { Preference } from '@/constants/preference.ts'
-import { SettingsTitle } from '../settings-title.tsx'
 import { UpdateButton } from '../update-button.tsx'
 import { KeyboardInput } from './keyboard-input.tsx'
 
@@ -94,29 +93,23 @@ const buttonGroups: ButtonGroup[] = [
 
 export function KeyboardInputs() {
   return (
-    <div>
-      <SettingsTitle>
-        <span className='icon-[mdi--keyboard]' /> Keyboard
-      </SettingsTitle>
-
-      <Card>
-        <div className='flex flex-col gap-4 p-4'>
-          {buttonGroups.map(({ buttons, type }) => (
-            <div className='flex gap-4' key={type}>
-              {buttons.map((button) => (
-                <KeyboardInput button={button} key={button.name} />
-              ))}
-            </div>
-          ))}
-
-          <div className='flex justify-end'>
-            <UpdateButton preference={{ emulator: { keyboardMapping: null } }}>
-              <span className='icon-[mdi--undo]' />
-              Reset to defaults
-            </UpdateButton>
+    <Card>
+      <div className='flex flex-col gap-4 p-4'>
+        {buttonGroups.map(({ buttons, type }) => (
+          <div className='flex gap-4' key={type}>
+            {buttons.map((button) => (
+              <KeyboardInput button={button} key={button.name} />
+            ))}
           </div>
+        ))}
+
+        <div className='flex justify-end'>
+          <UpdateButton preference={{ emulator: { keyboardMapping: null } }}>
+            <span className='icon-[mdi--undo]' />
+            Reset to defaults
+          </UpdateButton>
         </div>
-      </Card>
-    </div>
+      </div>
+    </Card>
   )
 }

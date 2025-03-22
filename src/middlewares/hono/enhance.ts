@@ -18,6 +18,7 @@ export const enhance = function enhance(createApp: (app: Hono) => Hono) {
       fetch: (req: Request) => {
         return devHandler(req, app)
       },
+      hostname: '0.0.0.0',
     }
   }
 } as Enhancer

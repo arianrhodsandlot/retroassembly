@@ -100,45 +100,39 @@ const buttonGroups: ButtonGroup[] = [
 export function GamepadInputs() {
   const { connected, gamepad } = useGamepads()
   return (
-    <div>
-      <SettingsTitle>
-        <span className='icon-[mdi--gamepad]' /> Gamepad
-      </SettingsTitle>
-
-      <Card>
-        {gamepad?.id ? (
-          <SettingsTitle>
-            <span className='icon-[mdi--google-gamepad]' />
-            <div className='flex items-baseline gap-2'>
-              <GamepadTitle id={gamepad.id} />
-            </div>
-          </SettingsTitle>
-        ) : null}
-
-        {connected ? (
-          <div className='flex flex-col gap-4 p-4'>
-            {buttonGroups.map(({ buttons, type }) => (
-              <div className='flex gap-4' key={type}>
-                {buttons.map((button) => (
-                  <GamepadInput button={button} key={button.name} />
-                ))}
-              </div>
-            ))}
-
-            <div className='flex justify-end'>
-              <UpdateButton preference={{ emulator: { gamepadMappings: null } }}>
-                <span className='icon-[mdi--undo]' />
-                Reset to defaults
-              </UpdateButton>
-            </div>
+    <Card>
+      {gamepad?.id ? (
+        <SettingsTitle>
+          <span className='icon-[mdi--google-gamepad]' />
+          <div className='flex items-baseline gap-2'>
+            <GamepadTitle id={gamepad.id} />
           </div>
-        ) : (
-          <div className='flex items-center justify-center gap-2 py-10 text-2xl opacity-50'>
-            <span className='icon-[svg-spinners--180-ring]' />
-            Press any key on your gamepad
+        </SettingsTitle>
+      ) : null}
+
+      {connected ? (
+        <div className='flex flex-col gap-4 p-4'>
+          {buttonGroups.map(({ buttons, type }) => (
+            <div className='flex gap-4' key={type}>
+              {buttons.map((button) => (
+                <GamepadInput button={button} key={button.name} />
+              ))}
+            </div>
+          ))}
+
+          <div className='flex justify-end'>
+            <UpdateButton preference={{ emulator: { gamepadMappings: null } }}>
+              <span className='icon-[mdi--undo]' />
+              Reset to defaults
+            </UpdateButton>
           </div>
-        )}
-      </Card>
-    </div>
+        </div>
+      ) : (
+        <div className='flex items-center justify-center gap-2 py-10 text-2xl opacity-50'>
+          <span className='icon-[svg-spinners--180-ring]' />
+          Press any key on your gamepad
+        </div>
+      )}
+    </Card>
   )
 }

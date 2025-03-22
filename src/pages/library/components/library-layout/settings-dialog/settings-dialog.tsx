@@ -59,7 +59,7 @@ export function SettingsDialog({ onOpenChange, ...props }: Dialog.RootProps) {
               <div className='h-[60vh]'>
                 <ScrollArea size='2'>
                   {isPending ? null : (
-                    <div className={clsx({ 'motion-preset-slide-up-sm': enableTabAnimation })} key={tab.name}>
+                    <div className={clsx('p-4', { 'motion-preset-slide-up-sm': enableTabAnimation })} key={tab.name}>
                       <TabContent />
                     </div>
                   )}

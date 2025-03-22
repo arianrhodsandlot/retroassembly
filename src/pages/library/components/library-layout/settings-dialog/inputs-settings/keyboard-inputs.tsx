@@ -1,14 +1,15 @@
 import { Card } from '@radix-ui/themes'
 import type { ReactNode } from 'react'
+import type { Preference } from '@/constants/preference.ts'
+import { SettingsTitle } from '../settings-title.tsx'
+import { UpdateButton } from '../update-button.tsx'
 import { KeyboardInput } from './keyboard-input.tsx'
-import { SettingsTitle } from './settings-title.tsx'
-import { UpdateButton } from './update-button.tsx'
 
 interface ButtonGroup {
   buttons: {
     iconClass?: string
     iconNode?: ReactNode
-    name: string
+    name: keyof Preference['emulator']['keyboardMapping']
     text?: string
   }[]
   type: string
@@ -35,11 +36,11 @@ const buttonGroups: ButtonGroup[] = [
   },
   {
     buttons: [
+      { iconNode: <div className='rounded border-2 border-current px-1'>Select</div>, name: 'input_player1_select' },
       {
         iconNode: <div className='rounded rounded-r-2xl border-2 border-current px-1'>Start</div>,
         name: 'input_player1_start',
       },
-      { iconNode: <div className='rounded border-2 border-current px-1'>Select</div>, name: 'input_player1_select' },
     ],
     type: 'functions',
   },

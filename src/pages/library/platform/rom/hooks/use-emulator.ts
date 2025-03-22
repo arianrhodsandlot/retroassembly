@@ -4,12 +4,14 @@ import { Nostalgist } from 'nostalgist'
 import { useMemo } from 'react'
 import useSWRImmutable from 'swr/immutable'
 import { coreUrlMap } from '@/constants/core.ts'
+import { useGamepads } from '@/pages/library/hooks/use-gamepads.ts'
 import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
 import { emulatorLaunchedAtom } from '../atoms.ts'
 
 export function useEmulator() {
+  const { gamepad } = useGamepads()
   const rom = useRom()
   const { data: cover } = useRomCover(rom)
   const { preference } = usePreference()
@@ -23,9 +25,14 @@ export function useEmulator() {
       cache: true,
       core: coreUrlMap[core] || core,
       retroarchConfig: {
+        input_player1_analog_dpad_mode: 1,
+        input_player2_analog_dpad_mode: 1,
+        input_player3_analog_dpad_mode: 1,
+        input_player4_analog_dpad_mode: 1,
         rewind_enable: true,
         rewind_granularity: 2,
         ...preference.emulator.keyboardMapping,
+        ...(gamepad?.id ? preference.emulator.gamepadMappings[gamepad.id] : {}),
       },
       retroarchCoreConfig: preference.emulator.core[core],
       rom: { fileContent: romUrl, fileName: rom?.fileName },
@@ -40,7 +47,7 @@ export function useEmulator() {
         transition: 'opacity .1s',
       },
     }),
-    [rom, core, preference.emulator.core, preference.emulator.keyboardMapping, romUrl, shader, cover],
+    [rom, core, gamepad?.id, preference.emulator, romUrl, shader, cover],
   )
 
   const shouldPrepare = Boolean(rom && cover)

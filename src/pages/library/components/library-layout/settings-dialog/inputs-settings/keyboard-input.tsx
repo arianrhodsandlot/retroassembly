@@ -1,5 +1,6 @@
 import { Button, TextField } from '@radix-ui/themes'
 import { clsx } from 'clsx'
+import { isNil } from 'es-toolkit'
 import type { ChangeEvent, KeyboardEvent, ReactNode } from 'react'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 
@@ -93,16 +94,23 @@ export function KeyboardInput({ button }: KeyboardInputProps) {
 
   const value = keyboardMapping[button.name]
 
-  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+  async function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
     event.preventDefault()
     const keyName = getKeyNameFromEvent(event)
     if (keyName) {
-      update({ emulator: { keyboardMapping: { [button.name]: keyName } } })
+      const newMapping = { ...keyboardMapping, [button.name]: keyName }
+      const conflicts = Object.entries(keyboardMapping).filter(
+        ([key, value]) => value === keyName && key !== button.name,
+      )
+      for (const [conflict] of conflicts) {
+        newMapping[conflict] = null
+      }
+      await update({ emulator: { keyboardMapping: newMapping } })
     }
   }
 
-  function handleClickClear() {
-    update({ emulator: { keyboardMapping: { [button.name]: null } } })
+  async function handleClickClear() {
+    await update({ emulator: { keyboardMapping: { ...keyboardMapping, [button.name]: null } } })
   }
 
   return (
@@ -117,15 +125,15 @@ export function KeyboardInput({ button }: KeyboardInputProps) {
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           size='2'
-          value={value}
+          value={value ?? ''}
         >
           <TextField.Slot />
           <TextField.Slot>
-            {value ? (
+            {isNil(value) ? null : (
               <Button className='!-translate-x-1' onClick={handleClickClear} size='1' variant='ghost'>
                 <span className='icon-[mdi--close]' />
               </Button>
-            ) : null}
+            )}
           </TextField.Slot>
         </TextField.Root>
         {button.text ? <span className='absolute ml-2 mt-0.5 text-xs opacity-50'>{button.text}</span> : null}

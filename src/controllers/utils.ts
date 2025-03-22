@@ -38,6 +38,7 @@ export async function getRomsMetadata<T extends InferSelectModel<typeof romTable
 
   return results
 }
+
 export function mergePreference(target: any, source: any) {
   const result = { ...target }
 

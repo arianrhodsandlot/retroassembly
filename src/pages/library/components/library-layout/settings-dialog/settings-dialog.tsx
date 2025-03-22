@@ -3,12 +3,12 @@ import { useToggle } from '@react-hookz/web'
 import { clsx } from 'clsx'
 import { useState, useTransition } from 'react'
 import { EmulatingSettings } from './emulating-settings/emulating-settings.tsx'
-import { KeyboardInputs } from './keyboard-inputs.tsx'
-import { PlatformCheckboxGroup } from './platform-checkbox-group.tsx'
+import { InputsSettings } from './inputs-settings/inputs-setting.tsx'
+import { LibrarySettings } from './library-settings/library-settings.tsx'
 
 const settingsTabs = [
-  { content: PlatformCheckboxGroup, iconClass: 'icon-[mdi--bookshelf]', name: 'library' },
-  { content: KeyboardInputs, iconClass: 'icon-[mdi--controller]', name: 'inputs' },
+  { content: LibrarySettings, iconClass: 'icon-[mdi--bookshelf]', name: 'library' },
+  { content: InputsSettings, iconClass: 'icon-[mdi--controller]', name: 'inputs' },
   { content: EmulatingSettings, iconClass: 'icon-[simple-icons--retroarch]', name: 'Emulating' },
 ]
 

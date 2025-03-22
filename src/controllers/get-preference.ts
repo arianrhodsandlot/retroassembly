@@ -1,8 +1,7 @@
 import { and, eq } from 'drizzle-orm'
 import { getContextData } from 'waku/middleware/context'
-import { defaultPreference } from '../constants/preference.ts'
+import { resolveUserPreference } from '../constants/preference.ts'
 import { userPreferenceTable } from '../databases/library/schema.ts'
-import { mergePreference } from './utils.ts'
 
 export async function getPreference() {
   const { currentUser, db } = getContextData()
@@ -12,8 +11,7 @@ export async function getPreference() {
     .from(userPreferenceTable)
     .where(and(eq(userPreferenceTable.userId, currentUser.id), eq(userPreferenceTable.status, 1)))
 
-  const preference = structuredClone(defaultPreference)
   const [userPreference] = results
 
-  return mergePreference(preference, userPreference)
+  return resolveUserPreference(userPreference)
 }

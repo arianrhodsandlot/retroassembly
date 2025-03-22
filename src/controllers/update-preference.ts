@@ -1,11 +1,12 @@
 import { eq, type InferInsertModel } from 'drizzle-orm'
 import { getContextData } from 'waku/middleware/context'
 import { platforms } from '@/constants/platform.ts'
-import { defaultPreference, type PreferenceSnippet } from '@/constants/preference.ts'
+import { type PreferenceSnippet, resolveUserPreference } from '@/constants/preference.ts'
 import { userPreferenceTable } from '@/databases/library/schema.ts'
 import { mergePreference } from './utils.ts'
 
-function normalize(preference) {
+function normalize(preference: any) {
+  // sort platforms and remove invalid platforms
   if (preference.ui?.platforms) {
     preference.ui.platforms = platforms.map(({ name }) => name).filter((name) => preference.ui.platforms.includes(name))
   }
@@ -47,5 +48,5 @@ export async function updatePreference(preference: PreferenceSnippet) {
       .returning(returning)
   }
 
-  return mergePreference(defaultPreference, newPreferenceResults[0])
+  return resolveUserPreference(newPreferenceResults[0])
 }

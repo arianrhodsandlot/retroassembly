@@ -1,11 +1,11 @@
 import { Card, CheckboxCards } from '@radix-ui/themes'
 import { platforms } from '@/constants/platform.ts'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
+import { SettingsTitle } from '../settings-title.tsx'
+import { UpdateButton } from '../update-button.tsx'
 import { PlatformCheckboxItem } from './platform-checkbox-item.tsx'
-import { SettingsTitle } from './settings-title.tsx'
-import { UpdateButton } from './update-button.tsx'
 
-export function PlatformCheckboxGroup() {
+export function PlatformSettings() {
   const { preference } = usePreference()
 
   return (

@@ -1,4 +1,5 @@
 import type { PartialDeep } from 'type-fest'
+import { mergePreference } from '../controllers/utils.ts'
 import type { CoreName } from './core'
 import type { PlatformName } from './platform'
 
@@ -8,6 +9,30 @@ export type PlatformSortOrder = 'ascending' | 'descending'
 export interface Preference {
   emulator: {
     core: Partial<Record<CoreName, Record<string, string>>>
+    gamepadMappings: Record<
+      string,
+      {
+        $fast_forward: string
+        $pause: string
+        $rewind: string
+        input_player1_a_btn: string
+        input_player1_b_btn: string
+        input_player1_down_btn: string
+        input_player1_l1_btn: string
+        input_player1_l2_btn: string
+        input_player1_l3_btn: string
+        input_player1_left_btn: string
+        input_player1_r1_btn: string
+        input_player1_r2_btn: string
+        input_player1_r3_btn: string
+        input_player1_right_btn: string
+        input_player1_select_btn: string
+        input_player1_start_btn: string
+        input_player1_up_btn: string
+        input_player1_x_btn: string
+        input_player1_y_btn: string
+      }
+    >
     keyboardMapping: {
       $pause: string
       input_hold_fast_forward: string
@@ -53,6 +78,7 @@ export const defaultPreference: Preference = {
         mgba_skip_bios: 'ON',
       },
     },
+    gamepadMappings: {},
     keyboardMapping: {
       $pause: 'esc',
       input_hold_fast_forward: 'space',
@@ -108,4 +134,27 @@ export const defaultPreference: Preference = {
     platforms: ['arcade', 'atari2600', 'gb', 'gba', 'gbc', 'genesis', 'nes', 'snes'],
     theme: 'rose',
   },
+}
+
+export function resolveUserPreference(userPreference: PreferenceSnippet) {
+  const fallbackPreference = structuredClone(defaultPreference)
+
+  const userKeyboardMapping = userPreference.emulator?.keyboardMapping
+
+  // remove conflicting keys from default preference according to user preference
+  // const fallbackKeyboardMapping = fallbackPreference.emulator.keyboardMapping
+  // const userKeys = Object.values(userKeyboardMapping)
+  // for (const key in fallbackKeyboardMapping) {
+  //   const value = fallbackKeyboardMapping[key]
+  //   if (userKeys.includes(value)) {
+  //     delete fallbackKeyboardMapping[key]
+  //   }
+  // }
+
+  if (userKeyboardMapping && 'keyboardMapping' in fallbackPreference.emulator) {
+    // @ts-expect-error force delete this field
+    fallbackPreference.emulator.keyboardMapping = undefined
+  }
+
+  return mergePreference(fallbackPreference, userPreference)
 }

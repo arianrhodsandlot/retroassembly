@@ -1,9 +1,11 @@
 import { HydrationBoundary } from 'jotai-ssr'
+import { platformMap } from '@/constants/platform.ts'
 import { getRom } from '@/controllers/get-rom.ts'
 import { Portal, Theme } from '@/pages/components/radix-themes.ts'
 import { getRomGoodcodes } from '@/utils/library.ts'
-import { romAtom } from '../../atoms.ts'
+import { platformAtom, romAtom } from '../../atoms.ts'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
+import { PageBreadcrumb } from '../../components/page-breadcrumb.tsx'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
 import { GameMedias } from './components/game-medias/game-medias.tsx'
@@ -24,8 +26,15 @@ export async function RomPage({ fileName, id, platform }) {
 
   return (
     <LibraryLayout currentPlatform={rom.platform} title={goodcodes.rom}>
-      <HydrationBoundary hydrateAtoms={[[romAtom, rom]]} options={{ enableReHydrate: true }}>
+      <HydrationBoundary
+        hydrateAtoms={[
+          [platformAtom, platformMap[rom.platform]],
+          [romAtom, rom],
+        ]}
+        options={{ enableReHydrate: true }}
+      >
         <RomPageMainScrollArea className='z-1 relative flex flex-1' size='2'>
+          <PageBreadcrumb />
           <main className='flex min-h-full w-full gap-4 p-4'>
             <div>
               <GameCover rom={rom} />
@@ -33,13 +42,10 @@ export async function RomPage({ fileName, id, platform }) {
 
             <div className='flex flex-1 flex-col gap-8'>
               <h1 className='px-8 pt-4 text-3xl font-bold'>{goodcodes.rom}</h1>
-
               <GameInfo gameInfo={launchboxGame} rom={rom} />
-
               <div className='px-4'>
                 <LaunchButton />
               </div>
-
               <div className='flex flex-col gap-4 pl-4 pr-64'>
                 <GameMedias rom={rom} video={launchboxGame?.videoUrl} />
 

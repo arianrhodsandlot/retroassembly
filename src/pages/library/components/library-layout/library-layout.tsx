@@ -6,6 +6,7 @@ import { currentPlatformAtom, preferenceAtom } from '@/pages/atoms.ts'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
+import { StatusBar } from './status-bar.tsx'
 
 const siteTitle = 'RetroAssembly'
 function getPostfixedTitle(title: string) {
@@ -23,6 +24,8 @@ export default function LibraryLayout({ children, currentPlatform, title }: AppL
 
   return (
     <Provider>
+      <title>{getPostfixedTitle(title)}</title>
+
       <HydrationBoundary
         hydrateAtoms={[
           [preferenceAtom, preference],
@@ -31,8 +34,7 @@ export default function LibraryLayout({ children, currentPlatform, title }: AppL
         options={{ enableReHydrate: true }}
       >
         <div className='flex h-screen bg-[var(--accent-9)]'>
-          <title>{getPostfixedTitle(title)}</title>
-          <aside className='ml-4 flex w-64 shrink-0 flex-col py-4 text-white'>
+          <aside className='ml-4 flex w-64 shrink-0 flex-col pt-4 text-white'>
             <div className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold'>
               <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
               RetroAssembly
@@ -43,10 +45,11 @@ export default function LibraryLayout({ children, currentPlatform, title }: AppL
             <SidebarFooter />
           </aside>
 
-          <div className='m-4 flex min-w-0 flex-1'>
+          <div className='flex min-w-0 flex-1 flex-col gap-4 p-4'>
             <div className='relative flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
               {children}
             </div>
+            <StatusBar />
           </div>
         </div>
       </HydrationBoundary>

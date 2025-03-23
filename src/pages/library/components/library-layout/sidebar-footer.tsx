@@ -12,7 +12,7 @@ export function SidebarFooter() {
 
   return (
     <>
-      <div className='flex justify-center gap-2 border-t border-t-white/30 pt-4'>
+      <div className='flex justify-center gap-2 border-t border-t-white/30 py-2'>
         <Button>
           <span className='icon-[mdi--information]' />
         </Button>

@@ -1,8 +1,5 @@
 import { Provider } from 'jotai'
-import { HydrationBoundary } from 'jotai-ssr'
 import type { ReactNode } from 'react'
-import { getContextData } from 'waku/middleware/context'
-import { currentPlatformAtom, preferenceAtom } from '@/pages/atoms.ts'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
@@ -15,44 +12,32 @@ function getPostfixedTitle(title: string) {
 
 interface AppLayoutProps {
   children: ReactNode
-  currentPlatform?: string
   title: string
 }
 
-export default function LibraryLayout({ children, currentPlatform, title }: AppLayoutProps) {
-  const { preference } = getContextData()
-
+export default function LibraryLayout({ children, title }: AppLayoutProps) {
   return (
     <Provider>
       <title>{getPostfixedTitle(title)}</title>
-
-      <HydrationBoundary
-        hydrateAtoms={[
-          [preferenceAtom, preference],
-          [currentPlatformAtom, currentPlatform],
-        ]}
-        options={{ enableReHydrate: true }}
-      >
-        <div className='flex h-screen bg-[var(--accent-9)]'>
-          <aside className='ml-4 flex w-64 shrink-0 flex-col pt-4 text-white'>
-            <div className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold'>
-              <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
-              RetroAssembly
-            </div>
-            <ScrollArea className='flex-1' size='2'>
-              <SidebarLinks currentPlatform={currentPlatform} />
-            </ScrollArea>
-            <SidebarFooter />
-          </aside>
-
-          <div className='flex min-w-0 flex-1 flex-col gap-4 p-4'>
-            <div className='relative flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
-              {children}
-            </div>
-            <StatusBar />
+      <div className='flex h-screen bg-[var(--accent-9)]'>
+        <aside className='ml-4 flex w-64 shrink-0 flex-col pt-4 text-white'>
+          <div className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold'>
+            <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
+            RetroAssembly
           </div>
+          <ScrollArea className='flex-1' size='2'>
+            <SidebarLinks />
+          </ScrollArea>
+          <SidebarFooter />
+        </aside>
+
+        <div className='flex min-w-0 flex-1 flex-col gap-4 p-4'>
+          <div className='relative flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
+            {children}
+          </div>
+          <StatusBar />
         </div>
-      </HydrationBoundary>
+      </div>
     </Provider>
   )
 }

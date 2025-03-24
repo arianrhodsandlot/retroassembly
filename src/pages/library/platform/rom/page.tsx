@@ -5,15 +5,17 @@ import { Portal, Theme } from '@/pages/components/radix-themes.ts'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { platformAtom, romAtom } from '../../atoms.ts'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
+import { MainScrollArea } from '../../components/main-scroll-area.tsx'
 import { PageBreadcrumb } from '../../components/page-breadcrumb.tsx'
+import { getHydrateAtoms } from '../../utils/hydrate-atoms.ts'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
 import { GameMedias } from './components/game-medias/game-medias.tsx'
 import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
 import { LaunchButton } from './components/launch-button.tsx'
 import { PageHooks } from './components/page-hooks.ts'
+import { RomAtomGuard } from './components/rom-atom-guard.ts'
 import { RomBackground } from './components/rom-background.tsx'
-import { RomPageMainScrollArea } from './components/rom-page-main-scroll-area.tsx'
 
 export async function RomPage({ fileName, id, platform }) {
   const rom = await getRom({ fileName: decodeURIComponent(fileName), id, platform: decodeURIComponent(platform) })
@@ -24,16 +26,17 @@ export async function RomPage({ fileName, id, platform }) {
   const goodcodes = getRomGoodcodes(rom)
   const { launchboxGame } = rom
 
+  const hydrateAtoms = getHydrateAtoms({
+    override: [
+      [platformAtom, platformMap[rom.platform]],
+      [romAtom, rom],
+    ],
+  })
+
   return (
-    <LibraryLayout currentPlatform={rom.platform} title={goodcodes.rom}>
-      <HydrationBoundary
-        hydrateAtoms={[
-          [platformAtom, platformMap[rom.platform]],
-          [romAtom, rom],
-        ]}
-        options={{ enableReHydrate: true }}
-      >
-        <RomPageMainScrollArea className='z-1 relative flex flex-1' size='2'>
+    <HydrationBoundary hydrateAtoms={hydrateAtoms} options={{ enableReHydrate: true }}>
+      <LibraryLayout title={goodcodes.rom}>
+        <MainScrollArea className='z-1 relative flex flex-1' size='2'>
           <PageBreadcrumb />
           <main className='flex min-h-full w-full gap-4 p-4'>
             <div>
@@ -44,7 +47,9 @@ export async function RomPage({ fileName, id, platform }) {
               <h1 className='px-8 pt-4 text-3xl font-bold'>{goodcodes.rom}</h1>
               <GameInfo gameInfo={launchboxGame} rom={rom} />
               <div className='px-4'>
-                <LaunchButton />
+                <RomAtomGuard>
+                  <LaunchButton />
+                </RomAtomGuard>
               </div>
               <div className='flex flex-col gap-4 pl-4 pr-64'>
                 <GameMedias rom={rom} video={launchboxGame?.videoUrl} />
@@ -70,15 +75,17 @@ export async function RomPage({ fileName, id, platform }) {
               </div>
             </div>
           </main>
-        </RomPageMainScrollArea>
+        </MainScrollArea>
         <RomBackground rom={rom} />
         <Portal>
           <Theme accentColor='red'>
             <GameOverlay rom={rom} />
           </Theme>
         </Portal>
-        <PageHooks />
-      </HydrationBoundary>
-    </LibraryLayout>
+        <RomAtomGuard>
+          <PageHooks />
+        </RomAtomGuard>
+      </LibraryLayout>
+    </HydrationBoundary>
   )
 }

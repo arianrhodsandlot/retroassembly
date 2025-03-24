@@ -1,7 +1,8 @@
 'use client'
-import { Button } from '@radix-ui/themes'
+import { Button, Portal } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useEmulator } from '../hooks/use-emulator.ts'
+import { GameAnimatePresence } from './game-animate-presence.tsx'
 
 export function LaunchButton() {
   const { isPreparing, launch } = useEmulator()
@@ -22,6 +23,10 @@ export function LaunchButton() {
           </span>
         </div>
       </Button>
+
+      <Portal>
+        <GameAnimatePresence />
+      </Portal>
     </button>
   )
 }

@@ -41,23 +41,30 @@ export function StatusBar() {
                 keyboardMapping.input_player1_left,
                 keyboardMapping.input_player1_right,
               ]
+                .filter(Boolean)
                 .map((key) => capitalize(key))
                 .join(' ')}
             </Kbd>
             Navigation
           </span>
-          <span className='flex items-center gap-2'>
-            <Kbd className='!text-[var(--accent-9)]' size='1'>
-              {uniq(['Enter', capitalize(keyboardMapping.input_player1_a)]).join(' / ')}
-            </Kbd>
-            Confirm
-          </span>
-          <span className='flex items-center gap-2'>
-            <Kbd className='!text-[var(--accent-9)]' size='1'>
-              {uniq(['Esc', capitalize(keyboardMapping.input_player1_b)]).join(' / ')}
-            </Kbd>
-            Cancel
-          </span>
+
+          {keyboardMapping.input_player1_a ? (
+            <span className='flex items-center gap-2'>
+              <Kbd className='!text-[var(--accent-9)]' size='1'>
+                {uniq(['Enter', capitalize(keyboardMapping.input_player1_a)]).join(' / ')}
+              </Kbd>
+              Confirm
+            </span>
+          ) : null}
+
+          {keyboardMapping.input_player1_b ? (
+            <span className='flex items-center gap-2'>
+              <Kbd className='!text-[var(--accent-9)]' size='1'>
+                {uniq(['Esc', capitalize(keyboardMapping.input_player1_b)]).join(' / ')}
+              </Kbd>
+              Cancel
+            </span>
+          ) : null}
         </>
       )}
     </div>

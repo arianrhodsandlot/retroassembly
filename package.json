@@ -58,14 +58,14 @@
     "swr": "2.3.3",
     "tailwind-merge": "3.0.2",
     "tailwindcss-motion": "1.1.0",
-    "type-fest": "4.37.0",
+    "type-fest": "4.38.0",
     "waku": "0.21.23",
     "zod": "3.24.2"
   },
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.18.5",
     "@eslint/config-inspector": "1.0.2",
-    "@iconify/json": "2.2.319",
+    "@iconify/json": "2.2.320",
     "@iconify/tailwind4": "1.0.6",
     "@tailwindcss/vite": "4.0.15",
     "@tsconfig/vite-react": "3.4.0",

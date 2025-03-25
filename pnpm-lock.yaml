@@ -50,6 +50,9 @@ importers:
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
+      delegated-events:
+        specifier: 1.1.2
+        version: 1.1.2
       drizzle-orm:
         specifier: 0.41.0
         version: 0.41.0(@prisma/client@6.4.1(prisma@6.4.1(typescript@5.8.2))(typescript@5.8.2))(better-sqlite3@11.9.1)(gel@2.0.1)(prisma@6.4.1(typescript@5.8.2))
@@ -74,6 +77,9 @@ importers:
       jotai-ssr:
         specifier: 0.2.0
         version: 0.2.0(jotai@2.12.2(@types/react@19.0.12)(react@19.0.0))(react@19.0.0)
+      js-spatial-navigation:
+        specifier: github:mirego/js-spatial-navigation#1ea7009
+        version: spatial-navigation-js@https://codeload.github.com/mirego/js-spatial-navigation/tar.gz/1ea7009
       ky:
         specifier: 1.7.5
         version: 1.7.5
@@ -4272,6 +4278,9 @@ packages:
   '@swc/types@0.1.19':
     resolution: {integrity: sha512-WkAZaAfj44kh/UFdAQcrMP1I0nwRqpt27u+08LMBYMqmQfwwMofYoMh/48NGkMMRfC4ynpfwRbJuu8ErfNloeA==}
 
+  '@swc/types@0.1.20':
+    resolution: {integrity: sha512-/rlIpxwKrhz4BIplXf6nsEHtqlhzuNN34/k3kMAXH4/lvVoA3cdq+60aqVNnyvw2uITEaCi0WV3pxBe4dQqoXQ==}
+
   '@tailwindcss/node@4.0.15':
     resolution: {integrity: sha512-IODaJjNmiasfZX3IoS+4Em3iu0fD2HS0/tgrnkYfW4hyUor01Smnr5eY3jc4rRgaTDrJlDmBTHbFO0ETTDaxWA==}
 
@@ -5366,6 +5375,9 @@ packages:
   delayed-stream@1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
+
+  delegated-events@1.1.2:
+    resolution: {integrity: sha512-PjEw4Z5mrvXimyf60HGqMJ3BMcqqWZpBqSDGnEMBdkAtF4P7ltoa6N+UJXhbMMUxPLYFtykCmRs6Ra8I8pwzPQ==}
 
   dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
@@ -8086,6 +8098,9 @@ packages:
   secure-json-parse@2.7.0:
     resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
 
+  selector-set@1.1.5:
+    resolution: {integrity: sha512-6SQw6yMew5iOZ8/cDHDEnJWRM4ot2mxP6szZyF5ptrBogw4AcS4EXRj/8BUfgAMwVfdL84qpModlBMOl2NVrsQ==}
+
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
@@ -8213,6 +8228,10 @@ packages:
   sourcemap-codec@1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
     deprecated: Please use @jridgewell/sourcemap-codec instead
+
+  spatial-navigation-js@https://codeload.github.com/mirego/js-spatial-navigation/tar.gz/1ea7009:
+    resolution: {tarball: https://codeload.github.com/mirego/js-spatial-navigation/tar.gz/1ea7009}
+    version: 1.1.2
 
   spdx-correct@3.2.0:
     resolution: {integrity: sha512-kN9dJbvnySHULIluDHy32WHRUu3Og7B9sbY7tsFLctQkIqnMh3hErYgdMjTYuqmcXX+lK5T1lnUt3G7zNswmZA==}
@@ -12459,7 +12478,7 @@ snapshots:
   '@swc/core@1.11.8(@swc/helpers@0.5.15)':
     dependencies:
       '@swc/counter': 0.1.3
-      '@swc/types': 0.1.19
+      '@swc/types': 0.1.20
     optionalDependencies:
       '@swc/core-darwin-arm64': 1.11.8
       '@swc/core-darwin-x64': 1.11.8
@@ -12485,6 +12504,10 @@ snapshots:
       '@swc/counter': 0.1.3
 
   '@swc/types@0.1.19':
+    dependencies:
+      '@swc/counter': 0.1.3
+
+  '@swc/types@0.1.20':
     dependencies:
       '@swc/counter': 0.1.3
 
@@ -13590,6 +13613,10 @@ snapshots:
   delay@6.0.0: {}
 
   delayed-stream@1.0.0: {}
+
+  delegated-events@1.1.2:
+    dependencies:
+      selector-set: 1.1.5
 
   dequal@2.0.3: {}
 
@@ -16820,6 +16847,8 @@ snapshots:
 
   secure-json-parse@2.7.0: {}
 
+  selector-set@1.1.5: {}
+
   semver@6.3.1: {}
 
   semver@7.7.1: {}
@@ -16977,6 +17006,8 @@ snapshots:
       whatwg-url: 7.1.0
 
   sourcemap-codec@1.4.8: {}
+
+  spatial-navigation-js@https://codeload.github.com/mirego/js-spatial-navigation/tar.gz/1ea7009: {}
 
   spdx-correct@3.2.0:
     dependencies:

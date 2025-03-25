@@ -26,6 +26,11 @@ button[disabled] {
   cursor: default;
 }
 
+button:focus,
+a:focus {
+  outline: none;
+}
+
 .radix-themes {
   --cursor-button: pointer;
   --cursor-checkbox: pointer;

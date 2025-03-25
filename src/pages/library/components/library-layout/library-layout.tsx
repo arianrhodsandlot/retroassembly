@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
+import { SpatialNavigation } from './spatial-navigation.tsx'
 import { StatusBar } from './status-bar.tsx'
 
 const siteTitle = 'RetroAssembly'
@@ -38,6 +39,7 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
           <StatusBar />
         </div>
       </div>
+      <SpatialNavigation />
     </Provider>
   )
 }

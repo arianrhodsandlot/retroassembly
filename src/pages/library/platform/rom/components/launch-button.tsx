@@ -8,7 +8,12 @@ export function LaunchButton() {
   const { isPreparing, launch } = useEmulator()
 
   return (
-    <button className={clsx({ 'opacity-50': isPreparing })} disabled={isPreparing} onClick={launch} type='button'>
+    <button
+      className={clsx('launch-button', { 'opacity-50': isPreparing })}
+      disabled={isPreparing}
+      onClick={launch}
+      type='button'
+    >
       <Button asChild className='!h-16' radius='small' size='4' type='button'>
         <div>
           <span

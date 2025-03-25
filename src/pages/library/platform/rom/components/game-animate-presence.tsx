@@ -10,7 +10,7 @@ export function GameAnimatePresence() {
   const ref = useRef<HTMLDivElement>(null)
 
   function syncInitialStyle() {
-    const button = ref.current?.querySelector<HTMLButtonElement>('button')
+    const button = ref.current?.querySelector<HTMLButtonElement>('.launch-button')
     if (button) {
       const rect = button.getBoundingClientRect()
       const newInitialStyle = { height: rect.height, left: rect.left, top: rect.top, width: rect.width }

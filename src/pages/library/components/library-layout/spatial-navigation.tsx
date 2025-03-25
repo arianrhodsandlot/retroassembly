@@ -1,12 +1,13 @@
 'use client'
-import { Portal } from '@radix-ui/themes'
+import { Portal, Theme } from '@radix-ui/themes'
 import { useEventListener, useResizeObserver } from '@react-hookz/web'
-import { motion } from 'motion/react'
 import { type CSSProperties, type ReactNode, useCallback, useEffect, useLayoutEffect, useState } from 'react'
+import scrollIntoView from 'smooth-scroll-into-view-if-needed'
 import useSWRImmutable from 'swr/immutable'
 import { Gamepad } from '@/utils/gamepad.ts'
 import { useGamepadMapping } from '../../hooks/use-gamepad-mapping.ts'
 import { usePreference } from '../../hooks/use-preference.ts'
+import { useMouseIdle } from '../../platform/rom/hooks/use-mouse-idle.ts'
 import { getKeyNameFromCode } from '../../utils/keyboard.ts'
 
 export function SpatialNavigation({ children }: { children?: ReactNode }) {
@@ -16,6 +17,7 @@ export function SpatialNavigation({ children }: { children?: ReactNode }) {
   const gamepadMapping = useGamepadMapping()
   const [activeElement, setActiveElement] = useState<Element | null>(null)
   const [focusIndicatorStyle, setFocusIndicatorStyle] = useState<CSSProperties>({})
+  const isIdle = useMouseIdle()
 
   useEffect(() => {
     if (!navi) {
@@ -45,7 +47,11 @@ export function SpatialNavigation({ children }: { children?: ReactNode }) {
       const keyName = getKeyNameFromCode(event.code)
       const direction = keyboardDirectionMap[keyName]
       if (direction) {
+        event.preventDefault()
         navi?.move(direction)
+        if (document.activeElement) {
+          scrollIntoView(document.activeElement, { behavior: 'instant', scrollMode: 'if-needed' })
+        }
       }
     }
 
@@ -67,6 +73,9 @@ export function SpatialNavigation({ children }: { children?: ReactNode }) {
       const direction = gamepadDirectionMap[button]
       if (direction) {
         navi?.move(direction)
+        if (document.activeElement) {
+          scrollIntoView(document.activeElement, { behavior: 'smooth', scrollMode: 'always' })
+        }
       }
     })
   }, [navi, gamepadMapping])
@@ -82,6 +91,9 @@ export function SpatialNavigation({ children }: { children?: ReactNode }) {
     const filters = [':not(:disabled)', ':not([disabled])', ':not(.disabled)']
     const selector = selectors.flatMap((selector) => filters.map((filter) => `${selector}${filter}`)).join(',')
     function handleMouseOver(event: Event) {
+      if (isIdle) {
+        return
+      }
       const target = event.currentTarget
       if (!(target instanceof HTMLAnchorElement) && !(target instanceof HTMLButtonElement)) {
         return
@@ -90,16 +102,14 @@ export function SpatialNavigation({ children }: { children?: ReactNode }) {
         return
       }
 
-      target.focus({
-        preventScroll: true,
-      })
+      target.focus({ preventScroll: true })
     }
     on(eventName, selector, handleMouseOver)
 
     return () => {
       off(eventName, selector, handleMouseOver)
     }
-  }, [delegatedEvents])
+  }, [delegatedEvents, isIdle])
 
   useEffect(() => {
     function handleActiveElementChange() {
@@ -117,7 +127,13 @@ export function SpatialNavigation({ children }: { children?: ReactNode }) {
     function syncFocusIndicatorStyle() {
       if (activeElement) {
         const { height, left, top, width } = activeElement.getBoundingClientRect()
-        const focusIndicatorStyle = { height: height + 20, left: left - 10, top: top - 10, width: width + 20 }
+        const focusIndicatorStyle = {
+          backgroundColor: activeElement?.dataset?.highlightColor ?? 'var(--accent-a5)',
+          height: height + 10,
+          left: left - 5,
+          top: top - 5,
+          width: width + 10,
+        }
         setFocusIndicatorStyle(focusIndicatorStyle)
       } else {
         setFocusIndicatorStyle({})
@@ -136,13 +152,14 @@ export function SpatialNavigation({ children }: { children?: ReactNode }) {
 
   return (
     <Portal>
-      <motion.div
-        className='z-9999 pointer-events-none fixed rounded bg-rose-700 opacity-10'
-        layout
-        style={focusIndicatorStyle}
-      >
-        {children}
-      </motion.div>
+      <Theme accentColor='red'>
+        <div
+          className='z-9999 pointer-events-none fixed rounded transition-all duration-300'
+          style={focusIndicatorStyle}
+        >
+          {children}
+        </div>
+      </Theme>
     </Portal>
   )
 }

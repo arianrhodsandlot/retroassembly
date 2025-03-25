@@ -30,7 +30,7 @@
     "@radix-ui/themes": "3.2.1",
     "@react-hookz/web": "25.1.0",
     "@supabase/ssr": "0.6.1",
-    "@supabase/supabase-js": "2.49.1",
+    "@supabase/supabase-js": "2.49.3",
     "@tailwindcss/typography": "0.5.16",
     "browser-fs-access": "0.35.0",
     "canvas-confetti": "1.9.3",

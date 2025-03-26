@@ -1,19 +1,31 @@
 'use client'
 import { Button } from '@radix-ui/themes'
 import { useResizeObserver, useToggle } from '@react-hookz/web'
-import clsx from 'clsx'
-import { useRef } from 'react'
+import { clsx } from 'clsx'
+import { useLayoutEffect, useRef } from 'react'
+import { useFocusIndicator } from '../../hooks/use-focus-indicator.ts'
 
 export function DeviceNotes({ notes }: { notes: string }) {
-  const ref = useRef<HTMLDivElement>()
+  const ref = useRef<HTMLDivElement>(null)
   const [expandable, toggleExpandable] = useToggle(true)
   const [expanded, toggleExpanded] = useToggle()
+  const { syncStyle } = useFocusIndicator()
+
+  const showExpandButton = expandable && !expanded
+  const showButton = showExpandButton || expanded
+
+  useLayoutEffect(() => {
+    if (typeof expanded === 'boolean') {
+      syncStyle({ transition: false })
+    }
+  }, [expanded, syncStyle])
+
   useResizeObserver(ref, (entry) => {
     if (!expanded) {
       toggleExpandable(entry.target.scrollHeight > entry.target.clientHeight)
     }
   })
-  const showExpandButton = expandable && !expanded
+
   return (
     <div>
       <div
@@ -25,17 +37,17 @@ export function DeviceNotes({ notes }: { notes: string }) {
       >
         {notes}
       </div>
+
       <div className='relative mt-1 flex justify-end px-6'>
         <div className='absolute -mt-1.5'>
-          {showExpandButton ? (
+          {showButton ? (
             <Button onClick={() => toggleExpanded()} size='1' type='button' variant='ghost'>
-              <span className='motion-duration-1000 icon-[mdi--menu-down] motion-preset-blink size-5' />
-            </Button>
-          ) : null}
-
-          {expanded ? (
-            <Button onClick={() => toggleExpanded()} size='1' type='button' variant='ghost'>
-              <span className='icon-[mdi--menu-up] size-5' />
+              <span
+                className={clsx('size-5', {
+                  'icon-[mdi--menu-up]': expanded,
+                  'motion-duration-1000 icon-[mdi--menu-down] motion-preset-blink': showExpandButton,
+                })}
+              />
             </Button>
           ) : null}
         </div>

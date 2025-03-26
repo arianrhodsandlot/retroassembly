@@ -1,0 +1,15 @@
+diff --git a/selector-set.js b/selector-set.js
+index 9ae2e97d5fdad0726fe241864555605961000ac7..d74fdf04052d8cafb45a270e3dc65fced27c83c4 100644
+--- a/selector-set.js
++++ b/selector-set.js
+@@ -35,8 +35,9 @@
+     this.activeIndexes = [];
+   }
+ 
++  var window = globalThis
+   // Detect prefixed Element#matches function.
+-  var docElem = window.document.documentElement;
++  var docElem = window.document?.documentElement || {};
+   var matches =
+     docElem.matches ||
+     docElem.webkitMatchesSelector ||

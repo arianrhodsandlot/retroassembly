@@ -1,17 +1,27 @@
 'use client'
 import { Button, Portal } from '@radix-ui/themes'
 import { clsx } from 'clsx'
+import { useEffect, useRef } from 'react'
+import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 import { GameAnimatePresence } from './game-animate-presence.tsx'
 
 export function LaunchButton() {
   const { isPreparing, launch } = useEmulator()
+  const ref = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (!isPreparing) {
+      focus(ref.current)
+    }
+  }, [isPreparing])
 
   return (
     <button
       className={clsx('launch-button', { 'opacity-50': isPreparing })}
       disabled={isPreparing}
       onClick={launch}
+      ref={ref}
       type='button'
     >
       <Button asChild className='!h-16' radius='small' size='4' type='button'>

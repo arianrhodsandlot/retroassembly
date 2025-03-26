@@ -1,0 +1,26 @@
+diff --git a/spatial_navigation.js b/spatial_navigation.js
+index 70882b7ef7b566562da5ffa6bf2f44f7b122c3b8..0b9df6612fe65ed4a78c96ec4a689fee2fd8ec19 100644
+--- a/spatial_navigation.js
++++ b/spatial_navigation.js
+@@ -70,6 +70,7 @@
+   /************/
+   /* Polyfill */
+   /************/
++  if (globalThis.Element)
+   var elementMatchesSelector =
+     Element.prototype.matches ||
+     Element.prototype.matchesSelector ||
+@@ -1211,7 +1212,6 @@
+     }
+   };
+ 
+-  window.SpatialNavigation = SpatialNavigation;
+   
+   /**********************/
+   /* CommonJS Interface */
+@@ -1263,4 +1263,4 @@
+       return this;
+     };
+   }
+-})(window.jQuery);
++})();

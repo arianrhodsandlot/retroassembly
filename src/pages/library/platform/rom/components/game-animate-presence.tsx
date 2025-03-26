@@ -1,16 +1,15 @@
 'use client'
 import { AnimatePresence, motion } from 'motion/react'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { useEmulator } from '../hooks/use-emulator.ts'
 
 export function GameAnimatePresence() {
   const { emulator, launched } = useEmulator()
   const [initialStyle, setInitialStyle] = useState<any>()
   const animateStyle = { height: '100%', left: 0, top: 0, width: '100%' }
-  const ref = useRef<HTMLDivElement>(null)
 
   function syncInitialStyle() {
-    const button = ref.current?.querySelector<HTMLButtonElement>('.launch-button')
+    const button = document.body?.querySelector<HTMLButtonElement>('.launch-button')
     if (button) {
       const rect = button.getBoundingClientRect()
       const newInitialStyle = { height: rect.height, left: rect.left, top: rect.top, width: rect.width }

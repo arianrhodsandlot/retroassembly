@@ -2,7 +2,7 @@ import { useToggle } from '@react-hookz/web'
 import { delay } from 'es-toolkit'
 import { useEffect, useRef } from 'react'
 
-export function useMouseIdle(idleTime = 2000) {
+export function useMouseIdle(idleTime = 1000) {
   const [isIdle, setIsIdle] = useToggle()
   const abortController = useRef<AbortController>(undefined)
 
@@ -19,10 +19,10 @@ export function useMouseIdle(idleTime = 2000) {
 
     resetTimer()
 
-    globalThis.addEventListener('mousemove', resetTimer)
+    document.body.addEventListener('mousemove', resetTimer)
 
     return () => {
-      globalThis.removeEventListener('mousemove', resetTimer)
+      document.body.removeEventListener('mousemove', resetTimer)
       abortController.current?.abort()
     }
   }, [idleTime, setIsIdle])

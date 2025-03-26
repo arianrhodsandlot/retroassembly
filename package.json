@@ -45,9 +45,8 @@
     "hono": "4.7.5",
     "jotai": "2.12.2",
     "jotai-ssr": "0.2.0",
-    "js-spatial-navigation": "github:mirego/js-spatial-navigation#1ea7009",
     "ky": "1.7.5",
-    "motion": "12.5.0",
+    "motion": "12.6.0",
     "nanoid-dictionary": "4.3.0",
     "nostalgist": "0.14.0",
     "opendal": "0.47.11",
@@ -57,11 +56,12 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "smooth-scroll-into-view-if-needed": "2.0.2",
+    "spatial-navigation-ts": "1.0.8",
     "swr": "2.3.3",
     "tailwind-merge": "3.0.2",
     "tailwindcss-motion": "1.1.0",
     "type-fest": "4.38.0",
-    "waku": "0.21.23",
+    "waku": "0.21.24",
     "zod": "3.24.2"
   },
   "devDependencies": {
@@ -107,6 +107,10 @@
       "simple-git-hooks",
       "supabase",
       "workerd"
-    ]
+    ],
+    "patchedDependencies": {
+      "selector-set": "patches/selector-set.patch",
+      "spatial-navigation-ts": "patches/spatial-navigation-ts.patch"
+    }
   }
 }

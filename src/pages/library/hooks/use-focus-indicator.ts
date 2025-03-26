@@ -10,7 +10,12 @@ export function useFocusIndicator() {
       const { activeElement } = document
       if (activeElement instanceof HTMLElement && activeElement !== document.body) {
         const { height, left, top, width } = activeElement.getBoundingClientRect()
-        const focusIndicatorStyle: CSSProperties = {
+        const focusIndicatorStyle: CSSProperties = {}
+        if (transition) {
+          focusIndicatorStyle.transitionProperty = 'all'
+          focusIndicatorStyle.transitionDuration = '0.2s'
+        }
+        Object.assign(focusIndicatorStyle, {
           backgroundColor: 'var(--accent-a5)',
           height: height + 10,
           left: left - 5,
@@ -20,12 +25,7 @@ export function useFocusIndicator() {
             pickBy(activeElement.dataset, (_value, key) => `${key}`.startsWith('focus')),
             (_value, key) => camelCase(`${key}`.slice(5)),
           ),
-        }
-
-        if (transition) {
-          focusIndicatorStyle.transitionProperty = 'all'
-          focusIndicatorStyle.transitionDuration = '0.2s'
-        }
+        })
         setFocusIndicatorStyle(focusIndicatorStyle)
       } else {
         setFocusIndicatorStyle({})

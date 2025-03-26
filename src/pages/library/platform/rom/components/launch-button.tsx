@@ -11,8 +11,10 @@ export function LaunchButton() {
   const ref = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    if (!isPreparing) {
+    if (!isPreparing && ref.current) {
+      ref.current.dataset.focusTransitionProperty = 'none'
       focus(ref.current)
+      delete ref.current.dataset.focusTransitionProperty
     }
   }, [isPreparing])
 

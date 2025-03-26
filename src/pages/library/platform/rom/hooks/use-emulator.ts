@@ -1,14 +1,14 @@
-import { useAtom } from 'jotai'
 import ky from 'ky'
 import { Nostalgist } from 'nostalgist'
 import { useMemo } from 'react'
 import useSWRImmutable from 'swr/immutable'
 import { coreUrlMap } from '@/constants/core.ts'
+import { useEmulatorLaunched } from '@/pages/library/atoms.ts'
 import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
+import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
-import { emulatorLaunchedAtom } from '../atoms.ts'
 
 type NostalgistOption = Parameters<typeof Nostalgist.prepare>[0]
 
@@ -17,7 +17,7 @@ export function useEmulator() {
   const { data: cover } = useRomCover(rom)
   const { preference } = usePreference()
   const gamepadMapping = useGamepadMapping()
-  const [launched, setLaunched] = useAtom(emulatorLaunchedAtom)
+  const [launched, setLaunched] = useEmulatorLaunched()
 
   const romUrl = rom ? `/api/v1/rom/${rom.id}/content` : ''
   const { core } = preference.emulator.platform[rom.platform] || {}
@@ -77,8 +77,19 @@ export function useEmulator() {
   const isPreparing = !shouldPrepare || isLoading
 
   async function launch() {
-    await emulator?.start()
+    if (!emulator) {
+      return
+    }
+
+    await emulator.start()
+
+    const canvas = emulator.getCanvas()
+    canvas.setAttribute('tabindex', '-1')
+    canvas.dataset.focusDisplay = 'none'
+    focus(canvas)
+
     setLaunched(true)
+
     const formData = new FormData()
     formData.append('core', core)
     formData.append('rom', rom.id)
@@ -87,10 +98,11 @@ export function useEmulator() {
     })
   }
 
-  function exit() {
+  async function exit() {
     emulator?.exit()
     setLaunched(false)
-    prepare()
+    focus('.launch-button')
+    await prepare()
   }
 
   if (error) {

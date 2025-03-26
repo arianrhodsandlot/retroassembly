@@ -1,8 +1,10 @@
 import { useEventListener } from '@react-hookz/web'
 import { off, on } from 'delegated-events'
-import { useEffect } from 'react'
+import { delay } from 'es-toolkit'
+import { useCallback, useEffect } from 'react'
 import { useRouter_UNSTABLE } from 'waku'
 import { Gamepad } from '@/utils/gamepad.ts'
+import { useEmulatorLaunched, useShowGameOverlay } from '../atoms.ts'
 import { useMouseIdle } from '../platform/rom/hooks/use-mouse-idle.ts'
 import { getKeyNameFromCode } from '../utils/keyboard.ts'
 import { cancel, click, focus, init, move, resetFocus } from '../utils/spatial-navigation.ts'
@@ -10,17 +12,32 @@ import { useFocusIndicator } from './use-focus-indicator.ts'
 import { useInputMapping } from './use-input-mapping.ts'
 
 export function useSpatialNavigation() {
+  const router = useRouter_UNSTABLE()
   const inputMapping = useInputMapping()
   const { syncStyle } = useFocusIndicator()
   const isIdle = useMouseIdle(100)
-  const router = useRouter_UNSTABLE()
+  const [emulatorLaunched] = useEmulatorLaunched()
+  const [showGameOverlay] = useShowGameOverlay()
+
+  const moveAsNeeded = useCallback(
+    function moveAsNeeded(...args: Parameters<typeof move>) {
+      if (emulatorLaunched && !showGameOverlay) {
+        return
+      }
+      move(...args)
+    },
+    [showGameOverlay, emulatorLaunched],
+  )
 
   useEffect(init, [])
 
   // focus after route navigation incase previously focused element is unmounted
   useEffect(() => {
     if (router.path) {
-      resetFocus()
+      ;(async () => {
+        await delay(0)
+        resetFocus({ force: true })
+      })()
     }
   }, [router.path])
 
@@ -43,8 +60,8 @@ export function useSpatialNavigation() {
       const direction = keyboardDirectionMap[keyName]
       if (direction) {
         event.preventDefault()
-        move(direction)
-      } else if (keyName === inputMapping.keyboard.input_player1_a) {
+        moveAsNeeded(direction)
+      } else if (keyName === inputMapping.keyboard.input_player1_a || keyName === 'enter' || keyName === 'space') {
         event.preventDefault()
         click(document.activeElement)
       } else if (keyName === inputMapping.keyboard.input_player1_b) {
@@ -55,7 +72,7 @@ export function useSpatialNavigation() {
 
     document.addEventListener('keydown', handleKeydown)
     return () => document.removeEventListener('keydown', handleKeydown)
-  }, [inputMapping.keyboard])
+  }, [inputMapping.keyboard, moveAsNeeded])
 
   // gamepad navigation
   useEffect(() => {
@@ -69,14 +86,14 @@ export function useSpatialNavigation() {
     return Gamepad.onPress(({ button }) => {
       const direction = gamepadDirectionMap[button]
       if (direction) {
-        move(gamepadDirectionMap[button])
+        moveAsNeeded(gamepadDirectionMap[button])
       } else if (`${button}` === inputMapping.gamepad.input_player1_a_btn) {
         click(document.activeElement)
       } else if (`${button}` === inputMapping.gamepad.input_player1_b_btn) {
         cancel()
       }
     })
-  }, [inputMapping.gamepad])
+  }, [inputMapping.gamepad, moveAsNeeded])
 
   // focus when an element got hovered
   useEffect(() => {

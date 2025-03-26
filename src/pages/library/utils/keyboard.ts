@@ -27,6 +27,7 @@ const knownKeyMap = {
   End: 'end',
   Enter: 'enter',
   Equal: 'equals',
+  Escape: 'escape',
   Home: 'home',
   Insert: 'insert',
   Minus: 'minus',

@@ -5,11 +5,20 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useEffect } from 'react'
 import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
+import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { Gamepad } from '@/utils/gamepad.ts'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 import { GameOverlayButtons } from './game-overlay-buttons.tsx'
 import { GameStates } from './game-states.tsx'
+
+function handleAnimationComplete(animation) {
+  if (animation.opacity === 1) {
+    focus('.game-overlay button')
+  } else {
+    focus('canvas')
+  }
+}
 
 export function GameOverlay({ rom }) {
   const { show, toggle } = useGameOverlay()
@@ -46,9 +55,10 @@ export function GameOverlay({ rom }) {
         {show ? (
           <motion.div
             animate={{ opacity: 1, scale: 1 }}
-            className='bg-linear-to-b pointer-events-auto absolute inset-0 z-10 flex h-screen w-screen flex-col bg-black/70 text-white'
+            className='game-overlay bg-linear-to-b pointer-events-auto absolute inset-0 z-10 flex h-screen w-screen flex-col bg-black/70 text-white'
             exit={{ opacity: 0, scale: 1.1 }}
             initial={{ opacity: 0, scale: 1.1 }}
+            onAnimationComplete={handleAnimationComplete}
             transition={{ duration: 0.2 }}
           >
             <div className='bg-linear-to-b to-text-transparent h-32 w-full from-black' />

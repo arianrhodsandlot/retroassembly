@@ -20,17 +20,6 @@ export function PageHooks(): undefined {
   const hasFocusing = activeElement && ['A', 'BUTTON'].includes(activeElement.tagName)
   const emulatorStatus = emulator?.getStatus()
 
-  const directionKeys = new Set([
-    'down',
-    inputMapping.keyboard.input_player1_down,
-    inputMapping.keyboard.input_player1_left,
-    inputMapping.keyboard.input_player1_right,
-    inputMapping.keyboard.input_player1_up,
-    'left',
-    'right',
-    'up',
-  ])
-
   const canLaunch =
     (isFocusingLaunchButton || !hasFocusing) && settingsDialogOpen === false && emulator?.getStatus() === 'initial'
 
@@ -50,18 +39,42 @@ export function PageHooks(): undefined {
 
   useEffect(
     () =>
-      Gamepad.onPress(async () => {
-        if (canLaunch) {
-          await launch()
+      Gamepad.onPress(async ({ button }) => {
+        if (!canLaunch) {
+          return
         }
+
+        const directionButtons = new Set([
+          inputMapping.gamepad.input_player1_down_btn,
+          inputMapping.gamepad.input_player1_left_btn,
+          inputMapping.gamepad.input_player1_right_btn,
+          inputMapping.gamepad.input_player1_up_btn,
+        ])
+        if (directionButtons.has(`${button}`)) {
+          return
+        }
+
+        await launch()
       }),
-    [canLaunch, launch],
+    [inputMapping.gamepad, canLaunch, launch],
   )
 
   useKeyboardEvent(true, async (event) => {
     if (!canLaunch) {
       return
     }
+
+    const directionKeys = new Set([
+      'down',
+      inputMapping.keyboard.input_player1_down,
+      inputMapping.keyboard.input_player1_left,
+      inputMapping.keyboard.input_player1_right,
+      inputMapping.keyboard.input_player1_up,
+      'left',
+      'right',
+      'up',
+    ])
+
     const keyName = getKeyNameFromCode(event.code)
     const isEscapeKey = event.key === 'Escape'
     const isSpecialKey =

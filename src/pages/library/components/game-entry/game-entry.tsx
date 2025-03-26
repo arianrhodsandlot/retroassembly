@@ -14,7 +14,7 @@ export function GameEntry({ rom }) {
     <GameEntryContextMenu rom={rom}>
       <div className='relative'>
         <Link
-          className='block'
+          className='game-entry block'
           title={rom.fileName}
           to={`/library/rom/${encodeURIComponent(rom.id)}`}
           unstable_pending={

@@ -41,12 +41,12 @@ export async function PlatformPage({ platform, query }: PlatformPageProps) {
       <LibraryLayout title={platformMap[platform].displayName}>
         <MainScrollArea className='z-1 relative flex flex-1' size='2'>
           <PageBreadcrumb />
-          <main className='flex min-h-full w-full flex-col gap-5 p-4'>
+          <div className='flex min-h-full w-full flex-col gap-5 p-4'>
             <DeviceInfo platform={platform} />
             <hr className='border-t-1 border-t-black/20' />
             <GameList pagination={pagination} />
             <UploadButton platform={platform} />
-          </main>
+          </div>
         </MainScrollArea>
         <PlatformBackground platform={platform} />
       </LibraryLayout>

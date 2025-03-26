@@ -38,7 +38,7 @@ export async function RomPage({ fileName, id, platform }) {
       <LibraryLayout title={goodcodes.rom}>
         <MainScrollArea className='z-1 relative flex flex-1' size='2'>
           <PageBreadcrumb />
-          <main className='flex min-h-full w-full gap-4 p-4'>
+          <div className='flex min-h-full w-full gap-4 p-4'>
             <div>
               <GameCover rom={rom} />
             </div>
@@ -74,7 +74,7 @@ export async function RomPage({ fileName, id, platform }) {
                 ) : null}
               </div>
             </div>
-          </main>
+          </div>
         </MainScrollArea>
         <RomBackground rom={rom} />
         <Portal>

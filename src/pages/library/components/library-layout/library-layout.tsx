@@ -33,9 +33,9 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
         </aside>
 
         <div className='flex min-w-0 flex-1 flex-col gap-4 p-4'>
-          <div className='relative flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
+          <main className='relative flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
             {children}
-          </div>
+          </main>
           <StatusBar />
         </div>
       </div>

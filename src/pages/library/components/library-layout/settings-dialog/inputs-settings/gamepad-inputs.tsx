@@ -11,7 +11,7 @@ interface ButtonGroup {
   buttons: {
     iconClass?: string
     iconNode?: ReactNode
-    name: keyof Preference['emulator']['gamepadMappings'][string]
+    name: keyof NonNullable<Preference['input']['gamepadMappings']>[string]
     text?: string
   }[]
   type: string
@@ -121,7 +121,7 @@ export function GamepadInputs() {
           ))}
 
           <div className='flex justify-end'>
-            <UpdateButton preference={{ emulator: { gamepadMappings: null } }}>
+            <UpdateButton preference={{ input: { gamepadMappings: null } }}>
               <span className='icon-[mdi--undo]' />
               Reset to defaults
             </UpdateButton>

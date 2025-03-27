@@ -28,7 +28,7 @@ const defaultGamepadMapping = {
 export function useGamepadMapping() {
   const { preference } = usePreference()
   const { gamepad } = useGamepads()
-  const userGamepadMapping = gamepad?.id ? preference.emulator.gamepadMappings[gamepad.id] : null
+  const userGamepadMapping = gamepad?.id ? preference.input.gamepadMappings[gamepad.id] : null
   const gamepadMapping = useMemo(() => userGamepadMapping || { ...defaultGamepadMapping }, [userGamepadMapping])
   return gamepadMapping
 }

@@ -2,13 +2,11 @@
 import { Kbd } from '@radix-ui/themes'
 import { capitalize, uniq } from 'es-toolkit'
 import { useGamepads } from '../../hooks/use-gamepads.ts'
-import { usePreference } from '../../hooks/use-preference.ts'
+import { useInputMapping } from '../../hooks/use-input-mapping.ts'
 
 export function StatusBar() {
-  const { preference } = usePreference()
   const { connected } = useGamepads()
-
-  const { keyboardMapping } = preference.emulator
+  const { keyboard: keyboardMapping } = useInputMapping()
 
   return (
     <div className='flex items-center justify-end gap-4 text-sm font-medium text-white/80'>

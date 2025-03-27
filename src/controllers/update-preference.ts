@@ -16,19 +16,26 @@ export async function updatePreference(preference: PreferenceSnippet) {
   const { currentUser, db } = getContextData()
 
   const where = eq(userPreferenceTable.userId, currentUser.id)
-  const returning = { emulator: userPreferenceTable.emulator, ui: userPreferenceTable.ui }
+  const returning = {
+    emulator: userPreferenceTable.emulator,
+    input: userPreferenceTable.input,
+    ui: userPreferenceTable.ui,
+  }
 
   const results = await db.library.select().from(userPreferenceTable).where(where)
 
   let newPreferenceResults: Pick<InferInsertModel<typeof userPreferenceTable>, keyof typeof returning>[]
   if (results.length > 0) {
-    const [{ emulator, ui }] = results
+    const [{ emulator, input, ui }] = results
     const newPreference: any = {}
     if (preference.emulator) {
-      newPreference.emulator = mergePreference(emulator, preference.emulator)
+      newPreference.emulator = mergePreference(emulator || {}, preference.emulator)
+    }
+    if (preference.input) {
+      newPreference.input = mergePreference(input || {}, preference.input)
     }
     if (preference.ui) {
-      newPreference.ui = mergePreference(ui, preference.ui)
+      newPreference.ui = mergePreference(ui || {}, preference.ui)
     }
     normalize(newPreference)
 

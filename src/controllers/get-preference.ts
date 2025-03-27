@@ -7,7 +7,7 @@ export async function getPreference() {
   const { currentUser, db } = getContextData()
 
   const results = await db.library
-    .select({ emulator: userPreferenceTable.emulator, ui: userPreferenceTable.ui })
+    .select({ emulator: userPreferenceTable.emulator, input: userPreferenceTable.input, ui: userPreferenceTable.ui })
     .from(userPreferenceTable)
     .where(and(eq(userPreferenceTable.userId, currentUser.id), eq(userPreferenceTable.status, 1)))
 

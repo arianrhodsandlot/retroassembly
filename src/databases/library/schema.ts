@@ -1,6 +1,7 @@
 import { index, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 import { customAlphabet } from 'nanoid'
 import nanoidDictionary from 'nanoid-dictionary'
+import type { PreferenceSnippet } from '@/constants/preference'
 
 const nanoid = customAlphabet(nanoidDictionary.nolookalikes, 10)
 
@@ -63,8 +64,9 @@ export const launchRecordTable = sqliteTable(
 export const userPreferenceTable = sqliteTable(
   'user_preferences',
   {
-    emulator: text({ mode: 'json' }),
-    ui: text({ mode: 'json' }),
+    emulator: text({ mode: 'json' }).$type<PreferenceSnippet['emulator']>(),
+    input: text({ mode: 'json' }).$type<PreferenceSnippet['input']>(),
+    ui: text({ mode: 'json' }).$type<PreferenceSnippet['ui']>(),
     user: text({ mode: 'json' }),
     userId: text().notNull(),
     ...baseSchema,

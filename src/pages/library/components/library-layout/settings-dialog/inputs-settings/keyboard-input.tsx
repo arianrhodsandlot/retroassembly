@@ -1,6 +1,7 @@
 import { Button, TextField } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import type { ChangeEvent, KeyboardEvent, ReactNode } from 'react'
+import { useKeyboardMapping } from '@/pages/library/hooks/use-keyboard-mapping.ts'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { getKeyNameFromCode } from '@/pages/library/utils/keyboard.ts'
 
@@ -18,8 +19,8 @@ interface KeyboardInputProps {
 }
 
 export function KeyboardInput({ button }: KeyboardInputProps) {
-  const { isLoading, preference, update } = usePreference()
-  const { keyboardMapping } = preference.emulator
+  const { isLoading, update } = usePreference()
+  const keyboardMapping = useKeyboardMapping()
 
   const value = keyboardMapping[button.name]
   const clearable = Boolean(value)
@@ -35,12 +36,12 @@ export function KeyboardInput({ button }: KeyboardInputProps) {
       for (const [conflict] of conflicts) {
         newMapping[conflict] = null
       }
-      await update({ emulator: { keyboardMapping: newMapping } })
+      await update({ input: { keyboardMapping: newMapping } })
     }
   }
 
   async function handleClickClear() {
-    await update({ emulator: { keyboardMapping: { ...keyboardMapping, [button.name]: null } } })
+    await update({ input: { keyboardMapping: { ...keyboardMapping, [button.name]: null } } })
   }
 
   return (

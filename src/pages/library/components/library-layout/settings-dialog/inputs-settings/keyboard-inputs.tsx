@@ -8,7 +8,7 @@ interface ButtonGroup {
   buttons: {
     iconClass?: string
     iconNode?: ReactNode
-    name: keyof Preference['emulator']['keyboardMapping']
+    name: keyof NonNullable<Preference['input']['keyboardMapping']>
     text?: string
   }[]
   type: string
@@ -104,7 +104,7 @@ export function KeyboardInputs() {
         ))}
 
         <div className='flex justify-end'>
-          <UpdateButton preference={{ emulator: { keyboardMapping: null } }}>
+          <UpdateButton preference={{ input: { keyboardMapping: null } }}>
             <span className='icon-[mdi--undo]' />
             Reset to defaults
           </UpdateButton>

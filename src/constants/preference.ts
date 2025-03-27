@@ -9,7 +9,11 @@ export type PlatformSortOrder = 'ascending' | 'descending'
 export interface Preference {
   emulator: {
     core: Partial<Record<CoreName, Record<string, string>>>
-    gamepadMappings: Record<
+    platform: Record<PlatformName, { core: CoreName }>
+    shader: string
+  } | null
+  input: {
+    gamepadMappings: null | Record<
       string,
       {
         $fast_forward: string
@@ -53,16 +57,23 @@ export interface Preference {
       input_player1_x: string
       input_player1_y: string
       input_rewind: string
-    }
-    platform: Record<PlatformName, { core: CoreName }>
-    shader: string
-  }
+    } | null
+  } | null
   ui: {
     libraryCoverType: 'boxart'
     platformInfoDisplayType: 0
     platforms: PlatformName[]
     theme: 'rose'
+  } | null
+}
+
+export interface ResolvedPreference extends Preference {
+  emulator: NonNullable<Preference['emulator']>
+  input: {
+    gamepadMappings: NonNullable<NonNullable<Preference['input']>['gamepadMappings']>
+    keyboardMapping: NonNullable<NonNullable<Preference['input']>['keyboardMapping']>
   }
+  ui: NonNullable<Preference['ui']>
 }
 
 export type PreferenceSnippet = PartialDeep<Preference>
@@ -77,28 +88,6 @@ export const defaultPreference: Preference = {
         mgba_gb_colors: 'DMG Green',
         mgba_skip_bios: 'ON',
       },
-    },
-    gamepadMappings: {},
-    keyboardMapping: {
-      $pause: 'esc',
-      input_hold_fast_forward: 'space',
-      input_player1_a: 'x',
-      input_player1_b: 'z',
-      input_player1_down: 'down',
-      input_player1_l1: 'q',
-      input_player1_l2: '',
-      input_player1_l3: '',
-      input_player1_left: 'left',
-      input_player1_r1: 'w',
-      input_player1_r2: '',
-      input_player1_r3: '',
-      input_player1_right: 'right',
-      input_player1_select: 'rshift',
-      input_player1_start: 'enter',
-      input_player1_up: 'up',
-      input_player1_x: 's',
-      input_player1_y: 'a',
-      input_rewind: 'r',
     },
     platform: {
       arcade: { core: 'fbneo' },
@@ -128,6 +117,30 @@ export const defaultPreference: Preference = {
     },
     shader: '',
   },
+  input: {
+    gamepadMappings: {},
+    keyboardMapping: {
+      $pause: 'esc',
+      input_hold_fast_forward: 'space',
+      input_player1_a: 'x',
+      input_player1_b: 'z',
+      input_player1_down: 'down',
+      input_player1_l1: 'q',
+      input_player1_l2: '',
+      input_player1_l3: '',
+      input_player1_left: 'left',
+      input_player1_r1: 'w',
+      input_player1_r2: '',
+      input_player1_r3: '',
+      input_player1_right: 'right',
+      input_player1_select: 'rshift',
+      input_player1_start: 'enter',
+      input_player1_up: 'up',
+      input_player1_x: 's',
+      input_player1_y: 'a',
+      input_rewind: 'r',
+    },
+  },
   ui: {
     libraryCoverType: 'boxart',
     platformInfoDisplayType: 0,
@@ -136,24 +149,18 @@ export const defaultPreference: Preference = {
   },
 }
 
-export function resolveUserPreference(userPreference: PreferenceSnippet) {
+export function resolveUserPreference(rawUserPreference: null | PreferenceSnippet) {
+  const userPreference = structuredClone(rawUserPreference) || {}
+  for (const key of ['emulator', 'ui', 'input']) {
+    userPreference[key] ||= {}
+  }
   const fallbackPreference = structuredClone(defaultPreference)
 
-  const userKeyboardMapping = userPreference.emulator?.keyboardMapping
+  const userKeyboardMapping = userPreference.input?.keyboardMapping
 
-  // remove conflicting keys from default preference according to user preference
-  // const fallbackKeyboardMapping = fallbackPreference.emulator.keyboardMapping
-  // const userKeys = Object.values(userKeyboardMapping)
-  // for (const key in fallbackKeyboardMapping) {
-  //   const value = fallbackKeyboardMapping[key]
-  //   if (userKeys.includes(value)) {
-  //     delete fallbackKeyboardMapping[key]
-  //   }
-  // }
-
-  if (userKeyboardMapping && 'keyboardMapping' in fallbackPreference.emulator) {
+  if (userKeyboardMapping && fallbackPreference.input && 'keyboardMapping' in fallbackPreference.input) {
     // @ts-expect-error force delete this field
-    fallbackPreference.emulator.keyboardMapping = undefined
+    fallbackPreference.input.keyboardMapping = undefined
   }
 
   return mergePreference(fallbackPreference, userPreference)

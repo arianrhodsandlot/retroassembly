@@ -31,7 +31,7 @@ export function GamepadInput({ button }: GamepadInputProps) {
   async function handleClickClear() {
     if (gamepad?.id) {
       await update({
-        emulator: {
+        input: {
           gamepadMappings: {
             [gamepad.id]: {
               ...gamepadMapping,
@@ -56,7 +56,7 @@ export function GamepadInput({ button }: GamepadInputProps) {
         for (const [conflict] of conflicts) {
           newMapping[conflict] = null
         }
-        await update({ emulator: { gamepadMappings: { [event.gamepad.id]: newMapping } } })
+        await update({ input: { gamepadMappings: { [event.gamepad.id]: newMapping } } })
       }),
     [update, gamepadMapping, isLoading, button.name],
   )

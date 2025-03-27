@@ -1,6 +1,5 @@
 import { Hono } from 'hono'
 import { createMiddleware } from 'hono/factory'
-import { logger } from 'hono/logger'
 import { getContextData } from 'waku/middleware/context'
 import { addRoutes } from './routes.ts'
 
@@ -15,7 +14,7 @@ export function createApp() {
     return await next()
   })
 
-  app.use(logger(), authMiddleware)
+  app.use(authMiddleware)
 
   addRoutes(app)
 

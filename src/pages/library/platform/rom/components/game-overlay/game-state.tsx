@@ -37,6 +37,10 @@ export function GameState({ state }) {
         'flex h-36 w-48 shrink-0 flex-col overflow-hidden rounded border-4 border-white bg-white shadow',
         { 'cursor-default': isMutating },
       )}
+      data-sn-enabled
+      data-sn-focus-style={JSON.stringify({
+        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+      })}
       disabled={isMutating}
       key={state.id}
       onClick={handleClick}

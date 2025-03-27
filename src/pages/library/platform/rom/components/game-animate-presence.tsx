@@ -1,21 +1,25 @@
 'use client'
 import { AnimatePresence, motion } from 'motion/react'
-import { useLayoutEffect, useState } from 'react'
+import { useMemo } from 'react'
+import { useLaunchButtonRect } from '../atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 
 export function GameAnimatePresence() {
   const { emulator, launched } = useEmulator()
-  const [initialStyle, setInitialStyle] = useState<any>()
   const animateStyle = { height: '100%', left: 0, top: 0, width: '100%' }
-
-  function syncInitialStyle() {
-    const button = document.body?.querySelector<HTMLButtonElement>('.launch-button')
-    if (button) {
-      const rect = button.getBoundingClientRect()
-      const newInitialStyle = { height: rect.height, left: rect.left, top: rect.top, width: rect.width }
-      setInitialStyle(newInitialStyle)
-    }
-  }
+  const [launchButtonRect] = useLaunchButtonRect()
+  const initialStyle = useMemo(
+    () =>
+      launchButtonRect
+        ? {
+            height: launchButtonRect.height,
+            left: launchButtonRect.left,
+            top: launchButtonRect.top,
+            width: launchButtonRect.width,
+          }
+        : {},
+    [launchButtonRect],
+  )
 
   function handleAnimationComplete() {
     const canvas = emulator?.getCanvas()
@@ -23,8 +27,6 @@ export function GameAnimatePresence() {
       canvas.style.opacity = '1'
     }
   }
-
-  useLayoutEffect(syncInitialStyle, [])
 
   return (
     <AnimatePresence>

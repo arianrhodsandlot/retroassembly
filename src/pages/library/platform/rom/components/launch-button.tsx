@@ -3,12 +3,24 @@ import { Button, Portal } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useEffect, useRef } from 'react'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
+import { useLaunchButtonRect } from '../atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 import { GameAnimatePresence } from './game-animate-presence.tsx'
 
 export function LaunchButton() {
   const { isPreparing, launch } = useEmulator()
   const ref = useRef<HTMLButtonElement>(null)
+  const [, setLaunchButtonRect] = useLaunchButtonRect()
+
+  function handleClick() {
+    launch()
+
+    const button = ref.current
+    if (button) {
+      const rect = button.getBoundingClientRect()
+      setLaunchButtonRect(rect)
+    }
+  }
 
   useEffect(() => {
     if (!isPreparing && ref.current) {
@@ -23,7 +35,7 @@ export function LaunchButton() {
       className={clsx('launch-button', { 'opacity-50': isPreparing })}
       data-sn-enabled
       disabled={isPreparing}
-      onClick={launch}
+      onClick={handleClick}
       ref={ref}
       type='button'
     >

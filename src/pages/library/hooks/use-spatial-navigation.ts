@@ -1,7 +1,7 @@
 import { useEventListener } from '@react-hookz/web'
 import { off, on } from 'delegated-events'
 import { delay } from 'es-toolkit'
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useRouter_UNSTABLE } from 'waku'
 import { Gamepad } from '@/utils/gamepad.ts'
 import { useEmulatorLaunched, useShowGameOverlay } from '../atoms.ts'
@@ -18,15 +18,7 @@ export function useSpatialNavigation() {
   const isIdle = useMouseIdle(100)
   const [emulatorLaunched] = useEmulatorLaunched()
   const [showGameOverlay] = useShowGameOverlay()
-
-  const moveAsNeeded = useCallback(
-    async function moveAsNeeded(...args: Parameters<typeof move>) {
-      if (!emulatorLaunched || showGameOverlay) {
-        await move(...args)
-      }
-    },
-    [showGameOverlay, emulatorLaunched],
-  )
+  const isPlaying = emulatorLaunched && !showGameOverlay
 
   useEffect(init, [])
 
@@ -55,11 +47,14 @@ export function useSpatialNavigation() {
     } as const
 
     function handleKeydown(event: KeyboardEvent) {
+      if (isPlaying) {
+        return
+      }
       const keyName = getKeyNameFromCode(event.code)
       const direction = keyboardDirectionMap[keyName]
       if (direction) {
         event.preventDefault()
-        moveAsNeeded(direction)
+        move(direction)
       } else if (keyName === inputMapping.keyboard.input_player1_a || keyName === 'enter' || keyName === 'space') {
         event.preventDefault()
         click(document.activeElement)
@@ -71,7 +66,7 @@ export function useSpatialNavigation() {
 
     document.addEventListener('keydown', handleKeydown)
     return () => document.removeEventListener('keydown', handleKeydown)
-  }, [inputMapping.keyboard, moveAsNeeded])
+  }, [inputMapping.keyboard, isPlaying])
 
   // gamepad navigation
   useEffect(() => {
@@ -83,16 +78,19 @@ export function useSpatialNavigation() {
     } as const
 
     return Gamepad.onPress(({ button }) => {
+      if (isPlaying) {
+        return
+      }
       const direction = gamepadDirectionMap[button]
       if (direction) {
-        moveAsNeeded(gamepadDirectionMap[button])
+        move(gamepadDirectionMap[button])
       } else if (`${button}` === inputMapping.gamepad.input_player1_a_btn) {
         click(document.activeElement)
       } else if (`${button}` === inputMapping.gamepad.input_player1_b_btn) {
         cancel()
       }
     })
-  }, [inputMapping.gamepad, moveAsNeeded])
+  }, [inputMapping.gamepad, isPlaying])
 
   // focus when an element got hovered
   useEffect(() => {

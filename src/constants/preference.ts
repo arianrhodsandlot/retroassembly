@@ -61,9 +61,9 @@ export interface Preference {
   } | null
   ui: {
     libraryCoverType: 'boxart'
-    platformInfoDisplayType: 0
     platforms: PlatformName[]
-    theme: 'rose'
+    showDistrictOnTitle: boolean
+    showTitle: boolean
   } | null
 }
 
@@ -143,9 +143,9 @@ export const defaultPreference: Preference = {
   },
   ui: {
     libraryCoverType: 'boxart',
-    platformInfoDisplayType: 0,
     platforms: ['arcade', 'atari2600', 'gb', 'gba', 'gbc', 'genesis', 'nes', 'snes'],
-    theme: 'rose',
+    showDistrictOnTitle: false,
+    showTitle: true,
   },
 }
 

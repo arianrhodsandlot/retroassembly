@@ -65,8 +65,8 @@ importers:
         specifier: 0.41.0
         version: 0.41.0(@prisma/client@6.4.1(prisma@6.4.1(typescript@5.8.2))(typescript@5.8.2))(better-sqlite3@11.9.1)(gel@2.0.1)(prisma@6.4.1(typescript@5.8.2))
       es-toolkit:
-        specifier: 1.33.0
-        version: 1.33.0
+        specifier: 1.34.1
+        version: 1.34.1
       gamepad-wrapper:
         specifier: 1.3.4
         version: 1.3.4
@@ -5593,8 +5593,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.125:
-    resolution: {integrity: sha512-A2+qEsSUc95QvyFDl7PNwkDDNphIKBVfBBtWWkPGRbiWEgzLo0SvLygYF6HgzVduHd+4WGPB/WD64POFgwzY3g==}
+  electron-to-chromium@1.5.126:
+    resolution: {integrity: sha512-AtH1uLcTC72LA4vfYcEJJkrMk/MY/X0ub8Hv7QGAePW2JkeUFHEL/QfS4J77R6M87Sss8O0OcqReSaN1bpyA+Q==}
 
   emoji-regex@10.4.0:
     resolution: {integrity: sha512-EC+0oUMY1Rqm4O6LLrgjtYDvcVYTy7chDnM4Q7030tP4Kwj3u/pR6gP9ygnp2CJMK5Gq+9Q2oqmrFJAz01DXjw==}
@@ -5668,8 +5668,8 @@ packages:
   es-toolkit@1.32.0:
     resolution: {integrity: sha512-ZfSfHP1l6ubgW/B/FRtqb9bYdMvI6jizbOSfbwwJNcOQ1QE6TFsC3jpQkZ900uUPSR3t3SU5Ds7UWKnYz+uP8Q==}
 
-  es-toolkit@1.33.0:
-    resolution: {integrity: sha512-X13Q/ZSc+vsO1q600bvNK4bxgXMkHcf//RxCmYDaRY5DAcT+eoXjY5hoAPGMdRnWQjvyLEcyauG3b6hz76LNqg==}
+  es-toolkit@1.34.1:
+    resolution: {integrity: sha512-OA6cd94fJV9bm8dWhIySkWq4xV+rAQnBZUr2dnpXam0QJ8c+hurLbKA8/QooL9Mx4WCAxvIDsiEkid5KPQ5xgQ==}
 
   esbuild-register@3.6.0:
     resolution: {integrity: sha512-H2/S7Pm8a9CL1uhp9OvjwrBh5Pvx0H8qVOxNu8Wed9Y7qv56MPtq+GGM8RJpq6glYJn9Wspr8uw7l55uyinNeg==}
@@ -13293,7 +13293,7 @@ snapshots:
   browserslist@4.24.4:
     dependencies:
       caniuse-lite: 1.0.30001707
-      electron-to-chromium: 1.5.125
+      electron-to-chromium: 1.5.126
       node-releases: 2.0.19
       update-browserslist-db: 1.1.3(browserslist@4.24.4)
 
@@ -13670,7 +13670,7 @@ snapshots:
     dependencies:
       jake: 10.9.2
 
-  electron-to-chromium@1.5.125: {}
+  electron-to-chromium@1.5.126: {}
 
   emoji-regex@10.4.0: {}
 
@@ -13786,7 +13786,7 @@ snapshots:
 
   es-toolkit@1.32.0: {}
 
-  es-toolkit@1.33.0: {}
+  es-toolkit@1.34.1: {}
 
   esbuild-register@3.6.0(esbuild@0.19.12):
     dependencies:

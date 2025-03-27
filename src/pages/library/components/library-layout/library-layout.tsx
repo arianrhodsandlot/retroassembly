@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
-import { SpatialNavigation } from './spatial-navigation.tsx'
+import { FocusIndicator } from './focus-indicator.tsx'
 import { StatusBar } from './status-bar.tsx'
 
 const siteTitle = 'RetroAssembly'
@@ -20,7 +20,7 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
   return (
     <Provider>
       <title>{getPostfixedTitle(title)}</title>
-      <div className='flex h-screen bg-[var(--accent-9)]'>
+      <div className='library-layout flex h-screen bg-[var(--accent-9)]'>
         <aside className='ml-4 flex w-64 shrink-0 flex-col pt-4 text-white'>
           <div className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold'>
             <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
@@ -39,7 +39,7 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
           <StatusBar />
         </div>
       </div>
-      <SpatialNavigation />
+      <FocusIndicator />
     </Provider>
   )
 }

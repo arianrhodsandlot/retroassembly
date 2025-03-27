@@ -53,8 +53,8 @@ export function PageBreadcrumb() {
           </Button>
         ) : (
           <Fragment key={url}>
-            <Button asChild className='!font-semibold' disabled={i === links.length - 1} variant='ghost'>
-              <Link to={url}>
+            <Button asChild className='!bg-transparent !font-semibold' variant='ghost'>
+              <Link data-sn-enabled to={url}>
                 {icon}
                 {text}
               </Link>

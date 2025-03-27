@@ -1,5 +1,7 @@
-import path from 'node:path'
+import { Nostalgist } from 'nostalgist'
 import { twMerge } from 'tailwind-merge'
+
+const { path } = Nostalgist.vendors
 
 function extractYouTubeId(url: string) {
   let urlObject: URL

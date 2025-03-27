@@ -1,4 +1,3 @@
-import { camelCase, mapKeys, pickBy } from 'es-toolkit'
 import { type CSSProperties, useCallback } from 'react'
 import { useFocusIndicatorStyle } from '../atoms.ts'
 
@@ -8,24 +7,19 @@ export function useFocusIndicator() {
   const syncStyle = useCallback(
     function syncFocusIndicatorStyle({ transition = true }: { transition?: boolean } = {}) {
       const { activeElement } = document
-      if (activeElement instanceof HTMLElement && activeElement !== document.body) {
+      if (activeElement instanceof HTMLElement && activeElement.dataset.snEnabled) {
         const { height, left, top, width } = activeElement.getBoundingClientRect()
-        const focusIndicatorStyle: CSSProperties = {}
+        const focusIndicatorStyle: CSSProperties = { height, left, top, width }
         if (transition) {
           focusIndicatorStyle.transitionProperty = 'all'
           focusIndicatorStyle.transitionDuration = '0.2s'
         }
-        Object.assign(focusIndicatorStyle, {
-          backgroundColor: 'var(--accent-a5)',
-          height: height + 10,
-          left: left - 5,
-          top: top - 5,
-          width: width + 10,
-          ...mapKeys(
-            pickBy(activeElement.dataset, (_value, key) => `${key}`.startsWith('focus')),
-            (_value, key) => camelCase(`${key}`.slice(5)),
-          ),
-        })
+        try {
+          const customStyle = activeElement.dataset.snFocusStyle
+          if (customStyle) {
+            Object.assign(focusIndicatorStyle, JSON.parse(customStyle))
+          }
+        } catch {}
         setFocusIndicatorStyle(focusIndicatorStyle)
       } else {
         setFocusIndicatorStyle({})

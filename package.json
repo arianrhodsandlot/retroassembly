@@ -67,7 +67,7 @@
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.18.5",
     "@eslint/config-inspector": "1.0.2",
-    "@iconify/json": "2.2.320",
+    "@iconify/json": "2.2.321",
     "@iconify/tailwind4": "1.0.6",
     "@tailwindcss/vite": "4.0.17",
     "@tsconfig/vite-react": "3.4.0",

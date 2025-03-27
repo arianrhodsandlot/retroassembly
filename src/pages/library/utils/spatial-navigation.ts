@@ -1,4 +1,3 @@
-import { delay } from 'es-toolkit'
 import scrollIntoView from 'smooth-scroll-into-view-if-needed'
 import SpatialNavigation, { type Direction } from 'spatial-navigation-ts'
 
@@ -58,13 +57,11 @@ export function move(direction?: Direction) {
       const nextActiveElement = event.target
       event.preventDefault()
       if (nextActiveElement instanceof HTMLElement) {
-        const { block, scrollMode } = nextActiveElement.dataset
         await scrollIntoView(nextActiveElement, {
-          block: (block as any) || 'nearest',
-          duration: 200,
-          scrollMode: (scrollMode as any) || 'if-needed',
+          block: 'center',
+          duration: 300,
+          scrollMode: 'if-needed',
         })
-        await delay(100)
       }
       focus(nextActiveElement)
       moving = false
@@ -87,6 +84,16 @@ export function resetFocus({ force }: { force?: boolean } = {}) {
 }
 
 export function init() {
-  SpatialNavigation.add({ selector: 'a, button' })
+  SpatialNavigation.add({
+    restrict: 'self-only',
+    selector: '.library-layout [data-sn-enabled]',
+  })
+
+  SpatialNavigation.add({
+    restrict: 'self-only',
+    selector: '.game-overlay [data-sn-enabled]',
+  })
+
+  // game-overlay
   resetFocus()
 }

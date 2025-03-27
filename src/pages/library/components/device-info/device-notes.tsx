@@ -41,7 +41,7 @@ export function DeviceNotes({ notes }: { notes: string }) {
       <div className='relative mt-1 flex justify-end px-6'>
         <div className='absolute -mt-1.5'>
           {showButton ? (
-            <Button onClick={() => toggleExpanded()} size='1' type='button' variant='ghost'>
+            <Button data-sn-enabled onClick={() => toggleExpanded()} size='1' type='button' variant='ghost'>
               <span
                 className={clsx('size-5', {
                   'icon-[mdi--menu-up]': expanded,

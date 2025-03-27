@@ -13,7 +13,7 @@ export function UploadButton({ platform }: { platform: string }) {
   }
 
   return (
-    <div className='fixed bottom-16 right-12'>
+    <div className='bottom-15 fixed right-6'>
       <Dialog.Root onOpenChange={toggleOpen} open={open}>
         <Dialog.Trigger>
           <IconButton onClick={handleClick} radius='full' size='4' variant='solid'>

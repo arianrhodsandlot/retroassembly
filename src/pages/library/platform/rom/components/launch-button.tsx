@@ -12,15 +12,16 @@ export function LaunchButton() {
 
   useEffect(() => {
     if (!isPreparing && ref.current) {
-      ref.current.dataset.focusTransitionProperty = 'none'
+      ref.current.dataset.snFocusStyle = JSON.stringify({ transitionProperty: 'none' })
       focus(ref.current)
-      delete ref.current.dataset.focusTransitionProperty
+      delete ref.current.dataset.snFocusStyle
     }
   }, [isPreparing])
 
   return (
     <button
       className={clsx('launch-button', { 'opacity-50': isPreparing })}
+      data-sn-enabled
       disabled={isPreparing}
       onClick={launch}
       ref={ref}

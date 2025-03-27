@@ -16,10 +16,13 @@ export function SidebarLink({ active, children, to }) {
 
   return (
     <motion.div layout ref={ref}>
-      <Button asChild size='3' variant={active ? 'ghost' : 'solid'}>
+      <Button asChild size='3' variant='ghost'>
         <Link
-          className={clsx('group !m-0 !flex !h-auto !px-4 !py-2.5', { '!bg-white': active })}
-          data-focus-background-color='rgba(0,0,0,.2)'
+          className={clsx('group !m-0 !flex !h-auto !px-4 !py-2.5', { '!bg-white': active, '!text-white': !active })}
+          data-sn-enabled
+          data-sn-focus-style={JSON.stringify({
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+          })}
           scroll
           to={to}
         >

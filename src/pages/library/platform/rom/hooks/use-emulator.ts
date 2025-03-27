@@ -82,7 +82,7 @@ export function useEmulator() {
 
     const canvas = emulator.getCanvas()
     canvas.setAttribute('tabindex', '-1')
-    canvas.dataset.focusDisplay = 'none'
+    canvas.dataset.snFocusStyle = JSON.stringify({ display: 'none' })
     focus(canvas)
 
     setLaunched(true)

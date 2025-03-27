@@ -15,6 +15,7 @@ export function GameEntry({ rom }) {
       <div className='relative'>
         <Link
           className='game-entry block'
+          data-sn-enabled
           title={rom.fileName}
           to={`/library/rom/${encodeURIComponent(rom.id)}`}
           unstable_pending={

@@ -20,11 +20,10 @@ export function useSpatialNavigation() {
   const [showGameOverlay] = useShowGameOverlay()
 
   const moveAsNeeded = useCallback(
-    function moveAsNeeded(...args: Parameters<typeof move>) {
-      if (emulatorLaunched && !showGameOverlay) {
-        return
+    async function moveAsNeeded(...args: Parameters<typeof move>) {
+      if (!emulatorLaunched || showGameOverlay) {
+        await move(...args)
       }
-      move(...args)
     },
     [showGameOverlay, emulatorLaunched],
   )
@@ -98,9 +97,7 @@ export function useSpatialNavigation() {
   // focus when an element got hovered
   useEffect(() => {
     const eventName = 'mouseover'
-    const selectors = ['a', 'button']
-    const filters = [':not(:disabled)', ':not([disabled])', ':not(.disabled)']
-    const selector = selectors.flatMap((selector) => filters.map((filter) => `${selector}${filter}`)).join(',')
+    const selector = '[data-sn-enabled]'
 
     function handleMouseOver(event: Event) {
       if (!isIdle && event.currentTarget instanceof HTMLElement) {

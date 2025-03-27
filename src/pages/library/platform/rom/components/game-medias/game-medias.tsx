@@ -1,4 +1,6 @@
+'use client'
 import ky from 'ky'
+import useSWRImmutable from 'swr/immutable'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { getRomLibretroThumbnail } from '@/utils/library.ts'
 import { YouTubeEmbed } from './youtube-embed.tsx'
@@ -11,11 +13,13 @@ async function checkImage(url: string) {
   return false
 }
 
-export async function GameMedias({ rom, video }) {
+export function GameMedias({ rom, video }) {
   const title = getRomLibretroThumbnail(rom, 'title')
   const snap = getRomLibretroThumbnail(rom, 'snap')
 
-  const [hasTitle, hasSnap] = await Promise.all([checkImage(title), checkImage(snap)])
+  const { data: hasTitle } = useSWRImmutable(title, () => checkImage(title))
+  const { data: hasSnap } = useSWRImmutable(snap, () => checkImage(title))
+
   if (!video && !hasTitle && !hasSnap) {
     return
   }

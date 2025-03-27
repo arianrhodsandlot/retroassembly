@@ -78,7 +78,7 @@
     "@types/react-dom": "19.0.4",
     "@types/sax": "1.2.7",
     "better-sqlite3": "11.9.1",
-    "drizzle-kit": "0.30.5",
+    "drizzle-kit": "0.30.6",
     "eslint": "9.23.0",
     "libretrodb": "1.0.0",
     "lint-staged": "15.5.0",

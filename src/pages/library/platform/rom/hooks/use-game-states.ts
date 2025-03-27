@@ -2,22 +2,24 @@ import ky from 'ky'
 import useSWRImmutable from 'swr/immutable'
 import useSWRMutation from 'swr/mutation'
 import type { States } from '@/controllers/get-states.ts'
+import { useShowGameOverlay } from '@/pages/library/atoms.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { useEmulator } from './use-emulator.ts'
 
 export function useGameStates() {
   const rom = useRom()
   const { core, emulator } = useEmulator()
+  const [showGameOverlay] = useShowGameOverlay()
 
   const {
     data: states,
     isLoading: isStatesLoading,
     mutate: reloadStates,
-  } = useSWRImmutable(rom ? `/api/v1/rom/${rom.id}/states` : false, (url) => ky<States>(url).json())
+  } = useSWRImmutable(rom && showGameOverlay ? `/api/v1/rom/${rom.id}/states` : false, (url) => ky<States>(url).json())
 
   const { isMutating: isSavingState, trigger: saveState } = useSWRMutation('/api/v1/state/new', async (url) => {
-    if (!emulator || !core) {
-      throw new Error('invalid emulator or core')
+    if (!emulator || !core || !rom) {
+      throw new Error('invalid emulator or core or rom')
     }
     const { state, thumbnail } = await emulator.saveState()
     const formData = new FormData()

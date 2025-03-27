@@ -18,7 +18,7 @@ export function GameListPagination({ pagination }: { pagination: RomsPagination 
             {current === page ? (
               <span>{page}</span>
             ) : (
-              <Link key={page} to={`?page=${page}`}>
+              <Link data-sn-enabled to={`?page=${page}`}>
                 {page}
               </Link>
             )}

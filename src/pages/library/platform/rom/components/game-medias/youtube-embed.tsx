@@ -45,6 +45,10 @@ interface YouTubeEmbedProps {
 }
 
 export function YouTubeEmbed({ className, url }: YouTubeEmbedProps) {
+  if (!url) {
+    return
+  }
+
   const src = convertYouTubeIframeURL(url)
   if (!src) {
     return

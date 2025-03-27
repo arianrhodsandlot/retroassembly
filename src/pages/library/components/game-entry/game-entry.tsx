@@ -2,14 +2,18 @@
 import { Skeleton } from '@radix-ui/themes'
 import clsx from 'clsx'
 import { Link } from 'waku'
-import { getRomGoodcodes } from '@/utils/library.ts'
+import { platformMap } from '@/constants/platform.ts'
+import { getPlatformIcon, getRomGoodcodes } from '@/utils/library.ts'
+import { usePlatform } from '../../atoms.ts'
 import { useRomCover } from '../../hooks/use-rom-cover.ts'
 import { GameEntryContextMenu } from './game-entry-context-menu.tsx'
 import { GameTitle } from './game-title.tsx'
 
 export function GameEntry({ rom }) {
   const goodcodes = getRomGoodcodes(rom)
+  const [platform] = usePlatform()
   const { data: cover, isLoading } = useRomCover(rom)
+
   return (
     <GameEntryContextMenu rom={rom}>
       <div className='relative'>
@@ -43,6 +47,17 @@ export function GameEntry({ rom }) {
           </div>
 
           <GameTitle rom={rom} />
+
+          {platform ? null : (
+            <div className='mt-1 flex items-center justify-center gap-2 text-xs text-black/40'>
+              <img
+                alt={platformMap[rom.platform].displayName}
+                className={clsx('size-4', { invert: ['ngp', 'wonderswan'].includes(platformMap[rom.platform].name) })}
+                src={getPlatformIcon(platformMap[rom.platform].name)}
+              />
+              {platformMap[rom.platform].displayName}
+            </div>
+          )}
         </Link>
       </div>
     </GameEntryContextMenu>

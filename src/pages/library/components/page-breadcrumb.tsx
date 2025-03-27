@@ -5,11 +5,11 @@ import { useAtom } from 'jotai'
 import { Fragment } from 'react/jsx-runtime'
 import { Link } from 'waku'
 import { getPlatformGameIcon, getPlatformIcon, getRomGoodcodes } from '@/utils/library.ts'
-import { platformAtom, romAtom } from '../atoms.ts'
+import { romAtom, usePlatform } from '../atoms.ts'
 
 export function PageBreadcrumb() {
   const [rom] = useAtom(romAtom)
-  const [platform] = useAtom(platformAtom)
+  const [platform] = usePlatform()
 
   const links = [
     {

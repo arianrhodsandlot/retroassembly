@@ -1,10 +1,9 @@
 'use client'
 import clsx from 'clsx'
-import { useAtom } from 'jotai'
 import { useRouter_UNSTABLE } from 'waku'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
-import { platformAtom } from '../../atoms.ts'
+import { usePlatform } from '../../atoms.ts'
 import { usePreference } from '../../hooks/use-preference.ts'
 import { SidebarLink } from './sidebar-link.tsx'
 
@@ -18,10 +17,10 @@ function getPlatformLink(platform?: string) {
 export function SidebarLinks() {
   const router = useRouter_UNSTABLE()
   const { preference } = usePreference()
-  const [currentPlatform] = useAtom(platformAtom)
+  const [platform] = usePlatform()
 
   function isLinkActive(link: string) {
-    return router.path === link || getPlatformLink(currentPlatform?.name) === link
+    return router.path === link || getPlatformLink(platform?.name) === link
   }
 
   const platformLinks = preference.ui.platforms.map((platform) => ({

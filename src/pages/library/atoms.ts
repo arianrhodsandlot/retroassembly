@@ -8,6 +8,9 @@ import type { Rom, Roms } from '@/controllers/get-roms'
 export const romsAtom = atom<Roms>()
 export const romAtom = atom<Rom>()
 export const platformAtom = atom<Platform>()
+export function usePlatform() {
+  return useAtom(platformAtom)
+}
 export const settingsDialogOpenAtom = atom(false)
 
 const focusIndicatorStyleAtom = atom<CSSProperties>({})

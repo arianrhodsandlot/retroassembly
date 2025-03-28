@@ -10,6 +10,7 @@ const baseSchema = {
     .notNull()
     .$defaultFn(() => new Date()),
   id: text('id').primaryKey().notNull().$defaultFn(nanoid),
+  /** 1 for normal status and 0 for deleted status */
   status: integer().notNull().default(1),
   updatedAt: integer({ mode: 'timestamp_ms' })
     .notNull()
@@ -25,8 +26,11 @@ const fileSchema = {
 export const romTable = sqliteTable(
   'roms',
   {
-    customMeta: text({ mode: 'json' }),
     fileName: text().notNull(),
+    gameDeveloper: text(),
+    gameName: text(),
+    gamePublisher: text(),
+    gameReleaseYear: integer(),
     launchboxGameId: integer(),
     launchTimes: integer().default(0),
     libretroGameId: text(),

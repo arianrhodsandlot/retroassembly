@@ -88,6 +88,8 @@ async function guessLaunchboxGame(fileName: string, platform: string) {
   }
 }
 
+export type GameInfo = Awaited<ReturnType<typeof guessGameInfo>>
+
 export async function guessGameInfo(fileName: string, platform: string) {
   let [libretro, launchbox] = await Promise.all([
     guessLibretroGame(fileName, platform),

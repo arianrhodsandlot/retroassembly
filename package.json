@@ -82,7 +82,7 @@
     "eslint": "9.23.0",
     "libretrodb": "1.0.0",
     "lint-staged": "15.5.0",
-    "miniflare": "4.20250321.0",
+    "miniflare": "4.20250321.1",
     "nanoid": "5.1.5",
     "react-server-dom-webpack": "19.0.0",
     "sax": "1.4.1",
@@ -91,7 +91,7 @@
     "typescript": "5.8.2",
     "vite-plugin-cjs-interop": "2.2.0",
     "vite-tsconfig-paths": "5.1.4",
-    "wrangler": "4.5.0",
+    "wrangler": "4.5.1",
     "zx": "8.4.1"
   },
   "packageManager": "pnpm@10.7.0",

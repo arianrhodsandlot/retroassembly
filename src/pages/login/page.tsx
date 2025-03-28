@@ -1,15 +1,15 @@
 import { getContextData } from 'waku/middleware/context'
+import { unstable_redirect } from 'waku/router/server'
 import { LoginForm } from './components/login-form.tsx'
 
 export async function LoginPage({ query }) {
   const searchParams = new URLSearchParams(query)
   const redirectTo = searchParams.get('redirect_to') ?? '/app'
   const code = searchParams.get('code')
-  const { redirect, supabase } = getContextData()
+  const { supabase } = getContextData()
 
   if (!supabase) {
-    redirect('/')
-    return
+    return unstable_redirect('/')
   }
 
   if (code) {
@@ -18,8 +18,7 @@ export async function LoginPage({ query }) {
       return <div>{error.message}</div>
     }
     if (data) {
-      redirect(redirectTo)
-      return
+      return unstable_redirect(redirectTo)
     }
   }
 

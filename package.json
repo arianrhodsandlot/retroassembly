@@ -87,6 +87,7 @@
     "react-server-dom-webpack": "19.0.0",
     "sax": "1.4.1",
     "simple-git-hooks": "2.12.1",
+    "stream.js": "1.0.1",
     "tailwindcss": "4.0.17",
     "typescript": "5.8.2",
     "vite-plugin-cjs-interop": "2.2.0",

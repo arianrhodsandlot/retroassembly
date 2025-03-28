@@ -11,7 +11,7 @@ export default (function authMiddleware() {
     const { currentUser } = getContextData()
 
     const { pathname, search } = ctx.req.url
-    const needAuth = pathname === '/app' || pathname.startsWith('/app/')
+    const needAuth = pathname === '/library' || pathname.startsWith('/library/')
     if (!needAuth || currentUser) {
       return await next()
     }

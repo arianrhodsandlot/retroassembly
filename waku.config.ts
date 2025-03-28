@@ -4,9 +4,7 @@ import { cjsInterop } from 'vite-plugin-cjs-interop'
 import { defineConfig } from 'waku/config'
 
 const { middleware } = await import('./src/middlewares/waku/middleware.ts')
-
-const enhancePath = './src/middlewares/hono/enhance.ts'
-const { enhance } = await import(/* @vite-ignore */ enhancePath)
+const { enhance } = await import('./src/middlewares/hono/enhance.ts')
 
 export default defineConfig({
   middleware,

@@ -1,4 +1,5 @@
 .wrangler
+.dev.vars
 dev-dist
 dist
 node_modules

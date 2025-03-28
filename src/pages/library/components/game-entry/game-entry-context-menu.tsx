@@ -19,13 +19,13 @@ export function GameEntryContextMenu({ children, rom }: { children: ReactNode; r
       confirmDescription:
         'Are you sure to proceed?\nThe deleted history item cannot be restored.\nThe ROM related to this history item will NOT be deleted.',
       confirmTitle: 'Delete the history item',
-      deleteApi: `/api/v1/rom/${rom.id}/launch_records`,
+      deleteApi: `/api/v1/roms/${rom.id}/launch_records`,
       menuText: 'Delete the history item',
     },
     library: {
       confirmDescription: 'Are you sure to proceed?\nThe deleted ROM cannot be restored.',
       confirmTitle: 'Delete the ROM',
-      deleteApi: `/api/v1/rom/${rom.id}`,
+      deleteApi: `/api/v1/roms/${rom.id}`,
       menuText: 'Delete the ROM',
     },
   }[pageType]

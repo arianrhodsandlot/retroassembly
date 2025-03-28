@@ -42,7 +42,7 @@ export function useEmulator() {
   const gamepadMapping = useGamepadMapping()
   const [launched, setLaunched] = useEmulatorLaunched()
 
-  const romUrl = rom ? `/api/v1/rom/${rom.id}/content` : ''
+  const romUrl = rom ? `/api/v1/roms/${rom.id}/content` : ''
   const { core } = preference.emulator.platform[rom.platform] || {}
   const shader = preference.emulator.platform[rom.platform].shader || preference.emulator.shader
 
@@ -90,7 +90,7 @@ export function useEmulator() {
     const formData = new FormData()
     formData.append('core', core)
     formData.append('rom', rom.id)
-    await ky.post('/api/v1/launch_record/new', {
+    await ky.post('/api/v1/launch_records', {
       body: formData,
     })
   }

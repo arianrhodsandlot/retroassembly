@@ -21,10 +21,10 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
       formData.append('files[]', file)
     }
     formData.append('platform', platform)
-    await ky.put(url, { body: formData })
+    await ky.post(url, { body: formData })
   }
 
-  const { trigger } = useSWRMutation('/api/v1/rom/new', async (url, { arg: files }: { arg: File[] }) => {
+  const { trigger } = useSWRMutation('/api/v1/roms', async (url: string, { arg: files }: { arg: File[] }) => {
     for (const filesChunk of chunk(files, 10)) {
       const newUploadedFiles = { ...uploadedFiles }
       try {

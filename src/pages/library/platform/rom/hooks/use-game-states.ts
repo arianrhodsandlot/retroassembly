@@ -15,9 +15,9 @@ export function useGameStates() {
     data: states,
     isLoading: isStatesLoading,
     mutate: reloadStates,
-  } = useSWRImmutable(rom && showGameOverlay ? `/api/v1/rom/${rom.id}/states` : false, (url) => ky<States>(url).json())
+  } = useSWRImmutable(rom && showGameOverlay ? `/api/v1/roms/${rom.id}/states` : false, (url) => ky<States>(url).json())
 
-  const { isMutating: isSavingState, trigger: saveState } = useSWRMutation('/api/v1/state/new', async (url) => {
+  const { isMutating: isSavingState, trigger: saveState } = useSWRMutation('/api/v1/states', async (url) => {
     if (!emulator || !core || !rom) {
       throw new Error('invalid emulator or core or rom')
     }
@@ -30,7 +30,7 @@ export function useGameStates() {
     formData.append('rom', rom.id)
     formData.append('core', core)
     formData.append('type', 'manual')
-    await ky.put(url, { body: formData })
+    await ky.post(url, { body: formData })
     await reloadStates()
   })
 

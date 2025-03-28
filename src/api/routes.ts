@@ -16,8 +16,8 @@ import { createFileResponse } from './utils.ts'
 
 // eslint-disable-next-line max-lines-per-function
 export function addRoutes(app: Hono) {
-  app.put(
-    'rom/new',
+  app.post(
+    'roms',
 
     zValidator(
       'form',
@@ -34,7 +34,7 @@ export function addRoutes(app: Hono) {
     },
   )
 
-  app.get('rom/:id/content', async (c) => {
+  app.get('roms/:id/content', async (c) => {
     const object = await getRomContent(c.req.param('id'))
     if (object) {
       return createFileResponse(object)
@@ -42,7 +42,7 @@ export function addRoutes(app: Hono) {
   })
 
   app.get(
-    'rom/:id/states',
+    'roms/:id/states',
 
     zValidator(
       'query',
@@ -60,7 +60,7 @@ export function addRoutes(app: Hono) {
   )
 
   app.delete(
-    'rom/:id/launch_records',
+    'roms/:id/launch_records',
 
     async (c) => {
       const rom = c.req.param('id')
@@ -69,7 +69,7 @@ export function addRoutes(app: Hono) {
     },
   )
 
-  app.delete('rom/:id', async (c) => {
+  app.delete('roms/:id', async (c) => {
     await deleteRom(c.req.param('id'))
     return c.json(null)
   })
@@ -93,7 +93,7 @@ export function addRoutes(app: Hono) {
   )
 
   app.put(
-    'state/new',
+    'states',
 
     zValidator(
       'form',
@@ -128,7 +128,7 @@ export function addRoutes(app: Hono) {
   })
 
   app.post(
-    'launch_record/new',
+    'launch_records',
 
     zValidator(
       'form',

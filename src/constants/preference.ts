@@ -60,6 +60,7 @@ export interface Preference {
     } | null
   } | null
   ui: {
+    libraryCoverSize: string
     libraryCoverType: 'boxart'
     platforms: PlatformName[]
     showDistrictOnTitle: boolean
@@ -142,6 +143,7 @@ export const defaultPreference: Preference = {
     },
   },
   ui: {
+    libraryCoverSize: 'medium',
     libraryCoverType: 'boxart',
     platforms: ['arcade', 'atari2600', 'gb', 'gba', 'gbc', 'genesis', 'nes', 'snes'],
     showDistrictOnTitle: false,

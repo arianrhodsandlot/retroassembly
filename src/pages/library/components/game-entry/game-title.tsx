@@ -21,11 +21,15 @@ export function GameTitle({ rom }) {
   }
 
   if (rom.platform === 'arcade') {
-    return <div className='mt-2 text-center text-sm font-semibold'>{goodcodes.file.slice(4)}</div>
+    return (
+      <div className='line-clamp-3 h-16 overflow-hidden text-center text-sm font-semibold'>
+        {goodcodes.file.slice(4)}
+      </div>
+    )
   }
 
   return (
-    <div className='mt-2 text-center text-sm font-semibold'>
+    <div className='line-clamp-3 h-16 overflow-hidden text-center text-sm font-semibold'>
       {preference.ui.showDistrictOnTitle
         ? [...districts].map((district) => <DistrictIcon district={district} key={district} />)
         : null}
@@ -33,7 +37,7 @@ export function GameTitle({ rom }) {
       {goodcodes.rom}
 
       {compact([revisionText, versionText]).map((text) => (
-        <Badge className='mx-0.5 capitalize' key={text} size='2'>
+        <Badge className='mx-0.5 capitalize' key={text} size='1'>
           {text}
         </Badge>
       ))}

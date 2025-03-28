@@ -2,11 +2,13 @@
 import { useAtom } from 'jotai'
 import type { RomsPagination } from '@/controllers/get-roms.ts'
 import { romsAtom } from '../../atoms.ts'
+import { usePreference } from '../../hooks/use-preference.ts'
 import { GameEntry } from '../game-entry/game-entry.tsx'
 import { GameListPagination } from './game-list-pagination.tsx' // Import the Pagination component
 
 export function GameList({ pagination }: { pagination: RomsPagination }) {
   const [roms] = useAtom(romsAtom)
+  const { preference } = usePreference()
 
   if (!roms || roms.length === 0) {
     return (
@@ -17,9 +19,21 @@ export function GameList({ pagination }: { pagination: RomsPagination }) {
     )
   }
 
+  const sizeMap = {
+    'extra-large': 60,
+    'extra-small': 36,
+    large: 54,
+    medium: 48,
+    small: 42,
+  }
+  const size = sizeMap[preference.ui.libraryCoverSize]
+
   return (
     <div className='flex flex-col gap-4'>
-      <div className='grid gap-x-4 gap-y-2 [grid-template-columns:repeat(auto-fill,minmax(calc(var(--spacing)*40),1fr))]'>
+      <div
+        className='grid'
+        style={{ gridTemplateColumns: `repeat(auto-fill,minmax(calc(var(--spacing)*${size}),1fr))` }}
+      >
         {roms.map((rom) => (
           <GameEntry key={rom.id} rom={rom} />
         ))}

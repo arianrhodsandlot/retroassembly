@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   selector-set:
-    hash: afea243160e2f19bbdacbe729af50cab9190ea056970e36e5f9068eba571ba03
+    hash: d9e1ae2c2c305d4a342bb379999ee53e69dbcff1fa8c729ad499740862b311a7
     path: patches/selector-set.patch
   spatial-navigation-ts:
     hash: 20e67dd661a3c61ae62b2ac903799529fec664c7b46c0d1b1ec966364973cf86
@@ -13636,7 +13636,7 @@ snapshots:
 
   delegated-events@1.1.2:
     dependencies:
-      selector-set: 1.1.5(patch_hash=afea243160e2f19bbdacbe729af50cab9190ea056970e36e5f9068eba571ba03)
+      selector-set: 1.1.5(patch_hash=d9e1ae2c2c305d4a342bb379999ee53e69dbcff1fa8c729ad499740862b311a7)
 
   dequal@2.0.3: {}
 
@@ -16862,7 +16862,7 @@ snapshots:
 
   secure-json-parse@2.7.0: {}
 
-  selector-set@1.1.5(patch_hash=afea243160e2f19bbdacbe729af50cab9190ea056970e36e5f9068eba571ba03): {}
+  selector-set@1.1.5(patch_hash=d9e1ae2c2c305d4a342bb379999ee53e69dbcff1fa8c729ad499740862b311a7): {}
 
   semver@6.3.1: {}
 

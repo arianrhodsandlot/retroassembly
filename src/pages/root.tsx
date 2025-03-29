@@ -1,4 +1,5 @@
 import '@/styles/index.ts'
+import { Provider } from 'jotai'
 import type { ReactNode } from 'react'
 import { Theme } from './components/radix-themes.ts'
 
@@ -7,7 +8,9 @@ export function Root({ children }: { children: ReactNode }) {
     <html lang='en'>
       <head />
       <body>
-        <Theme accentColor='red'>{children}</Theme>
+        <Provider>
+          <Theme accentColor='red'>{children}</Theme>
+        </Provider>
       </body>
     </html>
   )

@@ -13,3 +13,18 @@ index 9ae2e97d5fdad0726fe241864555605961000ac7..d74fdf04052d8cafb45a270e3dc65fce
    var matches =
      docElem.matches ||
      docElem.webkitMatchesSelector ||
+diff --git a/selector-set.next.js b/selector-set.next.js
+index 0ceab8ec9810d465967e1e4f14503799f059fbc9..c126ac240980810c01097fc8c94ead4b1b79a592 100644
+--- a/selector-set.next.js
++++ b/selector-set.next.js
+@@ -24,8 +24,9 @@ export default function SelectorSet() {
+   this.activeIndexes = [];
+ }
+ 
++var window = globalThis
+ // Detect prefixed Element#matches function.
+-var docElem = window.document.documentElement;
++var docElem = window.document?.documentElement || {};
+ var matches =
+   docElem.matches ||
+   docElem.webkitMatchesSelector ||

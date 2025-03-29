@@ -1,4 +1,3 @@
-import { Provider } from 'jotai'
 import type { ReactNode } from 'react'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { FocusIndicator } from './focus-indicator.tsx'
@@ -18,7 +17,7 @@ interface AppLayoutProps {
 
 export default function LibraryLayout({ children, title }: AppLayoutProps) {
   return (
-    <Provider>
+    <>
       <title>{getPostfixedTitle(title)}</title>
       <div className='library-layout flex h-screen bg-[var(--accent-9)]'>
         <aside className='ml-4 flex w-64 shrink-0 flex-col pt-4 text-white'>
@@ -40,6 +39,6 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
         </div>
       </div>
       <FocusIndicator />
-    </Provider>
+    </>
   )
 }

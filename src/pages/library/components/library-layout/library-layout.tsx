@@ -1,9 +1,9 @@
 import { Provider } from 'jotai'
 import type { ReactNode } from 'react'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
+import { FocusIndicator } from './focus-indicator.tsx'
 import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
-import { FocusIndicator } from './focus-indicator.tsx'
 import { StatusBar } from './status-bar.tsx'
 
 const siteTitle = 'RetroAssembly'

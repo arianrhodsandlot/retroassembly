@@ -30,6 +30,7 @@ export default (function globalsMiddleware() {
     const supabase = createSupabase()
     const { data } = await supabase.auth.getUser()
     const currentUser = data?.user
+
     // const currentUser = { id: '567a53eb-c109-4142-8700-00f58db9853f' }
 
     function redirect(location: string, status?: number) {
@@ -41,7 +42,7 @@ export default (function globalsMiddleware() {
     const contextData = { currentUser, db, redirect, storage, supabase }
 
     Object.assign(ctx.data, contextData)
-    if (currentUser) { 
+    if (currentUser) {
       const preference = await getPreference()
       Object.assign(ctx.data, { preference })
     }

@@ -1,10 +1,9 @@
 import { createServerClient, parseCookieHeader } from '@supabase/ssr'
-import { memoize } from 'es-toolkit'
 import { env } from 'hono/adapter'
 import { setCookie } from 'hono/cookie'
 import { getHonoContext } from 'waku/unstable_hono'
 
-export const createSupabase = memoize(function createSupabase() {
+export function createSupabase() {
   const c = getHonoContext()
   const { SUPABASE_ANON_KEY, SUPABASE_URL } = env<{ SUPABASE_ANON_KEY: string; SUPABASE_URL: string }>(c)
 
@@ -27,4 +26,4 @@ export const createSupabase = memoize(function createSupabase() {
       },
     },
   })
-})
+}

@@ -14,5 +14,5 @@ export async function deleteRom(id: string) {
   await library
     .update(launchRecordTable)
     .set({ status: 0 })
-    .where(and(eq(launchRecordTable.id, id), eq(romTable.userId, currentUser.id)))
+    .where(and(eq(launchRecordTable.romId, id), eq(launchRecordTable.userId, currentUser.id)))
 }

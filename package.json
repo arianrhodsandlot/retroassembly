@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "NODE_ENV=production VITE_EXPERIMENTAL_WAKU_ROUTER=true waku build --with-cloudflare",
+    "build": "node src/scripts/build.ts",
     "dev": "node src/scripts/dev/dev.ts",
     "dev:migrate": "node src/scripts/dev/migrate.ts",
     "dev:setup-d1": "node src/scripts/dev/setup-d1.ts",

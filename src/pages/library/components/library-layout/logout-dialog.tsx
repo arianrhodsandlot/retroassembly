@@ -5,8 +5,7 @@ export function LogoutDialog(props: AlertDialog.RootProps) {
   const router = useRouter_UNSTABLE()
 
   function handleClickLogout() {
-    console.info('Logout')
-    router.push('/')
+    router.push('/logout')
   }
 
   return (

@@ -9,7 +9,7 @@ export async function LoginPage({ query }) {
   const { supabase } = getContextData()
 
   if (!supabase) {
-    return unstable_redirect('/')
+    unstable_redirect('/')
   }
 
   if (code) {
@@ -18,11 +18,16 @@ export async function LoginPage({ query }) {
       return <div>{error.message}</div>
     }
     if (data) {
-      return unstable_redirect(redirectTo)
+      unstable_redirect(redirectTo)
     }
   }
 
   if (redirectTo) {
-    return <LoginForm redirectTo={redirectTo} />
+    return (
+      <>
+        <title>Login - RetroAssembly</title>
+        <LoginForm redirectTo={redirectTo} />
+      </>
+    )
   }
 }

@@ -7,6 +7,7 @@ import { LibraryPage } from '@/pages/library/page.tsx'
 import { PlatformPage } from '@/pages/library/platform/page.tsx'
 import { RomPage } from '@/pages/library/platform/rom/page.tsx'
 import { LoginPage } from '@/pages/login/page.tsx'
+import { LogoutPage } from '@/pages/logout/page.ts'
 import { HomePage } from '@/pages/page.tsx'
 import { Root } from '@/pages/root.tsx'
 
@@ -23,6 +24,7 @@ const pages: ReturnType<typeof createPages> = createPages(({ createApi, createPa
 
     createPage({ component: HomePage, path: '/', render: 'dynamic' }),
     createPage({ component: LoginPage, path: '/login', render: 'dynamic' }),
+    createPage({ component: LogoutPage, path: '/logout', render: 'dynamic' }),
     createPage({ component: LibraryPage, path: '/library', render: 'dynamic' }),
     createPage({ component: HistoryPage, path: '/library/history', render: 'dynamic' }),
     createPage({ component: PlatformPage, path: '/library/platform/[platform]', render: 'dynamic' }),

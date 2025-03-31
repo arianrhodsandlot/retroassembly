@@ -86,8 +86,8 @@ importers:
         specifier: 0.2.0
         version: 0.2.0(jotai@2.12.2(@types/react@19.0.12)(react@19.1.0))(react@19.1.0)
       ky:
-        specifier: 1.7.5
-        version: 1.7.5
+        specifier: 1.8.0
+        version: 1.8.0
       motion:
         specifier: 12.6.2
         version: 12.6.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -6818,6 +6818,10 @@ packages:
 
   ky@1.7.5:
     resolution: {integrity: sha512-HzhziW6sc5m0pwi5M196+7cEBtbt0lCYi67wNsiwMUmz833wloE0gbzJPWKs1gliFKQb34huItDQX97LyOdPdA==}
+    engines: {node: '>=18'}
+
+  ky@1.8.0:
+    resolution: {integrity: sha512-DoKGmG27nT8t/1F9gV8vNzggJ3mLAyD49J8tTMWHeZvS8qLc7GlyTieicYtFzvDznMe/q2u38peOjkWc5/pjvw==}
     engines: {node: '>=18'}
 
   language-subtag-registry@0.3.23:
@@ -15307,6 +15311,8 @@ snapshots:
   kolorist@1.8.0: {}
 
   ky@1.7.5: {}
+
+  ky@1.8.0: {}
 
   language-subtag-registry@0.3.23: {}
 

@@ -45,7 +45,7 @@
     "hono": "4.7.5",
     "jotai": "2.12.2",
     "jotai-ssr": "0.2.0",
-    "ky": "1.7.5",
+    "ky": "1.8.0",
     "motion": "12.6.2",
     "nanoid-dictionary": "4.3.0",
     "nostalgist": "0.14.0",

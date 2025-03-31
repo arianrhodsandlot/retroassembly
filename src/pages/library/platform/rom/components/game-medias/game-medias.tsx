@@ -33,7 +33,8 @@ export function GameMedias() {
               alt={rom.goodcodes.rom}
               className='h-48 w-auto'
               key={image}
-              onError={() => setInvalidMedias((medias) => [...medias, title])}
+              loading='lazy'
+              onError={() => setInvalidMedias((medias) => [...medias, image])}
               src={image}
             />
           ))}

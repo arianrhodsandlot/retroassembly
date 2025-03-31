@@ -52,7 +52,7 @@ export async function RomPage({ fileName, id, platform }) {
                 </RomAtomGuard>
               </div>
               <div className='flex flex-col gap-4 pl-4 pr-64'>
-                <GameMedias rom={rom} video={launchboxGame?.videoUrl} />
+                <GameMedias rom={rom} />
 
                 {launchboxGame?.overview ? (
                   <div className='prose-neutral prose max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable]'>

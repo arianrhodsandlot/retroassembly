@@ -1,4 +1,6 @@
+import { env } from 'hono/adapter'
 import type { Middleware } from 'waku/config'
+import { getHonoContext } from 'waku/unstable_hono'
 import type { defaultPreference } from '../../constants/preference.ts'
 import { getPreference } from '../../controllers/get-preference.ts'
 import { createDrizzle } from '../../utils/drizzle.ts'
@@ -25,13 +27,21 @@ export default (function globalsMiddleware() {
       return await next()
     }
 
+    const c = getHonoContext()
     const db = createDrizzle()
     const storage = createStorage()
     const supabase = createSupabase()
-    const { data } = await supabase.auth.getUser()
-    const currentUser = data?.user
 
-    // const currentUser = { id: '567a53eb-c109-4142-8700-00f58db9853f' }
+    let currentUser: { id: string } | null = null
+    const devUserId = env<{ DEV_USER_ID: string }>(c).DEV_USER_ID
+    if (devUserId) {
+      currentUser = { id: devUserId }
+    } else if (supabase) {
+      const { data } = await supabase.auth.getUser()
+      if (data?.user) {
+        currentUser = data.user
+      }
+    }
 
     function redirect(location: string, status?: number) {
       ctx.res.status = status ?? 302

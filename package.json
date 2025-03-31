@@ -111,7 +111,7 @@
     ],
     "patchedDependencies": {
       "selector-set": "patches/selector-set.patch",
-      "spatial-navigation-ts": "/Users/weidan/Documents/projects/retro-assembly/patches/spatial-navigation-ts.patch"
+      "spatial-navigation-ts": "patches/spatial-navigation-ts.patch"
     }
   }
 }

@@ -2,7 +2,7 @@ import { capitalize } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
 import { Nostalgist } from 'nostalgist'
 import type { Rom } from '@/controllers/get-roms.ts'
-import { platformMap } from '../constants/platform.ts'
+import { platformMap, type PlatformName } from '../constants/platform.ts'
 import { getCDNUrl } from './cdn.ts'
 
 type LibretroThumbnailType = 'boxart' | 'snap' | 'title'
@@ -42,9 +42,17 @@ export function getPlatformGameIcon(platform: string) {
     return ''
   }
   const repo = 'batocera-linux/batocera-themes'
-  const alias = { arcade: 'fba', atarilynx: 'lynx', 'sg-1000': 'sg1000', sms: 'mastersystem', vb: 'virtualboy' }[
-    platform
-  ]
+  const aliasMap: Partial<Record<PlatformName, string>> = {
+    arcade: 'fba',
+    atarilynx: 'lynx',
+    famicom: 'nes',
+    genesis: 'megadrive',
+    sfc: 'snes',
+    'sg-1000': 'sg1000',
+    sms: 'mastersystem',
+    vb: 'virtualboy',
+  }
+  const alias = aliasMap[platform]
   return getCDNUrl(repo, `themes/batocera/${alias || platform}/_data/svg/game.svg`)
 }
 

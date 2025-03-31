@@ -4,16 +4,23 @@ import confetti from 'canvas-confetti'
 import { clsx } from 'clsx'
 import { chunk } from 'es-toolkit'
 import ky from 'ky'
-import { useState } from 'react'
+import { useDeferredValue, useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 import { useRouter_UNSTABLE } from 'waku/router/client'
 import { platformMap } from '@/constants/platform.ts'
 
-export function UploadDialog({ platform, toggleOpen }: { platform: string; toggleOpen: any }) {
+export function UploadDialog({ platform }: { platform: string }) {
   const router = useRouter_UNSTABLE()
 
   const [files, setFiles] = useState<File[]>([])
-  const [uploadedFiles, setUploadedFiles] = useState<Record<string, File[]>>({ failure: [], success: [] })
+  const [status, setStatus] = useState<'done' | 'initial' | 'loading'>('initial')
+  const [uploadedFiles, setUploadedFiles] = useState<Record<'failure' | 'loading' | 'success', File[]>>({
+    failure: [],
+    loading: [],
+    success: [],
+  })
+  const [progress, setProgress] = useState(0)
+  const deferedProgress = useDeferredValue(progress)
 
   async function uploadFiles(url: string, files: File[]) {
     const formData = new FormData()
@@ -21,40 +28,57 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
       formData.append('files[]', file)
     }
     formData.append('platform', platform)
-    await ky.post(url, { body: formData })
+    await ky.post(url, { body: formData, timeout: false })
   }
 
   const { trigger } = useSWRMutation('/api/v1/roms', async (url: string, { arg: files }: { arg: File[] }) => {
+    setStatus('loading')
+
     for (const filesChunk of chunk(files, 10)) {
       const newUploadedFiles = { ...uploadedFiles }
+      newUploadedFiles.loading = filesChunk
+      setUploadedFiles(newUploadedFiles)
+      setProgress(
+        ((newUploadedFiles.success.length +
+          newUploadedFiles.failure.length +
+          Math.floor(newUploadedFiles.loading.length / 2)) /
+          files.length) *
+          100,
+      )
+
       try {
         await uploadFiles(url, filesChunk)
         newUploadedFiles.success.push(...filesChunk)
       } catch {
         newUploadedFiles.failure.push(...filesChunk)
       }
+
+      newUploadedFiles.loading = []
       setUploadedFiles(newUploadedFiles)
+      setProgress(
+        ((newUploadedFiles.success.length + newUploadedFiles.failure.length + newUploadedFiles.loading.length) /
+          files.length) *
+          100,
+      )
     }
+
+    setStatus('done')
   })
 
   async function handleClickSelect() {
     const files = await fileOpen({ extensions: platformMap[platform].fileExtensions, multiple: true })
     setFiles(files)
     await trigger(files)
-    toggleOpen()
-    await confetti({ disableForReducedMotion: true, particleCount: 150, spread: 180 })
-    router.reload()
+
+    if (uploadedFiles.success.length > 0) {
+      await confetti({ disableForReducedMotion: true, particleCount: 150, spread: 180 })
+    }
   }
 
   function prevendDefaultWhenUploading(event: Event) {
     if (files.length > 0) {
       event.preventDefault()
     }
-  }
-
-  let status = 'loading'
-  if (files.length === 0) {
-    status = 'initial'
   }
 
   return (
@@ -66,6 +90,7 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
       <Dialog.Title>
         {
           {
+            done: 'ROMs uploaded',
             initial: 'Select ROMs',
             loading: 'Uploading ROMs',
           }[status]
@@ -115,15 +140,34 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
           loading: (
             <div className='my-4'>
               <Progress
-                duration='1s'
+                className='[&>.rt-ProgressIndicator]:!duration-3000'
+                max={100}
                 size='3'
-                value={((uploadedFiles.success.length + uploadedFiles.failure.length) / files.length) * 100}
+                value={deferedProgress}
               />
               <div className='mt-4 flex items-center gap-2 text-sm text-zinc-400'>
                 <span className='icon-[svg-spinners--180-ring] text-zinc' />
-                Uploading {uploadedFiles.success.length + uploadedFiles.failure.length}/{files.length},
+                {uploadedFiles.success.length + uploadedFiles.failure.length + uploadedFiles.loading.length}/
+                {files.length},
                 {uploadedFiles.failure.length > 0 ? <span>{uploadedFiles.failure.length} Failed.</span> : null}
                 <span>Please do not turn off your device!</span>
+              </div>
+            </div>
+          ),
+
+          done: (
+            <div>
+              <div className='py-10 text-center'>
+                🎉 {uploadedFiles.success.length}/{files.length} ROM(s) have been uploaded.
+              </div>
+
+              <div className='mt-4 flex justify-end'>
+                <Dialog.Close>
+                  <Button onClick={router.reload} variant='soft'>
+                    <span className='icon-[mdi--check]' />
+                    Done
+                  </Button>
+                </Dialog.Close>
               </div>
             </div>
           ),

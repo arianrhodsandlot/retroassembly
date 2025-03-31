@@ -4,6 +4,7 @@
     "composite": true,
     "noImplicitAny": false,
     "allowImportingTsExtensions": true,
+    "lib": ["es2021"],
     "types": ["../.wrangler/types/runtime.d.ts"],
     "paths": {
       "@/*": ["./*"]

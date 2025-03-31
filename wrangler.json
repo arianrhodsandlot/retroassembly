@@ -1,33 +1,45 @@
 {
-  "name": "retroassembly",
-  "compatibility_date": "2025-02-25",
-  "compatibility_flags": ["nodejs_compat"],
-  "main": "./dist/worker/serve-cloudflare.js",
+  "$schema": "node_modules/wrangler/config-schema.json",
   "assets": {
-    "directory": "./dist/assets",
     "binding": "ASSETS",
+    "directory": "./dist/assets",
     "html_handling": "drop-trailing-slash",
     "not_found_handling": "404-page"
   },
+  "compatibility_date": "2025-02-25",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "d1_databases": [
     {
-      "database_name": "retroassembly_library",
-      "database_id": "a1bf2797-cbae-4626-aa45-ed3e9ad656b6",
-      "preview_database_id": "retroassembly-library",
       "binding": "DB_LIBRARY",
-      "migrations_dir": "src/databases/library/migrations"
+      "database_id": "a1bf2797-cbae-4626-aa45-ed3e9ad656b6",
+      "database_name": "retroassembly_library",
+      "migrations_dir": "src/databases/library/migrations",
+      "preview_database_id": "retroassembly-library"
     },
     {
-      "database_name": "retroassembly_metadata",
-      "database_id": "47dc2b52-d6b9-46b9-8e47-1aa0e4d55caa",
-      "preview_database_id": "retroassembly-metadata",
       "binding": "DB_METADATA",
-      "migrations_dir": "src/databases/metadata/migrations"
+      "database_id": "47dc2b52-d6b9-46b9-8e47-1aa0e4d55caa",
+      "database_name": "retroassembly_metadata",
+      "migrations_dir": "src/databases/metadata/migrations",
+      "preview_database_id": "retroassembly-metadata"
     }
   ],
-  "r2_buckets": [{
-    "binding": "BUCKET",
-    "bucket_name": "retroassembly",
-    "preview_bucket_name": "retroassembly"
-  }]
+  "main": "./dist/worker/serve-cloudflare.js",
+  "name": "retroassembly",
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "placement": {
+    "mode": "smart"
+  },
+  "r2_buckets": [
+    {
+      "binding": "BUCKET",
+      "bucket_name": "retroassembly",
+      "preview_bucket_name": "retroassembly"
+    }
+  ]
 }

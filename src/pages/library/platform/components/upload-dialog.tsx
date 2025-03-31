@@ -10,7 +10,7 @@ import useSWRMutation from 'swr/mutation'
 import { useRouter_UNSTABLE } from 'waku/router/client'
 import { platformMap } from '@/constants/platform.ts'
 
-export function UploadDialog({ platform }: { platform: string }) {
+export function UploadDialog({ platform, toggleOpen }: { platform: string; toggleOpen: () => void }) {
   const router = useRouter_UNSTABLE()
   const { getRootProps, isDragActive } = useDropzone({ onDrop })
 
@@ -190,7 +190,13 @@ export function UploadDialog({ platform }: { platform: string }) {
 
               <div className='mt-4 flex justify-end'>
                 <Dialog.Close>
-                  <Button onClick={router.reload} variant='soft'>
+                  <Button
+                    onClick={() => {
+                      toggleOpen()
+                      router.reload()
+                    }}
+                    variant='soft'
+                  >
                     <span className='icon-[mdi--check]' />
                     Done
                   </Button>

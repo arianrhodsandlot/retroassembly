@@ -5,12 +5,14 @@ import { clsx } from 'clsx'
 import { chunk } from 'es-toolkit'
 import ky from 'ky'
 import { useDeferredValue, useState } from 'react'
+import { useDropzone } from 'react-dropzone'
 import useSWRMutation from 'swr/mutation'
 import { useRouter_UNSTABLE } from 'waku/router/client'
 import { platformMap } from '@/constants/platform.ts'
 
 export function UploadDialog({ platform }: { platform: string }) {
   const router = useRouter_UNSTABLE()
+  const { getRootProps, isDragActive } = useDropzone({ onDrop })
 
   const [files, setFiles] = useState<File[]>([])
   const [status, setStatus] = useState<'done' | 'initial' | 'loading'>('initial')
@@ -32,6 +34,7 @@ export function UploadDialog({ platform }: { platform: string }) {
   }
 
   const { trigger } = useSWRMutation('/api/v1/roms', async (url: string, { arg: files }: { arg: File[] }) => {
+    let showConfetti = false
     setStatus('loading')
 
     for (const filesChunk of chunk(files, 10)) {
@@ -49,6 +52,7 @@ export function UploadDialog({ platform }: { platform: string }) {
       try {
         await uploadFiles(url, filesChunk)
         newUploadedFiles.success.push(...filesChunk)
+        showConfetti = true
       } catch {
         newUploadedFiles.failure.push(...filesChunk)
       }
@@ -63,16 +67,28 @@ export function UploadDialog({ platform }: { platform: string }) {
     }
 
     setStatus('done')
+    if (showConfetti) {
+      await confetti({ disableForReducedMotion: true, particleCount: 150, spread: 180 })
+    }
   })
 
   async function handleClickSelect() {
     const files = await fileOpen({ extensions: platformMap[platform].fileExtensions, multiple: true })
+    if (files.length > 100) {
+      alert('You can only upload up to 100 files at a time.')
+      return
+    }
     setFiles(files)
     await trigger(files)
+  }
 
-    if (uploadedFiles.success.length > 0) {
-      await confetti({ disableForReducedMotion: true, particleCount: 150, spread: 180 })
+  async function onDrop(files: File[]) {
+    if (files.length > 100) {
+      alert('You can only upload up to 100 files at a time.')
+      return
     }
+    setFiles(files)
+    await trigger(files)
   }
 
   function prevendDefaultWhenUploading(event: Event) {
@@ -97,33 +113,44 @@ export function UploadDialog({ platform }: { platform: string }) {
         }
       </Dialog.Title>
 
-      {status === 'initial' ? (
-        <Callout.Root className={clsx({ hidden: status !== 'initial' })} size='1'>
-          <Callout.Icon>
-            <span className='icon-[mdi--information]' />
-          </Callout.Icon>
-          <Callout.Text className='text-xs'>
-            You are uploading ROMs for <b>{platformMap[platform].displayName}</b>. We support these file extensions for
-            this platform:
-            <br />
-            <span className='inline-flex gap-1 py-2'>
-              {platformMap[platform].fileExtensions.map((extention) => (
-                <Code key={extention}>{extention}</Code>
-              ))}
-            </span>
-          </Callout.Text>
-        </Callout.Root>
-      ) : null}
-
       {
         {
           initial: (
-            <div>
-              <div className='mt-4 flex justify-center'>
-                <Button onClick={handleClickSelect} size='3'>
-                  <span className='icon-[mdi--folder-open]' />
-                  Select files
-                </Button>
+            <>
+              <Callout.Root className={clsx({ hidden: status !== 'initial' })} size='1'>
+                <Callout.Icon>
+                  <span className='icon-[mdi--information]' />
+                </Callout.Icon>
+                <Callout.Text className='text-xs'>
+                  You are uploading ROMs for <b>{platformMap[platform].displayName}</b>. We support these file
+                  extensions for this platform:
+                  <br />
+                  <span className='inline-flex gap-1 py-2'>
+                    {platformMap[platform].fileExtensions.map((extention) => (
+                      <Code key={extention}>{extention}</Code>
+                    ))}
+                  </span>
+                </Callout.Text>
+              </Callout.Root>
+
+              <div
+                {...getRootProps()}
+                className={clsx(
+                  'mt-4 flex h-32 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-[var(--accent-8)]',
+                  { 'bg-[var(--accent-3)]': isDragActive },
+                )}
+              >
+                {isDragActive ? (
+                  <span className='text-sm text-[var(--accent-11)]'>Drop files here</span>
+                ) : (
+                  <>
+                    <span className='text-sm text-[var(--accent-11)]'>Drag files here or</span>
+                    <Button onClick={handleClickSelect} size='2'>
+                      <span className='icon-[mdi--folder-open]' />
+                      Select files
+                    </Button>
+                  </>
+                )}
               </div>
 
               <div className='mt-4 flex justify-end'>
@@ -134,7 +161,7 @@ export function UploadDialog({ platform }: { platform: string }) {
                   </Button>
                 </Dialog.Close>
               </div>
-            </div>
+            </>
           ),
 
           loading: (

@@ -55,6 +55,7 @@
     "radix-ui": "1.1.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-dropzone": "14.3.8",
     "smooth-scroll-into-view-if-needed": "2.0.2",
     "spatial-navigation-ts": "1.0.8",
     "swr": "2.3.3",
@@ -67,7 +68,7 @@
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.18.5",
     "@eslint/config-inspector": "1.0.2",
-    "@iconify/json": "2.2.321",
+    "@iconify/json": "2.2.322",
     "@iconify/tailwind4": "1.0.6",
     "@tailwindcss/vite": "4.0.17",
     "@tsconfig/vite-react": "3.4.0",

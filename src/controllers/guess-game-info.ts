@@ -1,5 +1,6 @@
 import path from 'node:path'
-import { and, eq, or } from 'drizzle-orm'
+import { and, eq, inArray, or } from 'drizzle-orm'
+import { compact } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
 import { getContextData } from 'waku/middleware/context'
 import { platformMap } from '../constants/platform.ts'
@@ -65,22 +66,23 @@ async function guessLaunchboxGame(fileName: string, platform: string) {
     return exactResult
   }
 
-  const results = await metadata
+  const alternateNameResults = await metadata
     .select()
     .from(launchboxGameAlternateNameTable)
     .where(eq(launchboxGameAlternateNameTable.compactName, getCompactName(restoredBaseName)))
-    .limit(1)
-  const databaseId = results[0]?.databaseId
-  if (databaseId) {
+    .limit(100)
+  if (alternateNameResults.length > 0) {
+    const databaseIds = compact(alternateNameResults.map(({ databaseId }) => databaseId))
     const alternateResults = await metadata
       .select()
       .from(launchboxGameTable)
       .where(
         and(
-          eq(launchboxGameTable.databaseId, databaseId),
+          inArray(launchboxGameTable.databaseId, databaseIds),
           eq(launchboxGameTable.platform, platformMap[platform].launchboxName),
         ),
       )
+      .limit(1)
     const alternateResult = alternateResults.at(0)
     if (alternateResult) {
       return alternateResult
@@ -98,7 +100,7 @@ export async function guessGameInfo(fileName: string, platform: string) {
   if (launchbox && !libretro) {
     libretro = await guessLibretroGame(launchbox.name, platform)
   }
-  if (libretro && !launchbox && libretro.name) {
+  if (libretro?.name && !launchbox) {
     launchbox = await guessLaunchboxGame(libretro.goodcodesBaseCompactName, platform)
   }
 

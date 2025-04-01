@@ -11,3 +11,4 @@ src/legacy/test-results
 src/legacy/tests/fixtures/roms
 waku.config.ts
 worker-configuration.d.ts
+wrangler.json

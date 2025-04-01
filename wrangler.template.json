@@ -6,21 +6,21 @@
     "html_handling": "drop-trailing-slash",
     "not_found_handling": "404-page"
   },
-  "compatibility_date": "2025-02-25",
+  "compatibility_date": "2025-04-01",
   "compatibility_flags": [
     "nodejs_compat"
   ],
   "d1_databases": [
     {
       "binding": "DB_LIBRARY",
-      "database_id": "a1bf2797-cbae-4626-aa45-ed3e9ad656b6",
+      "database_id": "${DB_LIBRARY_DATABASE_ID}",
       "database_name": "retroassembly_library",
       "migrations_dir": "src/databases/library/migrations",
       "preview_database_id": "retroassembly-library"
     },
     {
       "binding": "DB_METADATA",
-      "database_id": "47dc2b52-d6b9-46b9-8e47-1aa0e4d55caa",
+      "database_id": "${DB_METADATA_DATABASE_ID}",
       "database_name": "retroassembly_metadata",
       "migrations_dir": "src/databases/metadata/migrations",
       "preview_database_id": "retroassembly-metadata"
@@ -41,5 +41,6 @@
       "bucket_name": "retroassembly",
       "preview_bucket_name": "retroassembly"
     }
-  ]
+  ],
+  "upload_source_maps": true
 }

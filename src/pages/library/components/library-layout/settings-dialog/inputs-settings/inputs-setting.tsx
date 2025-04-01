@@ -1,5 +1,5 @@
 import { SegmentedControl } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useState, useTransition } from 'react'
 import { GamepadInputs } from './gamepad-inputs.tsx'
 import { KeyboardInputs } from './keyboard-inputs.tsx'

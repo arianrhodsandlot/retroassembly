@@ -12,8 +12,8 @@ export function SidebarFooter() {
 
   return (
     <>
-      <div className='flex justify-center gap-2 border-t border-t-white/30 py-2'>
-        <Button>
+      <div className='flex justify-center gap-2'>
+        <Button size='1'>
           <span className='icon-[mdi--information]' />
         </Button>
 
@@ -21,13 +21,14 @@ export function SidebarFooter() {
           onClick={() => {
             setSettingsDialogOpenAtom(true)
           }}
+          size='1'
         >
           <span className='icon-[mdi--cog]' />
         </Button>
 
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
-            <Button>
+            <Button size='1'>
               <span className='icon-[mdi--user]' />
             </Button>
           </DropdownMenu.Trigger>

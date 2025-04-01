@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { PendingMask } from '../pending-mask/pending-mask.tsx'
 import { FocusIndicator } from './focus-indicator.tsx'
+import { SidebarContainer } from './sidebar-container.tsx'
 import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
 import { StatusBar } from './status-bar.tsx'
@@ -21,16 +22,17 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
     <>
       <title>{getPostfixedTitle(title)}</title>
       <div className='library-layout flex h-screen bg-[var(--accent-9)]'>
-        <aside className='ml-4 flex w-64 shrink-0 flex-col pt-4 text-white'>
-          <div className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold'>
+        <SidebarContainer>
+          <a className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold' href='/'>
             <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
-            RetroAssembly
-          </div>
+          </a>
           <ScrollArea className='flex-1' size='2'>
             <SidebarLinks />
           </ScrollArea>
-          <SidebarFooter />
-        </aside>
+          <div className='border-t border-t-white/30 py-2'>
+            <SidebarFooter />
+          </div>
+        </SidebarContainer>
 
         <div className='flex min-w-0 flex-1 flex-col gap-4 p-4'>
           <main className='relative flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>

@@ -1,5 +1,5 @@
 'use client'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useRouter_UNSTABLE } from 'waku'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'

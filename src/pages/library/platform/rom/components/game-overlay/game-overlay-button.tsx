@@ -1,5 +1,5 @@
 import { Button } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { noop } from 'es-toolkit'
 import type { ReactNode } from 'react'
 

@@ -1,10 +1,10 @@
 import { Card, RadioCards, Switch } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
 export function GameEntrySettings() {
-  const { preference, update } = usePreference()
+  const { isLoading, preference, update } = usePreference()
 
   return (
     <div>
@@ -56,6 +56,7 @@ export function GameEntrySettings() {
             </SettingsTitle>
             <Switch
               checked={preference.ui.showTitle}
+              disabled={isLoading}
               onCheckedChange={(checked) => update({ ui: { showTitle: checked } })}
             />
           </label>
@@ -68,6 +69,7 @@ export function GameEntrySettings() {
               </SettingsTitle>
               <Switch
                 checked={preference.ui.showDistrictOnTitle}
+                disabled={isLoading}
                 onCheckedChange={(checked) => update({ ui: { showDistrictOnTitle: checked } })}
               />
             </label>

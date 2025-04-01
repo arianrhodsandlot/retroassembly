@@ -1,6 +1,6 @@
 'use client'
 import { Button } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useAtom } from 'jotai'
 import { Fragment } from 'react/jsx-runtime'
 import { getPlatformGameIcon, getPlatformIcon, getRomGoodcodes } from '@/utils/library.ts'

@@ -1,5 +1,5 @@
 import { Card, Select } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useAtom } from 'jotai'
 import { useState } from 'react'
 import { type CoreName, coreOptionsMap } from '@/constants/core.ts'

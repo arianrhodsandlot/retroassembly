@@ -3,10 +3,13 @@ import { Kbd } from '@radix-ui/themes'
 import { capitalize, uniq } from 'es-toolkit'
 import { useGamepads } from '../../hooks/use-gamepads.ts'
 import { useInputMapping } from '../../hooks/use-input-mapping.ts'
+import { usePreference } from '../../hooks/use-preference.ts'
+import { SidebarFooter } from './sidebar-footer.tsx'
 
 export function StatusBar() {
   const { connected } = useGamepads()
   const { keyboard: keyboardMapping } = useInputMapping()
+  const { preference } = usePreference()
 
   return (
     <div className='flex items-center justify-end gap-4 text-sm font-medium text-white/80'>
@@ -65,6 +68,8 @@ export function StatusBar() {
           ) : null}
         </>
       )}
+
+      {preference.ui.showSidebar ? null : <SidebarFooter />}
     </div>
   )
 }

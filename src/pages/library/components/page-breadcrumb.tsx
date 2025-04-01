@@ -3,9 +3,9 @@ import { Button } from '@radix-ui/themes'
 import clsx from 'clsx'
 import { useAtom } from 'jotai'
 import { Fragment } from 'react/jsx-runtime'
-import { Link } from 'waku'
 import { getPlatformGameIcon, getPlatformIcon, getRomGoodcodes } from '@/utils/library.ts'
 import { romAtom, usePlatform } from '../atoms.ts'
+import { NavigatableLink } from './navigatable-link.tsx'
 
 export function PageBreadcrumb() {
   const [rom] = useAtom(romAtom)
@@ -54,10 +54,10 @@ export function PageBreadcrumb() {
         ) : (
           <Fragment key={url}>
             <Button asChild className='!bg-transparent !font-semibold' variant='ghost'>
-              <Link data-sn-enabled to={url}>
+              <NavigatableLink to={url}>
                 {icon}
                 {text}
-              </Link>
+              </NavigatableLink>
             </Button>
             <span className='icon-[mdi--menu-right] text-black/50' />
           </Fragment>

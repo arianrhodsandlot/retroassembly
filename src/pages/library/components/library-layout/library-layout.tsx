@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
+import { PendingMask } from '../pending-mask/pending-mask.tsx'
 import { FocusIndicator } from './focus-indicator.tsx'
 import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
@@ -38,7 +39,10 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
           <StatusBar />
         </div>
       </div>
+
       <FocusIndicator />
+
+      <PendingMask />
     </>
   )
 }

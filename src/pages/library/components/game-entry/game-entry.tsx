@@ -1,8 +1,8 @@
 'use client'
 import { Skeleton } from '@radix-ui/themes'
-import { Link } from 'waku'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { useRomCover } from '../../hooks/use-rom-cover.ts'
+import { NavigatableLink } from '../navigatable-link.tsx'
 import { GameEntryContextMenu } from './game-entry-context-menu.tsx'
 import { GamePlatform } from './game-platform.tsx'
 import { GameTitle } from './game-title.tsx'
@@ -13,9 +13,8 @@ export function GameEntry({ rom }) {
 
   return (
     <GameEntryContextMenu rom={rom}>
-      <Link
+      <NavigatableLink
         className='game-entry flex flex-col items-center justify-center gap-1 p-1'
-        data-sn-enabled
         title={rom.fileName}
         to={`/library/rom/${encodeURIComponent(rom.id)}`}
       >
@@ -35,7 +34,7 @@ export function GameEntry({ rom }) {
 
         <GamePlatform platform={rom.platform} />
         <GameTitle rom={rom} />
-      </Link>
+      </NavigatableLink>
     </GameEntryContextMenu>
   )
 }

@@ -1,7 +1,7 @@
 import { Button } from '@radix-ui/themes'
 import { range } from 'es-toolkit'
-import { Link } from 'waku'
 import type { RomsPagination } from '@/controllers/get-roms'
+import { NavigatableLink } from '../navigatable-link.tsx'
 
 export function GameListPagination({ pagination }: { pagination: RomsPagination }) {
   const { current, pages } = pagination
@@ -18,9 +18,9 @@ export function GameListPagination({ pagination }: { pagination: RomsPagination 
             {current === page ? (
               <span>{page}</span>
             ) : (
-              <Link data-sn-enabled to={`?page=${page}`}>
+              <NavigatableLink data-sn-enabled to={`?page=${page}`}>
                 {page}
-              </Link>
+              </NavigatableLink>
             )}
           </Button>
         </li>

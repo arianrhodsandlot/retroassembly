@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import { motion } from 'motion/react'
 import { useLayoutEffect, useRef } from 'react'
 import scrollIntoView from 'smooth-scroll-into-view-if-needed'
-import { Link } from 'waku'
+import { NavigatableLink } from '../navigatable-link.tsx'
 
 export function SidebarLink({ active, children, to }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -17,17 +17,15 @@ export function SidebarLink({ active, children, to }) {
   return (
     <motion.div layout ref={ref}>
       <Button asChild size='3' variant='ghost'>
-        <Link
+        <NavigatableLink
           className={clsx('group !m-0 !flex !h-auto !px-4 !py-2.5', { '!bg-white': active, '!text-white': !active })}
-          data-sn-enabled
           data-sn-focus-style={JSON.stringify({
             backgroundColor: 'rgba(0, 0, 0, 0.2)',
           })}
-          scroll
           to={to}
         >
           <div className='flex h-auto w-full items-center justify-start gap-2 font-semibold'>{children}</div>
-        </Link>
+        </NavigatableLink>
       </Button>
     </motion.div>
   )

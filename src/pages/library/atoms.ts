@@ -29,3 +29,8 @@ const emulatorLaunchedAtom = atomWithReset(false)
 export function useEmulatorLaunched() {
   return useAtom(emulatorLaunchedAtom)
 }
+
+const showPendingMaskAtom = atom(false)
+export function useShowPendingMaskAtom() {
+  return useAtom(showPendingMaskAtom)
+}

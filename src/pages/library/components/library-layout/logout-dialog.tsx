@@ -1,18 +1,20 @@
 import { AlertDialog, Button } from '@radix-ui/themes'
-import { useRouter_UNSTABLE } from 'waku'
+
+function handleClickLogout() {
+  location.assign('/logout')
+}
 
 export function LogoutDialog(props: AlertDialog.RootProps) {
-  const router = useRouter_UNSTABLE()
-
-  function handleClickLogout() {
-    router.push('/logout')
-  }
-
   return (
     <AlertDialog.Root {...props}>
       <AlertDialog.Content>
-        <AlertDialog.Title>Log out of RetroAssembly?</AlertDialog.Title>
+        <AlertDialog.Title className='flex items-center gap-2'>
+          <span className='icon-[mdi--hand-wave]' />
+          Log out of RetroAssembly?
+        </AlertDialog.Title>
+
         <AlertDialog.Description>You can always log back in at any time.</AlertDialog.Description>
+
         <div className='flex justify-end gap-4'>
           <AlertDialog.Cancel>
             <Button variant='soft'>

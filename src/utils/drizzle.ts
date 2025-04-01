@@ -8,7 +8,6 @@ import * as metadataSchema from '../databases/metadata/schema.ts'
 export const createDrizzle = memoize(function createDrizzle() {
   const { DB_LIBRARY, DB_METADATA } = env<Env>(getHonoContext(), 'workerd')
   if (DB_LIBRARY && DB_METADATA) {
-    console.info('Found DB_LIBRARY and DB_METADATA in environment, using it as our database.')
     return {
       library: drizzle(DB_LIBRARY, { casing: 'snake_case', schema: librarySchema }),
       metadata: drizzle(DB_METADATA, { casing: 'snake_case', schema: metadataSchema }),

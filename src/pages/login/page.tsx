@@ -5,10 +5,15 @@ export async function LoginPage({ query }) {
   const searchParams = new URLSearchParams(query)
   const redirectTo = searchParams.get('redirect_to') ?? '/library'
   const code = searchParams.get('code')
-  const { redirect, supabase } = getContextData()
+  const { currentUser, redirect, supabase } = getContextData()
 
   if (!supabase) {
     redirect('/')
+    return
+  }
+
+  if (currentUser) {
+    redirect(redirectTo)
     return
   }
 

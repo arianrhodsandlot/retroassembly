@@ -37,11 +37,9 @@ export function SettingsDialog({ onOpenChange, ...props }: Dialog.RootProps) {
   return (
     <Dialog.Root {...props} onOpenChange={handleOpenChange}>
       <Dialog.Content aria-describedby={undefined} className='!w-7xl !max-w-screen'>
-        <Dialog.Title>
-          <div className='flex items-center gap-2'>
-            <span className='icon-[mdi--cog] ' />
-            Settings
-          </div>
+        <Dialog.Title className='flex items-center gap-2'>
+          <span className='icon-[mdi--cog] ' />
+          Settings
         </Dialog.Title>
 
         <div className='py-0'>

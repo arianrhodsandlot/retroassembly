@@ -4,7 +4,8 @@
     "binding": "ASSETS",
     "directory": "./dist/assets",
     "html_handling": "drop-trailing-slash",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "run_worker_first": false
   },
   "compatibility_date": "2025-04-01",
   "compatibility_flags": [
@@ -15,15 +16,13 @@
       "binding": "DB_LIBRARY",
       "database_id": "${DB_LIBRARY_DATABASE_ID}",
       "database_name": "retroassembly_library",
-      "migrations_dir": "src/databases/library/migrations",
-      "preview_database_id": "retroassembly-library"
+      "migrations_dir": "src/databases/library/migrations"
     },
     {
       "binding": "DB_METADATA",
       "database_id": "${DB_METADATA_DATABASE_ID}",
       "database_name": "retroassembly_metadata",
-      "migrations_dir": "src/databases/metadata/migrations",
-      "preview_database_id": "retroassembly-metadata"
+      "migrations_dir": "src/databases/metadata/migrations"
     }
   ],
   "main": "./dist/worker/serve-cloudflare.js",

@@ -7,11 +7,8 @@
     "dev:migrate": "node src/scripts/dev/migrate.ts",
     "dev:setup-d1": "node src/scripts/dev/setup-d1.ts",
     "dev:test": "playwright test -c tests/e2e --headed --ui",
-    "lint": "eslint src",
     "prepare": "simple-git-hooks",
-    "prepare-test": "node ./scripts/prepare-test.js",
-    "preview": "vite build && vite preview",
-    "start": "wrangler dev",
+    "preview": "node --env-file=.env src/scripts/build.ts && wrangler dev",
     "test": "playwright test -c tests/e2e"
   },
   "simple-git-hooks": {

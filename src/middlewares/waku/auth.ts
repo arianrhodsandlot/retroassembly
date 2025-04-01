@@ -8,7 +8,7 @@ export default (function authMiddleware() {
       return await next()
     }
 
-    const { currentUser } = getContextData()
+    const { currentUser, redirect } = getContextData()
 
     const { pathname, search } = ctx.req.url
     const needAuth = pathname === '/library' || pathname.startsWith('/library/')
@@ -25,8 +25,6 @@ export default (function authMiddleware() {
     const loginUrl = new URL('/login', ctx.req.url.origin)
     loginUrl.searchParams.set('redirect_to', redirectTo)
     const loginUrlPath = `${loginUrl.pathname}${loginUrl.search}`
-    ctx.res.status = 302
-    ctx.res.headers ??= {}
-    ctx.res.headers.Location = loginUrlPath
+    redirect(loginUrlPath)
   }
 } as Middleware)

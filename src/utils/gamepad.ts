@@ -1,5 +1,5 @@
-import * as gamepadjs from 'Gamepad.js'
 import { pull } from 'es-toolkit'
+import * as gamepadjs from 'gamepad.js'
 
 interface GamepadButtonEvent {
   button: number

@@ -1,14 +1,13 @@
 // Workaround https://github.com/cloudflare/workers-sdk/issues/6577
-import type { Middleware } from 'waku/config'
+import { defineMiddleware } from './utils.ts'
 
 function isWranglerDev(headers?: Record<string, string | string[]>): boolean {
   // This header seems to only be set for production cloudflare workers
   return !headers?.['cf-visitor']
 }
 
-export default (function cloudflareMiddleware() {
-  return async (ctx, next) => {
-    await next()
+export const cloudflareMiddleware = defineMiddleware(() => {
+  return async (ctx) => {
     if (!import.meta.env?.PROD) {
       return
     }
@@ -20,5 +19,6 @@ export default (function cloudflareMiddleware() {
       ctx.res.headers ||= {}
       ctx.res.headers['content-encoding'] = 'Identity'
     }
+    await Promise.resolve()
   }
-} as Middleware)
+})

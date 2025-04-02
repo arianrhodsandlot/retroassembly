@@ -1,6 +1,6 @@
 'use client'
 import { clsx } from 'clsx'
-import { useRouter_UNSTABLE } from 'waku'
+import { useRouter } from 'waku'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
 import { usePlatform } from '../../atoms.ts'
@@ -15,7 +15,7 @@ function getPlatformLink(platform?: string) {
 }
 
 export function SidebarLinks() {
-  const router = useRouter_UNSTABLE()
+  const router = useRouter()
   const { preference } = usePreference()
   const [platform] = usePlatform()
 

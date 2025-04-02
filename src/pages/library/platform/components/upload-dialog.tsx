@@ -7,11 +7,11 @@ import ky from 'ky'
 import { useDeferredValue, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import useSWRMutation from 'swr/mutation'
-import { useRouter_UNSTABLE } from 'waku/router/client'
+import { useRouter } from 'waku/router/client'
 import { platformMap } from '@/constants/platform.ts'
 
 export function UploadDialog({ platform, toggleOpen }: { platform: string; toggleOpen: () => void }) {
-  const router = useRouter_UNSTABLE()
+  const router = useRouter()
   const { getRootProps, isDragActive } = useDropzone({ onDrop })
 
   const [files, setFiles] = useState<File[]>([])

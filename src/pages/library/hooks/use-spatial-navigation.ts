@@ -2,7 +2,7 @@ import { useEventListener } from '@react-hookz/web'
 import { off, on } from 'delegated-events'
 import { delay } from 'es-toolkit'
 import { useEffect } from 'react'
-import { useRouter_UNSTABLE } from 'waku'
+import { useRouter } from 'waku'
 import { Gamepad } from '@/utils/gamepad.ts'
 import { useEmulatorLaunched, useShowGameOverlay } from '../atoms.ts'
 import { useMouseIdle } from '../platform/rom/hooks/use-mouse-idle.ts'
@@ -12,7 +12,7 @@ import { useFocusIndicator } from './use-focus-indicator.ts'
 import { useInputMapping } from './use-input-mapping.ts'
 
 export function useSpatialNavigation() {
-  const router = useRouter_UNSTABLE()
+  const router = useRouter()
   const inputMapping = useInputMapping()
   const { syncStyle } = useFocusIndicator()
   const isIdle = useMouseIdle(100)

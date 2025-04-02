@@ -6,10 +6,6 @@ import { formatISO } from 'date-fns'
 import { cjsInterop } from 'vite-plugin-cjs-interop'
 import { defineConfig } from 'waku/config'
 
-const { middleware } = await import('./src/middlewares/waku/middleware.ts')
-
-const { enhance } = await import('./src/middlewares/hono/enhance.ts') // dev-only-line
-
 const { stdout: revision } = await promisify(exec)('git rev-parse HEAD')
 const shortVersion = revision.trim().slice(0, 7)
 const define = {
@@ -18,8 +14,13 @@ const define = {
 }
 
 export default defineConfig({
-  middleware,
-  unstable_honoEnhancer: enhance, // dev-only-line
+  middleware: [
+    'waku/middleware/context',
+    './src/middlewares/waku/middlewares.ts',
+    'waku/middleware/dev-server',
+    'waku/middleware/handler',
+  ],
+  unstable_honoEnhancer: process.env.NODE_ENV === 'development' ? './src/middlewares/hono/enhance.ts' : undefined,
   unstable_viteConfigs: {
     common() {
       return {

@@ -5,11 +5,11 @@ import { useAtom } from 'jotai'
 import ky from 'ky'
 import type { ReactNode } from 'react'
 import useSWRMutation from 'swr/mutation'
-import { useRouter_UNSTABLE } from 'waku'
+import { useRouter } from 'waku'
 import { romsAtom } from '../../atoms.ts'
 
 export function GameEntryContextMenu({ children, rom }: { children: ReactNode; rom: any }) {
-  const router = useRouter_UNSTABLE()
+  const router = useRouter()
 
   const [deleteDialogOpen, toggleDeleteDialog] = useToggle(false)
 

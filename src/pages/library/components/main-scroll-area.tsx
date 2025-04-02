@@ -1,10 +1,10 @@
 'use client'
 import { ScrollArea, type ScrollAreaProps } from '@radix-ui/themes'
 import { type RefObject, useEffect, useRef } from 'react'
-import { useRouter_UNSTABLE } from 'waku'
+import { useRouter } from 'waku'
 
 export function MainScrollArea({ ref, ...props }: { ref?: RefObject<HTMLDivElement | null> } & ScrollAreaProps) {
-  const router = useRouter_UNSTABLE()
+  const router = useRouter()
   const scrollAreaRef = useRef<HTMLDivElement>(null)
   const refs = ref ? [scrollAreaRef, ref] : [scrollAreaRef]
   const { path, query } = router

@@ -1,24 +1,19 @@
-import type { Middleware } from 'waku/config'
 import { getContextData } from 'waku/middleware/context'
-import { shouldApplyMiddlware } from './utils.ts'
+import { defineMiddleware } from './utils.ts'
 
-export default (function authMiddleware() {
-  return async (ctx, next) => {
-    if (!shouldApplyMiddlware(ctx.req.url.pathname)) {
-      return await next()
-    }
-
+export const authMiddleware = defineMiddleware(() => {
+  return async (ctx) => {
     const { currentUser, redirect } = getContextData()
 
     const { pathname, search } = ctx.req.url
     const needAuth = pathname === '/library' || pathname.startsWith('/library/')
     if (!needAuth || currentUser) {
-      return await next()
+      return
     }
 
     const isApi = pathname.startsWith('/api/')
     if (isApi) {
-      return await next()
+      return
     }
 
     const redirectTo = `${pathname}${search}`
@@ -26,5 +21,7 @@ export default (function authMiddleware() {
     loginUrl.searchParams.set('redirect_to', redirectTo)
     const loginUrlPath = `${loginUrl.pathname}${loginUrl.search}`
     redirect(loginUrlPath)
+
+    await Promise.resolve()
   }
-} as Middleware)
+})

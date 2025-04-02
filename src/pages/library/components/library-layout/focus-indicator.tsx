@@ -1,13 +1,13 @@
 'use client'
 import { Portal, Theme } from '@radix-ui/themes'
 import { type ReactNode, useLayoutEffect } from 'react'
-import { useRouter_UNSTABLE } from 'waku'
+import { useRouter } from 'waku'
 import { useFocusIndicator } from '../../hooks/use-focus-indicator.ts'
 import { useSpatialNavigation } from '../../hooks/use-spatial-navigation.ts'
 
 export function FocusIndicator({ children }: { children?: ReactNode }) {
   const { style, syncStyle } = useFocusIndicator()
-  const router = useRouter_UNSTABLE()
+  const router = useRouter()
 
   let mergedStyle = style
 

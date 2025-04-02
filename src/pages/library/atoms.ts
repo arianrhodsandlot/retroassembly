@@ -13,6 +13,11 @@ export function usePlatform() {
 }
 export const settingsDialogOpenAtom = atom(false)
 
+const aboutDialogOpenAtom = atom(false)
+export function useAboutDialogOpen() {
+  return useAtom(aboutDialogOpenAtom)
+}
+
 const focusIndicatorStyleAtom = atom<CSSProperties>({})
 export function useFocusIndicatorStyle() {
   return useAtom(focusIndicatorStyleAtom)

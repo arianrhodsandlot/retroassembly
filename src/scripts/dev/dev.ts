@@ -7,7 +7,7 @@ while (true) {
   await $$`rm -rf node_modules/.vite`
 
   await $$`rm -f waku.config.ts wrangler.json`
-  await $$`cp waku.config.dev.ts waku.config.ts`
+  await $$`cp waku.config.template.ts waku.config.ts`
 
   const wranglerTemplate = await fs.readFile('wrangler.template.json', 'utf8')
   const compiled = template(wranglerTemplate)

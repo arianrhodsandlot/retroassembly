@@ -43,7 +43,7 @@
     "jotai": "2.12.2",
     "jotai-ssr": "0.2.0",
     "ky": "1.8.0",
-    "motion": "12.6.2",
+    "motion": "12.6.3",
     "nanoid-dictionary": "4.3.0",
     "nostalgist": "0.14.1",
     "opendal": "0.47.11",
@@ -58,7 +58,7 @@
     "swr": "2.3.3",
     "tailwind-merge": "3.1.0",
     "tailwindcss-motion": "1.1.0",
-    "type-fest": "4.38.0",
+    "type-fest": "4.39.0",
     "waku": "0.21.24",
     "zod": "3.24.2"
   },
@@ -91,9 +91,9 @@
     "vite-plugin-cjs-interop": "2.2.0",
     "vite-tsconfig-paths": "5.1.4",
     "wrangler": "4.6.0",
-    "zx": "8.4.1"
+    "zx": "8.5.0"
   },
-  "packageManager": "pnpm@10.7.0",
+  "packageManager": "pnpm@10.7.1",
   "engines": {
     "node": ">=23.10.0"
   },

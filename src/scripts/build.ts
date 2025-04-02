@@ -5,7 +5,7 @@ const $$ = $({ verbose: true })
 
 // reset config files
 await $$`rm -rf waku.config.ts`
-await $$`cp waku.config.build.ts waku.config.ts`
+await $$`cat waku.config.template.ts | grep -v dev-only-line > waku.config.ts`
 
 // prepare wrangler config
 const wranglerTemplate = await fs.readFile('wrangler.template.json', 'utf8')

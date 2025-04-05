@@ -47,7 +47,9 @@ await Promise.all([
 // Dump data from the temporary database to local d1
 const databaseNames = ['library', 'metadata']
 await $`rm -rf .wrangler/state/v3/d1/miniflare-D1DatabaseObject`
-await Promise.all(databaseNames.map((databaseName) => $`wrangler d1 migrations apply retroassembly_${databaseName}`))
+for (const databaseName of databaseNames) {
+  await $`wrangler d1 migrations apply retroassembly_${databaseName}`
+}
 const dbFiles = await glob('.wrangler/state/v3/d1/miniflare-D1DatabaseObject/*.sqlite')
 const dbFileMap: Record<string, string> = {}
 for (const dbFile of dbFiles) {

@@ -11,7 +11,7 @@ import { useMouseIdle } from '../hooks/use-mouse-idle.ts'
 
 export function PageHooks(): undefined {
   const [settingsDialogOpen] = useAtom(settingsDialogOpenAtom)
-  const { emulator, launch } = useEmulator()
+  const { emulator } = useEmulator()
   const idle = useMouseIdle()
   const inputMapping = useInputMapping()
 
@@ -39,7 +39,7 @@ export function PageHooks(): undefined {
 
   useEffect(
     () =>
-      Gamepad.onPress(async ({ button }) => {
+      Gamepad.onPress(({ button }) => {
         if (!canLaunch) {
           return
         }
@@ -54,12 +54,12 @@ export function PageHooks(): undefined {
           return
         }
 
-        await launch()
+        document.querySelector<HTMLButtonElement>('.launch-button')?.click()
       }),
-    [inputMapping.gamepad, canLaunch, launch],
+    [inputMapping.gamepad, canLaunch],
   )
 
-  useKeyboardEvent(true, async (event) => {
+  useKeyboardEvent(true, (event) => {
     if (!canLaunch) {
       return
     }
@@ -93,7 +93,7 @@ export function PageHooks(): undefined {
       }
     }
 
-    await launch()
+    document.querySelector<HTMLButtonElement>('.launch-button')?.click()
   })
 
   useEventListener(globalThis, 'resize', updateEmulatorSizeLazy)

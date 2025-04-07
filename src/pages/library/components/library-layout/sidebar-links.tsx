@@ -1,6 +1,6 @@
 'use client'
 import { clsx } from 'clsx'
-import { useRouter } from 'waku'
+import { useLocation } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
 import { usePlatform } from '../../atoms.ts'
@@ -15,12 +15,12 @@ function getPlatformLink(platform?: string) {
 }
 
 export function SidebarLinks() {
-  const router = useRouter()
   const { preference } = usePreference()
   const [platform] = usePlatform()
+  const location = useLocation()
 
   function isLinkActive(link: string) {
-    return router.path === link || getPlatformLink(platform?.name) === link
+    return location.pathname === link || getPlatformLink(platform?.name) === link
   }
 
   const platformLinks = preference.ui.platforms.map((platform) => ({

@@ -1,9 +1,9 @@
 import { memoize } from 'es-toolkit'
 import { env } from 'hono/adapter'
-import { getHonoContext } from 'waku/unstable_hono'
+import { getContext } from 'hono/context-storage'
 
 export const createStorage = memoize(function createStorage() {
-  const { BUCKET } = env<{ BUCKET: Env['BUCKET'] }>(getHonoContext(), 'workerd')
+  const { BUCKET } = env<{ BUCKET: Env['BUCKET'] }>(getContext(), 'workerd')
   if (BUCKET) {
     return BUCKET
   }

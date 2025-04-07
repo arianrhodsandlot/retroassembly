@@ -1,5 +1,5 @@
 import { and, count, eq, type InferInsertModel } from 'drizzle-orm'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { type GameInfo, guessGameInfo } from '../controllers/guess-game-info.ts'
 import { romTable } from '../databases/library/schema.ts'
 import { nanoid } from '../utils/misc.ts'
@@ -12,7 +12,7 @@ interface CreateRomParams {
 }
 
 async function createRom(params: CreateRomParams) {
-  const { currentUser, db } = getContextData()
+  const { currentUser, db } = getContext().var
   const { library } = db
 
   const where = and(
@@ -50,7 +50,7 @@ async function createRom(params: CreateRomParams) {
 }
 
 export async function createRoms({ files, platform }: { files: File[]; platform: string }) {
-  const { storage } = getContextData()
+  const { storage } = getContext().var
 
   const roms = await Promise.all(
     files.map(async (file) => {

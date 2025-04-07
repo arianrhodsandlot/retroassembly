@@ -6,12 +6,12 @@ import { chunk } from 'es-toolkit'
 import ky from 'ky'
 import { useDeferredValue, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { useNavigate } from 'react-router'
 import useSWRMutation from 'swr/mutation'
-import { useRouter } from 'waku/router/client'
 import { platformMap } from '@/constants/platform.ts'
 
 export function UploadDialog({ platform, toggleOpen }: { platform: string; toggleOpen: () => void }) {
-  const router = useRouter()
+  const navigate = useNavigate()
   const { getRootProps, isDragActive } = useDropzone({ onDrop })
 
   const [files, setFiles] = useState<File[]>([])
@@ -193,7 +193,7 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
                   <Button
                     onClick={() => {
                       toggleOpen()
-                      router.reload()
+                      navigate('.', { replace: true })
                     }}
                     variant='soft'
                   >

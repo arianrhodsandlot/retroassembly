@@ -1,9 +1,9 @@
 import { and, eq } from 'drizzle-orm'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { stateTable } from '../databases/library/schema.ts'
 
 export async function getStateContent(id: string, type?: string) {
-  const { currentUser, db, storage } = getContextData()
+  const { currentUser, db, storage } = getContext().var
 
   const [result] = await db.library
     .select()

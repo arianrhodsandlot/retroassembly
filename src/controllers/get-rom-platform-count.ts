@@ -1,9 +1,9 @@
 import { and, eq } from 'drizzle-orm'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { romTable } from '../databases/library/schema.ts'
 
 export async function getRomPlatformCount() {
-  const { currentUser, db } = getContextData()
+  const { currentUser, db } = getContext().var
   const { library } = db
 
   const results = await library

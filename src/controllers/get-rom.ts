@@ -1,5 +1,5 @@
 import { and, eq } from 'drizzle-orm'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { romTable } from '@/databases/library/schema.ts'
 import { getRoms } from './get-roms.ts'
 
@@ -7,7 +7,7 @@ export async function getRom({ fileName, id, platform }: { fileName: string; id:
   let romId = id
 
   if (!romId) {
-    const { currentUser, db } = getContextData()
+    const { currentUser, db } = getContext().var
     const [result] = await db.library
       .select()
       .from(romTable)

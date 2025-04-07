@@ -1,5 +1,5 @@
 import { and, eq } from 'drizzle-orm'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { launchRecordTable, romTable } from '../databases/library/schema.ts'
 
 interface DeleteRomParams {
@@ -7,7 +7,7 @@ interface DeleteRomParams {
 }
 
 export async function deleteLaunchRecord(params: DeleteRomParams) {
-  const { currentUser, db } = getContextData()
+  const { currentUser, db } = getContext().var
   const { library } = db
 
   const roms = await library

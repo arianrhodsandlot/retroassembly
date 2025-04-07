@@ -1,9 +1,9 @@
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { defineMiddleware } from './utils.ts'
 
 export const authMiddleware = defineMiddleware(() => {
   return async (ctx) => {
-    const { currentUser, redirect } = getContextData()
+    const { currentUser, redirect } = getContext().var
 
     const { pathname, search } = ctx.req.url
     const needAuth = pathname === '/library' || pathname.startsWith('/library/')

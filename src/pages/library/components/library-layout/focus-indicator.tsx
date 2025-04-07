@@ -1,13 +1,13 @@
 'use client'
 import { Portal, Theme } from '@radix-ui/themes'
 import { type ReactNode, useLayoutEffect } from 'react'
-import { useRouter } from 'waku'
+import { useLocation } from 'react-router'
 import { useFocusIndicator } from '../../hooks/use-focus-indicator.ts'
 import { useSpatialNavigation } from '../../hooks/use-spatial-navigation.ts'
 
 export function FocusIndicator({ children }: { children?: ReactNode }) {
   const { style, syncStyle } = useFocusIndicator()
-  const router = useRouter()
+  const location = useLocation()
 
   let mergedStyle = style
 
@@ -25,10 +25,10 @@ export function FocusIndicator({ children }: { children?: ReactNode }) {
   useSpatialNavigation()
 
   useLayoutEffect(() => {
-    if (router.path) {
+    if (location.pathname) {
       syncStyle()
     }
-  }, [router.path, syncStyle])
+  }, [location.pathname, syncStyle])
 
   return (
     <Portal>

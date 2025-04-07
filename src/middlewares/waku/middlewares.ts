@@ -1,4 +1,4 @@
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { authMiddleware } from './auth.ts'
 import { cloudflareMiddleware } from './cloudflare.ts'
 import { globalsMiddleware } from './globals.ts'
@@ -14,7 +14,7 @@ export default defineMiddleware(function middleware(...args) {
     await globalsMiddleware(...args)(ctx, next)
     await authMiddleware(...args)(ctx, next)
 
-    const { redirected } = getContextData()
+    const { redirected } = getContext().var
 
     if (!redirected) {
       await next()

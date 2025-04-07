@@ -1,5 +1,5 @@
 import { and, eq } from 'drizzle-orm'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { romTable, stateTable } from '../databases/library/schema.ts'
 import { nanoid } from '../utils/misc.ts'
 
@@ -12,7 +12,7 @@ interface CreateStateParams {
 }
 
 export async function createState({ core, rom, state, thumbnail, type }: CreateStateParams) {
-  const { currentUser, db, storage } = getContextData()
+  const { currentUser, db, storage } = getContext().var
 
   const [romResult] = await db.library
     .select()

@@ -1,8 +1,8 @@
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { platformMap } from '../constants/platform.ts'
 
 export async function getPlatformInfo(platform: string) {
-  const { db } = getContextData()
+  const { db } = getContext().var
   const { metadata } = db
 
   return await metadata.query.launchboxPlatformTable.findFirst({

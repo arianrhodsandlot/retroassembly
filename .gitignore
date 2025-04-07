@@ -1,4 +1,5 @@
 .dev.vars
+.react-router
 .wrangler
 artifacts
 dev-dist

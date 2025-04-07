@@ -1,10 +1,10 @@
 import { and, eq } from 'drizzle-orm'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { resolveUserPreference } from '../constants/preference.ts'
 import { userPreferenceTable } from '../databases/library/schema.ts'
 
 export async function getPreference() {
-  const { currentUser, db } = getContextData()
+  const { currentUser, db } = getContext().var
 
   const results = await db.library
     .select({ emulator: userPreferenceTable.emulator, input: userPreferenceTable.input, ui: userPreferenceTable.ui })

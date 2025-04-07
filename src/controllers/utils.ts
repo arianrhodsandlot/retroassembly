@@ -1,11 +1,11 @@
 import { inArray, type InferSelectModel } from 'drizzle-orm'
 import { compact, keyBy } from 'es-toolkit'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import type { romTable } from '@/databases/library/schema.ts'
 import { launchboxGameTable, libretroGameTable } from '../databases/metadata/schema.ts'
 
 export async function getRomsMetadata<T extends InferSelectModel<typeof romTable>[]>(romResults: T) {
-  const { db } = getContextData()
+  const { db } = getContext().var
   const { metadata } = db
   const launchboxGameIds = compact(romResults.map((romResult) => romResult.launchboxGameId))
   const launchboxResults = await metadata

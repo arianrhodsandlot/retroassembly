@@ -1,10 +1,10 @@
 import { and, count, countDistinct, desc, eq, max } from 'drizzle-orm'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { launchRecordTable, romTable } from '../databases/library/schema.ts'
 import { getRomsMetadata } from './utils.ts'
 
 export async function getLaunchRecords({ page = 1, pageSize = 50 }: { page?: number; pageSize?: number }) {
-  const { currentUser, db } = getContextData()
+  const { currentUser, db } = getContext().var
   const { library } = db
 
   const offset = (page - 1) * pageSize

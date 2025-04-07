@@ -1,9 +1,9 @@
 import { and, eq } from 'drizzle-orm'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { launchRecordTable, romTable } from '../databases/library/schema.ts'
 
 export async function deleteRom(id: string) {
-  const { currentUser, db } = getContextData()
+  const { currentUser, db } = getContext().var
   const { library } = db
 
   await library

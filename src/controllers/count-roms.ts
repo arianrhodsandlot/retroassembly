@@ -1,9 +1,9 @@
 import { and, count, eq } from 'drizzle-orm'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { romTable } from '../databases/library/schema.ts'
 
 export async function countRoms({ platform }: { platform?: string } = {}) {
-  const { currentUser, db } = getContextData()
+  const { currentUser, db } = getContext().var
   const { library } = db
 
   const conditions = [eq(romTable.userId, currentUser.id), eq(romTable.status, 1)]

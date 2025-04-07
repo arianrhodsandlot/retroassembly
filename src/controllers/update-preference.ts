@@ -1,5 +1,5 @@
 import { eq, type InferInsertModel } from 'drizzle-orm'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { platforms } from '@/constants/platform.ts'
 import { type PreferenceSnippet, resolveUserPreference } from '@/constants/preference.ts'
 import { userPreferenceTable } from '@/databases/library/schema.ts'
@@ -13,7 +13,7 @@ function normalize(preference: any) {
 }
 
 export async function updatePreference(preference: PreferenceSnippet) {
-  const { currentUser, db } = getContextData()
+  const { currentUser, db } = getContext().var
 
   const where = eq(userPreferenceTable.userId, currentUser.id)
   const returning = {

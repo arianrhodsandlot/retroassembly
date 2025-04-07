@@ -1,23 +1,20 @@
 'use client'
 import { ScrollArea, type ScrollAreaProps } from '@radix-ui/themes'
 import { type RefObject, useEffect, useRef } from 'react'
-import { useRouter } from 'waku'
+import { useLocation } from 'react-router'
 
 export function MainScrollArea({ ref, ...props }: { ref?: RefObject<HTMLDivElement | null> } & ScrollAreaProps) {
-  const router = useRouter()
+  const location = useLocation()
   const scrollAreaRef = useRef<HTMLDivElement>(null)
   const refs = ref ? [scrollAreaRef, ref] : [scrollAreaRef]
-  const { path, query } = router
 
   useEffect(() => {
-    if (path) {
-      scrollAreaRef.current?.scrollTo({
-        behavior: query ? 'smooth' : 'instant',
-        left: 0,
-        top: 0,
-      })
-    }
-  }, [path, query])
+    scrollAreaRef.current?.scrollTo({
+      behavior: location.search ? 'smooth' : 'instant',
+      left: 0,
+      top: 0,
+    })
+  }, [location])
 
   return (
     <ScrollArea

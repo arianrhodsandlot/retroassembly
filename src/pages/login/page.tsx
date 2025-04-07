@@ -1,11 +1,11 @@
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { LoginForm } from './components/login-form.tsx'
 
 export async function LoginPage({ query }) {
   const searchParams = new URLSearchParams(query)
   const redirectTo = searchParams.get('redirect_to') ?? '/library'
   const code = searchParams.get('code')
-  const { currentUser, redirect, supabase } = getContextData()
+  const { currentUser, redirect, supabase } = getContext().var
 
   if (!supabase) {
     redirect('/')

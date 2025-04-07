@@ -4,16 +4,16 @@ import { useToggle } from '@react-hookz/web'
 import { useAtom } from 'jotai'
 import ky from 'ky'
 import type { ReactNode } from 'react'
+import { useLocation } from 'react-router'
 import useSWRMutation from 'swr/mutation'
-import { useRouter } from 'waku'
 import { romsAtom } from '../../atoms.ts'
 
 export function GameEntryContextMenu({ children, rom }: { children: ReactNode; rom: any }) {
-  const router = useRouter()
+  const location = useLocation()
 
   const [deleteDialogOpen, toggleDeleteDialog] = useToggle(false)
 
-  const pageType = router.path === '/library/history' ? 'history' : 'library'
+  const pageType = location.pathname === '/library/history' ? 'history' : 'library'
   const { confirmDescription, confirmTitle, deleteApi, menuText } = {
     history: {
       confirmDescription:

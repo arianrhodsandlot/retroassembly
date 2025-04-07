@@ -1,5 +1,5 @@
 import { eq } from 'drizzle-orm'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { launchRecordTable, romTable } from '../databases/library/schema.ts'
 
 interface CreateRomParams {
@@ -8,7 +8,7 @@ interface CreateRomParams {
 }
 
 export async function createLaunchRecord(params: CreateRomParams) {
-  const { currentUser, db } = getContextData()
+  const { currentUser, db } = getContext().var
   const { library } = db
 
   const results = await library.select().from(romTable).where(eq(romTable.id, params.rom))

@@ -1,10 +1,10 @@
 import { createServerClient, parseCookieHeader } from '@supabase/ssr'
 import { env } from 'hono/adapter'
+import { getContext } from 'hono/context-storage'
 import { setCookie } from 'hono/cookie'
-import { getHonoContext } from 'waku/unstable_hono'
 
 export function createSupabase() {
-  const c = getHonoContext()
+  const c = getContext()
   const { SUPABASE_ANON_KEY, SUPABASE_URL } = env<{ SUPABASE_ANON_KEY: string; SUPABASE_URL: string }>(c)
 
   if (!SUPABASE_ANON_KEY || !SUPABASE_URL) {

@@ -17,10 +17,6 @@ interface ContextData {
   supabase?: ReturnType<typeof createSupabase>
 }
 
-declare module 'waku/middleware/context' {
-  export function getContextData(): ContextData
-}
-
 export const globalsMiddleware = defineMiddleware(() => {
   return async (ctx) => {
     const c = getHonoContext()

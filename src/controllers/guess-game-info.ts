@@ -2,14 +2,14 @@ import path from 'node:path'
 import { and, eq, inArray, or } from 'drizzle-orm'
 import { compact } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 import { platformMap } from '../constants/platform.ts'
 import { launchboxGameAlternateNameTable, launchboxGameTable, libretroGameTable } from '../databases/metadata/schema.ts'
 import { getCompactName } from '../utils/library.ts'
 import { restoreTitleForSorting } from '../utils/misc.ts'
 
 async function guessLibretroGame(fileName: string, platform: string) {
-  const { db } = getContextData()
+  const { db } = getContext().var
   const { metadata } = db
 
   const baseName = path.parse(fileName).name
@@ -41,7 +41,7 @@ async function guessLibretroGame(fileName: string, platform: string) {
 }
 
 async function guessLaunchboxGame(fileName: string, platform: string) {
-  const { db } = getContextData()
+  const { db } = getContext().var
   const { metadata } = db
 
   const baseName = path.parse(fileName).name

@@ -1,3 +1,4 @@
+import { getContext } from 'hono/context-storage'
 import { HydrationBoundary } from 'jotai-ssr'
 import { getLaunchRecords } from '@/controllers/get-launch-records.ts'
 import { romsAtom } from '../atoms.ts'
@@ -5,6 +6,15 @@ import { GameList } from '../components/game-list/game-list.tsx'
 import LibraryLayout from '../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../components/main-scroll-area.tsx'
 import { getHydrateAtoms } from '../utils/hydrate-atoms.ts'
+
+export async function loader({ request }: { request: Request }) {
+  const url = new URL(request.url)
+  const query = url.searchParams
+  const page = Number.parseInt(new URLSearchParams(query).get('page') || '', 10) || 1
+  const { pagination, roms } = await getLaunchRecords({ page })
+  const { preference } = getContext().var
+  return { page, pagination, preference, roms }
+}
 
 export async function HistoryPage({ query }: { query: string }) {
   const page = Number.parseInt(new URLSearchParams(query).get('page') || '', 10) || 1

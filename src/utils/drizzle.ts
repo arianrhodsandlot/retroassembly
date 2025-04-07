@@ -1,12 +1,11 @@
 import { drizzle } from 'drizzle-orm/d1'
-import { memoize } from 'es-toolkit'
 import { env } from 'hono/adapter'
-import { getHonoContext } from 'waku/unstable_hono'
+import { getContext } from 'hono/context-storage'
 import * as librarySchema from '../databases/library/schema.ts'
 import * as metadataSchema from '../databases/metadata/schema.ts'
 
-export const createDrizzle = memoize(function createDrizzle() {
-  const { DB_LIBRARY, DB_METADATA } = env<Env>(getHonoContext(), 'workerd')
+export function createDrizzle() {
+  const { DB_LIBRARY, DB_METADATA } = env<Env>(getContext(), 'workerd')
   if (DB_LIBRARY && DB_METADATA) {
     return {
       library: drizzle(DB_LIBRARY, { casing: 'snake_case', schema: librarySchema }),
@@ -14,4 +13,4 @@ export const createDrizzle = memoize(function createDrizzle() {
     }
   }
   throw new Error('Could not initialize db')
-})
+}

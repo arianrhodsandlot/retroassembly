@@ -1,7 +1,7 @@
-import { getContextData } from 'waku/middleware/context'
+import { getContext } from 'hono/context-storage'
 
 export async function LogoutPage(): Promise<undefined> {
-  const contextData = getContextData()
+  const contextData = getContext().var
   const { redirect, supabase } = contextData
   await supabase?.auth.signOut()
   redirect('/')

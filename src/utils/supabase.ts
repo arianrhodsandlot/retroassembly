@@ -1,7 +1,16 @@
-import { createServerClient, parseCookieHeader } from '@supabase/ssr'
+import { type CookieOptions, createServerClient, parseCookieHeader } from '@supabase/ssr'
 import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
-import { setCookie } from 'hono/cookie'
+
+declare module 'hono' {
+  interface ContextVariableMap {
+    cookiesToSet: {
+      name: string
+      options: CookieOptions
+      value: string
+    }[]
+  }
+}
 
 export function createSupabase() {
   const c = getContext()
@@ -15,14 +24,11 @@ export function createSupabase() {
   return createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     cookies: {
       getAll() {
-        return parseCookieHeader(c.req.header('Cookie') ?? '')
+        return parseCookieHeader(c.req.header('Cookie') ?? '') as { name: string; value: string }[]
       },
 
       setAll(cookiesToSet) {
-        for (const { name, options, value } of cookiesToSet) {
-          // @ts-expect-error hono's cookie options parameter is not fully compatible with supabase's
-          setCookie(c, name, value, options)
-        }
+        c.set('cookiesToSet', cookiesToSet)
       },
     },
   })

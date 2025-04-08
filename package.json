@@ -2,12 +2,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "react-router build",
-    "dev": "react-router dev",
+    "build": "node src/scripts/build.ts",
+    "dev": "node src/scripts/dev/dev.ts",
     "dev:migrate": "node src/scripts/dev/migrate.ts",
     "dev:setup-d1": "node src/scripts/dev/setup-d1.ts",
     "prepare": "simple-git-hooks",
-    "preview": "node --env-file=.env src/scripts/build.ts && wrangler dev",
+    "preview": "wrangler dev",
     "test": "playwright test -c tests/e2e"
   },
   "simple-git-hooks": {

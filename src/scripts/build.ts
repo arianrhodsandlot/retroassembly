@@ -11,4 +11,4 @@ const wranglerConfig = compiled(env)
 await fs.writeFile('wrangler.json', wranglerConfig, 'utf8')
 
 // build
-await $$`NODE_ENV=production VITE_EXPERIMENTAL_WAKU_ROUTER=true waku build --with-cloudflare`
+await $$`react-router build`

@@ -25,7 +25,7 @@
       "migrations_dir": "src/databases/metadata/migrations"
     }
   ],
-  "main": "./dist/worker/serve-cloudflare.js",
+  "main": "./src/cf-worker.ts",
   "name": "retroassembly",
   "observability": {
     "enabled": true,

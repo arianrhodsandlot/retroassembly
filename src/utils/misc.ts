@@ -29,3 +29,33 @@ export function humanizeDate(date: Date) {
 export function encodeRFC3986URIComponent(str: string) {
   return encodeURIComponent(str).replaceAll(/[!'()*]/g, (c) => `%${c.codePointAt(0)?.toString(16).toUpperCase()}`)
 }
+
+export function serializeCookieHeader(name: string, value: string, options: any): string {
+  let cookieString = `${name}=${value}`
+
+  if (options) {
+    if (options.domain) {
+      cookieString += `; Domain=${options.domain}`
+    }
+    if (options.path) {
+      cookieString += `; Path=${options.path}`
+    }
+    if (options.expires) {
+      cookieString += `; Expires=${options.expires.toUTCString()}`
+    }
+    if (options.maxAge) {
+      cookieString += `; Max-Age=${options.maxAge}`
+    }
+    if (options.secure) {
+      cookieString += '; Secure'
+    }
+    if (options.httpOnly) {
+      cookieString += '; HttpOnly'
+    }
+    if (options.sameSite) {
+      cookieString += `; SameSite=${options.sameSite}`
+    }
+  }
+
+  return cookieString
+}

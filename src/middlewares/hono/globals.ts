@@ -11,7 +11,6 @@ declare module 'hono' {
     currentUser: { id: string }
     db: ReturnType<typeof createDrizzle>
     preference: typeof defaultPreference
-    redirect: (location: string, status?: number) => void
     redirected?: true
     storage: ReturnType<typeof createStorage>
     supabase?: ReturnType<typeof createSupabase>
@@ -34,14 +33,7 @@ export const globalsMiddleware = createMiddleware(async (c, next) => {
     }
   }
 
-  function redirect(location: string, status?: number) {
-    ctx.res.status = status ?? 302
-    ctx.res.headers ??= {}
-    ctx.res.headers.location = location
-    Object.assign(ctx.data, { redirected: true })
-  }
-
-  const contextData = { currentUser, db, redirect, storage, supabase }
+  const contextData = { currentUser, db, storage, supabase }
 
   for (const key in contextData) {
     c.set(key, contextData[key])

@@ -55,14 +55,13 @@
     "tailwind-merge": "3.2.0",
     "tailwindcss-motion": "1.1.0",
     "type-fest": "4.39.1",
-    "waku": "0.22.1",
     "zod": "3.24.2"
   },
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.18.6",
-    "@cloudflare/vite-plugin": "1.0.0",
+    "@cloudflare/vite-plugin": "1.0.1",
     "@cloudflare/workers-types": "4.20250407.0",
-    "@iconify/json": "2.2.323",
+    "@iconify/json": "2.2.324",
     "@iconify/tailwind4": "1.0.6",
     "@react-router/dev": "7.5.0",
     "@tailwindcss/vite": "4.0.17",
@@ -79,9 +78,8 @@
     "eslint": "9.24.0",
     "libretrodb": "1.0.0",
     "lint-staged": "15.5.0",
-    "miniflare": "4.20250404.0",
+    "miniflare": "4.20250405.0",
     "nanoid": "5.1.5",
-    "react-server-dom-webpack": "19.1.0",
     "sax": "1.4.1",
     "simple-git-hooks": "2.12.1",
     "tailwindcss": "4.0.17",
@@ -89,10 +87,10 @@
     "vite": "6.2.5",
     "vite-plugin-cjs-interop": "2.2.0",
     "vite-tsconfig-paths": "5.1.4",
-    "wrangler": "4.7.2",
+    "wrangler": "4.8.0",
     "zx": "8.5.0"
   },
-  "packageManager": "pnpm@10.7.1",
+  "packageManager": "pnpm@10.8.0",
   "engines": {
     "node": ">=23.10.0"
   },

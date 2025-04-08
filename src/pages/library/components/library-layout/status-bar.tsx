@@ -1,4 +1,3 @@
-'use client'
 import { Kbd } from '@radix-ui/themes'
 import { capitalize, uniq } from 'es-toolkit'
 import { useGamepads } from '../../hooks/use-gamepads.ts'

@@ -1,4 +1,3 @@
-'use client'
 import { Dialog, IconButton } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { useState } from 'react'

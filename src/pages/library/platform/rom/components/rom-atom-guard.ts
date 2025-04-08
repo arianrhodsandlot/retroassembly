@@ -1,4 +1,3 @@
-'use client'
 import { useAtom } from 'jotai'
 import type { ReactNode } from 'react'
 import { romAtom } from '@/pages/library/atoms.ts'

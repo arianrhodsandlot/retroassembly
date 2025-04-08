@@ -4,7 +4,7 @@
     "composite": true,
     "noImplicitAny": false,
     "allowImportingTsExtensions": true,
-    "types": ["../.wrangler/types/runtime.d.ts"]
+    "types": ["./.wrangler/types/runtime.d.ts"]
   },
-  "exclude": ["./pages", "./api", "./controllers", "entries.ts"]
+  "exclude": ["./pages", "./api", "./controllers", "./entries.ts"]
 }

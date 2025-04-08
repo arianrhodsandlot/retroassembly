@@ -1,4 +1,3 @@
-'use client'
 import { useRomCover } from '../../../hooks/use-rom-cover.ts'
 
 export function GameCover({ rom }) {

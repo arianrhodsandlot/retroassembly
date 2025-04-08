@@ -1,4 +1,3 @@
-'use client'
 import { AlertDialog, Button, ContextMenu } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { useAtom } from 'jotai'

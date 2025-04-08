@@ -1,4 +1,3 @@
-'use client'
 import { useKeyboardEvent } from '@react-hookz/web'
 import { debounce } from 'es-toolkit'
 import { AnimatePresence, motion } from 'motion/react'

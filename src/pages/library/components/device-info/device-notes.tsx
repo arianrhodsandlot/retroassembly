@@ -1,4 +1,3 @@
-'use client'
 import { Button } from '@radix-ui/themes'
 import { useResizeObserver, useToggle } from '@react-hookz/web'
 import { clsx } from 'clsx'

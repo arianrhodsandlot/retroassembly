@@ -1,4 +1,3 @@
-'use client'
 import { Button, DropdownMenu } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { useAtom } from 'jotai'

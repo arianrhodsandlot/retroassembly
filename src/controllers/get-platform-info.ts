@@ -1,6 +1,8 @@
 import { getContext } from 'hono/context-storage'
 import { platformMap } from '../constants/platform.ts'
 
+export type PlatformInfo = Awaited<ReturnType<typeof getPlatformInfo>>
+
 export async function getPlatformInfo(platform: string) {
   const { db } = getContext().var
   const { metadata } = db

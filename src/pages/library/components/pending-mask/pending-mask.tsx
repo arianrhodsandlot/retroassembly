@@ -1,16 +1,15 @@
-'use client'
 import { Portal, Theme } from '@radix-ui/themes'
 import { AnimatePresence, motion } from 'motion/react'
-import { useShowPendingMaskAtom } from '../../atoms.ts'
+import { useNavigation } from 'react-router'
 
 export function PendingMask() {
-  const [showPendingMask] = useShowPendingMaskAtom()
+  const navigation = useNavigation()
 
   return (
     <Portal>
       <Theme accentColor='red'>
         <AnimatePresence>
-          {showPendingMask ? (
+          {navigation.state === 'loading' ? (
             <motion.div
               animate={{ backdropFilter: 'blur(2px)', opacity: 1 }}
               className='absolute inset-0 z-10 flex items-center justify-center bg-white/40'

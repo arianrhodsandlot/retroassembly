@@ -1,4 +1,3 @@
-'use client'
 import { clsx } from 'clsx'
 import { useLocation } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'

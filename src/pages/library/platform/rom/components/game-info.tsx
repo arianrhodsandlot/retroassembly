@@ -1,3 +1,4 @@
+import { formatDate } from 'date-fns'
 import { platformMap } from '@/constants/platform.ts'
 
 export function GameInfo({ gameInfo, rom }) {
@@ -18,9 +19,8 @@ export function GameInfo({ gameInfo, rom }) {
             Released
           </div>
           <div className='pl-6'>
-            {gameInfo?.releaseDate?.toLocaleDateString() || gameInfo?.releaseYear || (
-              <span className='opacity-40'>Unknown</span>
-            )}
+            {(gameInfo?.releaseDate ? formatDate(gameInfo?.releaseDate, 'yyyy-MM-dd') : '') ||
+              gameInfo?.releaseYear || <span className='opacity-40'>Unknown</span>}
           </div>
         </div>
 

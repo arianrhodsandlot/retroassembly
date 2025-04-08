@@ -1,4 +1,3 @@
-'use client'
 import { Button } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useAtom } from 'jotai'

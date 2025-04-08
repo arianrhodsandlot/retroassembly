@@ -1,4 +1,3 @@
-'use client'
 import { Portal, Theme } from '@radix-ui/themes'
 import { type ReactNode, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router'

@@ -1,4 +1,3 @@
-'use client'
 import { useState } from 'react'
 import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'

@@ -1,4 +1,3 @@
-'use client'
 import { useDebouncedCallback, useEventListener, useKeyboardEvent } from '@react-hookz/web'
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'

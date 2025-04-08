@@ -1,6 +1,7 @@
 import { renderToReadableStream } from 'react-dom/server'
 import { type EntryContext, ServerRouter } from 'react-router'
 
+// eslint-disable-next-line max-params
 export default async function handleRequest(
   request: Request,
   responseStatusCode: number,

@@ -1,10 +1,10 @@
-import { getPlatformInfo } from '@/controllers/get-platform-info.ts'
+import { formatDate } from 'date-fns'
+import type { PlatformInfo } from '@/controllers/get-platform-info.ts'
 import { getPlatformBanner, getPlatformDevicePhoto } from '@/utils/library.ts'
 import { CompanyLogo } from '../../platform/components/company-logo.tsx'
 import { DeviceNotes } from './device-notes.tsx'
 
-export async function DeviceInfo({ platform }: { platform: string }) {
-  const platformInfo = await getPlatformInfo(platform)
+export function DeviceInfo({ platform, platformInfo }: { platform: string; platformInfo?: PlatformInfo }) {
   if (!platformInfo) {
     return
   }
@@ -26,7 +26,9 @@ export async function DeviceInfo({ platform }: { platform: string }) {
                 <span className='icon-[mdi--calendar]' />
                 <span className='text-xs'>Released</span>
               </div>
-              <div className='mt-1 pl-6'>{platformInfo.releaseDate?.toLocaleDateString() || 'unknown'}</div>
+              <div className='mt-1 pl-6'>
+                {platformInfo.releaseDate ? formatDate(platformInfo.releaseDate, 'yyyy-MM-dd') : 'unknown'}
+              </div>
             </div>
 
             {platformInfo.manufacturer === platformInfo.developer ? (

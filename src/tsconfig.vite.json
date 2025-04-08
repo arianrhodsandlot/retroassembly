@@ -5,10 +5,10 @@
     "noImplicitAny": false,
     "allowImportingTsExtensions": true,
     "lib": ["es2021", "dom"],
-    "types": ["../.wrangler/types/runtime.d.ts"],
+    "rootDirs": ["..", "../.react-router/types"],
     "paths": {
       "@/*": ["./*"]
     }
   },
-  "include": ["."]
+  "include": [".", "../.react-router/types/**/*"]
 }

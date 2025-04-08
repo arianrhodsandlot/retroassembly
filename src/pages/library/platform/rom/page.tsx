@@ -1,6 +1,8 @@
+import { getContext } from 'hono/context-storage'
 import { HydrationBoundary } from 'jotai-ssr'
 import { platformMap } from '@/constants/platform.ts'
 import { getRom } from '@/controllers/get-rom.ts'
+import { preferenceAtom } from '@/pages/atoms.ts'
 import { Portal, Theme } from '@/pages/components/radix-themes.ts'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { platformAtom, romAtom } from '../../atoms.ts'
@@ -8,6 +10,7 @@ import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../../components/main-scroll-area.tsx'
 import { PageBreadcrumb } from '../../components/page-breadcrumb.tsx'
 import { getHydrateAtoms } from '../../utils/hydrate-atoms.ts'
+import type { Route } from './+types/page.ts'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
 import { GameMedias } from './components/game-medias/game-medias.tsx'
@@ -17,8 +20,14 @@ import { PageHooks } from './components/page-hooks.ts'
 import { RomAtomGuard } from './components/rom-atom-guard.ts'
 import { RomBackground } from './components/rom-background.tsx'
 
-export async function RomPage({ fileName, id, platform }) {
-  const rom = await getRom({ fileName: decodeURIComponent(fileName), id, platform: decodeURIComponent(platform) })
+export async function loader({ params }: Route.LoaderArgs) {
+  const rom = await getRom({ fileName: params.fileName, platform: params.platform })
+  const { preference } = getContext().var
+  return { preference, rom }
+}
+
+export default function RomPage({ loaderData }: Route.ComponentProps) {
+  const { preference, rom } = loaderData
   if (!rom) {
     return '404'
   }
@@ -28,6 +37,7 @@ export async function RomPage({ fileName, id, platform }) {
 
   const hydrateAtoms = getHydrateAtoms({
     override: [
+      [preferenceAtom, preference],
       [platformAtom, platformMap[rom.platform]],
       [romAtom, rom],
     ],
@@ -52,7 +62,7 @@ export async function RomPage({ fileName, id, platform }) {
                 </RomAtomGuard>
               </div>
               <div className='flex flex-col gap-4 pl-4 pr-64'>
-                <GameMedias rom={rom} />
+                <GameMedias />
 
                 {launchboxGame?.overview ? (
                   <div className='prose-neutral prose max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable]'>

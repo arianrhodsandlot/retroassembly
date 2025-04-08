@@ -1,4 +1,3 @@
-'use client'
 import { Button, Portal } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useEffect, useRef } from 'react'

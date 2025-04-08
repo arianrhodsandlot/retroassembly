@@ -1,4 +1,3 @@
-'use client'
 import { Skeleton } from '@radix-ui/themes'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { useRomCover } from '../../hooks/use-rom-cover.ts'
@@ -16,7 +15,7 @@ export function GameEntry({ rom }) {
       <NavigatableLink
         className='game-entry flex flex-col items-center justify-center gap-1 p-1'
         title={rom.fileName}
-        to={`/library/rom/${encodeURIComponent(rom.id)}`}
+        to={`/library/platform/${rom.platform}/rom/${encodeURIComponent(rom.fileName)}`}
       >
         {isLoading ? (
           <div className='!w-9/10 aspect-square'>

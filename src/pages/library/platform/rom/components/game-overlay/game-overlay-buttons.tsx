@@ -1,4 +1,3 @@
-'use client'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 import { useGameStates } from '../../hooks/use-game-states.ts'

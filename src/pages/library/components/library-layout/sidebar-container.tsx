@@ -1,4 +1,3 @@
-'use client'
 import { clsx } from 'clsx'
 import type { ReactNode } from 'react'
 import { usePreference } from '../../hooks/use-preference.ts'

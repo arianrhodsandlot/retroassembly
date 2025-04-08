@@ -1,4 +1,3 @@
-'use client'
 import type { WritableAtom } from 'jotai'
 import { useHydrateAtoms } from 'jotai/utils'
 import type { PropsWithChildren } from 'react'

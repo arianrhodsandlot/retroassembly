@@ -1,4 +1,3 @@
-'use client'
 import { ScrollArea, type ScrollAreaProps } from '@radix-ui/themes'
 import { type RefObject, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router'

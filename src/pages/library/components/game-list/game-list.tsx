@@ -1,4 +1,3 @@
-'use client'
 import { useAtom } from 'jotai'
 import type { RomsPagination } from '@/controllers/get-roms.ts'
 import { romsAtom } from '../../atoms.ts'

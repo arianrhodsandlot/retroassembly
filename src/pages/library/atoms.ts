@@ -1,4 +1,3 @@
-'use client'
 import { atom, useAtom } from 'jotai'
 import { atomWithReset } from 'jotai/utils'
 import type { CSSProperties } from 'react'
@@ -33,9 +32,4 @@ export const isGameOverlayPendingAtom = atomWithReset(false)
 const emulatorLaunchedAtom = atomWithReset(false)
 export function useEmulatorLaunched() {
   return useAtom(emulatorLaunchedAtom)
-}
-
-const showPendingMaskAtom = atom(false)
-export function useShowPendingMaskAtom() {
-  return useAtom(showPendingMaskAtom)
 }

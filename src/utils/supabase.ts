@@ -24,7 +24,8 @@ export function createSupabase() {
   return createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     cookies: {
       getAll() {
-        return parseCookieHeader(c.req.header('Cookie') ?? '') as { name: string; value: string }[]
+        const cookieHeader = c.req.header('Cookie') ?? ''
+        return parseCookieHeader(cookieHeader) as { name: string; value: string }[]
       },
 
       setAll(cookiesToSet) {

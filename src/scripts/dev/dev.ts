@@ -1,6 +1,8 @@
 import { template } from 'es-toolkit/compat'
 import { $, dotenv, fs } from 'zx'
 
+process.env.FORCE_COLOR = '1'
+
 const $$ = $({ verbose: true })
 
 while (true) {
@@ -12,7 +14,7 @@ while (true) {
   await fs.writeFile('wrangler.json', wranglerConfig, 'utf8')
 
   try {
-    await $$`react-router build`
+    await $$`react-router dev`
   } catch (error) {
     console.warn(error)
   }

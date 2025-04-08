@@ -1,6 +1,8 @@
 import { template } from 'es-toolkit/compat'
 import { $, dotenv, fs } from 'zx'
 
+process.env.FORCE_COLOR = '1'
+
 const $$ = $({ verbose: true })
 
 // prepare wrangler config
@@ -12,3 +14,5 @@ await fs.writeFile('wrangler.json', wranglerConfig, 'utf8')
 
 // build
 await $$`react-router build`
+// await $$`esbuild --bundle dist/server/index.js --outfile=dist/server/index.js --platform=node --minify --allow-overwrite`
+// await $$`rm -rf dist/server/assets`

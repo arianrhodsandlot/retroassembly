@@ -25,7 +25,7 @@
       "migrations_dir": "src/databases/metadata/migrations"
     }
   ],
-  "main": "./src/cf-worker.ts",
+  "main": "./src/server/server.ts",
   "name": "retroassembly",
   "observability": {
     "enabled": true,

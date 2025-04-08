@@ -6,3 +6,5 @@ export async function loader() {
   await supabase?.auth.signOut()
   return redirectDocument('/')
 }
+
+export { noop as default } from 'es-toolkit'

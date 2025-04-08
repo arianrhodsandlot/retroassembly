@@ -1,5 +1,5 @@
 import type { PartialDeep } from 'type-fest'
-import { mergePreference } from '../controllers/utils.ts'
+import { mergePreference } from '@/controllers/utils.ts'
 import type { CoreName } from './core'
 import type { PlatformName } from './platform'
 

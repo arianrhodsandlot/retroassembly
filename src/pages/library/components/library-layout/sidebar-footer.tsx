@@ -13,22 +13,49 @@ export function SidebarFooter() {
 
   return (
     <>
-      <div className='flex justify-center gap-2'>
-        <Button onClick={() => setAboutDialogOpen(true)} size='1'>
-          <span className='icon-[mdi--information]' />
-        </Button>
-
-        <Button onClick={() => setSettingsDialogOpen(true)} size='1'>
-          <span className='icon-[mdi--cog]' />
-        </Button>
-
+      <div className='flex justify-end gap-2'>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
             <Button size='1'>
-              <span className='icon-[mdi--user]' />
+              <span className='icon-[mdi--menu]' />
             </Button>
           </DropdownMenu.Trigger>
+
           <DropdownMenu.Content variant='solid'>
+            <DropdownMenu.Item onClick={() => setSettingsDialogOpen(true)}>
+              <span className='icon-[mdi--cog]' />
+              Settings
+            </DropdownMenu.Item>
+
+            <DropdownMenu.Separator />
+
+            <DropdownMenu.Item onClick={() => setAboutDialogOpen(true)}>
+              <span className='icon-[mdi--information]' />
+              About
+            </DropdownMenu.Item>
+
+            <DropdownMenu.Item asChild>
+              <a href='https://github.com/arianrhodsandlot/retro-assembly' rel='noopener noreferrer' target='_blank'>
+                <span className='icon-[mdi--github]' />
+                <span className='flex items-start gap-1'>
+                  GitHub
+                  <sub className='icon-[mdi--open-in-new]' />
+                </span>
+              </a>
+            </DropdownMenu.Item>
+
+            <DropdownMenu.Item asChild>
+              <a href='https://discord.gg/RVVAMcCH' rel='noopener noreferrer' target='_blank'>
+                <span className='icon-[mdi--discord]' />
+                <span className='flex items-start gap-1'>
+                  Discord
+                  <sub className='icon-[mdi--open-in-new]' />
+                </span>
+              </a>
+            </DropdownMenu.Item>
+
+            <DropdownMenu.Separator />
+
             <DropdownMenu.Item color='red' onClick={() => toggleLogoutDialog(true)}>
               <span className='icon-[mdi--logout]' />
               Log out

@@ -11,12 +11,27 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
         <VisuallyHidden>
           <Dialog.Title className='flex items-center gap-2'>About</Dialog.Title>
         </VisuallyHidden>
-        <div className='flex flex-col items-center gap-2 p-4'>
-          <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
-          <div>RetroAssembly</div>
-          <div>version: {GIT_VERSION}</div>
-          <div>build time: {BUILD_TIME}</div>
-          <div className='flex-center mb-4 mt-1 gap-2 text-xs'>
+        <div className='flex flex-col items-center gap-2 p-2'>
+          <img alt='logo' height='56' src='/assets/logo/logo-192x192.png' width='56' />
+          <div className='text-xl font-semibold'>RetroAssembly</div>
+          <div className='text-sm'>Your personal retro game collection cabinet in your browser</div>
+          <div className='flex gap-2 text-xs opacity-70'>
+            <div>
+              version:
+              <a
+                className='ml-0.5 underline'
+                href='https://github.com/arianrhodsandlot/retro-assembly'
+                rel='noreferrer noopener'
+                target='_blank'
+              >
+                {GIT_VERSION}
+              </a>
+            </div>
+            <div>
+              build time: <span className='ml-0.5'>{BUILD_TIME}</span>
+            </div>
+          </div>
+          <div className='mb-4 mt-1 flex items-center justify-center gap-2 text-xs'>
             <span>© 2025</span>
             <a className='underline' href='https://github.com/arianrhodsandlot' rel='noreferrer' target='_blank'>
               arianrhodsandlot
@@ -24,16 +39,8 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
             ·
             <a
               className='flex-center gap-1'
-              href='mailto:theguidanceofawhitetower@gmail.com'
-              rel='noreferrer'
-              target='_blank'
-            >
-              <span className='icon-[simple-icons--gmail] mr-1 size-4' />
-            </a>
-            <a
-              className='flex-center gap-1'
               href='https://github.com/arianrhodsandlot/retro-assembly'
-              rel='noreferrer'
+              rel='noreferrer noopener'
               target='_blank'
             >
               <span className='icon-[simple-icons--github] mr-1 size-4' />
@@ -41,18 +48,10 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
             <a
               className='items-center justify-center gap-1'
               href='https://discord.gg/RVVAMcCH'
-              rel='noreferrer'
+              rel='noreferrer noopener'
               target='_blank'
             >
               <span className='icon-[simple-icons--discord] mr-1 size-4' />
-            </a>
-            <a
-              className='items-center justify-center gap-1'
-              href='https://twitter.com/arianrhodsand'
-              rel='noreferrer'
-              target='_blank'
-            >
-              <span className='icon-[simple-icons--x] mr-1 size-4' />
             </a>
           </div>
         </div>

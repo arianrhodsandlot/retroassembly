@@ -52,7 +52,7 @@ export default function PlatformPage({ loaderData }: Route.ComponentProps) {
         <MainScrollArea className='z-1 relative flex flex-1' size='2'>
           <PageBreadcrumb />
           <div className='flex min-h-full w-full flex-col gap-5 p-4'>
-            <DeviceInfo platform={platform} platformInfo={platformInfo} />
+            <DeviceInfo key={platform} platform={platform} platformInfo={platformInfo} />
             <hr className='border-t-1 border-t-black/20' />
             <GameList pagination={pagination} />
             <UploadButton platform={platform} />

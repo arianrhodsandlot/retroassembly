@@ -1,5 +1,6 @@
 import { ScrollArea } from '@radix-ui/themes'
 import type { ReactNode } from 'react'
+import { Link } from 'react-router'
 import { PendingMask } from '../pending-mask/pending-mask.tsx'
 import { FocusIndicator } from './focus-indicator.tsx'
 import { SidebarContainer } from './sidebar-container.tsx'
@@ -23,9 +24,9 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
       <title>{getPostfixedTitle(title)}</title>
       <div className='library-layout flex h-screen bg-[var(--accent-9)]'>
         <SidebarContainer>
-          <a className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold' href='/'>
+          <Link className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold' reloadDocument to='/'>
             <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
-          </a>
+          </Link>
           <ScrollArea className='flex-1' size='2'>
             <SidebarLinks />
           </ScrollArea>

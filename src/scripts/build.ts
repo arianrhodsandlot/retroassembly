@@ -14,5 +14,5 @@ await fs.writeFile('wrangler.json', wranglerConfig, 'utf8')
 
 // build
 await $$`react-router build`
-// await $$`esbuild --bundle dist/server/index.js --outfile=dist/server/index.js --platform=node --minify --allow-overwrite`
-// await $$`rm -rf dist/server/assets`
+await $$`esbuild --bundle dist/server/index.js --outfile=dist/server/index.js --platform=node --allow-overwrite --format=esm`
+await $$`rm -rf dist/server/assets`

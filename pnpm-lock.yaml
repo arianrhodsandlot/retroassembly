@@ -112,9 +112,6 @@ importers:
       react-router:
         specifier: 7.5.0
         version: 7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      remix-hono:
-        specifier: 0.0.18
-        version: 0.0.18(hono@4.7.6)(pretty-cache-header@1.0.0)(react-router@7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(zod@3.24.2)
       smooth-scroll-into-view-if-needed:
         specifier: 2.0.2
         version: 2.0.2
@@ -7636,10 +7633,6 @@ packages:
     resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
 
-  pretty-cache-header@1.0.0:
-    resolution: {integrity: sha512-xtXazslu25CdnGnUkByU1RoOjK55TqwatJkjjJLg5ZAdz2Lngko/mmaUgeET36P2GMlNwh3fdM7FWBO717pNcw==}
-    engines: {node: '>=12.13'}
-
   printable-characters@1.0.42:
     resolution: {integrity: sha512-dKp+C4iXWK4vVYZmYSd0KBH5F/h1HoZRsbJ82AVKRO3PEo8L4lBS/vLwhVtpwwuYcoIsVY+1JYKR268yn480uQ==}
 
@@ -7926,28 +7919,6 @@ packages:
   regjsparser@0.12.0:
     resolution: {integrity: sha512-cnE+y8bz4NhMjISKbgeVJtqNbtf5QpjZP+Bslo+UqkIt9QPnX9q095eiRRASJG1/tz6dlNr6Z5NsBiWYokp6EQ==}
     hasBin: true
-
-  remix-hono@0.0.18:
-    resolution: {integrity: sha512-pYRFCRjCSDxjIco+qUkGQNIOZwKC/3NaDssLE2gBsLVHuNymUbhwMZeQDu1ERxdrYQuBE19Zn3vS8jL8AXcoxA==}
-    peerDependencies:
-      '@react-router/cloudflare': ^7.0.1
-      hono: ^4.6.12
-      i18next: ^24.0.5
-      pretty-cache-header: ^1.0.0
-      react-router: ^7.0.1
-      remix-i18next: ^7.0.0
-      zod: ^3.0.0
-    peerDependenciesMeta:
-      '@react-router/cloudflare':
-        optional: true
-      i18next:
-        optional: true
-      react-router:
-        optional: true
-      remix-i18next:
-        optional: true
-      zod:
-        optional: true
 
   require-from-string@2.0.2:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
@@ -8456,10 +8427,6 @@ packages:
   throttle-debounce@3.0.1:
     resolution: {integrity: sha512-dTEWWNu6JmeVXY0ZYoPuH5cRIwc0MeGbJwah9KUNYSJwommQpCzTySTpEe8Gs1J23aeWEuAobe4Ag7EHVt/LOg==}
     engines: {node: '>=10'}
-
-  timestring@6.0.0:
-    resolution: {integrity: sha512-wMctrWD2HZZLuIlchlkE2dfXJh7J2KDI9Dwl+2abPYg0mswQHfOAyQW3jJg1pY5VfttSINZuKcXoB3FGypVklA==}
-    engines: {node: '>=8'}
 
   tinyexec@0.3.2:
     resolution: {integrity: sha512-KQQR9yN7R5+OSwaK0XQoj22pwHoTlgYqmUscPYoknOoWCWfj/5/ABTMRi69FrKU5ffPVh5QcFikpWJI/P1ocHA==}
@@ -16374,10 +16341,6 @@ snapshots:
 
   pretty-bytes@6.1.1: {}
 
-  pretty-cache-header@1.0.0:
-    dependencies:
-      timestring: 6.0.0
-
   printable-characters@1.0.42: {}
 
   prisma@6.4.1(typescript@5.7.3):
@@ -16760,14 +16723,6 @@ snapshots:
   regjsparser@0.12.0:
     dependencies:
       jsesc: 3.0.2
-
-  remix-hono@0.0.18(hono@4.7.6)(pretty-cache-header@1.0.0)(react-router@7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(zod@3.24.2):
-    dependencies:
-      hono: 4.7.6
-      pretty-cache-header: 1.0.0
-    optionalDependencies:
-      react-router: 7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      zod: 3.24.2
 
   require-from-string@2.0.2: {}
 
@@ -17424,8 +17379,6 @@ snapshots:
       any-promise: 1.3.0
 
   throttle-debounce@3.0.1: {}
-
-  timestring@6.0.0: {}
 
   tinyexec@0.3.2: {}
 

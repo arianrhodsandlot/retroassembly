@@ -1,7 +1,4 @@
-import { serialize } from 'cookie'
 import { getContext } from 'hono/context-storage'
-import { redirectDocument } from 'react-router'
-import { serializeCookieHeader } from '@/utils/misc.ts'
 import type { Route } from './+types/page'
 
 export async function loader({ request }: Route.LoaderArgs) {
@@ -26,16 +23,7 @@ export async function loader({ request }: Route.LoaderArgs) {
     provider,
   })
 
-  const headers = new Headers()
-  const cookiesToSet = c.get('cookiesToSet') || []
-  for (const { name, options, value } of cookiesToSet) {
-    const serialized = serialize(name, value, options)
-    const serialized2 = serializeCookieHeader(name, value, options)
-    console.log(serialized, serialized2, serialized === serialized2)
-    headers.append('Set-Cookie', serialized2)
-  }
-
-  throw redirectDocument(data?.url ?? '/login', { headers })
+  throw c.redirect(data?.url ?? '/login')
 }
 
 export { noop as default } from 'es-toolkit'

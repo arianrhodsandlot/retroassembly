@@ -7,7 +7,7 @@
     "dev:migrate": "node src/scripts/dev/migrate.ts",
     "dev:setup-d1": "node src/scripts/dev/setup-d1.ts",
     "prepare": "simple-git-hooks",
-    "preview": "wrangler dev --port=5173",
+    "preview": "pnpm build && wrangler dev --port=5173",
     "test": "playwright test -c tests/e2e"
   },
   "simple-git-hooks": {

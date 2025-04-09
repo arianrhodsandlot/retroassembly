@@ -1,6 +1,7 @@
 import { type CookieOptions, createServerClient, parseCookieHeader } from '@supabase/ssr'
 import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
+import { setCookie } from 'hono/cookie'
 
 declare module 'hono' {
   interface ContextVariableMap {
@@ -16,20 +17,18 @@ export function createSupabase() {
   const c = getContext()
   const { SUPABASE_ANON_KEY, SUPABASE_URL } = env<{ SUPABASE_ANON_KEY: string; SUPABASE_URL: string }>(c)
 
-  if (!SUPABASE_ANON_KEY || !SUPABASE_URL) {
-    console.warn('SUPABASE_ANON_KEY and SUPABASE_URL is not found in the environment. Not creating the supabase client')
-    return
-  }
-
   return createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     cookies: {
       getAll() {
         const cookieHeader = c.req.header('Cookie') ?? ''
-        return parseCookieHeader(cookieHeader) as { name: string; value: string }[]
+        const cookies = parseCookieHeader(cookieHeader) as { name: string; value: string }[]
+        return cookies
       },
 
       setAll(cookiesToSet) {
-        c.set('cookiesToSet', cookiesToSet)
+        for (const cookie of cookiesToSet) {
+          setCookie(c, cookie.name, cookie.value, cookie.options as any)
+        }
       },
     },
   })

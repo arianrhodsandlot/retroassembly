@@ -1,10 +1,10 @@
 import { getContext } from 'hono/context-storage'
-import { redirectDocument } from 'react-router'
 
 export async function loader() {
-  const { supabase } = getContext().var
+  const c = getContext()
+  const { supabase } = c.var
   await supabase?.auth.signOut()
-  return redirectDocument('/')
+  return c.redirect('/')
 }
 
 export { noop as default } from 'es-toolkit'

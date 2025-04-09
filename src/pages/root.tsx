@@ -1,9 +1,9 @@
 import '@/styles/index.ts'
+import { Theme } from '@radix-ui/themes'
 import { Provider } from 'jotai'
 import type { ReactNode } from 'react'
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router'
 import type { Route } from './+types/root'
-import { Theme } from './components/radix-themes.ts'
 
 export function Layout({ children }: { children: ReactNode }) {
   return (

@@ -11,13 +11,15 @@ export function PendingMask() {
         <AnimatePresence>
           {navigation.state === 'loading' ? (
             <motion.div
-              animate={{ backdropFilter: 'blur(2px)', opacity: 1 }}
+              animate={{ backdropFilter: 'blur(1px)', opacity: 1 }}
               className='absolute inset-0 z-10 flex items-center justify-center bg-white/40'
               exit={{ backdropFilter: 'blur(0)', opacity: 0 }}
               initial={{ backdropFilter: 'blur(0)', opacity: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className='icon-[svg-spinners--180-ring] text-6xl text-[var(--accent-9)]' />
+              <div className='rounded-full bg-white p-3 shadow-xl'>
+                <span className='icon-[svg-spinners--180-ring] block size-12 text-[var(--accent-9)]' />
+              </div>
             </motion.div>
           ) : null}
         </AnimatePresence>

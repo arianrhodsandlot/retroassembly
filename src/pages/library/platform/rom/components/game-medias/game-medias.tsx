@@ -1,5 +1,5 @@
+import { ScrollArea } from '@radix-ui/themes'
 import { useState } from 'react'
-import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { getRomLibretroThumbnail } from '@/utils/library.ts'
 import { YouTubeEmbed } from './youtube-embed.tsx'

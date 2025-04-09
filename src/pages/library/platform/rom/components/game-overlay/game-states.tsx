@@ -1,5 +1,5 @@
+import { ScrollArea } from '@radix-ui/themes'
 import { groupBy } from 'es-toolkit'
-import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { useGameStates } from '../../hooks/use-game-states.ts'
 import { GameState } from './game-state.tsx'
 

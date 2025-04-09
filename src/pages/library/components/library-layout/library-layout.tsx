@@ -1,5 +1,5 @@
+import { ScrollArea } from '@radix-ui/themes'
 import type { ReactNode } from 'react'
-import { ScrollArea } from '@/pages/components/radix-themes.ts'
 import { PendingMask } from '../pending-mask/pending-mask.tsx'
 import { FocusIndicator } from './focus-indicator.tsx'
 import { SidebarContainer } from './sidebar-container.tsx'

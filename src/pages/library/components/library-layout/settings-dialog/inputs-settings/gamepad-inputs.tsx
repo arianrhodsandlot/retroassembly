@@ -1,6 +1,6 @@
 import { Card } from '@radix-ui/themes'
 import type { ReactNode } from 'react'
-import type { Preference } from '@/constants/preference.ts'
+import type { ResolvedPreference } from '@/constants/preference.ts'
 import { useGamepads } from '@/pages/library/hooks/use-gamepads.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 import { UpdateButton } from '../update-button.tsx'
@@ -11,7 +11,7 @@ interface ButtonGroup {
   buttons: {
     iconClass?: string
     iconNode?: ReactNode
-    name: keyof NonNullable<Preference['input']['gamepadMappings']>[string]
+    name: keyof ResolvedPreference['input']['gamepadMappings'][string]
     text?: string
   }[]
   type: string

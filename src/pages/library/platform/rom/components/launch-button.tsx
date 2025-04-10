@@ -47,9 +47,7 @@ export function LaunchButton() {
                 : 'icon-[mdi--play] motion-preset-pulse-lg motion-duration-1500'
             }
           />
-          <span className='w-[240px] text-2xl font-semibold'>
-            {isPreparing ? 'Loading...' : 'Press any key to start'}
-          </span>
+          <span className='w-52 text-2xl font-semibold'>{isPreparing ? 'Loading...' : 'Start'}</span>
         </div>
       </Button>
 

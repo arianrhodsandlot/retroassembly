@@ -1,9 +1,8 @@
-import { useDebouncedCallback, useEventListener, useKeyboardEvent } from '@react-hookz/web'
+import { useDebouncedCallback, useEventListener } from '@react-hookz/web'
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'
 import { settingsDialogOpenAtom } from '@/pages/library/atoms.ts'
 import { useInputMapping } from '@/pages/library/hooks/use-input-mapping.ts'
-import { getKeyNameFromCode } from '@/pages/library/utils/keyboard.ts'
 import { Gamepad } from '@/utils/gamepad.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 import { useMouseIdle } from '../hooks/use-mouse-idle.ts'
@@ -57,43 +56,6 @@ export function PageHooks(): undefined {
       }),
     [inputMapping.gamepad, canLaunch],
   )
-
-  useKeyboardEvent(true, (event) => {
-    if (!canLaunch) {
-      return
-    }
-
-    const directionKeys = new Set([
-      'down',
-      inputMapping.keyboard.input_player1_down,
-      inputMapping.keyboard.input_player1_left,
-      inputMapping.keyboard.input_player1_right,
-      inputMapping.keyboard.input_player1_up,
-      'left',
-      'right',
-      'up',
-    ])
-
-    const keyName = getKeyNameFromCode(event.code)
-    const isEscapeKey = event.key === 'Escape'
-    const isSpecialKey =
-      event.ctrlKey || event.metaKey || event.altKey || event.shiftKey || isEscapeKey || directionKeys.has(keyName)
-    if (isSpecialKey) {
-      return
-    }
-
-    const isFocusingLaunchButton = document.activeElement?.classList.contains('launch-button')
-    if (!isFocusingLaunchButton) {
-      if (event.key === 'Enter' || event.key === 'Space') {
-        return
-      }
-      if (keyName === inputMapping.keyboard.input_player1_a) {
-        return
-      }
-    }
-
-    document.querySelector<HTMLButtonElement>('.launch-button')?.click()
-  })
 
   useEventListener(globalThis, 'resize', updateEmulatorSizeLazy)
   useEventListener(globalThis.screen?.orientation, 'change', updateEmulatorSizeLazy)

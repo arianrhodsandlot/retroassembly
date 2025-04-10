@@ -1,4 +1,3 @@
-import { useKeyboardEvent } from '@react-hookz/web'
 import { debounce } from 'es-toolkit'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect } from 'react'
@@ -26,12 +25,17 @@ export function GameOverlay({ rom }) {
   const goodcodes = getRomGoodcodes(rom)
   const { data: cover } = useRomCover(rom)
 
-  useKeyboardEvent(true, (event) => {
-    const isEscapeKey = event.key === 'Escape'
-    if (isEscapeKey) {
-      toggle()
+  useEffect(() => {
+    function handleKeydown(event: KeyboardEvent) {
+      const isEscapeKey = event.key === 'Escape'
+      if (isEscapeKey) {
+        event.preventDefault()
+        toggle()
+      }
     }
-  })
+    document.body.addEventListener('keydown', handleKeydown)
+    return () => document.body.removeEventListener('keydown', handleKeydown)
+  }, [toggle])
 
   useEffect(
     () =>

@@ -35,8 +35,8 @@ importers:
         specifier: 3.2.1
         version: 3.2.1(@types/react-dom@19.1.2(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-hookz/web':
-        specifier: 25.1.0
-        version: 25.1.0(js-cookie@3.0.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: 25.1.1
+        version: 25.1.1(js-cookie@3.0.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@supabase/ssr':
         specifier: 0.6.1
         version: 0.6.1(@supabase/supabase-js@2.49.4)
@@ -66,7 +66,7 @@ importers:
         version: 1.1.2
       drizzle-orm:
         specifier: 0.41.0
-        version: 0.41.0(@cloudflare/workers-types@4.20250409.0)(@prisma/client@6.4.1(prisma@6.4.1(typescript@5.8.3))(typescript@5.8.3))(better-sqlite3@11.9.1)(gel@2.0.2)(prisma@6.4.1(typescript@5.8.3))
+        version: 0.41.0(@cloudflare/workers-types@4.20250410.0)(@prisma/client@6.4.1(prisma@6.4.1(typescript@5.8.3))(typescript@5.8.3))(better-sqlite3@11.9.1)(gel@2.0.2)(prisma@6.4.1(typescript@5.8.3))
       es-toolkit:
         specifier: 1.34.1
         version: 1.34.1
@@ -141,20 +141,20 @@ importers:
         specifier: 0.18.6
         version: 0.18.6(@types/eslint@9.6.1)(eslint@9.24.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0)(prettier@3.4.2)(ts-api-utils@2.1.0(typescript@5.8.3))(yaml-eslint-parser@1.3.0)
       '@cloudflare/vite-plugin':
-        specifier: 1.0.3
-        version: 1.0.3(rollup@4.39.0)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.1))(workerd@1.20250408.0)(wrangler@4.9.1(@cloudflare/workers-types@4.20250409.0))
+        specifier: 1.0.4
+        version: 1.0.4(rollup@4.39.0)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.1))(workerd@1.20250408.0)(wrangler@4.9.1(@cloudflare/workers-types@4.20250410.0))
       '@cloudflare/workers-types':
-        specifier: 4.20250409.0
-        version: 4.20250409.0
+        specifier: 4.20250410.0
+        version: 4.20250410.0
       '@iconify/json':
-        specifier: 2.2.324
-        version: 2.2.324
+        specifier: 2.2.325
+        version: 2.2.325
       '@iconify/tailwind4':
         specifier: 1.0.6
         version: 1.0.6(tailwindcss@4.1.3)
       '@react-router/dev':
         specifier: 7.5.0
-        version: 7.5.0(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(react-router@7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(stylus@0.57.0)(terser@5.39.0)(typescript@5.8.3)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.1))(wrangler@4.9.1(@cloudflare/workers-types@4.20250409.0))(yaml@2.7.1)
+        version: 7.5.0(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(react-router@7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(stylus@0.57.0)(terser@5.39.0)(typescript@5.8.3)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.1))(wrangler@4.9.1(@cloudflare/workers-types@4.20250410.0))(yaml@2.7.1)
       '@tailwindcss/vite':
         specifier: 4.1.3
         version: 4.1.3(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.1))
@@ -226,10 +226,10 @@ importers:
         version: 5.1.4(typescript@5.8.3)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.1))
       wrangler:
         specifier: 4.9.1
-        version: 4.9.1(@cloudflare/workers-types@4.20250409.0)
+        version: 4.9.1(@cloudflare/workers-types@4.20250410.0)
       zx:
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 8.5.2
+        version: 8.5.2
 
   packages/client:
     dependencies:
@@ -1257,8 +1257,8 @@ packages:
       workerd:
         optional: true
 
-  '@cloudflare/vite-plugin@1.0.3':
-    resolution: {integrity: sha512-Vescpz/Je9S+iit72Muoe8CLUMTuNcm08KhrovZfjROrDqIt/vb+jkxJpXNDyCjOhRGjnIIjQ8J8tzE6eb8Gag==}
+  '@cloudflare/vite-plugin@1.0.4':
+    resolution: {integrity: sha512-RISGb8WQgWIY/BE+f+B/c9fJI+htLyWvqnERPrv2l4khLFjIxovOe0VY3vG60VR8RNVFmCeJJCNB8y/WvxOe1Q==}
     peerDependencies:
       vite: ^6.1.0
       wrangler: ^3.101.0 || ^4.0.0
@@ -1326,8 +1326,8 @@ packages:
   '@cloudflare/workers-types@4.20250214.0':
     resolution: {integrity: sha512-+M8oOFVbyXT5GeJrYLWMUGyPf5wGB4+k59PPqdedtOig7NjZ5r4S79wMdaZ/EV5IV8JPtZBSNjTKpDnNmfxjaQ==}
 
-  '@cloudflare/workers-types@4.20250409.0':
-    resolution: {integrity: sha512-yPxxwE5nr168huEfLNOB6904OsvIWcq0tWT23NMD6jT5SIp2ds3oOGANw7wz39r5y3jZYC2h1OnGwnZXJDDCOg==}
+  '@cloudflare/workers-types@4.20250410.0':
+    resolution: {integrity: sha512-Yx9VUi6QpmXtUIhOL+em+V02gue12kmVBVL6RGH5mhFh50M0x9JyOmm6wKwKZUny2uQd+22nuouE2q3z1OrsIQ==}
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -2444,8 +2444,8 @@ packages:
   '@iconify/json@2.2.310':
     resolution: {integrity: sha512-CPmueT0VYi5uqQpro1HabpgLr9lcft4h1qJZu9591shJS6nKLx1TO22IMdK+NhVn1npXV3sEeqAb2t/EXSLvcg==}
 
-  '@iconify/json@2.2.324':
-    resolution: {integrity: sha512-7rx2pY2NH4zn/7q04zFiiD3o7eQ8ZV0F0nf7Rkn2DyI272OWzDMw5goSULOyDdiW9sdfBLeZod/TRxEilaNNsA==}
+  '@iconify/json@2.2.325':
+    resolution: {integrity: sha512-DKBZY0nXvllakPDUHpxmETE4y6hOHkBfr3IHTxGxHmoXWCCynEPMocXSui8BO9GLEYSV+ztkh/aacgxSFKl+JQ==}
 
   '@iconify/tailwind4@1.0.3':
     resolution: {integrity: sha512-qhgEBFwbhoWWGo3X27KInvNQOjt7UwmZTuLpjYQlYMTkcXzwPnomqmxzsBUC2L0ySA105BFDppYBv4CuWBQKwA==}
@@ -3723,10 +3723,6 @@ packages:
   '@react-hookz/deep-equal@1.0.4':
     resolution: {integrity: sha512-N56fTrAPUDz/R423pag+n6TXWbvlBZDtTehaGFjK0InmN+V2OFWLE/WmORhmn6Ce7dlwH5+tQN1LJFw3ngTJVg==}
 
-  '@react-hookz/deep-equal@3.0.4':
-    resolution: {integrity: sha512-QpcSUTP1I0lI8/GvSEvclkoEGRWjbYxuUWaecxr8eJRceivGF18wHoJwaej2NYxMn7SqhKaZ9JYQvmdATiSG8A==}
-    engines: {node: '>=18.0.0'}
-
   '@react-hookz/web@24.0.4':
     resolution: {integrity: sha512-DcIM6JiZklDyHF6CRD1FTXzuggAkQ+3Ncq2Wln7Kdih8GV6ZIeN9JfS6ZaQxpQUxan8/4n0J2V/R7nMeiSrb2Q==}
     engines: {node: '>=18.0.0'}
@@ -3738,8 +3734,8 @@ packages:
       js-cookie:
         optional: true
 
-  '@react-hookz/web@25.1.0':
-    resolution: {integrity: sha512-+ra/hRG5vPXbwzvQp+YQRn+YlnFNd3eM/lieYW7M/YY2kUjM3ODmD3sZksFQ4P0eVUlqLXe+kSipw8fvLX4mww==}
+  '@react-hookz/web@25.1.1':
+    resolution: {integrity: sha512-o1BA+5Z8PCuAnxF7+2TZI+xGBtzyLw8z/flD8AMeJXILYTM8HkI0g41oM7IW/qjUDKx30HKceQQpCKqFGj+iIw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       js-cookie: ^3.0.5
@@ -4698,6 +4694,10 @@ packages:
     resolution: {integrity: sha512-hVXaObGI2lGFmrtT77KSbPQ3I+zk9IU500wobjk0+oX59vg/0VqAzABNtt3YSQYgXTC2a/LYxekLfND/wlt0yQ==}
     cpu: [x64]
     os: [win32]
+
+  '@ver0/deep-equal@1.0.0':
+    resolution: {integrity: sha512-XKIlF1i6UJiyTL52mDrSDDgRX7Qr5yJ7ts9zn2liZEmhiAEum4XKrJRAWmHdFwCQeGBU+rb+/b0ldw/9V8lOWw==}
+    engines: {node: '>=18'}
 
   '@vitejs/plugin-react-swc@3.8.0':
     resolution: {integrity: sha512-T4sHPvS+DIqDP51ifPqa9XIRAz/kIvIi8oXcnOZZgHmMotgmmdxe/DD5tMFlt5nuIRzT0/QuiwmKlH0503Aapw==}
@@ -9075,8 +9075,8 @@ packages:
     engines: {node: '>= 12.17.0'}
     hasBin: true
 
-  zx@8.5.0:
-    resolution: {integrity: sha512-XS5/oKOQxKNfG2sVO6TQQjZF5RqWGE5QGSUOCZZVTnvYr3RDBTdbX3IFmV9CrnycCAQWcY0hAD3DDUa4RJE4+w==}
+  zx@8.5.2:
+    resolution: {integrity: sha512-eIxjTkCtlzvDNRhw3RD1gGBPA4nxOTn6PafpKl+MW4eE2jR/u/R6mqq7oyUCXwarM5DSP96kWtq6XkrL2kSFrg==}
     engines: {node: '>= 12.17.0'}
     hasBin: true
 
@@ -9990,7 +9990,7 @@ snapshots:
     optionalDependencies:
       workerd: 1.20250408.0
 
-  '@cloudflare/vite-plugin@1.0.3(rollup@4.39.0)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.1))(workerd@1.20250408.0)(wrangler@4.9.1(@cloudflare/workers-types@4.20250409.0))':
+  '@cloudflare/vite-plugin@1.0.4(rollup@4.39.0)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.1))(workerd@1.20250408.0)(wrangler@4.9.1(@cloudflare/workers-types@4.20250410.0))':
     dependencies:
       '@cloudflare/unenv-preset': 2.3.1(unenv@2.0.0-rc.15)(workerd@1.20250408.0)
       '@hattip/adapter-node': 0.0.49
@@ -10001,7 +10001,7 @@ snapshots:
       tinyglobby: 0.2.12
       unenv: 2.0.0-rc.15
       vite: 6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.1)
-      wrangler: 4.9.1(@cloudflare/workers-types@4.20250409.0)
+      wrangler: 4.9.1(@cloudflare/workers-types@4.20250410.0)
       ws: 8.18.0
     transitivePeerDependencies:
       - bufferutil
@@ -10042,7 +10042,7 @@ snapshots:
   '@cloudflare/workers-types@4.20250214.0':
     optional: true
 
-  '@cloudflare/workers-types@4.20250409.0': {}
+  '@cloudflare/workers-types@4.20250410.0': {}
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
@@ -10821,7 +10821,7 @@ snapshots:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
 
-  '@iconify/json@2.2.324':
+  '@iconify/json@2.2.325':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
@@ -12149,8 +12149,6 @@ snapshots:
 
   '@react-hookz/deep-equal@1.0.4': {}
 
-  '@react-hookz/deep-equal@3.0.4': {}
-
   '@react-hookz/web@24.0.4(js-cookie@3.0.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@react-hookz/deep-equal': 1.0.4
@@ -12159,15 +12157,15 @@ snapshots:
     optionalDependencies:
       js-cookie: 3.0.5
 
-  '@react-hookz/web@25.1.0(js-cookie@3.0.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@react-hookz/web@25.1.1(js-cookie@3.0.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@react-hookz/deep-equal': 3.0.4
+      '@ver0/deep-equal': 1.0.0
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
     optionalDependencies:
       js-cookie: 3.0.5
 
-  '@react-router/dev@7.5.0(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(react-router@7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(stylus@0.57.0)(terser@5.39.0)(typescript@5.8.3)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.1))(wrangler@4.9.1(@cloudflare/workers-types@4.20250409.0))(yaml@2.7.1)':
+  '@react-router/dev@7.5.0(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(react-router@7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(stylus@0.57.0)(terser@5.39.0)(typescript@5.8.3)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.1))(wrangler@4.9.1(@cloudflare/workers-types@4.20250410.0))(yaml@2.7.1)':
     dependencies:
       '@babel/core': 7.26.10
       '@babel/generator': 7.27.0
@@ -12200,7 +12198,7 @@ snapshots:
       vite-node: 3.0.0-beta.2(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.1)
     optionalDependencies:
       typescript: 5.8.3
-      wrangler: 4.9.1(@cloudflare/workers-types@4.20250409.0)
+      wrangler: 4.9.1(@cloudflare/workers-types@4.20250410.0)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -13079,6 +13077,8 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.4.1':
     optional: true
 
+  '@ver0/deep-equal@1.0.0': {}
+
   '@vitejs/plugin-react-swc@3.8.0(@swc/helpers@0.5.15)(vite@6.1.1(@types/node@20.12.7)(jiti@2.4.2)(lightningcss@1.29.1)(stylus@0.57.0)(terser@5.39.0)(yaml@2.7.0))':
     dependencies:
       '@swc/core': 1.10.15(@swc/helpers@0.5.15)
@@ -13755,9 +13755,9 @@ snapshots:
       '@prisma/client': 6.4.1(prisma@6.4.1(typescript@5.7.3))(typescript@5.7.3)
       prisma: 6.4.1(typescript@5.7.3)
 
-  drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250409.0)(@prisma/client@6.4.1(prisma@6.4.1(typescript@5.8.3))(typescript@5.8.3))(better-sqlite3@11.9.1)(gel@2.0.2)(prisma@6.4.1(typescript@5.8.3)):
+  drizzle-orm@0.41.0(@cloudflare/workers-types@4.20250410.0)(@prisma/client@6.4.1(prisma@6.4.1(typescript@5.8.3))(typescript@5.8.3))(better-sqlite3@11.9.1)(gel@2.0.2)(prisma@6.4.1(typescript@5.8.3)):
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20250409.0
+      '@cloudflare/workers-types': 4.20250410.0
       '@prisma/client': 6.4.1(prisma@6.4.1(typescript@5.8.3))(typescript@5.8.3)
       better-sqlite3: 11.9.1
       gel: 2.0.2
@@ -18098,7 +18098,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  wrangler@4.9.1(@cloudflare/workers-types@4.20250409.0):
+  wrangler@4.9.1(@cloudflare/workers-types@4.20250410.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.3.1(unenv@2.0.0-rc.15)(workerd@1.20250408.0)
@@ -18109,7 +18109,7 @@ snapshots:
       unenv: 2.0.0-rc.15
       workerd: 1.20250408.0
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20250409.0
+      '@cloudflare/workers-types': 4.20250410.0
       fsevents: 2.3.3
       sharp: 0.33.5
     transitivePeerDependencies:
@@ -18179,4 +18179,4 @@ snapshots:
       '@types/fs-extra': 11.0.4
       '@types/node': 22.13.8
 
-  zx@8.5.0: {}
+  zx@8.5.2: {}

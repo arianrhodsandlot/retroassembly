@@ -1,6 +1,6 @@
 import { env } from 'hono/adapter'
 import { createMiddleware } from 'hono/factory'
-import type { defaultPreference } from '../../constants/preference.ts'
+import type { ResolvedPreference } from '../../constants/preference.ts'
 import { getPreference } from '../../controllers/get-preference.ts'
 import { createDrizzle } from '../../utils/drizzle.ts'
 import { createStorage } from '../../utils/storage.ts'
@@ -10,7 +10,7 @@ declare module 'hono' {
   interface ContextVariableMap {
     currentUser: { id: string }
     db: ReturnType<typeof createDrizzle>
-    preference: typeof defaultPreference
+    preference: ResolvedPreference
     redirected?: true
     storage: ReturnType<typeof createStorage>
     supabase?: ReturnType<typeof createSupabase>

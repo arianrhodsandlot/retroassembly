@@ -1,8 +1,8 @@
-import { getContext } from 'hono/context-storage'
 import { HydrationBoundary } from 'jotai-ssr'
 import { platformMap } from '@/constants/platform.ts'
-import { getPlatformInfo } from '@/controllers/get-platform-info.ts'
-import { getRoms } from '@/controllers/get-roms.ts'
+import type { ResolvedPreference } from '@/constants/preference.ts'
+import type { PlatformInfo } from '@/controllers/get-platform-info.ts'
+import type { Roms } from '@/controllers/get-roms.ts'
 import { preferenceAtom } from '@/pages/atoms.ts'
 import { platformAtom, romsAtom } from '../atoms.ts'
 import { DeviceInfo } from '../components/device-info/device-info.tsx'
@@ -11,23 +11,22 @@ import LibraryLayout from '../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../components/main-scroll-area.tsx'
 import { PageBreadcrumb } from '../components/page-breadcrumb.tsx'
 import { getHydrateAtoms } from '../utils/hydrate-atoms.ts'
-import type { Route } from './+types/page.ts'
 import { PlatformBackground } from './components/platform-background.tsx'
 import { UploadButton } from './components/upload-button.tsx'
 
-export async function loader({ params, request }: Route.LoaderArgs) {
-  const url = new URL(request.url)
-  const page = Number.parseInt(url.searchParams.get('page') || '1', 10) || 1
-  const { platform } = params
-  const { pagination, roms } = await getRoms({ page, platform })
-  const { preference } = getContext().var
-  const platformInfo = await getPlatformInfo(platform)
-
-  return { page, pagination, platform, platformInfo, preference, roms }
+interface PlatformPageProps {
+  pageData: {
+    page: number
+    pagination: { current: number; pages: number; size: number; total: number }
+    platform: string
+    platformInfo: PlatformInfo
+    preference: ResolvedPreference
+    roms: Roms
+  }
 }
 
-export default function PlatformPage({ loaderData }: Route.ComponentProps) {
-  const { page, pagination, platform, platformInfo, preference, roms } = loaderData
+export default function PlatformPage({ pageData }: PlatformPageProps) {
+  const { page, pagination, platform, platformInfo, preference, roms } = pageData
 
   if (!platformMap[platform]) {
     return '404 not found'

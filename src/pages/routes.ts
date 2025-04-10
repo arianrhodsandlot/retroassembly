@@ -1,15 +1,21 @@
 import { index, prefix, route, type RouteConfig } from '@react-router/dev/routes'
 
 export default [
-  index('page.tsx'),
+  index('routes/home.tsx'),
 
-  ...prefix('login', [index('login/page.tsx'), route('google', 'login/google/page.ts')]),
-  route('logout', 'logout/page.ts'),
+  ...prefix('login', [index('routes/login.tsx'), route('google', 'routes/login-google.ts')]),
+  route('logout', 'routes/logout.ts'),
 
   ...prefix('library', [
-    index('library/page.tsx'),
-    route('history', 'library/history/page.tsx'),
-    route('platform/:platform', 'library/platform/page.tsx'),
-    route('platform/:platform/rom/:fileName', 'library/platform/rom/page.tsx'),
+    index('routes/library.tsx'),
+    route('history', 'routes/library-history.tsx'),
+    route('platform/:platform', 'routes/library-platform.tsx'),
+    route('platform/:platform/rom/:fileName', 'routes/library-platform-rom.tsx'),
+  ]),
+
+  ...prefix('demo', [
+    index('routes/demo.tsx'),
+    route('platform/:platform', 'routes/demo-platform.tsx'),
+    route('platform/:platform/rom/:fileName', 'routes/demo-platform-rom.tsx'),
   ]),
 ] satisfies RouteConfig

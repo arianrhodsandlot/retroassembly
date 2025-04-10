@@ -2,7 +2,7 @@ import { CommunitySection } from './components/community-section.tsx'
 import { FeaturesSection } from './components/features-section.tsx'
 import { HeroSection } from './components/hero-section.tsx'
 
-export default function HomePage() {
+export function HomePage() {
   return (
     <>
       <title>RetroAssembly</title>

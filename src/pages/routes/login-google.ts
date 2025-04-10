@@ -1,5 +1,5 @@
 import { getContext } from 'hono/context-storage'
-import type { Route } from './+types/page'
+import type { Route } from './+types/login-google.ts'
 
 export async function loader({ request }: Route.LoaderArgs) {
   const c = getContext()

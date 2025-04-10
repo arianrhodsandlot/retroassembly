@@ -1,8 +1,8 @@
 import { Portal, Theme } from '@radix-ui/themes'
-import { getContext } from 'hono/context-storage'
 import { HydrationBoundary } from 'jotai-ssr'
 import { platformMap } from '@/constants/platform.ts'
-import { getRom } from '@/controllers/get-rom.ts'
+import type { ResolvedPreference } from '@/constants/preference.ts'
+import type { Rom } from '@/controllers/get-roms.ts'
 import { preferenceAtom } from '@/pages/atoms.ts'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { platformAtom, romAtom } from '../../atoms.ts'
@@ -10,7 +10,6 @@ import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../../components/main-scroll-area.tsx'
 import { PageBreadcrumb } from '../../components/page-breadcrumb.tsx'
 import { getHydrateAtoms } from '../../utils/hydrate-atoms.ts'
-import type { Route } from './+types/page.ts'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
 import { GameMedias } from './components/game-medias/game-medias.tsx'
@@ -20,14 +19,15 @@ import { PageHooks } from './components/page-hooks.ts'
 import { RomAtomGuard } from './components/rom-atom-guard.ts'
 import { RomBackground } from './components/rom-background.tsx'
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const rom = await getRom({ fileName: params.fileName, platform: params.platform })
-  const { preference } = getContext().var
-  return { preference, rom }
+interface RomPageProps {
+  pageData: {
+    preference: ResolvedPreference
+    rom: Rom
+  }
 }
 
-export default function RomPage({ loaderData }: Route.ComponentProps) {
-  const { preference, rom } = loaderData
+export default function RomPage({ pageData }: RomPageProps) {
+  const { preference, rom } = pageData
   if (!rom) {
     return '404'
   }

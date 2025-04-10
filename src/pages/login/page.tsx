@@ -1,34 +1,17 @@
 import { Button } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
-import { getContext } from 'hono/context-storage'
 import { Link } from 'react-router'
-import type { Route } from './+types/page.ts'
 
-export async function loader({ request }: Route.LoaderArgs) {
-  const c = getContext()
-  const { currentUser, supabase } = c.var
-  const { searchParams } = new URL(request.url)
-  const code = searchParams.get('code')
-  const redirectTo = searchParams.get('redirect_to') ?? '/library'
-
-  if (code && supabase) {
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
-    if (error) {
-      return { error, redirectTo }
-    }
-
-    throw c.redirect(redirectTo)
+interface LoginPageProps {
+  pageData: {
+    error: Error | null
+    redirectTo: string
   }
-
-  if (currentUser) {
-    throw c.redirect(redirectTo)
-  }
-
-  return { error: null, redirectTo }
 }
-export default function LoginPage({ loaderData }: Route.ComponentProps) {
+
+export function LoginPage({ pageData }: LoginPageProps) {
   const [clicked, toggleClicked] = useToggle()
-  const { error, redirectTo } = loaderData
+  const { error, redirectTo } = pageData
 
   function handleClick() {
     toggleClicked()

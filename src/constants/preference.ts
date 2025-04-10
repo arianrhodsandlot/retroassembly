@@ -80,7 +80,7 @@ export interface ResolvedPreference extends Preference {
 
 export type PreferenceSnippet = PartialDeep<Preference>
 
-export const defaultPreference: Preference = {
+export const defaultPreference: ResolvedPreference = {
   emulator: {
     core: {
       fceumm: {

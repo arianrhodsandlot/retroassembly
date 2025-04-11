@@ -14,7 +14,9 @@ export function LoginPage({ pageData }: LoginPageProps) {
   const { error, redirectTo } = pageData
 
   function handleClick() {
-    toggleClicked()
+    if (!clicked) {
+      toggleClicked()
+    }
   }
 
   if (error) {

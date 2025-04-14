@@ -35,12 +35,17 @@ const repositoryVersions = {
 
 export const cdnHost = 'https://cdn.jsdelivr.net'
 
-export function getCDNUrl(repo: keyof typeof repositoryVersions, filePpath: string) {
+export function getCDNUrl(repo: keyof typeof repositoryVersions | string, filePpath: string) {
   const [ghUser, ghRepoName] = repo.split('/')
   const version = repositoryVersions[repo]
   const url = new URL('', cdnHost)
   const encode = encodeRFC3986URIComponent
-  const urlPathSegments = ['gh', encode(ghUser), `${encode(ghRepoName)}@${encode(version)}`, filePpath]
+  const urlPathSegments = [
+    'gh',
+    encode(ghUser),
+    version ? `${encode(ghRepoName)}@${encode(version)}` : encode(ghRepoName),
+    filePpath,
+  ]
   const urlPath = urlPathSegments.join('/')
   url.pathname = urlPath
   return url.href

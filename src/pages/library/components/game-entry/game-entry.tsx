@@ -1,5 +1,6 @@
 import { Skeleton } from '@radix-ui/themes'
 import { getRomGoodcodes } from '@/utils/library.ts'
+import { useIsDemo } from '../../hooks/use-demo.ts'
 import { useRomCover } from '../../hooks/use-rom-cover.ts'
 import { NavigatableLink } from '../navigatable-link.tsx'
 import { GameEntryContextMenu } from './game-entry-context-menu.tsx'
@@ -9,13 +10,16 @@ import { GameTitle } from './game-title.tsx'
 export function GameEntry({ rom }) {
   const goodcodes = getRomGoodcodes(rom)
   const { data: cover, isLoading } = useRomCover(rom)
+  const isDemo = useIsDemo()
+
+  const libraryPath = isDemo ? 'demo' : 'library'
 
   return (
     <GameEntryContextMenu rom={rom}>
       <NavigatableLink
         className='game-entry flex flex-col items-center justify-center gap-1 p-1'
         title={rom.fileName}
-        to={`/library/platform/${rom.platform}/rom/${encodeURIComponent(rom.fileName)}`}
+        to={`/${encodeURIComponent(libraryPath)}/platform/${rom.platform}/rom/${encodeURIComponent(rom.fileName)}`}
       >
         {isLoading ? (
           <div className='!w-9/10 aspect-square'>

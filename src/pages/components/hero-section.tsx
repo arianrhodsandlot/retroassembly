@@ -10,7 +10,7 @@ export function HeroSection() {
 
       <div className='mt-32 flex gap-4'>
         <Button asChild radius='small' size='4' type='button'>
-          <Link reloadDocument to='/library'>
+          <Link reloadDocument to='/demo'>
             <span className='icon-[mdi--presentation-play]' />
             View demo
           </Link>

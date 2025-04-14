@@ -3,38 +3,50 @@ import { useLocation } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
 import { usePlatform } from '../../atoms.ts'
+import { useIsDemo } from '../../hooks/use-demo.ts'
 import { usePreference } from '../../hooks/use-preference.ts'
 import { SidebarLink } from './sidebar-link.tsx'
 
-function getPlatformLink(platform?: string) {
+function getPlatformLink(platform?: string, isDemo = false) {
   if (!platform) {
     return ''
   }
-  return `/library/platform/${encodeURIComponent(platform)}`
+  const libraryPath = isDemo ? 'demo' : 'library'
+  return `/${encodeURIComponent(libraryPath)}/platform/${encodeURIComponent(platform)}`
 }
 
 export function SidebarLinks() {
   const { preference } = usePreference()
   const [platform] = usePlatform()
   const location = useLocation()
+  const isDemo = useIsDemo()
+  const libraryPath = isDemo ? 'demo' : 'library'
 
   function isLinkActive(link: string) {
-    return location.pathname === link || getPlatformLink(platform?.name) === link
+    return location.pathname === link || getPlatformLink(platform?.name, isDemo) === link
   }
 
   const platformLinks = preference.ui.platforms.map((platform) => ({
     icon: getPlatformIcon(platform),
     platform,
     text: platformMap[platform].displayName,
-    to: getPlatformLink(platform),
+    to: getPlatformLink(platform, isDemo),
   }))
 
   return (
     <>
       <div className='flex flex-col gap-y-2'>
         {[
-          { icon: <span className='icon-[mdi--bookshelf] size-5 p-0.5' />, text: 'Library', to: '/library' },
-          { icon: <span className='icon-[mdi--history] size-5 p-0.5' />, text: 'History', to: '/library/history' },
+          { icon: <span className='icon-[mdi--bookshelf] size-5 p-0.5' />, text: 'Library', to: `/${libraryPath}` },
+          ...(isDemo
+            ? []
+            : [
+                {
+                  icon: <span className='icon-[mdi--history] size-5 p-0.5' />,
+                  text: 'History',
+                  to: '/library/history',
+                },
+              ]),
         ].map(({ icon, text, to }) => (
           <SidebarLink active={isLinkActive(to)} key={text} to={to}>
             {icon}

@@ -4,10 +4,12 @@ import { useMemo } from 'react'
 import useSWRImmutable from 'swr/immutable'
 import { coreUrlMap } from '@/constants/core.ts'
 import { useEmulatorLaunched } from '@/pages/library/atoms.ts'
+import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
+import { getCDNUrl } from '@/utils/cdn.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
 
 type NostalgistOption = Parameters<typeof Nostalgist.prepare>[0]
@@ -41,8 +43,11 @@ export function useEmulator() {
   const { preference } = usePreference()
   const gamepadMapping = useGamepadMapping()
   const [launched, setLaunched] = useEmulatorLaunched()
+  const isDemo = useIsDemo()
 
-  const romUrl = rom ? `/api/v1/roms/${rom.id}/content` : ''
+  const romUrl = isDemo
+    ? getCDNUrl(`retrobrews/${{ genesis: 'md' }[rom.platform] || rom.platform}-games`, rom.fileName)
+    : `/api/v1/roms/${rom.id}/content`
   const { core } = preference.emulator.platform[rom.platform] || {}
   const shader = preference.emulator.platform[rom.platform].shader || preference.emulator.shader
 

@@ -9,6 +9,12 @@ type LibretroThumbnailType = 'boxart' | 'snap' | 'title'
 
 const { path } = Nostalgist.vendors
 
+export function getDemoRomThumbnail(rom) {
+  const platform = { genesis: 'md' }[rom.platform] || rom.platform
+  const repo = `retrobrews/${platform}-games`
+  return getCDNUrl(repo, `${path.parse(rom.fileName).name}.png`)
+}
+
 export function getRomLibretroThumbnail(rom, type: LibretroThumbnailType = 'boxart') {
   const name = rom.libretroGame?.name
   if (!name || !rom.platform) {

@@ -1,6 +1,7 @@
 import useSWRImmutable from 'swr/immutable'
 import type { Rom } from '@/controllers/get-roms'
-import { getPlatformGameIcon, getRomLibretroThumbnail } from '@/utils/library.ts'
+import { getDemoRomThumbnail, getPlatformGameIcon, getRomLibretroThumbnail } from '@/utils/library.ts'
+import { useIsDemo } from './use-demo.ts'
 
 const validImages = new Set<string>([])
 const invalidImages = new Set<string>([])
@@ -15,7 +16,8 @@ function imageLoaded(src) {
 }
 
 export function useRomCover(rom: Rom) {
-  const romCover = getRomLibretroThumbnail(rom)
+  const isDemo = useIsDemo()
+  const romCover = isDemo ? getDemoRomThumbnail(rom) : getRomLibretroThumbnail(rom)
   const platformCover = getPlatformGameIcon(rom.platform)
 
   return useSWRImmutable([romCover, platformCover], async () => {

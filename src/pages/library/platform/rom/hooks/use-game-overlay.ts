@@ -22,7 +22,10 @@ export function useGameOverlay() {
     } else if (status === 'paused') {
       emulator?.resume()
     }
-    setShow((show) => !show)
+
+    if (status !== 'initial') {
+      setShow((show) => !show)
+    }
   }
 
   return { isPending, setIsPending, show, toggle }

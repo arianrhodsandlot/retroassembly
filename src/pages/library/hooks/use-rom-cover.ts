@@ -6,7 +6,7 @@ import { useIsDemo } from './use-demo.ts'
 const validImages = new Set<string>([])
 const invalidImages = new Set<string>([])
 
-function imageLoaded(src) {
+function imageLoaded(src: string) {
   const img = new Image()
   img.src = src
   return new Promise<void>((resolve, reject) => {

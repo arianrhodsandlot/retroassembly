@@ -1,3 +1,4 @@
+@import '@fontsource-variable/comfortaa';
 @import '@fontsource-variable/inter/index.css';
 @import '@fontsource-variable/oswald/index.css';
 @import '@fontsource-variable/roboto-slab/index.css';
@@ -41,4 +42,17 @@ a:focus {
   --cursor-slider-thumb: grab;
   --cursor-slider-thumb-active: grabbing;
   --cursor-switch: pointer;
+}
+
+@keyframes crt-scanlines {
+  0% {
+    background-position-y: 0;
+  }
+  100% {
+    background-position-y: 20px;
+  }
+}
+
+.animate-crt-scanlines {
+  animation: crt-scanlines 1.2s linear infinite;
 }

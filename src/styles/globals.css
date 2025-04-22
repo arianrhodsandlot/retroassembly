@@ -56,3 +56,11 @@ a:focus {
 .animate-crt-scanlines {
   animation: crt-scanlines 1.2s linear infinite;
 }
+
+.hero-bg {
+  background-color: #c70036;
+  opacity: 0.05;
+  background-image:  repeating-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff), repeating-linear-gradient(45deg, #fff 25%, #c70036 25%, #c70036 75%, #fff 75%, #fff);
+  background-position: 0 0, 14px 14px;
+  background-size: 28px 28px;
+}

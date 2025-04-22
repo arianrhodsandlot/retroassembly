@@ -1,11 +1,11 @@
+import { Background } from './background.tsx'
 import { Paralolas } from './parabola.tsx'
-import { Pong } from './pong.tsx'
 
 export function VisualEffect() {
   return (
     <>
       <div className='absolute top-0 size-full'>
-        <Pong />
+        <Background />
       </div>
       <div className='absolute top-0 size-full'>
         <Paralolas />

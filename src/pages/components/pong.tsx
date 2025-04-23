@@ -15,7 +15,7 @@ const BALL_RADIUS = 16
 const PADDLE_MOVE_FACTOR = 0.1 // Controls how fast paddles react
 const MAX_PADDLE_SPEED = 8 // Maximum speed paddles can move
 
-const FILL_STYLE = 'rgba(0, 0, 0, 0.2)'
+const FILL_STYLE = 'rgba(0, 0, 0, 1)'
 
 export function Pong() {
   const canvasRef = useRef<HTMLCanvasElement>(null)

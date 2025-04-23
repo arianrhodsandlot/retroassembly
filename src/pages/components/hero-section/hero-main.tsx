@@ -22,8 +22,8 @@ export function HeroMain() {
           </Link>
         </Button>
 
-        <Button asChild radius='small' size='4' type='button' variant='soft'>
-          <Link reloadDocument to='/library'>
+        <Button asChild radius='small' size='4' type='button' variant='outline'>
+          <Link className='!bg-white' reloadDocument to='/library'>
             <span className='icon-[mdi--bookshelf]' />
             My library
           </Link>

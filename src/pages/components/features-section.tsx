@@ -1,4 +1,5 @@
 import { Card } from '@radix-ui/themes'
+import { Pong } from './pong'
 
 export function FeaturesSection() {
   const features = [
@@ -35,15 +36,18 @@ export function FeaturesSection() {
   ]
 
   return (
-    <section className='bg-[var(--accent-2)] py-16'>
+    <section className='relative py-16'>
+      <div className='absolute inset-0 size-full'>
+        <Pong />
+      </div>
       <div className='mx-auto max-w-6xl '>
         <h2 className='mb-6 flex items-center justify-center gap-2 text-3xl font-bold'>
           <span className='icon-[mdi--gift]' />
           Features
         </h2>
-        <div className='grid grid-cols-1 gap-8 md:grid-cols-3'>
+        <div className='mt-4 grid grid-cols-1 gap-8 md:grid-cols-3'>
           {features.map((feature) => (
-            <Card key={feature.title} size='3'>
+            <Card className='flex-1' key={feature.title} size='3'>
               <h3 className='mb-2 flex items-center gap-2 text-xl font-semibold'>
                 <span className={feature.icon} />
                 {feature.title}

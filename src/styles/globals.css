@@ -44,23 +44,17 @@ a:focus {
   --cursor-switch: pointer;
 }
 
-@keyframes crt-scanlines {
-  0% {
-    background-position-y: 0;
-  }
-  100% {
-    background-position-y: 20px;
-  }
-}
-
-.animate-crt-scanlines {
-  animation: crt-scanlines 1.2s linear infinite;
-}
-
 .hero-bg {
-  background-color: #c70036;
-  opacity: 0.05;
-  background-image:  repeating-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff), repeating-linear-gradient(45deg, #fff 25%, #c70036 25%, #c70036 75%, #fff 75%, #fff);
-  background-position: 0 0, 14px 14px;
-  background-size: 28px 28px;
+  background-image: linear-gradient(#f8f8f8 1px, transparent 1px), linear-gradient(to right, #f8f8f8 1px, #fff 1px);
+  background-size: 10px 10px;
+  animation: move 1s linear infinite;
+}
+
+@keyframes move {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 10px;
+  }
 }

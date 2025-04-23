@@ -3,8 +3,8 @@ import { VisualEffect } from './visual-effect.tsx'
 
 export function HeroSection() {
   return (
-    <section className='relative flex h-screen min-h-96 flex-col'>
-      <div className='z-1 relative flex w-full items-center justify-between border-b border-b-[var(--accent-9)] bg-[var(--accent-9)] px-8 py-4 text-white shadow shadow-black/30'>
+    <section className='relative flex h-dvh min-h-96 flex-col'>
+      <div className='z-1 border-b-(--accent-9) bg-(--accent-9) relative flex w-full items-center justify-between border-b px-8 py-4 text-white shadow shadow-black/30'>
         <span className='font-extrabold'>
           <img
             alt='RetroAssembly logo'

@@ -33,7 +33,7 @@ export function FocusIndicator({ children }: { children?: ReactNode }) {
     <Portal>
       <Theme accentColor='red'>
         <div
-          className='motion-scale-loop motion-duration-1200 motion-ease-in-out-quad pointer-events-none fixed z-10 rounded bg-[var(--accent-a4)]'
+          className='motion-scale-loop motion-duration-1200 motion-ease-in-out-quad bg-(--accent-a4) pointer-events-none fixed z-10 rounded'
           style={mergedStyle}
         >
           {children}

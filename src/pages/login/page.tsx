@@ -27,7 +27,7 @@ export function LoginPage({ pageData }: LoginPageProps) {
     return (
       <>
         <title>Login - RetroAssembly</title>
-        <div className='min-h-screen bg-[var(--accent-9)] py-20'>
+        <div className='min-h-dvh bg-(--accent-9) py-20'>
           <form className='w-3xl mx-auto rounded bg-white p-10 text-center'>
             <div className='flex items-center justify-center gap-4'>
               <Link className='flex items-center justify-center' reloadDocument to='/'>

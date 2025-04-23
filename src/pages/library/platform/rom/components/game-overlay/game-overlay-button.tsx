@@ -5,8 +5,9 @@ import type { MouseEvent, ReactNode } from 'react'
 
 export function GameOverlayButton({
   children,
+  disabled = false,
   onClick,
-}: { children: Iterable<ReactNode>; onClick: ButtonProps['onClick'] }) {
+}: { children: Iterable<ReactNode>; disabled?: boolean; onClick: ButtonProps['onClick'] }) {
   const [isLoading, toggleLoading] = useToggle()
 
   async function handleClick(event: MouseEvent<HTMLButtonElement>) {
@@ -25,7 +26,7 @@ export function GameOverlayButton({
     <Button
       className={clsx(
         '!border-1 border-solid border-white !bg-black/30 !text-white !shadow-none !transition-all !duration-300',
-        'focus:!bg-white/80 focus:!text-[var(--accent-9)]',
+        'focus:!bg-white/80 focus:!text-(--accent-9)',
         { '!opacity-40': isLoading },
       )}
       data-sn-enabled
@@ -33,6 +34,7 @@ export function GameOverlayButton({
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
         borderRadius: '24px',
       })}
+      disabled={disabled}
       onClick={handleClick}
       radius='full'
       size='4'

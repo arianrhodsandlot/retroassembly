@@ -1,3 +1,4 @@
+import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 import { useGameStates } from '../../hooks/use-game-states.ts'
@@ -7,6 +8,7 @@ export function GameOverlayButtons() {
   const { emulator, exit } = useEmulator()
   const { saveState } = useGameStates()
   const { setIsPending, toggle } = useGameOverlay()
+  const isDemo = useIsDemo()
 
   function handleClickResume() {
     emulator?.resume()
@@ -50,7 +52,7 @@ export function GameOverlayButtons() {
         Resume
       </GameOverlayButton>
 
-      <GameOverlayButton onClick={handleClickSaveState}>
+      <GameOverlayButton disabled={isDemo} onClick={handleClickSaveState}>
         <span className='icon-[mdi--content-save] size-5' />
         Save State
       </GameOverlayButton>
@@ -66,7 +68,7 @@ export function GameOverlayButtons() {
         Exit
       </GameOverlayButton>
 
-      <GameOverlayButton onClick={handleClickSaveExit}>
+      <GameOverlayButton disabled={isDemo} onClick={handleClickSaveExit}>
         <span className='icon-[mdi--location-exit] size-5' />
         Save & Exit
       </GameOverlayButton>

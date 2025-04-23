@@ -84,6 +84,11 @@ export function getPlatformDeviceBackground(platform: string) {
 
 export function getRomGoodcodes(rom: Rom) {
   let { name } = path.parse(rom.fileName)
+
+  if ('name' in rom) {
+    name = rom.name as string
+  }
+
   if (rom.platform === 'arcade' && rom.libretroGame?.name) {
     name = rom.libretroGame.name
   }

@@ -5,7 +5,9 @@ export function ButtonSection() {
   return (
     <section className='relative py-20'>
       <div className='mx-auto max-w-6xl'>
-        <h2 className='mb-6 flex items-center justify-center gap-2 text-3xl'>Start to enjoy retro gaming now!</h2>
+        <h2 className='motion-preset-oscillate motion-duration-2000 mb-6 flex items-center justify-center gap-2 text-3xl'>
+          Start to enjoy retro gaming now!
+        </h2>
         <div className='flex items-center justify-center gap-4 py-8'>
           <Button asChild radius='small' size='4' type='button'>
             <Link reloadDocument to='/demo'>

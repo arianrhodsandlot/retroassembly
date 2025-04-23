@@ -13,7 +13,7 @@ export function HomePage() {
       <CommunitySection />
       <ButtonSection />
 
-      <footer className='bg-[var(--accent-9)] py-4 text-center text-sm text-white'>
+      <footer className='bg-(--accent-9) py-4 text-center text-sm text-white'>
         <p>&copy; 2025 RetroAssembly. All rights reserved.</p>
       </footer>
     </>

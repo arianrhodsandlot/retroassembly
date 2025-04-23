@@ -43,6 +43,9 @@ export default function RomPage({ pageData }: RomPageProps) {
     ],
   })
 
+  // @ts-expect-error desc is for demo roms
+  const overview = launchboxGame?.overview || rom.desc
+
   return (
     <HydrationBoundary hydrateAtoms={hydrateAtoms} options={{ enableReHydrate: true }}>
       <LibraryLayout title={goodcodes.rom}>
@@ -64,16 +67,16 @@ export default function RomPage({ pageData }: RomPageProps) {
               <div className='flex flex-col gap-4 pl-4 pr-64'>
                 <GameMedias />
 
-                {launchboxGame?.overview ? (
+                {overview ? (
                   <div className='prose-neutral prose max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable]'>
-                    {launchboxGame.overview}
+                    {overview}
                   </div>
                 ) : null}
 
                 {launchboxGame?.wikipediaUrl ? (
                   <div>
                     <a
-                      className='inline-flex items-center gap-2 text-[var(--accent-9)] underline'
+                      className='inline-flex items-center gap-2 text-(--accent-9) underline'
                       href={launchboxGame.wikipediaUrl}
                       rel='noreferrer'
                       target='_blank'
@@ -89,7 +92,7 @@ export default function RomPage({ pageData }: RomPageProps) {
         <RomBackground rom={rom} />
         <Portal>
           <Theme accentColor='red'>
-            <GameOverlay rom={rom} />
+            <GameOverlay />
           </Theme>
         </Portal>
         <RomAtomGuard>

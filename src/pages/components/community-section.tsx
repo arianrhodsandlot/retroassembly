@@ -1,6 +1,6 @@
 export function CommunitySection() {
   return (
-    <section className='bg-[var(--accent-2)] py-16'>
+    <section className='bg-(--accent-2) py-16'>
       <div className='mx-auto max-w-6xl text-center'>
         <h2 className='mb-6 flex items-center justify-center gap-2 text-3xl font-bold'>
           <span className='icon-[mdi--people-group]' />

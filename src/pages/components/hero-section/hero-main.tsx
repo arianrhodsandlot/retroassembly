@@ -5,9 +5,7 @@ export function HeroMain() {
   return (
     <div className='flex w-1/2 flex-1 flex-col items-center justify-center'>
       <div className='motion-preset-expand motion-delay-300 outline-hidden relative mt-8 overflow-hidden rounded-2xl'>
-        <h1 className='text-shadow m-4 bg-clip-text text-7xl font-[Comfortaa_Variable] font-extrabold'>
-          RetroAssembly
-        </h1>
+        <h1 className='text-shadow m-4 bg-clip-text text-8xl font-[Comfortaa_Variable] font-semibold'>RetroAssembly</h1>
       </div>
 
       <div className='motion-preset-expand motion-delay-600 relative mt-6'>

@@ -1,17 +1,14 @@
-@import '@fontsource-variable/comfortaa';
-@import '@fontsource-variable/inter/index.css';
-@import '@fontsource-variable/oswald/index.css';
-@import '@fontsource-variable/roboto-slab/index.css';
-@import '@fontsource/dseg7-modern/700.css';
 @import '@radix-ui/themes/components.css';
 @import '@radix-ui/themes/tokens/base.css';
 @import '@radix-ui/themes/tokens/colors/mauve.css';
 @import '@radix-ui/themes/utilities.css';
 @import 'tailwindcss';
+@import './fonts.css';
+@import './radix-theme.css';
+
 @plugin '@iconify/tailwind4';
 @plugin '@tailwindcss/typography';
 @plugin 'tailwindcss-motion';
-@import './radix-theme.css';
 
 body {
   -moz-osx-font-smoothing: grayscale;

@@ -4,17 +4,20 @@ import { useAtom } from 'jotai'
 import { Fragment } from 'react/jsx-runtime'
 import { getPlatformGameIcon, getPlatformIcon, getRomGoodcodes } from '@/utils/library.ts'
 import { romAtom, usePlatform } from '../atoms.ts'
+import { useIsDemo } from '../hooks/use-demo.ts'
 import { NavigatableLink } from './navigatable-link.tsx'
 
 export function PageBreadcrumb() {
   const [rom] = useAtom(romAtom)
   const [platform] = usePlatform()
+  const isDemo = useIsDemo()
+  const libraryPath = isDemo ? 'demo' : 'library'
 
   const links = [
     {
       icon: <span className='icon-[mdi--bookshelf] size-5 p-0.5' />,
       text: 'Library',
-      url: '/library',
+      url: `/${libraryPath}`,
     },
   ]
 
@@ -28,14 +31,14 @@ export function PageBreadcrumb() {
         />
       ),
       text: platform.displayName,
-      url: `/library/platform/${platform.name}`,
+      url: `/${libraryPath}/platform/${platform.name}`,
     })
 
     if (rom) {
       links.push({
         icon: <img alt={platform.displayName} className='size-5 p-0.5' src={getPlatformGameIcon(rom.platform)} />,
         text: getRomGoodcodes(rom).rom,
-        url: `/library/rom/${rom.id}`,
+        url: `/${libraryPath}/rom/${rom.id}`,
       })
     }
   }

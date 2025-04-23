@@ -34,7 +34,7 @@ export function StatusBar() {
       ) : (
         <>
           <span className='flex items-center gap-2'>
-            <Kbd className='!text-[var(--accent-9)]' size='1'>
+            <Kbd className='!text-(--accent-9)' size='1'>
               {[
                 keyboardMapping.input_player1_up,
                 keyboardMapping.input_player1_down,
@@ -50,7 +50,7 @@ export function StatusBar() {
 
           {keyboardMapping.input_player1_a ? (
             <span className='flex items-center gap-2'>
-              <Kbd className='!text-[var(--accent-9)]' size='1'>
+              <Kbd className='!text-(--accent-9)' size='1'>
                 {uniq(['Enter', capitalize(keyboardMapping.input_player1_a)]).join(' / ')}
               </Kbd>
               Confirm
@@ -59,7 +59,7 @@ export function StatusBar() {
 
           {keyboardMapping.input_player1_b ? (
             <span className='flex items-center gap-2'>
-              <Kbd className='!text-[var(--accent-9)]' size='1'>
+              <Kbd className='!text-(--accent-9)' size='1'>
                 {uniq(['Esc', capitalize(keyboardMapping.input_player1_b)]).join(' / ')}
               </Kbd>
               Cancel

@@ -312,7 +312,7 @@ function getRandomInitialPosition(): Position {
     x: isLeftSide
       ? random(0, 0.15) // Left side: 0 to 0.15
       : 0.85 + random(0, 0.15), // Right side: 0.85 to 1
-    y: 1, // Always start at bottom (y = 1)
+    y: 1, // Position slightly below the container (1.0 would be exactly at bottom edge)
   }
 }
 

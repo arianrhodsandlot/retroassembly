@@ -22,11 +22,14 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
   return (
     <>
       <title>{getPostfixedTitle(title)}</title>
-      <div className='library-layout flex h-screen bg-[var(--accent-9)]'>
+      <div className='library-layout flex h-dvh bg-(--accent-9)'>
         <SidebarContainer>
-          <Link className='flex items-center justify-center gap-2 pb-4 pt-2 font-bold' reloadDocument to='/'>
-            <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
-          </Link>
+          <div className='flex items-center justify-between px-4 pb-4'>
+            <Link className='flex items-center gap-2 font-bold' reloadDocument to='/'>
+              <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
+              <span className='font-[Comfortaa_Variable] font-semibold'>RetroAssembly</span>
+            </Link>
+          </div>
           <ScrollArea className='flex-1' size='2'>
             <SidebarLinks />
           </ScrollArea>

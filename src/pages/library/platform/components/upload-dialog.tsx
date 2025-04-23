@@ -136,15 +136,15 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
               <div
                 {...getRootProps()}
                 className={clsx(
-                  'mt-4 flex h-32 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-[var(--accent-8)]',
-                  { 'bg-[var(--accent-3)]': isDragActive },
+                  'border-(--accent-8) mt-4 flex h-32 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed',
+                  { 'bg-(--accent-3)': isDragActive },
                 )}
               >
                 {isDragActive ? (
-                  <span className='text-sm text-[var(--accent-11)]'>Drop files here</span>
+                  <span className='text-(--accent-11) text-sm'>Drop files here</span>
                 ) : (
                   <>
-                    <span className='text-sm text-[var(--accent-11)]'>Drag files here or</span>
+                    <span className='text-(--accent-11) text-sm'>Drag files here or</span>
                     <Button onClick={handleClickSelect} size='2'>
                       <span className='icon-[mdi--folder-open]' />
                       Select files

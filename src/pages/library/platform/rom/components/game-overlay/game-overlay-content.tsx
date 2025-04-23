@@ -25,7 +25,7 @@ export function GameOverlayContent() {
   return (
     <motion.div
       animate={{ opacity: 1, scale: 1 }}
-      className='game-overlay bg-linear-to-b pointer-events-auto absolute inset-0 z-10 flex h-screen w-screen flex-col bg-black/70 text-white'
+      className='game-overlay bg-linear-to-b pointer-events-auto absolute inset-0 z-10 flex h-dvh w-screen flex-col bg-black/70 text-white'
       exit={{ opacity: 0, scale: 1.1 }}
       initial={{ opacity: 0, scale: 1.1 }}
       onAnimationComplete={handleAnimationComplete}

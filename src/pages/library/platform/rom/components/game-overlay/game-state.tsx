@@ -61,7 +61,7 @@ export function GameState({ state }) {
       </div>
       <div className='flex h-5 items-center justify-center text-xs text-zinc-600'>
         {isMutating ? (
-          <span className='icon-[svg-spinners--180-ring] block size-3 text-[var(--accent-9)]' />
+          <span className='icon-[svg-spinners--180-ring] block size-3 text-(--accent-9)' />
         ) : (
           <div>
             Saved at <Badge>{humanizeDate(state.createdAt)}</Badge>

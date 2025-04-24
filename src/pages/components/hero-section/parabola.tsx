@@ -17,7 +17,6 @@ interface Velocity {
 interface ObjectConfig {
   baseSize: number
   delay: number
-  iconIndex: number
   id: number
   initialPosition: Position
   initialRotation: number
@@ -28,6 +27,7 @@ interface ObjectConfig {
 interface AnimationState {
   active: boolean
   iconIndex: number
+  id: number
   position: Position
   rotation: number
   rotationSpeed: number
@@ -75,220 +75,6 @@ const DEFAULT_CONFIG = {
   SIZE_VARIATION: 0.2, // ±20% size variation
   VERTICAL_VELOCITY_BASE: 0.008,
 } as const
-
-/**
- * Custom hook for managing animation physics in the parabola component
- */
-function useParabolaAnimation(
-  containerRef: React.RefObject<HTMLDivElement>,
-  objectConfigs: ObjectConfig[],
-  heightFactor: number,
-) {
-  const [containerSize, setContainerSize] = useState({ height: 0, width: 0 })
-  const objectsRef = useRef<(HTMLDivElement | null)[]>([])
-  const animationRef = useRef<number | undefined>(undefined)
-  const [isClient, setIsClient] = useState(false)
-  const usedIconIndicesRef = useRef<number[]>([])
-
-  // Update used icon indices when configs change
-  useEffect(() => {
-    usedIconIndicesRef.current = objectConfigs.map((config) => config.iconIndex)
-  }, [objectConfigs])
-
-  // Initialize client-side and container size
-  useEffect(() => {
-    setIsClient(true)
-
-    function updateContainerSize() {
-      if (!containerRef.current) {
-        return
-      }
-
-      setContainerSize({
-        height: containerRef.current.clientHeight,
-        width: containerRef.current.clientWidth,
-      })
-    }
-
-    updateContainerSize()
-
-    // Use ResizeObserver for responsive container size updates
-    const resizeObserver = new ResizeObserver(updateContainerSize)
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current)
-    }
-
-    return () => {
-      resizeObserver.disconnect()
-    }
-  }, [containerRef])
-
-  /**
-   * Reset an animation state when object goes out of bounds
-   */
-  const resetAnimationState = useCallback(
-    // eslint-disable-next-line max-params
-    (state: AnimationState, containerWidth: number, containerHeight: number, baseSize: number): void => {
-      // Generate new random parameters
-      const newInitialPosition = getRandomInitialPosition()
-      const newInitialVelocity = getRandomInitialVelocity(newInitialPosition, heightFactor)
-
-      // Update position
-      state.position = {
-        x: newInitialPosition.x * containerWidth,
-        y: newInitialPosition.y * containerHeight,
-      }
-
-      // Update velocity
-      state.velocity = {
-        x: newInitialVelocity.x * containerWidth,
-        y: newInitialVelocity.y * containerHeight,
-      }
-
-      // Remove current icon index from used list
-      usedIconIndicesRef.current = usedIconIndicesRef.current.filter((idx) => idx !== state.iconIndex)
-
-      // Choose a new unique random icon and update tracking array
-      const newIconIndex = getUniqueRandomIconIndex(usedIconIndicesRef.current)
-      state.iconIndex = newIconIndex
-      usedIconIndicesRef.current.push(newIconIndex)
-
-      // Generate random size
-      state.size = getRandomSize(baseSize)
-
-      // Generate new random rotation properties
-      state.rotation = getRandomRotation()
-      state.rotationSpeed = getRandomRotationSpeed()
-    },
-    [heightFactor],
-  )
-
-  // Run animation loop
-  useEffect(() => {
-    // Only run animation on client side with valid container dimensions
-    if (!isClient || !containerRef.current || containerSize.width === 0) {
-      return
-    }
-
-    const containerWidth = containerSize.width
-    const containerHeight = containerSize.height
-
-    // Initialize object states
-    const objectStates: AnimationState[] = objectConfigs.map((config) => {
-      const initialVelocity = getRandomInitialVelocity(config.initialPosition, heightFactor)
-
-      return {
-        active: false,
-        iconIndex: config.iconIndex,
-        position: {
-          x: config.initialPosition.x * containerWidth,
-          y: config.initialPosition.y * containerHeight,
-        },
-        rotation: config.initialRotation,
-        rotationSpeed: config.rotationSpeed,
-        size: config.initialSize,
-        velocity: {
-          x: initialVelocity.x * containerWidth,
-          y: initialVelocity.y * containerHeight,
-        },
-      }
-    })
-
-    // Calculate gravity based on container height and height factor
-    const gravity = calculateGravity(containerHeight, heightFactor)
-
-    // Set timeouts for delayed starts
-    const timeoutIds: NodeJS.Timeout[] = []
-    for (const [index, config] of objectConfigs.entries()) {
-      const timeoutId = setTimeout(() => {
-        objectStates[index].active = true
-      }, config.delay)
-      timeoutIds.push(timeoutId)
-    }
-
-    // Animation function
-    function animate() {
-      for (const [index, state] of objectStates.entries()) {
-        // Skip objects that aren't active yet
-        if (!state.active) {
-          continue
-        }
-
-        // Apply physics updates
-        state.velocity.y += gravity
-        state.position.x += state.velocity.x
-        state.position.y += state.velocity.y
-        state.rotation += state.rotationSpeed
-
-        // Update object position and rotation in the DOM
-        const objectElement = objectsRef.current[index]
-        if (objectElement) {
-          objectElement.style.transform = `translate(${state.position.x}px, ${state.position.y}px) rotate(${state.rotation}deg)`
-
-          // Check if object is out of bounds
-          const movingRightToLeft = state.velocity.x < 0
-          const isOutOfBounds =
-            state.position.y > containerHeight || // Bottom edge
-            (movingRightToLeft && state.position.x < 0) || // Left edge (for right-to-left)
-            (!movingRightToLeft && state.position.x > containerWidth) // Right edge (for left-to-right)
-
-          if (isOutOfBounds) {
-            resetAnimationState(state, containerWidth, containerHeight, objectConfigs[index].baseSize)
-          }
-        }
-      }
-
-      animationRef.current = requestAnimationFrame(animate)
-    }
-
-    // Start the animation
-    animationRef.current = requestAnimationFrame(animate)
-
-    // Clean up on unmount or when dependencies change
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-      }
-      for (const id of timeoutIds) {
-        clearTimeout(id)
-      }
-    }
-  }, [isClient, heightFactor, containerRef, objectConfigs, containerSize, resetAnimationState])
-
-  return {
-    containerSize,
-    isClient,
-    objectsRef,
-  }
-}
-
-/**
- * Returns a random icon index from the icons array
- * @param iconsLength - Length of the icons array
- */
-function getRandomIconIndex(iconsLength: number): number {
-  return randomInt(0, iconsLength - 1)
-}
-
-/**
- * Returns a unique random icon index that isn't in the excluded list
- * @param excludedIndices - Array of icon indices that are already in use
- * @param iconsLength - Length of the icons array
- */
-function getUniqueRandomIconIndex(excludedIndices: number[], iconsLength: number = DEFAULT_ICONS.length): number {
-  // If all icons are in use, just return a random one
-  if (excludedIndices.length >= iconsLength) {
-    return getRandomIconIndex(iconsLength)
-  }
-
-  // Keep trying until we get a unique icon
-  let index: number
-  do {
-    index = getRandomIconIndex(iconsLength)
-  } while (excludedIndices.includes(index))
-
-  return index
-}
 
 /**
  * Returns a random size based on the base size
@@ -352,23 +138,51 @@ function getRandomRotation(): number {
 }
 
 /**
+ * Calculate gravity based on height factor and container height
+ */
+function calculateGravity(containerHeight: number, heightFactor: number): number {
+  return (DEFAULT_CONFIG.GRAVITY_BASE / heightFactor) * containerHeight
+}
+
+/**
+ * Returns a random icon index from the icons array
+ * @param iconsLength - Length of the icons array
+ */
+function getRandomIconIndex(iconsLength: number): number {
+  return randomInt(0, iconsLength - 1)
+}
+
+/**
+ * Returns a unique random icon index that isn't in the excluded list
+ * @param excludedIndices - Array of icon indices that are already in use
+ * @param iconsLength - Length of the icons array
+ */
+function getUniqueRandomIconIndex(excludedIndices: number[], iconsLength: number = DEFAULT_ICONS.length): number {
+  // If all icons are in use, just return a random one
+  if (excludedIndices.length >= iconsLength) {
+    return getRandomIconIndex(iconsLength)
+  }
+
+  // Keep trying until we get a unique icon
+  let index: number
+  do {
+    index = getRandomIconIndex(iconsLength)
+  } while (excludedIndices.includes(index))
+
+  return index
+}
+
+/**
  * Generates configuration for animation objects with pre-calculated positions
  */
-function generateObjectConfigs(count: number, baseSize: number, iconsLength: number): ObjectConfig[] {
-  const usedIconIndices: number[] = []
-
+function generateObjectConfigs(count: number, baseSize: number): ObjectConfig[] {
   return Array.from({ length: count }, (_, i) => {
     const initialPosition = getRandomInitialPosition()
     const initialSize = getRandomSize(baseSize)
 
-    // Get a unique icon index that's not already used
-    const iconIndex = getUniqueRandomIconIndex(usedIconIndices, iconsLength)
-    usedIconIndices.push(iconIndex)
-
     return {
       baseSize,
       delay: i * 700 + randomInt(0, 300), // Staggered delays with some randomness
-      iconIndex,
       id: i,
       initialPosition,
       initialRotation: getRandomRotation(),
@@ -379,10 +193,237 @@ function generateObjectConfigs(count: number, baseSize: number, iconsLength: num
 }
 
 /**
- * Calculate gravity based on height factor and container height
+ * Custom hook for managing animation physics in the parabola component
  */
-function calculateGravity(containerHeight: number, heightFactor: number): number {
-  return (DEFAULT_CONFIG.GRAVITY_BASE / heightFactor) * containerHeight
+function useParabolaAnimation(
+  containerRef: React.RefObject<HTMLDivElement>,
+  objectConfigs: ObjectConfig[],
+  heightFactor: number,
+  objectCount: number,
+  iconsLength: number,
+) {
+  const [containerSize, setContainerSize] = useState({ height: 0, width: 0 })
+  const objectsRef = useRef<(HTMLDivElement | null)[]>([])
+  const animationRef = useRef<number | undefined>(undefined)
+  const [isClient, setIsClient] = useState(false)
+
+  // Track active objects and their states
+  const [activeObjects, setActiveObjects] = useState<AnimationState[]>([])
+  const activeObjectsRef = useRef<AnimationState[]>([]) // Ref to avoid dependency cycles
+  const usedIconIndicesRef = useRef<number[]>([])
+  const nextIdRef = useRef<number>(objectConfigs.length)
+
+  // Initialize client-side and container size
+  useEffect(() => {
+    setIsClient(true)
+
+    function updateContainerSize() {
+      if (!containerRef.current) {
+        return
+      }
+
+      setContainerSize({
+        height: containerRef.current.clientHeight,
+        width: containerRef.current.clientWidth,
+      })
+    }
+
+    updateContainerSize()
+
+    // Use ResizeObserver for responsive container size updates
+    const resizeObserver = new ResizeObserver(updateContainerSize)
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current)
+    }
+
+    return () => {
+      resizeObserver.disconnect()
+    }
+  }, [containerRef])
+
+  /**
+   * Create a new animation state with random properties
+   */
+  const createNewAnimationState = useCallback(
+    (id: number, containerWidth: number, containerHeight: number, baseSize: number, delayMs = 0): AnimationState => {
+      const initialPosition = getRandomInitialPosition()
+      const initialVelocity = getRandomInitialVelocity(initialPosition, heightFactor)
+
+      // Choose a unique icon index that's not currently in use
+      const iconIndex = getUniqueRandomIconIndex(usedIconIndicesRef.current, iconsLength)
+      usedIconIndicesRef.current.push(iconIndex)
+
+      return {
+        active: delayMs <= 0,
+        iconIndex,
+        id,
+        position: {
+          x: initialPosition.x * containerWidth,
+          y: initialPosition.y * containerHeight,
+        },
+        rotation: getRandomRotation(),
+        rotationSpeed: getRandomRotationSpeed(),
+        size: getRandomSize(baseSize),
+        velocity: {
+          x: initialVelocity.x * containerWidth,
+          y: initialVelocity.y * containerHeight,
+        },
+      }
+    },
+    [heightFactor, iconsLength],
+  )
+
+  // Initialize active objects
+  useEffect(() => {
+    if (!isClient || containerSize.width === 0 || containerSize.height === 0) {
+      return
+    }
+
+    // Reset used icons
+    usedIconIndicesRef.current = []
+    nextIdRef.current = objectConfigs.length
+
+    // Create initial objects with staggered delays
+    const initialObjects: AnimationState[] = objectConfigs
+      .slice(0, objectCount)
+      .map((config) =>
+        createNewAnimationState(config.id, containerSize.width, containerSize.height, config.baseSize, config.delay),
+      )
+
+    setActiveObjects(initialObjects)
+    activeObjectsRef.current = initialObjects
+
+    // Activate delayed objects after their delay time
+    const timeoutIds: NodeJS.Timeout[] = initialObjects
+      .filter((obj) => !obj.active)
+      .map((obj) => {
+        const config = objectConfigs.find((c) => c.id === obj.id)
+        if (!config) {
+          return
+        }
+
+        return setTimeout(() => {
+          setActiveObjects((prevObjects) => {
+            const updatedObjects = prevObjects.map((o) => (o.id === obj.id ? { ...o, active: true } : o))
+            activeObjectsRef.current = updatedObjects
+            return updatedObjects
+          })
+        }, config.delay)
+      })
+      .filter(Boolean) as NodeJS.Timeout[]
+
+    return () => {
+      for (const id of timeoutIds) {
+        clearTimeout(id)
+      }
+    }
+  }, [isClient, containerSize.width, containerSize.height, objectConfigs, createNewAnimationState, objectCount])
+
+  // Run animation loop
+  useEffect(() => {
+    // Only run animation on client side with valid container dimensions
+    if (!isClient || !containerRef.current || containerSize.width === 0) {
+      return
+    }
+
+    const containerWidth = containerSize.width
+    const containerHeight = containerSize.height
+
+    // Calculate gravity based on container height and height factor
+    const gravity = calculateGravity(containerHeight, heightFactor)
+
+    // Animation function
+    function animate() {
+      // Clone current state to avoid mutating during iteration
+      const currentObjects = activeObjectsRef.current
+      const updatedObjects = [...currentObjects]
+      let hasChanges = false
+
+      // Process existing objects
+      for (let i = updatedObjects.length - 1; i >= 0; i--) {
+        const state = updatedObjects[i]
+
+        // Skip objects that aren't active yet
+        if (!state.active) {
+          continue
+        }
+
+        // Apply physics updates
+        state.velocity.y += gravity
+        state.position.x += state.velocity.x
+        state.position.y += state.velocity.y
+        state.rotation += state.rotationSpeed
+
+        // Update object position and rotation in the DOM
+        const objectElement = objectsRef.current[i]
+        if (objectElement) {
+          objectElement.style.transform = `translate(${state.position.x}px, ${state.position.y}px) rotate(${state.rotation}deg)`
+        }
+
+        // Check if object is out of bounds
+        const movingRightToLeft = state.velocity.x < 0
+        const isOutOfBounds =
+          state.position.y > containerHeight || // Bottom edge
+          (movingRightToLeft && state.position.x < 0) || // Left edge (for right-to-left)
+          (!movingRightToLeft && state.position.x > containerWidth) // Right edge (for left-to-right)
+
+        if (isOutOfBounds) {
+          // Remove icon index from used list
+          usedIconIndicesRef.current = usedIconIndicesRef.current.filter((idx) => idx !== state.iconIndex)
+
+          // Remove the object
+          updatedObjects.splice(i, 1)
+          hasChanges = true
+        }
+      }
+
+      // Add new objects if we're below the object count
+      while (updatedObjects.length < objectCount) {
+        const newObject = createNewAnimationState(
+          nextIdRef.current++,
+          containerWidth,
+          containerHeight,
+          DEFAULT_CONFIG.BASE_SIZE,
+        )
+
+        updatedObjects.push(newObject)
+        hasChanges = true
+      }
+
+      // Update state if objects were added or removed
+      if (hasChanges) {
+        activeObjectsRef.current = updatedObjects
+        setActiveObjects(updatedObjects)
+      }
+
+      animationRef.current = requestAnimationFrame(animate)
+    }
+
+    // Start the animation
+    animationRef.current = requestAnimationFrame(animate)
+
+    // Clean up on unmount or when dependencies change
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
+  }, [
+    isClient,
+    heightFactor,
+    containerRef,
+    containerSize.width,
+    containerSize.height,
+    objectCount,
+    createNewAnimationState,
+  ])
+
+  return {
+    activeObjects,
+    containerSize,
+    isClient,
+    objectsRef,
+  }
 }
 
 /**
@@ -402,49 +443,42 @@ export function Paralolas({
 
   // Generate object configurations - memoized to prevent recreating on every render
   const objectConfigs = useMemo(
-    () => generateObjectConfigs(objectCount, baseSize, icons.length),
-    [objectCount, baseSize, icons.length],
+    () => generateObjectConfigs(Math.max(objectCount * 2, 10), baseSize),
+    [objectCount, baseSize],
   )
 
   // Custom animation hook handles the physics and animation loop
-  const { containerSize, isClient, objectsRef } = useParabolaAnimation(containerRef, objectConfigs, heightFactor)
+  const { activeObjects, isClient, objectsRef } = useParabolaAnimation(
+    containerRef,
+    objectConfigs,
+    heightFactor,
+    objectCount,
+    icons.length,
+  )
 
   return (
     <div className='relative size-full overflow-hidden' ref={containerRef}>
       {isClient &&
-        objectConfigs.map((config, index) => {
-          // Calculate initial position in pixels if container dimensions are available
-          const initialX = containerSize.width ? config.initialPosition.x * containerSize.width : 0
-          const initialY = containerSize.height ? config.initialPosition.y * containerSize.height : 0
-
-          return (
-            <div
-              className='absolute'
-              key={config.id}
-              ref={(el) => {
-                objectsRef.current[index] = el
-              }}
-              style={{
-                height: `${config.initialSize}px`,
-                left: 0,
-                opacity: containerSize.width ? 1 : 0,
-                top: 0,
-                transform: containerSize.width
-                  ? `translate(${initialX}px, ${initialY}px) rotate(${config.initialRotation}deg)`
-                  : 'none',
-                transition: 'opacity 0.3s ease-in',
-                width: `${config.initialSize}px`,
-              }}
-            >
-              <img
-                alt='Console icon'
-                className='size-full object-contain'
-                loading='lazy'
-                src={icons[config.iconIndex]}
-              />
-            </div>
-          )
-        })}
+        activeObjects.map((object, index) => (
+          <div
+            className='absolute'
+            key={object.id}
+            ref={(el) => {
+              objectsRef.current[index] = el
+            }}
+            style={{
+              height: `${object.size}px`,
+              left: 0,
+              opacity: object.active ? 1 : 0,
+              top: 0,
+              transform: `translate(${object.position.x}px, ${object.position.y}px) rotate(${object.rotation}deg)`,
+              transition: 'opacity 0.3s ease-in',
+              width: `${object.size}px`,
+            }}
+          >
+            <img alt='Console icon' className='size-full object-contain' loading='lazy' src={icons[object.iconIndex]} />
+          </div>
+        ))}
     </div>
   )
 }

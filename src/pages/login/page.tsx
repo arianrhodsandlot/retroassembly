@@ -27,7 +27,7 @@ export function LoginPage({ pageData }: LoginPageProps) {
     return (
       <>
         <title>Login - RetroAssembly</title>
-        <div className='min-h-dvh bg-(--accent-9) py-20'>
+        <div className='bg-(--accent-9) min-h-dvh py-20'>
           <form className='w-3xl mx-auto rounded bg-white p-10 text-center'>
             <div className='flex items-center justify-center gap-4'>
               <Link className='flex items-center justify-center' reloadDocument to='/'>
@@ -36,7 +36,7 @@ export function LoginPage({ pageData }: LoginPageProps) {
               <h1 className='text-3xl font-semibold'>Sign in</h1>
             </div>
 
-            <div className='mt-4 text-black/40'>Sign in to build your own retro game collection cabinet</div>
+            <div className='mt-4 text-black/40'>Sign in to build your own retro game collection</div>
 
             <div className='mt-4 border-t border-t-black/20 py-8'>
               <input name='redirect_to' type='hidden' value={redirectTo} />

@@ -17,8 +17,8 @@ export function PendingMask() {
               initial={{ backdropFilter: 'blur(0)', opacity: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className='rounded-full bg-white p-3 shadow-[0_0_12px] shadow-black/20'>
-                <span className='icon-[svg-spinners--180-ring] block size-12 text-(--accent-9)' />
+              <div className='rounded-full p-3'>
+                <span className='icon-[svg-spinners--180-ring] text-(--accent-9) block size-16' />
               </div>
             </motion.div>
           ) : null}

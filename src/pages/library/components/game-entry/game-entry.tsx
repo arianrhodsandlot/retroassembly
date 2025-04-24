@@ -1,4 +1,5 @@
 import { Skeleton } from '@radix-ui/themes'
+import Atropos from 'atropos/react'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
 import { useRomCover } from '../../hooks/use-rom-cover.ts'
@@ -27,12 +28,14 @@ export function GameEntry({ rom }) {
           </div>
         ) : null}
         {cover?.src ? (
-          <img
-            alt={goodcodes.rom}
-            className='!w-9/10 aspect-square rounded object-contain object-bottom drop-shadow-lg'
-            loading='lazy'
-            src={cover.src}
-          />
+          <Atropos activeOffset={0} className='size-full' shadow={false}>
+            <img
+              alt={goodcodes.rom}
+              className='!w-9/10 aspect-square rounded object-contain object-bottom drop-shadow-lg'
+              loading='lazy'
+              src={cover.src}
+            />
+          </Atropos>
         ) : null}
 
         <GamePlatform platform={rom.platform} />

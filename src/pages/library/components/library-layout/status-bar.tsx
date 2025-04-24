@@ -26,10 +26,6 @@ export function StatusBar() {
             <span className='icon-[mdi--gamepad-circle-right] text-white' />
             Confirm
           </span>
-          <span className='flex items-center gap-2'>
-            <span className='icon-[mdi--gamepad-circle-down] text-white' />
-            Cancel
-          </span>
         </>
       ) : (
         <>
@@ -54,15 +50,6 @@ export function StatusBar() {
                 {uniq(['Enter', capitalize(keyboardMapping.input_player1_a)]).join(' / ')}
               </Kbd>
               Confirm
-            </span>
-          ) : null}
-
-          {keyboardMapping.input_player1_b ? (
-            <span className='flex items-center gap-2'>
-              <Kbd className='!text-(--accent-9)' size='1'>
-                {uniq(['Esc', capitalize(keyboardMapping.input_player1_b)]).join(' / ')}
-              </Kbd>
-              Cancel
             </span>
           ) : null}
         </>

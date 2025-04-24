@@ -6,8 +6,10 @@ import type { ReactNode } from 'react'
 import { useLocation } from 'react-router'
 import useSWRMutation from 'swr/mutation'
 import { romsAtom } from '../../atoms.ts'
+import { useIsDemo } from '../../hooks/use-demo.ts'
 
 export function GameEntryContextMenu({ children, rom }: { children: ReactNode; rom: any }) {
+  const isDemo = useIsDemo()
   const location = useLocation()
 
   const [deleteDialogOpen, toggleDeleteDialog] = useToggle(false)
@@ -48,7 +50,7 @@ export function GameEntryContextMenu({ children, rom }: { children: ReactNode; r
   return (
     <>
       <ContextMenu.Root>
-        <ContextMenu.Trigger>{children}</ContextMenu.Trigger>
+        <ContextMenu.Trigger disabled={isDemo}>{children}</ContextMenu.Trigger>
         <ContextMenu.Content>
           <ContextMenu.Item color='red' onClick={toggleDeleteDialog}>
             <span className='icon-[mdi--delete]' />

@@ -37,7 +37,7 @@ export function focus(element: unknown) {
 }
 
 export function cancel() {
-  alert('not implemented yet')
+  console.warn('not implemented yet')
 }
 
 let moving = false

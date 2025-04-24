@@ -11,13 +11,12 @@ export function GameOverlayButtons() {
   const isDemo = useIsDemo()
 
   function handleClickResume() {
-    emulator?.resume()
     toggle()
   }
 
   function handleClickRestart() {
-    emulator?.restart()
     toggle()
+    emulator?.restart()
   }
 
   async function handleClickSaveState() {

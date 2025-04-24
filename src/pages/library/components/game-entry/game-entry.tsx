@@ -28,7 +28,7 @@ export function GameEntry({ rom }) {
           </div>
         ) : null}
         {cover?.src ? (
-          <Atropos activeOffset={0} className='size-full' shadow={false}>
+          <Atropos activeOffset={0} innerClassName='!flex items-center justify-center' shadow={false}>
             <img
               alt={goodcodes.rom}
               className='!w-9/10 aspect-square rounded object-contain object-bottom drop-shadow-lg'

@@ -26,7 +26,7 @@ export function GameOverlayButton({
     <Button
       className={clsx(
         '!border-1 border-solid border-white !bg-black/30 !text-white !shadow-none !transition-all !duration-300',
-        'focus:!bg-white/80 focus:!text-(--accent-9)',
+        'focus:!text-(--accent-9) focus:!bg-white/80',
         { '!opacity-40': isLoading },
       )}
       data-sn-enabled

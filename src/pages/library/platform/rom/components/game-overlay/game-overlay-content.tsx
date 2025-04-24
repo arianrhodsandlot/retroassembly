@@ -9,8 +9,6 @@ import { GameStates } from './game-states.tsx'
 function handleAnimationComplete(animation) {
   if (animation.opacity === 1) {
     focus('.game-overlay button')
-  } else {
-    focus('canvas')
   }
 }
 

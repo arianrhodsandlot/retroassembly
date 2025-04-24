@@ -24,13 +24,13 @@ export function GameOverlayController() {
   return (
     <motion.div
       animate={{ opacity: 1, scale: 1 }}
-      className='game-overlay bg-linear-to-b pointer-events-auto absolute inset-0 z-10 flex h-dvh w-screen flex-col items-center justify-center bg-black/70 text-white'
+      className='game-overlay bg-linear-to-b pointer-events-auto absolute inset-0 z-10 flex h-dvh w-screen text-white'
       exit={{ opacity: 0, scale: 1.1 }}
       initial={{ opacity: 0, scale: 1.1 }}
       transition={{ duration: 0.2 }}
     >
       <button
-        className='flex size-16 items-center justify-center rounded-full bg-white text-4xl text-(--accent-9)'
+        className='text-(--accent-9) absolute bottom-12 right-12 flex size-16 items-center justify-center rounded-full bg-white text-4xl'
         onClick={handleClick}
         type='button'
       >

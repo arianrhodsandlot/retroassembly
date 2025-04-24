@@ -1,5 +1,4 @@
 import { Card } from '@radix-ui/themes'
-import { Pong } from './pong'
 
 export function FeaturesSection() {
   const features = [
@@ -37,9 +36,6 @@ export function FeaturesSection() {
 
   return (
     <section className='relative py-16'>
-      <div className='absolute inset-0 size-full'>
-        <Pong />
-      </div>
       <div className='mx-auto max-w-6xl '>
         <h2 className='mb-6 flex items-center justify-center gap-2 text-3xl font-bold'>
           <span className='icon-[mdi--gift]' />

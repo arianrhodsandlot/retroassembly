@@ -14,7 +14,7 @@ while (true) {
   await fs.writeFile('wrangler.json', wranglerConfig, 'utf8')
 
   try {
-    await $$`ROLLDOWN_OPTIONS_VALIDATION=loose react-router dev`
+    await $$`react-router dev --host`
   } catch (error) {
     console.warn(error)
   }

@@ -2,14 +2,20 @@ import { Button, DropdownMenu } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { useAtom } from 'jotai'
 import { settingsDialogOpenAtom, useAboutDialogOpen } from '../../atoms.ts'
+import { useIsDemo } from '../../hooks/use-demo.ts'
 import { AboutDialog } from './about-dialog.tsx'
 import { LogoutDialog } from './logout-dialog.tsx'
 import { SettingsDialog } from './settings-dialog/settings-dialog.tsx'
 
 export function SidebarFooter() {
+  const isDemo = useIsDemo()
   const [settingsDialogOpen, setSettingsDialogOpen] = useAtom(settingsDialogOpenAtom)
   const [logoutDialogOpen, toggleLogoutDialog] = useToggle()
   const [aboutDialogOpen, setAboutDialogOpen] = useAboutDialogOpen()
+
+  if (isDemo) {
+    return
+  }
 
   return (
     <>
@@ -45,7 +51,7 @@ export function SidebarFooter() {
             </DropdownMenu.Item>
 
             <DropdownMenu.Item asChild>
-              <a href='https://discord.gg/RVVAMcCH' rel='noopener noreferrer' target='_blank'>
+              <a href='https://discord.gg/gwaKRAYG6t' rel='noopener noreferrer' target='_blank'>
                 <span className='icon-[mdi--discord]' />
                 <span className='flex items-start gap-1'>
                   Discord

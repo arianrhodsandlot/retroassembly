@@ -1,11 +1,16 @@
 import { Button } from '@radix-ui/themes'
 import { Link } from 'react-router'
+import { Pong } from './pong.tsx'
 
 export function ButtonSection() {
   return (
     <section className='relative py-20'>
+      <div className='absolute inset-0 size-full'>
+        <Pong />
+      </div>
+
       <div className='mx-auto max-w-6xl'>
-        <h2 className='motion-preset-oscillate motion-duration-2000 mb-6 flex items-center justify-center gap-2 text-3xl'>
+        <h2 className='motion-preset-oscillate motion-duration-2000 mb-6 flex items-center justify-center gap-2 text-3xl text-neutral-500'>
           Start to enjoy retro gaming now!
         </h2>
         <div className='flex items-center justify-center gap-4 py-8'>
@@ -17,7 +22,7 @@ export function ButtonSection() {
           </Button>
 
           <Button asChild radius='small' size='4' type='button' variant='outline'>
-            <Link className='!bg-white' reloadDocument to='/library'>
+            <Link className='!border-2 !bg-white !shadow-none' reloadDocument to='/library'>
               <span className='icon-[mdi--bookshelf]' />
               My library
             </Link>

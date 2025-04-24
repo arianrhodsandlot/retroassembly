@@ -1,6 +1,7 @@
 import { ButtonSection } from './components/button-section.tsx'
 import { CommunitySection } from './components/community-section.tsx'
 import { FeaturesSection } from './components/features-section.tsx'
+import { FixedHeader } from './components/fixed-header.tsx'
 import { HeroSection } from './components/hero-section/hero-section.tsx'
 
 export function HomePage() {
@@ -8,6 +9,7 @@ export function HomePage() {
     <>
       <title>RetroAssembly</title>
 
+      <FixedHeader />
       <HeroSection />
       <FeaturesSection />
       <CommunitySection />

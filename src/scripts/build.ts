@@ -13,6 +13,6 @@ const wranglerConfig = compiled(env)
 await fs.writeFile('wrangler.json', wranglerConfig, 'utf8')
 
 // build
-await $$`ROLLDOWN_OPTIONS_VALIDATION=loose react-router build`
-await $$`esbuild --bundle dist/server/index.js --outfile=dist/server/index.js --platform=node --allow-overwrite --format=esm`
+await $$`react-router build`
+await $$`esbuild --bundle dist/server/index.js --outfile=dist/server/index.js --platform=node --allow-overwrite --format=esm --log-level=silent`
 await $$`rm -rf dist/server/assets`

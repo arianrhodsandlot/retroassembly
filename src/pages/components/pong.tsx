@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { sample } from 'es-toolkit'
+import { useLayoutEffect, useRef, useState } from 'react'
 
 interface PongState {
   ballSpeedX: number
@@ -15,7 +16,7 @@ const BALL_RADIUS = 16
 const PADDLE_MOVE_FACTOR = 0.1 // Controls how fast paddles react
 const MAX_PADDLE_SPEED = 8 // Maximum speed paddles can move
 
-const FILL_STYLE = 'rgba(0, 0, 0, 1)'
+const FILL_STYLE = '#999'
 
 export function Pong() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -24,7 +25,7 @@ export function Pong() {
   const animationFrameId = useRef<null | number>(null)
 
   // Initialize game state and canvas size
-  useEffect(() => {
+  useLayoutEffect(() => {
     const canvas = canvasRef.current
     const container = containerRef.current
     if (!canvas || !container) {
@@ -39,8 +40,8 @@ export function Pong() {
 
         // Initialize or reset game state on resize
         setGameState({
-          ballSpeedX: 5 * (Math.random() > 0.5 ? 1 : -1), // Initial random horizontal direction
-          ballSpeedY: 5 * (Math.random() > 0.5 ? 1 : -1), // Initial random vertical direction
+          ballSpeedX: 5 * sample([-1, 1]), // Initial random horizontal direction
+          ballSpeedY: 5 * sample([-1, 1]), // Initial random vertical direction
           ballX: width / 2,
           ballY: height / 2,
           paddleLeftY: height / 2 - PADDLE_HEIGHT / 2,
@@ -57,8 +58,8 @@ export function Pong() {
     canvas.width = initialWidth
     canvas.height = initialHeight
     setGameState({
-      ballSpeedX: 5 * (Math.random() > 0.5 ? 1 : -1),
-      ballSpeedY: 5 * (Math.random() > 0.5 ? 1 : -1),
+      ballSpeedX: 5 * sample([-1, 1]),
+      ballSpeedY: 5 * sample([-1, 1]),
       ballX: initialWidth / 2,
       ballY: initialHeight / 2,
       paddleLeftY: initialHeight / 2 - PADDLE_HEIGHT / 2,
@@ -74,7 +75,7 @@ export function Pong() {
   }, [])
 
   // Game loop
-  useEffect(() => {
+  useLayoutEffect(() => {
     const canvas = canvasRef.current
     if (!canvas || !gameState) {
       return
@@ -87,7 +88,10 @@ export function Pong() {
 
     const currentGameState = { ...gameState }
 
-    const gameLoop = () => {
+    function gameLoop() {
+      if (!canvas || !ctx) {
+        return
+      }
       const { height, width } = canvas
 
       // Update ball position
@@ -161,8 +165,8 @@ export function Pong() {
         // Reset ball to center if it goes past a paddle (simple reset)
         // currentGameState.ballX = width / 2;
         // currentGameState.ballY = height / 2;
-        // currentGameState.ballSpeedX *= (Math.random() > 0.5 ? 1 : -1); // Random direction again
-        // currentGameState.ballSpeedY *= (Math.random() > 0.5 ? 1 : -1);
+        // currentGameState.ballSpeedX *= sample([-1, 1]); // Random direction again
+        // currentGameState.ballSpeedY *= sample([-1, 1]);
         // Or simply reverse direction if it hits the absolute edge (less realistic for Pong)
         // currentGameState.ballSpeedX *= -1;
       }

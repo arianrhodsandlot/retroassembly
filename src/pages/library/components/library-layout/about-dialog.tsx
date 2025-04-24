@@ -47,7 +47,7 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
             </a>
             <a
               className='items-center justify-center gap-1'
-              href='https://discord.gg/RVVAMcCH'
+              href='https://discord.gg/gwaKRAYG6t'
               rel='noreferrer noopener'
               target='_blank'
             >

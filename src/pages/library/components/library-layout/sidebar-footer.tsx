@@ -2,34 +2,28 @@ import { Button, DropdownMenu } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { useAtom } from 'jotai'
 import { settingsDialogOpenAtom, useAboutDialogOpen } from '../../atoms.ts'
-import { useIsDemo } from '../../hooks/use-demo.ts'
 import { AboutDialog } from './about-dialog.tsx'
 import { LogoutDialog } from './logout-dialog.tsx'
 import { SettingsDialog } from './settings-dialog/settings-dialog.tsx'
 
 export function SidebarFooter() {
-  const isDemo = useIsDemo()
   const [settingsDialogOpen, setSettingsDialogOpen] = useAtom(settingsDialogOpenAtom)
   const [logoutDialogOpen, toggleLogoutDialog] = useToggle()
   const [aboutDialogOpen, setAboutDialogOpen] = useAboutDialogOpen()
 
-  if (isDemo) {
-    return
-  }
-
   return (
     <>
-      <div className='flex justify-end gap-2'>
+      <div className='flex justify-between gap-2'>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
             <Button size='1'>
-              <span className='icon-[mdi--menu]' />
+              <span className='icon-[mdi--cog]' />
             </Button>
           </DropdownMenu.Trigger>
 
           <DropdownMenu.Content variant='solid'>
             <DropdownMenu.Item onClick={() => setSettingsDialogOpen(true)}>
-              <span className='icon-[mdi--cog]' />
+              <span className='icon-[mdi--wrench]' />
               Settings
             </DropdownMenu.Item>
 

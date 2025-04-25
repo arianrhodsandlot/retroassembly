@@ -1,6 +1,7 @@
 import { ScrollArea } from '@radix-ui/themes'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router'
+import { useIsDemo } from '../../hooks/use-demo.ts'
 import { PendingMask } from '../pending-mask/pending-mask.tsx'
 import { FocusIndicator } from './focus-indicator.tsx'
 import { SidebarContainer } from './sidebar-container.tsx'
@@ -19,23 +20,26 @@ interface AppLayoutProps {
 }
 
 export default function LibraryLayout({ children, title }: AppLayoutProps) {
+  const isDemo = useIsDemo()
   return (
     <>
       <title>{getPostfixedTitle(title)}</title>
-      <div className='library-layout flex h-dvh bg-(--accent-9)'>
+      <div className='library-layout bg-(--accent-9) flex h-dvh'>
         <SidebarContainer>
           <div className='flex items-center justify-between px-4 pb-4'>
             <Link className='flex items-center gap-2 font-bold' reloadDocument to='/'>
               <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
-              <span className='font-[Comfortaa_Variable] font-semibold'>RetroAssembly</span>
+              <span className='font-[Roboto_Slab_Variable] font-semibold'>RetroAssembly</span>
             </Link>
           </div>
           <ScrollArea className='flex-1' size='2'>
             <SidebarLinks />
           </ScrollArea>
-          <div className='border-t border-t-white/30 py-2'>
-            <SidebarFooter />
-          </div>
+          {isDemo ? null : (
+            <div className='border-t border-t-white/30 py-2'>
+              <SidebarFooter />
+            </div>
+          )}
         </SidebarContainer>
 
         <div className='flex min-w-0 flex-1 flex-col gap-4 p-4'>

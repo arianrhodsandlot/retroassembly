@@ -1,17 +1,33 @@
 import { Button, Portal } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import { useEffect, useRef } from 'react'
+import { type MouseEvent, useEffect, useRef } from 'react'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { useLaunchButtonRect } from '../atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 import { GameAnimatePresence } from './game-animate-presence.tsx'
+
+const isAppleMobile = /iphone|ipad|ipod/i.test(navigator.userAgent)
+const isChromeLike = /chrome/i.test(navigator.userAgent)
+const isMacLike = /macintosh/i.test(navigator.userAgent)
+const isAppleMobileDesktopMode =
+  !isChromeLike && isMacLike && /safari/i.test(navigator.userAgent) && screen.height <= 1366
+const mayNeedsUserInteraction = isAppleMobile || isAppleMobileDesktopMode
 
 export function LaunchButton() {
   const { isPreparing, launch } = useEmulator()
   const ref = useRef<HTMLButtonElement>(null)
   const [, setLaunchButtonRect] = useLaunchButtonRect()
 
-  function handleClick() {
+  const isWaitingForTouch = mayNeedsUserInteraction && !isPreparing
+  const isWaitingForPressOrClick = !mayNeedsUserInteraction && !isPreparing
+
+  function handleClick(event: MouseEvent<HTMLButtonElement>) {
+    if (isWaitingForTouch && !event?.clientX && !event?.clientY) {
+      event.preventDefault()
+      event.stopPropagation()
+      return
+    }
+
     launch()
 
     const button = ref.current
@@ -40,14 +56,24 @@ export function LaunchButton() {
     >
       <Button asChild className='!h-16' radius='small' size='4' type='button'>
         <div>
-          <span
-            className={
-              isPreparing
-                ? 'icon-[mdi--loading] animate-spin'
-                : 'icon-[mdi--play] motion-preset-pulse-lg motion-duration-1500'
-            }
-          />
-          <span className='w-52 text-2xl font-semibold'>{isPreparing ? 'Loading...' : 'Start'}</span>
+          {isPreparing ? (
+            <>
+              <span className='icon-[mdi--loading] animate-spin' />
+              <span className='w-52 text-2xl font-semibold'>Loading...</span>
+            </>
+          ) : null}
+          {isWaitingForTouch ? (
+            <>
+              <span className='icon-[mdi--gesture-touch] motion-preset-pulse-lg motion-duration-1500' />
+              <span className='w-52 text-2xl font-semibold'>Start</span>
+            </>
+          ) : null}
+          {isWaitingForPressOrClick ? (
+            <>
+              <span className='icon-[mdi--play] motion-preset-pulse-lg motion-duration-1500' />
+              <span className='w-52 text-2xl font-semibold'>Start</span>
+            </>
+          ) : null}
         </div>
       </Button>
 

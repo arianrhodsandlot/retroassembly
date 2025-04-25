@@ -20,7 +20,7 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
               version:
               <a
                 className='ml-0.5 underline'
-                href='https://github.com/arianrhodsandlot/retro-assembly'
+                href={`https://github.com/arianrhodsandlot/retro-assembly/commit/${GIT_VERSION}`}
                 rel='noreferrer noopener'
                 target='_blank'
               >

@@ -7,7 +7,7 @@ export function HeroMain() {
     <div className='flex w-1/2 flex-1 flex-col items-center justify-center'>
       <div className='motion-preset-expand motion-delay-300 relative mt-8 rounded-2xl'>
         <h1
-          className='text-shadow text-(--accent-9) m-4 bg-clip-text text-8xl font-[Comfortaa_Variable] font-semibold'
+          className='text-shadow text-(--accent-9) m-4 bg-clip-text text-8xl font-[Roboto_Slab_Variable] font-semibold'
           style={{
             textShadow: range(1, 13)
               .map((number) => `${number}px ${number}px 1px var(--accent-7)`)
@@ -19,7 +19,7 @@ export function HeroMain() {
       </div>
 
       <div className='motion-preset-fade motion-delay-600 relative mt-6'>
-        <div className='overflow-hidden rounded p-2 text-xl font-medium text-neutral-500'>
+        <div className='overflow-hidden rounded p-2 text-xl font-[Roboto_Slab_Variable] font-medium text-neutral-500'>
           Your personal retro game collection cabinet in your browser.
         </div>
       </div>

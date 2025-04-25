@@ -9,5 +9,5 @@ interface SettingsTitleProps {
 
 export function SettingsTitle({ as = 'h3', children, className }: SettingsTitleProps) {
   const Tag = as
-  return <Tag className={twMerge('flex items-center gap-2 text-lg font-semibold', className)}>{children}</Tag>
+  return <Tag className={twMerge('mb-2 flex items-center gap-2 text-lg font-semibold', className)}>{children}</Tag>
 }

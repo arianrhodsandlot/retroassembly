@@ -31,8 +31,8 @@ export default function HistoryPage({ pageData }: { pageData: any }) {
               <div className='mt-4 flex items-center gap-2 text-zinc-400'>
                 <span className='icon-[mdi--bar-chart] text-black' />
                 Played
-                <span className='font-[DSEG7_Modern] font-bold text-rose-700'>{pagination.total}</span>
-                games.
+                <span className='font-bold text-rose-700'>{pagination.total}</span>
+                games
               </div>
             </div>
             <hr className='border-t-1 border-t-black/20' />

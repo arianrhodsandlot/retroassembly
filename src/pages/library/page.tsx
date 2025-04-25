@@ -7,6 +7,7 @@ import { GameList } from './components/game-list/game-list.tsx'
 import LibraryLayout from './components/library-layout/library-layout.tsx'
 import { MainScrollArea } from './components/main-scroll-area.tsx'
 import { useIsDemo } from './hooks/use-demo.ts'
+import { UploadSelectButton } from './platform/components/upload-select-button.tsx'
 import { getHydrateAtoms } from './utils/hydrate-atoms.ts'
 
 interface LibraryPageProps {
@@ -44,10 +45,13 @@ export default function LibraryPage({ pageData }: LibraryPageProps) {
             <div className='relative flex justify-between px-4 pt-4'>
               <h1 className='text-5xl font-semibold'>{isDemo ? 'Demo Library' : 'Library'}</h1>
               {isDemo ? null : (
-                <div className='mt-4 flex items-center gap-2 text-zinc-400'>
-                  <span className='icon-[mdi--bar-chart] text-black' />
-                  <span className='text-(--accent-9) font-semibold'>{count}</span> games for{' '}
-                  <span className='text-(--accent-9) font-semibold'>{platformCount}</span> platforms in total
+                <div className='flex items-center justify-end gap-4 pr-4'>
+                  <div className='flex items-center gap-2 text-zinc-400'>
+                    <span className='icon-[mdi--bar-chart] text-black' />
+                    <span className='text-(--accent-9) font-semibold'>{count}</span> games for{' '}
+                    <span className='text-(--accent-9) font-semibold'>{platformCount}</span> platforms in total
+                  </div>
+                  <UploadSelectButton />
                 </div>
               )}
             </div>

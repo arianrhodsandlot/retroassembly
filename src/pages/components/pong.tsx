@@ -206,8 +206,8 @@ export function Pong() {
   }, [gameState]) // Rerun loop logic if initial gameState changes
 
   return (
-    <div ref={containerRef} style={{ height: '100%', overflow: 'hidden', position: 'relative', width: '100%' }}>
-      <canvas ref={canvasRef} style={{ display: 'block', height: '100%', width: '100%' }} />
+    <div className='relative size-full overflow-hidden' ref={containerRef}>
+      <canvas className='block size-full' ref={canvasRef} />
     </div>
   )
 }

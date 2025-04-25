@@ -12,6 +12,6 @@ export async function loader({ request }: Route.LoaderArgs) {
   return { page, pagination, preference, roms }
 }
 
-export function LibraryHistoryRoute({ loaderData }: Route.ComponentProps) {
+export default function LibraryHistoryRoute({ loaderData }: Route.ComponentProps) {
   return <HistoryPage pageData={loaderData} />
 }

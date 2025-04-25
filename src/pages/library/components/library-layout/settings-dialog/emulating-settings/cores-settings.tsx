@@ -1,10 +1,9 @@
 import { Card, Select } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import { useAtom } from 'jotai'
 import { useState } from 'react'
 import { type CoreName, coreOptionsMap } from '@/constants/core.ts'
 import { platformMap } from '@/constants/platform.ts'
-import { currentPlatformAtom } from '@/pages/atoms.ts'
+import { usePlatform } from '@/pages/library/atoms.ts'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
 import { SettingsTitle } from '../settings-title.tsx'
@@ -13,8 +12,8 @@ import { CoreOptions } from './core-options.tsx'
 
 export function CoresSettings() {
   const { isLoading, preference, update } = usePreference()
-  const [currentPlatform] = useAtom(currentPlatformAtom)
-  const [selectedPlatform, setSelectedPlatform] = useState(currentPlatform || preference.ui.platforms?.[0])
+  const [currentPlatform] = usePlatform()
+  const [selectedPlatform, setSelectedPlatform] = useState(currentPlatform?.name || preference.ui.platforms?.[0])
 
   if (!preference.ui.platforms?.length) {
     return

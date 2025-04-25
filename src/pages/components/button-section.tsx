@@ -9,7 +9,7 @@ export function ButtonSection() {
         <Pong />
       </div>
 
-      <div className='mx-auto max-w-6xl'>
+      <div className='relative mx-auto max-w-6xl'>
         <h2 className='motion-preset-oscillate motion-duration-2000 mb-6 flex items-center justify-center gap-2 text-3xl text-neutral-500'>
           Start to enjoy retro gaming now!
         </h2>

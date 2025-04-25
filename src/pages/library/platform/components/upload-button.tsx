@@ -1,4 +1,4 @@
-import { Dialog, IconButton } from '@radix-ui/themes'
+import { Button, Dialog } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { useState } from 'react'
 import { UploadDialog } from './upload-dialog.tsx'
@@ -12,15 +12,14 @@ export function UploadButton({ platform }: { platform: string }) {
   }
 
   return (
-    <div className='bottom-17 fixed right-8'>
-      <Dialog.Root onOpenChange={toggleOpen} open={open}>
-        <Dialog.Trigger>
-          <IconButton onClick={handleClick} radius='full' size='4' variant='solid'>
-            <span className='icon-[mdi--upload] size-5' />
-          </IconButton>
-        </Dialog.Trigger>
-        <UploadDialog key={key} platform={platform} toggleOpen={toggleOpen} />
-      </Dialog.Root>
-    </div>
+    <Dialog.Root onOpenChange={toggleOpen} open={open}>
+      <Dialog.Trigger>
+        <Button onClick={handleClick} variant='soft'>
+          <span className='icon-[mdi--upload]' />
+          Add
+        </Button>
+      </Dialog.Trigger>
+      <UploadDialog key={key} platform={platform} toggleOpen={toggleOpen} />
+    </Dialog.Root>
   )
 }

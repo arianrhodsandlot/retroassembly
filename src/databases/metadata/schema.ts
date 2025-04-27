@@ -1,8 +1,8 @@
 import { index, integer, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 import { customAlphabet } from 'nanoid'
-import nanoidDictionary from 'nanoid-dictionary'
+import { nolookalikes } from 'nanoid-dictionary'
 
-const nanoid = customAlphabet(nanoidDictionary.nolookalikes, 10)
+const nanoid = customAlphabet(nolookalikes, 10)
 
 export const launchboxGameTable = sqliteTable(
   'launchbox_games',

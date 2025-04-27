@@ -1,9 +1,9 @@
 import { index, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 import { customAlphabet } from 'nanoid'
-import nanoidDictionary from 'nanoid-dictionary'
+import { nolookalikes } from 'nanoid-dictionary'
 import type { PreferenceSnippet } from '@/constants/preference'
 
-const nanoid = customAlphabet(nanoidDictionary.nolookalikes, 10)
+const nanoid = customAlphabet(nolookalikes, 10)
 
 const baseSchema = {
   createdAt: integer({ mode: 'timestamp_ms' })

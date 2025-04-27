@@ -1,4 +1,5 @@
 import { Card } from '@radix-ui/themes'
+import { range } from 'es-toolkit'
 
 export function FeaturesSection() {
   const features = [
@@ -37,7 +38,14 @@ export function FeaturesSection() {
   return (
     <section className='relative py-16'>
       <div className='mx-auto max-w-6xl '>
-        <h2 className='mb-6 flex items-center justify-center gap-2 text-3xl font-bold'>
+        <h2
+          className='text-(--accent-9) mb-6 flex items-center justify-center gap-2 text-4xl font-[Roboto_Slab_Variable] font-semibold'
+          style={{
+            textShadow: range(1, 5)
+              .map((number) => `${number}px ${number}px 1px var(--accent-7)`)
+              .join(','),
+          }}
+        >
           <span className='icon-[mdi--gift]' />
           Features
         </h2>

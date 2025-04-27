@@ -1,8 +1,8 @@
 import { isThisYear, isToday, lightFormat } from 'date-fns'
 import { customAlphabet } from 'nanoid'
-import nanoidDictionary from 'nanoid-dictionary'
+import { nolookalikes } from 'nanoid-dictionary'
 
-export const nanoid = customAlphabet(nanoidDictionary.nolookalikes, 10)
+export const nanoid = customAlphabet(nolookalikes, 10)
 
 export function restoreTitleForSorting(title: string) {
   // Match titles ending with ", A", ", An", or ", The" followed by optional additional info

@@ -4,7 +4,7 @@ import { VisualEffect } from './visual-effect.tsx'
 
 export function HeroSection() {
   return (
-    <section className='relative flex h-dvh min-h-96 flex-col'>
+    <section className='min-h-160 relative flex h-dvh flex-col'>
       <div className='flex-1'>
         <div className='-z-1  absolute inset-0 size-full'>
           <div className='hero-bg absolute inset-0 size-full' />

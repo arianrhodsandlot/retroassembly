@@ -16,7 +16,13 @@ export function HomePage() {
       <ButtonSection />
 
       <footer className='bg-(--accent-9) py-4 text-center text-sm text-white'>
-        <p>&copy; 2025 RetroAssembly. All rights reserved.</p>
+        <p>
+          &copy; 2025{' '}
+          <a className='underline' href='https://github.com/arianrhodsandlot' rel='noreferrer' target='_blank'>
+            arianrhodsandlot
+          </a>
+          . All rights reserved.
+        </p>
       </footer>
     </>
   )

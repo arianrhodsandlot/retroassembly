@@ -32,7 +32,7 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
             </div>
           </div>
           <div className='mb-4 mt-1 flex items-center justify-center gap-2 text-xs'>
-            <span>© 2025</span>
+            <span>&copy; 2025</span>
             <a className='underline' href='https://github.com/arianrhodsandlot' rel='noreferrer' target='_blank'>
               arianrhodsandlot
             </a>

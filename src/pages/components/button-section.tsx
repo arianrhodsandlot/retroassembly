@@ -1,14 +1,9 @@
 import { Button } from '@radix-ui/themes'
 import { Link } from 'react-router'
-import { Pong } from './pong.tsx'
 
 export function ButtonSection() {
   return (
     <section className='relative py-20'>
-      <div className='absolute inset-0 size-full'>
-        <Pong />
-      </div>
-
       <div className='relative mx-auto max-w-6xl'>
         <h2 className='motion-preset-oscillate motion-duration-2000 mb-6 flex items-center justify-center gap-2 text-3xl text-neutral-500'>
           Start to enjoy retro gaming now!

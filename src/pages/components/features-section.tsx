@@ -1,5 +1,6 @@
-import { Card } from '@radix-ui/themes'
+import clsx from 'clsx'
 import { range } from 'es-toolkit'
+import { Pong } from './pong.tsx'
 
 export function FeaturesSection() {
   const features = [
@@ -14,7 +15,7 @@ export function FeaturesSection() {
       title: 'Multi-Platform Support',
     },
     {
-      description: 'Save your progress and access it from anywhere.',
+      description: 'Sync your games and states then access them from anywhere.',
       icon: 'icon-[mdi--cloud]',
       title: 'Cloud Sync',
     },
@@ -29,7 +30,12 @@ export function FeaturesSection() {
       title: 'Joystick-Friendly Navigation',
     },
     {
-      description: 'Rewind gameplay using "R" on the keyboard or a controller button combination (Select + L2).',
+      description: (
+        <>
+          Rewind gameplay using "R" on the keyboard or a controller button combination (<kbd>Select</kbd> +{' '}
+          <kbd>L2</kbd>).
+        </>
+      ),
       icon: 'icon-[mdi--clock-arrow]',
       title: 'Rewind Gameplay',
     },
@@ -37,6 +43,10 @@ export function FeaturesSection() {
 
   return (
     <section className='relative py-16'>
+      <div className='absolute inset-0 size-full'>
+        <Pong />
+      </div>
+
       <div className='mx-auto max-w-6xl '>
         <h2
           className='text-(--accent-9) mb-6 flex items-center justify-center gap-2 text-4xl font-[Roboto_Slab_Variable] font-semibold'
@@ -49,15 +59,25 @@ export function FeaturesSection() {
           <span className='icon-[mdi--gift]' />
           Features
         </h2>
-        <div className='mt-4 grid grid-cols-1 gap-8 md:grid-cols-3'>
-          {features.map((feature) => (
-            <Card className='flex-1' key={feature.title} size='3'>
-              <h3 className='mb-2 flex items-center gap-2 text-xl font-semibold'>
-                <span className={feature.icon} />
-                {feature.title}
-              </h3>
-              <p>{feature.description}</p>
-            </Card>
+        <div className='w-4xl mx-auto mt-20 flex flex-col gap-16'>
+          {features.map((feature, index) => (
+            <div className={clsx('flex justify-center gap-10', { 'flex-row-reverse': index % 2 })} key={feature.title}>
+              <div className='flex flex-1 items-center'>
+                <div>
+                  <h3 className='mb-2 flex items-center gap-2 text-xl font-semibold'>
+                    <span className={feature.icon} />
+                    {feature.title}
+                  </h3>
+                  <p>{feature.description}</p>
+                </div>
+              </div>
+
+              <div className='flex items-center justify-center'>
+                <div className='rounded bg-white p-2 shadow-lg ring-1 ring-neutral-300'>
+                  <div className='w-100 h-60 bg-neutral-300' />
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>

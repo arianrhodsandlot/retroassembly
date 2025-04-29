@@ -38,7 +38,7 @@ export function HeroImages() {
         {images.map((image, index) => (
           <div
             className={clsx(
-              'rounded-xs relative h-1.5 w-20 transition-colors',
+              'rounded-xs relative h-1 w-20 transition-colors',
               'after:bg-(--accent-9) after:absolute after:h-full after:rounded',
               index === indicator.current
                 ? 'bg-(--accent-7) after:w-(--bar-width) after:opacity-100'

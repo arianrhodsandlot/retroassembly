@@ -239,7 +239,7 @@ export const platforms: Platform[] = [
     libretroName: 'Bandai - WonderSwan Color',
     name: 'wonderswancolor',
   },
-]
+].filter(({ name }) => !['atari5200', 'atari7800', 'atarilynx', 'fds', 'sega32x'].includes(name)) as Platform[]
 
 export const platformMap: Record<string, Platform> = {}
 for (const platform of platforms) {

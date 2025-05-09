@@ -86,13 +86,16 @@ export const defaultPreference: ResolvedPreference = {
       fceumm: {
         fceumm_turbo_enable: 'Both',
       },
+      mame2003_plus: {
+        'mame2003-plus_skip_disclaimer': 'enabled',
+      },
       mgba: {
         mgba_gb_colors: 'DMG Green',
         mgba_skip_bios: 'ON',
       },
     },
     platform: {
-      arcade: { core: 'fbneo' },
+      arcade: { core: 'mame2003_plus' },
       atari2600: { core: 'stella2014' },
       atari5200: { core: 'a5200' },
       atari7800: { core: 'prosystem' },

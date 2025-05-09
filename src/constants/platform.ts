@@ -39,16 +39,7 @@ export interface Platform {
 // https://github.com/RetroPie/RetroPie-Setup/blob/master/platforms.cfg
 export const platforms: Platform[] = [
   {
-    cores: [
-      'mame2000',
-      'mame2003',
-      'mame2003_plus',
-      'fbalpha2012_cps1',
-      'fbalpha2012_cps2',
-      'fbalpha2012',
-      'fbalpha2012_neogeo',
-      'fbneo',
-    ],
+    cores: ['mame2003_plus'],
     displayName: 'Arcade',
     fileExtensions: ['zip'].map((name) => `.${name}`),
     launchboxName: 'Arcade',

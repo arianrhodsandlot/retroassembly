@@ -4,7 +4,7 @@ import { type BetterSQLite3Database, drizzle } from 'drizzle-orm/better-sqlite3'
 import { chunk } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
 import { Libretrodb } from 'libretrodb'
-import { globby } from 'zx'
+import { fs } from 'zx'
 import { libretroGameTable } from '../../databases/metadata/schema.ts'
 
 const nonSupportedPlatforms = new Set([
@@ -61,7 +61,8 @@ async function extractLibretroDbs() {
     connection: path.resolve(import.meta.dirname, '../artifacts/metadata.db'),
   })
   const libretroDbDirectory = path.resolve(import.meta.dirname, '../inputs/libretro/database-rdb/')
-  const rdbPaths = await globby(libretroDbDirectory)
+  const rdbs = await fs.readdir(libretroDbDirectory)
+  const rdbPaths = rdbs.map((rdb) => path.resolve(libretroDbDirectory, rdb))
   for (const rdbPath of rdbPaths) {
     const platform = path.parse(rdbPath).name
     if (!nonSupportedPlatforms.has(platform)) {

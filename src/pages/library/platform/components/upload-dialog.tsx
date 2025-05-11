@@ -130,6 +130,14 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
                       <Code key={extention}>{extention}</Code>
                     ))}
                   </span>
+                  {platform === 'arcade' ? (
+                    <>
+                      <br />
+                      <span>
+                        We support the <b>Full Non-Merged MAME 0.78</b> romsets.
+                      </span>
+                    </>
+                  ) : null}
                 </Callout.Text>
               </Callout.Root>
 

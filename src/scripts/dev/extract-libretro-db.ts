@@ -1,7 +1,7 @@
 import crypto from 'node:crypto'
 import path from 'node:path'
 import { type BetterSQLite3Database, drizzle } from 'drizzle-orm/better-sqlite3'
-import { chunk } from 'es-toolkit'
+import { camelCase, chunk, mapKeys } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
 import { Libretrodb } from 'libretrodb'
 import { fs } from 'zx'
@@ -43,7 +43,7 @@ async function extractLibretroDb(rdbPath: string, db: BetterSQLite3Database) {
     const values = recordsChunk
       .filter(({ name }) => name)
       .map((record) => ({
-        ...record,
+        ...mapKeys(record, (_value, key) => camelCase(`${key}`)),
         compactName: getCompactName(`${record.name}`),
         goodcodesBaseCompactName: getCompactName(parse(`0 - ${record.name}`).rom),
         id: crypto.hash('sha1', JSON.stringify({ ...record, platform })),

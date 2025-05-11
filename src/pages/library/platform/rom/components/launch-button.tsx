@@ -1,6 +1,7 @@
 import { Button, Portal } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { type MouseEvent, useEffect, useRef } from 'react'
+import { useFocusIndicator } from '@/pages/library/hooks/use-focus-indicator.ts'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { useLaunchButtonRect } from '../atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
@@ -17,24 +18,27 @@ export function LaunchButton() {
   const { isPreparing, launch } = useEmulator()
   const ref = useRef<HTMLButtonElement>(null)
   const [, setLaunchButtonRect] = useLaunchButtonRect()
+  const { syncStyle } = useFocusIndicator()
 
   const isWaitingForTouch = mayNeedsUserInteraction && !isPreparing
   const isWaitingForPressOrClick = !mayNeedsUserInteraction && !isPreparing
 
-  function handleClick(event: MouseEvent<HTMLButtonElement>) {
+  async function handleClick(event: MouseEvent<HTMLButtonElement>) {
     if (isWaitingForTouch && !event?.clientX && !event?.clientY) {
       event.preventDefault()
       event.stopPropagation()
       return
     }
 
-    launch()
-
-    const button = ref.current
+    const button = event.currentTarget
     if (button) {
       const rect = button.getBoundingClientRect()
       setLaunchButtonRect(rect)
+      button.blur()
+      syncStyle()
     }
+
+    await launch()
   }
 
   useEffect(() => {

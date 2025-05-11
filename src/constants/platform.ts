@@ -43,7 +43,7 @@ export const platforms: Platform[] = [
     displayName: 'Arcade',
     fileExtensions: ['zip'].map((name) => `.${name}`),
     launchboxName: 'Arcade',
-    libretroName: 'FBNeo - Arcade Games',
+    libretroName: 'MAME',
     name: 'arcade',
   },
   {

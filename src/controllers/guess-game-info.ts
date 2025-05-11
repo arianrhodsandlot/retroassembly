@@ -8,7 +8,53 @@ import { launchboxGameAlternateNameTable, launchboxGameTable, libretroGameTable 
 import { getCompactName } from '../utils/library.ts'
 import { restoreTitleForSorting } from '../utils/misc.ts'
 
-async function guessLibretroGame(fileName: string, platform: string) {
+async function guessLibretroArcadeGame(fileName: string, md5: string) {
+  const { db } = getContext().var
+  const { metadata } = db
+
+  const filters = [
+    [
+      { column: libretroGameTable.md5, value: md5 },
+      { column: libretroGameTable.platform, value: 'MAME' },
+    ],
+    [
+      { column: libretroGameTable.md5, value: md5 },
+      { column: libretroGameTable.platform, value: 'MAME 2003-Plus' },
+    ],
+    [
+      { column: libretroGameTable.md5, value: md5 },
+      { column: libretroGameTable.platform, value: 'FBNeo - Arcade Games' },
+    ],
+    [
+      { column: libretroGameTable.romName, value: fileName },
+      { column: libretroGameTable.platform, value: 'MAME' },
+    ],
+    [
+      { column: libretroGameTable.romName, value: fileName },
+      { column: libretroGameTable.platform, value: 'MAME 2003-Plus' },
+    ],
+    [
+      { column: libretroGameTable.romName, value: fileName },
+      { column: libretroGameTable.platform, value: 'FBNeo - Arcade Games' },
+    ],
+  ]
+
+  for (const filter of filters) {
+    const results = await metadata
+      .select()
+      .from(libretroGameTable)
+      .where(and(...filter.map(({ column, value }) => eq(column, value))))
+    if (results.length > 0) {
+      return results.at(0)
+    }
+  }
+}
+
+async function guessLibretroGame(fileName: string, platform: string, md5: string) {
+  if (platform === 'arcade') {
+    return guessLibretroArcadeGame(fileName, md5)
+  }
+
   const { db } = getContext().var
   const { metadata } = db
 
@@ -92,13 +138,13 @@ async function guessLaunchboxGame(fileName: string, platform: string) {
 
 export type GameInfo = Awaited<ReturnType<typeof guessGameInfo>>
 
-export async function guessGameInfo(fileName: string, platform: string) {
+export async function guessGameInfo(fileName: string, platform: string, md5: string) {
   let [libretro, launchbox] = await Promise.all([
-    guessLibretroGame(fileName, platform),
+    guessLibretroGame(fileName, platform, md5),
     guessLaunchboxGame(fileName, platform),
   ])
   if (launchbox && !libretro) {
-    libretro = await guessLibretroGame(launchbox.name, platform)
+    libretro = await guessLibretroGame(launchbox.name, platform, md5)
   }
   if (libretro?.name && !launchbox) {
     launchbox = await guessLaunchboxGame(libretro.goodcodesBaseCompactName, platform)

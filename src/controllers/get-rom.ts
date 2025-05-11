@@ -25,5 +25,7 @@ export async function getRom(params: { fileName: string; platform: string } | { 
         eq(romTable.status, 1),
       ),
     )
-  return getRom({ id: result.id })
+  if (result) {
+    return getRom({ id: result.id })
+  }
 }

@@ -83,8 +83,6 @@ export function useEmulator() {
       return
     }
 
-    await emulator.start()
-
     const canvas = emulator.getCanvas()
     canvas.setAttribute('tabindex', '-1')
     canvas.dataset.snFocusStyle = JSON.stringify({ display: 'none' })

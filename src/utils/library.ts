@@ -20,9 +20,12 @@ export function getRomLibretroThumbnail(rom, type: LibretroThumbnailType = 'boxa
   if (!name || !rom.platform) {
     return ''
   }
-  const platformFullName = platformMap[rom.platform].libretroName
+  let platformFullName = rom.libretroGame?.platform || platformMap[rom.platform].libretroName
   if (!platformFullName) {
     return ''
+  }
+  if (platformFullName.includes('MAME')) {
+    platformFullName = 'MAME'
   }
 
   const normalizedPlatformFullName = platformFullName.replaceAll(' ', '_')
@@ -32,7 +35,6 @@ export function getRomLibretroThumbnail(rom, type: LibretroThumbnailType = 'boxa
   const normalizedFileName = `${name.replaceAll(/[&*/:`<>?\\]|\|"/g, '_')}.png`
   const filePath = path.join(fileDirectory, normalizedFileName)
 
-  // @ts-expect-error assume repo is valid here
   return getCDNUrl(repo, filePath)
 }
 

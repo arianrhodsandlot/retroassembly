@@ -54,9 +54,13 @@ export async function createRoms({ files, platform }: { files: File[]; platform:
 
   const roms = await Promise.all(
     files.map(async (file) => {
-      const gameInfo = await guessGameInfo(file.name, platform)
       const fileId = nanoid()
-      await storage.put(fileId, file)
+      const r2 = await storage.put(fileId, file)
+      if (!r2) {
+        return
+      }
+      const { md5 = '' } = r2.checksums.toJSON()
+      const gameInfo = await guessGameInfo(file.name, platform, md5)
       const rom = await createRom({
         fileId,
         fileName: file.name,

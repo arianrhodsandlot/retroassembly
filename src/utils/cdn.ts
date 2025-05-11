@@ -10,6 +10,7 @@ const repositoryVersions = {
   'libretro-thumbnails/Bandai_-_WonderSwan': '5ff3f34',
   'libretro-thumbnails/Bandai_-_WonderSwan_Color': 'da7bfcf',
   'libretro-thumbnails/FBNeo_-_Arcade_Games': '5209042',
+  'libretro-thumbnails/MAME': '9e34662',
   'libretro-thumbnails/Nintendo_-_Family_Computer_Disk_System': '0933747',
   'libretro-thumbnails/Nintendo_-_Game_Boy': '9db9910',
   'libretro-thumbnails/Nintendo_-_Game_Boy_Advance': '8eb37c7',

@@ -1,4 +1,5 @@
-import { AnimatePresence, motion } from 'motion/react'
+import { isMatch } from 'es-toolkit/compat'
+import { AnimatePresence, type AnimationDefinition, motion } from 'motion/react'
 import { useMemo } from 'react'
 import { useLaunchButtonRect } from '../atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
@@ -20,10 +21,13 @@ export function GameAnimatePresence() {
     [launchButtonRect],
   )
 
-  function handleAnimationComplete() {
-    const canvas = emulator?.getCanvas()
-    if (canvas) {
-      canvas.style.opacity = '1'
+  async function handleAnimationComplete(definition: AnimationDefinition) {
+    if (isMatch(definition, animateStyle) && emulator) {
+      await emulator.start()
+      const canvas = emulator.getCanvas()
+      if (canvas) {
+        canvas.style.opacity = '1'
+      }
     }
   }
 
@@ -36,7 +40,7 @@ export function GameAnimatePresence() {
           exit={{ ...initialStyle, backgroundColor: 'oklch(0.514 0.222 16.935)', opacity: 0.5 }}
           initial={{ ...initialStyle, backgroundColor: 'oklch(0.514 0.222 16.935)', opacity: 1 }}
           onAnimationComplete={handleAnimationComplete}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.2 }}
         />
       ) : null}
     </AnimatePresence>

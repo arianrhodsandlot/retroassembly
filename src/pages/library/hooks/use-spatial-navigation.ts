@@ -2,7 +2,7 @@ import { useEventListener } from '@react-hookz/web'
 import { off, on } from 'delegated-events'
 import { delay } from 'es-toolkit'
 import { useEffect } from 'react'
-import { useLocation } from 'react-router'
+import { useLocation, useNavigation } from 'react-router'
 import { Gamepad } from '@/utils/gamepad.ts'
 import { useEmulatorLaunched, useShowGameOverlay } from '../atoms.ts'
 import { useMouseIdle } from '../platform/rom/hooks/use-mouse-idle.ts'
@@ -12,13 +12,17 @@ import { useFocusIndicator } from './use-focus-indicator.ts'
 import { useInputMapping } from './use-input-mapping.ts'
 
 export function useSpatialNavigation() {
+  const { state } = useNavigation()
   const location = useLocation()
   const inputMapping = useInputMapping()
   const { syncStyle } = useFocusIndicator()
   const isIdle = useMouseIdle(100)
   const [emulatorLaunched] = useEmulatorLaunched()
   const [showGameOverlay] = useShowGameOverlay()
+
+  const isNavigating = state === 'loading'
   const isPlaying = emulatorLaunched && !showGameOverlay
+  const isSpatialNavigationPaused = isNavigating || isPlaying
 
   useEffect(init, [])
 
@@ -47,7 +51,7 @@ export function useSpatialNavigation() {
     } as const
 
     function handleKeydown(event: KeyboardEvent) {
-      if (isPlaying) {
+      if (isSpatialNavigationPaused) {
         return
       }
       const keyName = getKeyNameFromCode(event.code)
@@ -66,7 +70,7 @@ export function useSpatialNavigation() {
 
     document.addEventListener('keydown', handleKeydown)
     return () => document.removeEventListener('keydown', handleKeydown)
-  }, [inputMapping.keyboard, isPlaying])
+  }, [inputMapping.keyboard, isSpatialNavigationPaused])
 
   // gamepad navigation
   useEffect(() => {
@@ -78,7 +82,7 @@ export function useSpatialNavigation() {
     } as const
 
     return Gamepad.onPress(({ button }) => {
-      if (isPlaying) {
+      if (isSpatialNavigationPaused) {
         return
       }
       const direction = gamepadDirectionMap[button]
@@ -90,7 +94,7 @@ export function useSpatialNavigation() {
         cancel()
       }
     })
-  }, [inputMapping.gamepad, isPlaying])
+  }, [inputMapping.gamepad, isSpatialNavigationPaused])
 
   // focus when an element got hovered
   useEffect(() => {

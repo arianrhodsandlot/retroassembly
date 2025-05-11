@@ -3,13 +3,14 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useNavigation } from 'react-router'
 
 export function PendingMask() {
-  const navigation = useNavigation()
+  const { state } = useNavigation()
+  const isNavigating = state === 'loading'
 
   return (
     <Portal>
       <Theme accentColor='red'>
         <AnimatePresence>
-          {navigation.state === 'loading' ? (
+          {isNavigating ? (
             <motion.div
               animate={{ backdropFilter: 'blur(4px)', opacity: 1 }}
               className='absolute inset-0 z-10 flex items-center justify-center bg-white/20'

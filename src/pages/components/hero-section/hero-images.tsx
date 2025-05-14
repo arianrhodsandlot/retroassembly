@@ -1,7 +1,8 @@
 import clsx from 'clsx'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Autoplay, FreeMode, Thumbs } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import type { Swiper as SwiperType } from 'swiper/types'
 
 const images = [
   '/assets/screenshots/library.jpeg',
@@ -12,6 +13,7 @@ const images = [
 
 export function HeroImages() {
   const [indicator, setIndicator] = useState({ current: 0, progress: 0 })
+  const swiperRef = useRef<SwiperType>(null)
 
   return (
     <div className='flex flex-1 shrink-0 flex-col items-center justify-center gap-10'>
@@ -23,6 +25,9 @@ export function HeroImages() {
           modules={[Autoplay, FreeMode, Thumbs]}
           onAutoplayTimeLeft={({ realIndex }, _time, progress) => {
             setIndicator({ current: realIndex, progress })
+          }}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper
           }}
           spaceBetween={20}
         >
@@ -36,18 +41,23 @@ export function HeroImages() {
 
       <div className='flex gap-2'>
         {images.map((image, index) => (
-          <div
+          <button
             className={clsx(
-              'rounded-xs relative h-1 w-20 transition-colors',
-              'after:bg-(--accent-9) after:absolute after:h-full after:rounded',
+              'rounded-xs relative h-1.5 w-20 transition-colors',
+              'after:bg-(--accent-9) after:absolute after:left-0 after:top-0 after:h-full after:rounded',
               index === indicator.current
                 ? 'bg-(--accent-7) after:w-(--bar-width) after:opacity-100'
                 : 'bg-(--accent-3) after:opacity-0',
             )}
             key={image}
+            onClick={() => {
+              swiperRef.current?.slideToLoop(index)
+            }}
             style={{
               '--bar-width': index === indicator.current ? `${100 - indicator.progress * 100}%` : '0',
             }}
+            title='Slide to this image'
+            type='button'
           />
         ))}
       </div>

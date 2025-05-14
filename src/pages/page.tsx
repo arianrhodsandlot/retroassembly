@@ -15,10 +15,10 @@ export function HomePage() {
       <CommunitySection />
       <ButtonSection />
 
-      <footer className='bg-(--accent-9) py-4 text-center text-sm text-white'>
+      <footer className='border-t-(--accent-9) border border-x-0 border-b-0 py-8 text-center text-sm font-light text-neutral-600'>
         <p>
           &copy; 2025{' '}
-          <a className='underline' href='https://github.com/arianrhodsandlot' rel='noreferrer' target='_blank'>
+          <a className='underline' href='https://github.com/arianrhodsandlot' rel='noreferrer noopener' target='_blank'>
             arianrhodsandlot
           </a>
           . All rights reserved.

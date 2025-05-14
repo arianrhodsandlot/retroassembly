@@ -2,11 +2,11 @@ export function CommunitySection() {
   return (
     <section className='bg-(--accent-9) border-y py-16 text-white'>
       <div className='mx-auto max-w-6xl text-center'>
-        <h2 className='mb-6 flex items-center justify-center gap-2 text-3xl font-bold'>
+        <h2 className='mb-6 flex items-center justify-center gap-2 text-4xl font-[Roboto_Slab_Variable] font-semibold'>
           <span className='icon-[mdi--people-group]' />
           Community
         </h2>
-        <p className='mb-4'>
+        <p className='mb-4 leading-loose'>
           We kindly request your assistance in reporting any ideas or issues on our Discord channel or GitHub issues.
           <br />
           Your valuable feedback will greatly contribute to enhancing the user experience.

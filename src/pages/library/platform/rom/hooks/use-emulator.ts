@@ -90,12 +90,14 @@ export function useEmulator() {
 
     setLaunched(true)
 
-    const formData = new FormData()
-    formData.append('core', core)
-    formData.append('rom', rom.id)
-    await ky.post('/api/v1/launch_records', {
-      body: formData,
-    })
+    if (!isDemo) {
+      const formData = new FormData()
+      formData.append('core', core)
+      formData.append('rom', rom.id)
+      await ky.post('/api/v1/launch_records', {
+        body: formData,
+      })
+    }
   }
 
   async function exit() {

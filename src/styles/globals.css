@@ -59,9 +59,9 @@ a:focus {
 
 @keyframes rewind-demo-background-move {
   from {
-    background-position: right 0 center;
+    background-position: right -50% center;
   }
   to {
-    background-position: right 100% center;
+    background-position: right 50% center;
   }
 }

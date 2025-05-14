@@ -20,7 +20,7 @@ export function HeroMain() {
       </div>
 
       <div className='motion-preset-fade motion-delay-600 relative mt-6'>
-        <div className='overflow-hidden rounded p-2 font-[Roboto_Slab_Variable] font-medium text-neutral-500'>
+        <div className='overflow-hidden rounded p-2 font-[Roboto_Slab_Variable] text-neutral-500'>
           Your personal retro game collection cabinet in your browser.
         </div>
       </div>

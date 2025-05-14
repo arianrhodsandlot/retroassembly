@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import { range } from 'es-toolkit'
 import { getPlatformDeviceBackground } from '@/utils/library.ts'
 import { DemoFocusIndicator } from './demo-focus-indicator.tsx'
+import rewindImage from './rewind-image.png'
 
 const features = [
   {
@@ -90,7 +91,9 @@ const features = [
         <div className='grid size-full grid-cols-3 grid-rows-2'>
           {range(6).map((i) => (
             <div className='rounded p-1' key={i}>
-              <div className='size-full rounded bg-neutral-100' />
+              <div className='flex size-full items-center justify-center rounded bg-neutral-100'>
+                <span className='icon-[twemoji--star] size-12' />
+              </div>
             </div>
           ))}
         </div>
@@ -105,9 +108,9 @@ const features = [
     content: (
       <div className='relative size-full'>
         <div
-          className='rewind-demo size-full animate-[rewind-demo-background-move_20s_linear_infinite] bg-cover'
+          className='rewind-demo size-full animate-[rewind-demo-background-move_30s_linear_infinite] bg-cover'
           style={{
-            backgroundImage: `url("https://www.spriters-resource.com/resources/sheets/19/20636.png?updated=1609109327")`,
+            backgroundImage: `url("${rewindImage}")`,
           }}
         />
         <div className='absolute left-0 top-0 flex size-full items-center justify-center'>
@@ -130,7 +133,7 @@ export function FeaturesSection() {
   return (
     <section className='relative'>
       <h2
-        className='text-(--accent-9) mb-6 flex items-center justify-center gap-2 bg-neutral-50 py-16 text-4xl font-[Roboto_Slab_Variable] font-semibold'
+        className='text-(--accent-9) mb-6 flex items-center justify-center gap-2 border border-transparent border-b-neutral-100 border-t-neutral-200 py-16 text-4xl font-[Roboto_Slab_Variable] font-semibold'
         style={{
           textShadow: range(1, 5)
             .map((number) => `${number}px ${number}px 1px var(--accent-7)`)
@@ -147,11 +150,11 @@ export function FeaturesSection() {
             <div className={clsx('w-5xl mx-auto flex justify-center gap-10', { 'flex-row-reverse': index % 2 })}>
               <div className='flex flex-1 items-center'>
                 <div>
-                  <h3 className='text-(--accent-9) mb-2 flex items-center gap-2 text-3xl font-semibold underline decoration-dotted decoration-2'>
-                    <span className={feature.icon} />
+                  <h3 className='text-(--accent-9) mb-2 flex items-center gap-2 text-2xl font-semibold'>
+                    <span className={clsx(feature.icon, 'text-6xl')} />
                     {feature.title}
                   </h3>
-                  <p className='text-2xl font-light opacity-30'>{feature.description}</p>
+                  <p className='pl-17 text-2xl font-light text-neutral-600'>{feature.description}</p>
                 </div>
               </div>
 

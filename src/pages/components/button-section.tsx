@@ -4,7 +4,7 @@ import background from './button-section-background.svg'
 
 export function ButtonSection() {
   return (
-    <section className='relative py-20'>
+    <section className='relative py-8 lg:py-20'>
       <div
         className='absolute inset-0 opacity-5'
         style={{
@@ -14,11 +14,11 @@ export function ButtonSection() {
           backgroundSize: '192px 96px',
         }}
       />
-      <div className='relative mx-auto max-w-2xl rounded-xl bg-white py-10 shadow-[0_0_32px_rgba(0,0,0,0.1)]'>
-        <h2 className='text-(--accent-9) mb-6 flex items-center justify-center gap-2 text-3xl font-semibold'>
+      <div className='lg:w-2xl relative mx-8 rounded-xl bg-white p-10 shadow-[0_0_32px_rgba(0,0,0,0.1)] lg:mx-auto'>
+        <h2 className='text-(--accent-9) flex items-center justify-center gap-2 text-center text-xl font-semibold lg:text-3xl'>
           Start to enjoy retro gaming now!
         </h2>
-        <div className='flex items-center justify-center gap-4 py-8'>
+        <div className='mt-0 flex flex-col items-center justify-center gap-4 py-8 lg:mt-6 lg:flex-row'>
           <Button asChild radius='small' size='4' type='button'>
             <Link reloadDocument to='/demo'>
               <span className='icon-[mdi--presentation-play]' />

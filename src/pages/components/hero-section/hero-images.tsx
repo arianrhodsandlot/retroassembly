@@ -16,7 +16,7 @@ export function HeroImages() {
   const swiperRef = useRef<SwiperType>(null)
 
   return (
-    <div className='flex flex-1 shrink-0 flex-col items-center justify-center gap-10'>
+    <div className='hidden flex-1 shrink-0 flex-col items-center justify-center gap-10 lg:flex'>
       <div className='rounded bg-white p-2 shadow-lg ring-1 ring-neutral-300'>
         <Swiper
           autoplay={{ delay: 3000, disableOnInteraction: false }}

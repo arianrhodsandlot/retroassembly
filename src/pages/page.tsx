@@ -15,13 +15,15 @@ export function HomePage() {
       <CommunitySection />
       <ButtonSection />
 
-      <footer className='border border-x-0 border-b-0 border-t-neutral-200 py-8 text-center text-sm font-light text-neutral-600'>
+      <footer className='border border-x-0 border-b-0 border-t-neutral-200 p-8 text-center text-sm font-light text-neutral-600'>
         <p>
           Released under{' '}
           <a className='underline' href='https://opensource.org/license/mit' rel='noreferrer noopener' target='_blank'>
             the MIT License
           </a>
-          . &copy; 2025{' '}
+          .
+          <br className='block lg:hidden' />
+          &copy; 2025{' '}
           <a className='underline' href='https://github.com/arianrhodsandlot' rel='noreferrer noopener' target='_blank'>
             arianrhodsandlot
           </a>

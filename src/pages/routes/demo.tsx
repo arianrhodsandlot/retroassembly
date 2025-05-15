@@ -5,7 +5,7 @@ import type { Route } from './+types/library.ts'
 
 export function loader() {
   const preference = structuredClone(defaultPreference)
-  preference.ui.platforms = ['nes', 'genesis', 'gba']
+  preference.ui.platforms = ['gba', 'gbc', 'genesis', 'nes', 'snes']
   return {
     count: 0,
     page: 1,

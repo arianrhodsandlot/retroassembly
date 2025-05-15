@@ -7,7 +7,7 @@ import rewindImage from './rewind-image.png'
 const features = [
   {
     content: (
-      <div className='*:motion-preset-pulse-sm *:motion-duration-1000 flex size-full items-center justify-evenly bg-blue-200 bg-cover bg-center'>
+      <div className='*:motion-preset-pulse *:motion-duration-1000 flex size-full items-center justify-evenly bg-blue-100 bg-cover bg-center'>
         <span className='icon-[logos--chrome] size-14 ' />
         <span className='icon-[logos--microsoft-edge] motion-delay-100 size-14' />
         <span className='icon-[logos--safari] motion-delay-200 size-14' />
@@ -43,7 +43,14 @@ const features = [
   },
   {
     content: (
-      <div className='flex size-full items-center justify-center gap-2 bg-neutral-100'>
+      <div
+        className='flex size-full items-center justify-center gap-2 bg-neutral-100'
+        style={{
+          background:
+            'radial-gradient(circle, transparent 20%, #fff 20%, #fff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #fff 20%, #fff 80%, transparent 80%, transparent) 25px 25px, linear-gradient(#efefef 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #efefef 2px, #fff 2px) -1px 0',
+          backgroundSize: '50px 50px, 50px 50px, 25px 25px, 25px 25px',
+        }}
+      >
         <span className='icon-[noto--laptop] size-16' />
         <span className='icon-[svg-spinners--bars-scale-middle] w-12 opacity-50' />
         <span className='icon-[noto--cloud] size-16' />

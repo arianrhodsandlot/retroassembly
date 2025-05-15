@@ -8,7 +8,7 @@ export async function loader({ params }: Route.LoaderArgs) {
   const { platform } = params
 
   const preference = structuredClone(defaultPreference)
-  preference.ui.platforms = ['nes', 'genesis', 'gba']
+  preference.ui.platforms = ['gba', 'gbc', 'genesis', 'nes', 'snes']
   const platformInfo = await getPlatformInfo(platform)
 
   return {

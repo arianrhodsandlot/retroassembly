@@ -35,10 +35,10 @@ export function HeroSection() {
           <HeroImages />
         </div>
       </div>
-      <div className='pointer-events-none absolute bottom-4 flex w-full gap-4'>
+      <div className='w-6xl pointer-events-none mx-auto flex items-center gap-4 pb-6'>
         <Swiper
           autoplay={{ delay: 0, disableOnInteraction: false }}
-          className='w-3xl mx-auto h-8 max-w-full overflow-hidden rounded [--swiper-wrapper-transition-timing-function:linear]'
+          className='mx-auto h-8 max-w-full flex-1 overflow-hidden rounded [--swiper-wrapper-transition-timing-function:linear]'
           freeMode
           loop
           modules={[Autoplay, FreeMode, Thumbs]}

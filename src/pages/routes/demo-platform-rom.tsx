@@ -7,7 +7,7 @@ export function loader({ params }: Route.LoaderArgs) {
   const { platform } = params
 
   const preference = structuredClone(defaultPreference)
-  preference.ui.platforms = ['nes', 'genesis', 'gba']
+  preference.ui.platforms = ['gba', 'gbc', 'genesis', 'nes', 'snes']
   const roms = getDemoRoms({ platform })
   const rom = roms.find((rom) => rom.fileName === params.fileName)
   return { preference, rom }

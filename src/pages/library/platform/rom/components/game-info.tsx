@@ -1,6 +1,8 @@
 import { formatDate } from 'date-fns'
 import { platformMap } from '@/constants/platform.ts'
 
+const unknown = <span className='opacity-40'>Unknown</span>
+
 export function GameInfo({ gameInfo, rom }) {
   return (
     <div className='rounded bg-zinc-600/10 px-8 py-4'>
@@ -20,7 +22,8 @@ export function GameInfo({ gameInfo, rom }) {
           </div>
           <div className='pl-6'>
             {(gameInfo?.releaseDate ? formatDate(gameInfo?.releaseDate, 'yyyy-MM-dd') : '') ||
-              gameInfo?.releaseYear || <span className='opacity-40'>Unknown</span>}
+              gameInfo?.releaseYear ||
+              unknown}
           </div>
         </div>
 
@@ -29,7 +32,7 @@ export function GameInfo({ gameInfo, rom }) {
             <span className='icon-[mdi--tag-multiple]' />
             Genres
           </div>
-          <div className='pl-6'>{gameInfo?.genres || ''}</div>
+          <div className='pl-6'>{gameInfo?.genres || unknown}</div>
         </div>
 
         <div>
@@ -37,7 +40,7 @@ export function GameInfo({ gameInfo, rom }) {
             <span className='icon-[mdi--person-multiple]' />
             Players
           </div>
-          <div className='pl-6'>{gameInfo?.maxPlayers || <span className='opacity-40'>Unknown</span>}</div>
+          <div className='pl-6'>{gameInfo?.maxPlayers || unknown}</div>
         </div>
       </div>
 
@@ -47,7 +50,7 @@ export function GameInfo({ gameInfo, rom }) {
             <span className='icon-[mdi--chip]' />
             Developer
           </div>
-          <div className='pl-6'>{gameInfo?.developer || <span className='opacity-40'>Unknown</span>}</div>
+          <div className='pl-6'>{gameInfo?.developer || unknown}</div>
         </div>
 
         <div>
@@ -55,7 +58,7 @@ export function GameInfo({ gameInfo, rom }) {
             <span className='icon-[mdi--earth]' />
             Publisher
           </div>
-          <div className='pl-6'>{gameInfo?.publisher || <span className='opacity-40'>Unknown</span>}</div>
+          <div className='pl-6'>{gameInfo?.publisher || unknown}</div>
         </div>
       </div>
     </div>

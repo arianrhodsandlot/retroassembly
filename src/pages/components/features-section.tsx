@@ -100,9 +100,9 @@ const features = [
         <DemoFocusIndicator />
       </div>
     ),
-    description: 'Navigate seamlessly using a keyboard or a joystick without needing a mouse or keyboard.',
+    description: 'Navigate seamlessly using a keyboard or a gamepad without needing a mouse.',
     icon: 'icon-[mdi--controller-round]',
-    title: 'Keyboard/Joystick-Friendly Navigation',
+    title: 'Keyboard/Gamepad-Friendly Navigation',
   },
   {
     content: (

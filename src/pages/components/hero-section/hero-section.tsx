@@ -35,7 +35,7 @@ export function HeroSection() {
           <HeroImages />
         </div>
       </div>
-      <div className='pointer-events-none absolute bottom-2 flex w-full gap-4'>
+      <div className='pointer-events-none absolute bottom-4 flex w-full gap-4'>
         <Swiper
           autoplay={{ delay: 0, disableOnInteraction: false }}
           className='w-3xl mx-auto h-8 max-w-full overflow-hidden rounded [--swiper-wrapper-transition-timing-function:linear]'

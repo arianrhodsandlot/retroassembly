@@ -1,4 +1,6 @@
 import { Button, Dialog, VisuallyHidden } from '@radix-ui/themes'
+import clsx from 'clsx'
+import { links } from '@/constants/links.ts'
 
 export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
   function handleOpenChange(open: boolean) {
@@ -33,26 +35,27 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
           </div>
           <div className='mb-4 mt-1 flex items-center justify-center gap-2 text-xs'>
             <span>&copy; 2025</span>
-            <a className='underline' href='https://github.com/arianrhodsandlot' rel='noreferrer' target='_blank'>
+            <a
+              className='underline'
+              href='https://github.com/arianrhodsandlot'
+              rel='noreferrer noopener'
+              target='_blank'
+            >
               arianrhodsandlot
             </a>
             ·
-            <a
-              className='flex-center gap-1'
-              href='https://github.com/arianrhodsandlot/retro-assembly'
-              rel='noreferrer noopener'
-              target='_blank'
-            >
-              <span className='icon-[simple-icons--github] mr-1 size-4' />
-            </a>
-            <a
-              className='items-center justify-center gap-1'
-              href='https://discord.gg/gwaKRAYG6t'
-              rel='noreferrer noopener'
-              target='_blank'
-            >
-              <span className='icon-[simple-icons--discord] mr-1 size-4' />
-            </a>
+            {links.map((link) => (
+              <a
+                className='flex-center gap-1'
+                href={link.url}
+                key={link.name}
+                rel='noreferrer noopener'
+                target='_blank'
+                title={link.name}
+              >
+                <span className={clsx(link.icon, 'mr-1 size-4')} />
+              </a>
+            ))}
           </div>
         </div>
 

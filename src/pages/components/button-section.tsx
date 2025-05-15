@@ -18,7 +18,7 @@ export function ButtonSection() {
         <h2 className='text-(--accent-9) flex items-center justify-center gap-2 text-center text-xl font-semibold lg:text-3xl'>
           Start to enjoy retro gaming now!
         </h2>
-        <div className='mt-0 flex flex-col items-center justify-center gap-4 py-8 lg:mt-6 lg:flex-row'>
+        <div className='mt-0 flex flex-col items-center justify-center gap-4 py-8 lg:mt-6 lg:flex-row lg:*:!w-48'>
           <Button asChild radius='small' size='4' type='button'>
             <Link reloadDocument to='/demo'>
               <span className='icon-[mdi--presentation-play]' />
@@ -29,7 +29,7 @@ export function ButtonSection() {
           <Button asChild radius='small' size='4' type='button' variant='outline'>
             <Link className='!border-2 !bg-white !shadow-none' reloadDocument to='/library'>
               <span className='icon-[mdi--bookshelf]' />
-              My library
+              Library
             </Link>
           </Button>
         </div>

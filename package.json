@@ -61,7 +61,7 @@
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.19.0",
     "@cloudflare/vite-plugin": "1.2.0",
-    "@cloudflare/workers-types": "4.20250514.0",
+    "@cloudflare/workers-types": "4.20250515.0",
     "@iconify/json": "2.2.338",
     "@iconify/tailwind4": "1.0.6",
     "@react-router/dev": "7.6.0",

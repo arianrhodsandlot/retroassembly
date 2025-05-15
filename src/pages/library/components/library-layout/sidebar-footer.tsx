@@ -1,6 +1,7 @@
 import { Button, DropdownMenu } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { useAtom } from 'jotai'
+import { links } from '@/constants/links.ts'
 import { settingsDialogOpenAtom, useAboutDialogOpen } from '../../atoms.ts'
 import { AboutDialog } from './about-dialog.tsx'
 import { LogoutDialog } from './logout-dialog.tsx'
@@ -34,25 +35,17 @@ export function SidebarFooter() {
               About
             </DropdownMenu.Item>
 
-            <DropdownMenu.Item asChild>
-              <a href='https://github.com/arianrhodsandlot/retro-assembly' rel='noopener noreferrer' target='_blank'>
-                <span className='icon-[mdi--github]' />
-                <span className='flex items-start gap-1'>
-                  GitHub
-                  <sub className='icon-[mdi--open-in-new]' />
-                </span>
-              </a>
-            </DropdownMenu.Item>
-
-            <DropdownMenu.Item asChild>
-              <a href='https://discord.gg/gwaKRAYG6t' rel='noopener noreferrer' target='_blank'>
-                <span className='icon-[mdi--discord]' />
-                <span className='flex items-start gap-1'>
-                  Discord
-                  <sub className='icon-[mdi--open-in-new]' />
-                </span>
-              </a>
-            </DropdownMenu.Item>
+            {links.map((link) => (
+              <DropdownMenu.Item asChild key={link.name}>
+                <a href={link.url} rel='noopener noreferrer' target='_blank'>
+                  <span className={link.icon} />
+                  <span className='flex items-start gap-1'>
+                    {link.name}
+                    <sub className='icon-[mdi--open-in-new]' />
+                  </span>
+                </a>
+              </DropdownMenu.Item>
+            ))}
 
             <DropdownMenu.Separator />
 

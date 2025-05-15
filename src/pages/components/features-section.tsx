@@ -7,7 +7,7 @@ import rewindImage from './rewind-image.png'
 const features = [
   {
     content: (
-      <div className='*:motion-preset-pulse-sm *:motion-duration-1000 flex size-full items-center justify-evenly bg-neutral-50'>
+      <div className='*:motion-preset-pulse-sm *:motion-duration-1000 flex size-full items-center justify-evenly bg-blue-200 bg-cover bg-center'>
         <span className='icon-[logos--chrome] size-14 ' />
         <span className='icon-[logos--microsoft-edge] motion-delay-100 size-14' />
         <span className='icon-[logos--safari] motion-delay-200 size-14' />
@@ -43,7 +43,7 @@ const features = [
   },
   {
     content: (
-      <div className='flex size-full items-center justify-center gap-2'>
+      <div className='flex size-full items-center justify-center gap-2 bg-neutral-100'>
         <span className='icon-[noto--laptop] size-16' />
         <span className='icon-[svg-spinners--bars-scale-middle] w-12 opacity-50' />
         <span className='icon-[noto--cloud] size-16' />
@@ -100,9 +100,9 @@ const features = [
         <DemoFocusIndicator />
       </div>
     ),
-    description: 'Navigate seamlessly using a joystick without needing a mouse or keyboard.',
+    description: 'Navigate seamlessly using a keyboard or a joystick without needing a mouse or keyboard.',
     icon: 'icon-[mdi--controller-round]',
-    title: 'Joystick-Friendly Navigation',
+    title: 'Keyboard/Joystick-Friendly Navigation',
   },
   {
     content: (
@@ -161,9 +161,7 @@ export function FeaturesSection() {
                     <span className={clsx(feature.icon, 'text-3xl lg:text-6xl')} />
                     {feature.title}
                   </h3>
-                  <p className='lg:pl-17 pl-10 text-lg font-light text-neutral-600 lg:text-2xl'>
-                    {feature.description}
-                  </p>
+                  <p className='lg:pl-17 pl-10 text-lg font-light text-neutral-600'>{feature.description}</p>
                 </div>
               </div>
 

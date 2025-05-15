@@ -32,7 +32,7 @@ export default function HistoryPage({ pageData }: { pageData: any }) {
                 <span className='icon-[mdi--bar-chart] text-black' />
                 Played
                 <span className='font-bold text-rose-700'>{pagination.total}</span>
-                games
+                {pagination.total === 1 ? 'game' : 'games'}
               </div>
             </div>
             <hr className='border-t-1 border-t-black/20' />

@@ -49,7 +49,8 @@ export default function LibraryPage({ pageData }: LibraryPageProps) {
                   <div className='flex items-center gap-2 text-zinc-400'>
                     <span className='icon-[mdi--bar-chart] text-black' />
                     <span className='text-(--accent-9) font-semibold'>{count}</span> games for{' '}
-                    <span className='text-(--accent-9) font-semibold'>{platformCount}</span> platforms in total
+                    <span className='text-(--accent-9) font-semibold'>{platformCount}</span>{' '}
+                    {platformCount === 1 ? 'platform' : 'platforms'} in total
                   </div>
                   <UploadSelectButton />
                 </div>

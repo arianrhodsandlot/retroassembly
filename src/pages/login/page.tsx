@@ -26,17 +26,17 @@ export function LoginPage({ pageData }: LoginPageProps) {
   if (redirectTo) {
     return (
       <>
-        <title>Login - RetroAssembly</title>
+        <title>Log in - RetroAssembly</title>
         <div className='bg-(--accent-9) min-h-dvh py-20'>
           <form className='w-3xl mx-auto rounded bg-white p-10 text-center'>
             <div className='flex items-center justify-center gap-4'>
               <Link className='flex items-center justify-center' reloadDocument to='/'>
                 <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
               </Link>
-              <h1 className='text-3xl font-semibold'>Sign in</h1>
+              <h1 className='text-3xl font-semibold'>Log in</h1>
             </div>
 
-            <div className='mt-4 text-black/40'>Sign in to build your own retro game collection</div>
+            <div className='mt-4 text-black/40'>Log in to build your own retro game collection</div>
 
             <div className='mt-4 border-t border-t-black/20 py-8'>
               <input name='redirect_to' type='hidden' value={redirectTo} />
@@ -49,12 +49,12 @@ export function LoginPage({ pageData }: LoginPageProps) {
                   }}
                 >
                   <span className='icon-[logos--google-icon]' />
-                  Login with Google
+                  Log in with Google
                 </Link>
               </Button>
             </div>
 
-            <div className='text-xs text-black/40'>
+            <div className='hidden text-xs text-black/40'>
               By clicking the button, you agree to our Terms of Service and Privacy Policy.
             </div>
           </form>

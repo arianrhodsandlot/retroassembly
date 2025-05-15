@@ -1,3 +1,5 @@
+import { links } from '@/constants/links.ts'
+
 export function CommunitySection() {
   return (
     <section className='bg-(--accent-9) border-y px-8 py-16 text-white'>
@@ -12,24 +14,18 @@ export function CommunitySection() {
           Your valuable feedback will greatly contribute to enhancing the user experience.
         </p>
         <div className='flex flex-col justify-center gap-4 space-x-8 px-8 font-semibold lg:flex-row lg:px-0'>
-          <a
-            className='inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-black transition-transform hover:-translate-y-px'
-            href='https://discord.com'
-            rel='noreferrer noopener'
-            target='_blank'
-          >
-            <span className='icon-[logos--discord-icon]' />
-            Join our Discord
-          </a>
-          <a
-            className='inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-black transition-transform hover:-translate-y-px'
-            href='https://github.com/arianrhodsandlot/retro-assembly'
-            rel='noreferrer noopener'
-            target='_blank'
-          >
-            <span className='icon-[logos--github-icon]' />
-            Visit our GitHub
-          </a>
+          {links.map((link) => (
+            <a
+              className='inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-black lg:w-56'
+              href={link.url}
+              key={link.name}
+              rel='noreferrer noopener'
+              target='_blank'
+            >
+              <span className={link.logo} />
+              {link.text}
+            </a>
+          ))}
         </div>
       </div>
     </section>

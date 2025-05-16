@@ -22,6 +22,9 @@ importers:
       '@hono/zod-validator':
         specifier: 0.5.0
         version: 0.5.0(hono@4.7.9)(zod@3.24.4)
+      '@microsoft/clarity':
+        specifier: 1.0.0
+        version: 1.0.0
       '@radix-ui/themes':
         specifier: 3.2.1
         version: 3.2.1(@types/react-dom@19.1.5(@types/react@19.1.4))(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1097,6 +1100,9 @@ packages:
 
   '@mdn/browser-compat-data@5.7.6':
     resolution: {integrity: sha512-7xdrMX0Wk7grrTZQwAoy1GkvPMFoizStUoL+VmtUkAxegbCCec+3FKwOM6yc/uGU5+BEczQHXAlWiqvM8JeENg==}
+
+  '@microsoft/clarity@1.0.0':
+    resolution: {integrity: sha512-2QY6SmXnqRj6dWhNY8NYCN3e53j4zCFebH4wGnNhdGV1mqAsQwql2fT0w8TISxCvwwfVp8idsWLIdrRHOms1PQ==}
 
   '@microsoft/tsdoc-config@0.17.1':
     resolution: {integrity: sha512-UtjIFe0C6oYgTnad4q1QP4qXwLhe6tIpNTRStJ2RZEPIkqQPREAwE5spzVxsdn9UaEMUqhh0AqSx3X4nWAKXWw==}
@@ -6536,6 +6542,8 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.0
 
   '@mdn/browser-compat-data@5.7.6': {}
+
+  '@microsoft/clarity@1.0.0': {}
 
   '@microsoft/tsdoc-config@0.17.1':
     dependencies:

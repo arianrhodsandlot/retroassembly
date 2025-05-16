@@ -29,7 +29,7 @@ export function HeroMain() {
         <Button asChild radius='small' size='4' type='button'>
           <Link reloadDocument to='/demo'>
             <span className='icon-[mdi--presentation-play]' />
-            View demo
+            Live demo
           </Link>
         </Button>
 

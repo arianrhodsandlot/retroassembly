@@ -1,4 +1,5 @@
 import '@/styles/index.ts'
+import '@/utils/global.ts'
 import { Theme } from '@radix-ui/themes'
 import { Provider } from 'jotai'
 import type { ReactNode } from 'react'

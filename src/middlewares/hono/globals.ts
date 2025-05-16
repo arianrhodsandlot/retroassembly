@@ -11,7 +11,6 @@ declare module 'hono' {
     currentUser: { id: string }
     db: ReturnType<typeof createDrizzle>
     preference: ResolvedPreference
-    redirected?: true
     storage: ReturnType<typeof createStorage>
     supabase?: ReturnType<typeof createSupabase>
   }

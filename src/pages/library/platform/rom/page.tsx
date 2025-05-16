@@ -22,7 +22,7 @@ import { RomBackground } from './components/rom-background.tsx'
 interface RomPageProps {
   pageData: {
     preference: ResolvedPreference
-    rom: Rom
+    rom: Rom | undefined
   }
 }
 

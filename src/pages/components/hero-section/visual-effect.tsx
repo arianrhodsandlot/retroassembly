@@ -1,5 +1,5 @@
 import { Icons } from './icons.tsx'
-import { Paralolas } from './parabola.tsx'
+import { Paralolas } from '../parabolas.tsx'
 
 export function VisualEffect() {
   return (

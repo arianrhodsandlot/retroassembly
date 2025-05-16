@@ -11,7 +11,7 @@ const images = [
   '/assets/screenshots/menu.jpeg',
 ]
 
-export function HeroImages() {
+export function ScreenshotSlider() {
   const [indicator, setIndicator] = useState({ current: 0, progress: 0 })
   const swiperRef = useRef<SwiperType>(null)
 

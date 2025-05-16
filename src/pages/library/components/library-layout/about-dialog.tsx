@@ -19,7 +19,7 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
           <div className='text-sm'>Your personal retro game collection cabinet in your browser</div>
           <div className='flex gap-2 text-xs opacity-70'>
             <div>
-              version:
+              Version:
               <a
                 className='ml-0.5 underline'
                 href={`https://github.com/arianrhodsandlot/retro-assembly/commit/${GIT_VERSION}`}
@@ -30,7 +30,7 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
               </a>
             </div>
             <div>
-              build time: <span className='ml-0.5'>{BUILD_TIME}</span>
+              Last updated: <span className='ml-0.5'>{BUILD_TIME}</span>
             </div>
           </div>
           <div className='mb-4 mt-1 flex items-center justify-center gap-2 text-xs'>

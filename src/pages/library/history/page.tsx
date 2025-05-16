@@ -1,5 +1,5 @@
-import { HydrationBoundary } from 'jotai-ssr'
 import { preferenceAtom } from '@/pages/atoms.ts'
+import { HydrationBoundaries } from '@/pages/components/hydration-boundaries.tsx'
 import { romsAtom } from '../atoms.ts'
 import { GameList } from '../components/game-list/game-list.tsx'
 import LibraryLayout from '../components/library-layout/library-layout.tsx'
@@ -14,14 +14,11 @@ export default function HistoryPage({ pageData }: { pageData: any }) {
   }
 
   return (
-    <HydrationBoundary
-      hydrateAtoms={getHydrateAtoms({
-        override: [
-          [preferenceAtom, preference],
-          [romsAtom, roms],
-        ],
-      })}
-      options={{ enableReHydrate: true }}
+    <HydrationBoundaries
+      hydrateAtoms={getHydrateAtoms([
+        [preferenceAtom, preference],
+        [romsAtom, roms],
+      ])}
     >
       <LibraryLayout title='History'>
         <MainScrollArea className='z-1 relative flex flex-1' size='2'>
@@ -40,6 +37,6 @@ export default function HistoryPage({ pageData }: { pageData: any }) {
           </div>
         </MainScrollArea>
       </LibraryLayout>
-    </HydrationBoundary>
+    </HydrationBoundaries>
   )
 }

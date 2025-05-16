@@ -1,9 +1,9 @@
 import { Portal, Theme } from '@radix-ui/themes'
-import { HydrationBoundary } from 'jotai-ssr'
 import { platformMap } from '@/constants/platform.ts'
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import type { Rom } from '@/controllers/get-roms.ts'
 import { preferenceAtom } from '@/pages/atoms.ts'
+import { HydrationBoundaries } from '@/pages/components/hydration-boundaries.tsx'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { platformAtom, romAtom } from '../../atoms.ts'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
@@ -35,19 +35,17 @@ export default function RomPage({ pageData }: RomPageProps) {
   const goodcodes = getRomGoodcodes(rom)
   const { launchboxGame } = rom
 
-  const hydrateAtoms = getHydrateAtoms({
-    override: [
-      [preferenceAtom, preference],
-      [platformAtom, platformMap[rom.platform]],
-      [romAtom, rom],
-    ],
-  })
-
   // @ts-expect-error desc is for demo roms
   const overview = launchboxGame?.overview || rom.desc
 
   return (
-    <HydrationBoundary hydrateAtoms={hydrateAtoms} options={{ enableReHydrate: true }}>
+    <HydrationBoundaries
+      hydrateAtoms={getHydrateAtoms([
+        [preferenceAtom, preference],
+        [platformAtom, platformMap[rom.platform]],
+        [romAtom, rom],
+      ])}
+    >
       <LibraryLayout title={goodcodes.rom}>
         <MainScrollArea className='z-1 relative flex flex-1' size='2'>
           <PageBreadcrumb />
@@ -76,7 +74,7 @@ export default function RomPage({ pageData }: RomPageProps) {
                 {launchboxGame?.wikipediaUrl ? (
                   <div>
                     <a
-                      className='inline-flex items-center gap-2 text-(--accent-9) underline'
+                      className='text-(--accent-9) inline-flex items-center gap-2 underline'
                       href={launchboxGame.wikipediaUrl}
                       rel='noreferrer'
                       target='_blank'
@@ -99,6 +97,6 @@ export default function RomPage({ pageData }: RomPageProps) {
           <PageHooks />
         </RomAtomGuard>
       </LibraryLayout>
-    </HydrationBoundary>
+    </HydrationBoundaries>
   )
 }

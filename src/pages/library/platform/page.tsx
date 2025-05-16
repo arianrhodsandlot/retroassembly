@@ -1,9 +1,9 @@
-import { HydrationBoundary } from 'jotai-ssr'
 import { platformMap } from '@/constants/platform.ts'
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import type { PlatformInfo } from '@/controllers/get-platform-info.ts'
 import type { Roms } from '@/controllers/get-roms.ts'
 import { preferenceAtom } from '@/pages/atoms.ts'
+import { HydrationBoundaries } from '@/pages/components/hydration-boundaries.tsx'
 import { platformAtom, romsAtom } from '../atoms.ts'
 import { DeviceInfo } from '../components/device-info/device-info.tsx'
 import { GameList } from '../components/game-list/game-list.tsx'
@@ -39,15 +39,12 @@ export default function PlatformPage({ pageData }: PlatformPageProps) {
   }
 
   return (
-    <HydrationBoundary
-      hydrateAtoms={getHydrateAtoms({
-        override: [
-          [preferenceAtom, preference],
-          [platformAtom, platformMap[platform]],
-          [romsAtom, roms],
-        ],
-      })}
-      options={{ enableReHydrate: true }}
+    <HydrationBoundaries
+      hydrateAtoms={getHydrateAtoms([
+        [preferenceAtom, preference],
+        [platformAtom, platformMap[platform]],
+        [romsAtom, roms],
+      ])}
     >
       <LibraryLayout title={platformMap[platform].displayName}>
         <MainScrollArea className='z-1 relative flex flex-1' size='2'>
@@ -70,6 +67,6 @@ export default function PlatformPage({ pageData }: PlatformPageProps) {
         </MainScrollArea>
         <PlatformBackground platform={platform} />
       </LibraryLayout>
-    </HydrationBoundary>
+    </HydrationBoundaries>
   )
 }

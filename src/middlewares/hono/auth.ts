@@ -4,7 +4,7 @@ export const authMiddleware = createMiddleware(async (c, next) => {
   const { currentUser } = c.var
 
   const { origin, pathname, search } = new URL(c.req.raw.url)
-  const needAuth = pathname === '/library' || pathname.startsWith('/library/')
+  const needAuth = ['/library', '/library.data'].includes(pathname) || pathname.startsWith('/library/')
   if (!needAuth || currentUser) {
     await next()
     return

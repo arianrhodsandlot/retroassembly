@@ -1,7 +1,6 @@
 import '@/styles/index.ts'
 import '@/utils/global.ts'
 import { Theme } from '@radix-ui/themes'
-import { Provider } from 'jotai'
 import type { ReactNode } from 'react'
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router'
 import type { Route } from './+types/root'
@@ -16,9 +15,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <Links />
       </head>
       <body>
-        <Provider>
-          <Theme accentColor='red'>{children}</Theme>
-        </Provider>
+        <Theme accentColor='red'>{children}</Theme>
         <ScrollRestoration />
         <Scripts />
       </body>

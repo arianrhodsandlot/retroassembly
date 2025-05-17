@@ -3,7 +3,7 @@ import { platformMap } from '@/constants/platform.ts'
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import type { Rom } from '@/controllers/get-roms.ts'
 import { preferenceAtom } from '@/pages/atoms.ts'
-import { HydrationBoundaries } from '@/pages/components/hydration-boundaries.tsx'
+import { AtomHydrationBoundary } from '@/pages/components/atom-hydration-boundary.tsx'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { platformAtom, romAtom } from '../../atoms.ts'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
@@ -39,7 +39,7 @@ export default function RomPage({ pageData }: RomPageProps) {
   const overview = launchboxGame?.overview || rom.desc
 
   return (
-    <HydrationBoundaries
+    <AtomHydrationBoundary
       hydrateAtoms={getHydrateAtoms([
         [preferenceAtom, preference],
         [platformAtom, platformMap[rom.platform]],
@@ -97,6 +97,6 @@ export default function RomPage({ pageData }: RomPageProps) {
           <PageHooks />
         </RomAtomGuard>
       </LibraryLayout>
-    </HydrationBoundaries>
+    </AtomHydrationBoundary>
   )
 }

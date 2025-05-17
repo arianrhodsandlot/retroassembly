@@ -1,7 +1,7 @@
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import type { Roms } from '@/controllers/get-roms.ts'
 import { preferenceAtom } from '../atoms.ts'
-import { HydrationBoundaries } from '../components/hydration-boundaries.tsx'
+import { AtomHydrationBoundary } from '../components/atom-hydration-boundary.tsx'
 import { romsAtom } from './atoms.ts'
 import { GameList } from './components/game-list/game-list.tsx'
 import LibraryLayout from './components/library-layout/library-layout.tsx'
@@ -30,7 +30,7 @@ export default function LibraryPage({ pageData }: LibraryPageProps) {
   }
 
   return (
-    <HydrationBoundaries
+    <AtomHydrationBoundary
       hydrateAtoms={getHydrateAtoms([
         [preferenceAtom, preference],
         [romsAtom, roms],
@@ -58,6 +58,6 @@ export default function LibraryPage({ pageData }: LibraryPageProps) {
           </div>
         </MainScrollArea>
       </LibraryLayout>
-    </HydrationBoundaries>
+    </AtomHydrationBoundary>
   )
 }

@@ -1,5 +1,5 @@
 import { preferenceAtom } from '@/pages/atoms.ts'
-import { HydrationBoundaries } from '@/pages/components/hydration-boundaries.tsx'
+import { AtomHydrationBoundary } from '@/pages/components/atom-hydration-boundary.tsx'
 import { romsAtom } from '../atoms.ts'
 import { GameList } from '../components/game-list/game-list.tsx'
 import LibraryLayout from '../components/library-layout/library-layout.tsx'
@@ -14,7 +14,7 @@ export default function HistoryPage({ pageData }: { pageData: any }) {
   }
 
   return (
-    <HydrationBoundaries
+    <AtomHydrationBoundary
       hydrateAtoms={getHydrateAtoms([
         [preferenceAtom, preference],
         [romsAtom, roms],
@@ -37,6 +37,6 @@ export default function HistoryPage({ pageData }: { pageData: any }) {
           </div>
         </MainScrollArea>
       </LibraryLayout>
-    </HydrationBoundaries>
+    </AtomHydrationBoundary>
   )
 }

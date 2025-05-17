@@ -3,7 +3,7 @@ import type { ResolvedPreference } from '@/constants/preference.ts'
 import type { PlatformInfo } from '@/controllers/get-platform-info.ts'
 import type { Roms } from '@/controllers/get-roms.ts'
 import { preferenceAtom } from '@/pages/atoms.ts'
-import { HydrationBoundaries } from '@/pages/components/hydration-boundaries.tsx'
+import { AtomHydrationBoundary } from '@/pages/components/atom-hydration-boundary.tsx'
 import { platformAtom, romsAtom } from '../atoms.ts'
 import { DeviceInfo } from '../components/device-info/device-info.tsx'
 import { GameList } from '../components/game-list/game-list.tsx'
@@ -39,7 +39,7 @@ export default function PlatformPage({ pageData }: PlatformPageProps) {
   }
 
   return (
-    <HydrationBoundaries
+    <AtomHydrationBoundary
       hydrateAtoms={getHydrateAtoms([
         [preferenceAtom, preference],
         [platformAtom, platformMap[platform]],
@@ -67,6 +67,6 @@ export default function PlatformPage({ pageData }: PlatformPageProps) {
         </MainScrollArea>
         <PlatformBackground platform={platform} />
       </LibraryLayout>
-    </HydrationBoundaries>
+    </AtomHydrationBoundary>
   )
 }

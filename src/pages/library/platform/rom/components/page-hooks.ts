@@ -1,13 +1,11 @@
 import { useDebouncedCallback, useEventListener } from '@react-hookz/web'
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
+import { useNavigation } from 'react-router'
 import { useEmulator } from '../hooks/use-emulator.ts'
-import { useMouseIdle } from '../hooks/use-mouse-idle.ts'
 
 export function PageHooks(): undefined {
-  const { emulator } = useEmulator()
-  const idle = useMouseIdle()
-
-  const emulatorStatus = emulator?.getStatus()
+  const navigation = useNavigation()
+  const { emulator, exit } = useEmulator()
 
   const updateEmulatorSizeLazy = useDebouncedCallback(
     () => {
@@ -17,12 +15,12 @@ export function PageHooks(): undefined {
     100,
   )
 
-  useEffect(() => {
-    if (emulator && emulatorStatus !== 'initial') {
-      emulator.getCanvas().style.cursor = idle ? 'none' : 'default'
-    }
-  }, [idle, emulator, emulatorStatus])
-
   useEventListener(globalThis, 'resize', updateEmulatorSizeLazy)
   useEventListener(globalThis.screen?.orientation, 'change', updateEmulatorSizeLazy)
+
+  useLayoutEffect(() => {
+    if (navigation.state === 'loading') {
+      exit()
+    }
+  }, [exit, navigation.state])
 }

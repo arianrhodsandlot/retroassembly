@@ -18,7 +18,7 @@ export function FixedHeader({ currentUser }: { currentUser?: any }) {
         {links.map((link) => (
           <a
             className='flex items-center '
-            href='https://github.com/arianrhodsandlot/retro-assembly'
+            href={link.url}
             key={link.name}
             rel='noreferrer noopener'
             target='_blank'

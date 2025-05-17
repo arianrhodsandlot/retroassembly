@@ -26,10 +26,11 @@ const defaultRetroarchConfig = {
   rewind_granularity: 2,
 }
 
-const defaultEmulatorStyle = {
+const defaultEmulatorStyle: Partial<CSSStyleDeclaration> = {
   backgroundPosition: ['left center', 'right center'].join(','),
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'contain',
+  cursor: 'none',
   opacity: '0',
   transition: 'opacity .1s',
 }

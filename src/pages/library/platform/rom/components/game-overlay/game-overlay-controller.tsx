@@ -1,41 +1,51 @@
-import { motion } from 'motion/react'
+import { AnimatePresence, motion } from 'motion/react'
+import { useEmulatorLaunched } from '@/pages/library/atoms.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
-import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 import { useMouseIdle } from '../../hooks/use-mouse-idle.ts'
+import { GameInputMessage } from './game-input-message.tsx'
 
 export function GameOverlayController() {
   const rom = useRom()
   if (!rom) {
     throw new Error('No rom found')
   }
-  const { emulator } = useEmulator()
-  const idle = useMouseIdle()
+  const idle = useMouseIdle(3000)
   const { toggle } = useGameOverlay()
+  const [launched] = useEmulatorLaunched()
 
   function handleClick() {
     toggle()
   }
 
-  if (idle || emulator?.getStatus() !== 'running') {
-    return
-  }
+  const show = !idle && launched
 
   return (
-    <motion.div
-      animate={{ opacity: 1, scale: 1 }}
-      className='game-overlay bg-linear-to-b pointer-events-auto absolute inset-0 z-10 flex h-dvh w-screen text-white'
-      exit={{ opacity: 0, scale: 1.1 }}
-      initial={{ opacity: 0, scale: 1.1 }}
-      transition={{ duration: 0.2 }}
-    >
-      <button
-        className='text-(--accent-9) absolute bottom-12 right-12 flex size-16 items-center justify-center rounded-full bg-white text-4xl'
-        onClick={handleClick}
-        type='button'
-      >
-        <span className='icon-[mdi--pause]' />
-      </button>
-    </motion.div>
+    <AnimatePresence>
+      {show ? (
+        <motion.div
+          animate={{ opacity: 1 }}
+          className='flex flex-col justify-end'
+          exit={{ opacity: 0 }}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <div className='bg-linear-to-b h-20 from-transparent to-black/40' />
+          <div className='bg-linear-to-b flex h-20 w-full items-center from-black/40 to-black/70 px-4'>
+            <button
+              className='text-(--accent-9) flex size-12 items-center justify-center rounded-full bg-white text-2xl'
+              onClick={handleClick}
+              title='Pause'
+              type='button'
+            >
+              <span className='icon-[mdi--pause]' />
+            </button>
+            <div className='flex flex-1 items-center justify-end gap-4'>
+              <GameInputMessage />
+            </div>
+          </div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
   )
 }

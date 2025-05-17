@@ -125,7 +125,7 @@ export const defaultPreference: ResolvedPreference = {
   input: {
     gamepadMappings: {},
     keyboardMapping: {
-      $pause: 'esc',
+      $pause: 'escape',
       input_hold_fast_forward: 'space',
       input_player1_a: 'x',
       input_player1_b: 'z',

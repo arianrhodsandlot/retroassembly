@@ -73,11 +73,11 @@ export function useEmulator() {
   const {
     data: emulator,
     error,
-    isLoading,
+    isValidating,
     mutate: prepare,
   } = useSWRImmutable(shouldPrepare ? options : false, () => Nostalgist.prepare(options))
 
-  const isPreparing = !shouldPrepare || isLoading
+  const isPreparing = !shouldPrepare || isValidating
 
   async function launch() {
     if (!emulator || !rom) {

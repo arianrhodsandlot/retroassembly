@@ -1,4 +1,5 @@
 import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
+import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 import { useGameStates } from '../../hooks/use-game-states.ts'
@@ -23,6 +24,7 @@ export function GameOverlayButtons() {
     setIsPending(true)
     try {
       await saveState()
+      focus('.game-overlay button')
     } finally {
       setIsPending(false)
     }
@@ -46,7 +48,7 @@ export function GameOverlayButtons() {
 
   return (
     <>
-      <GameOverlayButton onClick={handleClickResume}>
+      <GameOverlayButton dataSnLeft='.game-overlay-buttons button:last-child' onClick={handleClickResume}>
         <span className='icon-[material-symbols--resume] size-5' />
         Resume
       </GameOverlayButton>
@@ -67,7 +69,11 @@ export function GameOverlayButtons() {
         Exit
       </GameOverlayButton>
 
-      <GameOverlayButton disabled={isDemo} onClick={handleClickSaveExit}>
+      <GameOverlayButton
+        dataSnRight='.game-overlay-buttons button:first-child'
+        disabled={isDemo}
+        onClick={handleClickSaveExit}
+      >
         <span className='icon-[mdi--location-exit] size-5' />
         Save & Exit
       </GameOverlayButton>

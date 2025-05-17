@@ -11,14 +11,14 @@ export function GameOverlayController() {
     throw new Error('No rom found')
   }
   const idle = useMouseIdle(3000)
-  const { toggle } = useGameOverlay()
+  const { show: showGameOverlay, toggle } = useGameOverlay()
   const [launched] = useEmulatorLaunched()
 
   function handleClick() {
     toggle()
   }
 
-  const show = !idle && launched
+  const show = !idle && launched && !showGameOverlay
 
   return (
     <AnimatePresence>

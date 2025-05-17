@@ -2,14 +2,14 @@ import ky from 'ky'
 import useSWRImmutable from 'swr/immutable'
 import useSWRMutation from 'swr/mutation'
 import type { States } from '@/controllers/get-states.ts'
-import { useShowGameOverlay } from '@/pages/library/atoms.ts'
+import { useShowGameOverlayContent } from '@/pages/library/atoms.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { useEmulator } from './use-emulator.ts'
 
 export function useGameStates() {
   const rom = useRom()
   const { core, emulator } = useEmulator()
-  const [showGameOverlay] = useShowGameOverlay()
+  const [showGameOverlay] = useShowGameOverlayContent()
 
   const {
     data: states,

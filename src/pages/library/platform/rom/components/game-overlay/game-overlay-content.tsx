@@ -62,7 +62,7 @@ export function GameOverlayContent() {
       {show ? (
         <motion.div
           animate={{ opacity: 1, scale: 1 }}
-          className='flex flex-col bg-black/70'
+          className='game-overlay flex flex-col bg-black/70'
           exit={{ opacity: 0, scale: 1.1 }}
           initial={{ opacity: 0, scale: 1.1 }}
           onAnimationComplete={handleAnimationComplete}
@@ -79,7 +79,7 @@ export function GameOverlayContent() {
               </div>
               <div className='text-3xl font-semibold'>{goodcodes.rom}</div>
             </div>
-            <div className='flex gap-8'>
+            <div className='game-overlay-buttons flex gap-8'>
               <GameOverlayButtons />
             </div>
             <GameStates />

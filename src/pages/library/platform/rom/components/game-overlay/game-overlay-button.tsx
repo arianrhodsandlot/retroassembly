@@ -3,11 +3,21 @@ import { useToggle } from '@react-hookz/web'
 import { clsx } from 'clsx'
 import type { MouseEvent, ReactNode } from 'react'
 
+interface GameOverlayButtonProps {
+  children: Iterable<ReactNode>
+  dataSnLeft?: string
+  dataSnRight?: string
+  disabled?: boolean
+  onClick: ButtonProps['onClick']
+}
+
 export function GameOverlayButton({
   children,
+  dataSnLeft,
+  dataSnRight,
   disabled = false,
   onClick,
-}: { children: Iterable<ReactNode>; disabled?: boolean; onClick: ButtonProps['onClick'] }) {
+}: GameOverlayButtonProps) {
   const [isLoading, toggleLoading] = useToggle()
 
   async function handleClick(event: MouseEvent<HTMLButtonElement>) {
@@ -34,6 +44,8 @@ export function GameOverlayButton({
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
         borderRadius: '24px',
       })}
+      data-sn-left={dataSnLeft}
+      data-sn-right={dataSnRight}
       disabled={disabled}
       onClick={handleClick}
       radius='full'

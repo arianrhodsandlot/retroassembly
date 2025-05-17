@@ -22,9 +22,9 @@ export function useFocusIndicatorStyle() {
   return useAtom(focusIndicatorStyleAtom)
 }
 
-export const showGameOverlayAtom = atomWithReset(false)
-export function useShowGameOverlay() {
-  return useAtom(showGameOverlayAtom)
+export const showGameOverlayContentAtom = atomWithReset(false)
+export function useShowGameOverlayContent() {
+  return useAtom(showGameOverlayContentAtom)
 }
 
 export const isGameOverlayPendingAtom = atomWithReset(false)

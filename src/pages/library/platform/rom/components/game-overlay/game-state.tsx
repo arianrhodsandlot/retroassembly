@@ -1,6 +1,7 @@
 import { Badge } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import ky from 'ky'
+import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 import { humanizeDate } from '@/utils/misc.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
@@ -9,6 +10,7 @@ import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 export function GameState({ state }) {
   const { setIsPending, toggle } = useGameOverlay()
   const { emulator } = useEmulator()
+  const [loaded, setLoaded] = useState(false)
 
   const { isMutating, trigger: loadState } = useSWRMutation(
     `/api/v1/state/${state.id}/content`,
@@ -31,6 +33,10 @@ export function GameState({ state }) {
     setIsPending(false)
   }
 
+  function handleLoad() {
+    setLoaded(true)
+  }
+
   return (
     <button
       className={clsx(
@@ -46,10 +52,15 @@ export function GameState({ state }) {
       onClick={handleClick}
       type='button'
     >
-      <div className='relative flex-1 bg-black'>
+      <div className={clsx('relative flex-1 bg-black transition-colors')}>
         <img
           alt={state.id}
-          className={clsx('absolute size-full object-contain', { 'opacity-80': isMutating })}
+          className={clsx('absolute size-full object-contain transition-opacity', {
+            'opacity-0': !loaded,
+            'opacity-80': isMutating,
+          })}
+          onError={handleLoad}
+          onLoad={handleLoad}
           src={`/api/v1/state/${state.id}/thumbnail`}
         />
 
@@ -61,7 +72,7 @@ export function GameState({ state }) {
       </div>
       <div className='flex h-5 items-center justify-center text-xs text-zinc-600'>
         {isMutating ? (
-          <span className='icon-[svg-spinners--180-ring] block size-3 text-(--accent-9)' />
+          <span className='icon-[svg-spinners--180-ring] text-(--accent-9) block size-3' />
         ) : (
           <div>
             Saved at <Badge>{humanizeDate(state.createdAt)}</Badge>

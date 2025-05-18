@@ -120,7 +120,7 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
             <>
               <Callout.Root className={clsx({ hidden: status !== 'initial' })} size='1'>
                 <Callout.Icon>
-                  <span className='icon-[mdi--information]' />
+                  <span className='icon-[mdi--information] mt-1.5' />
                 </Callout.Icon>
                 <Callout.Text className='text-xs'>
                   You are uploading ROMs for{' '}

@@ -5,6 +5,7 @@ import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
 import { formatISO } from 'date-fns'
 import { defineConfig } from 'vite'
+import devtoolsJson from 'vite-plugin-devtools-json'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 const { stdout: revision } = await promisify(exec)('git rev-parse HEAD')
@@ -23,6 +24,7 @@ export default defineConfig({
     tailwindcss(),
     reactRouter(),
     tsconfigPaths(),
+    devtoolsJson(),
   ],
   server: {
     hmr: {

@@ -24,14 +24,14 @@ export function DeviceInfo({ platform, platformInfo }: { platform: string; platf
   }
 
   return (
-    <div className='flex'>
+    <div className='flex flex-col lg:flex-row'>
       <div className='flex flex-col gap-8 px-4'>
         <h1>
-          <img alt={platformInfo.name} className='h-20 w-auto px-8 pt-4' src={banner} />
+          <img alt={platformInfo.name} className='h-20 w-auto lg:px-8 lg:pt-4' src={banner} />
         </h1>
 
         <div className='rounded bg-zinc-600/10 px-8 py-4'>
-          <div className='flex gap-8 *:min-w-36'>
+          <div className='flex flex-col gap-8 lg:flex-row lg:*:min-w-36'>
             <div>
               <div className='flex h-6 items-center gap-2 font-semibold'>
                 <span className='icon-[mdi--calendar]' />
@@ -77,7 +77,7 @@ export function DeviceInfo({ platform, platformInfo }: { platform: string; platf
         {platformInfo.notes ? <DeviceNotes key={platform} notes={platformInfo.notes} /> : null}
       </div>
 
-      <div className='w-lg shrink-0 pt-20'>
+      <div className='w-lg hidden shrink-0 pt-20 lg:block'>
         <img
           alt={platformInfo.name}
           className='motion-preset-oscillate motion-duration-2400 mx-auto aspect-video w-4/5 object-contain object-center drop-shadow-2xl [--motion-loop-translate-y:8px]'

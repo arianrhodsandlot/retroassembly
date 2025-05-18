@@ -22,7 +22,7 @@ export function GameEntry({ rom }) {
   return (
     <GameEntryContextMenu rom={rom}>
       <NavigatableLink
-        className='game-entry flex flex-col items-center justify-center gap-1 p-1'
+        className='game-entry flex flex-col items-center justify-center gap-1 lg:p-1'
         title={rom.fileName}
         to={url}
       >

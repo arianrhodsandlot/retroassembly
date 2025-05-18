@@ -39,18 +39,21 @@ export default function RomPage({ pageData }: RomPageProps) {
       <LibraryLayout title={goodcodes.rom}>
         <MainScrollArea className='z-1 relative flex flex-1' size='2'>
           <PageBreadcrumb />
-          <div className='flex min-h-full w-full gap-4 p-4'>
+          <div className='flex min-h-full w-full flex-col gap-4 p-4 lg:flex-row'>
             <div>
               <GameCover rom={rom} />
             </div>
 
             <div className='flex flex-1 flex-col gap-8'>
-              <h1 className='px-8 pt-4 text-3xl font-bold'>{goodcodes.rom}</h1>
-              <GameInfo gameInfo={launchboxGame} rom={rom} />
-              <div className='px-4'>
+              <h1 className='pt-4 text-3xl font-bold lg:px-8'>{goodcodes.rom}</h1>
+              <div className='lg:hidden'>
                 <LaunchButton />
               </div>
-              <div className='flex flex-col gap-4 pl-4 pr-64'>
+              <GameInfo gameInfo={launchboxGame} rom={rom} />
+              <div className='hidden px-4 lg:block'>
+                <LaunchButton />
+              </div>
+              <div className='flex flex-col gap-4 lg:pl-4 lg:pr-64'>
                 <GameMedias />
 
                 {overview ? (

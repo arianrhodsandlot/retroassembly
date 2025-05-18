@@ -11,7 +11,7 @@ export type RomsPagination = GetRomsReturning['pagination']
 export async function getRoms({
   id,
   page = 1,
-  pageSize = 50,
+  pageSize = 100,
   platform,
 }: { id?: string; page?: number; pageSize?: number; platform?: string } = {}) {
   const { currentUser, db, preference } = getContext().var

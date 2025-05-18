@@ -44,7 +44,7 @@ export function PageBreadcrumb() {
   }
 
   return (
-    <div className='mt-4 flex items-center gap-2 px-8'>
+    <div className='mt-4 flex max-w-full items-center gap-2 overflow-x-auto px-4 py-1 lg:px-8'>
       {links.map(({ icon, text, url }, i) =>
         i === links.length - 1 ? (
           <Button asChild className='!bg-transparent !text-black/60' key={url} variant='ghost'>

@@ -29,7 +29,7 @@ export function DeviceNotes({ notes }: { notes: string }) {
     <div>
       <div
         className={clsx(
-          'prose-neutral prose  max-w-none whitespace-pre-line px-8 text-justify text-sm font-[Roboto_Slab_Variable] leading-relaxed',
+          'prose-neutral prose  max-w-none whitespace-pre-line text-justify text-sm font-[Roboto_Slab_Variable] leading-relaxed lg:px-8',
           { 'line-clamp-5': !expanded },
         )}
         ref={ref}
@@ -37,7 +37,7 @@ export function DeviceNotes({ notes }: { notes: string }) {
         {notes}
       </div>
 
-      <div className='relative mt-1 flex justify-end px-6'>
+      <div className='relative mt-1 flex justify-end lg:px-6'>
         <div className='absolute -mt-1.5'>
           {showButton ? (
             <Button data-sn-enabled onClick={() => toggleExpanded()} size='1' type='button' variant='ghost'>

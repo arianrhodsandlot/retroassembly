@@ -31,18 +31,18 @@ export default function LibraryPage({ pageData }: LibraryPageProps) {
       <LibraryLayout title='Library'>
         <MainScrollArea className='z-1 relative flex flex-1' size='2'>
           <div className='flex min-h-full w-full flex-col gap-5 p-4'>
-            <div className='relative flex justify-between px-4 pt-4'>
+            <div className='relative flex justify-between pt-4 lg:px-4'>
               <div>
                 <h1 className='text-5xl font-semibold'>Library</h1>
                 {isDemo ? (
-                  <div className='mt-4 flex items-center gap-1 text-sm text-neutral-500'>
-                    <span className='icon-[mdi--information-outline]' />
+                  <div className='mt-4 flex items-start gap-1 text-sm text-neutral-500 lg:items-center'>
+                    <span className='icon-[mdi--information-outline] mt-1 shrink-0 lg:mt-0' />
                     These free (legal) games are all picked from the retrobrew project for the purpose of demonstration.
                   </div>
                 ) : null}
               </div>
               {isDemo ? null : (
-                <div className='flex items-center justify-end gap-4 pr-4'>
+                <div className='hidden items-center justify-end gap-4 pr-4 lg:flex '>
                   <div className='flex items-center gap-2 text-zinc-400'>
                     <span className='icon-[mdi--bar-chart] text-black' />
                     <span className='text-(--accent-9) font-semibold'>{pagination.total}</span> games for{' '}

@@ -51,15 +51,15 @@ export function LaunchButton() {
 
   return (
     <button
-      className={clsx('launch-button', { 'opacity-50': isPreparing })}
+      className={clsx('launch-button block w-full lg:w-auto', { 'opacity-50': isPreparing })}
       data-sn-enabled
       disabled={isPreparing}
       onClick={handleClick}
       ref={ref}
       type='button'
     >
-      <Button asChild className='!h-16' radius='small' size='4' type='button'>
-        <div>
+      <Button asChild radius='small' size='4' type='button'>
+        <div className='!h-16 !w-full'>
           {isPreparing ? (
             <>
               <span className='icon-[mdi--loading] animate-spin' />
@@ -75,7 +75,7 @@ export function LaunchButton() {
           {isWaitingForPressOrClick ? (
             <>
               <span className='icon-[mdi--play] motion-preset-pulse-lg motion-duration-1500' />
-              <span className='w-52 text-2xl font-semibold'>Start</span>
+              <span className=' w-52 text-2xl font-semibold'>Start</span>
             </>
           ) : null}
         </div>

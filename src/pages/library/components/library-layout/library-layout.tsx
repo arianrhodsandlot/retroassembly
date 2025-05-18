@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import { useIsDemo } from '../../hooks/use-demo.ts'
 import { PendingMask } from '../pending-mask.tsx'
 import { FocusIndicator } from './focus-indicator.tsx'
+import { LibraryLayoutHeader } from './library-layout-header.tsx'
 import { SidebarContainer } from './sidebar-container.tsx'
 import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
@@ -24,7 +25,9 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
   return (
     <>
       <title>{getPostfixedTitle(title)}</title>
-      <div className='library-layout bg-(--accent-9) flex h-dvh'>
+      <div className='library-layout bg-(--accent-9) flex h-screen flex-col lg:flex-row'>
+        <LibraryLayoutHeader />
+
         <SidebarContainer>
           <div className='flex items-center justify-between px-4 pb-4'>
             <Link className='flex items-center gap-2 font-bold' reloadDocument to='/'>
@@ -42,7 +45,7 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
           )}
         </SidebarContainer>
 
-        <div className='flex min-w-0 flex-1 flex-col gap-4 p-4'>
+        <div className='flex min-h-0 min-w-0 flex-1 flex-col gap-4 p-2 pt-0 lg:p-4'>
           <main className='relative flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
             {children}
           </main>

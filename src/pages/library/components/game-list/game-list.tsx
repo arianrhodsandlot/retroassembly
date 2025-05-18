@@ -31,10 +31,12 @@ export function GameList({ pagination }: { pagination: RomsPagination }) {
   const size = sizeMap[preference.ui.libraryCoverSize]
 
   return (
-    <div className='border-t-1 flex flex-col gap-4 border border-transparent border-t-black/20 pt-4'>
+    <div className='border-t-1 flex flex-col gap-4 border border-transparent border-t-black/20 pt-4 [--min-width:150px] lg:[--min-width:100%]'>
       <div
         className='grid'
-        style={{ gridTemplateColumns: `repeat(auto-fill,minmax(calc(var(--spacing)*${size}),1fr))` }}
+        style={{
+          gridTemplateColumns: `repeat(auto-fill,minmax(min(calc(var(--spacing)*${size}),var(--min-width)),1fr))`,
+        }}
       >
         {roms.map((rom) => (
           <GameEntry key={rom.id} rom={rom} />

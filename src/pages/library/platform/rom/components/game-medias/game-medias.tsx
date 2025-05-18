@@ -24,14 +24,14 @@ export function GameMedias() {
 
   if (video || title || snap) {
     return (
-      <ScrollArea className='rounded bg-zinc-600/10 p-4' scrollbars='both' size='2'>
-        <div className='flex gap-4'>
+      <ScrollArea className='rounded lg:bg-zinc-600/10 lg:p-4' scrollbars='both' size='2'>
+        <div className='flex flex-col gap-4 lg:flex-row lg:p-0'>
           {video ? <YouTubeEmbed className='h-48' url={video} /> : null}
           {images.map((image) => (
             <a href={image} key={image} rel='noreferrer noopener' target='_blank'>
               <img
                 alt={rom.goodcodes.rom}
-                className='h-48 w-auto'
+                className='h-auto w-full lg:h-48 lg:w-auto'
                 loading='lazy'
                 onError={() => setInvalidMedias((medias) => [...medias, image])}
                 src={image}

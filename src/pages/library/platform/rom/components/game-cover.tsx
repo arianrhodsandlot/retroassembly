@@ -8,7 +8,7 @@ export function GameCover({ rom }) {
   }
 
   return cover ? (
-    <a className='sticky top-4 block w-64' href={cover.src} rel='noreferrer noopener' target='_blank'>
+    <a className='top-4 block w-full lg:sticky lg:w-64' href={cover.src} rel='noreferrer noopener' target='_blank'>
       <img alt={rom.name} className='block h-auto w-full' src={cover.src} />
     </a>
   ) : null

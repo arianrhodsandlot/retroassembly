@@ -1,10 +1,13 @@
 import { Portal, Theme } from '@radix-ui/themes'
+import clsx from 'clsx'
 import { type ReactNode, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router'
 import { useFocusIndicator } from '../../hooks/use-focus-indicator.ts'
+import { useGamepads } from '../../hooks/use-gamepads.ts'
 import { useSpatialNavigation } from '../../hooks/use-spatial-navigation.ts'
 
 export function FocusIndicator({ children }: { children?: ReactNode }) {
+  const { connected } = useGamepads()
   const { style, syncStyle } = useFocusIndicator()
   const location = useLocation()
 
@@ -33,7 +36,10 @@ export function FocusIndicator({ children }: { children?: ReactNode }) {
     <Portal>
       <Theme accentColor='red'>
         <div
-          className='motion-scale-loop motion-duration-1200 motion-ease-in-out-quad bg-(--accent-a4) pointer-events-none fixed z-10 rounded'
+          className={clsx(
+            'motion-scale-loop motion-duration-1200 motion-ease-in-out-quad bg-(--accent-a4) pointer-events-none fixed z-10 rounded',
+            { 'hidden lg:block': !connected },
+          )}
           style={mergedStyle}
         >
           {children}

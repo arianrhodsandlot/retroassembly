@@ -11,7 +11,7 @@ export function StatusBar() {
   const { preference } = usePreference()
 
   return (
-    <div className='flex items-center justify-end gap-4 text-sm font-medium text-white/80'>
+    <div className='hidden items-center justify-end gap-4 text-sm font-medium text-white/80 lg:flex'>
       {connected ? (
         <>
           <span className='flex items-center gap-2'>

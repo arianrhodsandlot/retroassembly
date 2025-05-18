@@ -13,7 +13,7 @@ export function GameListEmpty() {
   const isHistory = pathname === '/library/history'
 
   return (
-    <div className='flex flex-col items-center justify-center gap-2 py-16 text-xl'>
+    <div className='flex flex-col items-center justify-center gap-2 py-16 text-sm lg:text-xl'>
       <span className='icon-[mdi--package-variant] size-32 text-zinc-300' />
       {isLibrary ? (
         <>
@@ -43,10 +43,14 @@ export function GameListEmpty() {
         <>
           <div className='flex items-center gap-1 text-zinc-400'>
             There are no games for{' '}
-            <img alt={platform?.displayName} className='size-7' src={getPlatformIcon(platform.name)} />{' '}
+            <img
+              alt={platform?.displayName}
+              className='hidden size-7 lg:inline-block'
+              src={getPlatformIcon(platform.name)}
+            />{' '}
             {platform?.displayName} in your library.
           </div>
-          <div className='text-zinc-400'>
+          <div className='flex items-center gap-1 text-zinc-400'>
             <UploadButton platform={platform?.name} variant='solid' /> some ROMs to get started.
           </div>
         </>

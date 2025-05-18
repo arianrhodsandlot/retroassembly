@@ -17,21 +17,26 @@ function imageLoaded(src: string) {
 
 export function useRomCover(rom: Rom) {
   const isDemo = useIsDemo()
-  const romCover = isDemo ? getDemoRomThumbnail(rom) : getRomLibretroThumbnail(rom)
+  const romCovers = isDemo
+    ? [getDemoRomThumbnail(rom)]
+    : ['boxart', 'title', 'snap'].map((type) => getRomLibretroThumbnail(rom, type))
   const platformCover = getPlatformGameIcon(rom.platform)
+  const covers = [...romCovers, platformCover]
 
-  return useSWRImmutable([romCover, platformCover], async () => {
-    if (romCover && !invalidImages.has(romCover)) {
-      if (validImages.has(romCover)) {
-        return { src: romCover, type: 'rom' }
-      }
+  return useSWRImmutable(covers, async () => {
+    for (const romCover of romCovers) {
+      if (romCover && !invalidImages.has(romCover)) {
+        if (validImages.has(romCover)) {
+          return { src: romCover, type: 'rom' }
+        }
 
-      try {
-        await imageLoaded(romCover)
-        validImages.add(romCover)
-        return { src: romCover, type: 'rom' }
-      } catch {
-        invalidImages.add(romCover)
+        try {
+          await imageLoaded(romCover)
+          validImages.add(romCover)
+          return { src: romCover, type: 'rom' }
+        } catch {
+          invalidImages.add(romCover)
+        }
       }
     }
     validImages.add(platformCover)

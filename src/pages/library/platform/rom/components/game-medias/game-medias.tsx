@@ -28,14 +28,15 @@ export function GameMedias() {
         <div className='flex gap-4'>
           {video ? <YouTubeEmbed className='h-48' url={video} /> : null}
           {images.map((image) => (
-            <img
-              alt={rom.goodcodes.rom}
-              className='h-48 w-auto'
-              key={image}
-              loading='lazy'
-              onError={() => setInvalidMedias((medias) => [...medias, image])}
-              src={image}
-            />
+            <a href={image} key={image} rel='noreferrer noopener' target='_blank'>
+              <img
+                alt={rom.goodcodes.rom}
+                className='h-48 w-auto'
+                loading='lazy'
+                onError={() => setInvalidMedias((medias) => [...medias, image])}
+                src={image}
+              />
+            </a>
           ))}
         </div>
       </ScrollArea>

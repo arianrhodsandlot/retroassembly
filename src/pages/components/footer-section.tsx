@@ -19,7 +19,7 @@ export function FooterSection() {
           <span className='icon-[mdi--clock-check] size-3.5' /> Last updated: {BUILD_TIME}
         </div>
 
-        <div className='inline-flex flex-wrap items-center gap-0.5'>
+        <div className='inline-flex flex-wrap items-center gap-0.5 whitespace-pre'>
           <span className='icon-[mdi--license] size-3.5' />
           Released under{' '}
           <a className='underline' href='https://opensource.org/license/mit' rel='noreferrer noopener' target='_blank'>

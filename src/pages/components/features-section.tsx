@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { range } from 'es-toolkit'
-import { getPlatformDeviceBackground } from '@/utils/library.ts'
+import { getPlatformDeviceBackground, getRomLibretroThumbnail } from '@/utils/library.ts'
 import { DemoFocusIndicator } from './demo-focus-indicator.tsx'
 import rewindImage from './rewind-image.png'
 
@@ -32,7 +32,7 @@ const features = [
             </div>
           ))}
           <div className='text-(--accent-9) flex items-center justify-center text-center font-semibold'>
-            ...and more!
+            ...and more
           </div>
         </div>
       </div>
@@ -65,27 +65,19 @@ const features = [
   {
     content: (
       <div className='grid h-full grid-cols-3 place-items-center gap-2'>
-        <div className='aspect-square overflow-hidden rounded bg-neutral-200'>
-          <img
-            alt='mario'
-            className='size-full object-contain'
-            src='https://cdn.jsdelivr.net/gh/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System@dbac0d8/Named_Boxarts/Super%20Mario%20Bros.%20(World).png'
-          />
-        </div>
-        <div className='aspect-square overflow-hidden rounded bg-neutral-200'>
-          <img
-            alt='sonic'
-            className='size-full object-contain'
-            src='https://cdn.jsdelivr.net/gh/libretro-thumbnails/Sega_-_Mega_Drive_-_Genesis@fa29730/Named_Boxarts/Sonic%20The%20Hedgehog%20(USA,%20Europe).png'
-          />
-        </div>
-        <div className='aspect-square overflow-hidden rounded bg-neutral-200'>
-          <img
-            alt='pitfall'
-            className='size-full object-contain'
-            src='https://cdn.jsdelivr.net/gh/libretro-thumbnails/Atari_-_2600@a6a54d3/Named_Boxarts/Pitfall%20II%20-%20Lost%20Caverns%20(USA).png'
-          />
-        </div>
+        {[
+          { name: "Kirby's Adventure (USA)", platform: 'nes' },
+          { name: 'Gunstar Heroes (USA)', platform: 'genesis' },
+          { name: 'Pitfall II - Lost Caverns (USA)', platform: 'atari2600' },
+        ].map(({ name, platform }) => (
+          <div className='aspect-square overflow-hidden rounded bg-neutral-200' key={name}>
+            <img
+              alt={name}
+              className='size-full object-contain'
+              src={getRomLibretroThumbnail({ libretroGame: { name }, platform })}
+            />
+          </div>
+        ))}
       </div>
     ),
     description: "Automatically fetch game boxarts to enhance your library's visual appeal.",

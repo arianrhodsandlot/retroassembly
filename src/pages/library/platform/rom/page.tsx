@@ -5,6 +5,7 @@ import { getRomGoodcodes } from '@/utils/library.ts'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../../components/main-scroll-area.tsx'
 import { PageBreadcrumb } from '../../components/page-breadcrumb.tsx'
+import { GameAnimatePresence } from './components/game-animate-presence.tsx'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
 import { GameMedias } from './components/game-medias/game-medias.tsx'
@@ -19,7 +20,6 @@ interface RomPageProps {
     rom: Rom | undefined
   }
 }
-
 export default function RomPage({ pageData }: RomPageProps) {
   const { rom } = pageData
   if (!rom) {
@@ -75,11 +75,14 @@ export default function RomPage({ pageData }: RomPageProps) {
           </div>
         </div>
       </MainScrollArea>
+
       <RomBackground rom={rom} />
+
       <Portal>
         <Theme accentColor='red'>
           <GameOverlay />
         </Theme>
+        <GameAnimatePresence />
       </Portal>
       <PageHooks />
     </LibraryLayout>

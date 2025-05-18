@@ -1,11 +1,10 @@
-import { Button, Portal } from '@radix-ui/themes'
+import { Button } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { type MouseEvent, useEffect, useRef } from 'react'
 import { useFocusIndicator } from '@/pages/library/hooks/use-focus-indicator.ts'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { useLaunchButtonRect } from '../atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
-import { GameAnimatePresence } from './game-animate-presence.tsx'
 
 const isAppleMobile = /iphone|ipad|ipod/i.test(navigator.userAgent)
 const isChromeLike = /chrome/i.test(navigator.userAgent)
@@ -80,10 +79,6 @@ export function LaunchButton() {
           ) : null}
         </div>
       </Button>
-
-      <Portal>
-        <GameAnimatePresence />
-      </Portal>
     </button>
   )
 }

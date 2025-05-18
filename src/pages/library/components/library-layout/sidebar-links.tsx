@@ -26,7 +26,8 @@ export function SidebarLinks() {
     return location.pathname === link || getPlatformLink(platform?.name, isDemo) === link
   }
 
-  const platformLinks = preference.ui.platforms.map((platform) => ({
+  const platforms = isDemo ? ['gba', 'gbc', 'genesis', 'nes', 'snes'] : preference.ui.platforms
+  const platformLinks = platforms.map((platform) => ({
     icon: getPlatformIcon(platform),
     platform,
     text: platformMap[platform].displayName,

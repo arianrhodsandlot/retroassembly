@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { NextVersionBanner } from './next-version-banner'
 import { TopBar } from './top-bar'
 
 const backgroundImage =
@@ -11,6 +12,7 @@ export function HomeScreenLayout({ children }: { children: ReactNode }) {
         className='absolute inset-0 flex flex-col bg-[length:30px_30px] bg-[0_0,15px_15px]'
         style={{ backgroundImage }}
       >
+        <NextVersionBanner />
         <TopBar />
         <div className='flex-1 overflow-hidden'>
           <div className='flex h-full items-center justify-center '>{children}</div>

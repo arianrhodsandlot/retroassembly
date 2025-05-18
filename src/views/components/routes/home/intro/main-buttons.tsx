@@ -18,6 +18,7 @@ export function MainButtons() {
     <div className='flex flex-1 flex-col items-center justify-center pb-10'>
       <div className='flex-center flex-col'>
         <button
+          type='button'
           className={clsx(
             'flex min-w-80 max-w-[95%] items-center justify-center rounded-full border-4 border-rose-700 bg-white px-2 py-4 text-rose-700 transition-transform',
             'focus:scale-105 focus:animate-[pulse-rose-border_1.5s_ease-in-out_infinite]',
@@ -42,6 +43,7 @@ export function MainButtons() {
       <div className='flex-center flex-col'>
         <BaseDialogTrigger content={<ContinueModalContent />}>
           <button
+            type='button'
             className={clsx(
               'mt-8 flex min-w-80 max-w-[95%] items-center justify-center rounded-full border-4 border-white bg-rose-700 px-2 py-4 transition-transform',
               'focus:scale-105 focus:animate-[pulse-rose-border_1.5s_ease-in-out_infinite]',
@@ -58,6 +60,22 @@ export function MainButtons() {
           <br />
           {t('built with your own ROM files')}
         </div>
+      </div>
+
+      <div className='flex-center flex-col'>
+        <a // eslint-disable-line @eslint-react/dom/no-unsafe-target-blank
+          href='https://next.retroassembly.com/?utm_source=retroassembly.com&utm_medium=website'
+          target='_blank' // eslint-disable-line biome-x/lint
+          rel='noopener'
+          className={clsx(
+            'mt-8 flex min-w-80 max-w-[95%] items-center justify-center rounded-full border-4 border-white bg-rose-700 px-2 py-4 transition-transform',
+            'focus:scale-105 focus:animate-[pulse-rose-border_1.5s_ease-in-out_infinite]',
+            'hover:scale-105 hover:animate-[pulse-rose-border_1.5s_ease-in-out_infinite]',
+          )}
+        >
+          <span className='icon-[mdi--fire] size-6' />
+          <div className='ml-2'>Try the new preview version</div>
+        </a>
       </div>
     </div>
   )

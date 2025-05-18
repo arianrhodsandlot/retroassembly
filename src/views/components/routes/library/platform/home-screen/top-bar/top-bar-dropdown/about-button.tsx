@@ -24,7 +24,7 @@ export function AboutButton() {
               <span>{t('Version')}</span>
               <a
                 className='ml-1 underline'
-                href={`https://github.com/arianrhodsandlot/retro-assembly/tree/${GIT_VERSION}`}
+                href={`https://github.com/arianrhodsandlot/retroassembly/tree/${GIT_VERSION}`}
                 rel='noreferrer'
                 target='_blank'
               >
@@ -38,7 +38,7 @@ export function AboutButton() {
           </div>
 
           <div className='flex-center mb-2 mt-1 gap-2 text-xs'>
-            <span>© 2024</span>
+            <span>© 2025</span>
             <a className='underline' href='https://github.com/arianrhodsandlot' rel='noreferrer' target='_blank'>
               arianrhodsandlot
             </a>
@@ -59,7 +59,7 @@ export function AboutButton() {
             </a>
             <a
               className='flex-center gap-1'
-              href='https://github.com/arianrhodsandlot/retro-assembly'
+              href='https://github.com/arianrhodsandlot/retroassembly'
               rel='noreferrer'
               target='_blank'
             >

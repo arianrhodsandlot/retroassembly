@@ -1,6 +1,14 @@
+.dev.vars
+.react-router
+.wrangler
 dev-dist
 dist
 node_modules
+src/cors
+src/databases
+src/scripts
+src/types
 test-results
 tests/fixtures/roms
 vendors
+wrangler.json

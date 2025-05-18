@@ -10,7 +10,7 @@ export function Footer() {
           <span>{t('Version')}</span>
           <a
             className='ml-1 underline'
-            href={`https://github.com/arianrhodsandlot/retro-assembly/tree/${GIT_VERSION}`}
+            href={`https://github.com/arianrhodsandlot/retroassembly/tree/${GIT_VERSION}`}
             rel='noreferrer'
             target='_blank'
           >
@@ -44,7 +44,7 @@ export function Footer() {
         </a>
         <a
           className='flex-center gap-1'
-          href='https://github.com/arianrhodsandlot/retro-assembly'
+          href='https://github.com/arianrhodsandlot/retroassembly'
           rel='noreferrer'
           target='_blank'
         >

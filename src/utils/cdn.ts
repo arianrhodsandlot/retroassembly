@@ -28,6 +28,11 @@ const repositoryVersions = {
   'libretro/docs': 'a4ceea8', // https://github.com/libretro/docs
   'libretro/retroarch-assets': '818aca5', // https://github.com/libretro/retroarch-assets
   'Mattersons/es-theme-neutral': 'c9b38e7', // https://github.com/Mattersons/es-theme-neutral
+  'retrobrews/gba-games': 'add8696', // https://github.com/retrobrews/gba-games
+  'retrobrews/gbc-games': 'a23861c', // https://github.com/retrobrews/gbc-games
+  'retrobrews/md-games': '6979985', // https://github.com/retrobrews/md-games
+  'retrobrews/nes-games': 'd20061b', // https://github.com/retrobrews/nes-games
+  'retrobrews/snes-games': '2329cb4', // https://github.com/retrobrews/snes-games
   'RetroPie/es-theme-carbon': 'b09973e', // https://github.com/RetroPie/es-theme-carbon
   'Weestuarty/codywheel-es-de': '7aa24c4', // https://github.com/Weestuarty/codywheel-es-de
   'Weestuarty/diamond-es-de': '553c913', // https://github.com/Weestuarty/diamond-es-de

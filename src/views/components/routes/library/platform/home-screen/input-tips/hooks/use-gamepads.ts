@@ -2,11 +2,11 @@ import { isEqual } from 'lodash-es'
 import { useSyncExternalStore } from 'react'
 
 function subscribe(callback) {
-  window.addEventListener('gamepadconnected', callback)
-  window.addEventListener('gamepaddisconnected', callback)
+  globalThis.addEventListener('gamepadconnected', callback)
+  globalThis.addEventListener('gamepaddisconnected', callback)
   return () => {
-    window.removeEventListener('gamepadconnected', callback)
-    window.removeEventListener('gamepaddisconnected', callback)
+    globalThis.removeEventListener('gamepadconnected', callback)
+    globalThis.removeEventListener('gamepaddisconnected', callback)
   }
 }
 

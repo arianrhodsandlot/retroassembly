@@ -185,7 +185,7 @@ function startGamepadPollLoop() {
   }
 }
 
-window.addEventListener('gamepadconnected', () => {
+globalThis.addEventListener('gamepadconnected', () => {
   startGamepadPollLoop()
 })
 

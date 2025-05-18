@@ -52,12 +52,12 @@ export function GamepadMapping() {
 
     updateGamepads()
 
-    window.addEventListener('gamepadconnected', updateGamepads)
-    window.addEventListener('gamepaddisconnected', updateGamepads)
+    globalThis.addEventListener('gamepadconnected', updateGamepads)
+    globalThis.addEventListener('gamepaddisconnected', updateGamepads)
 
     return () => {
-      window.removeEventListener('gamepadconnected', updateGamepads)
-      window.removeEventListener('gamepaddisconnected', updateGamepads)
+      globalThis.removeEventListener('gamepadconnected', updateGamepads)
+      globalThis.removeEventListener('gamepaddisconnected', updateGamepads)
     }
   }, [setGamepads, setCurrentGamePadId])
 

@@ -25,7 +25,7 @@ export function PlatformNavigationItem({ platform, highlighted = false }: Platfo
       return
     }
     const left = target.offsetLeft - container.offsetLeft - target.clientWidth
-    container.scroll({ left: left >= 0 ? left : 0, behavior: 'smooth' })
+    container.scroll({ left: Math.max(left, 0), behavior: 'smooth' })
   }
 
   function onAnimationComplete(definition: TargetAndTransition) {

@@ -132,7 +132,7 @@ export function KeyboardMappingPanel({ mapping, onUpdateMapping, onResetMapping 
       offPressAnyRef.current?.()
     }
 
-    inputTimerRef.current = window.setTimeout(() => {
+    inputTimerRef.current = globalThis.setTimeout(() => {
       finishWaitForButtonPressed()
     }, 5000)
   }

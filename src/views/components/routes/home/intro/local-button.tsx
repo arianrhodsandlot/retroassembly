@@ -13,7 +13,7 @@ export function LocalButton({ children }: { children?: ReactNode } = {}) {
 
   async function selectLocalDirectory() {
     try {
-      const handle = await window.showDirectoryPicker({ mode: 'readwrite' })
+      const handle = await globalThis.showDirectoryPicker({ mode: 'readwrite' })
 
       const isValid = await validateRomDirectory({ type: 'local', handle })
       if (isValid) {

@@ -59,7 +59,7 @@ export function GamepadMappingPanel({ gamepad, mapping, onUpdateMapping, onReset
       offPressAnyRef.current?.()
     }
 
-    inputTimerRef.current = window.setTimeout(() => {
+    inputTimerRef.current = globalThis.setTimeout(() => {
       finishWaitForButtonPressed()
     }, 5000)
   }

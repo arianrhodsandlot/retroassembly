@@ -14,7 +14,7 @@ function generateVerifier(length: number): string {
  * @returns The base64 url encoded code challenge
  */
 async function generateChallenge(codeVerifier: string) {
-  if (!window.crypto?.subtle?.digest) {
+  if (!globalThis.crypto?.subtle?.digest) {
     return codeVerifier
   }
 

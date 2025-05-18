@@ -162,7 +162,6 @@ export function HomeScreen() {
     if (isRomRoute) {
       return
     }
-
     ;(async () => {
       await loadPlatformsAndRomsFromCache()
       await loadPlatformsAndRomsFromRemote()

@@ -21,7 +21,9 @@ export function GameTitle({ rom }: { rom: Rom }) {
       data-display-name={gameNameState.value ?? rom.displayName}
       title={title}
     >
-      {districts?.map((district) => <DistrictIcon district={district} key={district} />)}
+      {districts?.map((district) => (
+        <DistrictIcon district={district} key={district} />
+      ))}
 
       <span className='align-middle'>{gameNameState.value ?? rom.displayName}</span>
 

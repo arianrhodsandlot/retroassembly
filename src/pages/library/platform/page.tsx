@@ -1,9 +1,7 @@
-import { HydrationBoundary } from 'jotai-ssr'
 import { platformMap } from '@/constants/platform.ts'
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import type { PlatformInfo } from '@/controllers/get-platform-info.ts'
 import type { Roms } from '@/controllers/get-roms.ts'
-import { preferenceAtom } from '@/pages/atoms.ts'
 import { DeviceInfo } from '../components/device-info/device-info.tsx'
 import { GameList } from '../components/game-list/game-list.tsx'
 import LibraryLayout from '../components/library-layout/library-layout.tsx'
@@ -25,7 +23,7 @@ interface PlatformPageProps {
 }
 
 export default function PlatformPage({ pageData }: PlatformPageProps) {
-  const { page, pagination, platform, platformInfo, preference, roms } = pageData
+  const { page, pagination, platform, platformInfo, roms } = pageData
   const isDemo = useIsDemo()
 
   if (!platformMap[platform]) {
@@ -37,27 +35,25 @@ export default function PlatformPage({ pageData }: PlatformPageProps) {
   }
 
   return (
-    <HydrationBoundary hydrateAtoms={[[preferenceAtom, preference]]}>
-      <LibraryLayout title={platformMap[platform].displayName}>
-        <MainScrollArea className='z-1 relative flex flex-1' size='2'>
-          <PageBreadcrumb />
-          <div className='flex min-h-full w-full flex-col gap-5 p-4'>
-            <DeviceInfo key={platform} platform={platform} platformInfo={platformInfo} />
-            {isDemo ? null : (
-              <div className='hidden items-center justify-end gap-4 pr-4 lg:flex'>
-                <div className='flex items-center gap-2 text-zinc-400'>
-                  <span className='icon-[mdi--bar-chart] text-black' />
-                  <span className='text-(--accent-9) font-semibold'>{pagination.total}</span>
-                  {pagination.total === 1 ? 'game' : 'games'} for {platformMap[platform].displayName}.
-                </div>
-                <UploadButton platform={platform} />
+    <LibraryLayout title={platformMap[platform].displayName}>
+      <MainScrollArea className='z-1 relative flex flex-1' size='2'>
+        <PageBreadcrumb />
+        <div className='flex min-h-full w-full flex-col gap-5 p-4'>
+          <DeviceInfo key={platform} platform={platform} platformInfo={platformInfo} />
+          {isDemo ? null : (
+            <div className='hidden items-center justify-end gap-4 pr-4 lg:flex'>
+              <div className='flex items-center gap-2 text-zinc-400'>
+                <span className='icon-[mdi--bar-chart] text-black' />
+                <span className='text-(--accent-9) font-semibold'>{pagination.total}</span>
+                {pagination.total === 1 ? 'game' : 'games'} for {platformMap[platform].displayName}.
               </div>
-            )}
-            <GameList key={`${platform}-${page}`} pagination={pagination} />
-          </div>
-        </MainScrollArea>
-        <PlatformBackground platform={platform} />
-      </LibraryLayout>
-    </HydrationBoundary>
+              <UploadButton platform={platform} />
+            </div>
+          )}
+          <GameList key={`${platform}-${page}`} pagination={pagination} />
+        </div>
+      </MainScrollArea>
+      <PlatformBackground platform={platform} />
+    </LibraryLayout>
   )
 }

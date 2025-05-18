@@ -1,12 +1,24 @@
 import '@/styles/index.ts'
 import '@/utils/global.ts'
 import { Theme } from '@radix-ui/themes'
+import { getContext } from 'hono/context-storage'
 import { Provider } from 'jotai'
+import { HydrationBoundary } from 'jotai-ssr'
 import type { ReactNode } from 'react'
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router'
+import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from 'react-router'
 import type { Route } from './+types/root'
+import { preferenceAtom } from './atoms.ts'
+
+export function loader() {
+  const { preference } = getContext().var
+  return { preference }
+}
 
 export function Layout({ children }: { children: ReactNode }) {
+  const { preference } = useLoaderData()
+  const hydrateAtom = [preferenceAtom, preference] as const
+  const hydrateAtoms = [hydrateAtom]
+
   return (
     <html lang='en'>
       <head>
@@ -17,7 +29,9 @@ export function Layout({ children }: { children: ReactNode }) {
       </head>
       <body>
         <Provider>
-          <Theme accentColor='red'>{children}</Theme>
+          <HydrationBoundary hydrateAtoms={hydrateAtoms}>
+            <Theme accentColor='red'>{children}</Theme>
+          </HydrationBoundary>
         </Provider>
         <ScrollRestoration />
         <Scripts />

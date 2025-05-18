@@ -3,7 +3,6 @@ import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { type BetterSQLite3Database, drizzle } from 'drizzle-orm/better-sqlite3'
 import { camelCase, chunk, noop } from 'es-toolkit'
-import { parse } from 'goodcodes-parser'
 import sax from 'sax'
 import {
   launchboxGameAlternateNameTable,
@@ -11,6 +10,7 @@ import {
   launchboxPlatformAlternateNameTable,
   launchboxPlatformTable,
 } from '../../databases/metadata/schema.ts'
+import { parse } from '../../utils/goodcodes-parser.ts'
 
 const xmlPath = path.resolve(import.meta.dirname, '../inputs/launchbox/metadata/Metadata.xml')
 

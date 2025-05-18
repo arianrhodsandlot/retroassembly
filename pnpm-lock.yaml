@@ -79,9 +79,6 @@ importers:
       gamepad.js:
         specifier: 2.1.0
         version: 2.1.0
-      goodcodes-parser:
-        specifier: 2.5.0
-        version: 2.5.0
       hono:
         specifier: 4.7.10
         version: 4.7.10
@@ -3580,10 +3577,6 @@ packages:
   globrex@0.1.2:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
 
-  goodcodes-parser@2.5.0:
-    resolution: {integrity: sha512-bHoolpQjIlY4TdW0r48ZNIorb1uXzdOVtloeNuB7dpc9WEU+niE613+8hGw/P7TzPE6Gcblsg+yqVYiXtCDbbw==}
-    engines: {node: '>= 8.0.0'}
-
   gopd@1.2.0:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
     engines: {node: '>= 0.4'}
@@ -5124,8 +5117,8 @@ packages:
   ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
-  ts-pattern@5.7.0:
-    resolution: {integrity: sha512-0/FvIG4g3kNkYgbNwBBW5pZBkfpeYQnH+2AA3xmjkCAit/DSDPKmgwC3fKof4oYUq6gupClVOJlFl+939VRBMg==}
+  ts-pattern@5.7.1:
+    resolution: {integrity: sha512-EGs8PguQqAAUIcQfK4E9xdXxB6s2GK4sJfT/vcc9V1ELIvC4LH/zXu2t/5fajtv6oiRCxdv7BgtVK3vWgROxag==}
 
   tsconfck@3.1.5:
     resolution: {integrity: sha512-CLDfGgUp7XPswWnezWwsCRxNmgQjhYq3VXHM0/XIRxhVrKw0M1if9agzryh1QS3nxjCROvV+xWxoJO1YctzzWg==}
@@ -6004,7 +5997,7 @@ snapshots:
       '@typescript-eslint/typescript-estree': 8.32.1(typescript@5.8.3)
       '@typescript-eslint/utils': 8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
       string-ts: 2.2.1
-      ts-pattern: 5.7.0
+      ts-pattern: 5.7.1
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -6022,7 +6015,7 @@ snapshots:
       '@typescript-eslint/types': 8.32.1
       '@typescript-eslint/utils': 8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
       birecord: 0.1.1
-      ts-pattern: 5.7.0
+      ts-pattern: 5.7.1
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -6057,7 +6050,7 @@ snapshots:
       '@eslint-react/eff': 1.49.0
       '@typescript-eslint/utils': 8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
       '@zod/mini': 4.0.0-beta.20250505T195954
-      ts-pattern: 5.7.0
+      ts-pattern: 5.7.1
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -6069,7 +6062,7 @@ snapshots:
       '@eslint-react/kit': 1.49.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
       '@typescript-eslint/utils': 8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
       '@zod/mini': 4.0.0-beta.20250505T195954
-      ts-pattern: 5.7.0
+      ts-pattern: 5.7.1
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -6083,7 +6076,7 @@ snapshots:
       '@typescript-eslint/types': 8.32.1
       '@typescript-eslint/utils': 8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
       string-ts: 2.2.1
-      ts-pattern: 5.7.0
+      ts-pattern: 5.7.1
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -8536,7 +8529,7 @@ snapshots:
       '@typescript-eslint/utils': 8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
       eslint: 9.27.0(jiti@2.4.2)
       string-ts: 2.2.1
-      ts-pattern: 5.7.0
+      ts-pattern: 5.7.1
     optionalDependencies:
       typescript: 5.8.3
     transitivePeerDependencies:
@@ -8556,7 +8549,7 @@ snapshots:
       compare-versions: 6.1.1
       eslint: 9.27.0(jiti@2.4.2)
       string-ts: 2.2.1
-      ts-pattern: 5.7.0
+      ts-pattern: 5.7.1
     optionalDependencies:
       typescript: 5.8.3
     transitivePeerDependencies:
@@ -8576,7 +8569,7 @@ snapshots:
       '@typescript-eslint/utils': 8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
       eslint: 9.27.0(jiti@2.4.2)
       string-ts: 2.2.1
-      ts-pattern: 5.7.0
+      ts-pattern: 5.7.1
     optionalDependencies:
       typescript: 5.8.3
     transitivePeerDependencies:
@@ -8600,7 +8593,7 @@ snapshots:
       '@typescript-eslint/utils': 8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
       eslint: 9.27.0(jiti@2.4.2)
       string-ts: 2.2.1
-      ts-pattern: 5.7.0
+      ts-pattern: 5.7.1
     optionalDependencies:
       typescript: 5.8.3
     transitivePeerDependencies:
@@ -8623,7 +8616,7 @@ snapshots:
       '@typescript-eslint/utils': 8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
       eslint: 9.27.0(jiti@2.4.2)
       string-ts: 2.2.1
-      ts-pattern: 5.7.0
+      ts-pattern: 5.7.1
     optionalDependencies:
       typescript: 5.8.3
     transitivePeerDependencies:
@@ -8645,7 +8638,7 @@ snapshots:
       eslint: 9.27.0(jiti@2.4.2)
       is-immutable-type: 5.0.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
       string-ts: 2.2.1
-      ts-pattern: 5.7.0
+      ts-pattern: 5.7.1
     optionalDependencies:
       ts-api-utils: 2.1.0(typescript@5.8.3)
       typescript: 5.8.3
@@ -9045,8 +9038,6 @@ snapshots:
       gopd: 1.2.0
 
   globrex@0.1.2: {}
-
-  goodcodes-parser@2.5.0: {}
 
   gopd@1.2.0: {}
 
@@ -10883,7 +10874,7 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  ts-pattern@5.7.0: {}
+  ts-pattern@5.7.1: {}
 
   tsconfck@3.1.5(typescript@5.8.3):
     optionalDependencies:

@@ -2,10 +2,10 @@ import crypto from 'node:crypto'
 import path from 'node:path'
 import { type BetterSQLite3Database, drizzle } from 'drizzle-orm/better-sqlite3'
 import { camelCase, chunk, mapKeys } from 'es-toolkit'
-import { parse } from 'goodcodes-parser'
 import { Libretrodb } from 'libretrodb'
 import { fs } from 'zx'
 import { libretroGameTable } from '../../databases/metadata/schema.ts'
+import { parse } from '../../utils/goodcodes-parser.ts'
 
 const nonSupportedPlatforms = new Set([
   'Commodore - Amiga',

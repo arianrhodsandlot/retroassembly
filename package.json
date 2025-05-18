@@ -39,7 +39,6 @@
     "esbuild": "0.25.4",
     "gamepad-wrapper": "1.3.4",
     "gamepad.js": "2.1.0",
-    "goodcodes-parser": "2.5.0",
     "hono": "4.7.10",
     "jotai": "2.12.4",
     "jotai-ssr": "0.2.0",

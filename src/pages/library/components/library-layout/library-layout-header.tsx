@@ -11,7 +11,7 @@ export function LibraryLayoutHeader() {
   const platform = usePlatform()
   const location = useLocation()
 
-  let currentRouteName: string
+  let currentRouteName = ''
   if (platform) {
     currentRouteName = platform.name
   } else if (location.pathname === '/library') {

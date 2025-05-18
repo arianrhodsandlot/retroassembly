@@ -1,13 +1,15 @@
-import { useAtom } from 'jotai'
+import { useEffect } from 'react'
 import type { RomsPagination } from '@/controllers/get-roms.ts'
-import { romsAtom } from '../../atoms.ts'
 import { usePreference } from '../../hooks/use-preference.ts'
+import { useRoms } from '../../hooks/use-roms.ts'
 import { GameEntry } from '../game-entry/game-entry.tsx'
 import { GameListPagination } from './game-list-pagination.tsx' // Import the Pagination component
 
 export function GameList({ pagination }: { pagination: RomsPagination }) {
-  const [roms] = useAtom(romsAtom)
   const { preference } = usePreference()
+  const { resetClientRoms, roms } = useRoms()
+
+  useEffect(() => resetClientRoms, [resetClientRoms])
 
   if (!roms || roms.length === 0) {
     return (

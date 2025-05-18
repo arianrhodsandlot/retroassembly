@@ -1,16 +1,16 @@
 import { AlertDialog, Button, ContextMenu } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
-import { useAtom } from 'jotai'
 import ky from 'ky'
 import type { ReactNode } from 'react'
 import { useLocation } from 'react-router'
 import useSWRMutation from 'swr/mutation'
-import { romsAtom } from '../../atoms.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
+import { useRoms } from '../../hooks/use-roms.ts'
 
 export function GameEntryContextMenu({ children, rom }: { children: ReactNode; rom: any }) {
   const isDemo = useIsDemo()
   const location = useLocation()
+  const { deleteRom } = useRoms()
 
   const [deleteDialogOpen, toggleDeleteDialog] = useToggle(false)
 
@@ -33,8 +33,6 @@ export function GameEntryContextMenu({ children, rom }: { children: ReactNode; r
 
   const { isMutating, trigger } = useSWRMutation(deleteApi, (url) => ky.delete(url))
 
-  const [, setAtoms] = useAtom(romsAtom)
-
   function closeDeleteDialog() {
     if (!isMutating) {
       toggleDeleteDialog()
@@ -44,7 +42,7 @@ export function GameEntryContextMenu({ children, rom }: { children: ReactNode; r
   async function handleClickConfirmDelete() {
     await trigger()
     closeDeleteDialog()
-    setAtoms((roms) => roms?.filter(({ id }) => id !== rom.id))
+    deleteRom(rom.id)
   }
 
   return (

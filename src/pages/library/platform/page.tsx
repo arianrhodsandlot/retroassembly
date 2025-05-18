@@ -1,17 +1,15 @@
+import { HydrationBoundary } from 'jotai-ssr'
 import { platformMap } from '@/constants/platform.ts'
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import type { PlatformInfo } from '@/controllers/get-platform-info.ts'
 import type { Roms } from '@/controllers/get-roms.ts'
 import { preferenceAtom } from '@/pages/atoms.ts'
-import { AtomHydrationBoundary } from '@/pages/components/atom-hydration-boundary.tsx'
-import { platformAtom, romsAtom } from '../atoms.ts'
 import { DeviceInfo } from '../components/device-info/device-info.tsx'
 import { GameList } from '../components/game-list/game-list.tsx'
 import LibraryLayout from '../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../components/main-scroll-area.tsx'
 import { PageBreadcrumb } from '../components/page-breadcrumb.tsx'
 import { useIsDemo } from '../hooks/use-demo.ts'
-import { getHydrateAtoms } from '../utils/hydrate-atoms.ts'
 import { PlatformBackground } from './components/platform-background.tsx'
 import { UploadButton } from './components/upload-button.tsx'
 
@@ -39,13 +37,7 @@ export default function PlatformPage({ pageData }: PlatformPageProps) {
   }
 
   return (
-    <AtomHydrationBoundary
-      hydrateAtoms={getHydrateAtoms([
-        [preferenceAtom, preference],
-        [platformAtom, platformMap[platform]],
-        [romsAtom, roms],
-      ])}
-    >
+    <HydrationBoundary hydrateAtoms={[[preferenceAtom, preference]]}>
       <LibraryLayout title={platformMap[platform].displayName}>
         <MainScrollArea className='z-1 relative flex flex-1' size='2'>
           <PageBreadcrumb />
@@ -62,11 +54,11 @@ export default function PlatformPage({ pageData }: PlatformPageProps) {
               </div>
             )}
             <hr className='border-t-1 border-t-black/20' />
-            <GameList pagination={pagination} />
+            <GameList key={`${platform}-${page}`} pagination={pagination} />
           </div>
         </MainScrollArea>
         <PlatformBackground platform={platform} />
       </LibraryLayout>
-    </AtomHydrationBoundary>
+    </HydrationBoundary>
   )
 }

@@ -1,22 +1,18 @@
 import { Portal, Theme } from '@radix-ui/themes'
-import { platformMap } from '@/constants/platform.ts'
+import { HydrationBoundary } from 'jotai-ssr'
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import type { Rom } from '@/controllers/get-roms.ts'
 import { preferenceAtom } from '@/pages/atoms.ts'
-import { AtomHydrationBoundary } from '@/pages/components/atom-hydration-boundary.tsx'
 import { getRomGoodcodes } from '@/utils/library.ts'
-import { platformAtom, romAtom } from '../../atoms.ts'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../../components/main-scroll-area.tsx'
 import { PageBreadcrumb } from '../../components/page-breadcrumb.tsx'
-import { getHydrateAtoms } from '../../utils/hydrate-atoms.ts'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
 import { GameMedias } from './components/game-medias/game-medias.tsx'
 import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
 import { LaunchButton } from './components/launch-button.tsx'
 import { PageHooks } from './components/page-hooks.ts'
-import { RomAtomGuard } from './components/rom-atom-guard.ts'
 import { RomBackground } from './components/rom-background.tsx'
 
 interface RomPageProps {
@@ -39,13 +35,7 @@ export default function RomPage({ pageData }: RomPageProps) {
   const overview = launchboxGame?.overview || rom.desc
 
   return (
-    <AtomHydrationBoundary
-      hydrateAtoms={getHydrateAtoms([
-        [preferenceAtom, preference],
-        [platformAtom, platformMap[rom.platform]],
-        [romAtom, rom],
-      ])}
-    >
+    <HydrationBoundary hydrateAtoms={[[preferenceAtom, preference]]}>
       <LibraryLayout title={goodcodes.rom}>
         <MainScrollArea className='z-1 relative flex flex-1' size='2'>
           <PageBreadcrumb />
@@ -58,9 +48,7 @@ export default function RomPage({ pageData }: RomPageProps) {
               <h1 className='px-8 pt-4 text-3xl font-bold'>{goodcodes.rom}</h1>
               <GameInfo gameInfo={launchboxGame} rom={rom} />
               <div className='px-4'>
-                <RomAtomGuard>
-                  <LaunchButton />
-                </RomAtomGuard>
+                <LaunchButton />
               </div>
               <div className='flex flex-col gap-4 pl-4 pr-64'>
                 <GameMedias />
@@ -93,10 +81,8 @@ export default function RomPage({ pageData }: RomPageProps) {
             <GameOverlay />
           </Theme>
         </Portal>
-        <RomAtomGuard>
-          <PageHooks />
-        </RomAtomGuard>
+        <PageHooks />
       </LibraryLayout>
-    </AtomHydrationBoundary>
+    </HydrationBoundary>
   )
 }

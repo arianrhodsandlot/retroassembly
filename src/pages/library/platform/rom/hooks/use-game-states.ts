@@ -30,7 +30,7 @@ export function useGameStates() {
     formData.append('rom', rom.id)
     formData.append('core', core)
     formData.append('type', 'manual')
-    await ky.put(url, { body: formData })
+    await ky.post(url, { body: formData })
     await reloadStates()
   })
 

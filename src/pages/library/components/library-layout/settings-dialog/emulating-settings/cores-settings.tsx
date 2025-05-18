@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import { useState } from 'react'
 import { type CoreName, coreOptionsMap } from '@/constants/core.ts'
 import { platformMap } from '@/constants/platform.ts'
-import { usePlatform } from '@/pages/library/atoms.ts'
+import { usePlatform } from '@/pages/library/hooks/use-platform.ts'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
 import { SettingsTitle } from '../settings-title.tsx'
@@ -12,7 +12,7 @@ import { CoreOptions } from './core-options.tsx'
 
 export function CoresSettings() {
   const { isLoading, preference, update } = usePreference()
-  const [currentPlatform] = usePlatform()
+  const currentPlatform = usePlatform()
   const [selectedPlatform, setSelectedPlatform] = useState(currentPlatform?.name || preference.ui.platforms?.[0])
 
   if (!preference.ui.platforms?.length) {

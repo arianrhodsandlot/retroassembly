@@ -1,14 +1,12 @@
+import { HydrationBoundary } from 'jotai-ssr'
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import type { Roms } from '@/controllers/get-roms.ts'
 import { preferenceAtom } from '../atoms.ts'
-import { AtomHydrationBoundary } from '../components/atom-hydration-boundary.tsx'
-import { romsAtom } from './atoms.ts'
 import { GameList } from './components/game-list/game-list.tsx'
 import LibraryLayout from './components/library-layout/library-layout.tsx'
 import { MainScrollArea } from './components/main-scroll-area.tsx'
 import { useIsDemo } from './hooks/use-demo.ts'
 import { UploadSelectButton } from './platform/components/upload-select-button.tsx'
-import { getHydrateAtoms } from './utils/hydrate-atoms.ts'
 
 interface LibraryPageProps {
   pageData: {
@@ -30,12 +28,7 @@ export default function LibraryPage({ pageData }: LibraryPageProps) {
   }
 
   return (
-    <AtomHydrationBoundary
-      hydrateAtoms={getHydrateAtoms([
-        [preferenceAtom, preference],
-        [romsAtom, roms],
-      ])}
-    >
+    <HydrationBoundary hydrateAtoms={[[preferenceAtom, preference]]}>
       <LibraryLayout title='Library'>
         <MainScrollArea className='z-1 relative flex flex-1' size='2'>
           <div className='flex min-h-full w-full flex-col gap-5 p-4'>
@@ -54,10 +47,10 @@ export default function LibraryPage({ pageData }: LibraryPageProps) {
               )}
             </div>
             <hr className='border-t-1 border-t-black/20' />
-            <GameList pagination={pagination} />
+            <GameList key={`library-${page}`} pagination={pagination} />
           </div>
         </MainScrollArea>
       </LibraryLayout>
-    </AtomHydrationBoundary>
+    </HydrationBoundary>
   )
 }

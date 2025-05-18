@@ -103,7 +103,7 @@ app.get(
   },
 )
 
-app.put(
+app.post(
   'states',
 
   zValidator(

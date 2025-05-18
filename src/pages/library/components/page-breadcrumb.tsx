@@ -1,15 +1,15 @@
 import { Button } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import { useAtom } from 'jotai'
 import { Fragment } from 'react/jsx-runtime'
 import { getPlatformGameIcon, getPlatformIcon, getRomGoodcodes } from '@/utils/library.ts'
-import { romAtom, usePlatform } from '../atoms.ts'
 import { useIsDemo } from '../hooks/use-demo.ts'
+import { usePlatform } from '../hooks/use-platform.ts'
+import { useRom } from '../hooks/use-rom.ts'
 import { NavigatableLink } from './navigatable-link.tsx'
 
 export function PageBreadcrumb() {
-  const [rom] = useAtom(romAtom)
-  const [platform] = usePlatform()
+  const rom = useRom()
+  const platform = usePlatform()
   const isDemo = useIsDemo()
   const libraryPath = isDemo ? 'demo' : 'library'
 

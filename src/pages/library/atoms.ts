@@ -1,15 +1,13 @@
 import { atom, useAtom } from 'jotai'
-import { atomWithReset } from 'jotai/utils'
+import { atomWithReset, useResetAtom } from 'jotai/utils'
 import type { CSSProperties } from 'react'
-import type { Platform } from '@/constants/platform'
-import type { Rom, Roms } from '@/controllers/get-roms'
+import type { Roms } from '@/controllers/get-roms'
 
-export const romsAtom = atom<Roms>()
-export const romAtom = atom<Rom>()
-export const platformAtom = atom<Platform>()
-export function usePlatform() {
-  return useAtom(platformAtom)
+export const clientRomsAtom = atomWithReset<Roms | undefined>(undefined)
+export function useClientRoms() {
+  return [...useAtom(clientRomsAtom), useResetAtom(clientRomsAtom)] as const
 }
+
 export const settingsDialogOpenAtom = atom(false)
 
 const aboutDialogOpenAtom = atom(false)

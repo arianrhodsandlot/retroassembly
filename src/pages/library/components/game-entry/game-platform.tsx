@@ -1,10 +1,10 @@
 import { clsx } from 'clsx'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
-import { usePlatform } from '../../atoms.ts'
+import { usePlatform } from '../../hooks/use-platform.ts'
 
 export function GamePlatform({ platform }: { platform: string }) {
-  const [currentPlatform] = usePlatform()
+  const currentPlatform = usePlatform()
 
   if (currentPlatform) {
     return

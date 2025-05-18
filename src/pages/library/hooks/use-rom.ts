@@ -1,9 +1,8 @@
-import { useAtom } from 'jotai'
-import { romAtom } from '@/pages/library/atoms.ts'
+import { useLoaderData } from 'react-router'
 import { getRomGoodcodes } from '@/utils/library.ts'
 
 export function useRom() {
-  const [rom] = useAtom(romAtom)
+  const { rom } = useLoaderData()
 
   return rom ? { ...rom, goodcodes: getRomGoodcodes(rom) } : undefined
 }

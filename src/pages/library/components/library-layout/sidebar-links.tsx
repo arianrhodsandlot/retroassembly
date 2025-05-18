@@ -2,8 +2,8 @@ import { clsx } from 'clsx'
 import { useLocation } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
-import { usePlatform } from '../../atoms.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
+import { usePlatform } from '../../hooks/use-platform.ts'
 import { usePreference } from '../../hooks/use-preference.ts'
 import { SidebarLink } from './sidebar-link.tsx'
 
@@ -17,7 +17,7 @@ function getPlatformLink(platform?: string, isDemo = false) {
 
 export function SidebarLinks() {
   const { preference } = usePreference()
-  const [platform] = usePlatform()
+  const platform = usePlatform()
   const location = useLocation()
   const isDemo = useIsDemo()
   const libraryPath = isDemo ? 'demo' : 'library'

@@ -1,6 +1,0 @@
-import '@fontsource-variable/fredoka'
-import '@fontsource-variable/outfit'
-import '@fontsource/noto-mono'
-import '@fontsource/noto-sans'
-import './index.css'
-import 'github-fork-ribbon-css/gh-fork-ribbon.css'

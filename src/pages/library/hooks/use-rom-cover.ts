@@ -15,11 +15,12 @@ function imageLoaded(src: string) {
   })
 }
 
+const libretroThumbnailTypes = ['boxart', 'title', 'snap'] as const
 export function useRomCover(rom: Rom) {
   const isDemo = useIsDemo()
   const romCovers = isDemo
     ? [getDemoRomThumbnail(rom)]
-    : ['boxart', 'title', 'snap'].map((type) => getRomLibretroThumbnail(rom, type))
+    : libretroThumbnailTypes.map((type) => getRomLibretroThumbnail(rom, type))
   const platformCover = getPlatformGameIcon(rom.platform)
   const covers = [...romCovers, platformCover]
 

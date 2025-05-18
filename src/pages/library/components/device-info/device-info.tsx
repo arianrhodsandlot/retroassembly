@@ -12,6 +12,18 @@ export function DeviceInfo({ platform, platformInfo }: { platform: string; platf
   const banner = getPlatformBanner(platform)
   const devicePhoto = getPlatformDevicePhoto(platform)
 
+  let { developer, manufacturer } = platformInfo
+  if (platform === 'arcade') {
+    developer = 'Various companies'
+    manufacturer = 'Various companies'
+  }
+  if (developer?.toLowerCase().includes('nintendo')) {
+    developer = 'Nintendo'
+  }
+  if (manufacturer?.toLowerCase().includes('nintendo')) {
+    manufacturer = 'Nintendo'
+  }
+
   return (
     <div className='flex'>
       <div className='flex flex-col gap-8 px-4'>
@@ -31,18 +43,14 @@ export function DeviceInfo({ platform, platformInfo }: { platform: string; platf
               </div>
             </div>
 
-            {platformInfo.manufacturer === platformInfo.developer ? (
+            {manufacturer === developer ? (
               <div>
                 <div className='flex h-6 items-center gap-2 font-semibold'>
                   <span className='icon-[mdi--factory]' />
                   <span className='text-xs'>Developer & Manufacturer</span>
                 </div>
                 <div className='mt-1 pl-6'>
-                  <CompanyLogo
-                    className='h-5'
-                    company={platformInfo.manufacturer || ''}
-                    fallback={platformInfo.manufacturer || 'unknown'}
-                  />
+                  <CompanyLogo className='h-5' company={manufacturer || ''} fallback={manufacturer || 'unknown'} />
                 </div>
               </div>
             ) : (
@@ -53,11 +61,7 @@ export function DeviceInfo({ platform, platformInfo }: { platform: string; platf
                     <span className='text-xs'>Developer</span>
                   </div>
                   <div className='mt-1 pl-6'>
-                    <CompanyLogo
-                      className='h-5'
-                      company={platformInfo.developer || ''}
-                      fallback={platformInfo.developer || 'unknown'}
-                    />
+                    <CompanyLogo className='h-5' company={developer || ''} fallback={developer || 'unknown'} />
                   </div>
                 </div>
                 <div>
@@ -66,11 +70,7 @@ export function DeviceInfo({ platform, platformInfo }: { platform: string; platf
                     <span className='text-xs'>Manufacturer</span>
                   </div>
                   <div className='mt-1 pl-6'>
-                    <CompanyLogo
-                      className='h-5'
-                      company={platformInfo.manufacturer || ''}
-                      fallback={platformInfo.manufacturer || 'unknown'}
-                    />
+                    <CompanyLogo className='h-5' company={manufacturer || ''} fallback={manufacturer || 'unknown'} />
                   </div>
                 </div>
               </>

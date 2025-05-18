@@ -20,7 +20,7 @@ export function NextVersionBanner() {
         target='_blank' // eslint-disable-line biome-x/lint
         rel='noopener'
         className='flex flex-1 items-center justify-center gap-1 underline'
-        href='https://next.retroassembly.com/?utm_source=retroassembly.com&utm_medium=website'
+        href='https://next.retroassembly.com/?utm_source=retroassembly.com&utm_medium=banner'
       >
         <span className='icon-[noto--fire]' />
         Be the first to experience the new preview version. Check it out at <b>next.retroassembly.com</b> now and share

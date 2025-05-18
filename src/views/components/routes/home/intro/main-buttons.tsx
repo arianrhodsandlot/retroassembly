@@ -64,7 +64,7 @@ export function MainButtons() {
 
       <div className='flex-center flex-col'>
         <a // eslint-disable-line @eslint-react/dom/no-unsafe-target-blank
-          href='https://next.retroassembly.com/?utm_source=retroassembly.com&utm_medium=website'
+          href='https://next.retroassembly.com/?utm_source=retroassembly.com&utm_medium=main_button'
           target='_blank' // eslint-disable-line biome-x/lint
           rel='noopener'
           className={clsx(

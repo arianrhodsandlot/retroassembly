@@ -1,4 +1,4 @@
-import { Button, Dialog, DropdownMenu } from '@radix-ui/themes'
+import { Button, type ButtonProps, Dialog, DropdownMenu } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { useState } from 'react'
 import { platformMap } from '@/constants/platform.ts'
@@ -6,7 +6,7 @@ import { getPlatformIcon } from '@/utils/library.ts'
 import { usePreference } from '../../hooks/use-preference.ts'
 import { UploadDialog } from './upload-dialog.tsx'
 
-export function UploadSelectButton() {
+export function UploadSelectButton({ variant = 'soft' }: { variant?: ButtonProps['variant'] }) {
   const { preference } = usePreference()
   const [key, setKey] = useState(Date.now)
   const [open, toggleOpen] = useToggle()
@@ -22,7 +22,7 @@ export function UploadSelectButton() {
     <>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
-          <Button variant='soft'>
+          <Button variant={variant}>
             <span className='icon-[mdi--upload]' />
             Add
             <DropdownMenu.TriggerIcon />

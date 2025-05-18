@@ -1,4 +1,4 @@
-import { and, count, eq } from 'drizzle-orm'
+import { and, count, eq, inArray } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { romTable } from '../databases/library/schema.ts'
 import { getRomsMetadata } from './utils.ts'
@@ -14,7 +14,7 @@ export async function getRoms({
   pageSize = 50,
   platform,
 }: { id?: string; page?: number; pageSize?: number; platform?: string } = {}) {
-  const { currentUser, db } = getContext().var
+  const { currentUser, db, preference } = getContext().var
   const { library } = db
 
   const conditions = [eq(romTable.userId, currentUser.id), eq(romTable.status, 1)]
@@ -23,6 +23,8 @@ export async function getRoms({
   }
   if (platform) {
     conditions.push(eq(romTable.platform, platform))
+  } else {
+    conditions.push(inArray(romTable.platform, preference.ui.platforms))
   }
   const where = and(...conditions)
 

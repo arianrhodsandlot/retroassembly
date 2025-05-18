@@ -9,6 +9,7 @@ import { useDropzone } from 'react-dropzone'
 import { useNavigate } from 'react-router'
 import useSWRMutation from 'swr/mutation'
 import { platformMap } from '@/constants/platform.ts'
+import { getPlatformIcon } from '@/utils/library.ts'
 
 export function UploadDialog({ platform, toggleOpen }: { platform: string; toggleOpen: () => void }) {
   const navigate = useNavigate()
@@ -122,8 +123,13 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
                   <span className='icon-[mdi--information]' />
                 </Callout.Icon>
                 <Callout.Text className='text-xs'>
-                  You are uploading ROMs for <b>{platformMap[platform].displayName}</b>. We support these file
-                  extensions for this platform:
+                  You are uploading ROMs for{' '}
+                  <img
+                    alt={platformMap[platform].displayName}
+                    className='inline-block size-7 align-middle'
+                    src={getPlatformIcon(platform)}
+                  />
+                  <b>{platformMap[platform].displayName}</b>. We support these file extensions for this platform:
                   <br />
                   <span className='inline-flex gap-1 py-2'>
                     {platformMap[platform].fileExtensions.map((extention) => (

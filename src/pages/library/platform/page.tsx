@@ -48,12 +48,11 @@ export default function PlatformPage({ pageData }: PlatformPageProps) {
                 <div className='flex items-center gap-2 text-zinc-400'>
                   <span className='icon-[mdi--bar-chart] text-black' />
                   <span className='text-(--accent-9) font-semibold'>{pagination.total}</span>
-                  {pagination.total === 1 ? 'game' : 'games'} for {platformMap[platform].displayName}
+                  {pagination.total === 1 ? 'game' : 'games'} for {platformMap[platform].displayName}.
                 </div>
                 <UploadButton platform={platform} />
               </div>
             )}
-            <hr className='border-t-1 border-t-black/20' />
             <GameList key={`${platform}-${page}`} pagination={pagination} />
           </div>
         </MainScrollArea>

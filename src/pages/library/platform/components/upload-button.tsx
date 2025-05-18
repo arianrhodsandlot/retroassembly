@@ -1,9 +1,9 @@
-import { Button, Dialog } from '@radix-ui/themes'
+import { Button, type ButtonProps, Dialog } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { useState } from 'react'
 import { UploadDialog } from './upload-dialog.tsx'
 
-export function UploadButton({ platform }: { platform: string }) {
+export function UploadButton({ platform, variant = 'soft' }: { platform: string; variant?: ButtonProps['variant'] }) {
   const [key, setKey] = useState(Date.now)
   const [open, toggleOpen] = useToggle()
 
@@ -14,7 +14,7 @@ export function UploadButton({ platform }: { platform: string }) {
   return (
     <Dialog.Root onOpenChange={toggleOpen} open={open}>
       <Dialog.Trigger>
-        <Button onClick={handleClick} variant='soft'>
+        <Button onClick={handleClick} variant={variant}>
           <span className='icon-[mdi--upload]' />
           Add
         </Button>

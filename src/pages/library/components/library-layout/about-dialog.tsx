@@ -9,15 +9,15 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
 
   return (
     <Dialog.Root {...props} onOpenChange={handleOpenChange}>
-      <Dialog.Content aria-describedby={undefined}>
+      <Dialog.Content aria-describedby={undefined} width='360px'>
         <VisuallyHidden>
           <Dialog.Title className='flex items-center gap-2'>About</Dialog.Title>
         </VisuallyHidden>
-        <div className='flex flex-col items-center gap-2 p-2'>
+        <div className='flex flex-col items-center gap-2 p-2 text-center'>
           <img alt='logo' height='56' src='/assets/logo/logo-192x192.png' width='56' />
           <div className='text-xl font-semibold'>RetroAssembly</div>
           <div className='text-sm'>Your personal retro game collection cabinet in your browser</div>
-          <div className='flex gap-2 text-xs opacity-70'>
+          <div className='flex flex-col gap-2 py-2 text-xs opacity-70'>
             <div>
               Version:
               <a

@@ -18,13 +18,16 @@ export function SidebarLink({ active, children, to }) {
     <motion.div layout ref={ref}>
       <Button asChild size='3' variant='ghost'>
         <NavigatableLink
-          className={clsx('group !m-0 !flex !h-auto !px-4 !py-2.5', { '!bg-white': active, '!text-white': !active })}
+          className={clsx('group !m-0 !flex !h-auto !px-4 !py-2.5', {
+            '!bg-white !font-semibold': active,
+            '!text-white': !active,
+          })}
           data-sn-focus-style={JSON.stringify({
             backgroundColor: 'rgba(0, 0, 0, 0.2)',
           })}
           to={to}
         >
-          <div className='flex h-auto w-full items-center justify-start gap-2 font-semibold'>{children}</div>
+          <div className='flex h-auto w-full items-center justify-start gap-2'>{children}</div>
         </NavigatableLink>
       </Button>
     </motion.div>

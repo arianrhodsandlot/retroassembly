@@ -38,7 +38,7 @@ const features = [
       </div>
     ),
     description: 'Supports a wide range of retro gaming systems.',
-    icon: 'icon-[mdi--space-invaders]',
+    icon: 'icon-[mdi--dice-multiple]',
     title: 'Multi-Platform Support',
   },
   {

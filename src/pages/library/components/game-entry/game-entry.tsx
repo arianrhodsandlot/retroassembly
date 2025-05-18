@@ -16,12 +16,15 @@ export function GameEntry({ rom }) {
 
   const libraryPath = isDemo ? 'demo' : 'library'
 
+  const segments = [libraryPath, 'platform', rom.platform, 'rom', rom.fileName]
+  const url = `/${segments.map((segment) => encodeURIComponent(segment)).join('/')}`
+
   return (
     <GameEntryContextMenu rom={rom}>
       <NavigatableLink
         className='game-entry flex flex-col items-center justify-center gap-1 p-1'
         title={rom.fileName}
-        to={`/${encodeURIComponent(libraryPath)}/platform/${rom.platform}/rom/${encodeURIComponent(rom.fileName)}`}
+        to={url}
       >
         <div className='!w-9/10 relative flex aspect-square items-center justify-center overflow-hidden'>
           <AnimatePresence>
@@ -40,7 +43,7 @@ export function GameEntry({ rom }) {
             <Atropos activeOffset={0} className='!size-full' shadow={false}>
               <img
                 alt={goodcodes.rom}
-                className='size-full rounded object-contain object-bottom drop-shadow-lg'
+                className='size-full rounded object-contain object-bottom'
                 loading='lazy'
                 src={cover.src}
               />

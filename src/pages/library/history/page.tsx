@@ -25,7 +25,6 @@ export default function HistoryPage({ pageData }: { pageData: any }) {
                 {pagination.total === 1 ? 'game' : 'games'}
               </div>
             </div>
-            <hr className='border-t-1 border-t-black/20' />
             <GameList key={`history-${page}`} pagination={pagination} />
           </div>
         </MainScrollArea>

@@ -3,12 +3,12 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "dev:test": "playwright test -c tests/e2e --headed --ui",
     "dev": "vite",
+    "dev:test": "playwright test -c tests/e2e --headed --ui",
     "lint": "eslint src",
+    "prepare": "simple-git-hooks",
     "prepare-test": "node ./scripts/prepare-test.js",
     "preview": "vite build && vite preview",
-    "prepare": "simple-git-hooks",
     "test": "playwright test -c tests/e2e"
   },
   "simple-git-hooks": {
@@ -18,6 +18,10 @@
     "*.?(m|c)@(j|t)s?(x)": "pnpm eslint --fix",
     "package.json": "pnpm dlx sort-package-json"
   },
+  "browserslist": [
+    "defaults",
+    "not op_mini all"
+  ],
   "dependencies": {
     "@fontsource-variable/fredoka": "5.2.7",
     "@fontsource-variable/outfit": "5.2.5",
@@ -71,7 +75,7 @@
     "@types/gapi.client.drive-v3": "0.0.5",
     "@types/is-ci": "3.0.4",
     "@types/lodash-es": "4.17.12",
-    "@types/node": "22.15.18",
+    "@types/node": "22.15.19",
     "@types/path-browserify": "1.0.3",
     "@types/react": "19.1.4",
     "@types/react-dom": "19.1.5",
@@ -93,14 +97,11 @@
     "vite-plugin-pwa": "0.21.2",
     "zx": "8.5.4"
   },
-  "browserslist": [
-    "defaults",
-    "not op_mini all"
-  ],
   "pnpm": {
     "onlyBuiltDependencies": [
       "@swc/core",
       "esbuild",
+      "simple-git-hooks",
       "unrs-resolver"
     ]
   }

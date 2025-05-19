@@ -2,6 +2,7 @@ import { Select } from '@radix-ui/themes'
 import { Link, useLocation, useNavigate } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
+import { useIsDemo } from '../../hooks/use-demo.ts'
 import { usePlatform } from '../../hooks/use-platform.ts'
 import { usePreference } from '../../hooks/use-preference.ts'
 
@@ -10,6 +11,9 @@ export function LibraryLayoutHeader() {
   const navitate = useNavigate()
   const platform = usePlatform()
   const location = useLocation()
+  const isDemo = useIsDemo()
+
+  const platforms = isDemo ? ['gba', 'gbc', 'genesis', 'nes', 'snes'] : preference.ui.platforms
 
   let currentRouteName = ''
   if (platform) {
@@ -56,7 +60,7 @@ export function LibraryLayoutHeader() {
             </Select.Group>
             <Select.Separator />
             <Select.Group>
-              {preference.ui.platforms.map((platform) => (
+              {platforms.map((platform) => (
                 <Select.Item key={platform} value={platform}>
                   <div className='flex items-center gap-1'>
                     <img alt={platform} className='size-5' src={getPlatformIcon(platform)} />

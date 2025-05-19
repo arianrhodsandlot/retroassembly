@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai'
 import ky from 'ky'
 import useSWRMutation from 'swr/mutation'
-import type { PreferenceSnippet, ResolvedPreference } from '@/constants/preference.ts'
+import { defaultPreference, type PreferenceSnippet, type ResolvedPreference } from '@/constants/preference.ts'
 import { preferenceAtom } from '@/pages/atoms.ts'
 
 export function usePreference() {
@@ -18,9 +18,5 @@ export function usePreference() {
     }
   }
 
-  if (!preference) {
-    throw new Error('preference should not be falsy')
-  }
-
-  return { isLoading, preference, update }
+  return { isLoading, preference: preference || defaultPreference, update }
 }

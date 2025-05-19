@@ -1,7 +1,7 @@
 import { and, count, countDistinct, desc, eq, inArray, max } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { launchRecordTable, romTable } from '../databases/library/schema.ts'
-import { getRomsMetadata } from './utils.ts'
+import { getRomsMetadata } from './utils.server.ts'
 
 export async function getLaunchRecords({ page = 1, pageSize = 100 }: { page?: number; pageSize?: number }) {
   const { currentUser, db, preference } = getContext().var

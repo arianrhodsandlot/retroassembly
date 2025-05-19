@@ -5,9 +5,10 @@ import { getContext } from 'hono/context-storage'
 import { Provider } from 'jotai'
 import { HydrationBoundary } from 'jotai-ssr'
 import type { ReactNode } from 'react'
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from 'react-router'
+import { isRouteErrorResponse, Outlet, Scripts, ScrollRestoration, useLoaderData } from 'react-router'
 import type { Route } from './+types/root'
 import { preferenceAtom } from './atoms.ts'
+import { Head } from './components/head.tsx'
 
 export function loader() {
   const { preference } = getContext().var
@@ -21,12 +22,7 @@ export function Layout({ children }: { children: ReactNode }) {
 
   return (
     <html lang='en'>
-      <head>
-        <meta charSet='utf-8' />
-        <meta content='width=device-width, initial-scale=1' name='viewport' />
-        <Meta />
-        <Links />
-      </head>
+      <Head />
       <body>
         <Provider>
           <HydrationBoundary hydrateAtoms={hydrateAtoms}>

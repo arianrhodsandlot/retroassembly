@@ -1,6 +1,7 @@
 import { Button } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { Link } from 'react-router'
+import { metadata } from '@/constants/metadata.ts'
 
 interface LoginPageProps {
   pageData: {
@@ -26,7 +27,7 @@ export function LoginPage({ pageData }: LoginPageProps) {
   if (redirectTo) {
     return (
       <>
-        <title>Log in - RetroAssembly</title>
+        <title>Log in - {metadata.title}</title>
         <div className='bg-(--accent-9) min-h-dvh py-20'>
           <form className='w-3xl mx-auto rounded bg-white p-10 text-center'>
             <div className='flex items-center justify-center gap-4'>

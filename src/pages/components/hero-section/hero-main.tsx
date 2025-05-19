@@ -1,6 +1,7 @@
 import { Button } from '@radix-ui/themes'
 import { range } from 'es-toolkit'
 import { Link } from 'react-router'
+import { metadata } from '@/constants/metadata.ts'
 
 export function HeroMain() {
   return (
@@ -15,7 +16,7 @@ export function HeroMain() {
               .join(','),
           }}
         >
-          RetroAssembly
+          {metadata.title}
         </h1>
       </div>
 

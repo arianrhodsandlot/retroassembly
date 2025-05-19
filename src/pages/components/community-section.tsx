@@ -1,4 +1,5 @@
 import { linkMap, links } from '@/constants/links.ts'
+import { metadata } from '@/constants/metadata.ts'
 
 export function CommunitySection() {
   return (
@@ -12,7 +13,7 @@ export function CommunitySection() {
           <div>
             <span className='icon-[mdi--bug-stop] mt-1.5 shrink-0 text-lg' />
             <div>
-              <span className='font-[Roboto_Slab_Variable] font-semibold'>RetroAssembly</span>{' '}
+              <span className='font-[Roboto_Slab_Variable] font-semibold'>{metadata.title}</span>{' '}
               <sup className='font-mono opacity-80'>next</sup> is in its early stages, and we are actively working on
               improving its usability.
             </div>

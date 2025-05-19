@@ -1,3 +1,5 @@
+import { linkMap } from '@/constants/links.ts'
+
 export function FooterSection() {
   return (
     <footer className='border border-x-0 border-b-0 border-t-neutral-200 p-8 text-center text-sm font-light text-neutral-500'>
@@ -7,7 +9,7 @@ export function FooterSection() {
           Version:
           <a
             className='ml-0.5 underline'
-            href={`https://github.com/arianrhodsandlot/retroassembly/commit/${GIT_VERSION}`}
+            href={`${linkMap.github}/commit/${GIT_VERSION}`}
             rel='noreferrer noopener'
             target='_blank'
           >

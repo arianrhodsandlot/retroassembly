@@ -1,6 +1,7 @@
 import { ScrollArea } from '@radix-ui/themes'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router'
+import { metadata } from '@/constants/metadata.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
 import { PendingMask } from '../pending-mask.tsx'
 import { FocusIndicator } from './focus-indicator.tsx'
@@ -10,9 +11,8 @@ import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
 import { StatusBar } from './status-bar.tsx'
 
-const siteTitle = 'RetroAssembly'
 function getPostfixedTitle(title: string) {
-  return title ? `${title} - ${siteTitle}` : siteTitle
+  return title ? `${title} - ${metadata.title}` : metadata.title
 }
 
 interface AppLayoutProps {
@@ -32,7 +32,7 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
           <div className='flex items-center justify-between px-4 pb-4'>
             <Link className='flex items-center gap-2 font-bold' reloadDocument to='/'>
               <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
-              <span className='font-[Roboto_Slab_Variable] font-semibold'>RetroAssembly</span>
+              <span className='font-[Roboto_Slab_Variable] font-semibold'>{metadata.title}</span>
             </Link>
           </div>
           <ScrollArea className='flex-1' size='2'>

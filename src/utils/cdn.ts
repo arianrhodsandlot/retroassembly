@@ -39,7 +39,7 @@ const repositoryVersions = {
   'Weestuarty/lcars-es-de': 'bdb7340', // https://github.com/Weestuarty/lcars-es-de
 } as const
 
-export const cdnHost = 'https://cdn.jsdelivr.net'
+export const cdnHost = 'https://cdn.jsdelivr.net/'
 
 export function getCDNUrl(repo: keyof typeof repositoryVersions | string, filePpath: string) {
   const [ghUser, ghRepoName] = repo.split('/')

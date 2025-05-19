@@ -1,4 +1,5 @@
 import { AlertDialog, Button } from '@radix-ui/themes'
+import { metadata } from '@/constants/metadata.ts'
 
 function handleClickLogout() {
   location.assign('/logout')
@@ -10,7 +11,7 @@ export function LogoutDialog(props: AlertDialog.RootProps) {
       <AlertDialog.Content>
         <AlertDialog.Title className='flex items-center gap-2'>
           <span className='icon-[mdi--hand-wave]' />
-          Log out of RetroAssembly?
+          Log out of {metadata.title}?
         </AlertDialog.Title>
 
         <AlertDialog.Description>You can always log back in at any time.</AlertDialog.Description>
@@ -24,7 +25,7 @@ export function LogoutDialog(props: AlertDialog.RootProps) {
           </AlertDialog.Cancel>
           <Button onClick={handleClickLogout}>
             <span className='icon-[mdi--logout]' />
-            Logout
+            Log out
           </Button>
         </div>
       </AlertDialog.Content>

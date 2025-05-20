@@ -60,7 +60,7 @@ export async function createRoms({ files, platform }: { files: File[]; platform:
         return
       }
       const { md5 = '' } = r2.checksums.toJSON()
-      const gameInfo = await guessGameInfo(file.name, platform, md5)
+      const gameInfo = await guessGameInfo(file, platform, md5)
       const rom = await createRom({
         fileId,
         fileName: file.name,

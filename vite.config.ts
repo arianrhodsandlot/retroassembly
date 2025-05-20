@@ -16,6 +16,9 @@ const define = {
 }
 
 export default defineConfig({
+  build: {
+    assetsInlineLimit: 10_240,
+  },
   define,
   plugins: [
     cloudflare({

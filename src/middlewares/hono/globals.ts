@@ -1,3 +1,4 @@
+import type { User } from '@supabase/supabase-js'
 import { env } from 'hono/adapter'
 import { createMiddleware } from 'hono/factory'
 import type { ResolvedPreference } from '../../constants/preference.ts'
@@ -8,7 +9,7 @@ import { createSupabase } from '../../utils/supabase.ts'
 
 declare module 'hono' {
   interface ContextVariableMap {
-    currentUser: { id: string }
+    currentUser: User
     db: ReturnType<typeof createDrizzle>
     preference: ResolvedPreference
     storage: ReturnType<typeof createStorage>

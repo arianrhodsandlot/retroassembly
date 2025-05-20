@@ -11,12 +11,12 @@ import { preferenceAtom } from './atoms.ts'
 import { Head } from './components/head.tsx'
 
 export function loader() {
-  const { preference } = getContext().var
-  return { preference }
+  const { currentUser, preference } = getContext().var
+  return { currentUser, preference }
 }
 
 export function Layout({ children }: { children: ReactNode }) {
-  const { preference } = useLoaderData()
+  const { currentUser, preference } = useLoaderData()
   const hydrateAtom = [preferenceAtom, preference] as const
   const hydrateAtoms = [hydrateAtom]
 
@@ -30,6 +30,10 @@ export function Layout({ children }: { children: ReactNode }) {
           </HydrationBoundary>
         </Provider>
         <ScrollRestoration />
+        {currentUser ? (
+          // eslint-disable-next-line biome-x/lint, @eslint-react/dom/no-dangerously-set-innerhtml
+          <script dangerouslySetInnerHTML={{ __html: `globalThis.CURRENT_USER=${JSON.stringify(currentUser)}` }} />
+        ) : null}
         <Scripts />
       </body>
     </html>

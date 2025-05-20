@@ -25,7 +25,7 @@ const repositoryVersions = {
   'libretro-thumbnails/Sega_-_SG-1000': '3a0e965', // https://github.com/libretro-thumbnails/Sega_-_SG-1000
   'libretro-thumbnails/SNK_-_Neo_Geo_Pocket': '3932af2', // https://github.com/libretro-thumbnails/SNK_-_Neo_Geo_Pocket
   'libretro-thumbnails/SNK_-_Neo_Geo_Pocket_Color': '2b397b7', // https://github.com/libretro-thumbnails/SNK_-_Neo_Geo_Pocket_Color
-  'libretro/docs': 'a4ceea8', // https://github.com/libretro/docs
+  'libretro/docs': '4bee6d6', // https://github.com/libretro/docs
   'libretro/retroarch-assets': '818aca5', // https://github.com/libretro/retroarch-assets
   'Mattersons/es-theme-neutral': 'c9b38e7', // https://github.com/Mattersons/es-theme-neutral
   'retrobrews/gba-games': 'add8696', // https://github.com/retrobrews/gba-games

@@ -25,6 +25,24 @@ importers:
       '@hono/zod-validator':
         specifier: 0.5.0
         version: 0.5.0(hono@4.7.10)(zod@3.25.7)
+      '@iconify-json/logos':
+        specifier: 1.2.4
+        version: 1.2.4
+      '@iconify-json/mdi':
+        specifier: 1.2.3
+        version: 1.2.3
+      '@iconify-json/noto':
+        specifier: 1.2.3
+        version: 1.2.3
+      '@iconify-json/simple-icons':
+        specifier: 1.2.35
+        version: 1.2.35
+      '@iconify-json/svg-spinners':
+        specifier: 1.2.2
+        version: 1.2.2
+      '@iconify-json/twemoji':
+        specifier: 1.2.2
+        version: 1.2.2
       '@microsoft/clarity':
         specifier: 1.0.0
         version: 1.0.0
@@ -149,9 +167,6 @@ importers:
       '@cloudflare/workers-types':
         specifier: 4.20250520.0
         version: 4.20250520.0
-      '@iconify/json':
-        specifier: 2.2.340
-        version: 2.2.340
       '@iconify/tailwind4':
         specifier: 1.0.6
         version: 1.0.6(tailwindcss@4.1.7)
@@ -952,8 +967,23 @@ packages:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
 
-  '@iconify/json@2.2.340':
-    resolution: {integrity: sha512-pr5oueoKCYmLce5ukSrKihnLDW0CEuQVPIWtrlw8qgx5RBzSxg/aIsuv6Me35ZXrCkBUKxK8h1XLqCLlMB7L6g==}
+  '@iconify-json/logos@1.2.4':
+    resolution: {integrity: sha512-XC4If5D/hbaZvUkTV8iaZuGlQCyG6CNOlaAaJaGa13V5QMYwYjgtKk3vPP8wz3wtTVNVEVk3LRx1fOJz+YnSMw==}
+
+  '@iconify-json/mdi@1.2.3':
+    resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
+
+  '@iconify-json/noto@1.2.3':
+    resolution: {integrity: sha512-YvsF8je31tPUAkhXw+aydVlmF5LOTNGRE5foOdsZVuniymr4r4020JUN9Kc/i2eOqmHDodBKmX62Um4+o8c6UQ==}
+
+  '@iconify-json/simple-icons@1.2.35':
+    resolution: {integrity: sha512-PAHZZn6P5ToHMhmEeeh/O96E/Ep4PctN44N64dWYbDasEvbVoN6x62m+Doz8au0SVS4/zYEMAsDO6TdO9ep84Q==}
+
+  '@iconify-json/svg-spinners@1.2.2':
+    resolution: {integrity: sha512-DIErwfBWWzLfmAG2oQnbUOSqZhDxlXvr8941itMCrxQoMB0Hiv8Ww6Bln/zIgxwjDvSem2dKJtap+yKKwsB/2A==}
+
+  '@iconify-json/twemoji@1.2.2':
+    resolution: {integrity: sha512-ckWEY5KhIQgdFd9VGvfhecTtYUx3ihXycwlZcEws87LxuvIThMHNBCblrQQ5afhbGMfg21dF+z9F+ODMRDYHMg==}
 
   '@iconify/tailwind4@1.0.6':
     resolution: {integrity: sha512-43ZXe+bC7CuE2LCgROdqbQeFYJi/J7L/k1UpSy8KDQlWVsWxPzLSWbWhlJx4uRYLOh1NRyw02YlDOgzBOFNd+A==}
@@ -6261,10 +6291,29 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@iconify/json@2.2.340':
+  '@iconify-json/logos@1.2.4':
     dependencies:
       '@iconify/types': 2.0.0
-      pathe: 1.1.2
+
+  '@iconify-json/mdi@1.2.3':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/noto@1.2.3':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/simple-icons@1.2.35':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/svg-spinners@1.2.2':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/twemoji@1.2.2':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify/tailwind4@1.0.6(tailwindcss@4.1.7)':
     dependencies:

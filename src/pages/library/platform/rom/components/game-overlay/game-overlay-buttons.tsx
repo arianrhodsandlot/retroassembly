@@ -49,7 +49,7 @@ export function GameOverlayButtons() {
   return (
     <>
       <GameOverlayButton dataSnLeft='.game-overlay-buttons button:last-child' onClick={handleClickResume}>
-        <span className='icon-[material-symbols--resume] size-5' />
+        <span className='icon-[mdi--play] size-5' />
         Resume
       </GameOverlayButton>
 

@@ -35,13 +35,9 @@ export const launchboxGameTable = sqliteTable(
     wikipediaUrl: text(),
   },
   (table) => [
-    index('idx_launchbox_games').on(
-      table.databaseId,
-      table.compactName,
-      table.goodcodesBaseCompactName,
-      table.name,
-      table.platform,
-    ),
+    index('lbg_compact_name_platform_idx').on(table.compactName, table.platform),
+    index('lbg_goodcodes_base_compact_name_platform_idx').on(table.goodcodesBaseCompactName, table.platform),
+    index('lbg_platform_idx').on(table.platform),
   ],
 )
 
@@ -74,7 +70,7 @@ export const launchboxPlatformAlternateNameTable = sqliteTable(
     id: text('id').primaryKey().notNull().$defaultFn(nanoid),
     name: text(),
   },
-  (table) => [index('idx_launchbox_platform_alternate_names').on(table.id, table.alternate, table.name)],
+  (table) => [index('idx_launchbox_platform_alternate_names').on(table.alternate, table.name)],
 )
 
 export const launchboxGameAlternateNameTable = sqliteTable(
@@ -86,9 +82,7 @@ export const launchboxGameAlternateNameTable = sqliteTable(
     id: text().primaryKey().notNull().$defaultFn(nanoid),
     region: text(),
   },
-  (table) => [
-    index('idx_launchbox_game_alternate_names').on(table.id, table.alternateName, table.compactName, table.databaseId),
-  ],
+  (table) => [index('idx_launchbox_game_alternate_names').on(table.alternateName, table.compactName, table.databaseId)],
 )
 
 export const libretroGameTable = sqliteTable(
@@ -115,5 +109,5 @@ export const libretroGameTable = sqliteTable(
     size: integer(),
     users: integer(),
   },
-  (table) => [index('idx_libretro_game').on(table.id, table.name, table.goodcodesBaseCompactName, table.romName)],
+  (table) => [index('idx_libretro_game').on(table.name, table.goodcodesBaseCompactName, table.romName)],
 )

@@ -37,7 +37,7 @@ export const romTable = sqliteTable(
     platform: text().notNull(),
     ...fileSchema,
   },
-  (table) => [index('idx_roms').on(table.id, table.platform, table.userId, table.launchTimes)],
+  (table) => [index('idx_roms').on(table.userId, table.status, table.platform, table.fileName)],
 )
 
 export const stateTable = sqliteTable(
@@ -50,7 +50,7 @@ export const stateTable = sqliteTable(
     type: text({ enum: ['auto', 'manual'] }).notNull(),
     ...fileSchema,
   },
-  (table) => [index('idx_states').on(table.id, table.platform, table.userId)],
+  (table) => [index('idx_states').on(table.userId, table.status, table.romId, table.platform)],
 )
 
 export const launchRecordTable = sqliteTable(
@@ -62,7 +62,7 @@ export const launchRecordTable = sqliteTable(
     userId: text().notNull(),
     ...baseSchema,
   },
-  (table) => [index('idx_launch_records').on(table.id, table.platform, table.userId)],
+  (table) => [index('idx_launch_records').on(table.userId, table.status, table.platform)],
 )
 
 export const userPreferenceTable = sqliteTable(
@@ -75,5 +75,5 @@ export const userPreferenceTable = sqliteTable(
     userId: text().notNull(),
     ...baseSchema,
   },
-  (table) => [index('idx_user_preferences').on(table.id, table.userId)],
+  (table) => [index('idx_user_preferences').on(table.userId)],
 )

@@ -37,7 +37,7 @@ export async function getRoms({
     .offset(offset)
     .limit(pageSize)
 
-  const [{ total }] = await library.select({ total: count() }).from(romTable).orderBy(romTable.fileName).where(where)
+  const [{ total }] = await library.select({ total: count() }).from(romTable).where(where)
 
   const results = await getRomsMetadata(romResults)
 

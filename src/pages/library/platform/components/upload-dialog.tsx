@@ -150,7 +150,7 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
               <div
                 {...getRootProps()}
                 className={clsx(
-                  'border-(--accent-8) mt-4 flex h-32 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed',
+                  'border-(--accent-8) mt-4 flex h-32 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed outline-none',
                   { 'bg-(--accent-3)': isDragActive },
                 )}
               >

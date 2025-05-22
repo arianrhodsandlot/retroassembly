@@ -3,13 +3,13 @@
   <h1 align="center">RetroAssembly</h1>
 </p>
 
-RetroAssembly is a personal retro game collection cabinet in your browser. It allows you to:
+![](public/assets/screenrecordings/import-roms.mp4)
+
+[RetroAssembly](https://next.retroassembly.com/) is a personal retro game collection cabinet in your browser. It allows you to:
 - Play Retro Games. Enjoy titles from a wide variety of beloved retro gaming systems.
 - Build Your Library. Easily upload and organize your own game ROMs.
 - Save and Synchronize Your Progress. Pick up right where you left off with our game state saving feature.
 - Instant Access. Play anywhere, anytime, directly from your web browser.
-
-<img src="public/assets/screenshots/library.jpeg" alt="library">
 
 ## Features
 
@@ -37,11 +37,11 @@ RetroAssembly is a personal retro game collection cabinet in your browser. It al
 <!-- - **Virtual Controller**: Play on the go, even without a physical gamepad, using our on-screen virtual controller. -->
 
 ## Getting Started
-1.  **Visit RetroAssembly**: Open [the RetroAssembly website](https://next.retroassembly.com/) in your web browser.
-2.  **Explore the Library**: If you're new, check out any available [demo games](https://next.retroassembly.com/demo) to get a feel for the platform.
-3.  **Upload Your Games**: If you have your own game ROM files, you can upload them to create your personal library. Look for an "Upload" button, often found in the Library section.
-4.  **Choose a Game & Play**: Select a game from your library, and it will launch directly in your browser.
-5.  **Save and Synchronize Your Progress**: Use the in-game menu to save your progress.
+1.  Begin by visiting the [RetroAssembly website](https://next.retroassembly.com/) in your web browser.
+2.  If you're new to the platform, explore the library and try out the available [demo games](https://next.retroassembly.com/demo) to see how it works.
+3.  Create your personal game library by uploading your own ROM files. The "Upload" button is typically found in the Library section.
+4.  Once your games are added, select any game from your library to launch it directly in your browser and start playing.
+5.  Don't forget to use the in-game menu to save your progress, which will be synchronized for you.
 
 ## Supported Platforms
 

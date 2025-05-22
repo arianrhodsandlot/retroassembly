@@ -18,7 +18,7 @@ export function ScreenshotSlider() {
 
   return (
     <div className='hidden flex-1 shrink-0 flex-col items-center justify-center gap-10 xl:flex'>
-      <div className='rounded bg-white p-2 shadow-lg ring-1 ring-neutral-300'>
+      <div className='border-1 rounded border-neutral-300 bg-white p-2 shadow-lg'>
         <Swiper
           autoplay={{ delay, disableOnInteraction: false }}
           className='w-2xl aspect-video overflow-hidden rounded'
@@ -45,7 +45,7 @@ export function ScreenshotSlider() {
           <SwiperSlide>
             <video
               autoPlay
-              className='block rounded object-contain'
+              className='block size-full rounded bg-neutral-200 object-contain'
               controls={false}
               loop
               muted
@@ -61,7 +61,7 @@ export function ScreenshotSlider() {
       </div>
 
       <div className='flex gap-2'>
-        {images.map((image, index) => (
+        {['', ...images].map((image, index) => (
           <button
             className={clsx(
               'rounded-xs relative h-1.5 w-20 transition-colors',

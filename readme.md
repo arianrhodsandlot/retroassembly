@@ -1,9 +1,10 @@
 <p align="center">
-  <img src="public/assets/logo/logo-512x512.png" alt="logo" width="120" height="120">
+  <img src="public/assets/logo/logo-512x512.png" alt="logo" width="100" height="100">
   <h1 align="center">RetroAssembly</h1>
 </p>
 
-![](public/assets/screenrecordings/import-roms.mp4)
+![library](public/assets/screenshots/library.jpeg)
+
 
 [RetroAssembly](https://next.retroassembly.com/) is a personal retro game collection cabinet in your browser. It allows you to:
 - Play Retro Games. Enjoy titles from a wide variety of beloved retro gaming systems.

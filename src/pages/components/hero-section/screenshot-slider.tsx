@@ -14,23 +14,44 @@ const images = [
 export function ScreenshotSlider() {
   const [indicator, setIndicator] = useState({ current: 0, progress: 0 })
   const swiperRef = useRef<SwiperType>(null)
+  const [delay, setDelay] = useState(40_000)
 
   return (
     <div className='hidden flex-1 shrink-0 flex-col items-center justify-center gap-10 xl:flex'>
       <div className='rounded bg-white p-2 shadow-lg ring-1 ring-neutral-300'>
         <Swiper
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          autoplay={{ delay, disableOnInteraction: false }}
           className='w-2xl aspect-video overflow-hidden rounded'
           loop
           modules={[Autoplay, FreeMode, Thumbs]}
           onAutoplayTimeLeft={({ realIndex }, _time, progress) => {
             setIndicator({ current: realIndex, progress })
           }}
+          onSlideChange={({ realIndex }) => {
+            setDelay(realIndex ? 3000 : 40_000)
+            const video = document.querySelector('video')
+            if (video) {
+              video.currentTime = 0
+              if (realIndex === 0) {
+                video.play()
+              }
+            }
+          }}
           onSwiper={(swiper) => {
             swiperRef.current = swiper
           }}
           spaceBetween={20}
         >
+          <SwiperSlide>
+            <video
+              autoPlay
+              className='block rounded object-contain'
+              controls={false}
+              loop
+              muted
+              src='/assets/screenrecordings/import-roms.mp4'
+            />
+          </SwiperSlide>
           {images.map((image) => (
             <SwiperSlide key={image}>
               <img alt='library' className='block rounded object-contain' src={image} />

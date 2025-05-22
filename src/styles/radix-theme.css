@@ -2,33 +2,32 @@
 :root, .light, .light-theme {
   --red-1: #fffcfc;
   --red-2: #fff7f7;
-  --red-3: #ffeaea;
-  --red-4: #ffdcdb;
-  --red-5: #ffcecd;
-  --red-6: #fcbebe;
-  --red-7: #f4aaab;
-  --red-8: #eb9092;
-  --red-9: #c70036;
-  --red-10: #b50029;
-  --red-11: #d0173d;
-  --red-12: #67131f;
+  --red-3: #feeaea;
+  --red-4: #fdd;
+  --red-5: #ffcfd0;
+  --red-6: #f9bfc1;
+  --red-7: #f0acae;
+  --red-8: #e69396;
+  --red-9: #be123c;
+  --red-10: #ad002f;
+  --red-11: #cb2546;
+  --red-12: #651723;
 
   --red-a1: #ff000003;
   --red-a2: #ff000008;
-  --red-a3: #ff000015;
-  --red-a4: #ff080024;
-  --red-a5: #ff060032;
-  --red-a6: #f4000041;
-  --red-a7: #de000355;
-  --red-a8: #d200056f;
-  --red-a9: #c70036;
-  --red-a10: #b50029;
-  --red-a11: #cb002ae8;
-  --red-a12: #5b000dec;
+  --red-a3: #f3000015;
+  --red-a4: #ff000022;
+  --red-a5: #ff000630;
+  --red-a6: #e8000840;
+  --red-a7: #d1000753;
+  --red-a8: #c400086c;
+  --red-a9: #b9002ded;
+  --red-a10: #ad002f;
+  --red-a11: #c20027da;
+  --red-a12: #56000de8;
 
   --red-contrast: #fff;
   --red-surface: #fff5f5cc;
-  --red-indicator: #c70036;
-  --red-track: #c70036;
+  --red-indicator: #be123c;
+  --red-track: #be123c;
 }
-

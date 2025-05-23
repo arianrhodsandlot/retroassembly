@@ -49,7 +49,7 @@ export function ScreenshotSlider() {
               controls={false}
               loop
               muted
-              poster='/assets/screenrecordings/import-roms.png'
+              poster='/assets/screenrecordings/import-roms-poster.png'
               src='/assets/screenrecordings/import-roms.mp4'
             />
           </SwiperSlide>

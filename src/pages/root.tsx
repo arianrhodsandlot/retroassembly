@@ -39,6 +39,30 @@ export function Layout({ children }: { children: ReactNode }) {
           </HydrationBoundary>
         </Provider>
         <ScrollRestoration />
+        <script
+          // eslint-disable-next-line biome-x/lint, @eslint-react/dom/no-dangerously-set-innerhtml
+          dangerouslySetInnerHTML={{
+            __html: `
+if ('serviceWorker' in navigator) {
+  // Unregister Service Workers
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    for (let registration of registrations) {
+      registration.unregister()
+    }
+  })
+
+  // Clear all caches in Cache Storage
+  if (window.caches) {
+    caches.keys().then((cacheNames) => {
+      cacheNames.forEach((cacheName) => {
+        caches.delete(cacheName)
+      })
+    })
+  }
+}
+          `,
+          }}
+        />
         {currentUser ? (
           // eslint-disable-next-line biome-x/lint, @eslint-react/dom/no-dangerously-set-innerhtml
           <script dangerouslySetInnerHTML={{ __html: `globalThis.CURRENT_USER=${JSON.stringify(currentUser)}` }} />

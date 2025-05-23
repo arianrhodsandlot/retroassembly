@@ -10,8 +10,17 @@ import type { Route } from './+types/root'
 import { preferenceAtom } from './atoms.ts'
 import { Head } from './components/head.tsx'
 
-export function loader() {
-  const { currentUser, preference } = getContext().var
+const disabledHost = 'retroassembly.com'
+const targetUrl = 'https://classic.retroassembly.com/'
+
+export function loader({ request }) {
+  const c = getContext()
+
+  if (new URL(request.url).hostname === disabledHost) {
+    throw c.redirect(targetUrl)
+  }
+
+  const { currentUser, preference } = c.var
   return { currentUser, preference }
 }
 

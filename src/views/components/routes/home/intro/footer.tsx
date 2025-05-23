@@ -11,7 +11,7 @@ export function Footer() {
           <a
             className='ml-1 underline'
             href={`https://github.com/arianrhodsandlot/retroassembly/tree/${GIT_VERSION}`}
-            rel='noreferrer'
+            rel='noopener noreferrer'
             target='_blank'
           >
             {GIT_VERSION}
@@ -26,18 +26,18 @@ export function Footer() {
 
       <div className='flex-center mb-4 mt-1 gap-2 text-xs'>
         <span>© 2024</span>
-        <a className='underline' href='https://github.com/arianrhodsandlot' rel='noreferrer' target='_blank'>
+        <a className='underline' href='https://github.com/arianrhodsandlot' rel='noopener noreferrer' target='_blank'>
           arianrhodsandlot
         </a>
         ·
-        <a className='underline' href='/privacy-policy.html' target='_blank'>
+        <a className='underline' href='/privacy-policy.html' rel='noopener noreferrer' target='_blank'>
           {t('Privacy Policy')}
         </a>
         ·
         <a
           className='flex-center gap-1'
           href='mailto:theguidanceofawhitetower@gmail.com'
-          rel='noreferrer'
+          rel='noopener noreferrer'
           target='_blank'
         >
           <span className='icon-[simple-icons--gmail] mr-1 size-4' />
@@ -45,7 +45,7 @@ export function Footer() {
         <a
           className='flex-center gap-1'
           href='https://github.com/arianrhodsandlot/retroassembly'
-          rel='noreferrer'
+          rel='noopener noreferrer'
           target='_blank'
         >
           <span className='icon-[simple-icons--github] mr-1 size-4' />
@@ -53,15 +53,15 @@ export function Footer() {
         <a
           className='hidden items-center justify-center gap-1'
           href='https://discord.gg/RVVAMcCH'
-          rel='noreferrer'
+          rel='noopener noreferrer'
           target='_blank'
         >
           <span className='icon-[simple-icons--discord] mr-1 size-4' />
         </a>
         <a
           className='hidden items-center justify-center gap-1'
-          href='https://twitter.com/arianrhodsand'
-          rel='noreferrer'
+          href='https://x.com/arianrhodsdlt'
+          rel='noopener noreferrer'
           target='_blank'
         >
           <span className='icon-[simple-icons--x] mr-1 size-4' />

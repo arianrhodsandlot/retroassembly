@@ -25,7 +25,7 @@ export function AboutButton() {
               <a
                 className='ml-1 underline'
                 href={`https://github.com/arianrhodsandlot/retroassembly/tree/${GIT_VERSION}`}
-                rel='noreferrer'
+                rel='noreferrer noopener'
                 target='_blank'
               >
                 {GIT_VERSION}
@@ -39,12 +39,17 @@ export function AboutButton() {
 
           <div className='flex-center mb-2 mt-1 gap-2 text-xs'>
             <span>© 2025</span>
-            <a className='underline' href='https://github.com/arianrhodsandlot' rel='noreferrer' target='_blank'>
+            <a
+              className='underline'
+              href='https://github.com/arianrhodsandlot'
+              rel='noreferrer noopener'
+              target='_blank'
+            >
               arianrhodsandlot
             </a>
           </div>
           <div className='flex-center mb-2 mt-1 gap-2 text-xs'>
-            <a className='underline' href='/privacy-policy.html' target='_blank'>
+            <a className='underline' href='/privacy-policy.html' rel='noreferrer noopener' target='_blank'>
               {t('Privacy Policy')}
             </a>
           </div>
@@ -52,7 +57,7 @@ export function AboutButton() {
             <a
               className='flex-center gap-1'
               href='mailto:theguidanceofawhitetower@gmail.com'
-              rel='noreferrer'
+              rel='noreferrer noopener'
               target='_blank'
             >
               <span className='icon-[simple-icons--gmail] mr-1 size-4' />
@@ -60,7 +65,7 @@ export function AboutButton() {
             <a
               className='flex-center gap-1'
               href='https://github.com/arianrhodsandlot/retroassembly'
-              rel='noreferrer'
+              rel='noreferrer noopener'
               target='_blank'
             >
               <span className='icon-[simple-icons--github] mr-1 size-4' />
@@ -68,15 +73,15 @@ export function AboutButton() {
             <a
               className='hidden items-center justify-center gap-1'
               href='https://discord.gg/RVVAMcCH'
-              rel='noreferrer'
+              rel='noreferrer noopener'
               target='_blank'
             >
               <span className='icon-[simple-icons--discord] mr-1 size-4' />
             </a>
             <a
               className='hidden items-center justify-center gap-1'
-              href='https://twitter.com/arianrhodsand'
-              rel='noreferrer'
+              href='https://x.com/arianrhodsdlt'
+              rel='noreferrer noopener'
               target='_blank'
             >
               <span className='icon-[simple-icons--x] mr-1 size-4' />

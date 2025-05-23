@@ -1,3 +1,19 @@
+<blockquote>
+  DEPRECATED
+
+  We are in the process of sunsetting [RetroAssembly Classic](https://classic.retroassembly.com).
+
+  [The classic version of RetroAssembly](https://classic.retroassembly.com) is no longer actively maintained, and no new features will be added.
+
+  We encourage you to try [the new version of RetroAssembly](https://next.retroassembly.com)! It's just as easy to use as the classic version and features a more refined design with additional handy features, such as automatic game metadata retrieval, upgraded emulators, improved gamepad support, CRT shaders, and more.
+
+  Currently, visiting “retroassembly.com” will redirect you to [classic.retroassembly.com](https://classic.retroassembly.com). In the future, [next.retroassembly.com](https://next.retroassembly.com) will become the default version.
+
+  Rest assured, [the classic version of RetroAssembly](https://classic.retroassembly.com) will always be accessible at [classic.retroassembly.com](https://classic.retroassembly.com). All your data is preserved, and you can continue to use it as you always have.
+
+  Thank you for using RetroAssembly! We hope you'll have a great experience with our new version at [next.retroassembly.com](https://next.retroassembly.com).
+</div>
+
 <p align="center">
   <img src="public/assets/logo/logo-512x512.png" alt="logo" width="120" height="120">
   <h1 align="center">RetroAssembly</h1>
@@ -11,7 +27,7 @@ A personal retro game collection cabinet in your browser.
 </p>
 
 ## Usage
-1. Visit [retroassembly.com](https://retroassembly.com).
+1. Visit [classic.retroassembly.com](https://classic.retroassembly.com).
 2. Pick a method you prefer to provide your ROMs. For BIOS files, place them into a directory named `system` inside the directory you are picking.
 
    You can also try the public library first if you do not have one now.

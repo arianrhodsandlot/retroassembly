@@ -16,7 +16,7 @@ import { OnedriveButton } from './onedrive-button'
 const isOnedriveEnabled = isCloudServiceEnabled('onedrive')
 const isGoogleDriveEnabled = isCloudServiceEnabled('google-drive')
 const isDropboxEnabled = isCloudServiceEnabled('dropbox')
-const isAnyCloudServiceEnabled = isOnedriveEnabled || isGoogleDriveEnabled
+const isAnyCloudServiceEnabled = isOnedriveEnabled || isGoogleDriveEnabled || isDropboxEnabled
 
 const directoryInstruction = <DirectoryInstruction />
 const directoryInstructionToolTip = (
@@ -76,7 +76,26 @@ export function ContinueModalContent() {
                     </div>
                   </>
                 ) : null}
-                {isDropboxEnabled ? <DropboxButton /> : null}
+                {isDropboxEnabled ? (
+                  <>
+                    <DropboxButton />
+                    <div className='-mt-2 flex items-start gap-2 text-xs'>
+                      <span className='icon-[mdi--alert-box-outline] size-4 shrink-0' />
+                      <span>
+                        Not encouraged. See{' '}
+                        <a
+                          href='https://github.com/arianrhodsandlot/retroassembly/issues/19'
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='underline'
+                        >
+                          the related GitHub issue
+                        </a>{' '}
+                        for more information.
+                      </span>
+                    </div>
+                  </>
+                ) : null}
                 {isGoogleDriveEnabled ? (
                   <>
                     <GoogleDriveButton />

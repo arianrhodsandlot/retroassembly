@@ -25,7 +25,7 @@ export function loader({ request }) {
 }
 
 export function Layout({ children }: { children: ReactNode }) {
-  const { currentUser, preference } = useLoaderData()
+  const { currentUser, preference } = useLoaderData() || {}
   const hydrateAtom = [preferenceAtom, preference] as const
   const hydrateAtoms = [hydrateAtom]
 

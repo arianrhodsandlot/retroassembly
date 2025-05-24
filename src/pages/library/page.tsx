@@ -34,16 +34,18 @@ export default function LibraryPage({ pageData }: LibraryPageProps) {
               {isDemo ? (
                 <div className='mt-4 flex items-start gap-1 text-sm text-neutral-500 lg:items-center'>
                   <span className='icon-[mdi--information-outline] mt-1 shrink-0 lg:mt-0' />
-                  These free (legal) games are all picked from the{' '}
-                  <a
-                    className='underline'
-                    href='https://retrobrews.github.io/'
-                    rel='noreferrer noopener'
-                    target='_blank'
-                  >
-                    retrobrews project
-                  </a>
-                  for demonstration.
+                  <span>
+                    These free (legal) games are all picked from{' '}
+                    <a
+                      className='underline'
+                      href='https://retrobrews.github.io/'
+                      rel='noreferrer noopener'
+                      target='_blank'
+                    >
+                      retrobrews project
+                    </a>{' '}
+                    for demonstration.
+                  </span>
                 </div>
               ) : null}
             </div>

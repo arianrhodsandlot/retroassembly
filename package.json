@@ -58,17 +58,17 @@
     "react-router": "7.6.0",
     "smooth-scroll-into-view-if-needed": "2.0.2",
     "spatial-navigation-ts": "1.0.8",
-    "swiper": "11.2.7",
+    "swiper": "11.2.8",
     "swr": "2.3.3",
     "tailwind-merge": "3.3.0",
     "tailwindcss-motion": "1.1.0",
     "type-fest": "4.41.0",
-    "zod": "3.25.23"
+    "zod": "3.25.28"
   },
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.19.0",
     "@cloudflare/vite-plugin": "1.2.4",
-    "@cloudflare/workers-types": "4.20250523.0",
+    "@cloudflare/workers-types": "4.20250524.0",
     "@iconify/tailwind4": "1.0.6",
     "@react-router/dev": "7.6.0",
     "@tailwindcss/vite": "4.1.7",

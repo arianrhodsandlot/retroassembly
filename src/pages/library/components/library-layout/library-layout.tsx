@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
 import { PendingMask } from '../pending-mask.tsx'
+import { DemoLoginButton } from './demo-login-button.tsx'
 import { FocusIndicator } from './focus-indicator.tsx'
 import { LibraryLayoutHeader } from './library-layout-header.tsx'
 import { SidebarContainer } from './sidebar-container.tsx'
@@ -26,6 +27,8 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
     <>
       <title>{getPostfixedTitle(title)}</title>
       <div className='library-layout bg-(--accent-9) flex h-screen flex-col lg:flex-row'>
+        {isDemo ? <DemoLoginButton /> : null}
+
         <LibraryLayoutHeader />
 
         <SidebarContainer>

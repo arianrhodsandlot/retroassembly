@@ -55,17 +55,18 @@ export function useEmulator() {
   const backgroundImage =
     cover?.type === 'rom' ? Array.from({ length: 2 }).fill(`url('${cover.src}')`).join(',') : 'none'
 
+  const romObject = useMemo(() => ({ fileContent: romUrl, fileName: rom?.fileName }), [rom, romUrl])
   const options: NostalgistOption = useMemo(
     () => ({
       cache: true,
       core: coreUrlMap[core] || core,
       retroarchConfig: { ...defaultRetroarchConfig, ...preference.input.keyboardMapping, ...gamepadMapping },
       retroarchCoreConfig: preference.emulator.core[core],
-      rom: { fileContent: romUrl, fileName: rom?.fileName },
+      rom: romObject,
       shader,
       style: { ...defaultEmulatorStyle, backgroundImage },
     }),
-    [rom, core, preference, gamepadMapping, backgroundImage, romUrl, shader],
+    [romObject, core, preference, gamepadMapping, backgroundImage, shader],
   )
 
   const shouldPrepare = Boolean(rom && cover)

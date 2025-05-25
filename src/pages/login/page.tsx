@@ -28,8 +28,8 @@ export function LoginPage({ pageData }: LoginPageProps) {
     return (
       <>
         <title>Log in - {metadata.title}</title>
-        <div className='bg-(--accent-9) min-h-dvh py-20'>
-          <form className='w-3xl mx-auto rounded bg-white p-10 text-center'>
+        <div className='bg-(--accent-9) min-h-dvh px-4 py-20'>
+          <form className='md:w-3xl mx-auto w-full max-w-full rounded bg-white p-10 text-center'>
             <div className='flex items-center justify-center gap-4'>
               <Link className='flex items-center justify-center' reloadDocument to='/'>
                 <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />

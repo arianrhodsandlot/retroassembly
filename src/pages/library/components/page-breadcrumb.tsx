@@ -1,6 +1,6 @@
 import { Button } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import { Fragment } from 'react/jsx-runtime'
+import { Fragment } from 'react'
 import { getPlatformGameIcon, getPlatformIcon, getRomGoodcodes } from '@/utils/library.ts'
 import { useIsDemo } from '../hooks/use-demo.ts'
 import { usePlatform } from '../hooks/use-platform.ts'

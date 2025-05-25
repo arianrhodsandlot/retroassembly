@@ -1,36 +1,20 @@
 import { Select } from '@radix-ui/themes'
-import { Link, useLocation, useNavigate } from 'react-router'
-import { platformMap } from '@/constants/platform.ts'
-import { getPlatformIcon } from '@/utils/library.ts'
-import { useIsDemo } from '../../hooks/use-demo.ts'
-import { usePlatform } from '../../hooks/use-platform.ts'
-import { usePreference } from '../../hooks/use-preference.ts'
+import clsx from 'clsx'
+import { Fragment } from 'react'
+import { Link, useNavigate } from 'react-router'
+import { useNavigationLinks } from '../../hooks/use-navigation-links.ts'
 
 export function LibraryLayoutHeader() {
-  const { preference } = usePreference()
   const navitate = useNavigate()
-  const platform = usePlatform()
-  const location = useLocation()
-  const isDemo = useIsDemo()
+  const { groups, isActive } = useNavigationLinks()
 
-  const platforms = isDemo ? ['gba', 'gbc', 'genesis', 'nes', 'snes'] : preference.ui.platforms
-
-  let currentRouteName = ''
-  if (platform) {
-    currentRouteName = platform.name
-  } else if (location.pathname === '/library') {
-    currentRouteName = 'library'
-  } else if (location.pathname === '/library/history') {
-    currentRouteName = 'history'
-  }
+  const groupLinks = groups.flatMap(({ links }) => links)
+  const currentRouteName = groupLinks.find(({ to }) => isActive(to))?.name
 
   function handleValueChange(value: string) {
-    if (value === 'library') {
-      navitate('/library')
-    } else if (value === 'history') {
-      navitate('/library/history')
-    } else {
-      navitate(`/library/platform/${encodeURIComponent(value)}`)
+    const link = groupLinks.find(({ name }) => name === value)
+    if (link?.to) {
+      navitate(link.to)
     }
   }
 
@@ -44,31 +28,22 @@ export function LibraryLayoutHeader() {
         <Select.Root onValueChange={handleValueChange} size='2' value={currentRouteName}>
           <Select.Trigger className='!text-white' variant='ghost' />
           <Select.Content>
-            <Select.Group>
-              <Select.Item value='library'>
-                <div className='flex items-center gap-1'>
-                  <span className='icon-[mdi--bookshelf] size-5' />
-                  Library
-                </div>
-              </Select.Item>
-              <Select.Item value='history'>
-                <div className='flex items-center gap-1'>
-                  <span className='icon-[mdi--history] size-5' />
-                  History
-                </div>
-              </Select.Item>
-            </Select.Group>
-            <Select.Separator />
-            <Select.Group>
-              {platforms.map((platform) => (
-                <Select.Item key={platform} value={platform}>
-                  <div className='flex items-center gap-1'>
-                    <img alt={platform} className='size-5' src={getPlatformIcon(platform)} />
-                    {platformMap[platform].displayName}
-                  </div>
-                </Select.Item>
-              ))}
-            </Select.Group>
+            {groups.map(({ links, title }, i) => (
+              <Fragment key={title}>
+                <Select.Group>
+                  {links.map(({ iconClass, iconUrl, name, text }) => (
+                    <Select.Item key={name} value={name}>
+                      <div className='flex items-center gap-1'>
+                        {iconClass ? <span className={clsx('size-5', iconClass)} /> : null}
+                        {iconUrl ? <img alt={text} className='size-5' src={iconUrl} /> : null}
+                        {text}
+                      </div>
+                    </Select.Item>
+                  ))}
+                </Select.Group>
+                {i < groups.length - 1 ? <Select.Separator /> : null}
+              </Fragment>
+            ))}
           </Select.Content>
         </Select.Root>
       </div>

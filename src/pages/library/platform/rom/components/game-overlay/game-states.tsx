@@ -25,8 +25,8 @@ export function GameStates() {
       ]
         .filter(({ states }) => states)
         .map(({ states, type }) => (
-          <ScrollArea key={type} size='2'>
-            <div className='flex flex-nowrap gap-8'>
+          <ScrollArea className='!overflow-visible lg:!overflow-hidden' key={type} size='2' style={{ height: 600 }}>
+            <div className='flex flex-col flex-nowrap gap-8 lg:flex-row'>
               {states.map((state) => (
                 <GameState key={state.id} state={state} />
               ))}

@@ -18,14 +18,14 @@ export function GameOverlayController() {
     toggle()
   }
 
-  const show = !idle && launched && !showGameOverlay
+  const show = launched && !idle && !showGameOverlay
 
   return (
     <AnimatePresence>
       {show ? (
         <motion.div
           animate={{ opacity: 1 }}
-          className='flex flex-col justify-end'
+          className='hidden flex-col justify-end lg:flex'
           exit={{ opacity: 0 }}
           initial={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
@@ -40,7 +40,7 @@ export function GameOverlayController() {
             >
               <span className='icon-[mdi--pause]' />
             </button>
-            <div className='flex flex-1 items-center justify-end gap-4'>
+            <div className='hidden flex-1 items-center justify-end gap-4 lg:flex'>
               <GameInputMessage />
             </div>
           </div>

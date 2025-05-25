@@ -6,7 +6,6 @@ import { coreUrlMap } from '@/constants/core.ts'
 import { useEmulatorLaunched } from '@/pages/library/atoms.ts'
 import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
-import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { getCDNUrl } from '@/utils/cdn.ts'
@@ -40,7 +39,6 @@ export function useEmulator() {
   if (!rom) {
     throw new Error('this should not happen')
   }
-  const { data: cover } = useRomCover(rom)
   const { preference } = usePreference()
   const gamepadMapping = useGamepadMapping()
   const [launched, setLaunched] = useEmulatorLaunched()
@@ -52,9 +50,6 @@ export function useEmulator() {
   const { core } = preference.emulator.platform[rom.platform] || {}
   const shader = preference.emulator.platform[rom.platform].shader || preference.emulator.shader
 
-  const backgroundImage =
-    cover?.type === 'rom' ? Array.from({ length: 2 }).fill(`url('${cover.src}')`).join(',') : 'none'
-
   const romObject = useMemo(() => ({ fileContent: romUrl, fileName: rom?.fileName }), [rom, romUrl])
   const options: NostalgistOption = useMemo(
     () => ({
@@ -64,21 +59,19 @@ export function useEmulator() {
       retroarchCoreConfig: preference.emulator.core[core],
       rom: romObject,
       shader,
-      style: { ...defaultEmulatorStyle, backgroundImage },
+      style: { ...defaultEmulatorStyle },
     }),
-    [romObject, core, preference, gamepadMapping, backgroundImage, shader],
+    [romObject, core, preference, gamepadMapping, shader],
   )
-
-  const shouldPrepare = Boolean(rom && cover)
 
   const {
     data: emulator,
     error,
     isValidating,
     mutate: prepare,
-  } = useSWRImmutable(shouldPrepare ? options : false, () => Nostalgist.prepare(options))
+  } = useSWRImmutable(rom ? options : false, () => Nostalgist.prepare(options))
 
-  const isPreparing = !shouldPrepare || isValidating
+  const isPreparing = !rom || isValidating
 
   async function launch() {
     if (!emulator || !rom) {
@@ -103,10 +96,13 @@ export function useEmulator() {
   }
 
   async function exit() {
-    emulator?.exit()
-    setLaunched(false)
-    focus('.launch-button')
-    await prepare()
+    const status = emulator?.getStatus() || ''
+    if (['paused', 'running'].includes(status)) {
+      emulator?.exit()
+      setLaunched(false)
+      focus('.launch-button')
+      await prepare()
+    }
   }
 
   if (error) {

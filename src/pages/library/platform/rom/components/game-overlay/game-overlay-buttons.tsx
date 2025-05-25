@@ -58,7 +58,8 @@ export function GameOverlayButtons() {
         Save State
       </GameOverlayButton>
 
-      <div className='flex-1' />
+      <div className='hidden lg:block lg:flex-1' />
+
       <GameOverlayButton onClick={handleClickRestart}>
         <span className='icon-[mdi--restart] size-5' />
         Restart

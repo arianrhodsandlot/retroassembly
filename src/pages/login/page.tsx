@@ -27,7 +27,7 @@ export function LoginPage({ pageData }: LoginPageProps) {
   if (redirectTo) {
     return (
       <>
-        <title>Log in - {metadata.title}</title>
+        <title>{`Log in - ${metadata.title}`}</title>
         <div className='bg-(--accent-9) min-h-dvh px-4 py-20'>
           <form className='md:w-3xl mx-auto w-full max-w-full rounded bg-white p-10 text-center'>
             <div className='flex items-center justify-center gap-4'>

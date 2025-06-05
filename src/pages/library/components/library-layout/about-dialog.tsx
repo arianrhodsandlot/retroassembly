@@ -1,6 +1,6 @@
 import { Button, Dialog, VisuallyHidden } from '@radix-ui/themes'
 import clsx from 'clsx'
-import { links } from '@/constants/links.ts'
+import { linkMap, links } from '@/constants/links.ts'
 import { metadata } from '@/constants/metadata.ts'
 
 export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
@@ -23,7 +23,7 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
               Version:
               <a
                 className='ml-0.5 underline'
-                href={`https://github.com/arianrhodsandlot/retro-assembly/commit/${GIT_VERSION}`}
+                href={`${linkMap.github.url}/commit/${GIT_VERSION}`}
                 rel='noreferrer noopener'
                 target='_blank'
               >

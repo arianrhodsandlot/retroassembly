@@ -194,9 +194,6 @@ importers:
       '@types/sax':
         specifier: 1.2.7
         version: 1.2.7
-      '@types/yauzl-promise':
-        specifier: 4.0.1
-        version: 4.0.1
       better-sqlite3:
         specifier: 11.10.0
         version: 11.10.0
@@ -2443,9 +2440,6 @@ packages:
 
   '@types/ws@8.18.1':
     resolution: {integrity: sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==}
-
-  '@types/yauzl-promise@4.0.1':
-    resolution: {integrity: sha512-qYEC3rJwqiJpdQ9b+bPNeuSY0c3JUM8vIuDy08qfuVN7xHm3ZDsHn2kGphUIB0ruEXrPGNXZ64nMUcu4fDjViQ==}
 
   '@typescript-eslint/eslint-plugin@8.33.1':
     resolution: {integrity: sha512-TDCXj+YxLgtvxvFlAvpoRv9MAncDLBV2oT9Bd7YBGC/b/sEURoOYuIwLI99rjWOfY3QtDzO+mk0n4AmdFExW8A==}
@@ -7932,10 +7926,6 @@ snapshots:
   '@types/unist@3.0.3': {}
 
   '@types/ws@8.18.1':
-    dependencies:
-      '@types/node': 22.15.29
-
-  '@types/yauzl-promise@4.0.1':
     dependencies:
       '@types/node': 22.15.29
 

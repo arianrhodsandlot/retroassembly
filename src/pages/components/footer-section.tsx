@@ -9,7 +9,7 @@ export function FooterSection() {
           Version:
           <a
             className='ml-0.5 underline'
-            href={`${linkMap.github}/commit/${GIT_VERSION}`}
+            href={`${linkMap.github.url}/commit/${GIT_VERSION}`}
             rel='noreferrer noopener'
             target='_blank'
           >

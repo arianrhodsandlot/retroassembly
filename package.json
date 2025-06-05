@@ -80,7 +80,6 @@
     "@types/react": "19.1.6",
     "@types/react-dom": "19.1.6",
     "@types/sax": "1.2.7",
-    "@types/yauzl-promise": "4.0.1",
     "better-sqlite3": "11.10.0",
     "drizzle-kit": "0.31.1",
     "eslint": "9.28.0",

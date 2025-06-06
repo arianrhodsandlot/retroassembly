@@ -28,7 +28,7 @@ export function ScreenshotSlider() {
             setIndicator({ current: realIndex, progress })
           }}
           onSlideChange={({ realIndex }) => {
-            setDelay(realIndex ? 3000 : 40_000)
+            setDelay(realIndex ? 3000 : 20_000)
             const video = document.querySelector('video')
             if (video) {
               video.currentTime = 0

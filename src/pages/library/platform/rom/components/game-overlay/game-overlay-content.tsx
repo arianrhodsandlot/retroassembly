@@ -27,13 +27,13 @@ export function GameOverlayContent() {
   }
   const keyboardMapping = useKeyboardMapping()
   const gamepadMapping = useGamepadMapping()
-  const { show, toggle } = useGameOverlay()
+  const { toggle, visible } = useGameOverlay()
 
   useEffect(() => {
-    function handleKeydown(event: KeyboardEvent) {
+    async function handleKeydown(event: KeyboardEvent) {
       if (getKeyNameFromCode(event.code) === keyboardMapping.$pause) {
         event.preventDefault()
-        toggle()
+        await toggle()
       }
     }
     document.body.addEventListener('keydown', handleKeydown)
@@ -43,12 +43,12 @@ export function GameOverlayContent() {
   useEffect(
     () =>
       Gamepad.onPress(
-        debounce((event) => {
+        debounce(async (event) => {
           const { buttons } = event.gamepad
           const expectedButtons = [gamepadMapping.input_player1_l1_btn, gamepadMapping.input_player1_r1_btn]
           const areExpectedButtonPressed = expectedButtons.every((code) => buttons[code].pressed)
           if (areExpectedButtonPressed) {
-            toggle()
+            await toggle()
           }
         }, 100),
       ),
@@ -59,7 +59,7 @@ export function GameOverlayContent() {
   const { data: cover } = useRomCover(rom)
   return (
     <AnimatePresence>
-      {show ? (
+      {visible ? (
         <motion.div
           animate={{ opacity: 1, scale: 1 }}
           className='game-overlay flex flex-col bg-black/70'

@@ -11,18 +11,18 @@ export function GameOverlayController() {
     throw new Error('No rom found')
   }
   const idle = useMouseIdle(3000)
-  const { show: showGameOverlay, toggle } = useGameOverlay()
+  const { show, visible } = useGameOverlay()
   const [launched] = useEmulatorLaunched()
 
-  function handleClick() {
-    toggle()
+  async function handleClick() {
+    await show()
   }
 
-  const show = launched && !idle && !showGameOverlay
+  const controllerVisible = launched && !idle && !visible
 
   return (
     <AnimatePresence>
-      {show ? (
+      {controllerVisible ? (
         <motion.div
           animate={{ opacity: 1 }}
           className='hidden flex-col justify-end lg:flex'

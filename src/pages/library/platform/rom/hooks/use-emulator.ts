@@ -77,6 +77,7 @@ export function useEmulator() {
     if (!emulator || !rom) {
       return
     }
+    globalThis.emulator = emulator
 
     const canvas = emulator.getCanvas()
     canvas.setAttribute('tabindex', '-1')

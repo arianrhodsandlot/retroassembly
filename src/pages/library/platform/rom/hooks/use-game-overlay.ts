@@ -6,31 +6,33 @@ import { useEmulator } from './use-emulator.ts'
 import { useGameStates } from './use-game-states.ts'
 
 export function useGameOverlay() {
-  const [show, setShow] = useShowGameOverlayContent()
+  const [visible, setVisible] = useShowGameOverlayContent()
   const [isPending, setIsPending] = useAtom(isGameOverlayPendingAtom)
   const { emulator } = useEmulator()
   const { reloadStates } = useGameStates()
 
-  async function toggle() {
+  async function show() {
+    emulator?.pause()
+    setVisible(true)
+    await reloadStates()
+  }
+
+  function hide() {
     if (isPending) {
       return
     }
+    emulator?.resume()
+    setVisible(false)
+    focus('canvas')
+  }
 
-    const status = emulator?.getStatus()
-    if (status === 'running') {
-      emulator?.pause()
-      await reloadStates()
-    } else if (status === 'paused') {
-      emulator?.resume()
-    }
-
-    if (status !== 'initial') {
-      if (show) {
-        focus('canvas')
-      }
-      setShow((show) => !show)
+  async function toggle() {
+    if (visible) {
+      hide()
+    } else {
+      await show()
     }
   }
 
-  return { isPending, setIsPending, show, toggle }
+  return { hide, isPending, setIsPending, show, toggle, visible }
 }

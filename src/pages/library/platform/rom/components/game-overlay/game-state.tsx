@@ -8,7 +8,7 @@ import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 
 export function GameState({ state }) {
-  const { setIsPending, toggle } = useGameOverlay()
+  const { hide, setIsPending } = useGameOverlay()
   const { emulator } = useEmulator()
   const [loaded, setLoaded] = useState(false)
 
@@ -22,7 +22,7 @@ export function GameState({ state }) {
     },
     {
       onSuccess() {
-        toggle()
+        hide()
       },
     },
   )

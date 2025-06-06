@@ -31,7 +31,8 @@ export function GameMedias() {
             <a href={image} key={image} rel='noreferrer noopener' target='_blank'>
               <img
                 alt={rom.goodcodes.rom}
-                className='h-auto w-full lg:h-48 lg:w-auto'
+                className='h-full w-auto max-w-none lg:h-48 lg:w-auto'
+                key={image}
                 loading='lazy'
                 onError={() => setInvalidMedias((medias) => [...medias, image])}
                 src={image}

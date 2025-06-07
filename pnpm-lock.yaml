@@ -113,8 +113,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0
       nostalgist:
-        specifier: 0.15.0
-        version: 0.15.0
+        specifier: 0.15.1
+        version: 0.15.1
       react:
         specifier: 19.1.0
         version: 19.1.0
@@ -4550,8 +4550,8 @@ packages:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
 
-  nostalgist@0.15.0:
-    resolution: {integrity: sha512-jkSKsvWLiraPlx5umrIGNzdjBjiNrh0motyDDxVaNNg0Y2IUwuOqwQIQCjJGuz52HIJwJINJF0/bn4XWc52TSw==}
+  nostalgist@0.15.1:
+    resolution: {integrity: sha512-WCWzjjJVL105wyQrFlO8mepDVnfFCoL7JPozFP+jfG0CS+5cp7+ukRn5TlPBB3vZ9orQtRlXohaeGgpj25cN5g==}
 
   npm-install-checks@6.3.0:
     resolution: {integrity: sha512-W29RiK/xtpCGqn6f3ixfRYGk+zRyr+Ew9F2E20BfXxT5/euLdA/Nm7fO7OeTGuAmTs30cpgInyJ0cYe708YTZw==}
@@ -10322,7 +10322,7 @@ snapshots:
 
   normalize-path@3.0.0: {}
 
-  nostalgist@0.15.0:
+  nostalgist@0.15.1:
     dependencies:
       '@types/emscripten': 1.40.1
       '@types/ini': 4.1.1

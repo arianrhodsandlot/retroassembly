@@ -127,7 +127,7 @@ export const platforms: Platform[] = [
     name: 'gbc',
   },
   {
-    cores: ['genesis_plus_gx', 'picodrive', 'gearsystem'],
+    cores: ['genesis_plus_gx'],
     displayName: 'Genesis',
     fileExtensions: ['md', 'gen', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Sega Genesis',
@@ -135,7 +135,7 @@ export const platforms: Platform[] = [
     name: 'genesis',
   },
   {
-    cores: ['genesis_plus_gx', 'picodrive', 'gearsystem'],
+    cores: ['genesis_plus_gx'],
     displayName: 'Megadrive',
     fileExtensions: ['md', 'gen', 'zip'].map((name) => `.${name}`),
     launchboxName: 'Sega Genesis',

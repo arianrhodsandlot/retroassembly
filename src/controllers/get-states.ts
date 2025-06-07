@@ -3,6 +3,7 @@ import { getContext } from 'hono/context-storage'
 import { stateTable } from '../databases/library/schema.ts'
 
 export type States = Awaited<ReturnType<typeof getStates>>
+export type State = States[number]
 
 export async function getStates({ rom, type }: { rom: string; type?: 'auto' | 'manual' }) {
   const { currentUser, db } = getContext().var

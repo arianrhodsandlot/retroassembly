@@ -3,17 +3,18 @@ import { clsx } from 'clsx'
 import ky from 'ky'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
+import type { State } from '@/controllers/get-states.ts'
 import { humanizeDate } from '@/utils/misc.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 
-export function GameState({ state }) {
+export function GameState({ state }: { state: State }) {
   const { hide, setIsPending } = useGameOverlay()
   const { emulator } = useEmulator()
   const [loaded, setLoaded] = useState(false)
 
   const { isMutating, trigger: loadState } = useSWRMutation(
-    `/api/v1/state/${state.id}/content`,
+    `/api/v1/files/${state.fileId}`,
     async (url) => {
       if (emulator) {
         await emulator.loadState(ky(url))
@@ -29,7 +30,7 @@ export function GameState({ state }) {
 
   async function handleClick() {
     setIsPending(true)
-    await loadState(state)
+    await loadState()
     setIsPending(false)
   }
 
@@ -61,7 +62,7 @@ export function GameState({ state }) {
           })}
           onError={handleLoad}
           onLoad={handleLoad}
-          src={`/api/v1/state/${state.id}/thumbnail`}
+          src={`/api/v1/files/${state.thumbnailFileId}`}
         />
 
         {state.type === 'auto' ? (

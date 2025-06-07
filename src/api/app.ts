@@ -7,6 +7,7 @@ import { createRoms } from '@/controllers/create-roms.ts'
 import { createState } from '@/controllers/create-state.ts'
 import { deleteLaunchRecord } from '@/controllers/delete-launch-record.ts'
 import { deleteRom } from '@/controllers/delete-rom.ts'
+import { getFileContent } from '@/controllers/get-file-content.ts'
 import { getLaunchRecords } from '@/controllers/get-launch-records.ts'
 import { getPreference } from '@/controllers/get-preference.ts'
 import { getRomContent } from '@/controllers/get-rom-content.ts'
@@ -15,7 +16,11 @@ import { getStates } from '@/controllers/get-states.ts'
 import { updatePreference } from '@/controllers/update-preference.ts'
 import { createFileResponse } from './utils.ts'
 
-export const app = new Hono().basePath('v1')
+interface Bindings {
+  STORAGE_DOMAIN?: string
+}
+
+export const app = new Hono<{ Bindings: Bindings }>().basePath('v1')
 
 const authMiddleware = createMiddleware(async (c, next) => {
   const { currentUser } = c.var
@@ -133,6 +138,17 @@ app.get('state/:id/content', async (c) => {
 
 app.get('state/:id/thumbnail', async (c) => {
   const file = await getStateContent(c.req.param('id'), 'thumbnail')
+  if (file) {
+    return createFileResponse(file)
+  }
+})
+
+app.get('files/:id', async (c) => {
+  const id = c.req.param('id')
+  if (c.env.STORAGE_DOMAIN) {
+    return c.redirect(new URL(id, `https://${c.env.STORAGE_DOMAIN}`))
+  }
+  const file = await getFileContent(id)
   if (file) {
     return createFileResponse(file)
   }

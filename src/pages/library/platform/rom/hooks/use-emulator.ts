@@ -3,6 +3,7 @@ import { Nostalgist } from 'nostalgist'
 import { useMemo } from 'react'
 import useSWRImmutable from 'swr/immutable'
 import { coreUrlMap } from '@/constants/core.ts'
+import type { Rom } from '@/controllers/get-roms.ts'
 import { useEmulatorLaunched } from '@/pages/library/atoms.ts'
 import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
@@ -35,7 +36,7 @@ const defaultEmulatorStyle: Partial<CSSStyleDeclaration> = {
 }
 
 export function useEmulator() {
-  const rom = useRom()
+  const rom: Rom = useRom()
   if (!rom) {
     throw new Error('this should not happen')
   }
@@ -46,7 +47,7 @@ export function useEmulator() {
 
   const romUrl = isDemo
     ? getCDNUrl(`retrobrews/${{ genesis: 'md' }[rom.platform] || rom.platform}-games`, rom.fileName)
-    : `/api/v1/roms/${rom.id}/content`
+    : `/api/v1/files/${rom.fileId}`
   const { core } = preference.emulator.platform[rom.platform] || {}
   const shader = preference.emulator.platform[rom.platform].shader || preference.emulator.shader
 

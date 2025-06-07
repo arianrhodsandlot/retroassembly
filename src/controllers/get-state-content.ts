@@ -1,9 +1,10 @@
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { stateTable } from '../databases/library/schema.ts'
+import { getFileContent } from './get-file-content.ts'
 
 export async function getStateContent(id: string, type?: string) {
-  const { currentUser, db, storage } = getContext().var
+  const { currentUser, db } = getContext().var
 
   const [result] = await db.library
     .select()
@@ -12,6 +13,5 @@ export async function getStateContent(id: string, type?: string) {
     .limit(1)
 
   const fileId = type === 'thumbnail' ? result.thumbnailFileId : result.fileId
-  const object = await storage.get(fileId)
-  return object
+  return getFileContent(fileId)
 }

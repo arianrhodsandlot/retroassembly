@@ -42,5 +42,8 @@
       "preview_bucket_name": "retroassembly"
     }
   ],
+  "vars": {
+    "STORAGE_DOMAIN": "${STORAGE_DOMAIN}"
+  },
   "upload_source_maps": true
 }

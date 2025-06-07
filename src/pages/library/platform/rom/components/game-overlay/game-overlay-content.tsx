@@ -1,13 +1,7 @@
-import { debounce } from 'es-toolkit'
 import { AnimatePresence, motion } from 'motion/react'
-import { useEffect } from 'react'
-import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
-import { useKeyboardMapping } from '@/pages/library/hooks/use-keyboard-mapping.ts'
 import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
-import { getKeyNameFromCode } from '@/pages/library/utils/keyboard.ts'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
-import { Gamepad } from '@/utils/gamepad.ts'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 import { GameInputMessage } from './game-input-message.tsx'
@@ -25,36 +19,7 @@ export function GameOverlayContent() {
   if (!rom) {
     throw new Error('No rom found')
   }
-  const keyboardMapping = useKeyboardMapping()
-  const gamepadMapping = useGamepadMapping()
-  const { toggle, visible } = useGameOverlay()
-
-  useEffect(() => {
-    async function handleKeydown(event: KeyboardEvent) {
-      if (getKeyNameFromCode(event.code) === keyboardMapping.$pause) {
-        event.preventDefault()
-        await toggle()
-      }
-    }
-    document.body.addEventListener('keydown', handleKeydown)
-    return () => document.body.removeEventListener('keydown', handleKeydown)
-  }, [toggle, keyboardMapping.$pause])
-
-  useEffect(
-    () =>
-      Gamepad.onPress(
-        debounce(async (event) => {
-          const { buttons } = event.gamepad
-          const expectedButtons = [gamepadMapping.input_player1_l1_btn, gamepadMapping.input_player1_r1_btn]
-          const areExpectedButtonPressed = expectedButtons.every((code) => buttons[code].pressed)
-          if (areExpectedButtonPressed) {
-            await toggle()
-          }
-        }, 100),
-      ),
-    [gamepadMapping, toggle],
-  )
-
+  const { visible } = useGameOverlay()
   const goodcodes = getRomGoodcodes(rom)
   const { data: cover } = useRomCover(rom)
   return (

@@ -12,9 +12,14 @@ export function useGameOverlay() {
   const { reloadStates } = useGameStates()
 
   async function show() {
-    emulator?.pause()
-    setVisible(true)
-    await reloadStates()
+    if (emulator) {
+      const status = emulator.getStatus()
+      if (status === 'running' || status === 'paused') {
+        emulator.pause()
+        setVisible(true)
+        await reloadStates()
+      }
+    }
   }
 
   function hide() {

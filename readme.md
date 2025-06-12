@@ -9,7 +9,7 @@
 
 ## Features
 
-- [x] Relive memories from numerous retro gaming consoles in the browser. (See [Supported Platforms](#supported-platforms) below.)
+- [x] Relive memories from numerous retro gaming consoles in the browser. NES, SNES, Genesis, GameBoy, Arcade... See [Supported Platforms](#supported-platforms) below.
 - [x] See your game collection displayed with auto-detected beautiful box arts and covers.
 - [x] Save and synchronize your game at any point and resume later.
 - [x] Made a mistake? Some emulators allow you to rewind gameplay.
@@ -24,9 +24,9 @@ Share your thoughts or ideas to our [community](#Community) and they may appear 
 1. *(Optional)* Join our Discord server.
 
    [![Join our Discord server!](https://invidget.switchblade.xyz/gwaKRAYG6t?theme=light)](https://discord.gg/gwaKRAYG6t)
-2. Visiting the [RetroAssembly website (retroassembly.com)](https://retroassembly.com/) in your web browser.
+2. Visit the [RetroAssembly website (retroassembly.com)](https://retroassembly.com/) in your web browser.
 3. *(Optional)* If you're new here, explore the library and try out the available [demo games](https://retroassembly.com/demo) to see how it works.
-4. [Login](https://retroassembly.com/login) and create your personal game library by uploading your own ROM files. The "Upload" button is typically found in the Library section.
+4. [Login](https://retroassembly.com/login) and create your personal game library by uploading your own ROM files.
 5. Once your ROMs are uploaded, select any game from your library to launch it directly in your browser and start playing.
 6. Don't forget to use the in-game menu to save your progress, which will be synchronized for you.
 
@@ -42,7 +42,7 @@ Share your thoughts or ideas to our [community](#Community) and they may appear 
 
 ## Supported Platforms
 
-RetroAssembly aims to support a wide range of classic gaming systems. The emulation is powered by [Nostalgist.js](https://nostalgist.js.org/).
+RetroAssembly aims to support a wide range of vintage gaming systems. The emulation is powered by [Nostalgist.js](https://nostalgist.js.org/).
 
 <details>
   <summary>Click here to view the comprehensive list.</summary>

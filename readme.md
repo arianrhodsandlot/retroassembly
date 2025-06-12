@@ -3,80 +3,83 @@
   <h1 align="center">RetroAssembly</h1>
 </p>
 
+[RetroAssembly](https://next.retroassembly.com/) is a personal retro game collection cabinet in your browser.
+
 ![library](public/assets/screenshots/library.jpeg)
-
-
-[RetroAssembly](https://next.retroassembly.com/) is a personal retro game collection cabinet in your browser. It allows you to:
-- Play Retro Games. Enjoy titles from a wide variety of beloved retro gaming systems.
-- Build Your Library. Easily upload and organize your own game ROMs.
-- Save and Synchronize Your Progress. Pick up right where you left off with our game state saving feature.
-- Instant Access. Play anywhere, anytime, directly from your web browser.
 
 ## Features
 
-- **Wide Platform Support**
+- [x] Relive memories from numerous retro gaming consoles in the browser. (See [Supported Platforms](#supported-platforms) below.)
+- [x] See your game collection displayed with auto-detected beautiful box art and covers.
+- [x] Save and synchronize your game at any point and resume later.
+- [x] Made a mistake? Some emulators might allow you to rewind gameplay.
+- [x] Browse through platforms and your game library with an intuitive interface with [spatial navigation
+](https://en.wikipedia.org/wiki/Spatial_navigation), which means you can just use a keyboard or a gamepad to navigate between games.
+- [x] Enhance your gaming experience with beautiful visual effects with retro-style shaders.
+- [x] Play on the go, even without a physical gamepad, using our on-screen virtual controller.
 
-  Relive memories from numerous classic systems. (See [Supported Platforms](#supported-platforms) below.)
-- **Your Personal Game Shelf**
-
-  See your game collection displayed with beautiful box art and covers.
-- **Seamless Gameplay**
-
-  Load your games and start playing in seconds.
-- **Save States**
-
-  Save your game at any point and resume later.
-- **Rewind Time**
-
-  Made a mistake? Some emulators might allow you to rewind gameplay.
-- **Easy Navigation**
-
-  Browse through platforms and your game library with an intuitive interface.
-- **Demo Mode**
-
-  Try out RetroAssembly and see how it works, even before uploading your own games.
-<!-- - **Virtual Controller**: Play on the go, even without a physical gamepad, using our on-screen virtual controller. -->
+Share your thoughts or ideas to our [community](#Community) and they may appear here later :)
 
 ## Getting Started
-1.  Begin by visiting the [RetroAssembly website](https://next.retroassembly.com/) in your web browser.
-2.  If you're new to the platform, explore the library and try out the available [demo games](https://next.retroassembly.com/demo) to see how it works.
-3.  Create your personal game library by uploading your own ROM files. The "Upload" button is typically found in the Library section.
-4.  Once your games are added, select any game from your library to launch it directly in your browser and start playing.
-5.  Don't forget to use the in-game menu to save your progress, which will be synchronized for you.
+1. *(Optional)* Join our Discord server:
+   [![Join our Discord server!](https://invidget.switchblade.xyz/gwaKRAYG6t?theme=light)](https://discord.gg/gwaKRAYG6t)
+3. Visiting the [RetroAssembly website (next.retroassembly.com)](https://next.retroassembly.com/) in your web browser.
+4. *(Optional)* If you're new here, explore the library and try out the available [demo games](https://next.retroassembly.com/demo) to see how it works.
+5. [Login](https://next.retroassembly.com/login) and create your personal game library by uploading your own ROM files. The "Upload" button is typically found in the Library section.
+6. Once your ROMs are uploaded, select any game from your library to launch it directly in your browser and start playing.
+7. Don't forget to use the in-game menu to save your progress, which will be synchronized for you.
+
+## Community
+
++ Discord Server
+
+  [![Discord](https://img.shields.io/discord/1129062038543548496?logo=discord)](https://discord.gg/gwaKRAYG6t)
+
++ GitHub discussions
+
+  [![GitHub discussions](https://img.shields.io/github/discussions/arianrhodsandlot/retroassembly?logo=github)](https://github.com/arianrhodsandlot/retroassembly/discussions)
 
 ## Supported Platforms
 
-RetroAssembly aims to support a wide range of classic gaming systems, including:
+RetroAssembly aims to support a wide range of classic gaming systems. The emulation is powered by [Nostalgist.js](https://nostalgist.js.org/).
 
-| Console | Available Emulators |
-| - | - |
-| Arcade | `mame2003_plus` |
-| Atari 2600 | `stella2014` |
-| Game Boy | `mgba`, `gearboy`, `gambatte`, `tgbdual` |
-| Game Boy Advance | `mgba`, `vba_next` |
-| Game Boy Color | `mgba`, `gearboy`, `gambatte`, `tgbdual` |
-| Game Gear | `genesis_plus_gx`, `gearsystem` |
-| Genesis / Megadrive | `genesis_plus_gx`, `picodrive`, `gearsystem` |
-| Master System | `genesis_plus_gx`, `picodrive`, `gearsystem` |
-| Neo Geo Pocket | `mednafen_ngp` |
-| Neo Geo Pocket Color | `mednafen_ngp` |
-| NES / Family Computer | `fceumm`, `nestopia`, `quicknes` |
-| Sega SG-1000 | `gearsystem` |
-| Super Famicom | `snes9x`, `snes9x2002`, `snes9x2005`, `snes9x2010` |
-| Super NES | `snes9x`, `snes9x2002`, `snes9x2005`, `snes9x2010` |
-| Virtual Boy | `mednafen_vb` |
-| WonderSwan | `mednafen_wswan` |
-| WonderSwan Color | `mednafen_wswan` |
+<details>
+  <summary>Click here to view the comprehensive list.</summary>
 
-## Alternatives
-We hope you have a fantastic time revisiting your favorite retro games... Even with projects other than RetroAssembly.
+  | Console | Available Emulators |
+  | - | - |
+  | Arcade | `mame2003_plus` |
+  | Atari 2600 | `stella2014` |
+  | Game Boy | `mgba`, `gearboy`, `gambatte`, `tgbdual` |
+  | Game Boy Advance | `mgba`, `vba_next` |
+  | Game Boy Color | `mgba`, `gearboy`, `gambatte`, `tgbdual` |
+  | Game Gear | `genesis_plus_gx`, `gearsystem` |
+  | Genesis / Megadrive | `genesis_plus_gx` |
+  | Master System | `genesis_plus_gx`, `picodrive`, `gearsystem` |
+  | Neo Geo Pocket | `mednafen_ngp` |
+  | Neo Geo Pocket Color | `mednafen_ngp` |
+  | NES / Family Computer | `fceumm`, `nestopia`, `quicknes` |
+  | Sega SG-1000 | `gearsystem` |
+  | Super Famicom / Super NES  | `snes9x`, `snes9x2002`, `snes9x2005`, `snes9x2010` |
+  | Virtual Boy | `mednafen_vb` |
+  | WonderSwan | `mednafen_wswan` |
+  | WonderSwan Color | `mednafen_wswan` |
 
-+ [Afterplay.io](https://afterplay.io)
-+ [Eclipse](https://eclipseemu.me)
+</details>
+
+## Development
+> [!warning]
+> This section is not yet finished.
+
+Technically, RetroAssembly is a React Router application deployed to Cloudflare workers. The development environment is a bit complex to setup now. We are going to simplify the setup process and complete this section in the future.
+
+## Open-source Alternatives
+We hope you have a fantastic time revisiting your favorite retro games... Even with applications other than RetroAssembly.
+
 + [EmulatorJS](https://emulatorjs.org) [:octocat:](https://github.com/EmulatorJS/EmulatorJS)
 + [GamePlayColor](https://gameplaycolor.com) [:octocat:](https://github.com/gameplaycolor/gameplaycolor)
 + [Gaseous](https://github.com/gaseous-project/gaseous-server)
-+ [RetroArch Web Player](https://web.libretro.com) [:octocat:](https://github.com/libretro/RetroArch/blob/master/pkg/emscripten/README.md)
++ [RetroArch Web Player](https://web.libretro.com) [:octocat:](https://github.com/libretro/RetroArch/tree/master/pkg/emscripten)
 + [RomM](https://romm.app/) [:octocat:](https://github.com/rommapp/romm)
 + [vme](https://gitgalu.github.io/vme/) [:octocat:](https://github.com/gitGalu/vme)
 + [webrcade](https://www.webrcade.com) [:octocat:](https://github.com/webrcade/webrcade)

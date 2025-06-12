@@ -3,16 +3,16 @@
   <h1 align="center">RetroAssembly</h1>
 </p>
 
-[RetroAssembly](https://next.retroassembly.com/) is a personal retro game collection cabinet in your browser.
+[RetroAssembly](https://retroassembly.com/) is a personal retro game collection cabinet in your browser.
 
 ![library](public/assets/screenshots/library.jpeg)
 
 ## Features
 
 - [x] Relive memories from numerous retro gaming consoles in the browser. (See [Supported Platforms](#supported-platforms) below.)
-- [x] See your game collection displayed with auto-detected beautiful box art and covers.
+- [x] See your game collection displayed with auto-detected beautiful box arts and covers.
 - [x] Save and synchronize your game at any point and resume later.
-- [x] Made a mistake? Some emulators might allow you to rewind gameplay.
+- [x] Made a mistake? Some emulators allow you to rewind gameplay.
 - [x] Browse through platforms and your game library with an intuitive interface with [spatial navigation
 ](https://en.wikipedia.org/wiki/Spatial_navigation), which means you can just use a keyboard or a gamepad to navigate between games.
 - [x] Enhance your gaming experience with beautiful visual effects with retro-style shaders.
@@ -21,13 +21,14 @@
 Share your thoughts or ideas to our [community](#Community) and they may appear here later :)
 
 ## Getting Started
-1. *(Optional)* Join our Discord server:
+1. *(Optional)* Join our Discord server.
+
    [![Join our Discord server!](https://invidget.switchblade.xyz/gwaKRAYG6t?theme=light)](https://discord.gg/gwaKRAYG6t)
-3. Visiting the [RetroAssembly website (next.retroassembly.com)](https://next.retroassembly.com/) in your web browser.
-4. *(Optional)* If you're new here, explore the library and try out the available [demo games](https://next.retroassembly.com/demo) to see how it works.
-5. [Login](https://next.retroassembly.com/login) and create your personal game library by uploading your own ROM files. The "Upload" button is typically found in the Library section.
-6. Once your ROMs are uploaded, select any game from your library to launch it directly in your browser and start playing.
-7. Don't forget to use the in-game menu to save your progress, which will be synchronized for you.
+2. Visiting the [RetroAssembly website (retroassembly.com)](https://retroassembly.com/) in your web browser.
+3. *(Optional)* If you're new here, explore the library and try out the available [demo games](https://retroassembly.com/demo) to see how it works.
+4. [Login](https://retroassembly.com/login) and create your personal game library by uploading your own ROM files. The "Upload" button is typically found in the Library section.
+5. Once your ROMs are uploaded, select any game from your library to launch it directly in your browser and start playing.
+6. Don't forget to use the in-game menu to save your progress, which will be synchronized for you.
 
 ## Community
 

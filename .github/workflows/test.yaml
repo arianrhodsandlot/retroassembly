@@ -6,7 +6,9 @@ jobs:
     environment:
       name: test
     env:
-      VITE_ONEDRIVE_CLIENT_ID: ${{ vars.VITE_ONEDRIVE_CLIENT_ID }}
+      DB_LIBRARY_DATABASE_ID: ${{ vars.DB_LIBRARY_DATABASE_ID }}
+      DB_METADATA_DATABASE_ID: ${{ vars.DB_METADATA_DATABASE_ID }}
+      STORAGE_DOMAIN: ${{ vars.STORAGE_DOMAIN }}
     steps:
       - uses: actions/checkout@v4
 

@@ -8,8 +8,8 @@ function getInitialOpenState() {
   const lastClosedTimestampString = localStorage.getItem(DIALOG_CLOSED_TIMESTAMP_KEY)
   if (lastClosedTimestampString) {
     const lastClosedTimestamp = Number.parseInt(lastClosedTimestampString, 10)
-    const oneDayAfterLastClose = addDays(lastClosedTimestamp, 1)
-    return isAfter(new Date(), oneDayAfterLastClose)
+    const after = addDays(lastClosedTimestamp, 7)
+    return isAfter(new Date(), after)
   }
   return true
 }
@@ -55,9 +55,9 @@ export function WarnDialog() {
                   className='text-rose-700 underline'
                   target='_blank'
                   rel='noopener noreferrer'
-                  href='https://next.retroassembly.com?utm_source=classic.retroassembly.com&utm_medium=dialog'
+                  href='https://retroassembly.com?utm_source=classic.retroassembly.com&utm_medium=dialog'
                 >
-                  next.retroassembly.com
+                  retroassembly.com
                 </a>
                 .
               </b>{' '}
@@ -71,32 +71,15 @@ export function WarnDialog() {
                 className='inline-block'
                 target='_blank'
                 rel='noopener noreferrer'
-                href='https://next.retroassembly.com?utm_source=classic.retroassembly.com&utm_medium=dialog'
+                href='https://retroassembly.com?utm_source=classic.retroassembly.com&utm_medium=dialog'
               >
                 <img
                   width={512}
                   height={288}
-                  src='https://next.retroassembly.com/assets/screenshots/library.jpeg'
+                  src='https://retroassembly.com/assets/screenshots/library.jpeg'
                   alt='new RetroAssembly'
                 />
               </a>
-            </p>
-
-            <p>
-              Currently, visiting “retroassembly.com” will redirect you to{' '}
-              <a className='text-rose-700 underline' href='https://classic.retroassembly.com'>
-                classic.retroassembly.com
-              </a>
-              . In the future,{' '}
-              <a
-                className='text-rose-700 underline'
-                target='_blank'
-                rel='noopener noreferrer'
-                href='https://next.retroassembly.com?utm_source=classic.retroassembly.com&utm_medium=dialog'
-              >
-                next.retroassembly.com
-              </a>{' '}
-              will become the default version.
             </p>
 
             <p>
@@ -113,9 +96,9 @@ export function WarnDialog() {
                 className='text-rose-700 underline'
                 target='_blank'
                 rel='noopener noreferrer'
-                href='https://next.retroassembly.com?utm_source=classic.retroassembly.com&utm_medium=dialog'
+                href='https://retroassembly.com?utm_source=classic.retroassembly.com&utm_medium=dialog'
               >
-                next.retroassembly.com
+                retroassembly.com
               </a>
               .
             </p>
@@ -127,7 +110,7 @@ export function WarnDialog() {
               OK
             </BaseButton>
             <button onClick={handleClickHide} className='text-xs text-rose-700 underline' type='button'>
-              Do not show again today
+              Do not show again in this week
             </button>
           </div>
         </DialogContent>

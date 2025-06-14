@@ -1,5 +1,6 @@
 import { Button } from '@radix-ui/themes'
 import { isRouteErrorResponse, Link } from 'react-router'
+import { metadata } from '@/constants/metadata.ts'
 import type { Route } from '../+types/root.ts'
 
 export function ErrorPage({ error }: Route.ErrorBoundaryProps) {
@@ -21,7 +22,7 @@ export function ErrorPage({ error }: Route.ErrorBoundaryProps) {
 
   return (
     <>
-      <title>{`${status} - RetroAssembly`}</title>
+      <title>{`${status} - ${metadata.title}`}</title>
       <div className='bg-(--accent-9) min-h-dvh py-20'>
         <main className='md:w-3xl mx-8 flex max-w-full flex-col rounded bg-white p-10 md:mx-auto'>
           <h1 className='mt-4 flex items-center gap-2 text-4xl font-semibold'>

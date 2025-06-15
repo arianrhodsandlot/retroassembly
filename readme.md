@@ -42,7 +42,7 @@ Share your thoughts or ideas to our [community](#Community) and they may appear 
 
 ## Supported Platforms
 
-RetroAssembly aims to support a wide range of vintage gaming systems. The emulation is powered by [Nostalgist.js](https://nostalgist.js.org/).
+RetroAssembly aims to support a wide range of vintage gaming systems. Emulation is powered by [Nostalgist.js](https://nostalgist.js.org/).
 
 <details>
   <summary>Click here to view the comprehensive list.</summary>

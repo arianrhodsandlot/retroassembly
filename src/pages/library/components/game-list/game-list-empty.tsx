@@ -17,7 +17,9 @@ export function GameListEmpty() {
       <span className='icon-[mdi--package-variant] size-32 text-zinc-300' />
       {isLibrary ? (
         <>
-          <div className='text-zinc-400'>There are no games in your library.</div>
+          <div className='text-zinc-400'>
+            Welcome to RetroAssembly. This is where all ROMs uploaded by you will appear.
+          </div>
           <div className='text-zinc-400'>
             <UploadSelectButton variant='solid' /> some ROMs to get started.
           </div>

@@ -1,6 +1,6 @@
-import { ScreenshotSlider } from './screenshot-slider.tsx'
 import { HeroMain } from './hero-main.tsx'
 import { LogoSlider } from './logo-slider.tsx'
+import { ScreenshotSlider } from './screenshot-slider.tsx'
 
 export function HeroSection() {
   return (

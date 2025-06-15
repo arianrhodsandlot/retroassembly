@@ -84,7 +84,7 @@
     "drizzle-kit": "0.31.1",
     "eslint": "9.29.0",
     "libretrodb": "1.0.0",
-    "lint-staged": "16.1.1",
+    "lint-staged": "16.1.2",
     "miniflare": "4.20250604.1",
     "nanoid": "5.1.5",
     "sax": "1.4.1",

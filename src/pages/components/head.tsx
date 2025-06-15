@@ -1,14 +1,24 @@
+import { noop } from 'es-toolkit'
+import { useSyncExternalStore } from 'react'
 import { Links, Meta } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
 import { cdnHost } from '@/utils/cdn.ts'
 
 export function Head() {
+  const target = useSyncExternalStore(
+    () => noop,
+    () => (globalThis.self === globalThis.top ? '_self' : '_blank'),
+    () => '_self',
+  )
+
   return (
     <head lang='en' prefix='og: http://ogp.me/ns#'>
       <meta charSet='utf-8' />
       <meta content='width=device-width,initial-scale=1,viewport-fit=cover,shrink-to-fit=yes' name='viewport' />
       <meta content={metadata.themeColor} name='theme-color' />
       <meta content='telephone=no' name='format-detection' />
+
+      <base target={target} />
 
       {/* metadata related */}
       <meta content={metadata.description} name='description' />

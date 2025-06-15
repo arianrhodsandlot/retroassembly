@@ -37,11 +37,15 @@ function isSameGamepads(gamepads1, gamepads2) {
 
 let snapshot: (Gamepad | null)[]
 function getSnapshot() {
-  const gamepads = navigator.getGamepads?.()
-  if (!isSameGamepads(gamepads, snapshot)) {
-    snapshot = gamepads
+  try {
+    const gamepads = navigator.getGamepads?.()
+    if (!isSameGamepads(gamepads, snapshot)) {
+      snapshot = gamepads
+    }
+    return snapshot
+  } catch {
+    return null
   }
-  return snapshot
 }
 
 export function useGamepads() {

@@ -23,7 +23,7 @@ export function NextVersionBanner() {
         href='https://retroassembly.com/?utm_source=classic.retroassembly.com&utm_medium=banner'
       >
         <span className='icon-[noto--fire]' />
-        RetroAssembly classic is sunsetting. Check the new version out at <b>next.retroassembly.com</b> now.
+        RetroAssembly classic is sunsetting. Check the new version out at <b>retroassembly.com</b> now.
       </a>
       <button
         type='button'

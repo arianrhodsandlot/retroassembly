@@ -1,5 +1,5 @@
 import { Button, Dialog, VisuallyHidden } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { linkMap, links } from '@/constants/links.ts'
 import { metadata } from '@/constants/metadata.ts'
 

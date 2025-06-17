@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { type ButtonHTMLAttributes, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { useEmulator } from '../../hooks/use-emulator.ts'

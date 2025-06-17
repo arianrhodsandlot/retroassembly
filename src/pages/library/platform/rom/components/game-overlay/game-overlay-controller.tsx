@@ -1,8 +1,10 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useEmulatorLaunched } from '@/pages/library/atoms.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
+import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 import { useMouseIdle } from '../../hooks/use-mouse-idle.ts'
+import { ControllerButton } from './controller-button.tsx'
 import { GameInputMessage } from './game-input-message.tsx'
 
 export function GameOverlayController() {
@@ -11,10 +13,16 @@ export function GameOverlayController() {
     throw new Error('No rom found')
   }
   const idle = useMouseIdle(3000)
-  const { show, visible } = useGameOverlay()
+  const { hide, show, visible } = useGameOverlay()
+  const { exit } = useEmulator()
   const [launched] = useEmulatorLaunched()
 
-  async function handleClick() {
+  function handleClickExit() {
+    hide()
+    exit()
+  }
+
+  async function handleClickPause() {
     await show()
   }
 
@@ -25,23 +33,29 @@ export function GameOverlayController() {
       {controllerVisible ? (
         <motion.div
           animate={{ opacity: 1 }}
-          className='hidden flex-col justify-end lg:flex'
+          className='hidden flex-col justify-between lg:flex'
           exit={{ opacity: 0 }}
           initial={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <div className='bg-linear-to-b h-20 from-transparent to-black/40' />
-          <div className='bg-linear-to-b flex h-20 w-full items-center from-black/40 to-black/70 px-4'>
-            <button
-              className='text-(--accent-9) flex size-12 items-center justify-center rounded-full bg-white text-2xl'
-              onClick={handleClick}
-              title='Pause'
-              type='button'
-            >
-              <span className='icon-[mdi--pause]' />
-            </button>
-            <div className='hidden flex-1 items-center justify-end gap-4 lg:flex'>
-              <GameInputMessage />
+          <div>
+            <div className='bg-linear-to-b flex h-20 w-full items-center justify-end from-black/70 to-black/40 px-4'>
+              <ControllerButton onClick={handleClickExit} title='Exit'>
+                <span className='icon-[mdi--close]' />
+              </ControllerButton>
+            </div>
+            <div className='bg-linear-to-b h-20 from-black/40 to-transparent' />
+          </div>
+
+          <div>
+            <div className='bg-linear-to-b h-20 from-transparent to-black/40' />
+            <div className='bg-linear-to-b flex h-20 w-full items-center from-black/40 to-black/70 px-4'>
+              <ControllerButton onClick={handleClickPause} title='Pause'>
+                <span className='icon-[mdi--pause]' />
+              </ControllerButton>
+              <div className='hidden flex-1 items-center justify-end gap-4 lg:flex'>
+                <GameInputMessage />
+              </div>
             </div>
           </div>
         </motion.div>

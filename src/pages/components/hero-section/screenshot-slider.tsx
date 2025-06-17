@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useRef, useState } from 'react'
 import { Autoplay, FreeMode, Thumbs } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'

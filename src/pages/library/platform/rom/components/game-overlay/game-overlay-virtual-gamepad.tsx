@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { useEmulatorLaunched } from '@/pages/library/atoms.ts'

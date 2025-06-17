@@ -1,5 +1,5 @@
 import { Portal, Theme } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { type ReactNode, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router'
 import { useFocusIndicator } from '../../hooks/use-focus-indicator.ts'

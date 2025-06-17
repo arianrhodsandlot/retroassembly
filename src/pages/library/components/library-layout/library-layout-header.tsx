@@ -1,5 +1,5 @@
 import { Select } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { Fragment } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useNavigationLinks } from '../../hooks/use-navigation-links.ts'

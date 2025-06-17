@@ -58,7 +58,12 @@ export function useEmulator() {
     () => ({
       cache: true,
       core: coreUrlMap[core] || core,
-      retroarchConfig: { ...defaultRetroarchConfig, ...preference.input.keyboardMapping, ...gamepadMapping },
+      retroarchConfig: {
+        ...defaultRetroarchConfig,
+        ...preference.input.keyboardMapping,
+        ...gamepadMapping,
+        video_smooth: preference.emulator.videoSmooth,
+      },
       retroarchCoreConfig: preference.emulator.core[core],
       rom: romObject,
       shader,

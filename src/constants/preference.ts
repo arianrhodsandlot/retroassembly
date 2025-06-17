@@ -11,6 +11,7 @@ export interface Preference {
     core: Partial<Record<CoreName, Record<string, string>>>
     platform: Record<PlatformName, { core: CoreName }>
     shader: string
+    videoSmooth: boolean
   } | null
   input: {
     gamepadMappings: null | Record<
@@ -121,6 +122,7 @@ export const defaultPreference: ResolvedPreference = {
       wonderswancolor: { core: 'mednafen_wswan' },
     },
     shader: '',
+    videoSmooth: false,
   },
   input: {
     gamepadMappings: {},

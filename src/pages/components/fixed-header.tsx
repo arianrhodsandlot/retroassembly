@@ -15,11 +15,11 @@ export function FixedHeader({ currentUser }: { currentUser?: any }) {
             {link.name === 'GitHub' ? (
               <Tooltip
                 content={
-                  <div>
+                  <span>
                     Your feedback matters!
                     <br />
                     Star this project on GitHub to show your appreciation.
-                  </div>
+                  </span>
                 }
                 defaultOpen
               >

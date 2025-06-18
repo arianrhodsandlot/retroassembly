@@ -109,5 +109,14 @@ export const libretroGameTable = sqliteTable(
     size: integer(),
     users: integer(),
   },
-  (table) => [index('idx_libretro_game').on(table.name, table.goodcodesBaseCompactName, table.romName)],
+  (table) => [
+    index('idx_libretro_game').on(
+      table.name,
+      table.goodcodesBaseCompactName,
+      table.md5,
+      table.compactName,
+      table.platform,
+      table.romName,
+    ),
+  ],
 )

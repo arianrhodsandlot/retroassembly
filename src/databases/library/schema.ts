@@ -62,7 +62,7 @@ export const launchRecordTable = sqliteTable(
     userId: text().notNull(),
     ...baseSchema,
   },
-  (table) => [index('idx_launch_records').on(table.userId, table.status, table.platform)],
+  (table) => [index('idx_launch_records').on(table.userId, table.status, table.platform, table.romId, table.createdAt)],
 )
 
 export const userPreferenceTable = sqliteTable(

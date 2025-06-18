@@ -118,5 +118,9 @@ export const libretroGameTable = sqliteTable(
       table.platform,
       table.romName,
     ),
+    index('idx_libretro_game_md5_platform').on(table.md5, table.platform),
+    index('idx_libretro_game_goodcodes_platform').on(table.goodcodesBaseCompactName, table.platform),
+    index('idx_libretro_game_romname_platform').on(table.romName, table.platform),
+    index('idx_libretro_game_compactname_platform').on(table.compactName, table.platform),
   ],
 )

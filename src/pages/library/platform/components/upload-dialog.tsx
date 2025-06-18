@@ -167,6 +167,11 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
                 )}
               </div>
 
+              <div className='text-(--accent-9) mt-4 text-xs'>
+                Please upload only ROMs you legally own, such as personal backups of games you purchased or homebrew
+                titles. By uploading, you confirm compliance with all applicable laws.
+              </div>
+
               <div className='mt-4 flex justify-end'>
                 <Dialog.Close>
                   <Button variant='soft'>

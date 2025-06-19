@@ -40,6 +40,9 @@ export const Gamepad = {
     }
   },
   initialize() {
+    if (typeof globalThis.navigator?.getGamepads !== 'function') {
+      return
+    }
     if (Gamepad.initialized) {
       return
     }

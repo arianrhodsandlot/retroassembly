@@ -48,9 +48,10 @@ a:focus {
 }
 
 .hero-bg {
-  background-image: linear-gradient(var(--color-neutral-200) 1px, transparent 1px), linear-gradient(to right, var(--color-neutral-200) 1px, #fff 1px);
+  background-image: linear-gradient(black 1px, transparent 1px), linear-gradient(to right, black 1px, #fff 1px);
   background-size: 10px 10px;
   animation: move 1s linear infinite;
+  opacity: 0.1;
 }
 
 @keyframes move {

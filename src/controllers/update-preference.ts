@@ -10,6 +10,9 @@ function normalize(preference: any) {
   if (preference.ui?.platforms) {
     preference.ui.platforms = platforms.map(({ name }) => name).filter((name) => preference.ui.platforms.includes(name))
   }
+  if (preference.ui?.platforms === null) {
+    preference.ui.platforms = undefined
+  }
 }
 
 export async function updatePreference(preference: PreferenceSnippet) {

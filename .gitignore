@@ -2,13 +2,9 @@
 .react-router
 .wrangler
 artifacts
-dev-dist
 dist
 inputs
 migrations
 node_modules
-pages.gen.ts
-src/legacy/test-results
-src/legacy/tests/fixtures/roms
 worker-configuration.d.ts
 wrangler.json

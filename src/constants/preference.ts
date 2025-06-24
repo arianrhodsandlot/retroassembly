@@ -9,6 +9,7 @@ export type PlatformSortOrder = 'ascending' | 'descending'
 export interface Preference {
   emulator: {
     core: Partial<Record<CoreName, Record<string, string>>>
+    fullscreen: boolean
     platform: Record<PlatformName, { core: CoreName }>
     shader: string
     videoSmooth: boolean
@@ -95,6 +96,7 @@ export const defaultPreference: ResolvedPreference = {
         mgba_skip_bios: 'ON',
       },
     },
+    fullscreen: false,
     platform: {
       arcade: { core: 'mame2003_plus' },
       atari2600: { core: 'stella2014' },

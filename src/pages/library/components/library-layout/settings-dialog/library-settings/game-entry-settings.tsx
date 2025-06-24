@@ -50,7 +50,7 @@ export function GameEntrySettings() {
           </label>
 
           <label className='flex items-center gap-2'>
-            <SettingsTitle className='text-base'>
+            <SettingsTitle className='mb-0 text-base'>
               <span className='icon-[mdi--text-long]' />
               Show Game Titles
             </SettingsTitle>
@@ -63,7 +63,7 @@ export function GameEntrySettings() {
 
           {preference.ui.showTitle ? (
             <label className='flex items-center gap-2'>
-              <SettingsTitle className='text-base'>
+              <SettingsTitle className='mb-0 text-base'>
                 <span className='icon-[mdi--earth]' />
                 Show District on Game Titles
               </SettingsTitle>

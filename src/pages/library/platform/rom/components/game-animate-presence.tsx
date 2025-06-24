@@ -1,11 +1,13 @@
 import { isMatch } from 'es-toolkit/compat'
-import { AnimatePresence, type AnimationDefinition, motion } from 'motion/react'
+import { AnimatePresence, motion, type TargetAndTransition } from 'motion/react'
 import { useMemo } from 'react'
+import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { useLaunchButtonRect } from '../atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 
 export function GameAnimatePresence() {
-  const { emulator, launched } = useEmulator()
+  const { emulator, launched, toggleFullscreen } = useEmulator()
+  const { preference } = usePreference()
   const animateStyle = { height: '100%', left: 0, top: 0, width: '100%' }
   const [launchButtonRect] = useLaunchButtonRect()
   const initialStyle = useMemo(
@@ -21,12 +23,16 @@ export function GameAnimatePresence() {
     [launchButtonRect],
   )
 
-  async function handleAnimationComplete(definition: AnimationDefinition) {
+  async function handleAnimationComplete(definition: TargetAndTransition) {
     if (isMatch(definition, animateStyle) && emulator) {
       await emulator.start()
       const canvas = emulator.getCanvas()
       if (canvas) {
         canvas.style.opacity = '1'
+      }
+
+      if (preference.emulator.fullscreen) {
+        toggleFullscreen()
       }
     }
   }

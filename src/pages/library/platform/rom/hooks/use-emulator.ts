@@ -1,6 +1,6 @@
 import ky from 'ky'
 import { Nostalgist } from 'nostalgist'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import useSWRImmutable from 'swr/immutable'
 import { coreUrlMap } from '@/constants/core.ts'
 import type { Rom } from '@/controllers/get-roms.ts'
@@ -11,6 +11,7 @@ import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { getCDNUrl } from '@/utils/cdn.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
+import { useIsFullscreen } from '../atoms.ts'
 
 type NostalgistOption = Parameters<typeof Nostalgist.prepare>[0]
 type RetroarchConfig = Partial<NostalgistOption['retroarchConfig']>
@@ -46,6 +47,7 @@ export function useEmulator() {
   const gamepadMapping = useGamepadMapping()
   const [launched, setLaunched] = useEmulatorLaunched()
   const isDemo = useIsDemo()
+  const [isFullscreen, setIsFullscreen] = useIsFullscreen()
 
   const romUrl = isDemo
     ? getCDNUrl(`retrobrews/${{ genesis: 'md' }[rom.platform] || rom.platform}-games`, rom.fileName)
@@ -110,13 +112,43 @@ export function useEmulator() {
       emulator?.exit()
       setLaunched(false)
       focus('.launch-button')
+      try {
+        await document.exitFullscreen()
+      } catch {}
+      setIsFullscreen(false)
       await prepare()
     }
   }
+
+  async function toggleFullscreen() {
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen()
+        setIsFullscreen(false)
+      } else {
+        await document.body.requestFullscreen()
+        setIsFullscreen(true)
+      }
+    } catch {}
+  }
+
+  useEffect(() => {
+    const abortController = new AbortController()
+    document.body.addEventListener(
+      'fullscreenchange',
+      () => {
+        setIsFullscreen(document.fullscreenElement === document.body)
+      },
+      { signal: abortController.signal },
+    )
+    return () => {
+      abortController.abort()
+    }
+  })
 
   if (error) {
     console.error(error)
   }
 
-  return { core, emulator, exit, isPreparing, launch, launched, prepare, setLaunched }
+  return { core, emulator, exit, isFullscreen, isPreparing, launch, launched, prepare, setLaunched, toggleFullscreen }
 }

@@ -14,7 +14,7 @@ export function GameOverlayController() {
   }
   const idle = useMouseIdle(3000)
   const { hide, show, visible } = useGameOverlay()
-  const { exit } = useEmulator()
+  const { exit, isFullscreen, toggleFullscreen } = useEmulator()
   const [launched] = useEmulatorLaunched()
 
   function handleClickExit() {
@@ -24,6 +24,10 @@ export function GameOverlayController() {
 
   async function handleClickPause() {
     await show()
+  }
+
+  async function handleClickToggleFullscreen() {
+    await toggleFullscreen()
   }
 
   const controllerVisible = launched && !idle && !visible
@@ -53,9 +57,18 @@ export function GameOverlayController() {
               <ControllerButton onClick={handleClickPause} title='Pause'>
                 <span className='icon-[mdi--pause]' />
               </ControllerButton>
-              <div className='hidden flex-1 items-center justify-end gap-4 lg:flex'>
+              <div className='hidden flex-1 items-center justify-center gap-4 lg:flex'>
                 <GameInputMessage />
               </div>
+              {isFullscreen ? (
+                <ControllerButton onClick={handleClickToggleFullscreen} title='Exit fullscreen'>
+                  <span className='icon-[mdi--fullscreen-exit]' />
+                </ControllerButton>
+              ) : (
+                <ControllerButton onClick={handleClickToggleFullscreen} title='Fullscreen'>
+                  <span className='icon-[mdi--fullscreen]' />
+                </ControllerButton>
+              )}
             </div>
           </div>
         </motion.div>

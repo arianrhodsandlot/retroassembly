@@ -91,7 +91,7 @@ export function ShaderSettings() {
 
           <div>
             <label className='flex items-center gap-2'>
-              <SettingsTitle className='text-base'>
+              <SettingsTitle className='mb-0 text-base'>
                 <span className='icon-[mdi--blur]' />
                 Bilinear filtering
               </SettingsTitle>
@@ -113,6 +113,27 @@ export function ShaderSettings() {
               <br />
               Cannot be enabled with shaders.
             </div>
+          </div>
+
+          <div>
+            <label className='flex items-center gap-2'>
+              <SettingsTitle className='mb-0 text-base'>
+                <span className='icon-[mdi--fullscreen]' />
+                Go fullscreen on launch
+              </SettingsTitle>
+              <Switch
+                checked={preference.emulator.fullscreen}
+                disabled={isLoading}
+                onCheckedChange={(checked) =>
+                  update({
+                    emulator: {
+                      fullscreen: checked,
+                    },
+                  })
+                }
+              />
+            </label>
+            <div className='px-6 text-xs opacity-80'>Some browsers may not support fullscreen mode.</div>
           </div>
         </div>
       </Card>

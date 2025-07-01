@@ -39,13 +39,18 @@ app.post(
     'form',
     z.object({
       'files[]': z.instanceof(File).array().max(10),
+      md5s: z.string().optional(),
       platform: z.string(),
     }),
   ),
 
   async (c) => {
     const form = c.req.valid('form')
-    const roms = await createRoms({ files: form['files[]'], platform: form.platform })
+    let md5s = []
+    try {
+      md5s = JSON.parse(form.md5s)
+    } catch {}
+    const roms = await createRoms({ files: form['files[]'], md5s, platform: form.platform })
     return c.json(roms)
   },
 )

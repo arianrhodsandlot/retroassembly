@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router'
 import useSWRMutation from 'swr/mutation'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
+import { getROMMd5 } from '../../utils/file.ts'
 
 export function UploadDialog({ platform, toggleOpen }: { platform: string; toggleOpen: () => void }) {
   const navigate = useNavigate()
@@ -26,11 +27,13 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
   const deferedProgress = useDeferredValue(progress)
 
   async function uploadFiles(url: string, files: File[]) {
+    const md5s = await Promise.all(files.map((file) => getROMMd5(file, platform)))
     const formData = new FormData()
     for (const file of files) {
       formData.append('files[]', file)
     }
     formData.append('platform', platform)
+    formData.append('md5s', JSON.stringify(md5s))
     await ky.post(url, { body: formData, timeout: false })
   }
 

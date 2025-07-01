@@ -55,6 +55,9 @@ importers:
       '@tailwindcss/typography':
         specifier: 0.5.16
         version: 0.5.16(tailwindcss@4.1.10)
+      '@zip.js/zip.js':
+        specifier: 2.7.62
+        version: 2.7.62
       atropos:
         specifier: 2.0.2
         version: 2.0.2
@@ -127,6 +130,9 @@ importers:
       smooth-scroll-into-view-if-needed:
         specifier: 2.0.2
         version: 2.0.2
+      spark-md5:
+        specifier: 3.0.2
+        version: 3.0.2
       spatial-navigation-ts:
         specifier: 1.0.8
         version: 1.0.8(patch_hash=20e67dd661a3c61ae62b2ac903799529fec664c7b46c0d1b1ec966364973cf86)
@@ -2604,6 +2610,10 @@ packages:
   '@ver0/deep-equal@1.0.0':
     resolution: {integrity: sha512-XKIlF1i6UJiyTL52mDrSDDgRX7Qr5yJ7ts9zn2liZEmhiAEum4XKrJRAWmHdFwCQeGBU+rb+/b0ldw/9V8lOWw==}
     engines: {node: '>=18'}
+
+  '@zip.js/zip.js@2.7.62':
+    resolution: {integrity: sha512-OaLvZ8j4gCkLn048ypkZu29KX30r8/OfFF2w4Jo5WXFr+J04J+lzJ5TKZBVgFXhlvSkqNFQdfnY1Q8TMTCyBVA==}
+    engines: {bun: '>=0.7.0', deno: '>=1.0.0', node: '>=16.5.0'}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -5176,6 +5186,9 @@ packages:
   source-map@0.7.4:
     resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
     engines: {node: '>= 8'}
+
+  spark-md5@3.0.2:
+    resolution: {integrity: sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==}
 
   spatial-navigation-ts@1.0.8:
     resolution: {integrity: sha512-JdBktIKMLUsl9cLfDPvjVJ3BE4B5H8TNd5HAMyyOPB4yXIYcAX0JhxaQOCS3hahdp/+8qBYvX2KtG0PiPuXlxA==}
@@ -8100,6 +8113,8 @@ snapshots:
     optional: true
 
   '@ver0/deep-equal@1.0.0': {}
+
+  '@zip.js/zip.js@2.7.62': {}
 
   acorn-jsx@5.3.2(acorn@8.15.0):
     dependencies:
@@ -11083,6 +11098,8 @@ snapshots:
   source-map@0.6.1: {}
 
   source-map@0.7.4: {}
+
+  spark-md5@3.0.2: {}
 
   spatial-navigation-ts@1.0.8(patch_hash=20e67dd661a3c61ae62b2ac903799529fec664c7b46c0d1b1ec966364973cf86): {}
 

@@ -1,6 +1,8 @@
 import { and, count, eq, type InferInsertModel } from 'drizzle-orm'
+import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
-import { type GameInfo, guessGameInfo } from '../controllers/guess-game-info.ts'
+import ky from 'ky'
+import type { GameInfo } from '../controllers/guess-game-info.ts'
 import { romTable } from '../databases/library/schema.ts'
 import { nanoid } from '../utils/misc.ts'
 
@@ -9,6 +11,31 @@ interface CreateRomParams {
   fileName: string
   gameInfo: GameInfo
   platform: string
+}
+
+function getReleaseYear({ launchbox, libretro }) {
+  if (launchbox) {
+    if (launchbox.releaseYear) {
+      const result = Number.parseInt(launchbox.releaseYear || '', 10)
+      if (result) {
+        return result
+      }
+    }
+
+    if (launchbox.releaseDate) {
+      const result = new Date(launchbox.releaseDate).getFullYear()
+      if (result) {
+        return result
+      }
+    }
+  }
+
+  if (libretro) {
+    const result = Number.parseInt(libretro.releaseyear || '', 10)
+    if (result) {
+      return result
+    }
+  }
 }
 
 async function createRom(params: CreateRomParams) {
@@ -30,10 +57,7 @@ async function createRom(params: CreateRomParams) {
     gameDeveloper: launchbox?.developer || libretro?.developer,
     gameName: launchbox?.name || libretro?.name,
     gamePublisher: launchbox?.publisher || libretro?.publisher,
-    gameReleaseYear:
-      Number.parseInt(launchbox?.releaseYear || '', 10) ||
-      launchbox?.releaseDate?.getFullYear() ||
-      libretro?.releaseyear,
+    gameReleaseYear: getReleaseYear({ launchbox, libretro }),
     launchboxGameId: launchbox?.databaseId,
     libretroGameId: libretro?.id,
     platform: params.platform,
@@ -49,22 +73,37 @@ async function createRom(params: CreateRomParams) {
   return result
 }
 
-export async function createRoms({ files, platform }: { files: File[]; platform: string }) {
-  const { storage } = getContext().var
+async function getGameInfoList({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: string }) {
+  const c = getContext()
+  const { MSLEUTH_HOST } = env(c)
 
+  if (!MSLEUTH_HOST) {
+    return []
+  }
+
+  const searchParams = new URLSearchParams({
+    files: JSON.stringify(files.map((file, index) => ({ md5: md5s[index], name: file.name }))),
+    platform,
+  })
+  try {
+    const gameInfoList = await ky(new URL('/api/v1/sleuth', MSLEUTH_HOST), { searchParams }).json()
+    return gameInfoList
+  } catch {
+    return []
+  }
+}
+
+export async function createRoms({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: string }) {
+  const { storage } = getContext().var
+  const gameInfoList = await getGameInfoList({ files, md5s, platform })
   const roms = await Promise.all(
-    files.map(async (file) => {
+    files.map(async (file, index) => {
       const fileId = nanoid()
-      const r2 = await storage.put(fileId, file)
-      if (!r2) {
-        return
-      }
-      const { md5 = '' } = r2.checksums.toJSON()
-      const gameInfo = await guessGameInfo(file, platform, md5)
+      await storage.put(fileId, file)
       const rom = await createRom({
         fileId,
         fileName: file.name,
-        gameInfo,
+        gameInfo: gameInfoList[index],
         platform,
       })
       return rom

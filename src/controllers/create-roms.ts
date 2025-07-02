@@ -1,17 +1,10 @@
-import { and, count, eq, type InferInsertModel } from 'drizzle-orm'
+import { and, eq, inArray, type InferInsertModel } from 'drizzle-orm'
 import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
 import ky from 'ky'
 import type { GameInfo } from '../controllers/guess-game-info.ts'
 import { romTable } from '../databases/library/schema.ts'
 import { nanoid } from '../utils/misc.ts'
-
-interface CreateRomParams {
-  fileId: string
-  fileName: string
-  gameInfo: GameInfo
-  platform: string
-}
 
 function getReleaseYear({ launchbox, libretro }) {
   if (launchbox) {
@@ -38,41 +31,6 @@ function getReleaseYear({ launchbox, libretro }) {
   }
 }
 
-async function createRom(params: CreateRomParams) {
-  const { currentUser, db } = getContext().var
-  const { library } = db
-
-  const where = and(
-    eq(romTable.userId, currentUser.id),
-    eq(romTable.fileName, params.fileName),
-    eq(romTable.platform, params.platform),
-    eq(romTable.status, 1),
-  )
-  const [countResult] = await library.select({ count: count() }).from(romTable).where(where)
-
-  const { launchbox, libretro } = params.gameInfo
-  const value: InferInsertModel<typeof romTable> = {
-    fileId: params.fileId,
-    fileName: params.fileName,
-    gameDeveloper: launchbox?.developer || libretro?.developer,
-    gameName: launchbox?.name || libretro?.name,
-    gamePublisher: launchbox?.publisher || libretro?.publisher,
-    gameReleaseYear: getReleaseYear({ launchbox, libretro }),
-    launchboxGameId: launchbox?.databaseId,
-    libretroGameId: libretro?.id,
-    platform: params.platform,
-    userId: currentUser.id,
-  }
-
-  if (countResult.count) {
-    const [result] = await library.update(romTable).set(value).where(where).returning()
-    return result
-  }
-
-  const [result] = await library.insert(romTable).values(value).returning()
-  return result
-}
-
 async function getGameInfoList({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: string }) {
   const c = getContext()
   const { MSLEUTH_HOST } = env(c)
@@ -86,29 +44,126 @@ async function getGameInfoList({ files, md5s, platform }: { files: File[]; md5s:
     platform,
   })
   try {
-    const gameInfoList = await ky(new URL('/api/v1/sleuth', MSLEUTH_HOST), { searchParams }).json()
-    return gameInfoList
+    const url = new URL('/api/v1/sleuth', MSLEUTH_HOST as string)
+    const response = await ky(url, { searchParams }).json()
+    return Array.isArray(response) ? (response as GameInfo[]) : []
   } catch {
     return []
   }
 }
 
-export async function createRoms({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: string }) {
-  const { storage } = getContext().var
-  const gameInfoList = await getGameInfoList({ files, md5s, platform })
-  const roms = await Promise.all(
+async function prepareRomData(files: File[], gameInfoList: GameInfo[], platform: string) {
+  const { currentUser, storage } = getContext().var
+
+  return await Promise.all(
     files.map(async (file, index) => {
       const fileId = nanoid()
       await storage.put(fileId, file)
-      const rom = await createRom({
+
+      const gameInfo = gameInfoList[index] || {}
+      const { launchbox, libretro } = gameInfo
+      const romData: InferInsertModel<typeof romTable> = {
         fileId,
         fileName: file.name,
-        gameInfo: gameInfoList[index],
+        gameDeveloper: launchbox?.developer || libretro?.developer,
+        gameName: launchbox?.name || libretro?.name,
+        gamePublisher: launchbox?.publisher || libretro?.publisher,
+        gameReleaseYear: getReleaseYear({ launchbox, libretro }),
+        launchboxGameId: launchbox?.databaseId,
+        libretroGameId: libretro?.id,
         platform,
-      })
-      return rom
+        userId: currentUser.id,
+      }
+
+      return romData
     }),
   )
+}
 
-  return roms
+async function findExistingRoms(files: File[], platform: string) {
+  const { currentUser, db } = getContext().var
+  const { library } = db
+
+  const fileNames = files.map((file) => file.name)
+  const existingRomsArray = await library
+    .select()
+    .from(romTable)
+    .where(
+      and(
+        eq(romTable.userId, currentUser.id),
+        eq(romTable.platform, platform),
+        eq(romTable.status, 1),
+        inArray(romTable.fileName, fileNames),
+      ),
+    )
+
+  // Create a map for O(1) lookup by fileName
+  const existingRomsMap = new Map(existingRomsArray.map((rom) => [rom.fileName, rom]))
+
+  // Match existing ROMs to their original file order
+  return files.map((file) => existingRomsMap.get(file.name) || null)
+}
+
+function separateUpdatesAndInserts(romDataList: InferInsertModel<typeof romTable>[], existingRoms: (any | null)[]) {
+  const updates: { data: InferInsertModel<typeof romTable>; rom: any }[] = []
+  const inserts: InferInsertModel<typeof romTable>[] = []
+
+  for (const [index, romData] of romDataList.entries()) {
+    const existingRom = existingRoms[index]
+    if (existingRom) {
+      updates.push({ data: romData, rom: existingRom })
+    } else {
+      inserts.push(romData)
+    }
+  }
+
+  return { inserts, updates }
+}
+
+async function performBatchOperations(
+  updates: { data: InferInsertModel<typeof romTable>; rom: any }[],
+  inserts: InferInsertModel<typeof romTable>[],
+) {
+  const { db } = getContext().var
+  const { library } = db
+
+  const results: any[] = []
+
+  // Perform batch insert for new ROMs (these get new IDs as expected)
+  if (inserts.length > 0) {
+    const insertResults = await library.insert(romTable).values(inserts).returning()
+    results.push(...insertResults)
+  }
+
+  // Perform updates in parallel to preserve existing IDs
+  if (updates.length > 0) {
+    const updateResults = await Promise.all(
+      updates.map(async ({ data, rom }) => {
+        // Remove the id from data to avoid trying to update the primary key
+        const { id, ...updateData } = data
+        const result = await library.update(romTable).set(updateData).where(eq(romTable.id, rom.id)).returning()
+        return result[0]
+      }),
+    )
+    results.push(...updateResults)
+  }
+
+  return results
+}
+
+export async function createRoms({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: string }) {
+  // Get game information for all files
+  const gameInfoList = await getGameInfoList({ files, md5s, platform })
+
+  // Prepare ROM data with file uploads
+  const romDataList = await prepareRomData(files, gameInfoList, platform)
+
+  // Find existing ROMs in database
+  const existingRoms = await findExistingRoms(files, platform)
+
+  // Separate operations into updates and inserts
+  const { inserts, updates } = separateUpdatesAndInserts(romDataList, existingRoms)
+
+  // Perform batch database operations
+  return performBatchOperations(updates, inserts)
 }

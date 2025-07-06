@@ -5,7 +5,7 @@ function isTinyFile(file: File) {
   if (!file) {
     return false
   }
-  return file.size <= 50 * 1024 * 1024
+  return file.size <= 100 * 1024 * 1024
 }
 
 function isZip(file: File) {

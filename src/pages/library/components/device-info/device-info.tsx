@@ -37,7 +37,7 @@ export function DeviceInfo({ platform, platformInfo }: { platform: string; platf
                 <span className='icon-[mdi--calendar]' />
                 <span className='text-xs'>Released</span>
               </div>
-              <div className='mt-1 pl-6'>{platformInfo.releaseDate?.toLocaleDateString() || 'unknown'}</div>
+              <div className='mt-1 pl-6'>{new Date(platformInfo.releaseDate).toLocaleDateString() || 'unknown'}</div>
             </div>
 
             {manufacturer === developer ? (

@@ -43,7 +43,8 @@
     }
   ],
   "vars": {
-    "STORAGE_DOMAIN": "${STORAGE_DOMAIN}"
+    "STORAGE_DOMAIN": "${STORAGE_DOMAIN}",
+    "MSLEUTH_HOST": "${MSLEUTH_HOST}"
   },
   "upload_source_maps": true
 }

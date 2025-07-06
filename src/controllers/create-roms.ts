@@ -1,7 +1,7 @@
 import { and, eq, inArray, type InferInsertModel } from 'drizzle-orm'
-import { env } from 'hono/adapter'
+import { chunk } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
-import ky from 'ky'
+import { msleuth } from '@/utils/msleuth.ts'
 import type { GameInfo } from '../controllers/guess-game-info.ts'
 import { romTable } from '../databases/library/schema.ts'
 import { nanoid } from '../utils/misc.ts'
@@ -28,27 +28,6 @@ function getReleaseYear({ launchbox, libretro }) {
     if (result) {
       return result
     }
-  }
-}
-
-async function getGameInfoList({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: string }) {
-  const c = getContext()
-  const { MSLEUTH_HOST } = env(c)
-
-  if (!MSLEUTH_HOST) {
-    return []
-  }
-
-  const searchParams = new URLSearchParams({
-    files: JSON.stringify(files.map((file, index) => ({ md5: md5s[index], name: file.name }))),
-    platform,
-  })
-  try {
-    const url = new URL('/api/v1/sleuth', MSLEUTH_HOST as string)
-    const response = await ky(url, { searchParams }).json()
-    return Array.isArray(response) ? (response as GameInfo[]) : []
-  } catch {
-    return []
   }
 }
 
@@ -85,20 +64,42 @@ async function findExistingRoms(files: File[], platform: string) {
   const { library } = db
 
   const fileNames = files.map((file) => file.name)
-  const existingRomsArray = await library
-    .select()
-    .from(romTable)
-    .where(
-      and(
-        eq(romTable.userId, currentUser.id),
-        eq(romTable.platform, platform),
-        eq(romTable.status, 1),
-        inArray(romTable.fileName, fileNames),
-      ),
-    )
+
+  let existingRoms: any[] = []
+
+  if (fileNames.length > 100) {
+    const fileNameChunks = chunk(fileNames, 100)
+
+    for (const fileNameChunk of fileNameChunks) {
+      const chunkResults = await library
+        .select()
+        .from(romTable)
+        .where(
+          and(
+            eq(romTable.userId, currentUser.id),
+            eq(romTable.platform, platform),
+            eq(romTable.status, 1),
+            inArray(romTable.fileName, fileNameChunk),
+          ),
+        )
+      existingRoms.push(...chunkResults)
+    }
+  } else {
+    existingRoms = await library
+      .select()
+      .from(romTable)
+      .where(
+        and(
+          eq(romTable.userId, currentUser.id),
+          eq(romTable.platform, platform),
+          eq(romTable.status, 1),
+          inArray(romTable.fileName, fileNames),
+        ),
+      )
+  }
 
   // Create a map for O(1) lookup by fileName
-  const existingRomsMap = new Map(existingRomsArray.map((rom) => [rom.fileName, rom]))
+  const existingRomsMap = new Map(existingRoms.map((rom) => [rom.fileName, rom]))
 
   // Match existing ROMs to their original file order
   return files.map((file) => existingRomsMap.get(file.name) || null)
@@ -129,41 +130,43 @@ async function performBatchOperations(
 
   const results: any[] = []
 
-  // Perform batch insert for new ROMs (these get new IDs as expected)
+  const chunkSize = 5
+
   if (inserts.length > 0) {
-    const insertResults = await library.insert(romTable).values(inserts).returning()
-    results.push(...insertResults)
+    const insertChunks = chunk(inserts, chunkSize)
+
+    for (const insertChunk of insertChunks) {
+      const insertResults = await library.insert(romTable).values(insertChunk).returning()
+      results.push(...insertResults)
+    }
   }
 
-  // Perform updates in parallel to preserve existing IDs
   if (updates.length > 0) {
-    const updateResults = await Promise.all(
-      updates.map(async ({ data, rom }) => {
-        // Remove the id from data to avoid trying to update the primary key
-        const { id, ...updateData } = data
-        const result = await library.update(romTable).set(updateData).where(eq(romTable.id, rom.id)).returning()
-        return result[0]
-      }),
-    )
-    results.push(...updateResults)
+    const updateChunks = chunk(updates, chunkSize)
+
+    for (const updateChunk of updateChunks) {
+      const updateResults = await Promise.all(
+        updateChunk.map(async ({ data, rom }) => {
+          // Remove the id from data to avoid trying to update the primary key
+          const { id, ...updateData } = data
+          const result = await library.update(romTable).set(updateData).where(eq(romTable.id, rom.id)).returning()
+          return result[0]
+        }),
+      )
+      results.push(...updateResults)
+    }
   }
 
   return results
 }
 
 export async function createRoms({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: string }) {
-  // Get game information for all files
-  const gameInfoList = await getGameInfoList({ files, md5s, platform })
-
-  // Prepare ROM data with file uploads
+  const gameInfoList = await msleuth.sleuth({
+    files: files.map((file, index) => ({ md5: md5s[index], name: file.name })),
+    platform,
+  })
   const romDataList = await prepareRomData(files, gameInfoList, platform)
-
-  // Find existing ROMs in database
   const existingRoms = await findExistingRoms(files, platform)
-
-  // Separate operations into updates and inserts
   const { inserts, updates } = separateUpdatesAndInserts(romDataList, existingRoms)
-
-  // Perform batch database operations
   return performBatchOperations(updates, inserts)
 }

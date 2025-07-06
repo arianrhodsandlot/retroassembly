@@ -4,8 +4,8 @@ import { getContext } from 'hono/context-storage'
 import * as librarySchema from '../databases/library/schema.ts'
 
 export function createDrizzle() {
-  const { DB_LIBRARY, DB_METADATA } = env<Env>(getContext(), 'workerd')
-  if (DB_LIBRARY && DB_METADATA) {
+  const { DB_LIBRARY } = env<Env>(getContext(), 'workerd')
+  if (DB_LIBRARY) {
     return {
       library: drizzle(DB_LIBRARY, { casing: 'snake_case', schema: librarySchema }),
     }

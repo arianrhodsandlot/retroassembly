@@ -16,7 +16,7 @@ export async function getRomsMetadata<T extends InferSelectModel<typeof romTable
 
   return romResults.map((romResult, index) => ({
     ...romResult,
-    launchboxGame: metadataList[index]?.launchbox,
-    libretroGame: metadataList[index]?.libretro,
+    launchboxGame: metadataList?.[index]?.launchbox,
+    libretroGame: metadataList?.[index]?.libretro,
   }))
 }

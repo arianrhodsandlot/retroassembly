@@ -4,33 +4,11 @@ import { $, dotenv, fs, glob } from 'zx'
 
 $.verbose = true
 
-const resetDirectories = [
-  'src/databases/library/migrations',
-  'src/databases/metadata/migrations',
-  'src/scripts/artifacts/library.db',
-  'src/scripts/artifacts/metadata.db',
-]
+const resetDirectories = ['src/databases/library/migrations']
 await Promise.all(resetDirectories.map((directory) => $`rm -rf ${directory}`))
-
-// Prepare the input metadata files
-// await Promise.all([
-//   prepareZip('libretro', 'https://buildbot.libretro.com/assets/frontend/database-rdb.zip'),
-//   prepareZip('launchbox', 'https://gamesdb.launchbox-app.com/metadata.zip'),
-// ])
-
-// Initialize a temporary database
-await $`mkdir -p src/scripts/artifacts`
-// await $`drizzle-kit --config=src/databases/metadata/drizzle.config.ts generate --name=init`
-// await $`drizzle-kit --config=src/databases/metadata/drizzle.config.ts migrate`
 
 await $`drizzle-kit --config=src/databases/library/drizzle.config.ts generate --name=init`
 await $`drizzle-kit --config=src/databases/library/drizzle.config.ts migrate`
-
-// // Prepare data for the temporary database
-// await Promise.all([
-//   $`node src/scripts/dev/extract-libretro-db.ts`,
-//   $`node src/scripts/dev/extract-launchbox-metadata.ts`,
-// ])
 
 // Dump data from the temporary database to local d1
 const databaseNames = ['library']

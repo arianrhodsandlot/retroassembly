@@ -2,7 +2,6 @@ import { and, eq, inArray, type InferInsertModel } from 'drizzle-orm'
 import { chunk } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
 import { msleuth } from '@/utils/msleuth.ts'
-import type { GameInfo } from '../controllers/guess-game-info.ts'
 import { romTable } from '../databases/library/schema.ts'
 import { nanoid } from '../utils/misc.ts'
 

@@ -41,5 +41,11 @@
     "STORAGE_DOMAIN": "${STORAGE_DOMAIN}",
     "MSLEUTH_HOST": "${MSLEUTH_HOST}"
   },
+  "services": [
+    {
+      "binding": "MSLEUTH",
+      "service": "msleuth"
+    }
+  ],
   "upload_source_maps": true
 }

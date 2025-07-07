@@ -1,30 +1,51 @@
 import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
-import ky from 'ky'
+import ky, { type Options } from 'ky'
+
+function getApiURL(endpoint: string): URL {
+  const c = getContext()
+  const { MSLEUTH_HOST } = env(c)
+  return new URL(`api/v1/${endpoint}`, MSLEUTH_HOST as string)
+}
+
+function createRequest({
+  endpoint,
+  json,
+  method = json ? 'POST' : 'GET',
+}: { endpoint: string; json?: unknown; method?: string }) {
+  const input = getApiURL(endpoint)
+  const init: RequestInit = { method }
+  if (method === 'POST' && json) {
+    init.body = JSON.stringify(json)
+    init.headers = { 'Content-Type': 'application/json' }
+  }
+  return new Request(input, init)
+}
 
 function getClient() {
   const c = getContext()
-  const { MSLEUTH_HOST } = env(c)
-  const client = ky.create({
-    prefixUrl: new URL('api/v1', MSLEUTH_HOST as string),
-    retry: 3,
-  })
+  const { MSLEUTH } = env(c)
+  const option: Options = { retry: 3 }
+  if (import.meta.env.PROD && MSLEUTH?.fetch) {
+    option.fetch = MSLEUTH.fetch.bind(MSLEUTH)
+  }
+  const client = ky.create(option)
   return client
 }
 
 export const msleuth = {
-  async query(json) {
+  async query(json: unknown) {
     const client = getClient()
-    return await client.post('metadata/identify', { json }).json()
+    return await client(createRequest({ endpoint: 'metadata/query', json })).json()
   },
 
-  async sleuth(json) {
+  async identify(json: unknown) {
     const client = getClient()
-    return await client.post('metadata/query', { json }).json()
+    return await client(createRequest({ endpoint: 'metadata/identify', json })).json()
   },
 
-  async getPlatform(name) {
+  async getPlatform(name: string) {
     const client = getClient()
-    return await client(`platform/${encodeURIComponent(name)}`).json()
+    return await client(createRequest({ endpoint: `platform/${encodeURIComponent(name)}` })).json()
   },
 }

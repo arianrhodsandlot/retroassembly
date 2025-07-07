@@ -47,9 +47,11 @@ app.post(
   async (c) => {
     const form = c.req.valid('form')
     let md5s = []
-    try {
-      md5s = JSON.parse(form.md5s)
-    } catch {}
+    if (form.md5s) {
+      try {
+        md5s = JSON.parse(form.md5s)
+      } catch {}
+    }
     const roms = await createRoms({ files: form['files[]'], md5s, platform: form.platform })
     return c.json(roms)
   },

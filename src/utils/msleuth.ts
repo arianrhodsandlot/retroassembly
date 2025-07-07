@@ -15,16 +15,16 @@ function getClient() {
 export const msleuth = {
   async query(json) {
     const client = getClient()
-    return await client.post('query', { json }).json()
+    return await client.post('metadata/identify', { json }).json()
   },
 
   async sleuth(json) {
     const client = getClient()
-    return await client.post('sleuth', { json }).json()
+    return await client.post('metadata/query', { json }).json()
   },
 
   async getPlatform(name) {
     const client = getClient()
-    return await client('platform', { searchParams: { name } }).json()
+    return await client(`platform/${encodeURIComponent(name)}`).json()
   },
 }

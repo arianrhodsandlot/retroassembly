@@ -4,7 +4,7 @@ import ky, { type Options } from 'ky'
 
 function getApiURL(endpoint: string): URL {
   const c = getContext()
-  const { MSLEUTH_HOST } = env(c)
+  const { MSLEUTH_HOST = 'https://msleuth.arianrhodsandlot.workers.dev/' } = env(c)
   return new URL(`api/v1/${endpoint}`, MSLEUTH_HOST as string)
 }
 

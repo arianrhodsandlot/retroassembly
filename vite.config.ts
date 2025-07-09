@@ -2,6 +2,7 @@ import { exec } from 'node:child_process'
 import path from 'node:path'
 import { promisify } from 'node:util'
 import { cloudflare } from '@cloudflare/vite-plugin'
+import { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
 import { formatISO } from 'date-fns'
@@ -29,7 +30,12 @@ export default defineConfig((env) => {
   } satisfies UserConfig
 
   if (['w', 'workerd'].includes(env.mode)) {
-    config.plugins.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
+    config.plugins.push(
+      cloudflare({
+        persistState: { path: 'data/wrangler' },
+        viteEnvironment: { name: 'ssr' },
+      }),
+    )
     config.resolve.alias['@entry.server.tsx'] = path.resolve(
       'node_modules/react-router-templates/cloudflare/app/entry.server.tsx',
     )
@@ -37,7 +43,11 @@ export default defineConfig((env) => {
     config.plugins.push(
       serverAdapter({
         entry: './src/server/server.ts',
-        exclude: [/virtua:/, /node_modules/, /src/, /@id/, /@vite/, /.jpg/, /.jpeg/, /.svg/, /.png/, /.json/],
+        exclude: [
+          ...defaultOptions.exclude,
+          '/src/**',
+          /\?(inline|url|no-inline|raw|import(?:&(inline|url|no-inline|raw))*)$/,
+        ],
       }),
     )
     config.resolve.alias['@entry.server.tsx'] = path.resolve(

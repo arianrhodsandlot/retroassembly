@@ -6,7 +6,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const supabase = c.get('supabase')
 
   if (!supabase) {
-    return
+    throw c.redirect('/')
   }
 
   const oauthRedirectToURL = new URL('/login', new URL(c.req.url).origin)

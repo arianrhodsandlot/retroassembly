@@ -1,10 +1,12 @@
 import { exec } from 'node:child_process'
+import path from 'node:path'
 import { promisify } from 'node:util'
 import { cloudflare } from '@cloudflare/vite-plugin'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
 import { formatISO } from 'date-fns'
-import { defineConfig } from 'vite'
+import serverAdapter from 'hono-react-router-adapter/vite'
+import { defineConfig, type UserConfig } from 'vite'
 import devtoolsJson from 'vite-plugin-devtools-json'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
@@ -15,23 +17,33 @@ const define = {
   GIT_VERSION: JSON.stringify(shortVersion),
 }
 
-export default defineConfig({
-  build: {
-    assetsInlineLimit: 10_240,
-  },
-  define,
-  plugins: [
-    cloudflare({
-      viteEnvironment: { name: 'ssr' },
-    }),
-    tailwindcss(),
-    reactRouter(),
-    tsconfigPaths(),
-    devtoolsJson(),
-  ],
-  server: {
-    hmr: {
-      overlay: false,
-    },
-  },
+export default defineConfig((env) => {
+  console.info('Vite config environment:')
+  console.table(env)
+
+  const config = {
+    define,
+    plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), devtoolsJson()],
+    resolve: { alias: {} },
+    server: { hmr: { overlay: false } },
+  } satisfies UserConfig
+
+  if (['w', 'workerd'].includes(env.mode)) {
+    config.plugins.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
+    config.resolve.alias['@entry.server.tsx'] = path.resolve(
+      'node_modules/react-router-templates/cloudflare/app/entry.server.tsx',
+    )
+  } else {
+    config.plugins.push(
+      serverAdapter({
+        entry: './src/server/server.ts',
+        exclude: [/virtua:/, /node_modules/, /src/, /@id/, /@vite/, /.jpg/, /.jpeg/, /.svg/, /.png/, /.json/],
+      }),
+    )
+    config.resolve.alias['@entry.server.tsx'] = path.resolve(
+      'node_modules/@react-router/dev/dist/config/defaults/entry.server.node.tsx',
+    )
+  }
+
+  return config
 })

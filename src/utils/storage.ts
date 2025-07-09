@@ -7,5 +7,6 @@ export const createStorage = memoize(function createStorage() {
   if (BUCKET) {
     return BUCKET
   }
-  throw new Error('Could not initialize storage')
+  return {}
+  // throw new Error('Could not initialize storage')
 })

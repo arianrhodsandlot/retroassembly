@@ -2,6 +2,7 @@
 .react-router
 .wrangler
 artifacts
+data
 dist
 inputs
 migrations

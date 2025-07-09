@@ -14,7 +14,7 @@ while (true) {
   await fs.writeFile('wrangler.json', wranglerConfig, 'utf8')
 
   try {
-    await $$`react-router dev --host`
+    await $$`react-router dev -m n`
   } catch (error) {
     console.warn(error)
   }

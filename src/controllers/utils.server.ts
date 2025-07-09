@@ -3,6 +3,9 @@ import type { romTable } from '@/databases/library/schema.ts'
 import { msleuth } from '@/utils/msleuth.ts'
 
 export async function getRomsMetadata<T extends InferSelectModel<typeof romTable>[]>(romResults: T) {
+  if (romResults.length === 0) {
+    return []
+  }
   const conditions = romResults.map(({ launchboxGameId: launchboxId, libretroGameId: libretroId }) => ({
     launchboxId,
     libretroId,

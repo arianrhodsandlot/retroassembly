@@ -1,5 +1,5 @@
 import { template } from 'es-toolkit/compat'
-import { $, dotenv, fs } from 'zx'
+import { $, argv, dotenv, fs } from 'zx'
 
 process.env.FORCE_COLOR = '1'
 
@@ -13,4 +13,6 @@ const wranglerConfig = compiled(env)
 await fs.writeFile('wrangler.json', wranglerConfig, 'utf8')
 
 // build
-await $$`react-router build -m w`
+let mode = argv.mode || argv.m || process.env.WORKERS_CI === '1' ? 'workerd' : 'node'
+mode = ['w', 'workerd'].includes(mode) ? 'workerd' : 'node'
+await $$`react-router build --mode=${mode}`

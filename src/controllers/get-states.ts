@@ -1,6 +1,6 @@
 import { and, desc, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { stateTable } from '../databases/library/schema.ts'
+import { stateTable } from '../databases/schema.ts'
 
 export type States = Awaited<ReturnType<typeof getStates>>
 export type State = States[number]

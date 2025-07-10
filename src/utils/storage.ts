@@ -1,5 +1,4 @@
 import path from 'node:path'
-import fs from 'fs-extra'
 import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
 
@@ -17,12 +16,14 @@ export function createStorage() {
       const fileTargetDirectory = path.join(storageBaseDirectory, dir)
       const arrayBuffer = await file.arrayBuffer()
       const buffer = Buffer.from(arrayBuffer)
+      const fs = await import('fs-extra')
       await fs.ensureDir(fileTargetDirectory)
       await fs.writeFile(path.join(fileTargetDirectory, base), buffer)
     },
 
     async get(id: string) {
       const filePath = path.join(storageBaseDirectory, id)
+      const fs = await import('fs-extra')
       const buffer = await fs.readFile(filePath)
       // Create a mock R2ObjectBody-like object for compatibility with createFileResponse
       const mockR2Object = {

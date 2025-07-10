@@ -1,4 +1,4 @@
-import { msleuth } from '@/utils/msleuth.ts'
+import { msleuth } from '../utils/msleuth.ts'
 
 export type PlatformInfo = Awaited<ReturnType<typeof getPlatformInfo>>
 

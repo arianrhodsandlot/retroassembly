@@ -23,7 +23,7 @@ export const globalsMiddleware = createMiddleware(async (c, next) => {
   const supabase = createSupabase()
 
   let currentUser: { id: string } | null = null
-  const devUserId = c.req.query('dev_user_id') || env<{ DEV_USER_ID: string }>(c).DEV_USER_ID || '0'
+  const devUserId = c.req.query('dev_user_id') || env<{ DEV_USER_ID: string }>(c).DEV_USER_ID
   if (devUserId) {
     currentUser = { id: devUserId }
   } else if (supabase) {

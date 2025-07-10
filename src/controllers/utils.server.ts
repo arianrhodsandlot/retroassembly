@@ -1,6 +1,6 @@
 import type { InferSelectModel } from 'drizzle-orm'
-import type { romTable } from '@/databases/library/schema.ts'
-import { msleuth } from '@/utils/msleuth.ts'
+import type { romTable } from '../databases/schema'
+import { msleuth } from '../utils/msleuth.ts'
 
 export async function getRomsMetadata<T extends InferSelectModel<typeof romTable>[]>(romResults: T) {
   if (romResults.length === 0) {

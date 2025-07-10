@@ -1,26 +1,27 @@
-import { exec } from 'node:child_process'
 import path from 'node:path'
-import { promisify } from 'node:util'
 import { cloudflare } from '@cloudflare/vite-plugin'
 import { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
 import { formatISO } from 'date-fns'
+import { $ } from 'execa'
 import serverAdapter from 'hono-react-router-adapter/vite'
 import { defineConfig, type UserConfig } from 'vite'
 import devtoolsJson from 'vite-plugin-devtools-json'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-const { stdout: revision } = await promisify(exec)('git rev-parse HEAD')
-const shortVersion = revision.trim().slice(0, 7)
-const define = {
-  BUILD_TIME: JSON.stringify(formatISO(new Date())),
-  GIT_VERSION: JSON.stringify(shortVersion),
-}
-
-export default defineConfig((env) => {
+export default defineConfig(async (env) => {
   console.info('Vite config environment:')
   console.table(env)
+
+  const {
+    stdout: [revision],
+  } = await $({ lines: true })`git rev-parse HEAD`
+  const shortVersion = revision.slice(0, 7)
+  const define = {
+    BUILD_TIME: JSON.stringify(formatISO(new Date())),
+    GIT_VERSION: JSON.stringify(shortVersion),
+  }
 
   const config = {
     define,
@@ -30,29 +31,33 @@ export default defineConfig((env) => {
   } satisfies UserConfig
 
   if (['w', 'workerd'].includes(env.mode)) {
-    config.plugins.push(
-      cloudflare({
-        persistState: { path: 'data/wrangler' },
-        viteEnvironment: { name: 'ssr' },
-      }),
-    )
-    config.resolve.alias['@entry.server.tsx'] = path.resolve(
-      'node_modules/react-router-templates/cloudflare/app/entry.server.tsx',
-    )
+    config.plugins.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
+    const serverEntry = path.resolve('node_modules', 'react-router-templates', 'cloudflare', 'app', 'entry.server.tsx')
+    config.resolve.alias['@entry.server.tsx'] = serverEntry
   } else {
     config.plugins.push(
       serverAdapter({
-        entry: './src/server/server.ts',
+        entry: path.resolve('src', 'server', 'app.ts'),
         exclude: [
           ...defaultOptions.exclude,
           '/src/**',
           /\?(inline|url|no-inline|raw|import(?:&(inline|url|no-inline|raw))*)$/,
         ],
+        getLoadContext({ request }: { request: Request }) {
+          return { extra: 'stuff', url: request.url }
+        },
       }),
     )
-    config.resolve.alias['@entry.server.tsx'] = path.resolve(
-      'node_modules/@react-router/dev/dist/config/defaults/entry.server.node.tsx',
+    const serverEntry = path.resolve(
+      'node_modules',
+      '@react-router',
+      'dev',
+      'dist',
+      'config',
+      'defaults',
+      'entry.server.node.tsx',
     )
+    config.resolve.alias['@entry.server.tsx'] = serverEntry
   }
 
   return config

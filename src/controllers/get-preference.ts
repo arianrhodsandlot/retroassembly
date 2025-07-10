@@ -1,7 +1,7 @@
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { resolveUserPreference } from '../constants/preference.ts'
-import { userPreferenceTable } from '../databases/library/schema.ts'
+import { userPreferenceTable } from '../databases/schema.ts'
 
 export async function getPreference() {
   const { currentUser, db } = getContext().var

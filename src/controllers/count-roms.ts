@@ -1,6 +1,6 @@
 import { and, count, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { romTable } from '../databases/library/schema.ts'
+import { romTable } from '../databases/schema.ts'
 
 export async function countRoms({ platform }: { platform?: string } = {}) {
   const { currentUser, db } = getContext().var

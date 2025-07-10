@@ -1,6 +1,6 @@
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { launchRecordTable, romTable } from '../databases/library/schema.ts'
+import { launchRecordTable, romTable } from '../databases/schema.ts'
 
 interface DeleteRomParams {
   rom: string

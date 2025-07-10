@@ -7,7 +7,7 @@
     "not_found_handling": "404-page",
     "run_worker_first": false
   },
-  "compatibility_date": "2025-04-22",
+  "compatibility_date": "2025-07-10",
   "compatibility_flags": [
     "nodejs_compat",
     "no_handle_cross_request_promise_resolution"
@@ -15,12 +15,12 @@
   "d1_databases": [
     {
       "binding": "DB_LIBRARY",
-      "database_id": "${DB_LIBRARY_DATABASE_ID}",
+      "database_id": "${obj.DB_LIBRARY_DATABASE_ID ?? '-'}",
       "database_name": "retroassembly_library",
-      "migrations_dir": "src/databases/library/migrations"
+      "migrations_dir": "src/databases/migrations"
     }
   ],
-  "main": "./src/server/server.ts",
+  "main": "./src/server/workerd.ts",
   "name": "retroassembly",
   "observability": {
     "enabled": true,
@@ -37,14 +37,8 @@
     }
   ],
   "vars": {
-    "STORAGE_DOMAIN": "${STORAGE_DOMAIN}",
-    "MSLEUTH_HOST": "${MSLEUTH_HOST}"
+    "STORAGE_DOMAIN": "${obj.STORAGE_DOMAIN ?? ''}",
+    "MSLEUTH_HOST": "${obj.MSLEUTH_HOST ?? ''}"
   },
-  "services": [
-    {
-      "binding": "MSLEUTH",
-      "service": "msleuth"
-    }
-  ],
   "upload_source_maps": true
 }

@@ -1,6 +1,6 @@
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { romTable, stateTable } from '../databases/library/schema.ts'
+import { romTable, stateTable } from '../databases/schema.ts'
 import { nanoid } from '../utils/misc.ts'
 
 interface CreateStateParams {

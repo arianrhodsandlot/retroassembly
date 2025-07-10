@@ -1,9 +1,9 @@
 import { and, eq, inArray, type InferInsertModel } from 'drizzle-orm'
 import { chunk } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
-import { msleuth } from '@/utils/msleuth.ts'
-import { romTable } from '../databases/library/schema.ts'
+import { romTable } from '../databases/schema.ts'
 import { nanoid } from '../utils/misc.ts'
+import { msleuth } from '../utils/msleuth.ts'
 
 function getReleaseYear({ launchbox, libretro }) {
   if (launchbox) {

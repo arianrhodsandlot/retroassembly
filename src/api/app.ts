@@ -2,6 +2,8 @@ import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
 import { createMiddleware } from 'hono/factory'
 import { z } from 'zod'
+import { createSession } from '@/controllers/create-session.ts'
+import { createUser } from '@/controllers/create-user.ts'
 import { createLaunchRecord } from '../controllers/create-launch-record.ts'
 import { createRoms } from '../controllers/create-roms.ts'
 import { createState } from '../controllers/create-state.ts'
@@ -23,6 +25,9 @@ interface Bindings {
 export const app = new Hono<{ Bindings: Bindings }>().basePath('v1')
 
 const authMiddleware = createMiddleware(async (c, next) => {
+  if (c.req.path.includes('/auth/')) {
+    return await next()
+  }
   const { currentUser } = c.var
   if (!currentUser) {
     return c.json({ message: 'need auth' }, 400)
@@ -207,3 +212,45 @@ app.post('preference', async (c) => {
   const result = await updatePreference(preference)
   return c.json(result)
 })
+
+app.post(
+  'auth/login',
+
+  zValidator(
+    'form',
+    z.object({
+      password: z.string(),
+      username: z.string(),
+    }),
+  ),
+
+  async (c) => {
+    const form = c.req.valid('form')
+    const user = await createSession(form)
+    if (!user) {
+      return c.json({ error: 'Invalid username or password' }, 401)
+    }
+    return c.json({ user })
+  },
+)
+
+app.post(
+  'auth/register',
+
+  zValidator(
+    'form',
+    z.object({
+      password: z.string(),
+      username: z.string(),
+    }),
+  ),
+
+  async (c) => {
+    const form = c.req.valid('form')
+    const user = await createUser(form)
+    if (!user) {
+      return c.json({ error: 'Invalid username or password' }, 401)
+    }
+    return c.json({ user })
+  },
+)

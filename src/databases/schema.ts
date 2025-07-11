@@ -23,6 +23,39 @@ const fileSchema = {
   userId: text().notNull(),
 }
 
+export const userTable = sqliteTable(
+  'users',
+  {
+    passwordHash: text().notNull(),
+    registrationIp: text(),
+    registrationUserAgent: text(),
+    username: text().notNull().unique(),
+    ...baseSchema,
+  },
+  (table) => [index('idx_users_username').on(table.username), index('idx_users_status').on(table.status)],
+)
+
+export const sessionTable = sqliteTable(
+  'sessions',
+  {
+    expiresAt: integer({ mode: 'timestamp_ms' }).notNull(),
+    ip: text(),
+    lastActivityAt: integer({ mode: 'timestamp_ms' })
+      .notNull()
+      .$defaultFn(() => new Date()),
+    token: text().notNull().unique(),
+    userAgent: text(),
+    userId: text().notNull(),
+    ...baseSchema,
+  },
+  (table) => [
+    index('idx_sessions_token').on(table.token),
+    index('idx_sessions_user').on(table.userId, table.status),
+    index('idx_sessions_expires').on(table.expiresAt),
+    index('idx_sessions_activity').on(table.lastActivityAt),
+  ],
+)
+
 export const romTable = sqliteTable(
   'roms',
   {

@@ -1,3 +1,8 @@
+import { getConnInfo as getNodeConnInfo } from '@hono/node-server/conninfo'
+import { getRuntimeKey } from 'hono/adapter'
+import { getConnInfo as getCloudflareWorkersConnInfo } from 'hono/cloudflare-workers'
+import { getContext } from 'hono/context-storage'
+
 export function createFileResponse(object: R2ObjectBody) {
   const headers = new Headers()
   // this may fail when using miniflare
@@ -14,4 +19,17 @@ export function createFileResponse(object: R2ObjectBody) {
     status = headers.get('Range') ? 206 : 200
   }
   return new Response(object.body, { headers, status })
+}
+
+export function getConnInfo() {
+  const c = getContext()
+  const runtimeKey = getRuntimeKey()
+  try {
+    if (runtimeKey === 'node') {
+      return getNodeConnInfo(c)
+    }
+    if (runtimeKey === 'workerd') {
+      return getCloudflareWorkersConnInfo(c)
+    }
+  } catch {}
 }

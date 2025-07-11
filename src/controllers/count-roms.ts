@@ -1,3 +1,4 @@
+import assert from 'node:assert'
 import { and, count, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { romTable } from '../databases/schema.ts'
@@ -5,6 +6,8 @@ import { romTable } from '../databases/schema.ts'
 export async function countRoms({ platform }: { platform?: string } = {}) {
   const { currentUser, db } = getContext().var
   const { library } = db
+
+  assert.ok(currentUser)
 
   const conditions = [eq(romTable.userId, currentUser.id), eq(romTable.status, 1)]
   if (platform) {

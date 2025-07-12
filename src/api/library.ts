@@ -17,7 +17,7 @@ import { updatePreference } from '../controllers/update-preference.ts'
 import { createFileResponse } from './utils.ts'
 
 interface Bindings {
-  STORAGE_DOMAIN?: string
+  STORAGE_HOST?: string
 }
 
 export const app = new Hono<{ Bindings: Bindings }>()
@@ -152,8 +152,8 @@ app.get('state/:id/thumbnail', async (c) => {
 
 app.get('files/:id', async (c) => {
   const id = c.req.param('id')
-  if (c.env.STORAGE_DOMAIN) {
-    return c.redirect(new URL(id, `https://${c.env.STORAGE_DOMAIN}`))
+  if (c.env.STORAGE_HOST) {
+    return c.redirect(new URL(id, c.env.STORAGE_HOST))
   }
   const file = await getFileContent(id)
   if (file) {

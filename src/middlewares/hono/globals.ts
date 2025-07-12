@@ -19,19 +19,17 @@ export function globals() {
     c.set('authorized', false)
     c.set('unauthorized', true)
 
-    const token = c.req.header('Authorization')?.replace('Bearer ', '') || getCookie(c, 'token')
-    if (token) {
-      c.set('token', token)
+    const token = c.req.header('Authorization')?.replace('Bearer ', '') || getCookie(c, 'token') || ''
+    c.set('token', token)
 
-      const currentUser = await getCurrentUser()
-      if (currentUser) {
-        c.set('currentUser', currentUser)
-        c.set('authorized', true)
-        c.set('unauthorized', false)
+    const currentUser = await getCurrentUser()
+    if (currentUser) {
+      c.set('currentUser', currentUser)
+      c.set('authorized', true)
+      c.set('unauthorized', false)
 
-        const preference = await getPreference()
-        c.set('preference', preference)
-      }
+      const preference = await getPreference()
+      c.set('preference', preference)
     }
 
     await next()

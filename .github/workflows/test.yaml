@@ -7,7 +7,7 @@ jobs:
       name: test
     env:
       DB_LIBRARY_DATABASE_ID: ${{ vars.DB_LIBRARY_DATABASE_ID }}
-      STORAGE_DOMAIN: ${{ vars.STORAGE_DOMAIN }}
+      STORAGE_HOST: ${{ vars.STORAGE_HOST }}
       MSLEUTH_HOST: ${{ vars.MSLEUTH_HOST }}
     steps:
       - uses: actions/checkout@v4

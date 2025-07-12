@@ -4,14 +4,15 @@ import { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
 import { formatISO } from 'date-fns'
+import { noop } from 'es-toolkit/compat'
 import { $ } from 'execa'
 import fs from 'fs-extra'
 import serverAdapter from 'hono-react-router-adapter/vite'
-import { defineConfig, type UserConfig } from 'vite'
+import { defineConfig, type Plugin, type UserConfig } from 'vite'
 import devtoolsJson from 'vite-plugin-devtools-json'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { storageDirectory } from './src/constants/env.ts'
-import { getTargetRuntime, prepareWranglerConfig } from './src/scripts/utils.ts'
+import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './src/scripts/utils.ts'
 
 const {
   stdout: [revision],
@@ -22,15 +23,33 @@ const define = {
   GIT_VERSION: JSON.stringify(shortVersion),
 }
 
-export default defineConfig(async (env) => {
-  console.info('Vite config environment:')
-  console.table(env)
+function serverInfo() {
+  const plugin: Plugin = {
+    configureServer(server) {
+      const { httpServer, printUrls } = server
+      server.printUrls = noop
+      httpServer?.on('listening', async () => {
+        const address = httpServer?.address()
+        if (address && typeof address === 'object') {
+          await logServerInfo(address.port, true)
+        }
+        printUrls()
+      })
+    },
+    name: 'log-server-info',
+  }
+  return plugin
+}
 
+export default defineConfig(async (env) => {
   const config = {
     define,
-    plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), devtoolsJson()],
+    plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), devtoolsJson(), serverInfo()],
     resolve: { alias: {} },
-    server: { hmr: { overlay: false } },
+    server: {
+      hmr: { overlay: false },
+      host: true,
+    },
   } satisfies UserConfig
 
   if (getTargetRuntime() === 'workerd') {

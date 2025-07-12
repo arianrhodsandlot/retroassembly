@@ -18,8 +18,12 @@ export async function loader({ request }: Route.LoaderArgs) {
     const formType = 'oauth'
     const code = searchParams.get('code')
     if (code) {
-      const { error } = await supabase.auth.exchangeCodeForSession(code)
-      if (error) {
+      try {
+        const { error } = await supabase.auth.exchangeCodeForSession(code)
+        if (error) {
+          return { error, formType, redirectTo }
+        }
+      } catch (error) {
         return { error, formType, redirectTo }
       }
 

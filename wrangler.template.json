@@ -7,7 +7,7 @@
     "not_found_handling": "404-page",
     "run_worker_first": false
   },
-  "compatibility_date": "2025-07-10",
+  "compatibility_date": "2025-07-09",
   "compatibility_flags": [
     "nodejs_compat",
     "no_handle_cross_request_promise_resolution"
@@ -37,8 +37,10 @@
     }
   ],
   "vars": {
+    "MSLEUTH_HOST": "${obj.MSLEUTH_HOST ?? ''}",
     "STORAGE_DOMAIN": "${obj.STORAGE_DOMAIN ?? ''}",
-    "MSLEUTH_HOST": "${obj.MSLEUTH_HOST ?? ''}"
+    "SUPABASE_ANON_KEY": "${obj.SUPABASE_ANON_KEY ?? ''}",
+    "SUPABASE_URL": "${obj.SUPABASE_URL ?? ''}"
   },
   "upload_source_maps": true
 }

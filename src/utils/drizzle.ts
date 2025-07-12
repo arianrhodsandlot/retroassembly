@@ -7,15 +7,18 @@ import * as schema from '../databases/schema.ts'
 
 const runtimeKey = getRuntimeKey()
 const config = { casing: 'snake_case', schema } as const
+
 function createDrizzleD1() {
   const c = getContext()
   const library = drizzleD1(env<any>(c).DB_LIBRARY, config)
   return { library }
 }
+
 function createDrizzleBetterSQLite3() {
   const library = drizzleBetterSQLite3(databasePath, config)
   return { library }
 }
+
 export function createDrizzle() {
   if (runtimeKey === 'workerd') {
     return (createDrizzleD1 as unknown as typeof createDrizzleBetterSQLite3)()

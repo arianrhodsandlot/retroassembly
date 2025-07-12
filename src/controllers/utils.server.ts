@@ -1,4 +1,8 @@
+import { getConnInfo as getNodeConnInfo } from '@hono/node-server/conninfo'
 import type { InferSelectModel } from 'drizzle-orm'
+import { getRuntimeKey } from 'hono/adapter'
+import { getConnInfo as getCloudflareWorkersConnInfo } from 'hono/cloudflare-workers'
+import { getContext } from 'hono/context-storage'
 import type { romTable } from '../databases/schema'
 import { msleuth } from '../utils/msleuth.ts'
 
@@ -22,4 +26,17 @@ export async function getRomsMetadata<T extends InferSelectModel<typeof romTable
     launchboxGame: metadataList?.[index]?.launchbox,
     libretroGame: metadataList?.[index]?.libretro,
   }))
+}
+
+export function getConnInfo() {
+  const c = getContext()
+  const runtimeKey = getRuntimeKey()
+  try {
+    if (runtimeKey === 'node') {
+      return getNodeConnInfo(c)
+    }
+    if (runtimeKey === 'workerd') {
+      return getCloudflareWorkersConnInfo(c)
+    }
+  } catch {}
 }

@@ -1,7 +1,7 @@
 import { getCookie } from 'hono/cookie'
 import { createMiddleware } from 'hono/factory'
-import { getCurrentUser } from '@/controllers/get-current-user.ts'
 import type { ResolvedPreference } from '../../constants/preference.ts'
+import { getCurrentUser } from '../../controllers/get-current-user.ts'
 import { getPreference } from '../../controllers/get-preference.ts'
 
 declare module 'hono' {

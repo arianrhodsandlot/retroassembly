@@ -1,9 +1,6 @@
 import { index, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
-import { customAlphabet } from 'nanoid'
-import { nolookalikes } from 'nanoid-dictionary'
-import type { PreferenceSnippet } from '@/constants/preference'
-
-const nanoid = customAlphabet(nolookalikes, 10)
+import type { PreferenceSnippet } from '../constants/preference'
+import { nanoid } from '../utils/misc.ts'
 
 export const statusEnum = {
   deleted: 0,

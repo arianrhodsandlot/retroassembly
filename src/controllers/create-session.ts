@@ -1,11 +1,10 @@
-import * as argon2 from 'argon2'
 import { addDays } from 'date-fns'
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
-import { nanoid } from 'nanoid'
-import { getConnInfo } from '@/api/utils.ts'
 import { sessionTable, statusEnum, userTable } from '../databases/schema.ts'
+import { nanoid } from '../utils/misc.ts'
+import { getConnInfo } from './utils.server.ts'
 
 const invalidException = new HTTPException(401, { message: 'Invalid username or password' })
 
@@ -23,13 +22,12 @@ export async function createSession({ password, username }: { password: string; 
     throw invalidException
   }
 
-  // Verify password
-  const isValidPassword = await argon2.verify(user.passwordHash, password)
+  const { verify } = await import('argon2')
+  const isValidPassword = await verify(user.passwordHash, password)
   if (!isValidPassword) {
     throw invalidException
   }
 
-  // Create session in database
   const [session] = await db.library
     .insert(sessionTable)
     .values({

@@ -1,7 +1,7 @@
 import { createMiddleware } from 'hono/factory'
-import { createSupabase } from '@/utils/supabase.ts'
 import { createDrizzle } from '../../utils/drizzle.ts'
 import { createStorage } from '../../utils/storage.ts'
+import { createSupabase } from '../../utils/supabase.ts'
 
 declare module 'hono' {
   interface ContextVariableMap {

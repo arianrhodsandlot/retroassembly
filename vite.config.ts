@@ -11,6 +11,7 @@ import { defineConfig, type UserConfig } from 'vite'
 import devtoolsJson from 'vite-plugin-devtools-json'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { storageDirectory } from './src/constants/env.ts'
+import { prepareWranglerConfig } from './src/scripts/utils.ts'
 
 const {
   stdout: [revision],
@@ -21,9 +22,7 @@ const define = {
   GIT_VERSION: JSON.stringify(shortVersion),
 }
 
-await fs.ensureDir(storageDirectory)
-
-export default defineConfig((env) => {
+export default defineConfig(async (env) => {
   console.info('Vite config environment:')
   console.table(env)
 
@@ -35,10 +34,12 @@ export default defineConfig((env) => {
   } satisfies UserConfig
 
   if (['w', 'workerd'].includes(env.mode)) {
+    await prepareWranglerConfig()
     config.plugins.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
     const serverEntry = path.resolve('node_modules', 'react-router-templates', 'cloudflare', 'app', 'entry.server.tsx')
     config.resolve.alias['@entry.server.tsx'] = serverEntry
   } else {
+    await fs.ensureDir(storageDirectory)
     config.plugins.push(
       serverAdapter({
         entry: path.resolve('src', 'server', 'app.ts'),

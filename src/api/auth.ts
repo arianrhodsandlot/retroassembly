@@ -2,8 +2,8 @@ import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
 import { setCookie } from 'hono/cookie'
 import { z } from 'zod'
-import { createSession } from '@/controllers/create-session.ts'
-import { createUser } from '@/controllers/create-user.ts'
+import { createSession } from '../controllers/create-session.ts'
+import { createUser } from '../controllers/create-user.ts'
 
 export const app = new Hono().basePath('auth')
 

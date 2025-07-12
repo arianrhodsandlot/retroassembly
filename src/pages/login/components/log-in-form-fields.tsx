@@ -1,47 +1,32 @@
-import { TextField } from '@radix-ui/themes'
-import type { FocusEvent } from 'react'
-
-function handleFocus(event: FocusEvent<HTMLInputElement>) {
-  event.currentTarget.select()
-}
+import { LoginFormField } from './log-in-form-field.tsx'
 
 export function LoginFormFields({ register = false }: { register?: boolean }) {
   return (
     <>
-      <label>
-        <div className='mb-2 font-medium'>Username</div>
-        {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-        <TextField.Root autoFocus name='username' onFocus={handleFocus} required>
-          <TextField.Slot>
-            <span className='icon-[mdi--user-card-details]' />
-          </TextField.Slot>
-        </TextField.Root>
-        {register ? <div className='mt-1 pl-2 text-xs opacity-50'>E.g., johnsmith, admin, etc.</div> : null}
-      </label>
+      <LoginFormField
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus
+        description={register ? 'E.g., johnsmith, admin, etc.' : ''}
+        iconClass='icon-[mdi--user-card-details]'
+        label='Username'
+        name='username'
+      />
 
-      <label>
-        <div className='mb-2 font-medium'>Password</div>
-        <TextField.Root name='password' onFocus={handleFocus} required type='password'>
-          <TextField.Slot>
-            <span className='icon-[mdi--password]' />
-          </TextField.Slot>
-        </TextField.Root>
-        {register ? (
-          <div className='mt-1 pl-2 text-xs opacity-50'>
-            Recommendation: 10+ characters with letters, numbers, and symbols.
-          </div>
-        ) : null}
-      </label>
+      <LoginFormField
+        description={register ? 'Recommendation: 10+ characters with letters, numbers, and symbols.' : ''}
+        iconClass='icon-[mdi--password]'
+        label='Password'
+        name='password'
+        type='password'
+      />
 
       {register ? (
-        <label>
-          <div className='mb-2 font-medium'>Repeat password</div>
-          <TextField.Root name='repeat_password' onFocus={handleFocus} required type='password'>
-            <TextField.Slot>
-              <span className='icon-[mdi--password-check]' />
-            </TextField.Slot>
-          </TextField.Root>
-        </label>
+        <LoginFormField
+          iconClass='icon-[mdi--password-check]'
+          label='Repeat password'
+          name='repeat_password'
+          type='password'
+        />
       ) : null}
     </>
   )

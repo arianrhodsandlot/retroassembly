@@ -20,7 +20,6 @@ export function LoginPage({ pageData }: LoginPageProps) {
 
   const title = formType === 'register' ? 'RetroAssembly' : 'Log in to RetroAssembly'
   const description = {
-    login: 'Log in to your account to continue',
     oauth: 'Log in to build your own retro game collection',
     register: 'Create an account to get started',
   }[formType]

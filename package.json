@@ -3,15 +3,15 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
-    "build:node": "node --run=build -- --mode=node",
-    "build:workerd": "node --run=build -- --mode=workerd",
+    "build:node": "node --run=build",
+    "build:workerd": "node --run=build",
     "dev": "react-router",
-    "dev:node": "node --run=dev -- --mode=node",
-    "dev:workerd": "node --run=dev -- --mode=workerd",
+    "dev:node": "node --run=dev",
+    "dev:workerd": "node --run=dev",
     "prepare": "node src/scripts/prepare.ts",
     "serve": "node src/scripts/serve.ts",
-    "serve:node": "node --run=serve -- --mode=node",
-    "serve:workerd": "node --run=serve -- --mode=workerd",
+    "serve:node": "node --run=serve",
+    "serve:workerd": "node --run=serve",
     "test": "playwright test -c tests/e2e"
   },
   "simple-git-hooks": {

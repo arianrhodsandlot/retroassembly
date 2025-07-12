@@ -3,10 +3,10 @@ import { serve } from '@hono/node-server'
 import isDocker from 'is-docker'
 import terminalImage from 'terminal-image'
 import app from '../server/node.ts'
-import { exec, getMode } from './utils.ts'
+import { exec, getTargetRuntime } from './utils.ts'
 
 const port = process.env.PORT ? Number.parseInt(process.env.PORT, 10) || 8000 : 8000
-const mode = getMode()
+const mode = getTargetRuntime()
 if (mode === 'workerd') {
   exec`wrangler dev --port=${port}`
 } else {

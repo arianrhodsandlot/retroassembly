@@ -11,7 +11,7 @@ import { defineConfig, type UserConfig } from 'vite'
 import devtoolsJson from 'vite-plugin-devtools-json'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { storageDirectory } from './src/constants/env.ts'
-import { prepareWranglerConfig } from './src/scripts/utils.ts'
+import { getTargetRuntime, prepareWranglerConfig } from './src/scripts/utils.ts'
 
 const {
   stdout: [revision],
@@ -33,7 +33,7 @@ export default defineConfig(async (env) => {
     server: { hmr: { overlay: false } },
   } satisfies UserConfig
 
-  if (['w', 'workerd'].includes(env.mode)) {
+  if (getTargetRuntime() === 'workerd') {
     await prepareWranglerConfig()
     config.plugins.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
     const serverEntry = path.resolve('node_modules', 'react-router-templates', 'cloudflare', 'app', 'entry.server.tsx')

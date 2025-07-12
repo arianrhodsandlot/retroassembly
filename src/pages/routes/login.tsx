@@ -15,6 +15,9 @@ export async function loader({ request }: Route.LoaderArgs) {
   }
 
   if (supabase) {
+    if (globalThis) {
+      return { formType: 'register', redirectTo: defaultRedirectTo }
+    }
     const formType = 'oauth'
     const code = searchParams.get('code')
     if (code) {
@@ -33,6 +36,9 @@ export async function loader({ request }: Route.LoaderArgs) {
     return { formType, redirectTo }
   }
 
+  if (globalThis) {
+    return { formType: 'login', redirectTo: defaultRedirectTo }
+  }
   const userCount = await countUsers()
   const formType = userCount ? 'login' : 'register'
   return { formType, redirectTo }

@@ -36,5 +36,11 @@
       "preview_bucket_name": "retroassembly"
     }
   ],
+  "services": [
+    {
+      "binding": "MSLEUTH",
+      "service": "msleuth"
+    }
+  ],
   "upload_source_maps": true
 }

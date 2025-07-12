@@ -7,7 +7,7 @@ import { loadEnv } from 'vite'
 
 const argv = mri(process.argv.slice(2))
 
-export const exec = $({ env: { FORCE_COLOR: 'true' }, verbose: 'full' })
+export const exec = $({ env: { FORCE_COLOR: 'true' }, verbose: 'short' })
 
 export function getMode() {
   if (argv.w || argv.workerd || ciInfo.CLOUDFLARE_WORKERS) {

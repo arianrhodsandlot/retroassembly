@@ -45,6 +45,7 @@ export default defineConfig(async (env) => {
         entry: path.resolve('src', 'server', 'app.ts'),
         exclude: [
           ...defaultOptions.exclude,
+          '/.well-known/appspecific/com.chrome.devtools.json',
           '/src/**',
           /\?(inline|url|no-inline|raw|import(?:&(inline|url|no-inline|raw))*)$/,
         ],

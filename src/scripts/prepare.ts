@@ -8,15 +8,14 @@ async function main() {
     return
   }
 
-  await exec`simple-git-hooks`
-  await exec`react-router typegen`
-
-  await fs.ensureDir(dataDirectory)
-  await exec`drizzle-kit generate`
+  await Promise.all([
+    exec`simple-git-hooks`,
+    exec`react-router typegen`,
+    fs.ensureDir(dataDirectory),
+    prepareWranglerConfig({ force: true }),
+  ])
+  await Promise.all([exec`drizzle-kit generate`, exec`wrangler types src/types/worker-configuration.d.ts`])
   await exec`drizzle-kit migrate`
-
-  await prepareWranglerConfig({ force: true })
-  await exec`wrangler types src/types/worker-configuration.d.ts`
   await exec`wrangler d1 migrations apply --local retroassembly_library`
 }
 

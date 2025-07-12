@@ -1,8 +1,7 @@
 import { addDays, differenceInHours, differenceInMilliseconds } from 'date-fns'
 import { and, eq, gt } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { getCookie } from 'hono/cookie'
-import { sessionTable, userTable } from '../databases/schema.ts'
+import { sessionTable, statusEnum, userTable } from '../databases/schema.ts'
 import { createSupabase } from '../utils/supabase.ts'
 
 export async function getCurrentUser() {
@@ -13,14 +12,12 @@ export async function getCurrentUser() {
   }
 
   const c = getContext()
-  const { db } = c.var
-  const token = c.req.header('Authorization')?.replace('Bearer ', '') || getCookie(c, 'session_token')
+  const { db, token } = c.var
 
   if (!token) {
     return
   }
 
-  // Find active session
   const [result] = await db.library
     .select()
     .from(sessionTable)
@@ -28,9 +25,9 @@ export async function getCurrentUser() {
     .where(
       and(
         eq(sessionTable.token, token),
-        eq(sessionTable.status, 1), // Active session
-        eq(userTable.status, 1), // Active user
-        gt(sessionTable.expiresAt, new Date()), // Not expired
+        eq(sessionTable.status, statusEnum.normal),
+        eq(userTable.status, statusEnum.normal),
+        gt(sessionTable.expiresAt, new Date()),
       ),
     )
     .limit(1)
@@ -39,12 +36,10 @@ export async function getCurrentUser() {
     return
   }
 
-  const { sessions: session, users: user } = result
-
   // Auto-renewal logic with date-fns
   const now = new Date()
-  const lastActivity = new Date(session.lastActivityAt)
-  const expiresAt = new Date(session.expiresAt)
+  const lastActivity = new Date(result.sessions.lastActivityAt)
+  const expiresAt = new Date(result.sessions.expiresAt)
 
   const timeSinceActivity = differenceInMilliseconds(now, lastActivity)
   const hoursUntilExpiry = differenceInHours(expiresAt, now)
@@ -76,11 +71,11 @@ export async function getCurrentUser() {
         expiresAt: newExpiresAt,
         lastActivityAt: newLastActivityAt,
       })
-      .where(eq(sessionTable.id, session.id))
+      .where(eq(sessionTable.id, result.sessions.id))
   }
 
   return {
-    id: user.id,
-    username: user.username,
+    id: result.users.id,
+    username: result.users.username,
   }
 }

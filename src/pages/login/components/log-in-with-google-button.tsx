@@ -11,17 +11,19 @@ export function LogInWithGoogleButton({ redirectTo }: { redirectTo: string }) {
     }
   }
   return (
-    <Button asChild disabled={clicked} onClick={handleClick} size='3' type='submit' variant='soft'>
-      <Link
-        className='flex items-center gap-2'
-        to={{
-          pathname: '/login/google',
-          search: `?redirect_to=${encodeURIComponent(redirectTo)}`,
-        }}
-      >
-        <span className='icon-[logos--google-icon]' />
-        Log in with Google
-      </Link>
-    </Button>
+    <div className='text-center'>
+      <Button asChild disabled={clicked} onClick={handleClick} size='3' type='submit' variant='soft'>
+        <Link
+          className='flex items-center gap-2'
+          to={{
+            pathname: '/login/google',
+            search: `?redirect_to=${encodeURIComponent(redirectTo)}`,
+          }}
+        >
+          <span className='icon-[logos--google-icon]' />
+          Log in with Google
+        </Link>
+      </Button>
+    </div>
   )
 }

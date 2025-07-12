@@ -8,6 +8,6 @@ const pages = handler(build)
 
 app.use(serveStatic({ root: 'dist/client' }))
 
-app.route('/', pages)
+app.route('', pages)
 
 export default app

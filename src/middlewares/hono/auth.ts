@@ -1,4 +1,5 @@
 import { createMiddleware } from 'hono/factory'
+import { defaultRedirectTo } from '../../constants/auth.ts'
 
 export function auth() {
   return createMiddleware(async function middleware(c, next) {
@@ -13,7 +14,9 @@ export function auth() {
 
     const redirectTo = `${pathname}${search}`
     const loginUrl = new URL('/login', origin)
-    loginUrl.searchParams.set('redirect_to', redirectTo)
+    if (redirectTo !== defaultRedirectTo) {
+      loginUrl.searchParams.set('redirect_to', redirectTo)
+    }
     const loginUrlPath = `${loginUrl.pathname}${loginUrl.search}`
 
     return c.redirect(loginUrlPath)

@@ -1,4 +1,5 @@
 import { getContext } from 'hono/context-storage'
+import { defaultRedirectTo } from '@/constants/auth.ts'
 import { countUsers } from '@/controllers/count-users.ts'
 import { LoginPage } from '../login/page.tsx'
 import type { Route } from './+types/login.ts'
@@ -7,7 +8,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const c = getContext()
   const { currentUser, supabase } = c.var
   const { searchParams } = new URL(request.url)
-  const redirectTo = searchParams.get('redirect_to') ?? '/library'
+  const redirectTo = searchParams.get('redirect_to') ?? defaultRedirectTo
 
   if (currentUser) {
     throw c.redirect(redirectTo)

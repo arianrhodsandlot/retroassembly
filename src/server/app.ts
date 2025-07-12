@@ -9,6 +9,6 @@ import { vendors } from '../middlewares/hono/vendors.ts'
 const app = new Hono()
 app.use(contextStorage(), logger(), vendors(), globals(), auth())
 
-app.route('/api', api)
+app.route('api', api)
 
 export default app

@@ -5,47 +5,28 @@ import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
 import { nanoid } from 'nanoid'
 import { getConnInfo } from '@/api/utils.ts'
-import { sessionTable, userTable } from '../databases/schema.ts'
+import { sessionTable, statusEnum, userTable } from '../databases/schema.ts'
 
-/**
- * Create a new user session after authentication
- *
- * Usage with cookies:
- * ```typescript
- * const session = await createSession({ username, password, userAgent, ip })
- *
- * // Set secure HTTP-only cookie
- * setCookie(c, 'session_token', session.token, {
- *   expires: new Date(session.expiresAt),
- *   httpOnly: true,
- *   secure: true,
- *   sameSite: 'Strict',
- *   path: '/'
- * })
- *
- * // Or set in Authorization header
- * c.header('Authorization', `Bearer ${session.token}`)
- * ```
- */
+const invalidException = new HTTPException(401, { message: 'Invalid username or password' })
+
 export async function createSession({ password, username }: { password: string; username: string }) {
   const c = getContext()
   const { db } = c.var
 
-  // Find user by username (only active users with status !== 0)
   const [user] = await db.library
     .select()
     .from(userTable)
-    .where(and(eq(userTable.username, username.trim()), eq(userTable.status, 1)))
+    .where(and(eq(userTable.username, username.trim()), eq(userTable.status, statusEnum.normal)))
     .limit(1)
 
   if (!user) {
-    throw new HTTPException(401, { message: 'Invalid username or password' })
+    throw invalidException
   }
 
   // Verify password
   const isValidPassword = await argon2.verify(user.passwordHash, password)
   if (!isValidPassword) {
-    throw new HTTPException(401, { message: 'Invalid username or password' })
+    throw invalidException
   }
 
   // Create session in database
@@ -60,13 +41,5 @@ export async function createSession({ password, username }: { password: string; 
     })
     .returning()
 
-  return {
-    expiresAt: session.expiresAt.getTime(),
-    token: session.token,
-    user: {
-      id: user.id,
-      username: user.username,
-    },
-    userId: session.userId,
-  }
+  return { session, user }
 }

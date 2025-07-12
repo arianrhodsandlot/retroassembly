@@ -5,31 +5,18 @@ import { HTTPException } from 'hono/http-exception'
 import { getConnInfo } from '@/api/utils.ts'
 import { userTable } from '../databases/schema.ts'
 
-interface CreateUserOptions {
-  password: string
-  username: string
-}
-
-/**
- * Create a new user account
- */
-export async function createUser(options: CreateUserOptions) {
-  const { password, username } = options
+export async function createUser({ password, username }: { password: string; username: string }) {
   const c = getContext()
   const { db } = c.var
 
-  // Check if username already exists
-  const existingUser = await db.library.select().from(userTable).where(eq(userTable.username, username.trim())).limit(1)
-
-  if (existingUser.length > 0) {
+  const [existing] = await db.library.select().from(userTable).where(eq(userTable.username, username.trim())).limit(1)
+  if (existing) {
     throw new HTTPException(409, { message: 'Username already exists' })
   }
 
-  // Hash the password
   const passwordHash = await argon2.hash(password)
 
-  // Create the user
-  const [newUser] = await db.library
+  const [user] = await db.library
     .insert(userTable)
     .values({
       passwordHash,
@@ -40,8 +27,7 @@ export async function createUser(options: CreateUserOptions) {
     .returning()
 
   return {
-    createdAt: newUser.createdAt,
-    id: newUser.id,
-    username: newUser.username,
+    id: user.id,
+    username: user.username,
   }
 }

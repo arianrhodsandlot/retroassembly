@@ -22,7 +22,7 @@ export function LoginPage({ pageData }: LoginPageProps) {
   const description = {
     login: 'Log in to your account to continue',
     oauth: 'Log in to build your own retro game collection',
-    register: 'Create your account for RetroAssembly to get started',
+    register: 'Create an account to get started',
   }[formType]
   return (
     <PageContainer description={description} title={title}>

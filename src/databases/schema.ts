@@ -5,13 +5,17 @@ import type { PreferenceSnippet } from '@/constants/preference'
 
 const nanoid = customAlphabet(nolookalikes, 10)
 
+export const statusEnum = {
+  deleted: 0,
+  normal: 1,
+}
+
 const baseSchema = {
   createdAt: integer({ mode: 'timestamp_ms' })
     .notNull()
     .$defaultFn(() => new Date()),
   id: text('id').primaryKey().notNull().$defaultFn(nanoid),
-  /** 1 for normal status and 0 for deleted status */
-  status: integer().notNull().default(1),
+  status: integer().notNull().default(statusEnum.normal),
   updatedAt: integer({ mode: 'timestamp_ms' })
     .notNull()
     .$onUpdateFn(() => new Date()),

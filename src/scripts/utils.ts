@@ -8,7 +8,7 @@ import terminalImage from 'terminal-image'
 import { loadEnv } from 'vite'
 
 const env = loadEnv('', process.cwd(), '')
-export const exec = $({ env: { FORCE_COLOR: 'true' }, verbose: 'full' })
+export const exec = $({ env: { FORCE_COLOR: 'true' }, verbose: 'short' })
 
 export function getTargetRuntime() {
   const isWorkerd =

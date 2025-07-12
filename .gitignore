@@ -1,6 +1,7 @@
 .env
 .react-router
 .wrangler
+.dev.vars
 data
 dist
 inputs

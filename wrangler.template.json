@@ -36,11 +36,5 @@
       "preview_bucket_name": "retroassembly"
     }
   ],
-  "vars": {
-    "MSLEUTH_HOST": "${obj.MSLEUTH_HOST ?? ''}",
-    "STORAGE_HOST": "${obj.STORAGE_HOST ?? ''}",
-    "SUPABASE_ANON_KEY": "${obj.SUPABASE_ANON_KEY ?? ''}",
-    "SUPABASE_URL": "${obj.SUPABASE_URL ?? ''}"
-  },
   "upload_source_maps": true
 }

@@ -68,7 +68,7 @@ export function SettingsDialog({ onOpenChange, ...props }: Dialog.RootProps) {
         </div>
 
         <div className='mt-4 flex justify-between'>
-          <div className='flex items-center gap-2 text-xs text-(--accent-9)'>
+          <div className='text-(--accent-9) flex items-center gap-2 text-xs'>
             <span className='icon-[mdi--info]' />
             Your settings will be saved and take effect immediately once changed.
           </div>

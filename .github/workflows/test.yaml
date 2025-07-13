@@ -7,18 +7,16 @@ jobs:
       name: test
     env:
       DB_LIBRARY_DATABASE_ID: ${{ vars.DB_LIBRARY_DATABASE_ID }}
-      STORAGE_HOST: ${{ vars.STORAGE_HOST }}
-      MSLEUTH_HOST: ${{ vars.MSLEUTH_HOST }}
     steps:
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
-        with:
-          run_install: true
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version-file: package.json
           cache: pnpm
+
+      - run: pnpm install
 
       - run: node --run=build

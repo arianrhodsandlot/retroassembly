@@ -16,6 +16,10 @@ declare module 'hono' {
 
 export function globals() {
   return createMiddleware(async function middleware(c, next) {
+    const logger = c.get('logger')
+    const body = await c.req.parseBody()
+    logger.assign({ body, query: c.req.query(), url: c.req.url })
+
     c.set('authorized', false)
     c.set('unauthorized', true)
 
@@ -27,6 +31,8 @@ export function globals() {
       c.set('currentUser', currentUser)
       c.set('authorized', true)
       c.set('unauthorized', false)
+
+      logger.assign({ user: currentUser.id })
 
       const preference = await getPreference()
       c.set('preference', preference)

@@ -26,7 +26,7 @@ function getClient() {
   const c = getContext()
   const { MSLEUTH } = env(c)
   const option: Options = { retry: 3 }
-  if (import.meta.env.PROD && MSLEUTH?.fetch) {
+  if (MSLEUTH?.fetch) {
     option.fetch = MSLEUTH.fetch.bind(MSLEUTH)
   }
   const client = ky.create(option)

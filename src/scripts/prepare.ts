@@ -1,10 +1,11 @@
 import ciInfo from 'ci-info'
 import fs from 'fs-extra'
+import isDocker from 'is-docker'
 import { dataDirectory } from '../constants/env.ts'
 import { exec, prepareWranglerConfig } from './utils.ts'
 
 async function main() {
-  if (ciInfo.isCI) {
+  if (ciInfo.isCI || isDocker()) {
     return
   }
 

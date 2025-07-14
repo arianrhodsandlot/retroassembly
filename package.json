@@ -25,7 +25,7 @@
   "dependencies": {
     "argon2": "0.43.0",
     "better-sqlite3": "12.2.0",
-    "hono": "4.8.4",
+    "hono": "4.8.5",
     "hono-pino": "0.9.1",
     "pino": "9.7.0"
   },
@@ -115,7 +115,7 @@
   },
   "packageManager": "pnpm@10.13.1",
   "engines": {
-    "node": ">=23.10.0"
+    "node": ">=24.4.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

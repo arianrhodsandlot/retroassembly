@@ -24,7 +24,18 @@ export async function prepareWranglerConfig({ force = false } = {}) {
 }
 
 export function logServerInfo(port: number | string, isDev = false) {
-  const title = `${styleText(['white', 'bgRed', 'bold'], 'RetroAssembly')}${isDev ? ' dev server' : ''}`
+  const banner = styleText(
+    'red',
+    String.raw`
+╔═════════════════════════════════════════════════════════╗
+║ ___     _             _                     _    _      ║
+║| _ \___| |_ _ _ ___  /_\   ______ ___ _ __ | |__| |_  _ ║
+║|   / -_)  _| '_/ _ \/ _ \ (_-<_-</ -_) '  \| '_ \ | || |║
+║|_|_\___|\__|_| \___/_/ \_\/__/__/\___|_|_|_|_.__/_|\_, |║
+║                                                    |__/ ║
+╚═════════════════════════════════════════════════════════╝`,
+  )
+  const title = `${styleText('bold', 'RetroAssembly')}${isDev ? ' dev server' : ''}`
   const url = new URL('', 'http://localhost')
   url.port = port.toString()
   const link = styleText(['green', 'underline'], url.href)
@@ -32,5 +43,6 @@ export function logServerInfo(port: number | string, isDev = false) {
   if (isDocker()) {
     messages.push(styleText('blue', 'inside a Docker container'))
   }
-  console.info(`${messages.join(' ')}.`)
+  console.info(banner)
+  console.info(`${messages.join(' ')}`)
 }

@@ -34,14 +34,14 @@ async function getGitVersion() {
 function serverInfo() {
   const plugin: Plugin = {
     configureServer(server) {
-      const { httpServer, printUrls } = server
+      const { httpServer } = server
       server.printUrls = noop
+      server.bindCLIShortcuts = noop
       httpServer?.on('listening', () => {
         const address = httpServer?.address()
         if (address && typeof address === 'object') {
           logServerInfo(address.port, true)
         }
-        printUrls()
       })
     },
     name: 'log-server-info',

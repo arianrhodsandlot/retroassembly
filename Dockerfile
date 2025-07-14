@@ -18,9 +18,8 @@ RUN pnpm drizzle-kit generate
 
 FROM base AS deps-production
 WORKDIR /app
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/patches ./patches
-COPY --from=builder /app/package.json /app/pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml ./
+COPY patches patches
 RUN corepack enable
 RUN pnpm i --prod
 

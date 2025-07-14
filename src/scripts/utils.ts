@@ -4,10 +4,8 @@ import { template } from 'es-toolkit/compat'
 import { $ } from 'execa'
 import fs from 'fs-extra'
 import isDocker from 'is-docker'
-import terminalImage from 'terminal-image'
-import { loadEnv } from 'vite'
 
-const env = loadEnv('', process.cwd(), '')
+const { env } = process
 export const exec = $({ env: { FORCE_COLOR: 'true' }, verbose: 'short' })
 
 export function getTargetRuntime() {
@@ -25,11 +23,7 @@ export async function prepareWranglerConfig({ force = false } = {}) {
   }
 }
 
-export async function logServerInfo(port: number | string, isDev = false) {
-  const logoPath = 'public/assets/logo/logo-64x64.png'
-  const banner = await terminalImage.file(logoPath, { height: 36, preserveAspectRatio: true, width: 36 })
-  console.info(banner)
-
+export function logServerInfo(port: number | string, isDev = false) {
   const title = `${styleText(['white', 'bgRed', 'bold'], 'RetroAssembly')}${isDev ? ' dev server' : ''}`
   const url = new URL('', 'http://localhost')
   url.port = port.toString()

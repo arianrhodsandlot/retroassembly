@@ -1,0 +1,13 @@
+.env
+.react-router
+.wrangler
+.dev.vars
+data
+dist
+inputs
+migrations
+node_modules
+worker-configuration.d.ts
+wrangler.json
+
+Dockerfile

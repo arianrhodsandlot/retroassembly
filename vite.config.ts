@@ -14,13 +14,21 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { storageDirectory } from './src/constants/env.ts'
 import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './src/scripts/utils.ts'
 
-const {
-  stdout: [revision],
-} = await $({ lines: true })`git rev-parse HEAD`
-const shortVersion = revision.slice(0, 7)
 const define = {
   BUILD_TIME: JSON.stringify(formatISO(new Date())),
-  GIT_VERSION: JSON.stringify(shortVersion),
+  GIT_VERSION: JSON.stringify(await getGitVersion()),
+}
+
+async function getGitVersion() {
+  try {
+    const {
+      stdout: [revision],
+    } = await $({ lines: true })`git rev-parse HEAD`
+    const shortVersion = revision.slice(0, 7)
+    return shortVersion
+  } catch {
+    return ''
+  }
 }
 
 function serverInfo() {
@@ -28,10 +36,10 @@ function serverInfo() {
     configureServer(server) {
       const { httpServer, printUrls } = server
       server.printUrls = noop
-      httpServer?.on('listening', async () => {
+      httpServer?.on('listening', () => {
         const address = httpServer?.address()
         if (address && typeof address === 'object') {
-          await logServerInfo(address.port, true)
+          logServerInfo(address.port, true)
         }
         printUrls()
       })

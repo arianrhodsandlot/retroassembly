@@ -23,17 +23,16 @@
     "package.json": "pnpm dlx sort-package-json"
   },
   "dependencies": {
-    "argon2": "0.43.0",
+    "argon2": "0.43.1",
     "better-sqlite3": "12.2.0",
     "consola": "3.4.2",
     "hono": "4.8.5",
-    "pino": "9.7.0",
-    "signale": "1.4.0"
+    "pino": "9.7.0"
   },
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.19.0",
     "@cloudflare/vite-plugin": "1.9.4",
-    "@cloudflare/workers-types": "4.20250712.0",
+    "@cloudflare/workers-types": "4.20250715.0",
     "@hono/node-server": "1.16.0",
     "@hono/vite-dev-server": "0.20.0",
     "@hono/zod-validator": "0.7.1",
@@ -72,7 +71,7 @@
     "date-fns": "4.1.0",
     "delegated-events": "1.1.2",
     "drizzle-kit": "0.31.4",
-    "drizzle-orm": "0.44.2",
+    "drizzle-orm": "0.44.3",
     "es-toolkit": "1.39.7",
     "esbuild": "0.25.6",
     "eslint": "9.31.0",

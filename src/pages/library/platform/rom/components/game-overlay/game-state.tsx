@@ -14,7 +14,7 @@ export function GameState({ state }: { state: State }) {
   const [loaded, setLoaded] = useState(false)
 
   const { isMutating, trigger: loadState } = useSWRMutation(
-    `/api/v1/files/${state.fileId}`,
+    `/api/v1/files/${encodeURIComponent(state.fileId)}`,
     async (url) => {
       if (emulator) {
         await emulator.loadState(ky(url))
@@ -62,7 +62,7 @@ export function GameState({ state }: { state: State }) {
           })}
           onError={handleLoad}
           onLoad={handleLoad}
-          src={`/api/v1/files/${state.thumbnailFileId}`}
+          src={`/api/v1/files/${encodeURIComponent(state.thumbnailFileId)}`}
         />
 
         {state.type === 'auto' ? (

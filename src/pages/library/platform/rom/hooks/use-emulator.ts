@@ -51,7 +51,7 @@ export function useEmulator() {
 
   const romUrl = isDemo
     ? getCDNUrl(`retrobrews/${{ genesis: 'md' }[rom.platform] || rom.platform}-games`, rom.fileName)
-    : `/api/v1/files/${rom.fileId}`
+    : `/api/v1/files/${encodeURIComponent(rom.fileId)}`
   const { core } = preference.emulator.platform[rom.platform] || {}
   const shader = preference.emulator.platform[rom.platform].shader || preference.emulator.shader
 

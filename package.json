@@ -11,7 +11,7 @@
     "serve": "node dist/scripts/serve.js",
     "serve:node": "node --run=serve",
     "serve:workerd": "node --run=serve",
-    "setup": "node src/scripts/setup.ts",
+    "setup": "node scripts/setup.ts",
     "start": "node --run=serve",
     "tag": "node scripts/tag.ts",
     "test": "playwright test -c tests/e2e"
@@ -59,7 +59,7 @@
     "@types/fs-extra": "11.0.4",
     "@types/js-cookie": "3.0.6",
     "@types/nanoid-dictionary": "4.2.3",
-    "@types/node": "24.0.13",
+    "@types/node": "24.0.14",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "@types/signale": "1.4.7",
@@ -111,7 +111,7 @@
     "typescript": "5.8.3",
     "vite": "7.0.4",
     "vite-plugin-cjs-interop": "2.2.0",
-    "vite-plugin-devtools-json": "0.2.1",
+    "vite-plugin-devtools-json": "0.3.0",
     "vite-tsconfig-paths": "5.1.4",
     "wrangler": "4.24.3",
     "zod": "4.0.5"

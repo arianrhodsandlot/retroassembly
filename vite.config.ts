@@ -1,5 +1,4 @@
 import path from 'node:path'
-import { cloudflare } from '@cloudflare/vite-plugin'
 import { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
@@ -11,8 +10,8 @@ import serverAdapter from 'hono-react-router-adapter/vite'
 import { defineConfig, type Plugin, type UserConfig } from 'vite'
 import devtoolsJson from 'vite-plugin-devtools-json'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './scripts/utils.ts'
 import { storageDirectory } from './src/constants/env.ts'
-import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './src/scripts/utils.ts'
 
 const define = {
   BUILD_TIME: JSON.stringify(formatISO(new Date())),
@@ -65,6 +64,7 @@ export default defineConfig(async (env) => {
       await $`wrangler d1 migrations apply retroassembly_library`
     }
     await prepareWranglerConfig()
+    const { cloudflare } = await import('@cloudflare/vite-plugin')
     config.plugins.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
     const serverEntry = path.resolve('node_modules', 'react-router-templates', 'cloudflare', 'app', 'entry.server.tsx')
     config.resolve.alias['@entry.server.tsx'] = serverEntry

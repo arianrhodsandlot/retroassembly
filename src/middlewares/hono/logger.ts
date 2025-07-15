@@ -12,7 +12,7 @@ export function logger() {
       c.req.header('X-Real-IP') ||
       c.env?.CF_CONNECTING_IP ||
       getConnInfo()?.remote.address ||
-      '?'
+      '-'
     const contentLength = c.res.headers.get('Content-Length') || '-'
     const httpVersion = c.req.header('HTTP-Version') || c.env?.HTTP_VERSION || 'HTTP/1.1'
     const timestamp = new Date().toISOString()

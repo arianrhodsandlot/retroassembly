@@ -1,5 +1,5 @@
 import type { Config } from '@react-router/dev/config'
-import { exec, getTargetRuntime } from './src/scripts/utils.ts'
+import { exec, getTargetRuntime } from './scripts/utils.ts'
 
 export default {
   appDirectory: 'src/pages',
@@ -7,7 +7,7 @@ export default {
   async buildEnd() {
     if (getTargetRuntime() === 'node') {
       await exec`tsdown src/server/node.ts -d dist/server --no-clean --unbundle`
-      await exec`tsdown src/scripts/serve.ts -d dist/scripts --no-clean --unbundle`
+      await exec`tsdown scripts/serve.ts -d dist/scripts --no-clean --unbundle`
     }
   },
   future: {

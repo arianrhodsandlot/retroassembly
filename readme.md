@@ -69,10 +69,11 @@ RetroAssembly aims to support a wide range of vintage gaming systems. Emulation 
 </details>
 
 ## Development
-> [!warning]
-> This section is not yet finished.
-
-Technically, RetroAssembly is a React Router application deployed to Cloudflare workers. The development environment is a bit complex to setup now. We are going to simplify the setup process and complete this section in the future.
+```sh
+pnpm i
+node --run=setup
+node --run=dev
+```
 
 ## Open-source Alternatives
 We hope you have a fantastic time revisiting your favorite retro games... Even with applications other than RetroAssembly.

@@ -8,7 +8,7 @@ async function serveWorkerd() {
 }
 
 async function serveNode() {
-  const { default: app } = await import('../../dist/server/node.js')
+  const { default: app } = await import('../dist/server/node.js')
   serve({ ...app, port }, (info) => {
     logServerInfo(info.port)
   })

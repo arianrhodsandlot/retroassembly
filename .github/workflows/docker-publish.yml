@@ -33,8 +33,8 @@ jobs:
         images: ${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
         tags: |
           type=ref,event=tag
-          type=raw,value=beta,enable=${{ contains(github.ref_name, 'beta') }}
-          type=raw,value=latest,enable=${{ !contains(github.ref_name, 'beta') }}
+          type=raw,value=unstable,enable=${{ contains(github.ref_name, 'beta') }}
+        flavor: latest=${{ !contains(github.ref_name, 'beta') }}
 
     - uses: docker/build-push-action@v5
       with:

@@ -61,12 +61,18 @@ export default defineConfig(async (env) => {
   } satisfies UserConfig
 
   if (getTargetRuntime() === 'workerd') {
+    if (env.command === 'serve') {
+      await $`wrangler d1 migrations apply retroassembly_library`
+    }
     await prepareWranglerConfig()
     config.plugins.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
     const serverEntry = path.resolve('node_modules', 'react-router-templates', 'cloudflare', 'app', 'entry.server.tsx')
     config.resolve.alias['@entry.server.tsx'] = serverEntry
   } else {
-    await fs.ensureDir(storageDirectory)
+    if (env.command === 'serve') {
+      await fs.ensureDir(storageDirectory)
+      await import('./src/utils/migrate.ts')
+    }
     config.plugins.push(
       serverAdapter({
         entry: path.resolve('src', 'server', 'app.ts'),

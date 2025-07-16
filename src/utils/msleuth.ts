@@ -24,9 +24,9 @@ function createRequest({
 
 function getClient() {
   const c = getContext()
-  const { MSLEUTH } = env(c)
+  const { MSLEUTH, MSLEUTH_HOST } = env(c)
   const option: Options = { retry: 3 }
-  if (MSLEUTH?.fetch) {
+  if (MSLEUTH?.fetch && !MSLEUTH_HOST) {
     option.fetch = MSLEUTH.fetch.bind(MSLEUTH)
   }
   const client = ky.create(option)

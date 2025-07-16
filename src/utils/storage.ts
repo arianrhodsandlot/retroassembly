@@ -11,6 +11,12 @@ export function createStorage() {
   }
 
   return {
+    async head(id: string) {
+      const filePath = path.join(storageDirectory, id)
+      const { default: fs } = await import('fs-extra')
+      return fs.pathExists(filePath)
+    },
+
     async put(id: string, file: File) {
       const { base, dir } = path.parse(id)
       const fileTargetDirectory = path.join(storageDirectory, dir)

@@ -15,7 +15,7 @@ async function getTag() {
   let version = `${major}.${minor}.${patch}`
   const currentBranch = await getCurrentBranch()
   if (currentBranch !== 'main') {
-    version += '-beta'
+    version += '-unstable'
   }
   return version
 }

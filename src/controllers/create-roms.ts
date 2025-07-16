@@ -1,10 +1,30 @@
 import { subtle } from 'node:crypto'
 import path from 'node:path'
+import { isValid } from 'date-fns'
 import { and, eq, inArray, type InferInsertModel } from 'drizzle-orm'
 import { chunk } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
 import { romTable } from '../databases/schema.ts'
 import { msleuth } from '../utils/msleuth.ts'
+
+function getGenres({ launchbox, libretro }) {
+  return (
+    launchbox?.genres
+      .split(';')
+      .map((genre) => genre.trim())
+      .join(',') ||
+    libretro?.genres
+      .split(',')
+      .map((genre) => genre.trim())
+      .join(',')
+  )
+}
+
+function getReleaseDate({ launchbox }) {
+  if (launchbox.releaseDate && isValid(launchbox.releaseDate)) {
+    return new Date(launchbox.releaseDate)
+  }
+}
 
 function getReleaseYear({ launchbox, libretro }) {
   if (launchbox) {
@@ -53,16 +73,23 @@ async function prepareRomData(files: File[], gameInfoList: any[], platform: stri
       const { ext } = path.parse(file.name)
       const digest = await getFilePartialDigest(file)
       const fileId = path.join('roms', platform, `${digest}${ext}`)
-      await storage.put(fileId, file)
-
+      const fileExists = await storage.head(fileId)
+      if (!fileExists) {
+        await storage.put(fileId, file)
+      }
       const gameInfo = gameInfoList[index] || {}
       const { launchbox, libretro } = gameInfo
       const romData: InferInsertModel<typeof romTable> = {
         fileId,
         fileName: file.name,
+        gameDescription: launchbox?.overview,
         gameDeveloper: launchbox?.developer || libretro?.developer,
+        gameGenres: getGenres({ launchbox, libretro }),
         gameName: launchbox?.name || libretro?.name,
+        gamePlayers: launchbox?.players || libretro?.users,
         gamePublisher: launchbox?.publisher || libretro?.publisher,
+        gameRating: launchbox?.communityRating,
+        gameReleaseDate: getReleaseDate({ launchbox }),
         gameReleaseYear: getReleaseYear({ launchbox, libretro }),
         launchboxGameId: launchbox?.databaseId,
         libretroGameId: libretro?.id,

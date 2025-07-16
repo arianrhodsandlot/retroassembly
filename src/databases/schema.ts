@@ -61,17 +61,26 @@ export const romTable = sqliteTable(
   'roms',
   {
     fileName: text().notNull(),
+    gameBoxartFileIds: text(),
+    gameDescription: text(),
     gameDeveloper: text(),
+    gameGenres: text(),
     gameName: text(),
+    gamePlayers: integer(),
     gamePublisher: text(),
+    gameRating: integer(),
+    gameReleaseDate: integer({ mode: 'timestamp_ms' }),
     gameReleaseYear: integer(),
+    gameThumbnailFileIds: text(),
     launchboxGameId: integer(),
-    launchTimes: integer().default(0),
     libretroGameId: text(),
     platform: text().notNull(),
     ...fileSchema,
   },
-  (table) => [index('idx_roms').on(table.userId, table.status, table.platform, table.fileName)],
+  (table) => [
+    index('idx_roms').on(table.userId, table.status, table.platform, table.fileName),
+    index('idx_roms_user_id').on(table.userId, table.status),
+  ],
 )
 
 export const stateTable = sqliteTable(

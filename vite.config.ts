@@ -56,6 +56,7 @@ export default defineConfig(async (env) => {
     server: {
       hmr: { overlay: false },
       host: true,
+      open: true,
     },
   } satisfies UserConfig
 

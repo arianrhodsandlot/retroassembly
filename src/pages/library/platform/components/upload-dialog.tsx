@@ -12,6 +12,8 @@ import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
 import { getROMMd5 } from '../../utils/file.ts'
 
+const maxFiles = 100
+
 export function UploadDialog({ platform, toggleOpen }: { platform: string; toggleOpen: () => void }) {
   const navigate = useNavigate()
   const { getRootProps, isDragActive } = useDropzone({ onDrop })
@@ -78,8 +80,8 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
 
   async function handleClickSelect() {
     const files = await fileOpen({ extensions: platformMap[platform].fileExtensions, multiple: true })
-    if (files.length > 100) {
-      alert('You can only upload up to 100 files at a time.')
+    if (files.length > maxFiles) {
+      alert(`You can only upload up to ${maxFiles} files at a time.`)
       return
     }
     setFiles(files)
@@ -87,8 +89,8 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
   }
 
   async function onDrop(files: File[]) {
-    if (files.length > 100) {
-      alert('You can only upload up to 100 files at a time.')
+    if (files.length > maxFiles) {
+      alert(`You can only upload up to ${maxFiles} files at a time.`)
       return
     }
     setFiles(files)

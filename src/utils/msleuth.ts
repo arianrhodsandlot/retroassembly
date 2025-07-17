@@ -25,7 +25,7 @@ function createRequest({
 function getClient() {
   const c = getContext()
   const { MSLEUTH, MSLEUTH_HOST } = env(c)
-  const option: Options = { retry: 3 }
+  const option: Options = { retry: 3, timeout: 30_000 }
   if (MSLEUTH?.fetch && !MSLEUTH_HOST) {
     option.fetch = MSLEUTH.fetch.bind(MSLEUTH)
   }

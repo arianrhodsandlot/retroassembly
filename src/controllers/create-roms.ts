@@ -10,18 +10,18 @@ import { msleuth } from '../utils/msleuth.ts'
 function getGenres({ launchbox, libretro }) {
   return (
     launchbox?.genres
-      .split(';')
+      ?.split(';')
       .map((genre) => genre.trim())
       .join(',') ||
     libretro?.genres
-      .split(',')
+      ?.split(',')
       .map((genre) => genre.trim())
       .join(',')
   )
 }
 
 function getReleaseDate({ launchbox }) {
-  if (launchbox.releaseDate && isValid(launchbox.releaseDate)) {
+  if (launchbox?.releaseDate && isValid(launchbox.releaseDate)) {
     return new Date(launchbox.releaseDate)
   }
 }

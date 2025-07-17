@@ -33,6 +33,7 @@ export function LoginFormField({ description, iconClass, label, type = 'text', .
             <IconButton
               onClick={handleClickIconButton}
               size='1'
+              tabIndex={-1}
               title={textFieldType === 'password' ? 'Show password' : 'Hide password'}
               type='button'
               variant='ghost'

@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1752829074915,
+      "tag": "0000_military_norrin_radd",
+      "breakpoints": true
+    }
+  ]
+}

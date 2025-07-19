@@ -1,6 +1,7 @@
 import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
 import ky, { type Options } from 'ky'
+import QuickLRU from 'quick-lru'
 
 function getApiURL(endpoint: string): URL {
   const c = getContext()
@@ -33,19 +34,37 @@ function getClient() {
   return client
 }
 
-export const msleuth = {
-  async query(json: unknown) {
-    const client = getClient()
-    return await client(createRequest({ endpoint: 'metadata/query', json })).json()
-  },
+const queryCache = new QuickLRU<string, unknown>({ maxSize: 100 })
+async function query(json: unknown) {
+  const cacheKey = JSON.stringify(json)
+  if (queryCache.has(cacheKey)) {
+    return queryCache.get(cacheKey)
+  }
 
-  async identify(json: unknown) {
-    const client = getClient()
-    return await client(createRequest({ endpoint: 'metadata/identify', json })).json()
-  },
+  const client = getClient()
+  const result = await client(createRequest({ endpoint: 'metadata/query', json })).json()
 
-  async getPlatform(name: string) {
-    const client = getClient()
-    return await client(createRequest({ endpoint: `platform/${encodeURIComponent(name)}` })).json()
-  },
+  queryCache.set(cacheKey, result)
+  return result
 }
+
+async function identify(json: unknown) {
+  const client = getClient()
+  return await client(createRequest({ endpoint: 'metadata/identify', json })).json()
+}
+
+const platformCache = new Map<string, unknown>()
+async function getPlatform(name: string) {
+  const cacheKey = name
+  if (platformCache.has(cacheKey)) {
+    return platformCache.get(cacheKey)
+  }
+
+  const client = getClient()
+  const result = await client(createRequest({ endpoint: `platform/${encodeURIComponent(name)}` })).json()
+
+  platformCache.set(cacheKey, result)
+  return result
+}
+
+export const msleuth = { getPlatform, identify, query }

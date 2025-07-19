@@ -19,8 +19,8 @@ export function SidebarLink({ active, children, to }) {
       <Button asChild size='3' variant='ghost'>
         <NavigatableLink
           className={clsx('group !m-0 !flex !h-auto !px-4 !py-2.5', {
-            '!bg-white !font-semibold': active,
-            '!text-white': !active,
+            '!bg-[#651723]/60 !font-semibold !text-white': active,
+            '!text-white hover:!bg-inherit': !active,
           })}
           data-sn-focus-style={JSON.stringify({
             backgroundColor: 'rgba(0, 0, 0, 0.2)',

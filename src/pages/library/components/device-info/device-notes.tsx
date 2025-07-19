@@ -29,7 +29,7 @@ export function DeviceNotes({ notes }: { notes: string }) {
     <div>
       <div
         className={clsx(
-          'prose-neutral prose  max-w-none whitespace-pre-line text-justify text-sm font-[Roboto_Slab_Variable] leading-relaxed lg:px-8',
+          'text-(--color-text)/70 prose max-w-none whitespace-pre-line text-justify text-sm font-[Roboto_Slab_Variable] leading-relaxed lg:px-8',
           { 'line-clamp-5': !expanded },
         )}
         ref={ref}

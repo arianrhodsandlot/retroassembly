@@ -1,6 +1,6 @@
-import { Portal, Theme } from '@radix-ui/themes'
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import type { Rom } from '@/controllers/get-roms.ts'
+import { RadixThemePortal } from '@/pages/components/radix-theme-portal.tsx'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../../components/main-scroll-area.tsx'
@@ -34,7 +34,7 @@ export default function RomPage({ pageData }: RomPageProps) {
 
   return (
     <LibraryLayout title={goodcodes.rom}>
-      <MainScrollArea className='z-1 relative flex flex-1' size='2'>
+      <MainScrollArea>
         <PageBreadcrumb />
         <div className='flex min-h-full w-full flex-col gap-4 p-4 lg:flex-row'>
           <div>
@@ -54,7 +54,7 @@ export default function RomPage({ pageData }: RomPageProps) {
               <GameMedias />
 
               {overview ? (
-                <div className='prose-neutral prose max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable]'>
+                <div className='text-(--color-text)/90 prose max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable]'>
                   {overview}
                 </div>
               ) : null}
@@ -78,12 +78,10 @@ export default function RomPage({ pageData }: RomPageProps) {
 
       <RomBackground rom={rom} />
 
-      <Portal>
-        <Theme accentColor='red'>
-          <GameOverlay />
-        </Theme>
+      <RadixThemePortal>
+        <GameOverlay />
         <GameAnimatePresence />
-      </Portal>
+      </RadixThemePortal>
       <PageHooks />
     </LibraryLayout>
   )

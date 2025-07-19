@@ -18,7 +18,7 @@ export function ScreenshotSlider() {
 
   return (
     <div className='hidden flex-1 shrink-0 flex-col items-center justify-center gap-10 xl:flex'>
-      <div className='border-1 rounded border-neutral-300 bg-white p-2 shadow-lg'>
+      <div className='border-1 border-(--gray-4) bg-(--color-background) rounded p-2 shadow-lg'>
         <Swiper
           autoplay={{ delay, disableOnInteraction: false }}
           className='w-2xl aspect-video overflow-hidden rounded'

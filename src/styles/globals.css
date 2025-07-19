@@ -5,13 +5,13 @@
 @import 'atropos/scss';
 @import 'tailwindcss';
 @import './fonts.css';
-@import './radix-theme.css';
+@import './radix/index.css';
 
 @plugin '@iconify/tailwind4';
 @plugin '@tailwindcss/typography';
 @plugin 'tailwindcss-motion';
 
-:root{
+:root {
   --global-font-family: 'Inter Variable', -apple-system, system-ui, BlinkMacSystemFont, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
 }
 
@@ -48,10 +48,21 @@ a:focus {
 }
 
 .hero-bg {
-  background-image: linear-gradient(black 1px, transparent 1px), linear-gradient(to right, black 1px, #fff 1px);
   background-size: 10px 10px;
   animation: move 1s linear infinite;
   opacity: 0.1;
+}
+
+.light, .light-theme {
+  .hero-bg {
+    background-image: linear-gradient(black 1px, transparent 1px), linear-gradient(to right, black 1px, #fff 1px);
+  }
+}
+
+.dark, .dark-theme {
+  .hero-bg {
+    background-image: linear-gradient(#ddd 1px, transparent 1px), linear-gradient(to right, #ddd 1px, #fff 1px);
+  }
 }
 
 @keyframes move {

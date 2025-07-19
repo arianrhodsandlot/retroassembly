@@ -18,6 +18,7 @@ export function MainScrollArea({ ref, ...props }: { ref?: RefObject<HTMLDivEleme
   return (
     <ScrollArea
       {...props}
+      className='z-1 relative flex flex-1'
       ref={(element) => {
         for (const ref of refs) {
           ref.current = element

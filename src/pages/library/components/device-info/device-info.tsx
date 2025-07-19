@@ -1,3 +1,5 @@
+import { UTCDate } from '@date-fns/utc'
+import { formatISO9075 } from 'date-fns'
 import type { PlatformInfo } from '@/controllers/get-platform-info.ts'
 import { getPlatformBanner, getPlatformDevicePhoto } from '@/utils/library.ts'
 import { CompanyLogo } from '../../platform/components/company-logo.tsx'
@@ -30,14 +32,18 @@ export function DeviceInfo({ platform, platformInfo }: { platform: string; platf
           <img alt={platformInfo.name} className='h-20 w-auto lg:px-8 lg:pt-4' src={banner} />
         </h1>
 
-        <div className='rounded bg-zinc-600/10 px-8 py-4'>
+        <div className='bg-(--gray-a3) rounded px-8 py-4'>
           <div className='flex flex-col gap-8 lg:flex-row lg:*:min-w-36'>
             <div>
               <div className='flex h-6 items-center gap-2 font-semibold'>
                 <span className='icon-[mdi--calendar]' />
                 <span className='text-xs'>Released</span>
               </div>
-              <div className='mt-1 pl-6'>{new Date(platformInfo.releaseDate).toLocaleDateString() || 'unknown'}</div>
+              <div className='mt-1 pl-6'>
+                {platformInfo.releaseDate
+                  ? formatISO9075(new UTCDate(platformInfo.releaseDate), { representation: 'date' })
+                  : 'unknown'}
+              </div>
             </div>
 
             {manufacturer === developer ? (

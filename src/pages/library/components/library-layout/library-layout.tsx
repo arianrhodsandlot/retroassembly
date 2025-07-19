@@ -49,7 +49,7 @@ export default function LibraryLayout({ children, title }: AppLayoutProps) {
         </SidebarContainer>
 
         <div className='flex min-h-0 min-w-0 flex-1 flex-col gap-4 p-2 pt-0 lg:p-4'>
-          <main className='relative flex flex-1 overflow-hidden rounded bg-zinc-50 shadow-[0_0_12px] shadow-black/10'>
+          <main className='bg-(--color-background) relative flex flex-1 overflow-hidden rounded shadow-[0_0_12px] shadow-black/10'>
             {children}
           </main>
           <StatusBar />

@@ -47,7 +47,7 @@ export function PageBreadcrumb() {
     <div className='mt-4 flex max-w-full items-center gap-2 overflow-x-auto px-4 py-1 lg:px-8'>
       {links.map(({ icon, text, url }, i) =>
         i === links.length - 1 ? (
-          <Button asChild className='!bg-transparent !text-black/60' key={url} variant='ghost'>
+          <Button asChild className='!text-(--gray-11) !bg-transparent' key={url} variant='ghost'>
             <div>
               {icon}
               {text}
@@ -55,13 +55,13 @@ export function PageBreadcrumb() {
           </Button>
         ) : (
           <Fragment key={url}>
-            <Button asChild className='!bg-transparent !font-semibold' variant='ghost'>
+            <Button asChild className='!text-(--accent-9) !bg-transparent !font-semibold' variant='ghost'>
               <NavigatableLink to={url}>
                 {icon}
                 {text}
               </NavigatableLink>
             </Button>
-            <span className='icon-[mdi--menu-right] text-black/50' />
+            <span className='icon-[mdi--menu-right] text-(--gray-11)' />
           </Fragment>
         ),
       )}

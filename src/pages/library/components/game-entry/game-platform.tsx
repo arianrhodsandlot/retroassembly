@@ -11,7 +11,7 @@ export function GamePlatform({ platform }: { platform: string }) {
   }
 
   return (
-    <div className='mt-1 flex items-center justify-center gap-2 text-xs text-black/40'>
+    <div className='text-(--color-text)/40 mt-1 flex items-center justify-center gap-2 text-xs'>
       <img
         alt={platformMap[platform].displayName}
         className={clsx('size-4', { invert: ['ngp', 'wonderswan'].includes(platformMap[platform].name) })}

@@ -20,11 +20,11 @@ export function PageContainer({ children, description, title }: PageContainerPro
             <h1 className='text-3xl font-semibold'>{title}</h1>
           </div>
 
-          {description ? <div className='mt-4 text-center text-black/40'>{description}</div> : null}
+          {description ? <div className='text-(--color-text)/40 mt-4 text-center'>{description}</div> : null}
 
           <div className='mt-4 border-t border-t-black/20 py-8'>{children}</div>
 
-          <div className='hidden text-xs text-black/40'>
+          <div className='text-(--color-text)/40 hidden text-xs'>
             By clicking the button, you agree to our Terms of Service and Privacy Policy.
           </div>
         </div>

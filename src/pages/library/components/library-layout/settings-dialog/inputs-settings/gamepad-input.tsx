@@ -63,7 +63,7 @@ export function GamepadInput({ button }: GamepadInputProps) {
 
   return (
     <label className='flex items-center gap-2'>
-      <div className='flex w-14 justify-end text-xs font-semibold text-black/70'>
+      <div className='text-(--color-text)/70 flex w-14 justify-end text-xs font-semibold'>
         {button.iconClass ? <span className={clsx('size-7', button.iconClass)} /> : button.iconNode}
       </div>
       <div>

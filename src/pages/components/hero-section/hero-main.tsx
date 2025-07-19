@@ -1,7 +1,6 @@
-import { Button } from '@radix-ui/themes'
 import { range } from 'es-toolkit'
-import { Link } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
+import { ButtonLinks } from '../button-links.tsx'
 
 export function HeroMain() {
   return (
@@ -21,26 +20,12 @@ export function HeroMain() {
       </div>
 
       <div className='relative mt-4 px-10 text-center'>
-        <div className='overflow-hidden rounded p-2 text-xl font-[Roboto_Slab_Variable] text-neutral-500'>
-          Your personal retro game collection cabinet in your browser.
+        <div className='text-(--gray-10) overflow-hidden rounded p-2 text-xl font-[Roboto_Slab_Variable]'>
+          {metadata.description}
         </div>
       </div>
 
-      <div className='mt-8 flex flex-col gap-4 lg:flex-row lg:*:!w-48'>
-        <Button asChild radius='small' size='4' type='button'>
-          <Link reloadDocument to='/demo'>
-            <span className='icon-[mdi--presentation-play]' />
-            Live demo
-          </Link>
-        </Button>
-
-        <Button asChild radius='small' size='4' type='button' variant='outline'>
-          <Link className='!border-2 !bg-white !shadow-none' reloadDocument to='/library'>
-            <span className='icon-[mdi--bookshelf]' />
-            Library
-          </Link>
-        </Button>
-      </div>
+      <ButtonLinks />
     </div>
   )
 }

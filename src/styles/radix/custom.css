@@ -1,0 +1,13 @@
+:root, .light, .light-theme, .radix-themes {
+  --color-text: black;
+}
+
+.dark, .dark-theme, :is(.dark, .dark-theme) :where(.radix-themes:not(.light, .light-theme)) {
+  --color-text: #eee;
+}
+
+.rt-Kbd {
+  --kbd-box-shadow: inset 0 -0.05em 0.5em var(--gray-a2), inset 0 0.05em var(--white-a12), inset 0 0.25em 0.5em var(--gray-a2), inset 0 -0.05em var(--gray-a6), 0 0 0 0.05em var(--gray-a5), 0 0.08em 0.17em var(--gray-a7);
+  background-color: white;
+}
+

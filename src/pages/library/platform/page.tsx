@@ -36,14 +36,14 @@ export default function PlatformPage({ pageData }: PlatformPageProps) {
 
   return (
     <LibraryLayout title={platformMap[platform].displayName}>
-      <MainScrollArea className='z-1 relative flex flex-1' size='2'>
+      <MainScrollArea>
         <PageBreadcrumb />
         <div className='flex min-h-full w-full flex-col gap-5 p-4'>
           <DeviceInfo key={platform} platform={platform} platformInfo={platformInfo} />
           {isDemo ? null : (
             <div className='hidden items-center justify-end gap-4 pr-4 lg:flex'>
               <div className='flex items-center gap-2 text-zinc-400'>
-                <span className='icon-[mdi--bar-chart] text-black' />
+                <span className='icon-[mdi--bar-chart] text-(--color-text)' />
                 <span className='text-(--accent-9) font-semibold'>{pagination.total}</span>
                 {pagination.total === 1 ? 'game' : 'games'} for {platformMap[platform].displayName}.
               </div>

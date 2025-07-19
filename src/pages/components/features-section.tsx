@@ -132,7 +132,7 @@ export function FeaturesSection() {
   return (
     <section className='relative'>
       <h2
-        className='text-(--accent-9) mb-6 flex items-center justify-center gap-2 border border-transparent border-b-neutral-100 border-t-neutral-200 py-8 text-4xl font-[Roboto_Slab_Variable] font-semibold lg:py-16'
+        className='text-(--accent-9) border-b-(--gray-4) border-t-(--gray-4) mb-6 flex items-center justify-center gap-2 border border-transparent py-8 text-4xl font-[Roboto_Slab_Variable] font-semibold lg:py-16'
         style={{
           textShadow: range(1, 5)
             .map((number) => `${number}px ${number}px 1px var(--accent-7)`)
@@ -145,7 +145,7 @@ export function FeaturesSection() {
 
       <div className='flex flex-col'>
         {features.map((feature, index) => (
-          <div className={clsx('py-8 lg:py-12', { 'bg-neutral-50': index % 2 })} key={feature.title}>
+          <div className={clsx('py-8 lg:py-12', { 'bg-(--gray-3)': index % 2 })} key={feature.title}>
             <div
               className={clsx(
                 'lg:w-5xl mx-auto flex w-full flex-col gap-6 px-8 lg:flex lg:flex-row lg:justify-center lg:gap-10',
@@ -160,12 +160,12 @@ export function FeaturesSection() {
                     <span className={clsx(feature.icon, 'text-3xl lg:text-6xl')} />
                     {feature.title}
                   </h3>
-                  <p className='lg:pl-17 pl-10 text-lg font-light text-neutral-600'>{feature.description}</p>
+                  <p className='lg:pl-17 text-(--color-text)/60 pl-10 text-lg font-light'>{feature.description}</p>
                 </div>
               </div>
 
               <div className='lg:flex lg:items-center lg:justify-center'>
-                <div className='rounded bg-white p-2 ring-1 ring-neutral-300'>
+                <div className='bg-(--color-background) ring-(--color-text)/10 rounded p-2 ring-1'>
                   <div className='lg:w-100 aspect-5/3 lg:h-60'>{feature.content}</div>
                 </div>
               </div>

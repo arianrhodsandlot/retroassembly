@@ -2,7 +2,7 @@ import { linkMap } from '@/constants/links.ts'
 
 export function FooterSection() {
   return (
-    <footer className='border border-x-0 border-b-0 border-t-neutral-200 p-8 text-center text-sm font-light text-neutral-500'>
+    <footer className='border-t-(--gray-4) text-(--gray-11) border border-x-0 border-b-0 p-8 text-center text-sm font-light'>
       <div className='w-xl mx-auto flex max-w-full flex-col items-center justify-center gap-1 sm:flex-row sm:flex-wrap sm:gap-x-2 sm:gap-y-1'>
         <div className='inline-flex flex-wrap items-center gap-0.5'>
           <span className='icon-[mdi--git] size-3.5' />

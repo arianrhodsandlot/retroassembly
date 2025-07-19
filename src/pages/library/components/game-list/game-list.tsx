@@ -14,7 +14,7 @@ export function GameList({ pagination }: { pagination: RomsPagination }) {
 
   if (!roms || roms.length === 0) {
     return (
-      <div className='border-t-1 border border-transparent border-t-black/20'>
+      <div className='border-t-1 border-t-(--gray-6) border border-transparent'>
         <GameListEmpty />
       </div>
     )
@@ -31,7 +31,7 @@ export function GameList({ pagination }: { pagination: RomsPagination }) {
   const size = sizeMap[preference.ui.libraryCoverSize]
 
   return (
-    <div className='border-t-1 flex flex-col gap-4 border border-transparent border-t-black/20 pt-4 [--min-width:150px] lg:[--min-width:100%]'>
+    <div className='border-t-1 border-t-(--gray-6) flex flex-col gap-4 border border-transparent pt-4 [--min-width:150px] lg:[--min-width:100%]'>
       <div
         className='grid'
         style={{

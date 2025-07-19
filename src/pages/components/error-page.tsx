@@ -24,13 +24,13 @@ export function ErrorPage({ error }: Route.ErrorBoundaryProps) {
     <>
       <title>{`${status} - ${metadata.title}`}</title>
       <div className='bg-(--accent-9) min-h-dvh py-20'>
-        <main className='md:w-3xl mx-8 flex max-w-full flex-col rounded bg-white p-10 md:mx-auto'>
+        <main className='md:w-3xl bg-(--color-background) mx-8 flex max-w-full flex-col rounded p-10 md:mx-auto'>
           <h1 className='mt-4 flex items-center gap-2 text-4xl font-semibold'>
             <span className='icon-[mdi--robot-confused]' /> {message}
           </h1>
           <p className='py-4 text-lg'>{details}</p>
           {stack && (
-            <pre className='mb-4 w-full overflow-x-auto rounded bg-neutral-900 p-4 text-xs text-neutral-400'>
+            <pre className='mb-4 w-full overflow-x-auto rounded bg-neutral-900 p-4 text-xs text-neutral-100'>
               <code>{stack}</code>
             </pre>
           )}
@@ -43,7 +43,11 @@ export function ErrorPage({ error }: Route.ErrorBoundaryProps) {
             </Button>
 
             <Button asChild radius='small' size='2' type='button' variant='outline'>
-              <Link className='!border-2 !bg-white !shadow-none' reloadDocument to='/library'>
+              <Link
+                className='!bg-(--color-background) [.dark_&]:!border-(--gray-4) !border-2 !shadow-none'
+                reloadDocument
+                to='/library'
+              >
                 <span className='icon-[mdi--bookshelf]' />
                 Library
               </Link>

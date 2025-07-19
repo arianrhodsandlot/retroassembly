@@ -15,7 +15,7 @@ export default function HistoryPage({ pageData }: { pageData: any }) {
         <div className='flex min-h-full w-full flex-col gap-5 p-4'>
           <div className='relative flex justify-between pt-4 lg:px-4'>
             <h1 className='text-5xl font-semibold'>History</h1>
-            <div className='mt-4 hidden items-center gap-2 text-zinc-400 lg:flex'>
+            <div className='text-(--gray-11) mt-4 hidden items-center gap-2 lg:flex'>
               <span className='icon-[mdi--bar-chart] text-(--color-text)' />
               Played
               <span className='font-bold text-rose-700'>{pagination.total}</span>

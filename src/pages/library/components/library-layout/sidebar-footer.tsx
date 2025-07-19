@@ -6,6 +6,7 @@ import { settingsDialogOpenAtom, useAboutDialogOpen } from '../../atoms.ts'
 import { AboutDialog } from './about-dialog.tsx'
 import { LogoutDialog } from './logout-dialog.tsx'
 import { SettingsDialog } from './settings-dialog/settings-dialog.tsx'
+import { ThemeMenuItem } from './theme-menu-item.tsx'
 
 export function SidebarFooter() {
   const [settingsDialogOpen, setSettingsDialogOpen] = useAtom(settingsDialogOpenAtom)
@@ -27,6 +28,8 @@ export function SidebarFooter() {
               <span className='icon-[mdi--wrench]' />
               Settings
             </DropdownMenu.Item>
+
+            <ThemeMenuItem />
 
             <DropdownMenu.Separator />
 

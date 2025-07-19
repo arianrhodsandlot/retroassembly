@@ -17,10 +17,10 @@ export function GameListEmpty() {
       <span className='icon-[mdi--package-variant] size-32 text-zinc-300' />
       {isLibrary ? (
         <>
-          <div className='text-zinc-400'>
+          <div className='text-(--gray-11)'>
             Welcome to RetroAssembly. This is where all ROMs uploaded by you will appear.
           </div>
-          <div className='text-zinc-400'>
+          <div className='text-(--gray-11)'>
             <UploadSelectButton variant='solid' /> some ROMs to get started.
           </div>
         </>
@@ -28,8 +28,8 @@ export function GameListEmpty() {
 
       {isHistory ? (
         <>
-          <div className='text-zinc-400'>You haven't played any games yet.</div>
-          <div className='text-zinc-400'>
+          <div className='text-(--gray-11)'>You haven't played any games yet.</div>
+          <div className='text-(--gray-11)'>
             Play some games from your{' '}
             <Button asChild variant='solid'>
               <Link to='/library'>
@@ -43,7 +43,7 @@ export function GameListEmpty() {
 
       {platform ? (
         <>
-          <div className='flex items-center gap-1 text-zinc-400'>
+          <div className='text-(--gray-11) flex items-center gap-1'>
             There are no games for{' '}
             <img
               alt={platform?.displayName}
@@ -52,7 +52,7 @@ export function GameListEmpty() {
             />{' '}
             {platform?.displayName} in your library.
           </div>
-          <div className='flex items-center gap-1 text-zinc-400'>
+          <div className='text-(--gray-11) flex items-center gap-1'>
             <UploadButton platform={platform?.name} variant='solid' /> some ROMs to get started.
           </div>
         </>

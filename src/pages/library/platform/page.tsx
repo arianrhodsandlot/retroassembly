@@ -42,7 +42,7 @@ export default function PlatformPage({ pageData }: PlatformPageProps) {
           <DeviceInfo key={platform} platform={platform} platformInfo={platformInfo} />
           {isDemo ? null : (
             <div className='hidden items-center justify-end gap-4 pr-4 lg:flex'>
-              <div className='flex items-center gap-2 text-zinc-400'>
+              <div className='text-(--gray-11) flex items-center gap-2'>
                 <span className='icon-[mdi--bar-chart] text-(--color-text)' />
                 <span className='text-(--accent-9) font-semibold'>{pagination.total}</span>
                 {pagination.total === 1 ? 'game' : 'games'} for {platformMap[platform].displayName}.

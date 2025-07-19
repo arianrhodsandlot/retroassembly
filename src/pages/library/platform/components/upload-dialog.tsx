@@ -196,7 +196,7 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
                 size='3'
                 value={deferedProgress}
               />
-              <div className='mt-4 flex items-center gap-2 text-sm text-zinc-400'>
+              <div className='text-(--gray-11) mt-4 flex items-center gap-2 text-sm'>
                 <span className='icon-[svg-spinners--180-ring] text-zinc' />
                 {uploadedFiles.success.length + uploadedFiles.failure.length + uploadedFiles.loading.length}/
                 {files.length},

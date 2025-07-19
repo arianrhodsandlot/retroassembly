@@ -32,7 +32,7 @@ export default function LibraryPage({ pageData }: LibraryPageProps) {
             <div>
               <h1 className='text-5xl font-semibold'>Library</h1>
               {isDemo ? (
-                <div className='mt-4 flex items-start gap-1 text-sm text-neutral-500 lg:items-center'>
+                <div className='text-(--gray-11) mt-4 flex items-start gap-1 text-sm lg:items-center'>
                   <span className='icon-[mdi--information-outline] mt-1 shrink-0 lg:mt-0' />
                   <span>
                     These free (legal) games are all picked from{' '}
@@ -51,7 +51,7 @@ export default function LibraryPage({ pageData }: LibraryPageProps) {
             </div>
             {isDemo ? null : (
               <div className='hidden items-center justify-end gap-4 pr-4 lg:flex '>
-                <div className='flex items-center gap-2 text-zinc-400'>
+                <div className='text-(--gray-11) flex items-center gap-2'>
                   <span className='icon-[mdi--bar-chart] text-(--color-text)' />
                   <span className='text-(--accent-9) font-semibold'>{pagination.total}</span> games for{' '}
                   <span className='text-(--accent-9) font-semibold'>{platformCount}</span>{' '}

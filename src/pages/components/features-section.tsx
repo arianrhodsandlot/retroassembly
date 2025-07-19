@@ -7,7 +7,7 @@ import rewindImage from './rewind-image.png'
 const features = [
   {
     content: (
-      <div className='*:motion-preset-pulse *:motion-duration-1000 flex size-full items-center justify-evenly bg-blue-100 bg-cover bg-center'>
+      <div className='*:motion-preset-pulse *:motion-duration-1000 bg-(--gray-4) flex size-full items-center justify-evenly bg-cover bg-center'>
         <span className='icon-[logos--chrome] size-14 ' />
         <span className='icon-[logos--microsoft-edge] motion-delay-100 size-14' />
         <span className='icon-[logos--safari] motion-delay-200 size-14' />
@@ -44,10 +44,10 @@ const features = [
   {
     content: (
       <div
-        className='flex size-full items-center justify-center gap-2 bg-neutral-100'
+        className='flex size-full items-center justify-center gap-2'
         style={{
           background:
-            'radial-gradient(circle, transparent 20%, #fff 20%, #fff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #fff 20%, #fff 80%, transparent 80%, transparent) 25px 25px, linear-gradient(#efefef 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #efefef 2px, #fff 2px) -1px 0',
+            'radial-gradient(circle, transparent 20%, var(--color-background) 20%, var(--color-background) 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, var(--color-background) 20%, var(--color-background) 80%, transparent 80%, transparent) 25px 25px, linear-gradient(var(--gray-5) 2px, transparent 2px) 0 -1px, linear-gradient(90deg, var(--gray-5) 2px, var(--color-background) 2px) -1px 0',
           backgroundSize: '50px 50px, 50px 50px, 25px 25px, 25px 25px',
         }}
       >
@@ -90,7 +90,7 @@ const features = [
         <div className='grid size-full grid-cols-3 grid-rows-2'>
           {range(6).map((i) => (
             <div className='rounded p-1' key={i}>
-              <div className='flex size-full items-center justify-center rounded bg-neutral-100'>
+              <div className='bg-(--gray-4) flex size-full items-center justify-center rounded'>
                 <span className='icon-[twemoji--star] size-12' />
               </div>
             </div>

@@ -17,7 +17,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
       <Head />
       <body>
         <RadixTheme>
-          <ThemeProvider attribute='class' defaultTheme='system'>
+          <ThemeProvider attribute='class'>
             <Provider>
               <HydrationBoundary hydrateAtoms={hydrateAtoms}>{children}</HydrationBoundary>
             </Provider>

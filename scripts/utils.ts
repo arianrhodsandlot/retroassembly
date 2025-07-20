@@ -4,6 +4,7 @@ import { template } from 'es-toolkit/compat'
 import { $ } from 'execa'
 import fs from 'fs-extra'
 import isDocker from 'is-docker'
+import { links } from '../src/constants/links.ts'
 
 const { env } = process
 export const exec = $({ env: { FORCE_COLOR: 'true' }, verbose: 'short' })
@@ -17,7 +18,7 @@ export function getTargetRuntime() {
 export async function prepareWranglerConfig({ force = false } = {}) {
   if (getTargetRuntime() === 'workerd' || force) {
     const wranglerTemplate = await fs.readFile('wrangler.template.json', 'utf8')
-    const compiled = template(wranglerTemplate)
+    const compiled = template(`${wranglerTemplate}`)
     const wranglerConfig = compiled(env)
     await fs.writeFile('wrangler.json', wranglerConfig, 'utf8')
   }
@@ -44,5 +45,9 @@ export function logServerInfo(port: number | string, isDev = false) {
     messages.push(styleText('blue', 'inside a Docker container'))
   }
   console.info(banner)
-  console.info(`${messages.join(' ')}`)
+  console.info('Get involved in our community:')
+  for (const link of links) {
+    console.info('•', link.text, styleText(['blue', 'underline'], link.url))
+  }
+  console.info('\n', `${messages.join(' ')}`, '\n')
 }

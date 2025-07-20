@@ -82,7 +82,6 @@ async function prepareRomData(files: File[], gameInfoList: any[], platform: stri
       const romData: InferInsertModel<typeof romTable> = {
         fileId,
         fileName: file.name,
-        gameDescription: launchbox?.overview,
         gameDeveloper: launchbox?.developer || libretro?.developer,
         gameGenres: getGenres({ launchbox, libretro }),
         gameName: launchbox?.name || libretro?.name,

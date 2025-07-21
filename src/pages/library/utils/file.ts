@@ -49,3 +49,9 @@ export async function getROMMd5(file: File, platform: string) {
 
   return getFileMd5(file)
 }
+
+export function getFileUrl(fileId: string) {
+  if (fileId) {
+    return `/api/v1/files/${encodeURIComponent(fileId)}`
+  }
+}

@@ -1,5 +1,5 @@
 import { DropdownMenu } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { delay } from 'es-toolkit'
 import { useTheme } from 'next-themes'
 

@@ -5,7 +5,7 @@ import { stateTable } from '../databases/schema.ts'
 export type States = Awaited<ReturnType<typeof getStates>>
 export type State = States[number]
 
-export async function getStates({ rom, type }: { rom: string; type?: 'auto' | 'manual' }) {
+export async function getStates({ limit, rom, type }: { limit?: number; rom: string; type?: 'auto' | 'manual' }) {
   const { currentUser, db } = getContext().var
 
   const conditions = [eq(stateTable.userId, currentUser.id), eq(stateTable.status, 1)]
@@ -16,6 +16,12 @@ export async function getStates({ rom, type }: { rom: string; type?: 'auto' | 'm
     conditions.push(eq(stateTable.type, type))
   }
   const where = and(...conditions)
-  const results = await db.library.select().from(stateTable).where(where).orderBy(desc(stateTable.createdAt))
+  const query = db.library.select().from(stateTable).where(where).orderBy(desc(stateTable.createdAt))
+
+  if (limit) {
+    query.limit(limit)
+  }
+
+  const results = await query
   return results
 }

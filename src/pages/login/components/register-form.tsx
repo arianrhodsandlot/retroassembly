@@ -1,5 +1,5 @@
 import { Button, Callout } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 import { api } from '@/utils/http.ts'

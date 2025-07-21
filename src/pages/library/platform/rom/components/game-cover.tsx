@@ -1,10 +1,16 @@
+import { Skeleton } from '@radix-ui/themes'
+import { skeletonClassnames } from '@/pages/library/constants/skeleton-classnames.ts'
 import { useRomCover } from '../../../hooks/use-rom-cover.ts'
 
 export function GameCover({ rom }) {
   const { data: cover, isLoading } = useRomCover(rom)
 
   if (isLoading) {
-    return <div className='sticky top-4 size-64 bg-zinc-200' />
+    return (
+      <div className='top-4 block w-full lg:sticky lg:w-64'>
+        <Skeleton className={skeletonClassnames[rom.platform] || '!size-full'} loading />
+      </div>
+    )
   }
 
   return cover ? (

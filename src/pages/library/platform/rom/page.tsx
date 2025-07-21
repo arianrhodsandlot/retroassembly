@@ -1,5 +1,6 @@
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import type { Rom } from '@/controllers/get-roms.ts'
+import type { State } from '@/controllers/get-states.ts'
 import { RadixThemePortal } from '@/pages/components/radix-theme-portal.tsx'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
@@ -10,7 +11,7 @@ import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
 import { GameMedias } from './components/game-medias/game-medias.tsx'
 import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
-import { LaunchButton } from './components/launch-button.tsx'
+import { LaunchButtons } from './components/launch-buttons.tsx'
 import { PageHooks } from './components/page-hooks.ts'
 import { RomBackground } from './components/rom-background.tsx'
 
@@ -18,10 +19,11 @@ interface RomPageProps {
   pageData: {
     preference: ResolvedPreference
     rom: Rom | undefined
+    state: State | undefined
   }
 }
 export default function RomPage({ pageData }: RomPageProps) {
-  const { rom } = pageData
+  const { rom, state } = pageData
   if (!rom) {
     return '404'
   }
@@ -44,11 +46,11 @@ export default function RomPage({ pageData }: RomPageProps) {
           <div className='flex flex-1 flex-col gap-8'>
             <h1 className='pt-4 text-3xl font-bold lg:px-8'>{goodcodes.rom}</h1>
             <div className='lg:hidden'>
-              <LaunchButton />
+              <LaunchButtons state={state} />
             </div>
             <GameInfo gameInfo={launchboxGame} rom={rom} />
             <div className='hidden px-4 lg:block'>
-              <LaunchButton />
+              <LaunchButtons state={state} />
             </div>
             <div className='flex flex-col gap-4 lg:pl-4 lg:pr-64'>
               <GameMedias />

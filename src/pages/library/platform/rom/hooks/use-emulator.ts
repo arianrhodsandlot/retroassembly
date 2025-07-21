@@ -1,6 +1,7 @@
 import ky from 'ky'
 import { Nostalgist } from 'nostalgist'
 import { useEffect, useMemo } from 'react'
+import { useLoaderData } from 'react-router'
 import useSWRImmutable from 'swr/immutable'
 import { coreUrlMap } from '@/constants/core.ts'
 import type { Rom } from '@/controllers/get-roms.ts'
@@ -8,6 +9,7 @@ import { useEmulatorLaunched } from '@/pages/library/atoms.ts'
 import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
+import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { getCDNUrl } from '@/utils/cdn.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
@@ -43,6 +45,7 @@ export function useEmulator() {
   if (!rom) {
     throw new Error('this should not happen')
   }
+  const { state } = useLoaderData()
   const { preference } = usePreference()
   const gamepadMapping = useGamepadMapping()
   const [launched, setLaunched] = useEmulatorLaunched()
@@ -69,9 +72,10 @@ export function useEmulator() {
       retroarchCoreConfig: preference.emulator.core[core],
       rom: romObject,
       shader,
+      state: getFileUrl(state?.fileId),
       style: { ...defaultEmulatorStyle },
     }),
-    [romObject, core, preference, gamepadMapping, shader],
+    [romObject, core, preference, gamepadMapping, shader, state?.fileId],
   )
 
   const {
@@ -79,15 +83,23 @@ export function useEmulator() {
     error,
     isValidating,
     mutate: prepare,
-  } = useSWRImmutable(rom ? options : false, () => Nostalgist.prepare(options))
+  } = useSWRImmutable(options, () => Nostalgist.prepare(options))
 
   const isPreparing = !rom || isValidating
 
-  async function launch() {
+  async function launch({ withState }: { withState?: boolean } = {}) {
     if (!emulator || !rom) {
       return
     }
-    globalThis.emulator = emulator
+
+    if (!withState) {
+      emulator.getEmulator().on('beforeLaunch', () => {
+        try {
+          //@ts-expect-error Using an undocumented API here. There should be a way to do this.
+          emulator.getEmscriptenFS().unlink(`${emulator.getEmulator().stateFilePath}.auto`)
+        } catch {}
+      })
+    }
 
     const canvas = emulator.getCanvas()
     canvas.setAttribute('tabindex', '-1')
@@ -103,6 +115,21 @@ export function useEmulator() {
       await ky.post('/api/v1/launch_records', {
         body: formData,
       })
+    }
+  }
+
+  async function start() {
+    if (!emulator || !rom) {
+      return
+    }
+    await emulator.start()
+    const canvas = emulator.getCanvas()
+    if (canvas) {
+      canvas.style.opacity = '1'
+    }
+
+    if (preference.emulator.fullscreen) {
+      toggleFullscreen()
     }
   }
 
@@ -150,5 +177,17 @@ export function useEmulator() {
     console.error(error)
   }
 
-  return { core, emulator, exit, isFullscreen, isPreparing, launch, launched, prepare, setLaunched, toggleFullscreen }
+  return {
+    core,
+    emulator,
+    exit,
+    isFullscreen,
+    isPreparing,
+    launch,
+    launched,
+    prepare,
+    setLaunched,
+    start,
+    toggleFullscreen,
+  }
 }

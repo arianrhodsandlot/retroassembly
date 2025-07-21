@@ -1,82 +1,38 @@
-import { Button } from '@radix-ui/themes'
+import { Button, type ButtonProps } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import { type MouseEvent, useEffect, useRef } from 'react'
-import { useFocusIndicator } from '@/pages/library/hooks/use-focus-indicator.ts'
+import { type ButtonHTMLAttributes, useEffect, useRef } from 'react'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
-import { useLaunchButtonRect } from '../atoms.ts'
-import { useEmulator } from '../hooks/use-emulator.ts'
 
-const isAppleMobile = /iphone|ipad|ipod/i.test(navigator.userAgent)
-const isChromeLike = /chrome/i.test(navigator.userAgent)
-const isMacLike = /macintosh/i.test(navigator.userAgent)
-const isAppleMobileDesktopMode =
-  !isChromeLike && isMacLike && /safari/i.test(navigator.userAgent) && screen.height <= 1366
-const mayNeedsUserInteraction = isAppleMobile || isAppleMobileDesktopMode
+interface LaunchButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: ButtonProps['variant']
+}
 
-export function LaunchButton() {
-  const { isPreparing, launch } = useEmulator()
+export function LaunchButton({ children, disabled, variant = 'solid', ...props }: LaunchButtonProps) {
   const ref = useRef<HTMLButtonElement>(null)
-  const [, setLaunchButtonRect] = useLaunchButtonRect()
-  const { syncStyle } = useFocusIndicator()
-
-  const isWaitingForTouch = mayNeedsUserInteraction && !isPreparing
-  const isWaitingForPressOrClick = !mayNeedsUserInteraction && !isPreparing
-
-  async function handleClick(event: MouseEvent<HTMLButtonElement>) {
-    if (isWaitingForTouch && !event?.clientX && !event?.clientY) {
-      event.preventDefault()
-      event.stopPropagation()
-      return
-    }
-
-    const button = event.currentTarget
-    if (button) {
-      const rect = button.getBoundingClientRect()
-      setLaunchButtonRect(rect)
-      button.blur()
-      syncStyle()
-    }
-
-    await launch()
-  }
 
   useEffect(() => {
-    if (!isPreparing && ref.current) {
+    if (!disabled && ref.current) {
       ref.current.dataset.snFocusStyle = JSON.stringify({ transitionProperty: 'none' })
       focus(ref.current)
       delete ref.current.dataset.snFocusStyle
     }
-  }, [isPreparing])
+  }, [disabled])
 
   return (
     <button
-      className={clsx('launch-button block w-full lg:w-auto', { 'opacity-50': isPreparing })}
+      className={clsx('launch-button block w-full lg:w-80', { 'opacity-50': disabled })}
       data-sn-enabled
-      disabled={isPreparing}
-      onClick={handleClick}
-      ref={ref}
+      disabled={disabled}
+      {...props}
       type='button'
     >
-      <Button asChild radius='small' size='4' type='button'>
-        <div className='!h-16 !w-full'>
-          {isPreparing ? (
-            <>
-              <span className='icon-[mdi--loading] animate-spin' />
-              <span className='w-52 text-2xl font-semibold'>Loading...</span>
-            </>
-          ) : null}
-          {isWaitingForTouch ? (
-            <>
-              <span className='icon-[mdi--gesture-touch] motion-preset-pulse-lg motion-duration-1500' />
-              <span className='w-52 text-2xl font-semibold'>Start</span>
-            </>
-          ) : null}
-          {isWaitingForPressOrClick ? (
-            <>
-              <span className='icon-[mdi--play] motion-preset-pulse-lg motion-duration-1500' />
-              <span className=' w-52 text-2xl font-semibold'>Start</span>
-            </>
-          ) : null}
+      <Button asChild radius='small' size='4' type='button' variant={variant}>
+        <div
+          className={clsx('!h-16 !w-full', {
+            '!bg-(--color-background) !border-2 !shadow-none': variant === 'outline',
+          })}
+        >
+          {children}
         </div>
       </Button>
     </button>

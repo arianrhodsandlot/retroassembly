@@ -1,5 +1,5 @@
 import path from 'node:path'
-import { UTCDate } from '@date-fns/utc'
+import { UTCDateMini } from '@date-fns/utc'
 import { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
@@ -15,7 +15,7 @@ import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './script
 import { storageDirectory } from './src/constants/env.ts'
 
 const define = {
-  BUILD_TIME: JSON.stringify(formatISO(new UTCDate())),
+  BUILD_TIME: JSON.stringify(formatISO(new UTCDateMini())),
   VERSION: JSON.stringify(await getVersion()),
 }
 

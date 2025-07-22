@@ -1,3 +1,4 @@
+import { UTCDateMini } from '@date-fns/utc'
 import { createMiddleware } from 'hono/factory'
 import { getConnInfo } from '../../controllers/utils.server.ts'
 
@@ -5,19 +6,32 @@ export function logger() {
   return createMiddleware(async function middleware(c, next) {
     await next()
 
-    const { method, url } = c.req
-    const { status } = c.res
     const remoteAddr =
       c.req.header('X-Forwarded-For') ||
       c.req.header('X-Real-IP') ||
       c.env?.CF_CONNECTING_IP ||
       getConnInfo()?.remote.address ||
       '-'
-    const contentLength = c.res.headers.get('Content-Length') || '-'
+    const timestamp = new UTCDateMini().toISOString()
+    const { method, url } = c.req
     const httpVersion = c.req.header('HTTP-Version') || c.env?.HTTP_VERSION || 'HTTP/1.1'
-    const timestamp = new Date().toISOString()
+    const { status } = c.res
+    const contentLength = c.res.headers.get('Content-Length') || '-'
+    const referer = c.req.header('Referer') || '-'
+    const userAgent = c.req.header('User-Agent') || '-'
 
-    const logMessage = `${remoteAddr} - - [${timestamp}] "${method} ${url} ${httpVersion}" ${status} ${contentLength}`
+    // We use Combined Log Format here. See https://httpd.apache.org/docs/2.4/logs.html#combined
+    const logMessage = [
+      remoteAddr,
+      '-',
+      c.var.currentUser?.id || '-',
+      `[${timestamp}]`,
+      JSON.stringify([method, url, httpVersion].join(' ')),
+      status,
+      contentLength,
+      JSON.stringify(referer),
+      JSON.stringify(userAgent),
+    ].join(' ')
 
     if (c.res.ok) {
       console.info(logMessage)

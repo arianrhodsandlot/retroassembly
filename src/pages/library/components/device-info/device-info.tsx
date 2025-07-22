@@ -1,4 +1,4 @@
-import { UTCDate } from '@date-fns/utc'
+import { UTCDateMini } from '@date-fns/utc'
 import { formatISO9075 } from 'date-fns'
 import type { PlatformInfo } from '@/controllers/get-platform-info.ts'
 import { getPlatformBanner, getPlatformDevicePhoto } from '@/utils/library.ts'
@@ -41,7 +41,7 @@ export function DeviceInfo({ platform, platformInfo }: { platform: string; platf
               </div>
               <div className='mt-1 pl-6'>
                 {platformInfo.releaseDate
-                  ? formatISO9075(new UTCDate(platformInfo.releaseDate), { representation: 'date' })
+                  ? formatISO9075(new UTCDateMini(platformInfo.releaseDate), { representation: 'date' })
                   : 'unknown'}
               </div>
             </div>

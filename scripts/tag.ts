@@ -1,4 +1,4 @@
-import { UTCDate } from '@date-fns/utc'
+import { UTCDateMini } from '@date-fns/utc'
 import { format } from 'date-fns'
 import { $ } from 'execa'
 
@@ -8,7 +8,7 @@ async function getCurrentBranch() {
 }
 
 async function getTag() {
-  const now = new UTCDate()
+  const now = new UTCDateMini()
   const major = '1'
   const minor = format(now, 'yyMMdd')
   const patch = format(now, 'hhmm')

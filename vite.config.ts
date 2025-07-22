@@ -19,10 +19,13 @@ const define = {
 }
 
 async function getGitVersion() {
+  if (process.env.GIT_VERSION) {
+    return process.env.GIT_VERSION
+  }
   try {
     const {
       stdout: [revision],
-    } = await $({ lines: true })`git rev-parse HEAD`
+    } = await $({ lines: true })`git describe --tags`
     const shortVersion = revision.slice(0, 7)
     return shortVersion
   } catch {

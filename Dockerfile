@@ -8,7 +8,7 @@ RUN corepack enable
 RUN pnpm fetch
 
 FROM base AS builder
-ARG GIT_VERSION
+ARG VERSION
 ENV SKIP_INSTALL_SIMPLE_GIT_HOOKS=true
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules

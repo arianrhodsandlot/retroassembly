@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { UTCDate } from '@date-fns/utc'
 import { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
@@ -14,23 +15,30 @@ import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './script
 import { storageDirectory } from './src/constants/env.ts'
 
 const define = {
-  BUILD_TIME: JSON.stringify(formatISO(new Date())),
-  GIT_VERSION: JSON.stringify(await getGitVersion()),
+  BUILD_TIME: JSON.stringify(formatISO(new UTCDate())),
+  VERSION: JSON.stringify(await getVersion()),
 }
 
-async function getGitVersion() {
-  if (process.env.GIT_VERSION) {
-    return process.env.GIT_VERSION
+async function getVersion() {
+  return getEnvVersion() || (await getGitDescription()) || ''
+}
+
+function getEnvVersion() {
+  const envNames = ['WORKERS_CI_COMMIT_SHA', 'VERSION']
+  for (const envName of envNames) {
+    if (process.env[envName]) {
+      return process.env[envName].slice(0, 7)
+    }
   }
+}
+
+async function getGitDescription() {
   try {
     const {
       stdout: [revision],
     } = await $({ lines: true })`git describe --tags`
-    const shortVersion = revision.slice(0, 7)
-    return shortVersion
-  } catch {
-    return ''
-  }
+    return revision
+  } catch {}
 }
 
 function serverInfo() {

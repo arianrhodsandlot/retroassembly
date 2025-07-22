@@ -19,16 +19,16 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
           <div className='text-xl font-semibold'>{metadata.title}</div>
           <div className='text-sm'>{metadata.description}</div>
           <div className='flex flex-col gap-2 py-2 text-xs opacity-70'>
-            {GIT_VERSION ? (
+            {VERSION ? (
               <div>
                 Version:
                 <a
                   className='ml-0.5 underline'
-                  href={`${linkMap.github.url}/tree/${GIT_VERSION}`}
+                  href={`${linkMap.github.url}/tree/${VERSION}`}
                   rel='noreferrer noopener'
                   target='_blank'
                 >
-                  {GIT_VERSION}
+                  {VERSION}
                 </a>
               </div>
             ) : null}

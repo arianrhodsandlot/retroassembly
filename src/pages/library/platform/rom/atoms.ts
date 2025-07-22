@@ -3,9 +3,9 @@ import { atomWithReset } from 'jotai/utils'
 
 export const isGameOverlayPendingAtom = atomWithReset(false)
 
-const launchButtonPositionAtom = atom<DOMRect>()
-export function useLaunchButtonRect() {
-  return useAtom(launchButtonPositionAtom)
+const launchButtonAtom = atom<HTMLButtonElement>()
+export function useLaunchButton() {
+  return useAtom(launchButtonAtom)
 }
 
 const isFullscreenAtom = atom(false)

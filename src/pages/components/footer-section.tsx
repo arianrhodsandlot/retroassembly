@@ -9,7 +9,7 @@ export function FooterSection() {
           Version:
           <a
             className='ml-0.5 underline'
-            href={`${linkMap.github.url}/commit/${GIT_VERSION}`}
+            href={`${linkMap.github.url}/tree/${GIT_VERSION}`}
             rel='noreferrer noopener'
             target='_blank'
           >
@@ -18,7 +18,7 @@ export function FooterSection() {
         </div>
 
         <div className='inline-flex flex-wrap items-center gap-0.5'>
-          <span className='icon-[mdi--clock-check] size-3.5' /> Last updated: {BUILD_TIME}
+          <span className='icon-[mdi--clock-check] size-3.5' /> Date: {BUILD_TIME}
         </div>
 
         <div className='inline-flex flex-wrap items-center gap-0.5 whitespace-pre'>

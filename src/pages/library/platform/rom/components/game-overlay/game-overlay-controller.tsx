@@ -26,10 +26,6 @@ export function GameOverlayController() {
     await show()
   }
 
-  async function handleClickToggleFullscreen() {
-    await toggleFullscreen()
-  }
-
   const controllerVisible = launched && !idle && !visible
 
   return (
@@ -61,11 +57,11 @@ export function GameOverlayController() {
                 <GameInputMessage />
               </div>
               {isFullscreen ? (
-                <ControllerButton onClick={handleClickToggleFullscreen} title='Exit fullscreen'>
+                <ControllerButton onClick={toggleFullscreen} title='Exit fullscreen'>
                   <span className='icon-[mdi--fullscreen-exit]' />
                 </ControllerButton>
               ) : (
-                <ControllerButton onClick={handleClickToggleFullscreen} title='Fullscreen'>
+                <ControllerButton onClick={toggleFullscreen} title='Fullscreen'>
                   <span className='icon-[mdi--fullscreen]' />
                 </ControllerButton>
               )}

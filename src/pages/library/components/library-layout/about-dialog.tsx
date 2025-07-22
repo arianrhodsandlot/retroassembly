@@ -23,7 +23,7 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
               Version:
               <a
                 className='ml-0.5 underline'
-                href={`${linkMap.github.url}/commit/${GIT_VERSION}`}
+                href={`${linkMap.github.url}/tree/${GIT_VERSION}`}
                 rel='noreferrer noopener'
                 target='_blank'
               >
@@ -31,7 +31,7 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
               </a>
             </div>
             <div>
-              Last updated: <span className='ml-0.5'>{BUILD_TIME}</span>
+              Date: <span className='ml-0.5'>{BUILD_TIME}</span>
             </div>
           </div>
           <div className='mb-4 mt-1 flex items-center justify-center gap-2 text-xs'>

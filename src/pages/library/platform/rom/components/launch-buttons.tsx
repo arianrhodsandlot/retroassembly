@@ -1,8 +1,9 @@
+import { HoverCard } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import type { MouseEvent } from 'react'
 import type { State } from '@/controllers/get-states.ts'
 import { useFocusIndicator } from '@/pages/library/hooks/use-focus-indicator.ts'
-import { useLaunchButtonRect } from '../atoms.ts'
+import { useLaunchButton } from '../atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 import { LaunchButton } from './launch-button.tsx'
 
@@ -15,14 +16,13 @@ const mayNeedsUserInteraction = isAppleMobile || isAppleMobileDesktopMode
 
 export function LaunchButtons({ state }: { state?: State }) {
   const { isPreparing, launch } = useEmulator()
-  const [, setLaunchButtonRect] = useLaunchButtonRect()
+  const [, setLaunchButtonRect] = useLaunchButton()
   const { syncStyle } = useFocusIndicator()
 
   function handleClickCommon(event: MouseEvent<HTMLButtonElement>) {
     const button = event.currentTarget
     if (button) {
-      const rect = button.getBoundingClientRect()
-      setLaunchButtonRect(rect)
+      setLaunchButtonRect(button)
       button.blur()
       syncStyle()
     }
@@ -64,11 +64,22 @@ export function LaunchButtons({ state }: { state?: State }) {
             />
           )}
           <span className='w-52 text-2xl font-semibold'>Continue</span>
-          <img
-            alt='state'
-            className='size-8 rounded-sm bg-transparent object-cover shadow'
-            src={`/api/v1/files/${encodeURIComponent(state.thumbnailFileId)}`}
-          />
+          <HoverCard.Root>
+            <HoverCard.Trigger>
+              <img
+                alt='state'
+                className='size-10 rounded-sm border-2 border-white bg-transparent object-cover shadow'
+                src={`/api/v1/files/${encodeURIComponent(state.thumbnailFileId)}`}
+              />
+            </HoverCard.Trigger>
+            <HoverCard.Content align='center' hideWhenDetached side='top' size='1'>
+              <img
+                alt='state'
+                className='size-48 cursor-pointer rounded-sm border-2 border-white bg-transparent object-cover shadow'
+                src={`/api/v1/files/${encodeURIComponent(state.thumbnailFileId)}`}
+              />
+            </HoverCard.Content>
+          </HoverCard.Root>
         </LaunchButton>
       ) : null}
       <LaunchButton disabled={isPreparing} onClick={handleClickStart} variant={state ? 'outline' : 'solid'}>

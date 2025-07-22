@@ -1,25 +1,14 @@
 import { isMatch } from 'es-toolkit/compat'
 import { AnimatePresence, motion, type TargetAndTransition } from 'motion/react'
-import { useMemo } from 'react'
-import { useLaunchButtonRect } from '../atoms.ts'
+import { useLaunchButton } from '../atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 
 export function GameAnimatePresence() {
   const { emulator, launched, start } = useEmulator()
   const animateStyle = { height: '100%', left: 0, top: 0, width: '100%' }
-  const [launchButtonRect] = useLaunchButtonRect()
-  const initialStyle = useMemo(
-    () =>
-      launchButtonRect
-        ? {
-            height: launchButtonRect.height,
-            left: launchButtonRect.left,
-            top: launchButtonRect.top,
-            width: launchButtonRect.width,
-          }
-        : {},
-    [launchButtonRect],
-  )
+  const [launchButton] = useLaunchButton()
+  const rect = launchButton?.getBoundingClientRect()
+  const initialStyle = rect ? { height: rect.height, left: rect.left, top: rect.top, width: rect.width } : {}
 
   async function handleAnimationComplete(definition: TargetAndTransition) {
     if (isMatch(definition, animateStyle) && emulator) {

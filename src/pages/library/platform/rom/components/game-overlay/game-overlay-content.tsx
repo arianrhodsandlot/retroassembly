@@ -3,7 +3,9 @@ import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { getRomGoodcodes } from '@/utils/library.ts'
+import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
+import { ControllerButton } from './controller-button.tsx'
 import { GameInputMessage } from './game-input-message.tsx'
 import { GameOverlayButtons } from './game-overlay-buttons.tsx'
 import { GameStates } from './game-states.tsx'
@@ -22,6 +24,8 @@ export function GameOverlayContent() {
   const { visible } = useGameOverlay()
   const goodcodes = getRomGoodcodes(rom)
   const { data: cover } = useRomCover(rom)
+  const { isFullscreen, toggleFullscreen } = useEmulator()
+
   return (
     <AnimatePresence>
       {visible ? (
@@ -53,7 +57,18 @@ export function GameOverlayContent() {
           <div className='bg-linear-to-b h-4 w-full from-transparent to-black text-transparent lg:h-32' />
 
           <div className='absolute bottom-0 hidden h-20 w-full flex-1 items-center justify-end gap-4 px-4 lg:flex'>
-            <GameInputMessage />
+            <div className='hidden flex-1 items-center justify-center gap-4 lg:flex'>
+              <GameInputMessage />
+            </div>
+            {isFullscreen ? (
+              <ControllerButton onClick={toggleFullscreen} title='Exit fullscreen'>
+                <span className='icon-[mdi--fullscreen-exit]' />
+              </ControllerButton>
+            ) : (
+              <ControllerButton onClick={toggleFullscreen} title='Fullscreen'>
+                <span className='icon-[mdi--fullscreen]' />
+              </ControllerButton>
+            )}
           </div>
         </motion.div>
       ) : null}

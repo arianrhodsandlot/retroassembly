@@ -8,8 +8,8 @@ export function ControllerButton({ children, ...props }: PropsWithChildren<HTMLP
       {...props}
       className={twMerge(
         clsx(
-          'flex size-10 items-center justify-center rounded-sm text-2xl text-white transition-all',
-          'hover:text-(--accent-9) hover:bg-white ',
+          'flex size-10 items-center justify-center rounded-sm text-2xl text-white transition-transform',
+          'hover:scale-120',
         ),
         props.className,
       )}

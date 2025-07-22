@@ -75,7 +75,7 @@ export function move(direction?: Direction) {
 
 export function resetFocus({ force }: { force?: boolean } = {}) {
   if (document.activeElement === document.body || force) {
-    focus('.game-entry')
+    focus('.game-entry, .launch-button')
   }
 }
 

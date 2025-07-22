@@ -45,13 +45,14 @@ export default function RomPage({ pageData }: RomPageProps) {
 
           <div className='flex flex-1 flex-col gap-8'>
             <h1 className='pt-4 text-3xl font-bold lg:px-8'>{goodcodes.rom}</h1>
-            <div className='lg:hidden'>
-              <LaunchButtons state={state} />
+
+            <div className='flex flex-col gap-8 lg:flex-col-reverse'>
+              <div className='lg:px-4'>
+                <LaunchButtons state={state} />
+              </div>
+              <GameInfo gameInfo={launchboxGame} rom={rom} />
             </div>
-            <GameInfo gameInfo={launchboxGame} rom={rom} />
-            <div className='hidden px-4 lg:block'>
-              <LaunchButtons state={state} />
-            </div>
+
             <div className='flex flex-col gap-4 lg:pl-4 lg:pr-64'>
               <GameMedias />
 

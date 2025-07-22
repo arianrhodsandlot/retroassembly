@@ -13,7 +13,7 @@ import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { getCDNUrl } from '@/utils/cdn.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
-import { useIsFullscreen } from '../atoms.ts'
+import { useIsFullscreen, useLaunchButton } from '../atoms.ts'
 
 type NostalgistOption = Parameters<typeof Nostalgist.prepare>[0]
 type RetroarchConfig = Partial<NostalgistOption['retroarchConfig']>
@@ -51,6 +51,7 @@ export function useEmulator() {
   const [launched, setLaunched] = useEmulatorLaunched()
   const isDemo = useIsDemo()
   const [isFullscreen, setIsFullscreen] = useIsFullscreen()
+  const [launchButton] = useLaunchButton()
 
   const romUrl = isDemo
     ? getCDNUrl(`retrobrews/${{ genesis: 'md' }[rom.platform] || rom.platform}-games`, rom.fileName)
@@ -138,11 +139,11 @@ export function useEmulator() {
     if (['paused', 'running'].includes(status)) {
       emulator?.exit()
       setLaunched(false)
-      focus('.launch-button')
       try {
         await document.exitFullscreen()
       } catch {}
       setIsFullscreen(false)
+      focus(launchButton)
       await prepare()
     }
   }

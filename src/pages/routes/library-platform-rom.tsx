@@ -9,8 +9,9 @@ export async function loader({ params }: Route.LoaderArgs) {
   if (!rom) {
     throw new Response('Not Found', { status: 404 })
   }
-  const [state] = await getStates({ limit: 1, rom: rom?.id, type: 'manual' })
   const { preference } = getContext().var
+  const core = preference.emulator.platform[rom.platform]?.core
+  const [state] = await getStates({ core, limit: 1, rom: rom?.id, type: 'manual' })
   return { preference, rom, state }
 }
 

@@ -83,7 +83,7 @@ export default defineConfig(async (env) => {
   } else {
     if (env.command === 'serve') {
       await fs.ensureDir(storageDirectory)
-      await import('./src/utils/migrate.ts')
+      await import('./src/utils/self-test.ts')
     }
     config.plugins.push(
       serverAdapter({

@@ -1,4 +1,4 @@
-import '../utils/migrate.ts'
+import '../utils/self-test.ts'
 import { serveStatic } from '@hono/node-server/serve-static'
 import { handler } from 'hono-react-router-adapter/node'
 import * as build from '../../dist/server/index.js'

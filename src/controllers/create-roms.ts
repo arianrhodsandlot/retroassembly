@@ -203,10 +203,15 @@ async function performBatchOperations(
 }
 
 export async function createRoms({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: string }) {
-  const gameInfoList = await msleuth.identify({
-    files: files.map((file, index) => ({ md5: md5s[index], name: file.name })),
-    platform,
-  })
+  let gameInfoList = []
+  try {
+    gameInfoList = await msleuth.identify({
+      files: files.map((file, index) => ({ md5: md5s[index], name: file.name })),
+      platform,
+    })
+  } catch (error) {
+    console.warn(error)
+  }
   const romDataList = await prepareRomData(files, gameInfoList, platform)
   const existingRoms = await findExistingRoms(files, platform)
   const { inserts, updates } = separateUpdatesAndInserts(romDataList, existingRoms)

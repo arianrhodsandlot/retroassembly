@@ -69,14 +69,14 @@ export function LaunchButtons({ state }: { state?: State }) {
             <HoverCard.Trigger>
               <img
                 alt='state'
-                className='size-10 rounded-sm border-2 border-white bg-transparent object-cover shadow'
+                className='size-10 rounded-sm border-2 border-white bg-neutral-200 object-cover shadow'
                 src={getFileUrl(state.thumbnailFileId)}
               />
             </HoverCard.Trigger>
             <HoverCard.Content align='center' hideWhenDetached side='top' size='1'>
               <img
                 alt='state'
-                className='size-48 cursor-pointer rounded-sm border-2 border-white bg-transparent object-cover shadow'
+                className='size-48 cursor-pointer rounded-sm border-2 border-white bg-neutral-200 object-cover shadow'
                 src={getFileUrl(state.thumbnailFileId)}
               />
             </HoverCard.Content>

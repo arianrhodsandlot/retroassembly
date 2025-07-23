@@ -3,9 +3,25 @@ import { getCDNUrl } from '@/utils/cdn.ts'
 import { MainBackground } from '../../components/main-background.tsx'
 
 export function PlatformBackground({ platform }: { platform: string }) {
+  const platformName =
+    {
+      famicom: 'nes',
+      sms: 'mastersystem',
+      vb: 'virtualboy',
+    }[platform] || platform
+  const imageName =
+    {
+      atari2600: 'a2600',
+      famicom: 'nes',
+      gamegear: 'gg',
+      genesis: 'gen',
+      vb: 'virtualboy',
+    }[platform] || platform
   const platformBackgroundUrl = getCDNUrl(
     'HerbFargus/es-theme-tronkyfran',
-    `${platform}/art/${platform.replace('atari', 'a')}_art_blur.jpg`,
+    `${platformName}/art/${imageName}_art_blur.jpg`,
   )
-  return <MainBackground alt={platformMap[platform].displayName} src={platformBackgroundUrl} />
+  return (
+    <MainBackground alt={platformMap[platform].displayName} key={platformBackgroundUrl} src={platformBackgroundUrl} />
+  )
 }

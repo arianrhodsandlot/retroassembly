@@ -65,6 +65,7 @@ export default defineConfig(async (env) => {
     plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), devtoolsJson(), serverInfo()],
     resolve: { alias: {} },
     server: {
+      allowedHosts: true,
       hmr: { overlay: false },
       host: true,
       open: true,

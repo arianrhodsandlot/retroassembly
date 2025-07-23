@@ -138,6 +138,9 @@
       "unrs-resolver",
       "workerd"
     ],
+    "overrides": {
+      "stylus": "https://github.com/stylus/stylus/archive/refs/tags/0.57.0.tar.gz"
+    },
     "patchedDependencies": {
       "selector-set": "patches/selector-set.patch",
       "spatial-navigation-ts": "patches/spatial-navigation-ts.patch"

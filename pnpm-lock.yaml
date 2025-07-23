@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  stylus: https://github.com/stylus/stylus/archive/refs/tags/0.57.0.tar.gz
-
 patchedDependencies:
   selector-set:
     hash: d9e1ae2c2c305d4a342bb379999ee53e69dbcff1fa8c729ad499740862b311a7
@@ -201,8 +198,8 @@ importers:
         specifier: 4.20250712.1
         version: 4.20250712.1
       motion:
-        specifier: 12.23.6
-        version: 12.23.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: 12.23.7
+        version: 12.23.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       nanoid:
         specifier: 5.1.5
         version: 5.1.5
@@ -1318,8 +1315,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@intlify/core-base@11.1.10':
-    resolution: {integrity: sha512-JhRb40hD93Vk0BgMgDc/xMIFtdXPHoytzeK6VafBNOj6bb6oUZrGamXkBKecMsmGvDQQaPRGG2zpa25VCw8pyw==}
+  '@intlify/core-base@11.1.11':
+    resolution: {integrity: sha512-1Z0N8jTfkcD2Luq9HNZt+GmjpFe4/4PpZF3AOzoO1u5PTtSuXZcfhwBatywbfE2ieB/B5QHIoOFmCXY2jqVKEQ==}
     engines: {node: '>= 16'}
 
   '@intlify/eslint-plugin-vue-i18n@4.0.1':
@@ -1331,12 +1328,12 @@ packages:
       vue-eslint-parser: ^10.0.0
       yaml-eslint-parser: ^1.2.2
 
-  '@intlify/message-compiler@11.1.10':
-    resolution: {integrity: sha512-TABl3c8tSLWbcD+jkQTyBhrnW251dzqW39MPgEUCsd69Ua3ceoimsbIzvkcPzzZvt1QDxNkenMht+5//V3JvLQ==}
+  '@intlify/message-compiler@11.1.11':
+    resolution: {integrity: sha512-7PC6neomoc/z7a8JRjPBbu0T2TzR2MQuY5kn2e049MP7+o32Ve7O8husylkA7K9fQRe4iNXZWTPnDJ6vZdtS1Q==}
     engines: {node: '>= 16'}
 
-  '@intlify/shared@11.1.10':
-    resolution: {integrity: sha512-6ZW/f3Zzjxfa1Wh0tYQI5pLKUtU+SY7l70pEG+0yd0zjcsYcK0EBt6Fz30Dy0tZhEqemziQQy2aNU3GJzyrMUA==}
+  '@intlify/shared@11.1.11':
+    resolution: {integrity: sha512-RIBFTIqxZSsxUqlcyoR7iiC632bq7kkOwYvZlvcVObHfrF4NhuKc4FKvu8iPCrEO+e3XsY7/UVpfgzg+M7ETzA==}
     engines: {node: '>= 16'}
 
   '@isaacs/balanced-match@4.0.1':
@@ -3900,8 +3897,8 @@ packages:
     resolution: {integrity: sha512-wzsgA6WOq+09wrU1tsJ09udeR/YZRaeArL9e1wPbFg3GG2yDnC2ldKpxs4xunpFF9DgqCqOIra3bc1HWrJ37Ww==}
     engines: {node: '>=0.4.x'}
 
-  framer-motion@12.23.6:
-    resolution: {integrity: sha512-dsJ389QImVE3lQvM8Mnk99/j8tiZDM/7706PCqvkQ8sSCnpmWxsgX+g0lj7r5OBVL0U36pIecCTBoIWcM2RuKw==}
+  framer-motion@12.23.7:
+    resolution: {integrity: sha512-Qs+zNG9D/3c9C0riom1iXVVOOOaY3T32LIofgbQJz9APY/CUE5v6G41WkcZl2lVhaAgQDQcNq94f8qzLf3rTZA==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -4733,14 +4730,14 @@ packages:
   mlly@1.7.4:
     resolution: {integrity: sha512-qmdSIPC4bDJXgZTCR7XosJiNKySV7O215tsPtDN9iEO/7q/76b/ijtgRu/+epFXSJhijtTCCGp3DWS549P3xKw==}
 
-  motion-dom@12.23.6:
-    resolution: {integrity: sha512-G2w6Nw7ZOVSzcQmsdLc0doMe64O/Sbuc2bVAbgMz6oP/6/pRStKRiVRV4bQfHp5AHYAKEGhEdVHTM+R3FDgi5w==}
+  motion-dom@12.23.7:
+    resolution: {integrity: sha512-AyJR07/YxObtK3NyGLCfebUe0k9UZGhik+2eIPUoKz76cKRRSkMeifmIxfztIvOaKb/Smu9IfVHkmx+mV+iFmQ==}
 
   motion-utils@12.23.6:
     resolution: {integrity: sha512-eAWoPgr4eFEOFfg2WjIsMoqJTW6Z8MTUCgn/GZ3VRpClWBdnbjryiA3ZSNLyxCTmCQx4RmYX6jX1iWHbenUPNQ==}
 
-  motion@12.23.6:
-    resolution: {integrity: sha512-6U55IW5i6Vut2ryKEhrZKg55490k9d6qdGXZoNSf98oQgDj5D7bqTnVJotQ6UW3AS6QfbW6KSLa7/e1gy+a07g==}
+  motion@12.23.7:
+    resolution: {integrity: sha512-h6xccd06g+VizejdBGWKgFzOROIHjhLDmzhdphUQ62C693dtP40YSSgj47916hovFXfH4jvYEca4duW7EZ7Iug==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -5560,11 +5557,6 @@ packages:
 
   stylus@0.57.0:
     resolution: {integrity: sha512-yOI6G8WYfr0q8v8rRvE91wbxFU+rJPo760Va4MF6K0I6BZjO4r+xSynkvyPBP9tV1CIEUeRsiidjIs2rzb1CnQ==}
-    hasBin: true
-
-  stylus@https://github.com/stylus/stylus/archive/refs/tags/0.57.0.tar.gz:
-    resolution: {tarball: https://github.com/stylus/stylus/archive/refs/tags/0.57.0.tar.gz}
-    version: 0.57.0
     hasBin: true
 
   sucrase@3.35.0:
@@ -7022,16 +7014,16 @@ snapshots:
   '@img/sharp-win32-x64@0.33.5':
     optional: true
 
-  '@intlify/core-base@11.1.10':
+  '@intlify/core-base@11.1.11':
     dependencies:
-      '@intlify/message-compiler': 11.1.10
-      '@intlify/shared': 11.1.10
+      '@intlify/message-compiler': 11.1.11
+      '@intlify/shared': 11.1.11
 
   '@intlify/eslint-plugin-vue-i18n@4.0.1(eslint@9.31.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0)(vue-eslint-parser@10.2.0(eslint@9.31.0(jiti@2.4.2)))(yaml-eslint-parser@1.3.0)':
     dependencies:
       '@eslint/eslintrc': 3.3.1
-      '@intlify/core-base': 11.1.10
-      '@intlify/message-compiler': 11.1.10
+      '@intlify/core-base': 11.1.11
+      '@intlify/message-compiler': 11.1.11
       debug: 4.4.1
       eslint: 9.31.0(jiti@2.4.2)
       eslint-compat-utils: 0.6.5(eslint@9.31.0(jiti@2.4.2))
@@ -7052,12 +7044,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@intlify/message-compiler@11.1.10':
+  '@intlify/message-compiler@11.1.11':
     dependencies:
-      '@intlify/shared': 11.1.10
+      '@intlify/shared': 11.1.11
       source-map-js: 1.2.1
 
-  '@intlify/shared@11.1.10': {}
+  '@intlify/shared@11.1.11': {}
 
   '@isaacs/balanced-match@4.0.1': {}
 
@@ -9787,9 +9779,9 @@ snapshots:
 
   format@0.2.2: {}
 
-  framer-motion@12.23.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  framer-motion@12.23.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      motion-dom: 12.23.6
+      motion-dom: 12.23.7
       motion-utils: 12.23.6
       tslib: 2.8.1
     optionalDependencies:
@@ -10754,15 +10746,15 @@ snapshots:
       pkg-types: 1.3.1
       ufo: 1.6.1
 
-  motion-dom@12.23.6:
+  motion-dom@12.23.7:
     dependencies:
       motion-utils: 12.23.6
 
   motion-utils@12.23.6: {}
 
-  motion@12.23.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  motion@12.23.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      framer-motion: 12.23.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      framer-motion: 12.23.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       tslib: 2.8.1
     optionalDependencies:
       react: 19.1.0
@@ -11077,7 +11069,7 @@ snapshots:
       fast-diff: 1.3.0
       lodash.sortedlastindex: 4.1.0
       postcss: 8.5.6
-      stylus: https://github.com/stylus/stylus/archive/refs/tags/0.57.0.tar.gz
+      stylus: 0.57.0
     transitivePeerDependencies:
       - supports-color
 
@@ -11709,18 +11701,6 @@ snapshots:
   strip-json-comments@3.1.1: {}
 
   stylus@0.57.0:
-    dependencies:
-      css: 3.0.0
-      debug: 4.4.1
-      glob: 7.2.3
-      safer-buffer: 2.1.2
-      sax: 1.2.4
-      source-map: 0.7.4
-    transitivePeerDependencies:
-      - supports-color
-    optional: true
-
-  stylus@https://github.com/stylus/stylus/archive/refs/tags/0.57.0.tar.gz:
     dependencies:
       css: 3.0.0
       debug: 4.4.1

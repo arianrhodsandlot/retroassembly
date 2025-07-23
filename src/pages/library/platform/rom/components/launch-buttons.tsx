@@ -3,6 +3,7 @@ import { clsx } from 'clsx'
 import type { MouseEvent } from 'react'
 import type { State } from '@/controllers/get-states.ts'
 import { useFocusIndicator } from '@/pages/library/hooks/use-focus-indicator.ts'
+import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { useLaunchButton } from '../atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 import { LaunchButton } from './launch-button.tsx'
@@ -69,14 +70,14 @@ export function LaunchButtons({ state }: { state?: State }) {
               <img
                 alt='state'
                 className='size-10 rounded-sm border-2 border-white bg-transparent object-cover shadow'
-                src={`/api/v1/files/${encodeURIComponent(state.thumbnailFileId)}`}
+                src={getFileUrl(state.thumbnailFileId)}
               />
             </HoverCard.Trigger>
             <HoverCard.Content align='center' hideWhenDetached side='top' size='1'>
               <img
                 alt='state'
                 className='size-48 cursor-pointer rounded-sm border-2 border-white bg-transparent object-cover shadow'
-                src={`/api/v1/files/${encodeURIComponent(state.thumbnailFileId)}`}
+                src={getFileUrl(state.thumbnailFileId)}
               />
             </HoverCard.Content>
           </HoverCard.Root>

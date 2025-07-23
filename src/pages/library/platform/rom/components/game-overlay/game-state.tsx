@@ -4,6 +4,7 @@ import ky from 'ky'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 import type { State } from '@/controllers/get-states.ts'
+import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { humanizeDate } from '@/utils/misc.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
@@ -14,7 +15,7 @@ export function GameState({ state }: { state: State }) {
   const [loaded, setLoaded] = useState(false)
 
   const { isMutating, trigger: loadState } = useSWRMutation(
-    `/api/v1/files/${encodeURIComponent(state.fileId)}`,
+    getFileUrl(state.fileId),
     async (url) => {
       if (emulator) {
         await emulator.loadState(ky(url))
@@ -62,7 +63,7 @@ export function GameState({ state }: { state: State }) {
           })}
           onError={handleLoad}
           onLoad={handleLoad}
-          src={`/api/v1/files/${encodeURIComponent(state.thumbnailFileId)}`}
+          src={getFileUrl(state.thumbnailFileId)}
         />
 
         {state.type === 'auto' ? (

@@ -6,6 +6,7 @@ import { useFocusIndicator } from '@/pages/library/hooks/use-focus-indicator.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { useLaunchButton } from '../atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
+import { GameSettingsButton } from './game-settings-button.tsx'
 import { LaunchButton } from './launch-button.tsx'
 
 const isAppleMobile = /iphone|ipad|ipod/i.test(navigator.userAgent)
@@ -15,7 +16,7 @@ const isAppleMobileDesktopMode =
   !isChromeLike && isMacLike && /safari/i.test(navigator.userAgent) && screen.height <= 1366
 const mayNeedsUserInteraction = isAppleMobile || isAppleMobileDesktopMode
 
-export function LaunchButtons({ state }: { state?: State }) {
+export function GameButtons({ state }: { state?: State }) {
   const { isPreparing, launch } = useEmulator()
   const [, setLaunchButtonRect] = useLaunchButton()
   const { syncStyle } = useFocusIndicator()
@@ -83,6 +84,7 @@ export function LaunchButtons({ state }: { state?: State }) {
           </HoverCard.Root>
         </LaunchButton>
       ) : null}
+
       <LaunchButton disabled={isPreparing} onClick={handleClickStart} variant={state ? 'outline' : 'solid'}>
         {isPreparing ? (
           <span className='icon-[svg-spinners--180-ring]' />
@@ -96,6 +98,8 @@ export function LaunchButtons({ state }: { state?: State }) {
         )}
         <span className='w-52 text-2xl font-semibold'>Start</span>
       </LaunchButton>
+
+      <GameSettingsButton />
     </div>
   )
 }

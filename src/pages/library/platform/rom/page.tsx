@@ -7,11 +7,11 @@ import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../../components/main-scroll-area.tsx'
 import { PageBreadcrumb } from '../../components/page-breadcrumb.tsx'
 import { GameAnimatePresence } from './components/game-animate-presence.tsx'
+import { GameButtons } from './components/game-buttons.tsx'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
 import { GameMedias } from './components/game-medias/game-medias.tsx'
 import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
-import { LaunchButtons } from './components/launch-buttons.tsx'
 import { PageHooks } from './components/page-hooks.ts'
 import { RomBackground } from './components/rom-background.tsx'
 
@@ -40,7 +40,7 @@ export default function RomPage({ pageData }: RomPageProps) {
         <PageBreadcrumb />
         <div className='flex min-h-full w-full flex-col gap-4 p-4 lg:flex-row'>
           <div>
-            <GameCover rom={rom} />
+            <GameCover className='top-4 block w-full lg:sticky lg:w-64' rom={rom} />
           </div>
 
           <div className='flex flex-1 flex-col gap-8'>
@@ -48,14 +48,13 @@ export default function RomPage({ pageData }: RomPageProps) {
 
             <div className='flex flex-col gap-8 lg:flex-col-reverse'>
               <div className='lg:px-4'>
-                <LaunchButtons state={state} />
+                <GameButtons state={state} />
               </div>
               <GameInfo gameInfo={launchboxGame} rom={rom} />
             </div>
 
             <div className='flex flex-col gap-4 lg:pl-4 lg:pr-64'>
               <GameMedias />
-
               {overview ? (
                 <div className='text-(--color-text)/90 prose max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable]'>
                   {overview}

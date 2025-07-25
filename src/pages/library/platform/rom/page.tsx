@@ -53,10 +53,10 @@ export default function RomPage({ pageData }: RomPageProps) {
               <GameInfo gameInfo={launchboxGame} rom={rom} />
             </div>
 
-            <div className='flex flex-col gap-4 lg:pl-4 lg:pr-64'>
+            <div className='flex flex-col gap-4 lg:pl-4'>
               <GameMedias />
               {overview ? (
-                <div className='text-(--color-text)/90 prose max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable]'>
+                <div className='text-(--color-text)/90 prose max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable] lg:pr-64'>
                   {overview}
                 </div>
               ) : null}

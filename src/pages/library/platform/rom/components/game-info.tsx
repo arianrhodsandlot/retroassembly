@@ -6,7 +6,7 @@ const unknown = <span className='opacity-40'>Unknown</span>
 export function GameInfo({ gameInfo, rom }) {
   return (
     <div className='bg-(--gray-a3) rounded px-8 py-4'>
-      <div className='mt-4 flex flex-col gap-8 lg:flex-row lg:*:min-w-36'>
+      <div className='flex flex-col gap-8 lg:flex-row lg:flex-wrap lg:*:min-w-36'>
         <div>
           <div className='flex items-center gap-2 font-semibold'>
             <span className='icon-[mdi--computer-classic]' />
@@ -42,9 +42,7 @@ export function GameInfo({ gameInfo, rom }) {
           </div>
           <div className='pl-6'>{gameInfo?.maxPlayers || unknown}</div>
         </div>
-      </div>
 
-      <div className='mt-4 flex flex-col gap-8 lg:flex-row lg:*:min-w-36'>
         <div>
           <div className='flex items-center gap-2 font-semibold'>
             <span className='icon-[mdi--chip]' />

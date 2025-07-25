@@ -1,9 +1,17 @@
 import { Button } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { motion } from 'motion/react'
-import { useLayoutEffect, useRef } from 'react'
+import { type FocusEvent, useLayoutEffect, useRef } from 'react'
 import scrollIntoView from 'smooth-scroll-into-view-if-needed'
 import { NavigatableLink } from '../navigatable-link.tsx'
+
+function handleFocus(event: FocusEvent<HTMLAnchorElement>) {
+  scrollIntoView(event.currentTarget, {
+    behavior: 'smooth',
+    block: 'nearest',
+    scrollMode: 'if-needed',
+  })
+}
 
 export function SidebarLink({ active, children, to }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -25,6 +33,7 @@ export function SidebarLink({ active, children, to }) {
           data-sn-focus-style={JSON.stringify({
             backgroundColor: 'rgba(0, 0, 0, 0.2)',
           })}
+          onFocus={handleFocus}
           to={to}
         >
           <div className='flex h-auto w-full items-center justify-start gap-2'>{children}</div>

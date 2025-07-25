@@ -11,7 +11,7 @@ import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 
 export function GameState({ state }: { state: State }) {
   const { hide, setIsPending } = useGameOverlay()
-  const { emulator } = useEmulator()
+  const { core, emulator } = useEmulator()
   const [loaded, setLoaded] = useState(false)
   const { isMutating, trigger: loadState } = useSWRMutation(
     getFileUrl(state.fileId),
@@ -28,6 +28,9 @@ export function GameState({ state }: { state: State }) {
     },
   )
 
+  const loadable = core === state.core
+  const disabled = !loadable || isMutating
+
   async function handleClick() {
     setIsPending(true)
     await loadState()
@@ -41,19 +44,23 @@ export function GameState({ state }: { state: State }) {
   return (
     <button
       className={clsx(
-        'flex h-36 w-48 shrink-0 flex-col overflow-hidden rounded border-4 border-white bg-white shadow',
+        'border-(--color-background) bg-(--color-background) flex h-36 w-48 shrink-0 flex-col overflow-hidden rounded border-4 shadow',
         { 'cursor-default': isMutating },
       )}
       data-sn-enabled
       data-sn-focus-style={JSON.stringify({
         backgroundColor: 'rgba(255, 255, 255, 0.3)',
       })}
-      disabled={isMutating}
+      disabled={disabled}
       key={state.id}
       onClick={handleClick}
       type='button'
     >
-      <div className={clsx('relative flex w-full flex-1 items-center justify-center bg-black')}>
+      <div
+        className={clsx('relative flex w-full flex-1 items-center justify-center bg-black', {
+          'opacity-50': !loadable,
+        })}
+      >
         {loaded ? null : <span className='icon-[svg-spinners--180-ring]' />}
         <img
           alt={state.id}
@@ -65,8 +72,17 @@ export function GameState({ state }: { state: State }) {
           onLoad={handleLoaded}
           src={getFileUrl(state.thumbnailFileId)}
         />
+        {loadable ? null : (
+          <div className='absolute bottom-0 right-0  rounded-tl-lg bg-black px-1 py-0.5 text-xs text-white'>
+            {state.core}
+          </div>
+        )}
       </div>
-      <div className='flex h-5 w-full items-center justify-center gap-1 text-xs text-zinc-600'>
+      <div
+        className={clsx('text-(--color-text) mt-1 flex h-6 w-full items-center justify-center gap-1 text-xs', {
+          'opacity-50': !loadable,
+        })}
+      >
         {isMutating ? (
           <span className='icon-[svg-spinners--180-ring] text-(--accent-9) block size-3' />
         ) : (

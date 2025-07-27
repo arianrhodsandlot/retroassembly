@@ -26,12 +26,12 @@
   "dependencies": {
     "argon2": "0.43.1",
     "better-sqlite3": "12.2.0",
-    "hono": "4.8.8"
+    "hono": "4.8.9"
   },
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.19.0",
     "@cloudflare/vite-plugin": "1.10.1",
-    "@cloudflare/workers-types": "4.20250725.0",
+    "@cloudflare/workers-types": "4.20250726.0",
     "@date-fns/utc": "2.1.0",
     "@hono/node-server": "1.17.1",
     "@hono/vite-dev-server": "0.20.0",
@@ -62,7 +62,7 @@
     "@types/react-dom": "19.1.6",
     "@types/signale": "1.4.7",
     "@types/spark-md5": "3.0.5",
-    "@zip.js/zip.js": "2.7.68",
+    "@zip.js/zip.js": "2.7.69",
     "atropos": "2.0.2",
     "browser-fs-access": "0.38.0",
     "canvas-confetti": "1.9.3",
@@ -110,7 +110,6 @@
     "type-fest": "4.41.0",
     "typescript": "5.8.3",
     "vite": "7.0.6",
-    "vite-plugin-cjs-interop": "2.2.0",
     "vite-plugin-devtools-json": "0.3.0",
     "vite-tsconfig-paths": "5.1.4",
     "wrangler": "4.26.0",

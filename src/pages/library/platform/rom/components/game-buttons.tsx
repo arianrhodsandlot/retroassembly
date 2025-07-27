@@ -1,9 +1,10 @@
 import { HoverCard } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import type { MouseEvent } from 'react'
+import { type MouseEvent, useEffect } from 'react'
 import type { State } from '@/controllers/get-states.ts'
 import { useFocusIndicator } from '@/pages/library/hooks/use-focus-indicator.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
+import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { useLaunchButton } from '../atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 import { GameSettingsButton } from './game-settings-button.tsx'
@@ -50,6 +51,12 @@ export function GameButtons({ state }: { state?: State }) {
     handleClickCommon(event)
     await launch()
   }
+
+  useEffect(() => {
+    if (!isPreparing) {
+      focus('.launch-button')
+    }
+  }, [isPreparing])
 
   return (
     <div className='flex w-full flex-col items-center gap-4 lg:flex-row'>

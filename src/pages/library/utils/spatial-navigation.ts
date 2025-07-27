@@ -36,8 +36,20 @@ export function focus(element: unknown) {
   }
 }
 
+type CancelHandler = () => void
+let cancelHandler: CancelHandler | undefined
+export function onCancel(handler: CancelHandler) {
+  cancelHandler = handler
+}
+export function offCancel() {
+  cancelHandler = undefined
+}
 export function cancel() {
-  console.warn('not implemented yet')
+  if (cancelHandler) {
+    cancelHandler()
+  } else {
+    globalThis.navigation.back()
+  }
 }
 
 let moving = false

@@ -1,3 +1,4 @@
+import { noop } from 'es-toolkit'
 import ky from 'ky'
 import { Nostalgist } from 'nostalgist'
 import { useEffect, useMemo } from 'react'
@@ -10,7 +11,7 @@ import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
-import { focus } from '@/pages/library/utils/spatial-navigation.ts'
+import { focus, offCancel, onCancel } from '@/pages/library/utils/spatial-navigation.ts'
 import { getCDNUrl } from '@/utils/cdn.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
 import { useIsFullscreen, useLaunchButton } from '../atoms.ts'
@@ -132,6 +133,7 @@ export function useEmulator() {
     if (preference.emulator.fullscreen) {
       toggleFullscreen()
     }
+    onCancel(noop)
   }
 
   async function exit() {
@@ -144,6 +146,7 @@ export function useEmulator() {
       } catch {}
       setIsFullscreen(false)
       focus(launchButton)
+      offCancel()
       await prepare()
     }
   }

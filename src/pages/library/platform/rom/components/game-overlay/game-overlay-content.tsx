@@ -1,7 +1,9 @@
+import { noop } from 'es-toolkit'
 import { AnimatePresence, motion } from 'motion/react'
+import { useEffect } from 'react'
 import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
-import { focus } from '@/pages/library/utils/spatial-navigation.ts'
+import { focus, offCancel, onCancel } from '@/pages/library/utils/spatial-navigation.ts'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
@@ -21,10 +23,22 @@ export function GameOverlayContent() {
   if (!rom) {
     throw new Error('No rom found')
   }
-  const { visible } = useGameOverlay()
+  const { hide, visible } = useGameOverlay()
   const goodcodes = getRomGoodcodes(rom)
   const { data: cover } = useRomCover(rom)
-  const { isFullscreen, toggleFullscreen } = useEmulator()
+  const { emulator, isFullscreen, toggleFullscreen } = useEmulator()
+
+  useEffect(() => {
+    const status = emulator?.getStatus()
+    if (visible) {
+      onCancel(hide)
+    } else if (status === 'running') {
+      onCancel(noop)
+    } else {
+      offCancel()
+    }
+    return offCancel
+  }, [visible, emulator, hide])
 
   return (
     <AnimatePresence>

@@ -7,14 +7,16 @@ import { getContext } from 'hono/context-storage'
 export function getRunTimeEnv() {
   const [, c] = attempt(getContext)
   const runTimeEnv = c ? env(c) : process.env
-  // console.log({ importenv: import.meta.env, runTimeEnv })
-  return defaults(runTimeEnv, {
-    RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY: path.resolve('data'),
-    RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST: 'https://msleuth.arianrhodsandlot.workers.dev/',
-    RETROASSEMBLY_RUN_TIME_STORAGE_HOST: '',
-    RETROASSEMBLY_RUN_TIME_SUPABASE_ANON_KEY: '',
-    RETROASSEMBLY_RUN_TIME_SUPABASE_URL: '',
-  })
+  return defaults(
+    { ...runTimeEnv },
+    {
+      RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY: path.resolve('data'),
+      RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST: 'https://msleuth.arianrhodsandlot.workers.dev/',
+      RETROASSEMBLY_RUN_TIME_STORAGE_HOST: '',
+      RETROASSEMBLY_RUN_TIME_SUPABASE_ANON_KEY: '',
+      RETROASSEMBLY_RUN_TIME_SUPABASE_URL: '',
+    },
+  )
 }
 
 export function getDirectories() {

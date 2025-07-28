@@ -15,8 +15,8 @@ import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './script
 import { getDirectories } from './src/constants/env.ts'
 
 defaults(process.env, {
-  RETROASSEMBLY_BUILD_TIME_VITE_BUILD_TIME: JSON.stringify(formatISO(new UTCDateMini())),
-  RETROASSEMBLY_BUILD_TIME_VITE_VERSION: JSON.stringify(await getVersion()),
+  RETROASSEMBLY_BUILD_TIME_VITE_BUILD_TIME: formatISO(new UTCDateMini()),
+  RETROASSEMBLY_BUILD_TIME_VITE_VERSION: await getVersion(),
 })
 
 async function getVersion() {

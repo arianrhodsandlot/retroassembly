@@ -2,7 +2,7 @@ import { drizzle as drizzleBetterSQLite3 } from 'drizzle-orm/better-sqlite3'
 import { drizzle as drizzleD1 } from 'drizzle-orm/d1'
 import { env, getRuntimeKey } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
-import { databasePath } from '../constants/env.ts'
+import { getDatabasePath } from '../constants/env.ts'
 import * as schema from '../databases/schema.ts'
 
 const runtimeKey = getRuntimeKey()
@@ -15,7 +15,7 @@ function createDrizzleD1() {
 }
 
 function createDrizzleBetterSQLite3() {
-  const library = drizzleBetterSQLite3(databasePath, config)
+  const library = drizzleBetterSQLite3(getDatabasePath(), config)
   return { library }
 }
 

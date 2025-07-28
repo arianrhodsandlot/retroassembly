@@ -8,7 +8,7 @@ RUN corepack enable
 RUN pnpm fetch
 
 FROM base AS builder
-ARG VERSION
+ARG RETROASSEMBLY_BUILD_TIME_VERSION
 ENV SKIP_INSTALL_SIMPLE_GIT_HOOKS=true
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
@@ -16,7 +16,6 @@ COPY . .
 RUN corepack enable
 RUN pnpm i
 RUN node --run=build
-RUN pnpm drizzle-kit generate
 
 FROM base AS deps-production
 WORKDIR /app

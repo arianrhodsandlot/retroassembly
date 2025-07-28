@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
-import { storageDirectory } from '../constants/env.ts'
+import { getDirectories } from '../constants/env.ts'
 
 export function createStorage() {
   const c = getContext()
@@ -9,6 +9,8 @@ export function createStorage() {
   if (BUCKET) {
     return BUCKET
   }
+
+  const { storageDirectory } = getDirectories()
 
   return {
     async head(id: string) {

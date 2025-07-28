@@ -1,21 +1,21 @@
 import { isBrowser } from 'es-toolkit'
 
 if (isBrowser()) {
-  const projectId = import.meta.env.VITE_APP_CLARITY_PROJECT_ID
+  const projectId = import.meta.env.RETROASSEMBLY_BUILD_TIME_VITE_CLARITY_PROJECT_ID
   if (projectId) {
     /* eslint-disable biome-x/lint,max-params,sonarjs/no-nested-assignment,prefer-rest-params,unicorn/prefer-query-selector */
-    ;(function (c, l, a, r, i, t, y) {
+    ;(function (c, l, a, r, i, _t, _y) {
       c[a] =
         c[a] ||
         function () {
           ;(c[a].q = c[a].q || []).push(arguments)
         }
-      t = l.createElement(r)
-      t.async = 1
+      const t = l.createElement(r as 'script')
+      t.async = true
       t.src = `https://www.clarity.ms/tag/${i}`
-      y = l.getElementsByTagName(r)[0]
-      y.parentNode.insertBefore(t, y)
-    })(globalThis, document, 'clarity', 'script', import.meta.env.VITE_APP_CLARITY_PROJECT_ID)
+      const y = l.getElementsByTagName(r)[0]
+      y.parentNode?.insertBefore(t, y)
+    })(globalThis, document, 'clarity', 'script', import.meta.env.RETROASSEMBLY_BUILD_TIME_VITE_CLARITY_PROJECT_ID)
     /* eslint-enable */
 
     if (globalThis.CURRENT_USER?.id) {

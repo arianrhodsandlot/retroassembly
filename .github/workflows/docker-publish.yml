@@ -46,4 +46,4 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
         build-args: |
-          VERSION=${{ github.ref_name }}
+          RETROASSEMBLY_BUILD_TIME_VERSION=${{ github.ref_name }}

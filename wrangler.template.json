@@ -15,7 +15,7 @@
   "d1_databases": [
     {
       "binding": "DB_LIBRARY",
-      "database_id": "${obj.DB_LIBRARY_DATABASE_ID ?? '-'}",
+      "database_id": "${obj.RETROASSEMBLY_BUILD_TIME_WRANGLER_DATABASE_ID ?? '-'}",
       "database_name": "retroassembly_library",
       "migrations_dir": "src/databases/migrations"
     }

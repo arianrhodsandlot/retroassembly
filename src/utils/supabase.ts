@@ -15,9 +15,12 @@ declare module 'hono' {
 
 export function createSupabase() {
   const c = getContext()
-  const { SUPABASE_ANON_KEY, SUPABASE_URL } = env<{ SUPABASE_ANON_KEY: string; SUPABASE_URL: string }>(c)
-  if (SUPABASE_ANON_KEY && SUPABASE_URL) {
-    return createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  const { RETROASSEMBLY_RUN_TIME_SUPABASE_ANON_KEY, RETROASSEMBLY_RUN_TIME_SUPABASE_URL } = env<{
+    RETROASSEMBLY_RUN_TIME_SUPABASE_ANON_KEY: string
+    RETROASSEMBLY_RUN_TIME_SUPABASE_URL: string
+  }>(c)
+  if (RETROASSEMBLY_RUN_TIME_SUPABASE_ANON_KEY && RETROASSEMBLY_RUN_TIME_SUPABASE_URL) {
+    return createServerClient(RETROASSEMBLY_RUN_TIME_SUPABASE_URL, RETROASSEMBLY_RUN_TIME_SUPABASE_ANON_KEY, {
       cookies: {
         getAll() {
           const cookieHeader = c.req.header('Cookie') ?? ''

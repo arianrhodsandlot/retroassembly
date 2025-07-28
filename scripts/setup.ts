@@ -1,7 +1,7 @@
 import ciInfo from 'ci-info'
 import fs from 'fs-extra'
 import isDocker from 'is-docker'
-import { dataDirectory } from '../src/constants/env.ts'
+import { getDirectories } from '../src/constants/env.ts'
 import { exec, prepareWranglerConfig } from './utils.ts'
 
 async function main() {
@@ -9,6 +9,7 @@ async function main() {
     return
   }
 
+  const { dataDirectory } = getDirectories()
   await Promise.all([
     exec`simple-git-hooks`,
     exec`react-router typegen`,

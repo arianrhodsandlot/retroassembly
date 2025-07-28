@@ -11,7 +11,9 @@ export const exec = $({ env: { FORCE_COLOR: 'true' }, verbose: 'short' })
 
 export function getTargetRuntime() {
   const isWorkerd =
-    env.TARGET_RUNTIME === 'workerd' || env.npm_lifecycle_event?.endsWith(':workerd') || ciInfo.CLOUDFLARE_WORKERS
+    env.RETROASSEMBLY_BUILTTIME_TARGET_RUNTIME === 'workerd' ||
+    env.npm_lifecycle_event?.endsWith(':workerd') ||
+    ciInfo.CLOUDFLARE_WORKERS
   return isWorkerd ? 'workerd' : 'node'
 }
 

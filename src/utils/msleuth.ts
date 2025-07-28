@@ -2,11 +2,10 @@ import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
 import ky, { type Options } from 'ky'
 import QuickLRU from 'quick-lru'
+import { getRunTimeEnv } from '@/constants/env.ts'
 
 function getApiURL(endpoint: string): URL {
-  const c = getContext()
-  const { MSLEUTH_HOST = 'https://msleuth.arianrhodsandlot.workers.dev/' } = env(c)
-  return new URL(`api/v1/${endpoint}`, MSLEUTH_HOST as string)
+  return new URL(`api/v1/${endpoint}`, getRunTimeEnv().RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST)
 }
 
 function createRequest({
@@ -25,9 +24,10 @@ function createRequest({
 
 function getClient() {
   const c = getContext()
-  const { MSLEUTH, MSLEUTH_HOST } = env(c)
+  const { MSLEUTH } = env(c)
+  const { RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST } = getRunTimeEnv()
   const option: Options = { retry: 3, timeout: 30_000 }
-  if (MSLEUTH?.fetch && !MSLEUTH_HOST) {
+  if (MSLEUTH?.fetch && !RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST) {
     option.fetch = MSLEUTH.fetch.bind(MSLEUTH)
   }
   const client = ky.create(option)

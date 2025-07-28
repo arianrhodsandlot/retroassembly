@@ -4,7 +4,7 @@ import { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
 import { formatISO } from 'date-fns'
-import { noop } from 'es-toolkit/compat'
+import { defaults, noop } from 'es-toolkit/compat'
 import { $ } from 'execa'
 import fs from 'fs-extra'
 import serverAdapter from 'hono-react-router-adapter/vite'
@@ -12,19 +12,19 @@ import { defineConfig, type Plugin, type UserConfig } from 'vite'
 import devtoolsJson from 'vite-plugin-devtools-json'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './scripts/utils.ts'
-import { storageDirectory } from './src/constants/env.ts'
+import { getDirectories } from './src/constants/env.ts'
 
-const define = {
-  BUILD_TIME: JSON.stringify(formatISO(new UTCDateMini())),
-  VERSION: JSON.stringify(await getVersion()),
-}
+defaults(process.env, {
+  RETROASSEMBLY_BUILD_TIME_VITE_BUILD_TIME: JSON.stringify(formatISO(new UTCDateMini())),
+  RETROASSEMBLY_BUILD_TIME_VITE_VERSION: JSON.stringify(await getVersion()),
+})
 
 async function getVersion() {
   return getEnvVersion() || (await getGitDescription()) || ''
 }
 
 function getEnvVersion() {
-  const envNames = ['WORKERS_CI_COMMIT_SHA', 'VERSION']
+  const envNames = ['WORKERS_CI_COMMIT_SHA']
   for (const envName of envNames) {
     if (process.env[envName]) {
       return process.env[envName].slice(0, 7)
@@ -61,7 +61,7 @@ function serverInfo() {
 
 export default defineConfig(async (env) => {
   const config = {
-    define,
+    envPrefix: 'RETROASSEMBLY_BUILD_TIME_VITE_',
     plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), devtoolsJson(), serverInfo()],
     resolve: { alias: {} },
     server: {
@@ -83,6 +83,7 @@ export default defineConfig(async (env) => {
     config.resolve.alias['@entry.server.tsx'] = serverEntry
   } else {
     if (env.command === 'serve') {
+      const { storageDirectory } = getDirectories()
       await fs.ensureDir(storageDirectory)
       await import('./src/utils/self-test.ts')
     }

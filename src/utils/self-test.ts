@@ -2,10 +2,11 @@ import { migrate } from 'drizzle-orm/better-sqlite3/migrator'
 import fs from 'fs-extra'
 import { getRuntimeKey } from 'hono/adapter'
 import isDocker from 'is-docker'
-import { dataDirectory } from '../constants/env.ts'
+import { getDirectories } from '../constants/env.ts'
 import { createDrizzle } from './drizzle.ts'
 
 async function testDataDirectory() {
+  const { dataDirectory } = getDirectories()
   const dataDirectoryExists = await fs.exists(dataDirectory)
   if (dataDirectoryExists) {
     return

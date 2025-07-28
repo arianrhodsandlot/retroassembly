@@ -2,6 +2,7 @@ import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
 import { createMiddleware } from 'hono/factory'
 import { z } from 'zod'
+import { getRunTimeEnv } from '@/constants/env.ts'
 import { createLaunchRecord } from '../controllers/create-launch-record.ts'
 import { createRoms } from '../controllers/create-roms.ts'
 import { createState } from '../controllers/create-state.ts'
@@ -17,7 +18,7 @@ import { updatePreference } from '../controllers/update-preference.ts'
 import { createFileResponse } from './utils.ts'
 
 interface Bindings {
-  STORAGE_HOST?: string
+  RETROASSEMBLY_RUN_TIME_STORAGE_HOST?: string
 }
 
 export const app = new Hono<{ Bindings: Bindings }>()
@@ -152,8 +153,9 @@ app.get('state/:id/thumbnail', async (c) => {
 
 app.get('files/:id', async (c) => {
   const id = c.req.param('id')
-  if (c.env.STORAGE_HOST) {
-    return c.redirect(new URL(id, c.env.STORAGE_HOST))
+  const runTimeEnv = getRunTimeEnv()
+  if (runTimeEnv.RETROASSEMBLY_RUN_TIME_STORAGE_HOST) {
+    return c.redirect(new URL(id, runTimeEnv.RETROASSEMBLY_RUN_TIME_STORAGE_HOST))
   }
   const file = await getFileContent(id)
   if (file) {

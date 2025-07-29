@@ -229,7 +229,7 @@ importers:
         version: 7.7.1(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       react-router-templates:
         specifier: github:remix-run/react-router-templates
-        version: git+https://git@github.com:remix-run/react-router-templates.git#9c1e1c087fe299384b9a231320085b93514a534b
+        version: https://codeload.github.com/remix-run/react-router-templates/tar.gz/9c1e1c087fe299384b9a231320085b93514a534b
       simple-git-hooks:
         specifier: 2.13.0
         version: 2.13.0
@@ -5138,8 +5138,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-router-templates@git+https://git@github.com:remix-run/react-router-templates.git#9c1e1c087fe299384b9a231320085b93514a534b:
-    resolution: {commit: 9c1e1c087fe299384b9a231320085b93514a534b, repo: git@github.com:remix-run/react-router-templates.git, type: git}
+  react-router-templates@https://codeload.github.com/remix-run/react-router-templates/tar.gz/9c1e1c087fe299384b9a231320085b93514a534b:
+    resolution: {tarball: https://codeload.github.com/remix-run/react-router-templates/tar.gz/9c1e1c087fe299384b9a231320085b93514a534b}
     version: 0.0.0
 
   react-router@7.7.1:
@@ -11141,7 +11141,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.1.8
 
-  react-router-templates@git+https://git@github.com:remix-run/react-router-templates.git#9c1e1c087fe299384b9a231320085b93514a534b: {}
+  react-router-templates@https://codeload.github.com/remix-run/react-router-templates/tar.gz/9c1e1c087fe299384b9a231320085b93514a534b: {}
 
   react-router@7.7.1(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
     dependencies:

@@ -55,7 +55,7 @@ a:focus {
 
 .light, .light-theme {
   .hero-bg {
-    background-image: linear-gradient(black 1px, transparent 1px), linear-gradient(to right, black 1px, #fff 1px);
+    background-image: linear-gradient(#666 1px, transparent 1px), linear-gradient(to right, #666 1px, #fff 1px);
   }
 }
 

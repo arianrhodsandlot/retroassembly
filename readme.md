@@ -44,7 +44,7 @@ You have two options to get started with RetroAssembly:
 > + Perfect if you prefer to host your own instance, have privacy concerns, or want to customize the deployment.
 
 1. Make sure you have Docker installed on your system.
-2. Pull and run the RetroAssembly Docker image:
+2. Pull and run the [RetroAssembly Docker image](https://hub.docker.com/r/arianrhodsandlot/retroassembly):
     ```sh
     docker run -d --name retroassembly -p 8000:8000 -v /path/to/your/data:/app/data arianrhodsandlot/retroassembly
     ```

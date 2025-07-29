@@ -18,14 +18,19 @@ export function HeroMain() {
           {metadata.title}
         </h1>
       </div>
-
       <div className='relative mt-4 px-10 text-center'>
         <div className='text-(--gray-10) overflow-hidden rounded p-2 text-xl font-[Roboto_Slab_Variable]'>
           {metadata.description}
         </div>
       </div>
-
       <ButtonLinks />
+      <a
+        className='mt-4 flex items-center gap-2 text-xs underline opacity-80'
+        href='https://github.com/arianrhodsandlot/retroassembly#option-2-self-host-with-docker'
+      >
+        <span className='icon-[mdi--docker] motion-preset-oscillate motion-duration-2000 relative -top-0.5 text-2xl text-[#1d63ed]' />
+        Self-Hosting with Docker
+      </a>
     </div>
   )
 }

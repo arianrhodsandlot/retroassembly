@@ -2,26 +2,20 @@ import { UTCDateMini } from '@date-fns/utc'
 import { format } from 'date-fns'
 import { $ } from 'execa'
 
-async function getCurrentBranch() {
-  const { stdout } = await $`git branch --show-current`
-  return stdout.trim()
-}
-
-async function getTag() {
+function getTag() {
   const now = new UTCDateMini()
   const major = '1'
   const minor = format(now, 'yyMMdd')
   const patch = format(now, 'hhmm')
   let version = `${major}.${minor}.${patch}`
-  const currentBranch = await getCurrentBranch()
-  if (currentBranch !== 'main') {
+  if (!process.env.npm_lifecycle_script?.includes('latest')) {
     version += '-unstable'
   }
   return version
 }
 
 async function main() {
-  const tag = await getTag()
+  const tag = getTag()
   await $({ verbose: 'short' })`git tag v${tag}`
 }
 

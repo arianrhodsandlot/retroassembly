@@ -5,6 +5,7 @@
     "build": "react-router build",
     "build:node": "node --run=build",
     "build:workerd": "node --run=build",
+    "check-lockfile": "node scripts/check-lockfile.ts",
     "dev": "react-router",
     "dev:node": "node --run=dev",
     "dev:workerd": "node --run=dev",
@@ -21,7 +22,8 @@
   },
   "lint-staged": {
     "*.?(m|c)@(j|t)s?(x)": "eslint --flag=unstable_native_nodejs_ts_config --fix",
-    "package.json": "pnpm dlx sort-package-json"
+    "package.json": "pnpm dlx sort-package-json",
+    "pnpm-lock.yaml": "node --run=check-lockfile"
   },
   "dependencies": {
     "argon2": "0.43.1",

@@ -6,7 +6,7 @@ import { chunk } from 'es-toolkit'
 import ky from 'ky'
 import { useDeferredValue, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import useSWRMutation from 'swr/mutation'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
@@ -16,6 +16,7 @@ const maxFiles = 100
 
 export function UploadDialog({ platform, toggleOpen }: { platform: string; toggleOpen: () => void }) {
   const navigate = useNavigate()
+  const location = useLocation()
   const { getRootProps, isDragActive } = useDropzone({ onDrop })
 
   const [files, setFiles] = useState<File[]>([])
@@ -101,6 +102,11 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
     if (files.length > 0) {
       event.preventDefault()
     }
+  }
+
+  function handleClickDone() {
+    toggleOpen()
+    navigate(location.pathname + location.search, { replace: true })
   }
 
   return (
@@ -214,13 +220,7 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
 
               <div className='mt-4 flex justify-end'>
                 <Dialog.Close>
-                  <Button
-                    onClick={() => {
-                      toggleOpen()
-                      navigate('.', { replace: true })
-                    }}
-                    variant='soft'
-                  >
+                  <Button onClick={handleClickDone} variant='soft'>
                     <span className='icon-[mdi--check]' />
                     Done
                   </Button>

@@ -40,7 +40,7 @@ export function CoreOptions({
           </Callout.Text>
         </Callout.Root>
 
-        <div className='grid grid-cols-3 gap-y-2'>
+        <div className='grid grid-cols-3 gap-2'>
           {coreOptions.map(({ defaultOption, name, options, title }) => (
             <label className='flex w-fit items-center gap-4' key={name}>
               <span className='text-sm'>{title || name}</span>

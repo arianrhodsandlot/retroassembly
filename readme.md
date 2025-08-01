@@ -53,7 +53,7 @@ You have two options to get started with RetroAssembly:
     docker run -d --name retroassembly -p 8000:8000 -v /srv/retroassembly:/app/data arianrhodsandlot/retroassembly
     ```
     You can also change the port `8000` to any other value you want.
-3. Open your browser and navigate to `http://localhost:8000` (if the port `8000` is used in previous step) to access your self-hosted RetroAssembly instance.
+3. Open your browser and navigate to `http://yourhost:8000` (if the port `8000` is used in previous step) to access your self-hosted RetroAssembly instance.
 4. Create an account after clicking the "Library" button.
 5. Upload your ROM files and start gaming!
 

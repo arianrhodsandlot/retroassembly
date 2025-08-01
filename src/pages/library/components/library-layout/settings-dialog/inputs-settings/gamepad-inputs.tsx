@@ -1,4 +1,4 @@
-import { Card } from '@radix-ui/themes'
+import { Callout, Card } from '@radix-ui/themes'
 import type { ReactNode } from 'react'
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import { useGamepads } from '@/pages/library/hooks/use-gamepads.ts'
@@ -100,39 +100,60 @@ const buttonGroups: ButtonGroup[] = [
 export function GamepadInputs() {
   const { connected, gamepad } = useGamepads()
   return (
-    <Card>
-      {gamepad?.id ? (
-        <SettingsTitle>
-          <span className='icon-[mdi--google-gamepad]' />
-          <div className='flex items-baseline gap-2'>
-            <GamepadTitle id={gamepad.id} />
-          </div>
-        </SettingsTitle>
-      ) : null}
+    <>
+      <Callout.Root size={'1'}>
+        <Callout.Icon>
+          <span className='icon-[mdi--information]' />
+        </Callout.Icon>
+        <Callout.Text>
+          You can visit{' '}
+          <a
+            className='inline-flex items-center gap-1 underline'
+            href='https://hardwaretester.com/gamepad'
+            rel='noreferrer noopener'
+            target='_blank'
+          >
+            Gamepad Tester
+            <span className='icon-[mdi--open-in-new]' />
+          </a>{' '}
+          to test your gamepad and see the button names.
+        </Callout.Text>
+      </Callout.Root>
 
-      {connected ? (
-        <div className='flex flex-col gap-4 p-4'>
-          {buttonGroups.map(({ buttons, type }) => (
-            <div className='flex gap-4' key={type}>
-              {buttons.map((button) => (
-                <GamepadInput button={button} key={button.name} />
-              ))}
+      <Card className='mt-2'>
+        {gamepad?.id ? (
+          <SettingsTitle>
+            <span className='icon-[mdi--google-gamepad]' />
+            <div className='flex items-baseline gap-2'>
+              <GamepadTitle id={gamepad.id} />
             </div>
-          ))}
+          </SettingsTitle>
+        ) : null}
 
-          <div className='flex justify-end'>
-            <UpdateButton preference={{ input: { gamepadMappings: null } }}>
-              <span className='icon-[mdi--undo]' />
-              Reset to defaults
-            </UpdateButton>
+        {connected ? (
+          <div className='flex flex-col gap-4 p-4'>
+            {buttonGroups.map(({ buttons, type }) => (
+              <div className='flex gap-4' key={type}>
+                {buttons.map((button) => (
+                  <GamepadInput button={button} key={button.name} />
+                ))}
+              </div>
+            ))}
+
+            <div className='flex justify-end'>
+              <UpdateButton preference={{ input: { gamepadMappings: null } }}>
+                <span className='icon-[mdi--undo]' />
+                Reset to defaults
+              </UpdateButton>
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className='flex items-center justify-center gap-2 py-10 text-2xl opacity-50'>
-          <span className='icon-[svg-spinners--180-ring]' />
-          Press any key on your gamepad
-        </div>
-      )}
-    </Card>
+        ) : (
+          <div className='flex items-center justify-center gap-2 py-10 text-2xl opacity-50'>
+            <span className='icon-[svg-spinners--180-ring]' />
+            Press any key on your gamepad
+          </div>
+        )}
+      </Card>
+    </>
   )
 }

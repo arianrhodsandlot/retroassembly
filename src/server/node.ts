@@ -6,7 +6,15 @@ import app from './app.ts'
 
 const pages = handler(build)
 
-app.use(serveStatic({ root: 'dist/client' }))
+app.use(
+  serveStatic({
+    onFound: (_path, c) => {
+      c.header('Cache-Control', 'public, immutable, max-age=31536000')
+    },
+    precompressed: true,
+    root: 'dist/client',
+  }),
+)
 
 app.route('', pages)
 

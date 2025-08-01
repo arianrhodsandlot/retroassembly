@@ -42,7 +42,7 @@ app.post(
     const form = c.req.valid('form')
     await createUser(form)
     const { session, user } = await createSession(form)
-    const cookie = { expires: session.expiresAt, httpOnly: true, path: '/', sameSite: 'Strict', secure: true } as const
+    const cookie = { expires: session.expiresAt, httpOnly: true, path: '/', sameSite: 'Strict', secure: false } as const
     setCookie(c, 'token', session.token, cookie)
     return c.json({ session, user })
   },

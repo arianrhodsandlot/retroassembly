@@ -3,6 +3,12 @@
   <h1 align="center">RetroAssembly</h1>
 </p>
 
+<p align="center">
+  <a href="https://github.com/arianrhodsandlot/retroassembly"><img src="https://img.shields.io/github/stars/arianrhodsandlot/retroassembly" alt="GitHub"></a>
+  <a href="https://discord.gg/gwaKRAYG6t"><img src="https://img.shields.io/discord/1129062038543548496?logo=discord" alt="Discord"></a>
+  <a href="https://hub.docker.com/r/arianrhodsandlot/retroassembly"><img src="https://img.shields.io/docker/pulls/arianrhodsandlot/retroassembly" alt="Docker Hub"></a>
+</p>
+
 [RetroAssembly](https://retroassembly.com/) is a personal retro game collection cabinet in your browser.
 
 ![library](public/assets/screenshots/library.jpeg)
@@ -43,6 +49,8 @@ You have two options to get started with RetroAssembly:
 > + This option is for advanced users who want full control.
 > + Perfect if you prefer to host your own instance, have privacy concerns, or want to customize the deployment.
 
+##### Using Docker CLI
+
 1. Make sure you have Docker installed on your system.
 2. Pull and run the [RetroAssembly Docker image](https://hub.docker.com/r/arianrhodsandlot/retroassembly):
     ```sh
@@ -53,19 +61,32 @@ You have two options to get started with RetroAssembly:
     docker run -d --name retroassembly -p 8000:8000 -v /srv/retroassembly:/app/data arianrhodsandlot/retroassembly
     ```
     You can also change the port `8000` to any other value you want.
-3. Open your browser and navigate to `http://yourhost:8000` (if the port `8000` is used in previous step) to access your self-hosted RetroAssembly instance.
-4. Create an account after clicking the "Library" button.
-5. Upload your ROM files and start gaming!
 
-## Community
+##### Using Docker Compose
 
-+ Discord Server
+1. Make sure you have Docker and Docker Compose installed on your system.
+2. Create a `docker-compose.yml` file:
+    ```yaml
+    version: '3.8'
+    services:
+      retroassembly:
+        image: arianrhodsandlot/retroassembly
+        container_name: retroassembly
+        ports: [8000:8000]
+        volumes: [/path/to/your/data:/app/data]
+        restart: unless-stopped
+    ```
+    Replace `/path/to/your/data` with the actual path where you want to store your game data, ROMs, and save states.
+3. Run the service:
+    ```sh
+    docker-compose up -d
+    ```
 
-  [![Discord](https://img.shields.io/discord/1129062038543548496?logo=discord)](https://discord.gg/gwaKRAYG6t)
+##### Accessing Your Instance
 
-+ GitHub discussions
-
-  [![GitHub discussions](https://img.shields.io/github/discussions/arianrhodsandlot/retroassembly?logo=github)](https://github.com/arianrhodsandlot/retroassembly/discussions)
+1. Open your browser and navigate to `http://yourhost:8000` (if the port `8000` is used in previous steps) to access your self-hosted RetroAssembly instance.
+2. Create an account after clicking the "Library" button.
+3. Upload your ROM files and start gaming!
 
 ## Supported Platforms
 

@@ -84,7 +84,18 @@ export type PreferenceSnippet = PartialDeep<Preference>
 
 export const defaultPreference: ResolvedPreference = {
   emulator: {
-    core: {},
+    core: {
+      fceumm: {
+        fceumm_turbo_enable: 'Both',
+      },
+      mame2003_plus: {
+        'mame2003-plus_skip_disclaimer': 'enabled',
+      },
+      mgba: {
+        mgba_gb_colors: 'DMG Green',
+        mgba_skip_bios: 'ON',
+      },
+    },
     fullscreen: false,
     platform: {
       arcade: { core: 'mame2003_plus' },

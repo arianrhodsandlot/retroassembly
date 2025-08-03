@@ -121,8 +121,8 @@ RetroAssembly aims to support a wide range of vintage gaming systems. Emulation 
 Make sure you have these softwares installed or activated.
 | Dependences | Version |
 | - | - |
-| Node.js | `>=24` |
-| PNPM | `>=10` |
+| [Node.js](https://nodejs.org/en/download/current) | `>=24` |
+| [pnpm](https://pnpm.io/installation) | `>=10` |
 
 ### Steps
 Simply run following commands in a terminal then a development server will be launched.

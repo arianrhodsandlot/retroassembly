@@ -1,3 +1,4 @@
+import { delay } from 'es-toolkit'
 import { useAtom } from 'jotai'
 import { useShowGameOverlayContent } from '@/pages/library/atoms.ts'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
@@ -22,21 +23,18 @@ export function useGameOverlay() {
     }
   }
 
-  function hide() {
+  async function hide() {
     if (isPending) {
       return
     }
-    emulator?.resume()
     setVisible(false)
     focus('canvas')
+    await delay(100)
+    emulator?.resume()
   }
 
   async function toggle() {
-    if (visible) {
-      hide()
-    } else {
-      await show()
-    }
+    await (visible ? hide() : show())
   }
 
   return { hide, isPending, setIsPending, show, toggle, visible }

@@ -11,12 +11,12 @@ export function GameOverlayButtons() {
   const { hide, setIsPending } = useGameOverlay()
   const isDemo = useIsDemo()
 
-  function handleClickResume() {
-    hide()
+  async function handleClickResume() {
+    await hide()
   }
 
-  function handleClickRestart() {
-    hide()
+  async function handleClickRestart() {
+    await hide()
     emulator?.restart()
   }
 
@@ -30,8 +30,8 @@ export function GameOverlayButtons() {
     }
   }
 
-  function handleClickExit() {
-    hide()
+  async function handleClickExit() {
+    await hide()
     exit()
   }
 
@@ -39,7 +39,7 @@ export function GameOverlayButtons() {
     setIsPending(true)
     try {
       await saveState()
-      hide()
+      await hide()
       exit()
     } finally {
       setIsPending(false)

@@ -36,8 +36,10 @@ const defaultEmulatorStyle: Partial<CSSStyleDeclaration> = {
   backgroundPosition: ['left center', 'right center'].join(','),
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'contain',
+  border: 'none',
   cursor: 'none',
   opacity: '0',
+  outline: 'none',
   transition: 'opacity .1s',
 }
 

@@ -22,8 +22,8 @@ export function GameState({ state }: { state: State }) {
       }
     },
     {
-      onSuccess() {
-        hide()
+      async onSuccess() {
+        await hide()
       },
     },
   )

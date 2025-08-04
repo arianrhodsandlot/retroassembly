@@ -9,7 +9,7 @@
   <a href="https://hub.docker.com/r/arianrhodsandlot/retroassembly"><img src="https://img.shields.io/docker/pulls/arianrhodsandlot/retroassembly" alt="Docker Hub"></a>
 </p>
 
-[RetroAssembly](https://retroassembly.com/) is a personal retro game collection cabinet in your browser.
+RetroAssembly is a personal retro game collection cabinet in your browser.
 
 ![library](public/assets/screenshots/library.jpeg)
 
@@ -42,23 +42,18 @@ Share your ideas to our community and they may appear here later!
 You have two options to get started with RetroAssembly:
 
 #### Option 1: Use the Official Hosted Version
+> <small>Recommended for most users. Perfect if you want to get started quickly without any setup.</small>
 
-> [!tip]
-> - Recommended for most users.
-> - Perfect if you want to get started quickly without any setup.
-
-1. Visit the [retroassembly.com](https://retroassembly.com/) in your web browser.
+1. Visit [retroassembly.com](https://retroassembly.com/) in your web browser.
 2. *(Optional)* If you're new here, explore the library and try out the available [demo games](https://retroassembly.com/demo) to see how it works.
 3. [Login](https://retroassembly.com/login) and create your personal game library by uploading your own ROM files.
 4. Once your ROMs are uploaded, select any game from your library to launch it directly in your browser and start playing.
 5. Don't forget to use the in-game menu to save your progress, which will be synchronized for you.
 
 #### Option 2: Self-Host with Docker
-> [!tip]
-> - For advanced users who want full control.
-> - Perfect if you prefer to host your own instance, have privacy concerns, or want to customize the deployment.
+> <small>For advanced users who want full control. Perfect if you prefer to host your own instance, have privacy concerns, or want to customize the deployment.</small>
 
-- See [RetroAssembly's homepage on Docker Hub](https://hub.docker.com/r/arianrhodsandlot/retroassembly#quick-start).
+See [RetroAssembly's homepage on Docker Hub](https://hub.docker.com/r/arianrhodsandlot/retroassembly#quick-start).
 
 ## Supported Platforms
 

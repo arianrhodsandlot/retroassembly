@@ -24,7 +24,17 @@
 - [x] Enhance your gaming experience with beautiful visual effects with retro-style shaders.
 - [x] Play on the go, even without a physical gamepad, using our on-screen virtual controller.
 
-Share your thoughts or ideas to our [community](#Community) and they may appear here later :)
+---
+
+Share your ideas to our community and they may appear here later!
+
+<a href="https://discord.gg/gwaKRAYG6t">
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="https://invidget.switchblade.xyz/gwaKRAYG6t?theme=light">
+    <source media="(prefers-color-scheme: dark)" srcset="https://invidget.switchblade.xyz/gwaKRAYG6t">
+    <img alt="Join our Discord server" src="https://invidget.switchblade.xyz/gwaKRAYG6t?theme=light">
+  </picture>
+</a>
 
 ## Getting Started
 
@@ -34,66 +44,28 @@ You have two options to get started with RetroAssembly:
 #### Option 1: Use the Official Hosted Version
 
 > [!tip]
-> + This option is recommended for most users.
-> + Perfect if you want to get started quickly without any setup.
+> - Recommended for most users.
+> - Perfect if you want to get started quickly without any setup.
 
-1. Visit the [RetroAssembly website (retroassembly.com)](https://retroassembly.com/) in your web browser.
+1. Visit the [retroassembly.com](https://retroassembly.com/) in your web browser.
 2. *(Optional)* If you're new here, explore the library and try out the available [demo games](https://retroassembly.com/demo) to see how it works.
 3. [Login](https://retroassembly.com/login) and create your personal game library by uploading your own ROM files.
 4. Once your ROMs are uploaded, select any game from your library to launch it directly in your browser and start playing.
 5. Don't forget to use the in-game menu to save your progress, which will be synchronized for you.
 
 #### Option 2: Self-Host with Docker
-
 > [!tip]
-> + This option is for advanced users who want full control.
-> + Perfect if you prefer to host your own instance, have privacy concerns, or want to customize the deployment.
+> - For advanced users who want full control.
+> - Perfect if you prefer to host your own instance, have privacy concerns, or want to customize the deployment.
 
-##### Using Docker CLI
-
-1. Make sure you have Docker installed on your system.
-2. Pull and run the [RetroAssembly Docker image](https://hub.docker.com/r/arianrhodsandlot/retroassembly):
-    ```sh
-    docker run -d --name retroassembly -p 8000:8000 -v /path/to/your/data:/app/data arianrhodsandlot/retroassembly
-    ```
-    Replace `/path/to/your/data` with the actual path where you want to store your game data, ROMs, and save states. For example:
-    ```sh
-    docker run -d --name retroassembly -p 8000:8000 -v /srv/retroassembly:/app/data arianrhodsandlot/retroassembly
-    ```
-    You can also change the port `8000` to any other value you want.
-
-##### Using Docker Compose
-
-1. Make sure you have Docker and Docker Compose installed on your system.
-2. Create a `docker-compose.yml` file:
-    ```yaml
-    version: '3.8'
-    services:
-      retroassembly:
-        image: arianrhodsandlot/retroassembly
-        container_name: retroassembly
-        ports: [8000:8000]
-        volumes: [/path/to/your/data:/app/data]
-        restart: unless-stopped
-    ```
-    Replace `/path/to/your/data` with the actual path where you want to store your game data, ROMs, and save states.
-3. Run the service:
-    ```sh
-    docker-compose up -d
-    ```
-
-##### Accessing Your Instance
-
-1. Open your browser and navigate to `http://yourhost:8000` (if the port `8000` is used in previous steps) to access your self-hosted RetroAssembly instance.
-2. Create an account after clicking the "Library" button.
-3. Upload your ROM files and start gaming!
+- See [RetroAssembly's homepage on Docker Hub](https://hub.docker.com/r/arianrhodsandlot/retroassembly#quick-start).
 
 ## Supported Platforms
 
 RetroAssembly aims to support a wide range of vintage gaming systems. Emulation is powered by [Nostalgist.js](https://nostalgist.js.org/).
 
 <details>
-  <summary>Click here to view the comprehensive list.</summary>
+  <summary>Click here to view the full list.</summary>
 
   | Console | Available Emulators |
   | - | - |
@@ -116,40 +88,20 @@ RetroAssembly aims to support a wide range of vintage gaming systems. Emulation 
 
 </details>
 
-## Development
-### Prerequisites
-Make sure you have these softwares installed or activated.
-| Dependences | Version |
-| - | - |
-| [Node.js](https://nodejs.org/en/download/current) | `>=24` |
-| [pnpm](https://pnpm.io/installation) | `>=10` |
-
-### Steps
-Simply run following commands in a terminal then a development server will be launched.
-1. Install Node.js packages
-    ```sh
-    pnpm i
-    ```
-2. Setup development environment
-    ```sh
-    node --run=setup
-    ```
-3. Run development server
-    ```sh
-    node --run=dev
-    ```
+## Contributing
+See [Contributing](docs/contributing.md).
 
 ## Open-source Alternatives
 We hope you have a fantastic time revisiting your favorite retro games... Even with applications other than RetroAssembly.
 
-+ [EmulatorJS](https://emulatorjs.org) [:octocat:](https://github.com/EmulatorJS/EmulatorJS)
-+ [GamePlayColor](https://gameplaycolor.com) [:octocat:](https://github.com/gameplaycolor/gameplaycolor)
-+ [Gaseous](https://github.com/gaseous-project/gaseous-server)
-+ [RetroArch Web Player](https://web.libretro.com) [:octocat:](https://github.com/libretro/RetroArch/tree/master/pkg/emscripten)
-+ [RomM](https://romm.app/) [:octocat:](https://github.com/rommapp/romm)
-+ [vme](https://gitgalu.github.io/vme/) [:octocat:](https://github.com/gitGalu/vme)
-+ [webrcade](https://www.webrcade.com) [:octocat:](https://github.com/webrcade/webrcade)
-+ [webretro](https://binbashbanana.github.io/webretro/) [:octocat:](https://github.com/BinBashBanana/webretro)
+- [EmulatorJS](https://emulatorjs.org) [:octocat:](https://github.com/EmulatorJS/EmulatorJS)
+- [GamePlayColor](https://gameplaycolor.com) [:octocat:](https://github.com/gameplaycolor/gameplaycolor)
+- [Gaseous](https://github.com/gaseous-project/gaseous-server)
+- [RetroArch Web Player](https://web.libretro.com) [:octocat:](https://github.com/libretro/RetroArch/tree/master/pkg/emscripten)
+- [RomM](https://romm.app/) [:octocat:](https://github.com/rommapp/romm)
+- [vme](https://gitgalu.github.io/vme/) [:octocat:](https://github.com/gitGalu/vme)
+- [webrcade](https://www.webrcade.com) [:octocat:](https://github.com/webrcade/webrcade)
+- [webretro](https://binbashbanana.github.io/webretro/) [:octocat:](https://github.com/BinBashBanana/webretro)
 
 ## License
 [MIT](license)

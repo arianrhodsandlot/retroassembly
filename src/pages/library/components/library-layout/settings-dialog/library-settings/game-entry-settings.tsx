@@ -9,7 +9,7 @@ export function GameEntrySettings() {
   return (
     <div>
       <SettingsTitle>
-        <span className='icon-[mdi--order-checkbox-ascending]' />
+        <span className='icon-[mdi--eye]' />
         Game Display
       </SettingsTitle>
       <Card>

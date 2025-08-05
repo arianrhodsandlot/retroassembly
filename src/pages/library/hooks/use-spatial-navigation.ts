@@ -59,10 +59,10 @@ export function useSpatialNavigation() {
       if (direction) {
         event.preventDefault()
         move(direction)
-      } else if (keyName === inputMapping.keyboard.input_player1_a || keyName === 'enter' || keyName === 'space') {
+      } else if (keyName === inputMapping.confirmKey || keyName === 'enter' || keyName === 'space') {
         event.preventDefault()
         click(document.activeElement)
-      } else if (keyName === inputMapping.keyboard.input_player1_b) {
+      } else if (keyName === inputMapping.cancelKey) {
         event.preventDefault()
         cancel()
       }
@@ -70,7 +70,7 @@ export function useSpatialNavigation() {
 
     document.addEventListener('keydown', handleKeydown)
     return () => document.removeEventListener('keydown', handleKeydown)
-  }, [inputMapping.keyboard, isSpatialNavigationPaused])
+  }, [inputMapping.keyboard, inputMapping.confirmKey, inputMapping.cancelKey, isSpatialNavigationPaused])
 
   // gamepad navigation
   useEffect(() => {
@@ -88,13 +88,13 @@ export function useSpatialNavigation() {
       const direction = gamepadDirectionMap[button]
       if (direction) {
         move(gamepadDirectionMap[button])
-      } else if (`${button}` === inputMapping.gamepad.input_player1_a_btn) {
+      } else if (`${button}` === inputMapping.confirmButton) {
         click(document.activeElement)
-      } else if (`${button}` === inputMapping.gamepad.input_player1_b_btn) {
+      } else if (`${button}` === inputMapping.cancelButton) {
         cancel()
       }
     })
-  }, [inputMapping.gamepad, isSpatialNavigationPaused])
+  }, [inputMapping.gamepad, inputMapping.confirmButton, inputMapping.cancelButton, isSpatialNavigationPaused])
 
   // focus when an element got hovered
   useEffect(() => {

@@ -15,6 +15,7 @@ export interface Preference {
     videoSmooth: boolean
   } | null
   input: {
+    confirmButtonStyle: string
     gamepadMappings: null | Record<
       string,
       {
@@ -74,6 +75,7 @@ export interface Preference {
 export interface ResolvedPreference extends Preference {
   emulator: NonNullable<Preference['emulator']>
   input: {
+    confirmButtonStyle: NonNullable<Preference['input']>['confirmButtonStyle']
     gamepadMappings: NonNullable<NonNullable<Preference['input']>['gamepadMappings']>
     keyboardMapping: NonNullable<NonNullable<Preference['input']>['keyboardMapping']>
   }
@@ -127,6 +129,7 @@ export const defaultPreference: ResolvedPreference = {
     videoSmooth: false,
   },
   input: {
+    confirmButtonStyle: 'nintendo',
     gamepadMappings: {},
     keyboardMapping: {
       $pause: 'escape',

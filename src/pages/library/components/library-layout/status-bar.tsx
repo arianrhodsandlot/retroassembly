@@ -5,10 +5,21 @@ import { useInputMapping } from '../../hooks/use-input-mapping.ts'
 import { usePreference } from '../../hooks/use-preference.ts'
 import { SidebarFooter } from './sidebar-footer.tsx'
 
+const rightButtonIcon = <span className='icon-[mdi--gamepad-circle-right] text-white' />
+const downButtonIcon = <span className='icon-[mdi--gamepad-circle-down] text-white' />
+
 export function StatusBar() {
   const { connected } = useGamepads()
   const { keyboard: keyboardMapping } = useInputMapping()
   const { preference } = usePreference()
+
+  const { confirmButtonStyle } = preference.input
+  const keyboarMappingConfirm = { nintendo: keyboardMapping.input_player1_a, xbox: keyboardMapping.input_player1_b }[
+    confirmButtonStyle
+  ]
+  const keyboarMappingCancel = { nintendo: keyboardMapping.input_player1_b, xbox: keyboardMapping.input_player1_a }[
+    confirmButtonStyle
+  ]
 
   return (
     <div className='hidden items-center justify-end gap-4 text-sm font-medium text-white/80 lg:flex'>
@@ -23,11 +34,11 @@ export function StatusBar() {
             Navigation
           </span>
           <span className='flex items-center gap-2'>
-            <span className='icon-[mdi--gamepad-circle-right] text-white' />
+            {{ nintendo: rightButtonIcon, xbox: downButtonIcon }[confirmButtonStyle]}
             Confirm
           </span>
           <span className='flex items-center gap-2'>
-            <span className='icon-[mdi--gamepad-circle-down] text-white' />
+            {{ nintendo: downButtonIcon, xbox: rightButtonIcon }[confirmButtonStyle]}
             Back
           </span>
         </>
@@ -48,19 +59,19 @@ export function StatusBar() {
             Navigation
           </span>
 
-          {keyboardMapping.input_player1_a ? (
+          {keyboarMappingConfirm ? (
             <span className='flex items-center gap-2'>
               <Kbd className='!text-(--accent-9)' size='1'>
-                {uniq(['Enter', capitalize(keyboardMapping.input_player1_a)]).join(' / ')}
+                {uniq(['Enter', capitalize(keyboarMappingConfirm)]).join(' / ')}
               </Kbd>
               Confirm
             </span>
           ) : null}
 
-          {keyboardMapping.input_player1_b ? (
+          {keyboarMappingCancel ? (
             <span className='flex items-center gap-2'>
               <Kbd className='!text-(--accent-9)' size='1'>
-                {capitalize(keyboardMapping.input_player1_b)}
+                {capitalize(keyboarMappingCancel)}
               </Kbd>
               Back
             </span>

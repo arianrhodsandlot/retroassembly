@@ -30,5 +30,18 @@ Simply run following commands in a terminal then a development server will be la
     node --run=dev
     ```
 
+### Tech Stacks
+#### Frontend
+[React](https://react.dev/), [Tailwind CSS](https://tailwindcss.com/), [Nostalgist.js](https://nostalgist.js.org/)
+
+#### Backend
+[Hono](https://hono.dev/), [React Router](https://reactrouter.com/), [Drizzle](https://orm.drizzle.team/)
+
+#### Infrastructure
+[Node.js](https://nodejs.org/) / [Cloudflare Workers](https://workers.cloudflare.com/), [SQLite](https://sqlite.org/) / [Cloudflare D1](https://www.cloudflare.com/developer-platform/products/d1/), [Cloudflare R2](https://www.cloudflare.com/developer-platform/products/r2/)
+
+#### External Services
+[jsDelivr](https://www.jsdelivr.com/), [Supabase Auth](https://supabase.com/auth), [msleuth](https://github.com/arianrhodsandlot/msleuth)
+
 ### License
 By contributing, you agree that your contributions will be licensed under its MIT License.

@@ -1,7 +1,12 @@
+.git
+.github
+.gitignore
+
 .env
 .react-router
 .wrangler
 .dev.vars
+docs
 data
 dist
 inputs
@@ -11,3 +16,4 @@ worker-configuration.d.ts
 wrangler.json
 
 Dockerfile
+.dockerignore

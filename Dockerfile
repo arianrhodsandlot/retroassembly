@@ -33,5 +33,7 @@ COPY --from=builder /app/src/databases ./src/databases
 COPY --from=builder /app/dist/client ./dist/client
 COPY --from=builder /app/dist/scripts ./dist/scripts
 COPY --from=deps-production /app/node_modules ./node_modules
+
+VOLUME ["/app/data"]
 EXPOSE 8000
 CMD ["node", "--run=start"]

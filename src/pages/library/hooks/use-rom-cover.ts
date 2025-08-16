@@ -1,4 +1,3 @@
-import { delay } from 'es-toolkit'
 import useSWRImmutable from 'swr/immutable'
 import type { Rom } from '@/controllers/get-roms'
 import { getDemoRomThumbnail, getPlatformGameIcon, getRomLibretroThumbnail } from '@/utils/library.ts'
@@ -26,7 +25,6 @@ export function useRomCover(rom: Rom) {
   const covers = [...romCovers, platformCover]
 
   return useSWRImmutable(covers, async () => {
-    await delay(1000)
     for (const romCover of romCovers) {
       if (romCover && !invalidImages.has(romCover)) {
         if (validImages.has(romCover)) {

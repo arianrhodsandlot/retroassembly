@@ -31,8 +31,7 @@ export default function RomPage({ pageData }: RomPageProps) {
   const goodcodes = getRomGoodcodes(rom)
   const { launchboxGame } = rom
 
-  // @ts-expect-error desc is for demo roms
-  const overview = launchboxGame?.overview || rom.desc
+  const overview = launchboxGame?.overview || rom.gameDescription
 
   return (
     <LibraryLayout title={goodcodes.rom}>
@@ -50,7 +49,7 @@ export default function RomPage({ pageData }: RomPageProps) {
               <div className='lg:px-4'>
                 <GameButtons state={state} />
               </div>
-              <GameInfo gameInfo={launchboxGame} rom={rom} />
+              <GameInfo rom={rom} />
             </div>
 
             <div className='flex flex-col gap-4 lg:pl-4'>

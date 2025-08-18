@@ -3,6 +3,7 @@ import { Hono } from 'hono'
 import { createMiddleware } from 'hono/factory'
 import { z } from 'zod'
 import { getRunTimeEnv } from '@/constants/env.ts'
+import { updateRom } from '@/controllers/update-rom.ts'
 import { createLaunchRecord } from '../controllers/create-launch-record.ts'
 import { createRoms } from '../controllers/create-roms.ts'
 import { createState } from '../controllers/create-state.ts'
@@ -55,6 +56,34 @@ app.post(
     }
     const roms = await createRoms({ files: form['files[]'], md5s, platform: form.platform })
     return c.json(roms)
+  },
+)
+
+app.patch(
+  'roms/:id',
+
+  zValidator(
+    'json',
+    z.object({
+      gameBoxartFileIds: z.string().optional(),
+      gameDescription: z.string().optional(),
+      gameDeveloper: z.string().optional(),
+      gameGenres: z.string().optional(),
+      gameName: z.string().optional(),
+      gamePlayers: z.number().optional(),
+      gamePublisher: z.string().optional(),
+      gameRating: z.number().optional(),
+      gameReleaseDate: z.number().optional(),
+      gameReleaseYear: z.number().optional(),
+      gameThumbnailFileIds: z.string().optional(),
+    }),
+  ),
+
+  async (c) => {
+    const rom = c.req.valid('json')
+    const id = c.req.param('id')
+    const ret = await updateRom({ id, ...rom })
+    return c.json(ret)
   },
 )
 

@@ -1,4 +1,4 @@
-import { isThisYear, isToday, lightFormat } from 'date-fns'
+import { DateTime } from 'luxon'
 import { customAlphabet } from 'nanoid'
 import { nolookalikes } from 'nanoid-dictionary'
 
@@ -17,13 +17,15 @@ export function restoreTitleForSorting(title: string) {
 }
 
 export function humanizeDate(date: Date) {
-  if (isToday(date)) {
-    return lightFormat(date, 'HH:mm:ss')
+  const dateTime = DateTime.fromJSDate(date)
+  const now = DateTime.now()
+  if (dateTime.hasSame(now, 'day')) {
+    return dateTime.toFormat('HH:mm:ss')
   }
-  if (isThisYear(date)) {
-    return lightFormat(date, 'MM-dd HH:mm')
+  if (dateTime.hasSame(now, 'year')) {
+    return dateTime.toFormat('MM-dd HH:mm')
   }
-  return lightFormat(date, 'yyyy-MM-dd HH:mm')
+  return dateTime.toFormat('yyyy-MM-dd HH:mm')
 }
 
 export function encodeRFC3986URIComponent(str: string) {

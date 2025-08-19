@@ -1,5 +1,4 @@
-import { UTCDateMini } from '@date-fns/utc'
-import { formatISO9075 } from 'date-fns'
+import { DateTime } from 'luxon'
 import type { PlatformInfo } from '@/controllers/get-platform-info.ts'
 import { getPlatformBanner, getPlatformDevicePhoto } from '@/utils/library.ts'
 import { CompanyLogo } from '../../platform/components/company-logo.tsx'
@@ -40,9 +39,7 @@ export function DeviceInfo({ platform, platformInfo }: { platform: string; platf
                 <span className='text-xs'>Released</span>
               </div>
               <div className='mt-1 pl-6'>
-                {platformInfo.releaseDate
-                  ? formatISO9075(new UTCDateMini(platformInfo.releaseDate), { representation: 'date' })
-                  : 'unknown'}
+                {platformInfo.releaseDate ? DateTime.fromISO(platformInfo.releaseDate).toISODate() : 'unknown'}
               </div>
             </div>
 

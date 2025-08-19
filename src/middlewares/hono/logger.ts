@@ -1,5 +1,5 @@
-import { UTCDateMini } from '@date-fns/utc'
 import { createMiddleware } from 'hono/factory'
+import { DateTime } from 'luxon'
 import { getConnInfo } from '../../controllers/utils.server.ts'
 
 export function logger() {
@@ -12,7 +12,7 @@ export function logger() {
       c.env?.CF_CONNECTING_IP ||
       getConnInfo()?.remote.address ||
       '-'
-    const timestamp = new UTCDateMini().toISOString()
+    const timestamp = DateTime.now().setZone('utc').toISO()
     const { method, url } = c.req
     const httpVersion = c.req.header('HTTP-Version') || c.env?.HTTP_VERSION || 'HTTP/1.1'
     const { status } = c.res

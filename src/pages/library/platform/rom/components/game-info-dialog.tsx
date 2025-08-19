@@ -1,7 +1,6 @@
-import { UTCDateMini } from '@date-fns/utc'
 import { Button, DataList, Dialog, IconButton, Select, TextArea, TextField } from '@radix-ui/themes'
-import { formatDate } from 'date-fns'
 import { range } from 'es-toolkit'
+import { DateTime } from 'luxon'
 import { type PropsWithChildren, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import useSWRMutation from 'swr/mutation'
@@ -32,8 +31,11 @@ export function GameInfoDialog({ children = defaultTrigger }: PropsWithChildren)
     publisher: rom.gamePublisher ?? launchboxGame.publisher,
     releaseDate: rom.gameReleaseDate ?? launchboxGame.releaseDate,
   }
-  const date = new UTCDateMini(gameInfo.releaseDate)
-  gameInfo.releaseDate = date.getTime() ? formatDate(date, 'yyyy-MM-dd') : ''
+  const date = new Date(gameInfo.releaseDate)
+  if (date.getTime()) {
+    gameInfo.releaseDate = DateTime.fromJSDate(date).setZone('utc').toISODate()
+  }
+  gameInfo.players = Number.parseInt(gameInfo.players, 10) ? `${gameInfo.players}` : 'unknown'
 
   const { isMutating, trigger } = useSWRMutation(`roms/${rom.id}`, (url, { arg }: { arg: FormData }) =>
     api.patch(url, { body: arg }),
@@ -68,11 +70,11 @@ export function GameInfoDialog({ children = defaultTrigger }: PropsWithChildren)
                 <div className='flex items-center gap-4 py-4'>
                   <GameCover className='flex size-20 items-center justify-center text-center' rom={rom} />
                   <div className='flex flex-col gap-4'>
-                    <Button>
+                    <Button type='button'>
                       <span className='icon-[mdi--upload]' />
                       Upload
                     </Button>
-                    <Button variant='outline'>
+                    <Button type='button' variant='outline'>
                       <span className='icon-[mdi--close]' />
                       Reset
                     </Button>
@@ -86,7 +88,11 @@ export function GameInfoDialog({ children = defaultTrigger }: PropsWithChildren)
                 Released
               </DataList.Label>
               <DataList.Value>
-                <TextField.Root defaultValue={gameInfo.releaseDate} name='gameReleaseDate' />
+                <TextField.Root
+                  defaultValue={gameInfo.releaseDate}
+                  name='gameReleaseDate'
+                  placeholder={`${DateTime.fromISO('1990-01-01').toISODate()}`}
+                />
               </DataList.Value>
             </DataList.Item>
             <DataList.Item>
@@ -107,11 +113,12 @@ export function GameInfoDialog({ children = defaultTrigger }: PropsWithChildren)
                 <Select.Root defaultValue={`${gameInfo.players}`} name='gamePlayers'>
                   <Select.Trigger />
                   <Select.Content>
-                    {range(0, 11).map((value) => (
+                    {range(1, 11).map((value) => (
                       <Select.Item key={value} value={`${value}`}>
                         {value}
                       </Select.Item>
                     ))}
+                    <Select.Item value='unknown'>unknown</Select.Item>
                   </Select.Content>
                 </Select.Root>
               </DataList.Value>

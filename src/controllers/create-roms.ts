@@ -1,9 +1,9 @@
 import { subtle } from 'node:crypto'
 import path from 'node:path'
-import { isValid } from 'date-fns'
 import { and, eq, inArray, type InferInsertModel } from 'drizzle-orm'
 import { chunk } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
+import { DateTime } from 'luxon'
 import { romTable } from '../databases/schema.ts'
 import { msleuth } from '../utils/msleuth.ts'
 
@@ -21,8 +21,11 @@ function getGenres({ launchbox, libretro }) {
 }
 
 function getReleaseDate({ launchbox }) {
-  if (launchbox?.releaseDate && isValid(launchbox.releaseDate)) {
-    return new Date(launchbox.releaseDate)
+  if (launchbox?.releaseDate) {
+    const date = DateTime.fromISO(launchbox.releaseDate)
+    if (date.isValid) {
+      return date.toJSDate()
+    }
   }
 }
 

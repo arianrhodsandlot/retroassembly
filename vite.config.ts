@@ -1,13 +1,12 @@
 import path from 'node:path'
-import { UTCDateMini } from '@date-fns/utc'
 import { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
-import { formatISO } from 'date-fns'
 import { defaults, noop } from 'es-toolkit/compat'
 import { $ } from 'execa'
 import fs from 'fs-extra'
 import serverAdapter from 'hono-react-router-adapter/vite'
+import { DateTime } from 'luxon'
 import { defineConfig, type Plugin, type UserConfig } from 'vite'
 import devtoolsJson from 'vite-plugin-devtools-json'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -15,7 +14,7 @@ import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './script
 import { getDirectories } from './src/constants/env.ts'
 
 defaults(process.env, {
-  RETROASSEMBLY_BUILD_TIME_VITE_BUILD_TIME: formatISO(new UTCDateMini()),
+  RETROASSEMBLY_BUILD_TIME_VITE_BUILD_TIME: DateTime.now().setZone('utc').toISO(),
   RETROASSEMBLY_BUILD_TIME_VITE_VERSION: await getVersion(),
 })
 

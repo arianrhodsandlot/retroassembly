@@ -5,6 +5,7 @@ import { createMiddleware } from 'hono/factory'
 import { z } from 'zod'
 import { getRunTimeEnv } from '@/constants/env.ts'
 import { updateRom } from '@/controllers/update-rom.ts'
+import { stringToUTCDateTime } from '@/utils/date.ts'
 import { createLaunchRecord } from '../controllers/create-launch-record.ts'
 import { createRoms } from '../controllers/create-roms.ts'
 import { createState } from '../controllers/create-state.ts'
@@ -81,8 +82,18 @@ app.patch(
 
   async (c) => {
     await delay(1000)
-    const rom = c.req.valid('form')
+    const form = c.req.valid('form')
     const id = c.req.param('id')
+    const rom = {
+      ...form,
+      gamePlayers: form.gamePlayers ? Number.parseInt(form.gamePlayers, 10) : 0,
+      gameReleaseDate: stringToUTCDateTime(form.gameReleaseDate)?.toJSDate(),
+    }
+    for (const key in rom) {
+      if (!rom[key]) {
+        rom[key] = null
+      }
+    }
     const ret = await updateRom({ id, ...rom })
     return c.json(ret)
   },

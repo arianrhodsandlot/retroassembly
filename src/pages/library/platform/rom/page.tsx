@@ -31,7 +31,7 @@ export default function RomPage({ pageData }: RomPageProps) {
   const goodcodes = getRomGoodcodes(rom)
   const { launchboxGame } = rom
 
-  const overview = launchboxGame?.overview || rom.gameDescription
+  const overview = rom.gameDescription || launchboxGame?.overview
 
   return (
     <LibraryLayout title={goodcodes.rom}>

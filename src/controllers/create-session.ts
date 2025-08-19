@@ -1,7 +1,7 @@
-import { addDays } from 'date-fns'
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
+import { DateTime } from 'luxon'
 import { sessionTable, statusEnum, userTable } from '../databases/schema.ts'
 import { nanoid } from '../utils/misc.ts'
 import { getConnInfo } from './utils.server.ts'
@@ -31,7 +31,7 @@ export async function createSession({ password, username }: { password: string; 
   const [session] = await db.library
     .insert(sessionTable)
     .values({
-      expiresAt: addDays(new Date(), 30),
+      expiresAt: DateTime.now().plus({ days: 30 }).toJSDate(),
       ip: getConnInfo()?.remote.address,
       token: nanoid(),
       userAgent: c.req.header('User-Agent'),

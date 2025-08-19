@@ -66,7 +66,7 @@ export function GameEntryContextMenu({ children, rom }: { children: ReactNode; r
 
           <div className='mt-4 flex justify-end gap-3'>
             <AlertDialog.Cancel>
-              <Button disabled={isMutating} variant='soft'>
+              <Button disabled={isMutating}>
                 <span className='icon-[mdi--close]' />
                 Cancel
               </Button>

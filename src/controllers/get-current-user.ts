@@ -1,6 +1,6 @@
-import { addDays, differenceInHours, differenceInMilliseconds } from 'date-fns'
 import { and, eq, gt } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
+import { DateTime } from 'luxon'
 import { sessionTable, statusEnum, userTable } from '../databases/schema.ts'
 import { createSupabase } from '../utils/supabase.ts'
 
@@ -36,13 +36,13 @@ export async function getCurrentUser() {
     return
   }
 
-  // Auto-renewal logic with date-fns
-  const now = new Date()
-  const lastActivity = new Date(result.sessions.lastActivityAt)
-  const expiresAt = new Date(result.sessions.expiresAt)
+  // Auto-renewal logic with Luxon
+  const now = DateTime.now()
+  const lastActivity = DateTime.fromJSDate(new Date(result.sessions.lastActivityAt))
+  const expiresAt = DateTime.fromJSDate(new Date(result.sessions.expiresAt))
 
-  const timeSinceActivity = differenceInMilliseconds(now, lastActivity)
-  const hoursUntilExpiry = differenceInHours(expiresAt, now)
+  const timeSinceActivity = now.diff(lastActivity, 'milliseconds').milliseconds
+  const hoursUntilExpiry = expiresAt.diff(now, 'hours').hours
 
   // Session renewal threshold (renew if expires within 24 hours)
   const RENEWAL_THRESHOLD_HOURS = 24
@@ -54,7 +54,7 @@ export async function getCurrentUser() {
 
   // Renew session if close to expiry
   if (hoursUntilExpiry <= RENEWAL_THRESHOLD_HOURS) {
-    newExpiresAt = addDays(now, 30) // Extend by 30 days
+    newExpiresAt = now.plus({ days: 30 }) // Extend by 30 days
     shouldUpdate = true
   }
 
@@ -68,8 +68,8 @@ export async function getCurrentUser() {
     await db.library
       .update(sessionTable)
       .set({
-        expiresAt: newExpiresAt,
-        lastActivityAt: newLastActivityAt,
+        expiresAt: newExpiresAt.toJSDate(),
+        lastActivityAt: newLastActivityAt.toJSDate(),
       })
       .where(eq(sessionTable.id, result.sessions.id))
   }

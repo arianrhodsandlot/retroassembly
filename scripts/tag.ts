@@ -1,12 +1,11 @@
-import { UTCDateMini } from '@date-fns/utc'
-import { format } from 'date-fns'
 import { $ } from 'execa'
+import { DateTime } from 'luxon'
 
 function getTag() {
-  const now = new UTCDateMini()
+  const now = DateTime.now().setZone('utc')
   const major = '1'
-  const minor = format(now, 'yyMMdd')
-  const patch = format(now, 'hhmm')
+  const minor = now.toFormat('yyMMdd')
+  const patch = now.toFormat('HHmm')
   let version = `${major}.${minor}.${patch}`
   if (!process.env.npm_lifecycle_script?.includes('latest')) {
     version += '-unstable'

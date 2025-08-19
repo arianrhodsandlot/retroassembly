@@ -1,4 +1,5 @@
 import { zValidator } from '@hono/zod-validator'
+import { delay } from 'es-toolkit'
 import { Hono } from 'hono'
 import { createMiddleware } from 'hono/factory'
 import { z } from 'zod'
@@ -63,24 +64,24 @@ app.patch(
   'roms/:id',
 
   zValidator(
-    'json',
+    'form',
     z.object({
       gameBoxartFileIds: z.string().optional(),
       gameDescription: z.string().optional(),
       gameDeveloper: z.string().optional(),
       gameGenres: z.string().optional(),
       gameName: z.string().optional(),
-      gamePlayers: z.number().optional(),
+      gamePlayers: z.string().optional(),
       gamePublisher: z.string().optional(),
-      gameRating: z.number().optional(),
-      gameReleaseDate: z.number().optional(),
-      gameReleaseYear: z.number().optional(),
+      gameRating: z.string().optional(),
+      gameReleaseDate: z.string().optional(),
       gameThumbnailFileIds: z.string().optional(),
     }),
   ),
 
   async (c) => {
-    const rom = c.req.valid('json')
+    await delay(1000)
+    const rom = c.req.valid('form')
     const id = c.req.param('id')
     const ret = await updateRom({ id, ...rom })
     return c.json(ret)

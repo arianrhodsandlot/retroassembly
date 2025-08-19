@@ -1,11 +1,10 @@
+import { UTCDateMini } from '@date-fns/utc'
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { romTable } from '../databases/schema.ts'
+import { getRom } from './get-rom.ts'
 
-export async function updateRom({
-  id,
-  ...romData
-}: {
+export async function updateRom(rom: {
   gameBoxartFileIds?: string
   gameDescription?: string
   gameDeveloper?: string
@@ -13,9 +12,7 @@ export async function updateRom({
   gameName?: string
   gamePlayers?: number
   gamePublisher?: string
-  gameRating?: number
   gameReleaseDate?: number
-  gameReleaseYear?: number
   gameThumbnailFileIds?: string
   id: string
 }) {
@@ -26,21 +23,30 @@ export async function updateRom({
     throw new Error('User not authenticated')
   }
 
-  // First, verify that the ROM exists and belongs to the current user
-  const existingRom = await library
-    .select({ id: romTable.id })
-    .from(romTable)
-    .where(and(eq(romTable.id, id), eq(romTable.userId, currentUser.id), eq(romTable.status, 1)))
-    .limit(1)
+  const { id, ...updateData } = rom
+  const existingRom = await getRom({ id: rom.id })
 
-  if (existingRom.length === 0) {
+  if (!existingRom) {
     throw new Error('ROM not found or access denied')
   }
 
-  const updateData = Object.fromEntries(Object.entries(romData).filter(([, value]) => value !== undefined))
-
-  if (Object.keys(updateData).length === 0) {
-    return
+  const fieldMap = {
+    gameDescription: 'overview',
+    gameDeveloper: 'developer',
+    gameGenres: 'genres',
+    gamePlayers: 'maxPlayers',
+    gamePublisher: 'publisher',
+    gameReleaseDate: 'releaseDate',
+  }
+  for (const [key, value] of Object.entries(fieldMap)) {
+    if (['', existingRom.launchboxGame?.[value]].includes(updateData[key])) {
+      updateData[key] = null
+    }
+  }
+  if (updateData.gameReleaseDate) {
+    const date = new UTCDateMini(updateData.gameReleaseDate)
+    // @ts-expect-error update gameReleaseDate to date
+    updateData.gameReleaseDate = date.getTime() ? date : null
   }
 
   const [updatedRom] = await library

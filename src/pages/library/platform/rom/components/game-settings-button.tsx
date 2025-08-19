@@ -16,7 +16,7 @@ export function GameSettingsButton() {
       <Dialog.Content>
         <Dialog.Title className='flex items-center gap-2 text-xl font-semibold'>
           <span className='icon-[mdi--book-information-variant]' />
-          Game infomation
+          Game Settings
         </Dialog.Title>
 
         <DataList.Root className='py-4' size='3'>

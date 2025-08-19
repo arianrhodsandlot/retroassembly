@@ -1,4 +1,5 @@
-import { formatDate } from 'date-fns'
+import { UTCDateMini } from '@date-fns/utc'
+import { lightFormat } from 'date-fns'
 import { platformMap } from '@/constants/platform.ts'
 import { GameInfoDialog } from './game-info-dialog.tsx'
 
@@ -36,7 +37,7 @@ export function GameInfo({ rom }) {
             <GameInfoDialog />
           </div>
           <div className='pl-6'>
-            {(gameInfo.releaseDate ? formatDate(gameInfo.releaseDate, 'yyyy-MM-dd') : '') ||
+            {(gameInfo.releaseDate ? lightFormat(new UTCDateMini(gameInfo.releaseDate), 'yyyy-MM-dd') : '') ||
               gameInfo.releaseYear ||
               unknown}
           </div>

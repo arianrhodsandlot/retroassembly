@@ -4,12 +4,13 @@ import { DateTime } from 'luxon'
 import { type PropsWithChildren, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import useSWRMutation from 'swr/mutation'
+import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { api } from '@/utils/http.ts'
-import { GameCover } from './game-cover.tsx'
+import { getRomGoodcodes } from '@/utils/library.ts'
 
 const defaultTrigger = (
-  <IconButton className='!opacity-0 !transition-opacity group-hover:!opacity-100' variant='ghost'>
+  <IconButton className='!opacity-0 !transition-opacity group-hover:!opacity-100' title='Edit' variant='ghost'>
     <span className='icon-[mdi--edit]' />
   </IconButton>
 )
@@ -18,6 +19,7 @@ export function GameInfoDialog({ children = defaultTrigger }: PropsWithChildren)
   const rom = useRom()
   const navigate = useNavigate()
   const location = useLocation()
+  const isDemo = useIsDemo()
 
   const [open, setOpen] = useState(false)
 
@@ -26,7 +28,6 @@ export function GameInfoDialog({ children = defaultTrigger }: PropsWithChildren)
     description: rom.gameDescription ?? launchboxGame.overview,
     developer: rom.gameDeveloper ?? launchboxGame.developer,
     genres: rom.gameGenres ?? launchboxGame.genres,
-    name: rom.gameName ?? launchboxGame.name,
     players: rom.gamePlayers ?? launchboxGame.maxPlayers,
     publisher: rom.gamePublisher ?? launchboxGame.publisher,
     releaseDate: rom.gameReleaseDate ?? launchboxGame.releaseDate,
@@ -49,6 +50,10 @@ export function GameInfoDialog({ children = defaultTrigger }: PropsWithChildren)
     await navigate(location.pathname, { replace: true })
   }
 
+  if (isDemo) {
+    return
+  }
+
   return (
     <Dialog.Root onOpenChange={setOpen} open={open}>
       <Dialog.Trigger>{children}</Dialog.Trigger>
@@ -56,32 +61,11 @@ export function GameInfoDialog({ children = defaultTrigger }: PropsWithChildren)
       <Dialog.Content className='!w-4xl !max-w-screen'>
         <Dialog.Title className='!-ml-1 flex items-center gap-2 text-xl font-semibold'>
           <span className='icon-[mdi--book-information-variant]' />
-          Game infomation
+          {getRomGoodcodes(rom).rom}
         </Dialog.Title>
 
         <form onSubmit={handleSubmit}>
           <DataList.Root className='py-4' size='3'>
-            <DataList.Item>
-              <DataList.Label className='flex items-center gap-2 text-sm' minWidth='32px'>
-                <span className='icon-[mdi--image]' />
-                Box art
-              </DataList.Label>
-              <DataList.Value>
-                <div className='flex items-center gap-4 py-4'>
-                  <GameCover className='flex size-20 items-center justify-center text-center' rom={rom} />
-                  <div className='flex flex-col gap-4'>
-                    <Button type='button'>
-                      <span className='icon-[mdi--upload]' />
-                      Upload
-                    </Button>
-                    <Button type='button' variant='outline'>
-                      <span className='icon-[mdi--close]' />
-                      Reset
-                    </Button>
-                  </div>
-                </div>
-              </DataList.Value>
-            </DataList.Item>
             <DataList.Item>
               <DataList.Label className='flex items-center gap-2 text-sm' minWidth='32px'>
                 <span className='icon-[mdi--calendar]' />

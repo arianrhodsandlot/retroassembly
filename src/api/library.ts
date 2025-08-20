@@ -1,11 +1,15 @@
+import assert from 'node:assert'
+import path from 'node:path'
 import { zValidator } from '@hono/zod-validator'
-import { delay } from 'es-toolkit'
+import { pull } from 'es-toolkit'
 import { Hono } from 'hono'
 import { createMiddleware } from 'hono/factory'
 import { z } from 'zod'
 import { getRunTimeEnv } from '@/constants/env.ts'
+import { getRom } from '@/controllers/get-rom.ts'
 import { updateRom } from '@/controllers/update-rom.ts'
 import { stringToUTCDateTime } from '@/utils/date.ts'
+import { nanoid } from '@/utils/misc.ts'
 import { createLaunchRecord } from '../controllers/create-launch-record.ts'
 import { createRoms } from '../controllers/create-roms.ts'
 import { createState } from '../controllers/create-state.ts'
@@ -81,7 +85,6 @@ app.patch(
   ),
 
   async (c) => {
-    await delay(1000)
     const form = c.req.valid('form')
     const id = c.req.param('id')
     const rom = {
@@ -96,6 +99,91 @@ app.patch(
     }
     const ret = await updateRom({ id, ...rom })
     return c.json(ret)
+  },
+)
+
+app.post(
+  'roms/:id/boxart',
+
+  zValidator(
+    'form',
+    z.object({
+      file: z.instanceof(File),
+    }),
+  ),
+
+  async (c) => {
+    const form = c.req.valid('form')
+
+    const { currentUser, storage } = c.var
+    assert.ok(currentUser)
+    const id = c.req.param('id')
+    const rom = await getRom({ id })
+    assert.ok(rom)
+
+    const extname = path.extname(form.file.name)
+    const fileId = path.join('attachments', currentUser.id, rom.platform, rom.id, `${nanoid()}${extname}`)
+    await storage.put(fileId, form.file)
+    await updateRom({ gameBoxartFileIds: fileId, id })
+    return c.json(null)
+  },
+)
+
+app.delete(
+  'roms/:id/boxart',
+
+  async (c) => {
+    await updateRom({ gameBoxartFileIds: null, id: c.req.param('id') })
+    return c.json(null)
+  },
+)
+
+app.post(
+  'roms/:id/thumbnail',
+
+  zValidator(
+    'form',
+    z.object({
+      file: z.instanceof(File),
+    }),
+  ),
+
+  async (c) => {
+    const form = c.req.valid('form')
+
+    const { currentUser, storage } = c.var
+    assert.ok(currentUser)
+    const id = c.req.param('id')
+    const rom = await getRom({ id })
+    assert.ok(rom)
+
+    const gameThumbnailFileIds: string[] = rom.gameThumbnailFileIds?.split(',') || []
+    const extname = path.extname(form.file.name)
+    const fileId = path.join('attachments', currentUser.id, rom.platform, rom.id, `${nanoid()}${extname}`)
+    await storage.put(fileId, form.file)
+    gameThumbnailFileIds.push(fileId)
+    await updateRom({ gameThumbnailFileIds: gameThumbnailFileIds.join(','), id })
+    return c.json(null)
+  },
+)
+
+app.delete(
+  'roms/:id/thumbnail/:thumbnailId',
+
+  async (c) => {
+    const { currentUser } = c.var
+    assert.ok(currentUser)
+    const id = c.req.param('id')
+    const thumbnailId = c.req.param('thumbnailId')
+    const rom = await getRom({ id })
+    assert.ok(rom)
+    const gameThumbnailFileIds: string[] = rom.gameThumbnailFileIds?.split(',') || []
+    pull(gameThumbnailFileIds, [thumbnailId])
+    await updateRom({
+      gameThumbnailFileIds: gameThumbnailFileIds.length > 0 ? gameThumbnailFileIds.join(',') : null,
+      id,
+    })
+    return c.json(null)
   },
 )
 

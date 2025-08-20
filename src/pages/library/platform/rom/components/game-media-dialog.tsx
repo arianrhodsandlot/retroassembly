@@ -1,0 +1,76 @@
+import { Button, DataList, Dialog, IconButton } from '@radix-ui/themes'
+import { type PropsWithChildren, useState } from 'react'
+import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
+import { useReload } from '@/pages/library/hooks/use-reload.ts'
+import { useRom } from '@/pages/library/hooks/use-rom.ts'
+import { getRomGoodcodes } from '@/utils/library.ts'
+import { GameMediaBoxart } from './game-media-boxart.tsx'
+import { GameMediaImages } from './game-media-images.tsx'
+
+const defaultTrigger = (
+  <IconButton className='!opacity-0 !transition-opacity group-hover:!opacity-100' title='Edit' variant='ghost'>
+    <span className='icon-[mdi--edit]' />
+  </IconButton>
+)
+
+export function GameMediaDialog({ children = defaultTrigger }: PropsWithChildren) {
+  const rom = useRom()
+  const { reload } = useReload()
+  const isDemo = useIsDemo()
+
+  const [open, setOpen] = useState(false)
+
+  async function handleOpenChange(open: boolean) {
+    setOpen(open)
+    if (!open) {
+      await reload()
+    }
+  }
+
+  if (isDemo) {
+    return
+  }
+
+  return (
+    <Dialog.Root onOpenChange={handleOpenChange} open={open}>
+      <Dialog.Trigger>{children}</Dialog.Trigger>
+
+      <Dialog.Content className='!w-4xl !max-w-screen'>
+        <Dialog.Title className='!-ml-1 flex items-center gap-2 text-xl font-semibold'>
+          <span className='icon-[mdi--image-edit]' />
+          {getRomGoodcodes(rom).rom}
+        </Dialog.Title>
+
+        <DataList.Root className='py-4' size='3'>
+          <DataList.Item>
+            <DataList.Label className='flex items-center gap-2 text-sm' minWidth='32px'>
+              <span className='icon-[mdi--image]' />
+              Box Art
+            </DataList.Label>
+            <DataList.Value>
+              <GameMediaBoxart />
+            </DataList.Value>
+          </DataList.Item>
+
+          <DataList.Item>
+            <DataList.Label className='flex items-center gap-2 text-sm' minWidth='32px'>
+              <span className='icon-[mdi--image-multiple]' />
+              Images
+            </DataList.Label>
+            <DataList.Value>
+              <GameMediaImages />
+            </DataList.Value>
+          </DataList.Item>
+        </DataList.Root>
+
+        <div className='absolute right-6 top-6'>
+          <Dialog.Close>
+            <Button variant='ghost'>
+              <span className='icon-[mdi--close] size-5' />
+            </Button>
+          </Dialog.Close>
+        </div>
+      </Dialog.Content>
+    </Dialog.Root>
+  )
+}

@@ -5,15 +5,15 @@ import { romTable } from '../databases/schema.ts'
 import { getRom } from './get-rom.ts'
 
 export async function updateRom(rom: {
-  gameBoxartFileIds?: string
-  gameDescription?: string
-  gameDeveloper?: string
-  gameGenres?: string
-  gameName?: string
-  gamePlayers?: number
-  gamePublisher?: string
-  gameReleaseDate?: Date
-  gameThumbnailFileIds?: string
+  gameBoxartFileIds?: null | string
+  gameDescription?: null | string
+  gameDeveloper?: null | string
+  gameGenres?: null | string
+  gameName?: null | string
+  gamePlayers?: null | number
+  gamePublisher?: null | string
+  gameReleaseDate?: Date | null
+  gameThumbnailFileIds?: null | string
   id: string
 }) {
   const { currentUser, db } = getContext().var

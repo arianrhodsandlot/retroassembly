@@ -7,7 +7,7 @@ export function createStorage() {
   const c = getContext()
   const { BUCKET } = env(c)
   if (BUCKET) {
-    return BUCKET
+    return BUCKET as any
   }
 
   const { storageDirectory } = getDirectories()

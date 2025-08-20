@@ -1,6 +1,7 @@
 import useSWRImmutable from 'swr/immutable'
 import type { Rom } from '@/controllers/get-roms'
 import { getDemoRomThumbnail, getPlatformGameIcon, getRomLibretroThumbnail } from '@/utils/library.ts'
+import { getFileUrl } from '../utils/file.ts'
 import { useIsDemo } from './use-demo.ts'
 
 const validImages = new Set<string>([])
@@ -21,6 +22,10 @@ export function useRomCover(rom: Rom) {
   const romCovers = isDemo
     ? [getDemoRomThumbnail(rom)]
     : libretroThumbnailTypes.map((type) => getRomLibretroThumbnail(rom, type))
+
+  if (rom.gameBoxartFileIds) {
+    romCovers.unshift(...rom.gameBoxartFileIds.split(',').map((fileId) => getFileUrl(fileId)))
+  }
   const platformCover = getPlatformGameIcon(rom.platform)
   const covers = [...romCovers, platformCover]
 

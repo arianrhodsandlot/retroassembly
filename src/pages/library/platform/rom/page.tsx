@@ -10,6 +10,7 @@ import { GameAnimatePresence } from './components/game-animate-presence.tsx'
 import { GameButtons } from './components/game-buttons.tsx'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfo } from './components/game-info.tsx'
+import { GameMediaDialog } from './components/game-media-dialog.tsx'
 import { GameMedias } from './components/game-medias/game-medias.tsx'
 import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
 import { PageHooks } from './components/page-hooks.ts'
@@ -38,8 +39,12 @@ export default function RomPage({ pageData }: RomPageProps) {
       <MainScrollArea>
         <PageBreadcrumb />
         <div className='flex min-h-full w-full flex-col gap-4 p-4 lg:flex-row'>
-          <div>
+          <div className='group'>
             <GameCover className='top-4 block w-full lg:sticky lg:w-64' rom={rom} />
+
+            <div className='mt-2 flex justify-center'>
+              <GameMediaDialog />
+            </div>
           </div>
 
           <div className='flex flex-1 flex-col gap-8'>

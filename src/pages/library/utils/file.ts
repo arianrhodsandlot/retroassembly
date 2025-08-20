@@ -54,4 +54,5 @@ export function getFileUrl(fileId: string) {
   if (fileId) {
     return `/api/v1/files/${encodeURIComponent(fileId)}`
   }
+  throw new Error('File ID is required to get the file URL')
 }

@@ -76,7 +76,7 @@ export function useEmulator() {
       retroarchCoreConfig: preference.emulator.core[core],
       rom: romObject,
       shader,
-      state: getFileUrl(state?.fileId),
+      state: state?.fileId ? getFileUrl(state.fileId) : undefined,
       style: { ...defaultEmulatorStyle },
     }),
     [romObject, core, preference, gamepadMapping, shader, state?.fileId],

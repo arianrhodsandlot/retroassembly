@@ -17,7 +17,9 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
         </VisuallyHidden>
         <div className='flex flex-col items-center gap-2 p-2 text-center'>
           <img alt='logo' height='56' src='/assets/logo/logo-192x192.png' width='56' />
-          <div className='text-xl font-semibold'>{metadata.title}</div>
+          <a className='text-xl font-semibold' href={metadata.link} rel='noreferrer noopener' target='_blank'>
+            {metadata.title}
+          </a>
           <div className='text-sm'>{metadata.description}</div>
           <div className='flex flex-col gap-2 py-2 text-xs opacity-70'>
             {metadata.version ? (

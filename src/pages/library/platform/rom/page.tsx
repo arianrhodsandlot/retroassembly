@@ -74,7 +74,7 @@ export default function RomPage({ pageData }: RomPageProps) {
                   <a
                     className='text-(--accent-9) inline-flex items-center gap-2 underline'
                     href={launchboxGame.wikipediaUrl}
-                    rel='noreferrer'
+                    rel='noreferrer noopener'
                     target='_blank'
                   >
                     <span className='icon-[mdi--wikipedia] size-6' /> Read more on Wikipedia.

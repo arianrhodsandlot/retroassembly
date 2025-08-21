@@ -12,6 +12,7 @@ export function getRunTimeEnv() {
   return defaults(
     { ...runTimeEnv },
     {
+      RETROASSEMBLY_RUN_TIME_ALLOW_CRAWLER: { node: 'false', workerd: 'true' }[runtimeKey] || 'false',
       RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY: path.resolve('data'),
       RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE: { node: '1000', workerd: '100' }[runtimeKey] || '1000',
       RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST: 'https://msleuth.arianrhodsandlot.workers.dev/',

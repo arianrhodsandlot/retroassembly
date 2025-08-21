@@ -11,7 +11,7 @@ const dataListFields = [
     icon: 'icon-[mdi--calendar]',
     label: 'Released',
     name: 'gameReleaseDate',
-    placeholder: `${DateTime.fromISO('1990-01-01').toISODate()}`,
+    placeholder: `e.g. ${DateTime.fromISO('1990-01-01').toISODate()}`,
     type: 'input' as const,
   },
   {

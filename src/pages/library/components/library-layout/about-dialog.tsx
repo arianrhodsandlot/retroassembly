@@ -2,6 +2,7 @@ import { Button, Dialog, VisuallyHidden } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { linkMap, links } from '@/constants/links.ts'
 import { metadata } from '@/constants/metadata.ts'
+import { DialogRoot } from '../dialog-root.tsx'
 
 export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
   function handleOpenChange(open: boolean) {
@@ -9,7 +10,7 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
   }
 
   return (
-    <Dialog.Root {...props} onOpenChange={handleOpenChange}>
+    <DialogRoot {...props} onOpenChange={handleOpenChange}>
       <Dialog.Content aria-describedby={undefined} width='360px'>
         <VisuallyHidden>
           <Dialog.Title className='flex items-center gap-2'>About</Dialog.Title>
@@ -70,6 +71,6 @@ export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
           </Dialog.Close>
         </div>
       </Dialog.Content>
-    </Dialog.Root>
+    </DialogRoot>
   )
 }

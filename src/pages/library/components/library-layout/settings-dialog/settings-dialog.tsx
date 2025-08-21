@@ -2,6 +2,7 @@ import { Button, Dialog, ScrollArea, Tabs } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { clsx } from 'clsx'
 import { useState, useTransition } from 'react'
+import { DialogRoot } from '../../dialog-root.tsx'
 import { EmulatingSettings } from './emulating-settings/emulating-settings.tsx'
 import { InputsSettings } from './inputs-settings/inputs-setting.tsx'
 import { LibrarySettings } from './library-settings/library-settings.tsx'
@@ -18,7 +19,7 @@ export function SettingsDialog({ onOpenChange, ...props }: Dialog.RootProps) {
   const [enableTabAnimation, toggleTabAnimation] = useToggle()
   const [isPending, startTransition] = useTransition()
 
-  function handleOpenChange(open) {
+  function handleOpenChange(open: boolean) {
     toggleTabAnimation(open)
     onOpenChange?.(open)
   }
@@ -35,7 +36,7 @@ export function SettingsDialog({ onOpenChange, ...props }: Dialog.RootProps) {
   }
 
   return (
-    <Dialog.Root {...props} onOpenChange={handleOpenChange}>
+    <DialogRoot {...props} onOpenChange={handleOpenChange}>
       <Dialog.Content aria-describedby={undefined} className='!w-7xl !max-w-screen'>
         <Dialog.Title className='flex items-center gap-2'>
           <span className='icon-[mdi--cog] ' />
@@ -82,6 +83,6 @@ export function SettingsDialog({ onOpenChange, ...props }: Dialog.RootProps) {
           </Dialog.Close>
         </div>
       </Dialog.Content>
-    </Dialog.Root>
+    </DialogRoot>
   )
 }

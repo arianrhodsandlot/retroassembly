@@ -4,7 +4,7 @@ import { delay } from 'es-toolkit'
 import { useEffect } from 'react'
 import { useLocation, useNavigation } from 'react-router'
 import { Gamepad } from '@/utils/gamepad.ts'
-import { useEmulatorLaunched, useShowGameOverlayContent } from '../atoms.ts'
+import { useEmulatorLaunched, useShowGameOverlayContent, useSpatialNavigationPaused } from '../atoms.ts'
 import { useMouseIdle } from '../platform/rom/hooks/use-mouse-idle.ts'
 import { getKeyNameFromCode } from '../utils/keyboard.ts'
 import { cancel, click, focus, init, move, resetFocus } from '../utils/spatial-navigation.ts'
@@ -19,10 +19,11 @@ export function useSpatialNavigation() {
   const isIdle = useMouseIdle(100)
   const [emulatorLaunched] = useEmulatorLaunched()
   const [showGameOverlay] = useShowGameOverlayContent()
+  const [spatialNavigationPaused] = useSpatialNavigationPaused()
 
   const isNavigating = state === 'loading'
   const isPlaying = emulatorLaunched && !showGameOverlay
-  const isSpatialNavigationPaused = isNavigating || isPlaying
+  const isSpatialNavigationPaused = isNavigating || isPlaying || spatialNavigationPaused
 
   useEffect(init, [])
 

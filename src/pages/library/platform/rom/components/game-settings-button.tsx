@@ -1,8 +1,9 @@
 import { Button, DataList, Dialog, IconButton } from '@radix-ui/themes'
+import { DialogRoot } from '@/pages/library/components/dialog-root.tsx'
 
 export function GameSettingsButton() {
   return (
-    <Dialog.Root>
+    <DialogRoot>
       <Dialog.Trigger>
         <IconButton
           className='!bg-(--color-background) !hidden !size-16 !border-2 !shadow-none'
@@ -31,6 +32,6 @@ export function GameSettingsButton() {
           </Dialog.Close>
         </div>
       </Dialog.Content>
-    </Dialog.Root>
+    </DialogRoot>
   )
 }

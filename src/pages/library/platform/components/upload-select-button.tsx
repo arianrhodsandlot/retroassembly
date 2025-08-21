@@ -1,8 +1,9 @@
-import { Button, type ButtonProps, Dialog, DropdownMenu } from '@radix-ui/themes'
+import { Button, type ButtonProps, DropdownMenu } from '@radix-ui/themes'
 import { useToggle } from '@react-hookz/web'
 import { useState } from 'react'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
+import { DialogRoot } from '../../components/dialog-root.tsx'
 import { usePreference } from '../../hooks/use-preference.ts'
 import { UploadDialog } from './upload-dialog.tsx'
 
@@ -43,9 +44,9 @@ export function UploadSelectButton({ variant = 'soft' }: { variant?: ButtonProps
         </DropdownMenu.Content>
       </DropdownMenu.Root>
 
-      <Dialog.Root onOpenChange={toggleOpen} open={open}>
+      <DialogRoot onOpenChange={toggleOpen} open={open}>
         {selectedPlatform ? <UploadDialog key={key} platform={selectedPlatform} toggleOpen={toggleOpen} /> : null}
-      </Dialog.Root>
+      </DialogRoot>
     </>
   )
 }

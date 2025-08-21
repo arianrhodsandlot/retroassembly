@@ -6,17 +6,16 @@ import { chunk } from 'es-toolkit'
 import ky from 'ky'
 import { useDeferredValue, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { useLocation, useNavigate } from 'react-router'
 import useSWRMutation from 'swr/mutation'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
+import { useRouter } from '../../hooks/use-router.ts'
 import { getROMMd5 } from '../../utils/file.ts'
 
 const maxFiles = 100
 
 export function UploadDialog({ platform, toggleOpen }: { platform: string; toggleOpen: () => void }) {
-  const navigate = useNavigate()
-  const location = useLocation()
+  const { reload } = useRouter()
   const { getRootProps, isDragActive } = useDropzone({ onDrop })
 
   const [files, setFiles] = useState<File[]>([])
@@ -106,7 +105,7 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
 
   function handleClickDone() {
     toggleOpen()
-    navigate(location.pathname + location.search, { replace: true })
+    reload({ suppressLoadingMask: true })
   }
 
   return (

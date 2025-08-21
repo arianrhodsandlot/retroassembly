@@ -1,9 +1,10 @@
 import { Button, Dialog, IconButton } from '@radix-ui/themes'
 import { type PropsWithChildren, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router'
 import useSWRMutation from 'swr/mutation'
+import { DialogRoot } from '@/pages/library/components/dialog-root.tsx'
 import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
+import { useRouter } from '@/pages/library/hooks/use-router.ts'
 import { api } from '@/utils/http.ts'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { GameInfoDataList } from './game-info-data-list.tsx'
@@ -21,8 +22,7 @@ interface GameInfoDialogProps extends PropsWithChildren {
 export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: GameInfoDialogProps) {
   const rom = useRom()
 
-  const navigate = useNavigate()
-  const location = useLocation()
+  const { reload } = useRouter()
   const isDemo = useIsDemo()
 
   const [open, setOpen] = useState(false)
@@ -36,7 +36,7 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Ga
     const formData = new FormData(event.target as HTMLFormElement)
     await trigger(formData)
     setOpen(false)
-    await navigate(location.pathname, { replace: true })
+    await reload({ suppressLoadingMask: true })
   }
 
   if (isDemo) {
@@ -44,7 +44,7 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Ga
   }
 
   return (
-    <Dialog.Root onOpenChange={setOpen} open={open}>
+    <DialogRoot onOpenChange={setOpen} open={open}>
       <Dialog.Trigger>{children}</Dialog.Trigger>
 
       <Dialog.Content className='!w-2xl !max-w-screen'>
@@ -78,6 +78,6 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Ga
           </Dialog.Close>
         </div>
       </Dialog.Content>
-    </Dialog.Root>
+    </DialogRoot>
   )
 }

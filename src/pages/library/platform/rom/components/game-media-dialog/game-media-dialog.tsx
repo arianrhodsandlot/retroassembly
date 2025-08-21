@@ -1,5 +1,6 @@
 import { Button, DataList, Dialog, IconButton } from '@radix-ui/themes'
 import { type PropsWithChildren, useState } from 'react'
+import { DialogRoot } from '@/pages/library/components/dialog-root.tsx'
 import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { useRouter } from '@/pages/library/hooks/use-router.ts'
@@ -32,7 +33,7 @@ export function GameMediaDialog({ children = defaultTrigger }: PropsWithChildren
   }
 
   return (
-    <Dialog.Root onOpenChange={handleOpenChange} open={open}>
+    <DialogRoot onOpenChange={handleOpenChange} open={open}>
       <Dialog.Trigger>{children}</Dialog.Trigger>
 
       <Dialog.Content aria-describedby={undefined} className='!w-xl !max-w-screen'>
@@ -72,6 +73,6 @@ export function GameMediaDialog({ children = defaultTrigger }: PropsWithChildren
           </Dialog.Close>
         </div>
       </Dialog.Content>
-    </Dialog.Root>
+    </DialogRoot>
   )
 }

@@ -280,7 +280,7 @@ app.get('state/:id/thumbnail', async (c) => {
   }
 })
 
-app.get('files/:id', async (c) => {
+app.get('files/:id{.+}', async (c) => {
   const id = c.req.param('id')
   const runTimeEnv = getRunTimeEnv()
   if (runTimeEnv.RETROASSEMBLY_RUN_TIME_STORAGE_HOST) {

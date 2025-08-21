@@ -4,6 +4,8 @@ import { getPlatformBanner, getPlatformDevicePhoto } from '@/utils/library.ts'
 import { CompanyLogo } from '../../platform/components/company-logo.tsx'
 import { DeviceNotes } from './device-notes.tsx'
 
+const unknown = <span className='opacity-40'>Unknown</span>
+
 export function DeviceInfo({ platform, platformInfo }: { platform: string; platformInfo?: PlatformInfo }) {
   if (!platformInfo) {
     return
@@ -24,6 +26,9 @@ export function DeviceInfo({ platform, platformInfo }: { platform: string; platf
     manufacturer = 'Nintendo'
   }
 
+  const releaseDateTime = DateTime.fromISO(platformInfo.releaseDate)
+  const relativeReleaseDate = releaseDateTime.isValid ? releaseDateTime.toRelative({ locale: 'en' }) : null
+
   return (
     <div className='flex flex-col lg:flex-row'>
       <div className='flex flex-col gap-8 px-4'>
@@ -39,7 +44,14 @@ export function DeviceInfo({ platform, platformInfo }: { platform: string; platf
                 <span className='text-xs'>Released</span>
               </div>
               <div className='mt-1 pl-6'>
-                {platformInfo.releaseDate ? DateTime.fromISO(platformInfo.releaseDate).toISODate() : 'unknown'}
+                {releaseDateTime.isValid ? (
+                  <>
+                    {releaseDateTime.toISODate()}
+                    <span className='ml-1.5 text-xs opacity-50'>{relativeReleaseDate}</span>
+                  </>
+                ) : (
+                  unknown
+                )}
               </div>
             </div>
 

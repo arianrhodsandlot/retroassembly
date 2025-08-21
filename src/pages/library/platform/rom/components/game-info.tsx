@@ -6,12 +6,14 @@ const unknown = <span className='opacity-40'>Unknown</span>
 
 export function GameInfo({ rom }) {
   const launchboxGame = rom.launchboxGame || {}
-  const releaseDate = rom.gameReleaseDate ?? launchboxGame.releaseDate
-  const releaseValue =
-    (releaseDate ? DateTime.fromJSDate(new Date(releaseDate)).setZone('utc').toISODate() : '') ||
+  const rawReleaseDate = rom.gameReleaseDate ?? launchboxGame.releaseDate
+  const releaseDateValue =
+    (rawReleaseDate ? DateTime.fromJSDate(new Date(rawReleaseDate)).setZone('utc').toISODate() : '') ||
     rom.gameReleaseYear ||
-    launchboxGame.releaseYear ||
-    unknown
+    launchboxGame.releaseYear
+  const releaseDate = new Date(releaseDateValue)
+  const releaseDateTime = DateTime.fromJSDate(releaseDate, { zone: 'utc' })
+  const relativeReleaseDate = releaseDateTime.isValid ? releaseDateTime.toRelative({ locale: 'en' }) : null
 
   const items = [
     {
@@ -24,7 +26,14 @@ export function GameInfo({ rom }) {
       icon: 'icon-[mdi--calendar]',
       name: 'gameReleaseDate',
       title: 'Released',
-      value: releaseValue,
+      value: releaseDateValue ? (
+        <>
+          {releaseDateValue}
+          <span className='ml-1.5 text-xs opacity-50'>{relativeReleaseDate}</span>
+        </>
+      ) : (
+        unknown
+      ),
     },
     {
       icon: 'icon-[mdi--tag-multiple]',
@@ -62,7 +71,7 @@ export function GameInfo({ rom }) {
               {item.title}
               {item.name ? <GameInfoDialog autoFocusField={item.name} /> : null}
             </div>
-            <div className='pl-6'>{item.title === 'Players' ? <span>{item.value}</span> : item.value}</div>
+            <div className='pl-6'>{item.value}</div>
           </div>
         ))}
       </div>

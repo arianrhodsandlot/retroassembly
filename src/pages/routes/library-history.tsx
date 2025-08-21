@@ -1,5 +1,5 @@
-import { getContext } from 'hono/context-storage'
 import { getLaunchRecords } from '@/controllers/get-launch-records.ts'
+import { getLoaderData } from '@/utils/loader-data.ts'
 import HistoryPage from '../library/history/page.tsx'
 import type { Route } from './+types/library-history.ts'
 
@@ -8,8 +8,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const query = url.searchParams
   const page = Number.parseInt(new URLSearchParams(query).get('page') || '', 10) || 1
   const { pagination, roms } = await getLaunchRecords({ page })
-  const { preference } = getContext().var
-  return { page, pagination, preference, roms }
+  return getLoaderData({ page, pagination, roms })
 }
 
 export default function LibraryHistoryRoute({ loaderData }: Route.ComponentProps) {

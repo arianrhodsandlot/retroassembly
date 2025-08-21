@@ -6,15 +6,17 @@ import { chunk } from 'es-toolkit'
 import ky from 'ky'
 import { useDeferredValue, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { useLoaderData } from 'react-router'
 import useSWRMutation from 'swr/mutation'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
 import { useRouter } from '../../hooks/use-router.ts'
 import { getROMMd5 } from '../../utils/file.ts'
 
-const maxFiles = 100
-
 export function UploadDialog({ platform, toggleOpen }: { platform: string; toggleOpen: () => void }) {
+  const { env } = useLoaderData()
+  const maxFiles = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE, 10) || 1000
+
   const { reload } = useRouter()
   const { getRootProps, isDragActive } = useDropzone({ onDrop })
 
@@ -154,6 +156,9 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
                       </span>
                     </>
                   ) : null}
+                  <p>
+                    You can upload up to <b>{maxFiles}</b> files at a time.
+                  </p>
                 </Callout.Text>
               </Callout.Root>
 

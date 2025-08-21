@@ -124,8 +124,8 @@ app.post(
     const extname = path.extname(form.file.name)
     const fileId = path.join('attachments', currentUser.id, rom.platform, rom.id, `${nanoid()}${extname}`)
     await storage.put(fileId, form.file)
-    await updateRom({ gameBoxartFileIds: fileId, id })
-    return c.json(null)
+    const updatedRom = await updateRom({ gameBoxartFileIds: fileId, id })
+    return c.json(updatedRom.gameBoxartFileIds)
   },
 )
 
@@ -162,8 +162,8 @@ app.post(
     const fileId = path.join('attachments', currentUser.id, rom.platform, rom.id, `${nanoid()}${extname}`)
     await storage.put(fileId, form.file)
     gameThumbnailFileIds.push(fileId)
-    await updateRom({ gameThumbnailFileIds: gameThumbnailFileIds.join(','), id })
-    return c.json(null)
+    const updatedRom = await updateRom({ gameThumbnailFileIds: gameThumbnailFileIds.join(','), id })
+    return c.json(updatedRom.gameThumbnailFileIds)
   },
 )
 
@@ -179,11 +179,11 @@ app.delete(
     assert.ok(rom)
     const gameThumbnailFileIds: string[] = rom.gameThumbnailFileIds?.split(',') || []
     pull(gameThumbnailFileIds, [thumbnailId])
-    await updateRom({
+    const updatedRom = await updateRom({
       gameThumbnailFileIds: gameThumbnailFileIds.length > 0 ? gameThumbnailFileIds.join(',') : null,
       id,
     })
-    return c.json(null)
+    return c.json(updatedRom.gameThumbnailFileIds)
   },
 )
 

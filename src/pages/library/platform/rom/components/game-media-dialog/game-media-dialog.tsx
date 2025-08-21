@@ -1,8 +1,8 @@
 import { Button, DataList, Dialog, IconButton } from '@radix-ui/themes'
 import { type PropsWithChildren, useState } from 'react'
 import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
-import { useReload } from '@/pages/library/hooks/use-reload.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
+import { useRouter } from '@/pages/library/hooks/use-router.ts'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { GameMediaBoxart } from './game-media-boxart.tsx'
 import { GameMediaImages } from './game-media-images.tsx'
@@ -15,7 +15,7 @@ const defaultTrigger = (
 
 export function GameMediaDialog({ children = defaultTrigger }: PropsWithChildren) {
   const rom = useRom()
-  const { reload } = useReload()
+  const { isReloading, reload } = useRouter()
   const isDemo = useIsDemo()
 
   const [open, setOpen] = useState(false)
@@ -35,10 +35,11 @@ export function GameMediaDialog({ children = defaultTrigger }: PropsWithChildren
     <Dialog.Root onOpenChange={handleOpenChange} open={open}>
       <Dialog.Trigger>{children}</Dialog.Trigger>
 
-      <Dialog.Content className='!w-4xl !max-w-screen'>
+      <Dialog.Content aria-describedby={undefined} className='!w-xl !max-w-screen'>
         <Dialog.Title className='!-ml-1 flex items-center gap-2 text-xl font-semibold'>
-          <span className='icon-[mdi--image-edit]' />
+          <span className='icon-[mdi--image-multiple]' />
           {getRomGoodcodes(rom).rom}
+          {isReloading ? <span className='icon-[svg-spinners--180-ring]' /> : null}
         </Dialog.Title>
 
         <DataList.Root className='py-4' size='3'>
@@ -54,7 +55,7 @@ export function GameMediaDialog({ children = defaultTrigger }: PropsWithChildren
 
           <DataList.Item>
             <DataList.Label className='flex items-center gap-2 text-sm' minWidth='32px'>
-              <span className='icon-[mdi--image-multiple]' />
+              <span className='icon-[mdi--image]' />
               Images
             </DataList.Label>
             <DataList.Value>

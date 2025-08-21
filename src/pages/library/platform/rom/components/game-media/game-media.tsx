@@ -3,10 +3,10 @@ import { useState } from 'react'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { getRomLibretroThumbnail } from '@/utils/library.ts'
-import { GameMediaDialog } from '../game-media-dialog.tsx'
+import { GameMediaDialog } from '../game-media-dialog/game-media-dialog.tsx'
 import { YouTubeEmbed } from './youtube-embed.tsx'
 
-export function GameMedias() {
+export function GameMedia() {
   const rom = useRom()
 
   const video = rom?.launchboxGame?.videoUrl

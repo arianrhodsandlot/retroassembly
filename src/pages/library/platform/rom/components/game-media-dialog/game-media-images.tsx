@@ -1,43 +1,51 @@
 import { IconButton } from '@radix-ui/themes'
 import { fileOpen } from 'browser-fs-access'
+import clsx from 'clsx'
+import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
-import { useReload } from '@/pages/library/hooks/use-reload.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { api } from '@/utils/http.ts'
 
 export function GameMediaImages() {
   const rom = useRom()
-  const { reload } = useReload()
-  const thumbnailFileIds: string[] = rom.gameThumbnailFileIds?.split(',') || []
+  const [thumbnailFileIds, setThumbnailFileIds] = useState<string[]>(rom.gameThumbnailFileIds?.split(',') || [])
 
   const { isMutating: isUploadingThumbnail, trigger: uploadThumbnail } = useSWRMutation(
     `roms/${rom.id}/thumbnail`,
-    (url, { arg }: { arg: FormData }) => api.post(url, { body: arg }),
+    (url, { arg }: { arg: FormData }) => api.post(url, { body: arg }).json<string>(),
   )
 
   const { isMutating: isDeletingThumbnail, trigger: deleteThumbnail } = useSWRMutation(
     `roms/${rom.id}/thumbnail`,
-    (url, { arg }: { arg: string }) => api.delete(`${url}/${encodeURIComponent(arg)}`),
+    (url, { arg }: { arg: string }) => api.delete(`${url}/${encodeURIComponent(arg)}`).json<string>(),
   )
 
+  const isLoading = isUploadingThumbnail || isDeletingThumbnail
+
   async function handleClickUploadThumbnail() {
-    const file = await fileOpen({ extensions: ['.jpg', '.jpeg', '.png'] })
+    if (isUploadingThumbnail) {
+      return
+    }
+    const file = await fileOpen({ extensions: ['.jpg', '.jpeg', '.png', '.svg'] })
     if (file) {
       const formData = new FormData()
       formData.append('file', file)
-      await uploadThumbnail(formData)
-      await reload()
+      const thumbnailIds = await uploadThumbnail(formData)
+      setThumbnailFileIds(thumbnailIds?.split(',') || [])
     }
   }
 
   async function handleClickDeleteThumbnail(thumbnailFileId: string) {
-    await deleteThumbnail(thumbnailFileId)
-    await reload()
+    if (isDeletingThumbnail) {
+      return
+    }
+    const thumbnailIds = await deleteThumbnail(thumbnailFileId)
+    setThumbnailFileIds(thumbnailIds?.split(',') || [])
   }
 
   return (
-    <div className='flex flex-wrap items-center gap-2'>
+    <div className={clsx('flex flex-wrap items-center gap-2', { 'opacity-60 pointer-events-none': isLoading })}>
       {thumbnailFileIds.map((thumbnailFileId) => (
         <div className='relative size-20 bg-neutral-200' key={thumbnailFileId}>
           <button
@@ -49,7 +57,7 @@ export function GameMediaImages() {
           >
             <span className='icon-[mdi--close]' />
           </button>
-          <a className='size-20' href={getFileUrl(thumbnailFileId)}>
+          <a className='size-20' href={getFileUrl(thumbnailFileId)} rel='noreferrer noopener' target='_blank'>
             <img alt='Thumbnail' className='size-20 object-contain' src={getFileUrl(thumbnailFileId)} />
           </a>
         </div>

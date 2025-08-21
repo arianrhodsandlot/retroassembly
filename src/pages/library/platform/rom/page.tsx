@@ -9,9 +9,10 @@ import { PageBreadcrumb } from '../../components/page-breadcrumb.tsx'
 import { GameAnimatePresence } from './components/game-animate-presence.tsx'
 import { GameButtons } from './components/game-buttons.tsx'
 import { GameCover } from './components/game-cover.tsx'
+import { GameInfoDialog } from './components/game-info-dialog/game-info-dialog.tsx'
 import { GameInfo } from './components/game-info.tsx'
-import { GameMediaDialog } from './components/game-media-dialog.tsx'
-import { GameMedias } from './components/game-medias/game-medias.tsx'
+import { GameMedia } from './components/game-media/game-media.tsx'
+import { GameMediaDialog } from './components/game-media-dialog/game-media-dialog.tsx'
 import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
 import { PageHooks } from './components/page-hooks.ts'
 import { RomBackground } from './components/rom-background.tsx'
@@ -39,8 +40,8 @@ export default function RomPage({ pageData }: RomPageProps) {
       <MainScrollArea>
         <PageBreadcrumb />
         <div className='flex min-h-full w-full flex-col gap-4 p-4 lg:flex-row'>
-          <div className='group'>
-            <GameCover className='top-4 block w-full lg:sticky lg:w-64' rom={rom} />
+          <div className='group lg:sticky'>
+            <GameCover className='top-4 block w-full lg:w-64' rom={rom} />
 
             <div className='mt-2 flex justify-center'>
               <GameMediaDialog />
@@ -57,11 +58,14 @@ export default function RomPage({ pageData }: RomPageProps) {
               <GameInfo rom={rom} />
             </div>
 
-            <div className='flex flex-col gap-4 lg:pl-4'>
-              <GameMedias />
+            <div className='flex flex-col gap-6 lg:pl-4'>
+              <GameMedia />
               {overview ? (
-                <div className='text-(--color-text)/90 prose max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable] lg:pr-64'>
+                <div className='text-(--color-text)/90 prose group max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable] lg:mr-64'>
                   {overview}
+                  <div className='mt-1 flex justify-end'>
+                    <GameInfoDialog autoFocusField='gameDescription' />
+                  </div>
                 </div>
               ) : null}
 

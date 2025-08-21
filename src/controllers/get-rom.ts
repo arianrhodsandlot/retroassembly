@@ -1,3 +1,4 @@
+import assert from 'node:assert'
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { romTable } from '../databases/schema.ts'
@@ -13,6 +14,7 @@ export async function getRom(params: { fileName: string; platform: string } | { 
 
   const { fileName, platform } = params
   const { currentUser, db } = getContext().var
+  assert.ok(currentUser)
   const [result] = await db.library
     .select({ id: romTable.id })
     .from(romTable)

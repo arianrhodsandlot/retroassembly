@@ -20,14 +20,19 @@ export function useFocusIndicatorStyle() {
   return useAtom(focusIndicatorStyleAtom)
 }
 
-export const showGameOverlayContentAtom = atomWithReset(false)
+export const showGameOverlayContentAtom = atom(false)
 export function useShowGameOverlayContent() {
   return useAtom(showGameOverlayContentAtom)
 }
 
-export const isGameOverlayPendingAtom = atomWithReset(false)
+export const isGameOverlayPendingAtom = atom(false)
 
-const emulatorLaunchedAtom = atomWithReset(false)
+const emulatorLaunchedAtom = atom(false)
 export function useEmulatorLaunched() {
   return useAtom(emulatorLaunchedAtom)
+}
+
+const shouldSuppressLoadingMaskAtom = atom(false)
+export function useShouldSuppressLoadingMaskAtom() {
+  return useAtom(shouldSuppressLoadingMaskAtom)
 }

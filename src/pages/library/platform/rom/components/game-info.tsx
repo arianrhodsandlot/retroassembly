@@ -11,7 +11,7 @@ export function GameInfo({ rom }) {
     (rawReleaseDate ? DateTime.fromJSDate(new Date(rawReleaseDate)).setZone('utc').toISODate() : '') ||
     rom.gameReleaseYear ||
     launchboxGame.releaseYear
-  const releaseDate = new Date(releaseDateValue)
+  const releaseDate = new Date(`${releaseDateValue}`)
   const releaseDateTime = DateTime.fromJSDate(releaseDate, { zone: 'utc' })
   const relativeReleaseDate = releaseDateTime.isValid ? releaseDateTime.toRelative({ locale: 'en' }) : null
 

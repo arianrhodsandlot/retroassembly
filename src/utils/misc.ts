@@ -16,8 +16,8 @@ export function restoreTitleForSorting(title: string) {
   return title
 }
 
-export function humanizeDate(date: Date) {
-  const dateTime = DateTime.fromJSDate(date)
+export function humanizeDate(date: Date | string) {
+  const dateTime = DateTime.fromJSDate(new Date(date))
   const now = DateTime.now()
   if (dateTime.hasSame(now, 'day')) {
     return dateTime.toFormat('HH:mm:ss')

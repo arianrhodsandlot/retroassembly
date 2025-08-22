@@ -43,6 +43,7 @@ const defaultEmulatorStyle: Partial<CSSStyleDeclaration> = {
   transition: 'opacity .1s',
 }
 
+const originalGetUserMedia = globalThis.navigator?.mediaDevices?.getUserMedia
 export function useEmulator() {
   const rom: Rom = useRom()
   if (!rom) {
@@ -126,7 +127,14 @@ export function useEmulator() {
     if (!emulator || !rom) {
       return
     }
+    try {
+      // @ts-expect-error an ad-hoc patch for disabling request for camera access
+      globalThis.navigator.mediaDevices.getUserMedia = null
+    } catch {}
     await emulator.start()
+    try {
+      globalThis.navigator.mediaDevices.getUserMedia = originalGetUserMedia
+    } catch {}
     const canvas = emulator.getCanvas()
     if (canvas) {
       canvas.style.opacity = '1'

@@ -41,8 +41,8 @@ export default function PlatformPage({ pageData }: PlatformPageProps) {
         <div className='flex min-h-full w-full flex-col gap-5 p-4'>
           <DeviceInfo key={platform} platform={platform} platformInfo={platformInfo} />
           {isDemo ? null : (
-            <div className='hidden items-center justify-end gap-4 pr-4 lg:flex'>
-              <div className='text-(--gray-11) flex items-center gap-2'>
+            <div className='mt-4 flex flex-col items-end justify-end gap-4 lg:mt-0 lg:flex-row lg:items-center lg:pr-4'>
+              <div className='text-(--gray-11) flex items-center justify-end gap-2'>
                 <span className='icon-[mdi--bar-chart] text-(--color-text)' />
                 <span className='text-(--accent-9) font-semibold'>{pagination.total}</span>
                 {pagination.total === 1 ? 'game' : 'games'} for {platformMap[platform].displayName}.

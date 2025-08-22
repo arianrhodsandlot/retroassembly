@@ -28,7 +28,7 @@ export default function LibraryPage({ pageData }: LibraryPageProps) {
     <LibraryLayout title='Library'>
       <MainScrollArea>
         <div className='flex min-h-full w-full flex-col gap-5 p-4'>
-          <div className='relative flex justify-between pt-4 lg:px-4'>
+          <div className='relative flex flex-col justify-between pt-4 lg:flex-row lg:px-4'>
             <div>
               <h1 className='text-5xl font-semibold'>Library</h1>
               {isDemo ? (
@@ -50,8 +50,8 @@ export default function LibraryPage({ pageData }: LibraryPageProps) {
               ) : null}
             </div>
             {isDemo ? null : (
-              <div className='hidden items-center justify-end gap-4 pr-4 lg:flex '>
-                <div className='text-(--gray-11) flex items-center gap-2'>
+              <div className='mt-4 flex flex-col items-end gap-4 lg:mt-0 lg:flex-row lg:items-center lg:pr-4'>
+                <div className='text-(--gray-11) flex items-center justify-end gap-2'>
                   <span className='icon-[mdi--bar-chart] text-(--color-text)' />
                   <span className='text-(--accent-9) font-semibold'>{pagination.total}</span> games for{' '}
                   <span className='text-(--accent-9) font-semibold'>{platformCount}</span>{' '}

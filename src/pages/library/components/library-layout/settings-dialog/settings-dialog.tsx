@@ -1,31 +1,37 @@
 import { Button, Dialog, ScrollArea, Tabs } from '@radix-ui/themes'
-import { useToggle } from '@react-hookz/web'
 import { clsx } from 'clsx'
+import { dropRight } from 'es-toolkit'
 import { useState, useTransition } from 'react'
+import { useLoaderData } from 'react-router'
 import { DialogRoot } from '../../dialog-root.tsx'
+import { AccountSettings } from './account-settings.tsx'
 import { EmulatingSettings } from './emulating-settings/emulating-settings.tsx'
 import { InputsSettings } from './inputs-settings/inputs-setting.tsx'
 import { LibrarySettings } from './library-settings/library-settings.tsx'
 
-const settingsTabs = [
+const allSettingsTabs = [
   { content: LibrarySettings, iconClass: 'icon-[mdi--bookshelf]', name: 'library' },
   { content: InputsSettings, iconClass: 'icon-[mdi--controller]', name: 'inputs' },
-  { content: EmulatingSettings, iconClass: 'icon-[simple-icons--retroarch]', name: 'Emulating' },
+  { content: EmulatingSettings, iconClass: 'icon-[simple-icons--retroarch]', name: 'emulating' },
+  { content: AccountSettings, iconClass: 'icon-[mdi--account]', name: 'account' },
 ]
 
 export function SettingsDialog({ onOpenChange, ...props }: Dialog.RootProps) {
-  const [tab, setTab] = useState(settingsTabs[0])
-  const [TabContent, setTabContent] = useState(() => settingsTabs[0].content)
-  const [enableTabAnimation, toggleTabAnimation] = useToggle()
+  const [tab, setTab] = useState(allSettingsTabs[0])
+  const [TabContent, setTabContent] = useState(() => tab.content)
+  const [enableTabAnimation, setEnableTabAnimation] = useState(false)
   const [isPending, startTransition] = useTransition()
+  const { runtimeKey } = useLoaderData()
+
+  const settingsTabs = runtimeKey === 'workerd' ? dropRight(allSettingsTabs, 1) : allSettingsTabs
 
   function handleOpenChange(open: boolean) {
-    toggleTabAnimation(open)
+    setEnableTabAnimation(open)
     onOpenChange?.(open)
   }
 
   function handleValueChange(tabName: string) {
-    toggleTabAnimation(true)
+    setEnableTabAnimation(true)
     const clickedTab = settingsTabs.find((tab) => tabName === tab.name)
     if (clickedTab) {
       setTab(clickedTab)

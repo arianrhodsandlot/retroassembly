@@ -1,18 +1,18 @@
-import { LoginFormField } from './log-in-form-field.tsx'
+import { AccountFormField } from '@/pages/components/account-form-field.tsx'
 
 export function LoginFormFields({ register = false }: { register?: boolean }) {
   return (
     <>
-      <LoginFormField
+      <AccountFormField
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
-        description={register ? 'E.g., johnsmith, admin, etc.' : ''}
+        description={register ? 'E.g., johnsmith, admin' : ''}
         iconClass='icon-[mdi--user-card-details]'
         label='Username'
         name='username'
       />
 
-      <LoginFormField
+      <AccountFormField
         description={register ? 'Recommendation: 10+ characters with letters, numbers, and symbols.' : ''}
         iconClass='icon-[mdi--password]'
         label='Password'
@@ -21,7 +21,7 @@ export function LoginFormFields({ register = false }: { register?: boolean }) {
       />
 
       {register ? (
-        <LoginFormField
+        <AccountFormField
           iconClass='icon-[mdi--password-check]'
           label='Repeat password'
           name='repeat_password'

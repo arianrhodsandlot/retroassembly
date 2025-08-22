@@ -8,13 +8,6 @@ export function useClientRoms() {
   return [...useAtom(clientRomsAtom), useResetAtom(clientRomsAtom)] as const
 }
 
-export const settingsDialogOpenAtom = atom(false)
-
-const aboutDialogOpenAtom = atom(false)
-export function useAboutDialogOpen() {
-  return useAtom(aboutDialogOpenAtom)
-}
-
 const focusIndicatorStyleAtom = atom<CSSProperties>({})
 export function useFocusIndicatorStyle() {
   return useAtom(focusIndicatorStyleAtom)

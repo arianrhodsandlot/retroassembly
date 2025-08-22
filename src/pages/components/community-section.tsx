@@ -22,7 +22,7 @@ export function CommunitySection() {
             <div>
               We kindly request your assistance in reporting any ideas or bugs on our{' '}
               <a className='underline' href={linkMap.discord.url} rel='noreferrer noopener' target='_blank'>
-                Discord channel
+                Discord server
               </a>{' '}
               or{' '}
               <a className='underline' href={linkMap.github.url} rel='noreferrer noopener' target='_blank'>

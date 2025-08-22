@@ -4,6 +4,7 @@ import { setCookie } from 'hono/cookie'
 import { z } from 'zod'
 import { createSession } from '../controllers/create-session.ts'
 import { createUser } from '../controllers/create-user.ts'
+import { updatePassword } from '../controllers/update-password.ts'
 
 export const app = new Hono().basePath('auth')
 
@@ -45,5 +46,23 @@ app.post(
     const cookie = { expires: session.expiresAt, httpOnly: true, path: '/', sameSite: 'Strict', secure: false } as const
     setCookie(c, 'token', session.token, cookie)
     return c.json({ session, user })
+  },
+)
+
+app.patch(
+  'password',
+
+  zValidator(
+    'form',
+    z.object({
+      new_password: z.string(),
+      password: z.string(),
+    }),
+  ),
+
+  async (c) => {
+    const form = c.req.valid('form')
+    await updatePassword(form.password, form.new_password)
+    return c.json(true)
   },
 )

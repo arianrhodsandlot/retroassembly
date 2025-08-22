@@ -1,17 +1,15 @@
 import { Button, DropdownMenu } from '@radix-ui/themes'
-import { useToggle } from '@react-hookz/web'
-import { useAtom } from 'jotai'
+import { useState } from 'react'
 import { links } from '@/constants/links.ts'
-import { settingsDialogOpenAtom, useAboutDialogOpen } from '../../atoms.ts'
 import { AboutDialog } from './about-dialog.tsx'
 import { LogoutDialog } from './logout-dialog.tsx'
 import { SettingsDialog } from './settings-dialog/settings-dialog.tsx'
 import { ThemeMenuItem } from './theme-menu-item.tsx'
 
 export function SidebarFooter() {
-  const [settingsDialogOpen, setSettingsDialogOpen] = useAtom(settingsDialogOpenAtom)
-  const [logoutDialogOpen, toggleLogoutDialog] = useToggle()
-  const [aboutDialogOpen, setAboutDialogOpen] = useAboutDialogOpen()
+  const [settingsDialogOpen, setSettingsDialogOpen] = useState(false)
+  const [logoutDialogOpen, setLogoutDialogOpen] = useState(false)
+  const [aboutDialogOpen, setAboutDialogOpen] = useState(false)
 
   return (
     <>
@@ -19,13 +17,13 @@ export function SidebarFooter() {
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
             <Button size='1'>
-              <span className='icon-[mdi--cog]' />
+              <span className='icon-[mdi--menu]' />
             </Button>
           </DropdownMenu.Trigger>
 
           <DropdownMenu.Content variant='solid'>
             <DropdownMenu.Item onClick={() => setSettingsDialogOpen(true)}>
-              <span className='icon-[mdi--wrench]' />
+              <span className='icon-[mdi--cog]' />
               Settings
             </DropdownMenu.Item>
 
@@ -52,7 +50,7 @@ export function SidebarFooter() {
 
             <DropdownMenu.Separator />
 
-            <DropdownMenu.Item color='red' onClick={() => toggleLogoutDialog(true)}>
+            <DropdownMenu.Item color='red' onClick={() => setLogoutDialogOpen(true)}>
               <span className='icon-[mdi--logout]' />
               Log out
             </DropdownMenu.Item>
@@ -60,9 +58,9 @@ export function SidebarFooter() {
         </DropdownMenu.Root>
       </div>
 
-      <AboutDialog onOpenChange={setAboutDialogOpen} open={aboutDialogOpen} />
       <SettingsDialog onOpenChange={setSettingsDialogOpen} open={settingsDialogOpen} />
-      <LogoutDialog onOpenChange={toggleLogoutDialog} open={logoutDialogOpen} />
+      <LogoutDialog onOpenChange={setLogoutDialogOpen} open={logoutDialogOpen} />
+      <AboutDialog onOpenChange={setAboutDialogOpen} open={aboutDialogOpen} />
     </>
   )
 }

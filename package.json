@@ -28,12 +28,12 @@
   "dependencies": {
     "argon2": "0.44.0",
     "better-sqlite3": "12.2.0",
-    "hono": "4.9.2"
+    "hono": "4.9.4"
   },
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.19.0",
     "@cloudflare/vite-plugin": "1.11.7",
-    "@cloudflare/workers-types": "4.20250821.0",
+    "@cloudflare/workers-types": "4.20250822.0",
     "@hono/node-server": "1.19.0",
     "@hono/vite-dev-server": "0.20.1",
     "@hono/zod-validator": "0.7.2",
@@ -48,8 +48,8 @@
     "@react-hookz/web": "25.1.1",
     "@react-router/dev": "7.8.1",
     "@react-router/node": "7.8.1",
-    "@supabase/ssr": "0.6.1",
-    "@supabase/supabase-js": "2.55.0",
+    "@supabase/ssr": "0.7.0",
+    "@supabase/supabase-js": "2.56.0",
     "@tailwindcss/typography": "0.5.16",
     "@tailwindcss/vite": "4.1.12",
     "@tsconfig/vite-react": "7.0.0",

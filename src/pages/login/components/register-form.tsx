@@ -5,17 +5,19 @@ import useSWRMutation from 'swr/mutation'
 import { api } from '@/utils/http.ts'
 import { LoginFormFields } from './log-in-form-fields.tsx'
 
+function validateFormData(formData: FormData) {
+  if (formData.get('password') !== formData.get('repeat_password')) {
+    throw new Error('Passwords do not match')
+  }
+  return formData
+}
+
 export function RegisterForm({ redirectTo }: { redirectTo: string }) {
   const [isRedirecting, setIsRedirecting] = useState(false)
 
   const { error, isMutating, trigger } = useSWRMutation(
     'auth/register',
-    async (url, { arg }: { arg: FormData }) => {
-      if (arg.get('password') !== arg.get('repeat_password')) {
-        throw new Error('Passwords do not match')
-      }
-      await api.post(url, { body: arg }).json()
-    },
+    (url, { arg }: { arg: FormData }) => api.post(url, { body: validateFormData(arg) }).json(),
     {
       onSuccess() {
         setIsRedirecting(true)

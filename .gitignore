@@ -1,10 +1,11 @@
+.dev.vars
 .env
 .react-router
 .wrangler
-.dev.vars
 data
 dist
 inputs
 node_modules
+test-results
 worker-configuration.d.ts
 wrangler.json

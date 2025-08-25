@@ -78,7 +78,7 @@ export function AccountSettings() {
               <Callout.Icon>
                 <span className='icon-[mdi--check]' />
               </Callout.Icon>
-              <Callout.Text>Your password has been updated.</Callout.Text>
+              <Callout.Text>Your password has been updated</Callout.Text>
             </Callout.Root>
           ) : null}
 

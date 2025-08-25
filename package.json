@@ -8,7 +8,7 @@
     "check-lockfile": "node scripts/check-lockfile.ts",
     "dev": "react-router",
     "dev:node": "node --run=dev",
-    "dev:test": "playwright test -c tests/e2e --headed --ui",
+    "dev:test": "node --run=test -- --headed --ui",
     "dev:workerd": "node --run=dev",
     "serve": "node dist/scripts/serve.js",
     "serve:node": "node --run=serve",

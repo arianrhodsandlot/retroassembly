@@ -83,7 +83,7 @@ export function SettingsDialog({ onOpenChange, ...props }: Dialog.RootProps) {
 
         <div className='absolute right-6 top-6'>
           <Dialog.Close>
-            <Button variant='ghost'>
+            <Button title='Close' variant='ghost'>
               <span className='icon-[mdi--close] size-5' />
             </Button>
           </Dialog.Close>

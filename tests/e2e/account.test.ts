@@ -1,23 +1,15 @@
-import { expect } from '@playwright/test'
-import { test } from './fixtures/test.ts'
+import { expect, mergeTests } from '@playwright/test'
+import { test as pagesTest } from './fixtures/pages.ts'
+import { test as userTest } from './fixtures/user.ts'
 
-// test('create an account', async ({ page }) => {
-//   const loginPage = new LoginPage(page)
-
-//   await loginPage.goto()
-//   await loginPage.createAccount('testuser', 'testpassword1', 'testpassword2')
-//   await expect(page.getByText('Passwords do not match')).toBeAttached()
-
-//   await loginPage.createAccount('testuser', 'testpassword', 'testpassword')
-//   await expect(page).toHaveURL('/library')
-// })
+const test = mergeTests(userTest, pagesTest)
 
 test('log in', async ({ page, pages, user }) => {
-  await pages.login.login(user.username, `${user.password}1`)
+  await pages.login.login(user.username, `${user.password}1`, false)
   await expect(page.getByText('Invalid username or password')).toBeAttached()
 
-  await pages.login.login(user.username, user.password)
-  await expect(page).toHaveURL('/library')
+  await pages.login.login(user.username, user.password, false)
+  await expect(page).toHaveURL(pages.library.url)
 })
 
 test('log out', async ({ page, pages, user }) => {
@@ -26,7 +18,7 @@ test('log out', async ({ page, pages, user }) => {
   await expect(page).toHaveURL('')
 
   await pages.library.goto()
-  await expect(page).toHaveURL('/login')
+  await expect(page).toHaveURL(pages.login.url)
 })
 
 test('update password', async ({ page, pages, user }) => {

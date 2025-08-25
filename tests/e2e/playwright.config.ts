@@ -1,5 +1,5 @@
 import { defineConfig } from '@playwright/test'
-import { once } from 'es-toolkit'
+import { attempt, once } from 'es-toolkit'
 import fs from 'fs-extra'
 import { temporaryDirectory } from 'tempy'
 
@@ -7,7 +7,7 @@ const port = 5173
 const tmp = temporaryDirectory({ prefix: 'retroassembly-test-' })
 
 const cleanup = once(() => {
-  fs.removeSync(tmp)
+  attempt(() => fs.removeSync(tmp))
 })
 
 process.on('SIGINT', (e) => {
@@ -17,6 +17,7 @@ process.on('SIGINT', (e) => {
 process.on('exit', cleanup)
 
 export default defineConfig({
+  fullyParallel: true,
   use: {
     baseURL: `http://localhost:${port}/`,
     channel: 'chrome',

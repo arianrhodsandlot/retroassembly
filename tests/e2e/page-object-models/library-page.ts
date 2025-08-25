@@ -2,6 +2,7 @@ import type { Page } from '@playwright/test'
 
 export class LibraryPage {
   readonly page: Page
+  readonly url = 'library'
 
   constructor(page: Page) {
     this.page = page
@@ -13,7 +14,7 @@ export class LibraryPage {
   }
 
   async goto() {
-    await this.page.goto('/library')
+    await this.page.goto(this.url, { waitUntil: 'load' })
   }
 
   async gotoSettingsTab(tab: string) {
@@ -30,5 +31,9 @@ export class LibraryPage {
 
   async openMenu() {
     await this.page.getByTitle('Menu').click()
+  }
+
+  async waitForLoaded() {
+    await this.page.waitForURL(this.url, { waitUntil: 'load' })
   }
 }

@@ -156,9 +156,10 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
                       </span>
                     </>
                   ) : null}
-                  <p>
+                  <br />
+                  <span>
                     You can upload up to <b>{maxFiles}</b> files at a time.
-                  </p>
+                  </span>
                 </Callout.Text>
               </Callout.Root>
 

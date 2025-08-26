@@ -23,9 +23,11 @@ const roms = titles.map((title) => {
 
 export const test = base.extend<{ roms: Rom[] }>({
   async roms({ page }, use) {
+    await fs.ensureDir(romsDirectory)
     await Promise.all(
       roms.map(async (rom) => {
-        if (!(await fs.exists(rom.path))) {
+        const exists = await fs.pathExists(rom.path)
+        if (!exists) {
           const arrayBuffer = await ky(rom.url).arrayBuffer()
           await fs.writeFile(rom.path, Buffer.from(arrayBuffer))
         }

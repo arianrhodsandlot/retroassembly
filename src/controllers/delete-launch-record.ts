@@ -1,6 +1,7 @@
+import assert from 'node:assert'
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { launchRecordTable, romTable } from '../databases/schema.ts'
+import { launchRecordTable } from '../databases/schema.ts'
 
 interface DeleteRomParams {
   rom: string
@@ -8,20 +9,15 @@ interface DeleteRomParams {
 
 export async function deleteLaunchRecord(params: DeleteRomParams) {
   const { currentUser, db } = getContext().var
+  assert.ok(currentUser)
   const { library } = db
-
-  const roms = await library
-    .select({ id: romTable.id })
-    .from(romTable)
-    .where(and(eq(romTable.id, params.rom), eq(romTable.userId, currentUser.id), eq(romTable.status, 1)))
-  const [rom] = roms
 
   const result = await library
     .update(launchRecordTable)
     .set({ status: 0 })
     .where(
       and(
-        eq(launchRecordTable.romId, rom.id),
+        eq(launchRecordTable.romId, params.rom),
         eq(launchRecordTable.userId, currentUser.id),
         eq(launchRecordTable.status, 1),
       ),

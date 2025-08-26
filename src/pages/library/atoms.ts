@@ -1,12 +1,5 @@
 import { atom, useAtom } from 'jotai'
-import { atomWithReset, useResetAtom } from 'jotai/utils'
 import type { CSSProperties } from 'react'
-import type { Roms } from '@/controllers/get-roms'
-
-export const clientRomsAtom = atomWithReset<Roms | undefined>(undefined)
-export function useClientRoms() {
-  return [...useAtom(clientRomsAtom), useResetAtom(clientRomsAtom)] as const
-}
 
 const focusIndicatorStyleAtom = atom<CSSProperties>({})
 export function useFocusIndicatorStyle() {
@@ -33,4 +26,9 @@ export function useShouldSuppressLoadingMaskAtom() {
 const spatialNavigationPaused = atom(false)
 export function useSpatialNavigationPaused() {
   return useAtom(spatialNavigationPaused)
+}
+
+const selectedGamesAtom = atom<string[]>([])
+export function useSelectedGames() {
+  return useAtom(selectedGamesAtom)
 }

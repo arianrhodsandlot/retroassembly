@@ -22,7 +22,7 @@ interface GameInfoDialogProps extends PropsWithChildren {
 export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: GameInfoDialogProps) {
   const rom = useRom()
 
-  const { reload } = useRouter()
+  const { reloadSilently } = useRouter()
   const isDemo = useIsDemo()
 
   const [open, setOpen] = useState(false)
@@ -36,7 +36,7 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Ga
     const formData = new FormData(event.target as HTMLFormElement)
     await trigger(formData)
     setOpen(false)
-    await reload({ suppressLoadingMask: true })
+    await reloadSilently()
   }
 
   if (isDemo) {

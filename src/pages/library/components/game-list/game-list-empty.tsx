@@ -21,7 +21,7 @@ export function GameListEmpty() {
             Welcome to RetroAssembly. This is where all ROMs uploaded by you will appear.
           </div>
           <div className='text-(--gray-11)'>
-            <UploadSelectButton variant='solid' /> some ROMs to get started.
+            <UploadSelectButton variant='soft' /> some ROMs to get started.
           </div>
         </>
       ) : null}
@@ -31,12 +31,11 @@ export function GameListEmpty() {
           <div className='text-(--gray-11)'>You haven't played any games yet.</div>
           <div className='text-(--gray-11)'>
             Play some games from your{' '}
-            <Button asChild variant='solid'>
+            <Button asChild variant='outline'>
               <Link to='/library'>
                 <span className='icon-[mdi--bookshelf] ' /> Library
               </Link>
             </Button>
-            .
           </div>
         </>
       ) : null}
@@ -53,7 +52,7 @@ export function GameListEmpty() {
             {platform?.displayName} in your library.
           </div>
           <div className='text-(--gray-11) flex items-center gap-1'>
-            <UploadButton platform={platform?.name} variant='solid' /> some ROMs to get started.
+            <UploadButton platform={platform?.name} variant='soft' /> some ROMs to get started.
           </div>
         </>
       ) : null}

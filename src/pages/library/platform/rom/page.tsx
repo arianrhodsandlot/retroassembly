@@ -43,7 +43,7 @@ export default function RomPage({ pageData }: RomPageProps) {
           <div className='group lg:sticky'>
             <GameCover className='top-4 block w-full lg:w-64' rom={rom} />
 
-            <div className='mt-2 flex justify-center'>
+            <div className='mt-2 flex justify-end px-1'>
               <GameMediaDialog />
             </div>
           </div>

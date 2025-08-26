@@ -18,6 +18,13 @@ export function useGameActions(rom) {
     ],
     library: [
       {
+        api: '',
+        confirmDescription: '',
+        icon: 'icon-[mdi--checkbox-multiple-marked]',
+        name: 'select',
+        text: 'Select',
+      },
+      {
         api: `roms/${rom.id}`,
         color: 'red',
         confirmDescription: 'Are you sure to proceed?\nThe deleted ROM cannot be restored.',

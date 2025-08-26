@@ -1,21 +1,24 @@
 import assert from 'node:assert'
-import { and, eq } from 'drizzle-orm'
+import { and, eq, inArray } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { launchRecordTable, romTable } from '../databases/schema.ts'
 
-export async function deleteRom(id: string) {
+export async function deleteRoms(ids: string[]) {
   const { currentUser, db } = getContext().var
   assert.ok(currentUser)
-
   const { library } = db
+
+  if (ids.length === 0) {
+    return
+  }
 
   await library
     .update(romTable)
     .set({ status: 0 })
-    .where(and(eq(romTable.id, id), eq(romTable.userId, currentUser.id)))
+    .where(and(inArray(romTable.id, ids), eq(romTable.userId, currentUser.id)))
 
   await library
     .update(launchRecordTable)
     .set({ status: 0 })
-    .where(and(eq(launchRecordTable.romId, id), eq(launchRecordTable.userId, currentUser.id)))
+    .where(and(inArray(launchRecordTable.romId, ids), eq(launchRecordTable.userId, currentUser.id)))
 }

@@ -20,5 +20,9 @@ export function useRouter() {
     }
   }
 
-  return { isReloading, reload }
+  async function reloadSilently() {
+    await reload({ suppressLoadingMask: true })
+  }
+
+  return { isReloading, reload, reloadSilently }
 }

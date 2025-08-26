@@ -17,7 +17,7 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
   const { env } = useLoaderData()
   const maxFiles = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE, 10) || 1000
 
-  const { reload } = useRouter()
+  const { reloadSilently } = useRouter()
   const { getRootProps, isDragActive } = useDropzone({ onDrop })
 
   const [files, setFiles] = useState<File[]>([])
@@ -76,7 +76,7 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
 
     if (uploadedFiles.success.length === files.length) {
       toggleOpen()
-      reload({ suppressLoadingMask: true })
+      reloadSilently()
     } else {
       setStatus('done')
     }
@@ -112,7 +112,7 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
 
   function handleClickDone() {
     toggleOpen()
-    reload({ suppressLoadingMask: true })
+    reloadSilently()
   }
 
   return (

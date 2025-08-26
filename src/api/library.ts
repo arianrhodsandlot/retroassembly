@@ -15,6 +15,7 @@ import { createRoms } from '../controllers/create-roms.ts'
 import { createState } from '../controllers/create-state.ts'
 import { deleteLaunchRecord } from '../controllers/delete-launch-record.ts'
 import { deleteRom } from '../controllers/delete-rom.ts'
+import { deleteRoms } from '../controllers/delete-roms.ts'
 import { getFileContent } from '../controllers/get-file-content.ts'
 import { getLaunchRecords } from '../controllers/get-launch-records.ts'
 import { getPreference } from '../controllers/get-preference.ts'
@@ -29,6 +30,16 @@ interface Bindings {
 }
 
 export const app = new Hono<{ Bindings: Bindings }>()
+
+app.delete('roms', zValidator('query', z.object({ ids: z.string().min(1) })), async (c) => {
+  const query = c.req.valid('query')
+  const ids = query.ids
+    .split(',')
+    .map((id) => id.trim())
+    .filter(Boolean)
+  await deleteRoms(ids)
+  return c.json(null)
+})
 
 const authMiddleware = createMiddleware(async (c, next) => {
   const { unauthorized } = c.var

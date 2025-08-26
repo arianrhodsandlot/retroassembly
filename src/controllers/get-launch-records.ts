@@ -42,7 +42,7 @@ export async function getLaunchRecords({ page = 1, pageSize = 100 }: { page?: nu
     .from(launchRecordTable)
     .where(where)
   const pagination = { current: page, pages: Math.ceil(total / pageSize), size: pageSize, total }
-  const roms = await getRomsMetadata(results)
+  const roms = await getRomsMetadata(results.filter((result) => result.fileName))
   return {
     pagination,
     roms,

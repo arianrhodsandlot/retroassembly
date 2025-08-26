@@ -9,8 +9,9 @@ export class LibraryPage {
   }
 
   async closeSettings() {
-    await this.page.getByTitle('Close').click()
-    await this.page.getByRole('dialog').waitFor({ state: 'detached' })
+    const { page } = this
+    await page.getByTitle('close').click()
+    await page.getByRole('dialog').waitFor({ state: 'detached' })
   }
 
   async goto() {
@@ -18,19 +19,32 @@ export class LibraryPage {
   }
 
   async gotoSettingsTab(tab: string) {
+    const { page } = this
     await this.openMenu()
-    await this.page.getByText('Setting').click()
-    await this.page.getByText(tab).first().click()
+    await page.getByText('setting').click()
+    await page.getByText(tab).first().click()
   }
 
   async logout() {
+    const { page } = this
     await this.openMenu()
-    await this.page.getByText('Log out').click()
-    await this.page.locator('button').getByText('Log out').click()
+    await page.getByText('log out').click()
+    await page.locator('button').getByText('log out').click()
   }
 
   async openMenu() {
     await this.page.getByTitle('Menu').click()
+  }
+
+  async uploadROMs(roms: string[]) {
+    const { page } = this
+    await page.locator('button').getByText('add').first().click()
+    await page.getByRole('menuitem').getByText('NES', { exact: true }).click()
+    const fileChooserPromise = page.waitForEvent('filechooser')
+    await page.getByText('select files').click()
+    const fileChooser = await fileChooserPromise
+    await fileChooser.setFiles(roms)
+    await page.getByText('done').click()
   }
 
   async waitForLoaded() {

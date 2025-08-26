@@ -1,6 +1,13 @@
 import { isBrowser } from 'es-toolkit'
 
 if (isBrowser()) {
+  try {
+    if (import.meta.env.RETROASSEMBLY_BUILD_TIME_VITE_DISABLE_FS_ACCESS_API === 'true') {
+      // eslint-disable-next-line biome-x/lint
+      delete globalThis.showOpenFilePicker
+    }
+  } catch {}
+
   const projectId = import.meta.env.RETROASSEMBLY_BUILD_TIME_VITE_CLARITY_PROJECT_ID
   if (projectId) {
     /* eslint-disable biome-x/lint,max-params,sonarjs/no-nested-assignment,prefer-rest-params,unicorn/prefer-query-selector */

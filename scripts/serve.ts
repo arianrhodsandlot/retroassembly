@@ -1,9 +1,8 @@
 import { serve } from '@hono/node-server'
 import { exec, getTargetRuntime, logServerInfo } from './utils.ts'
 
-const port = process.env.PORT
-  ? Number.parseInt(process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT, 10) || 8000
-  : 8000
+const envPort = process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT
+const port = envPort ? Number.parseInt(envPort, 10) || 8000 : 8000
 
 async function serveWorkerd() {
   await exec`wrangler dev --port=${port}`

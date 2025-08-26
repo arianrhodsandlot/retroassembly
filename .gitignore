@@ -7,5 +7,6 @@ dist
 inputs
 node_modules
 test-results
+tests/e2e/fixtures/files
 worker-configuration.d.ts
 wrangler.json

@@ -10,10 +10,13 @@ const cleanup = once(() => {
   attempt(() => fs.removeSync(tmp))
 })
 
+process.env.RETROASSEMBLY_BUILD_TIME_VITE_DISABLE_FS_ACCESS_API = 'true'
+
 process.on('SIGINT', (e) => {
   cleanup()
   throw new Error(e)
 })
+
 process.on('exit', cleanup)
 
 export default defineConfig({
@@ -23,11 +26,11 @@ export default defineConfig({
     channel: 'chrome',
   },
   webServer: {
-    command: 'pnpm dev',
+    command: process.env.PLAYWRIGHT_WEB_SERVER_COMMAND || 'pnpm dev',
     env: {
       RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY: tmp,
-      RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST: 'http://localhost:3000',
       RETROASSEMBLY_RUN_TIME_PORT: `${port}`,
+      ...process.env,
     },
     port,
     reuseExistingServer: true,

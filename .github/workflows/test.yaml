@@ -5,6 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: test
+    env:
+      RETROASSEMBLY_RUN_TIME_PORT: 5173
+      PLAYWRIGHT_WEB_SERVER_COMMAND: 'node --run=start'
     steps:
       - uses: actions/checkout@v4
 
@@ -18,3 +21,4 @@ jobs:
       - run: pnpm install
       - run: node --run=setup
       - run: node --run=build
+      - run: node --run=test

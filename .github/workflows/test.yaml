@@ -6,8 +6,9 @@ jobs:
     environment:
       name: test
     env:
-      RETROASSEMBLY_RUN_TIME_PORT: 5173
       PLAYWRIGHT_WEB_SERVER_COMMAND: 'node --run=start'
+      RETROASSEMBLY_BUILD_TIME_VITE_DISABLE_FS_ACCESS_API: true
+      RETROASSEMBLY_RUN_TIME_PORT: 5173
     steps:
       - uses: actions/checkout@v4
 

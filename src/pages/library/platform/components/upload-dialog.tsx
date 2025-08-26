@@ -74,7 +74,12 @@ export function UploadDialog({ platform, toggleOpen }: { platform: string; toggl
       )
     }
 
-    setStatus('done')
+    if (uploadedFiles.success.length === files.length) {
+      toggleOpen()
+      reload({ suppressLoadingMask: true })
+    } else {
+      setStatus('done')
+    }
     if (showConfetti) {
       await confetti({ disableForReducedMotion: true, particleCount: 150, spread: 180 })
     }

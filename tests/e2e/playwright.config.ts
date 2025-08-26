@@ -1,4 +1,5 @@
 import { defineConfig } from '@playwright/test'
+import { isCI } from 'ci-info'
 import { attempt, once } from 'es-toolkit'
 import fs from 'fs-extra'
 import { temporaryDirectory } from 'tempy'
@@ -21,6 +22,7 @@ process.on('exit', cleanup)
 
 export default defineConfig({
   fullyParallel: true,
+  timeout: isCI ? 10_000 : 0,
   use: {
     baseURL: `http://localhost:${port}/`,
     channel: 'chrome',

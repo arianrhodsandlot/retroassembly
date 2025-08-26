@@ -40,11 +40,12 @@ export class LibraryPage {
     const { page } = this
     await page.locator('button').getByText('add').first().click()
     await page.getByRole('menuitem').getByText('NES', { exact: true }).click()
+    await page.getByRole('dialog').waitFor({ state: 'visible' })
     const fileChooserPromise = page.waitForEvent('filechooser')
     await page.getByText('select files').click()
     const fileChooser = await fileChooserPromise
     await fileChooser.setFiles(roms)
-    await page.getByText('done').click()
+    await page.getByRole('dialog').waitFor({ state: 'detached' })
   }
 
   async waitForLoaded() {

@@ -23,6 +23,8 @@ process.on('exit', cleanup)
 
 export default defineConfig({
   fullyParallel: true,
+  reporter:'html',
+  retries: 5,
   timeout: isCI ? 10_000 : 0,
   use: {
     baseURL: `http://localhost:${port}/`,

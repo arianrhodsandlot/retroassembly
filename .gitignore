@@ -6,6 +6,7 @@ data
 dist
 inputs
 node_modules
+playwright-report
 test-results
 tests/e2e/fixtures/files
 worker-configuration.d.ts

@@ -4,7 +4,8 @@ import { attempt, once } from 'es-toolkit'
 import fs from 'fs-extra'
 import { temporaryDirectory } from 'tempy'
 
-const port = 5173
+const envPort = process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT
+const port = envPort ? Number.parseInt(envPort, 10) || 8000 : 8000
 const tmp = temporaryDirectory({ prefix: 'retroassembly-test-' })
 
 const cleanup = once(() => {
@@ -31,7 +32,6 @@ export default defineConfig({
     command: process.env.PLAYWRIGHT_WEB_SERVER_COMMAND || 'pnpm dev',
     env: {
       RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY: tmp,
-      RETROASSEMBLY_RUN_TIME_PORT: `${port}`,
       ...process.env,
     },
     port,

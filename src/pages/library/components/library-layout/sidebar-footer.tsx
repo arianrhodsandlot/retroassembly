@@ -16,7 +16,7 @@ export function SidebarFooter() {
       <div className='flex justify-between gap-2'>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
-            <Button size='1' title='Menu' type='button'>
+            <Button aria-label='Menu' size='1' type='button'>
               <span className='icon-[mdi--menu]' />
             </Button>
           </DropdownMenu.Trigger>

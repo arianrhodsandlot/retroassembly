@@ -16,6 +16,7 @@ import { getDirectories } from './src/constants/env.ts'
 defaults(process.env, {
   RETROASSEMBLY_BUILD_TIME_VITE_BUILD_TIME: DateTime.now().setZone('utc').toISO(),
   RETROASSEMBLY_BUILD_TIME_VITE_VERSION: await getVersion(),
+  RETROASSEMBLY_RUN_TIME_PORT: '8000',
 })
 
 async function getVersion() {
@@ -59,6 +60,8 @@ function serverInfo() {
 }
 
 export default defineConfig(async (env) => {
+  const envPort = process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT
+  const port = envPort ? Number.parseInt(envPort, 10) || 8000 : 8000
   const config = {
     envPrefix: 'RETROASSEMBLY_BUILD_TIME_VITE_',
     plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), devtoolsJson(), serverInfo()],
@@ -68,6 +71,7 @@ export default defineConfig(async (env) => {
       hmr: { overlay: false },
       host: true,
       open: true,
+      port,
     },
   } satisfies UserConfig
 

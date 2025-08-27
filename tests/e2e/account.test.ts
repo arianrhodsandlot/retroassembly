@@ -4,27 +4,27 @@ import { test as userTest } from './fixtures/user.ts'
 
 const test = mergeTests(userTest, pagesTest)
 
-test('log in', async ({ page, pages, user }) => {
-  await pages.login.login(user.username, `${user.password}1`, false)
+test('log in', async ({ page, pages: { library, login }, user }) => {
+  await login.login(user.username, `${user.password}1`, false)
   await expect(page.getByText('Invalid username or password')).toBeAttached()
 
-  await pages.login.login(user.username, user.password, false)
-  await expect(page).toHaveURL(pages.library.url)
+  await login.login(user.username, user.password, false)
+  await expect(page).toHaveURL(library.url)
 })
 
-test('log out', async ({ page, pages, user }) => {
-  await pages.login.login(user.username, user.password)
-  await pages.library.logout()
+test('log out', async ({ page, pages: { library, login }, user }) => {
+  await login.login(user.username, user.password)
+  await library.logout()
   await expect(page).toHaveURL('')
 
-  await pages.library.goto()
-  await expect(page).toHaveURL(pages.login.url)
+  await library.goto()
+  await expect(page).toHaveURL(login.url)
 })
 
-test('update password', async ({ page, pages, user }) => {
-  await pages.login.login(user.username, user.password)
+test('update password', async ({ page, pages: { library, login }, user }) => {
+  await login.login(user.username, user.password)
 
-  await pages.library.gotoSettingsTab('Account')
+  await library.gotoSettingsTab('Account')
   await page.getByLabel('Current Password').fill('testpassword')
   await page.getByLabel('New Password').first().fill('testpassword1')
   await page.getByLabel('Repeat New Password').first().fill('testpassword2')
@@ -43,8 +43,8 @@ test('update password', async ({ page, pages, user }) => {
   await page.getByText('Update Password').click()
   await expect(page.getByText('Your password has been updated')).toBeAttached()
 
-  await pages.library.closeSettings()
-  await pages.library.logout()
-  await pages.login.login(user.username, 'testpassword1')
+  await library.closeSettings()
+  await library.logout()
+  await login.login(user.username, 'testpassword1')
   await expect(page).toHaveURL('/library')
 })

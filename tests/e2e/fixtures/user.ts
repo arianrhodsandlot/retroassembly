@@ -1,7 +1,5 @@
-/* eslint-disable sonarjs/no-hardcoded-passwords */
 import { test as base } from '@playwright/test'
 import { attemptAsync } from 'es-toolkit'
-import { uniqueId } from 'es-toolkit/compat'
 import ky from 'ky'
 import { nanoid } from 'nanoid'
 
@@ -14,8 +12,8 @@ export const test = base.extend<{ user: User }>({
   user: [
     async ({ baseURL, page }, use) => {
       const user = {
-        password: 'testpassword',
-        username: uniqueId(`testuser${nanoid()}`),
+        password: nanoid(),
+        username: nanoid(),
       }
 
       const formData = new FormData()

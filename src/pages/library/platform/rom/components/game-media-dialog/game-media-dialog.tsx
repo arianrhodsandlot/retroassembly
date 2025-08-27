@@ -9,7 +9,12 @@ import { GameMediaBoxart } from './game-media-boxart.tsx'
 import { GameMediaImages } from './game-media-images.tsx'
 
 const defaultTrigger = (
-  <IconButton className='!opacity-0 !transition-opacity group-hover:!opacity-100' title='Edit' variant='ghost'>
+  <IconButton
+    aria-label='Edit images'
+    className='!opacity-0 !transition-opacity group-hover:!opacity-100'
+    title='Edit images'
+    variant='ghost'
+  >
     <span className='icon-[mdi--edit]' />
   </IconButton>
 )

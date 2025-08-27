@@ -85,6 +85,7 @@ export function GameInfoDataList({ autoFocusField }: { autoFocusField?: string }
               {
                 input: (
                   <TextField.Root
+                    aria-label={label}
                     autoFocus={autoFocusField === name}
                     className={clsx({ 'w-full': name === 'gameGenres' })}
                     defaultValue={gameInfo[name]}
@@ -94,7 +95,7 @@ export function GameInfoDataList({ autoFocusField }: { autoFocusField?: string }
                 ),
                 select: (
                   <Select.Root defaultValue={`${gameInfo[name]}`} name={name}>
-                    <Select.Trigger autoFocus={autoFocusField === name} />
+                    <Select.Trigger aria-label={label} autoFocus={autoFocusField === name} />
                     <Select.Content>
                       {options?.map((opt) => (
                         <Select.Item key={opt} value={opt}>
@@ -106,6 +107,7 @@ export function GameInfoDataList({ autoFocusField }: { autoFocusField?: string }
                 ),
                 textarea: (
                   <TextArea
+                    aria-label={label}
                     autoFocus={autoFocusField === name}
                     className='w-full text-justify !font-[Roboto_Slab_Variable]'
                     defaultValue={gameInfo[name]}

@@ -10,7 +10,12 @@ import { getRomGoodcodes } from '@/utils/library.ts'
 import { GameInfoDataList } from './game-info-data-list.tsx'
 
 const defaultTrigger = (
-  <IconButton className='!opacity-0 !transition-opacity group-hover:!opacity-100' title='Edit' variant='ghost'>
+  <IconButton
+    aria-label='Edit metadata'
+    className='!opacity-0 !transition-opacity group-hover:!opacity-100'
+    title='Edit metadata'
+    variant='ghost'
+  >
     <span className='icon-[mdi--edit]' />
   </IconButton>
 )

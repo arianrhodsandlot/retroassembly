@@ -33,7 +33,7 @@ export class LibraryPage {
   }
 
   async openMenu() {
-    await this.page.getByTitle('Menu').click()
+    await this.page.getByLabel('menu').click()
   }
 
   async uploadROMs(roms: string[]) {

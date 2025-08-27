@@ -177,9 +177,8 @@ export function resolveUserPreference(rawUserPreference: null | PreferenceSnippe
     fallbackPreference.input.keyboardMapping = undefined
   }
 
-  // a temporary fix. their should be a better way to handle this
+  // a temporary fix. there should be a better way to handle this
   if (userPreference.ui && !userPreference.ui?.platforms) {
-    // eslint-disable-next-line biome-x/lint
     delete userPreference.ui.platforms
   }
 

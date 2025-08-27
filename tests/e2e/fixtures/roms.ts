@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+ 
 import path from 'node:path'
 import { test as base } from '@playwright/test'
 import fs from 'fs-extra'

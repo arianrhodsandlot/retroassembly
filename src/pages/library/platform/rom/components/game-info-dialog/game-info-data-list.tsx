@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-autofocus */
+ 
 import { DataList, Select, TextArea, TextField } from '@radix-ui/themes'
 import clsx from 'clsx'
 import { range } from 'es-toolkit'

@@ -25,7 +25,6 @@ export function AppLayout({ children }: { children: ReactNode }) {
         </RadixTheme>
         <ScrollRestoration />
         {currentUser ? (
-          // eslint-disable-next-line biome-x/lint, @eslint-react/dom/no-dangerously-set-innerhtml
           <script dangerouslySetInnerHTML={{ __html: `globalThis.CURRENT_USER=${JSON.stringify(currentUser)}` }} />
         ) : null}
         <Scripts />

@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+ 
 import { test as base } from '@playwright/test'
 import { LibraryPage } from '../page-object-models/library-page.ts'
 import { LoginPage } from '../page-object-models/login-page.ts'

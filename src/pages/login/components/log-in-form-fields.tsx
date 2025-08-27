@@ -4,7 +4,7 @@ export function LoginFormFields({ register = false }: { register?: boolean }) {
   return (
     <>
       <AccountFormField
-        // eslint-disable-next-line jsx-a11y/no-autofocus
+         
         autoFocus
         description={register ? 'E.g., johnsmith, admin' : ''}
         iconClass='icon-[mdi--user-card-details]'

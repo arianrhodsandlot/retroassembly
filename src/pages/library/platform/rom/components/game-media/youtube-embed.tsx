@@ -60,7 +60,7 @@ export function YouTubeEmbed({ className, url }: YouTubeEmbedProps) {
       allowFullScreen
       className={twMerge('aspect-video border-none bg-black', className)}
       referrerPolicy='strict-origin-when-cross-origin'
-      sandbox='allow-same-origin allow-scripts allow-forms' // eslint-disable-line @eslint-react/dom/no-unsafe-iframe-sandbox
+      sandbox='allow-same-origin allow-scripts allow-forms'  
       src={src}
       title='YouTube video player'
     />

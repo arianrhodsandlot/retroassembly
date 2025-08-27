@@ -6,17 +6,17 @@ import { test as userTest } from './fixtures/user.ts'
 const test = mergeTests(pagesTest, romsTest, userTest)
 
 test('upload roms', async ({ page, pages: { library, login }, roms, user }) => {
-  await login.login(user.username, user.password)
+  await login.login(user)
   await library.uploadROMs(roms.map(({ path }) => path))
 
   await Promise.all(roms.map(({ title }) => expect(page.getByText(title)).toHaveCount(1)))
 })
 
 test('delete roms', async ({ page, pages: { library, login }, roms, user }) => {
-  await login.login(user.username, user.password)
+  await login.login(user)
   await library.uploadROMs(roms.map(({ path }) => path))
 
-  await page.getByRole('main').getByTitle('menu').first().click()
+  await page.getByRole('main').getByLabel('menu').first().click()
   await page.getByText('delete the rom').click()
   await page.getByRole('button').getByText('delete').click()
 
@@ -31,11 +31,11 @@ test('delete multiple roms', async ({ page, pages: { library, login }, roms, use
   const dialog = page.getByRole('alertdialog')
   const checkboxes = main.getByRole('checkbox')
 
-  await login.login(user.username, user.password)
+  await login.login(user)
   await library.uploadROMs(roms.map(({ path }) => path))
 
-  await main.getByTitle('menu').first().click()
-  await main.getByText('select').click()
+  await main.getByLabel('menu').first().click()
+  await page.getByRole('menuitem').getByText('select').click()
   await Promise.all([expect(checkboxes.first()).toBeChecked(), expect(checkboxes.last()).not.toBeChecked()])
 
   await checkboxes.last().click()
@@ -47,21 +47,21 @@ test('delete multiple roms', async ({ page, pages: { library, login }, roms, use
 test('update metadata', async ({ page, pages: { library, login }, roms, user }) => {
   const main = page.getByRole('main')
   const testMetadata = [
-    { label: 'Released', value: '2000-01-01' },
-    { label: 'Genres', value: 'Test Genre' },
-    { label: 'Players', value: '5' },
-    { label: 'Developer', value: 'Test Developer' },
-    { label: 'Publisher', value: 'Test Publisher' },
-    { label: 'Description', value: 'Test description' },
+    { label: 'released', value: '2000-01-01' },
+    { label: 'genres', value: 'test genre' },
+    { label: 'players', value: '5' },
+    { label: 'developer', value: 'test developer' },
+    { label: 'publisher', value: 'test publisher' },
+    { label: 'description', value: 'test description' },
   ]
 
-  await login.login(user.username, user.password)
+  await login.login(user)
   await library.uploadROMs(roms.map(({ path }) => path))
   await page.locator('.game-entry').first().click()
   await page.getByLabel('edit metadata').first().click()
   for (const { label, value } of testMetadata) {
-    if (label === 'Players') {
-      await page.getByLabel('Players').click()
+    if (label === 'players') {
+      await page.getByLabel(label).click()
       await page.getByRole('option', { name: '8' }).click()
     } else {
       await page.getByLabel(label).fill(value)

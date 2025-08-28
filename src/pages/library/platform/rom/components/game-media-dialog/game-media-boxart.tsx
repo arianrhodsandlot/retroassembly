@@ -36,7 +36,7 @@ export function GameMediaBoxart() {
 
   return (
     <div className='flex gap-2'>
-      <GameCover className='flex w-20 items-center justify-center bg-neutral-200 object-contain' rom={rom} />
+      <GameCover className='flex w-20 items-center justify-center object-contain' rom={rom} />
       <div className='flex flex-col justify-center gap-2'>
         <IconButton
           disabled={isResettingingBoxart}

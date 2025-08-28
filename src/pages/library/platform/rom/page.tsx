@@ -41,7 +41,7 @@ export default function RomPage({ pageData }: Readonly<RomPageProps>) {
         <PageBreadcrumb />
         <div className='flex min-h-full w-full flex-col gap-4 p-4 lg:flex-row'>
           <div className='group lg:sticky'>
-            <GameCover className='top-4 block w-full lg:w-64' rom={rom} />
+            <GameCover className='top-4 block w-full lg:w-64' parallax rom={rom} />
 
             <div className='mt-2 flex justify-end px-1'>
               <GameMediaDialog />

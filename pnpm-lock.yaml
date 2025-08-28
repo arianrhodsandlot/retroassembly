@@ -212,6 +212,9 @@ importers:
       nostalgist:
         specifier: 0.16.0
         version: 0.16.0
+      prettier:
+        specifier: 3.6.2
+        version: 3.6.2
       quick-lru:
         specifier: 7.1.0
         version: 7.1.0

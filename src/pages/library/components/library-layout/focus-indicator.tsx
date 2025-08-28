@@ -4,12 +4,22 @@ import { useLocation } from 'react-router'
 import { RadixThemePortal } from '@/pages/components/radix-theme-portal.tsx'
 import { useFocusIndicator } from '../../hooks/use-focus-indicator.ts'
 import { useGamepads } from '../../hooks/use-gamepads.ts'
+import { usePreference } from '../../hooks/use-preference.ts'
 import { useSpatialNavigation } from '../../hooks/use-spatial-navigation.ts'
 
-export function FocusIndicator({ children }: { children?: ReactNode }) {
+export function FocusIndicator({ children }: { readonly children?: ReactNode }) {
   const { connected } = useGamepads()
   const { style, syncStyle } = useFocusIndicator()
   const location = useLocation()
+
+  const { pristine } = useSpatialNavigation()
+  const { preference } = usePreference()
+
+  useLayoutEffect(() => {
+    if (location.pathname) {
+      syncStyle()
+    }
+  }, [location.pathname, syncStyle])
 
   let mergedStyle = style
 
@@ -24,13 +34,13 @@ export function FocusIndicator({ children }: { children?: ReactNode }) {
     Object.assign(mergedStyle, cssVars)
   }
 
-  useSpatialNavigation()
+  if (preference.ui.showFocusIndicators === 'never') {
+    return
+  }
 
-  useLayoutEffect(() => {
-    if (location.pathname) {
-      syncStyle()
-    }
-  }, [location.pathname, syncStyle])
+  if (pristine) {
+    return
+  }
 
   return (
     <RadixThemePortal>

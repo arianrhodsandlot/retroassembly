@@ -1,7 +1,7 @@
 import { useEventListener } from '@react-hookz/web'
 import { off, on } from 'delegated-events'
 import { delay } from 'es-toolkit'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation, useNavigation } from 'react-router'
 import { Gamepad } from '@/utils/gamepad.ts'
 import { useEmulatorLaunched, useShowGameOverlayContent, useSpatialNavigationPaused } from '../atoms.ts'
@@ -10,6 +10,7 @@ import { getKeyNameFromCode } from '../utils/keyboard.ts'
 import { cancel, click, focus, init, move, resetFocus } from '../utils/spatial-navigation.ts'
 import { useFocusIndicator } from './use-focus-indicator.ts'
 import { useInputMapping } from './use-input-mapping.ts'
+import { usePreference } from './use-preference.ts'
 
 export function useSpatialNavigation() {
   const { state } = useNavigation()
@@ -20,10 +21,21 @@ export function useSpatialNavigation() {
   const [emulatorLaunched] = useEmulatorLaunched()
   const [showGameOverlay] = useShowGameOverlayContent()
   const [spatialNavigationPaused] = useSpatialNavigationPaused()
+  const { preference } = usePreference()
 
   const isNavigating = state === 'loading'
   const isPlaying = emulatorLaunched && !showGameOverlay
   const isSpatialNavigationPaused = isNavigating || isPlaying || spatialNavigationPaused
+
+  const { showFocusIndicators } = preference.ui
+
+  const [pristine, setPristine] = useState(
+    {
+      always: false,
+      auto: true,
+      never: false,
+    }[showFocusIndicators],
+  )
 
   useEffect(init, [])
 
@@ -59,6 +71,7 @@ export function useSpatialNavigation() {
       const direction = keyboardDirectionMap[keyName]
       if (direction) {
         event.preventDefault()
+        setPristine(showFocusIndicators === 'never')
         move(direction)
       } else if (keyName === inputMapping.confirmKey || keyName === 'enter' || keyName === 'space') {
         event.preventDefault()
@@ -71,7 +84,13 @@ export function useSpatialNavigation() {
 
     document.addEventListener('keydown', handleKeydown)
     return () => document.removeEventListener('keydown', handleKeydown)
-  }, [inputMapping.keyboard, inputMapping.confirmKey, inputMapping.cancelKey, isSpatialNavigationPaused])
+  }, [
+    inputMapping.keyboard,
+    inputMapping.confirmKey,
+    inputMapping.cancelKey,
+    isSpatialNavigationPaused,
+    showFocusIndicators,
+  ])
 
   // gamepad navigation
   useEffect(() => {
@@ -88,6 +107,7 @@ export function useSpatialNavigation() {
       }
       const direction = gamepadDirectionMap[button]
       if (direction) {
+        setPristine(showFocusIndicators === 'never')
         move(gamepadDirectionMap[button])
       } else if (`${button}` === inputMapping.confirmButton) {
         click(document.activeElement)
@@ -95,7 +115,13 @@ export function useSpatialNavigation() {
         cancel()
       }
     })
-  }, [inputMapping.gamepad, inputMapping.confirmButton, inputMapping.cancelButton, isSpatialNavigationPaused])
+  }, [
+    inputMapping.gamepad,
+    inputMapping.confirmButton,
+    inputMapping.cancelButton,
+    isSpatialNavigationPaused,
+    showFocusIndicators,
+  ])
 
   // focus when an element got hovered
   useEffect(() => {
@@ -117,4 +143,6 @@ export function useSpatialNavigation() {
 
   // maintain focus status
   useEventListener(globalThis.document, 'focusin', syncStyle, true)
+
+  return { pristine }
 }

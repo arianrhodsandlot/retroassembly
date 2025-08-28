@@ -1,4 +1,5 @@
 import { Skeleton } from '@radix-ui/themes'
+import Atropos from 'atropos/react'
 import { skeletonClassnames } from '@/pages/library/constants/skeleton-classnames.ts'
 import { useRomCover } from '../../../hooks/use-rom-cover.ts'
 
@@ -15,7 +16,9 @@ export function GameCover({ className = '', rom }) {
 
   return cover ? (
     <a className={className} href={cover.src} rel='noreferrer noopener' target='_blank'>
-      <img alt={rom.name} className='block h-auto w-full' src={cover.src} />
+      <Atropos activeOffset={0} className='!size-full' highlight={false} shadow={false}>
+        <img alt={rom.name} className='block h-auto w-full' src={cover.src} />
+      </Atropos>
     </a>
   ) : null
 }

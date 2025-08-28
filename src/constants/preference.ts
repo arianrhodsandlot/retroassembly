@@ -67,6 +67,7 @@ export interface Preference {
     libraryCoverType: 'boxart'
     platforms: PlatformName[]
     showDistrictOnTitle: boolean
+    showFocusIndicators: string
     showSidebar: boolean
     showTitle: boolean
   } | null
@@ -158,6 +159,7 @@ export const defaultPreference: ResolvedPreference = {
     libraryCoverType: 'boxart',
     platforms: ['arcade', 'atari2600', 'gb', 'gba', 'gbc', 'genesis', 'nes', 'snes'],
     showDistrictOnTitle: false,
+    showFocusIndicators: 'auto',
     showSidebar: true,
     showTitle: true,
   },

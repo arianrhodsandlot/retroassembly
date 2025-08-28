@@ -1,4 +1,4 @@
-import { Card, RadioCards, Switch } from '@radix-ui/themes'
+import { Card, RadioCards, Select, Switch } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { SettingsTitle } from '../settings-title.tsx'
@@ -10,7 +10,7 @@ export function GameEntrySettings() {
     <div>
       <SettingsTitle>
         <span className='icon-[mdi--eye]' />
-        Game Display
+        Display
       </SettingsTitle>
       <Card>
         <div className='flex flex-col gap-2 py-2'>
@@ -74,6 +74,25 @@ export function GameEntrySettings() {
               />
             </label>
           ) : null}
+
+          <label className='flex items-center gap-2'>
+            <SettingsTitle className='mb-0 text-base'>
+              <span className='icon-[mdi--text-long]' />
+              Show Focus Indicators
+            </SettingsTitle>
+            <Select.Root
+              onValueChange={(value) => update({ ui: { showFocusIndicators: value } })}
+              size='2'
+              value={preference.ui.showFocusIndicators}
+            >
+              <Select.Trigger />
+              <Select.Content>
+                <Select.Item value='auto'>Auto</Select.Item>
+                <Select.Item value='always'>Always</Select.Item>
+                <Select.Item value='never'>Never</Select.Item>
+              </Select.Content>
+            </Select.Root>
+          </label>
         </div>
       </Card>
     </div>

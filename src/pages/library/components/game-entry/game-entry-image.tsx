@@ -25,7 +25,7 @@ export function GameEntryImage({ rom }) {
       </AnimatePresence>
 
       {cover?.src ? (
-        <Atropos activeOffset={0} className='!size-full' shadow={false}>
+        <Atropos activeOffset={0} className='!size-full' highlight={false} shadow={false}>
           <img
             alt={goodcodes.rom}
             className='size-full rounded object-contain object-bottom'

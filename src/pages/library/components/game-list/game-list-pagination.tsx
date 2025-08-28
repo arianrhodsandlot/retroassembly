@@ -3,7 +3,7 @@ import { range } from 'es-toolkit'
 import type { RomsPagination } from '@/controllers/get-roms'
 import { NavigatableLink } from '../navigatable-link.tsx'
 
-export function GameListPagination({ pagination }: { pagination: RomsPagination }) {
+export function GameListPagination({ pagination }: Readonly<{ pagination: RomsPagination }>) {
   const { current, pages } = pagination
 
   if (pages <= 1) {

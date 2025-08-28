@@ -22,16 +22,16 @@ interface PlatformPageProps {
   }
 }
 
-export default function PlatformPage({ pageData }: PlatformPageProps) {
+export default function PlatformPage({ pageData }: Readonly<PlatformPageProps>) {
   const { page, pagination, platform, platformInfo, roms } = pageData
   const isDemo = useIsDemo()
 
   if (!platformMap[platform]) {
-    return '404 not found'
+    return <>404 not found</>
   }
 
   if (page > 1 && roms.length === 0) {
-    return '404'
+    return <>404</>
   }
 
   return (

@@ -7,7 +7,7 @@ interface LaunchButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonProps['variant']
 }
 
-export function LaunchButton({ children, disabled, variant = 'solid', ...props }: LaunchButtonProps) {
+export function LaunchButton({ children, disabled, variant = 'solid', ...props }: Readonly<LaunchButtonProps>) {
   const ref = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {

@@ -8,7 +8,7 @@ import { GameListActions } from './game-list-actions.tsx'
 import { GameListEmpty } from './game-list-empty.tsx'
 import { GameListPagination } from './game-list-pagination.tsx' // Import the Pagination component
 
-export function GameList({ pagination }: { pagination: RomsPagination }) {
+export function GameList({ pagination }: Readonly<{ pagination: RomsPagination }>) {
   const { preference } = usePreference()
   const { roms } = useRoms()
   const [, setSelectedGames] = useSelectedGames()

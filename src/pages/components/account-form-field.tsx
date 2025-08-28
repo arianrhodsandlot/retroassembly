@@ -12,7 +12,13 @@ interface LoginFormFieldProps extends RootProps {
   label: string
 }
 
-export function AccountFormField({ description, iconClass, label, type = 'text', ...props }: LoginFormFieldProps) {
+export function AccountFormField({
+  description,
+  iconClass,
+  label,
+  type = 'text',
+  ...props
+}: Readonly<LoginFormFieldProps>) {
   const [textFieldType, setTextFieldType] = useState(type)
 
   const iconButtonClass = textFieldType === 'password' ? 'icon-[mdi--eye]' : 'icon-[mdi--eye-off]'

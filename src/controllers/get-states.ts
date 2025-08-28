@@ -10,7 +10,12 @@ export async function getStates({
   limit,
   rom,
   type,
-}: { core?: string; limit?: number; rom: string; type?: 'auto' | 'manual' }) {
+}: {
+  core?: string
+  limit?: number
+  rom: string
+  type?: 'auto' | 'manual'
+}) {
   const { currentUser, db } = getContext().var
 
   const conditions = [eq(stateTable.userId, currentUser.id), eq(stateTable.status, 1)]

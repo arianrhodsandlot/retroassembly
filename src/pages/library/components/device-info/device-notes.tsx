@@ -4,7 +4,7 @@ import { clsx } from 'clsx'
 import { useLayoutEffect, useRef } from 'react'
 import { useFocusIndicator } from '../../hooks/use-focus-indicator.ts'
 
-export function DeviceNotes({ notes }: { notes: string }) {
+export function DeviceNotes({ notes }: Readonly<{ notes: string }>) {
   const ref = useRef<HTMLDivElement>(null)
   const [expandable, toggleExpandable] = useToggle(true)
   const [expanded, toggleExpanded] = useToggle()

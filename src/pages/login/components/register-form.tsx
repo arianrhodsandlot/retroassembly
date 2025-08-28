@@ -12,7 +12,7 @@ function validateFormData(formData: FormData) {
   return formData
 }
 
-export function RegisterForm({ redirectTo }: { redirectTo: string }) {
+export function RegisterForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
   const [isRedirecting, setIsRedirecting] = useState(false)
 
   const { error, isMutating, trigger } = useSWRMutation(

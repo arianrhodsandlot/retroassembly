@@ -6,7 +6,7 @@ import { FixedHeader } from './components/fixed-header.tsx'
 import { FooterSection } from './components/footer-section.tsx'
 import { HeroSection } from './components/hero-section/hero-section.tsx'
 
-export function HomePage({ pageData }: { pageData: { currentUser: any } }) {
+export function HomePage({ pageData }: Readonly<{ pageData: { currentUser: any } }>) {
   const { currentUser } = pageData
 
   return (

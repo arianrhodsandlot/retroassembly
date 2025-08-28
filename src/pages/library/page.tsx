@@ -16,12 +16,12 @@ interface LibraryPageProps {
   }
 }
 
-export default function LibraryPage({ pageData }: LibraryPageProps) {
+export default function LibraryPage({ pageData }: Readonly<LibraryPageProps>) {
   const { page, pagination, platformCount, roms } = pageData
   const isDemo = useIsDemo()
 
   if (page > 1 && roms.length === 0) {
-    return '404'
+    return <>404</>
   }
 
   return (

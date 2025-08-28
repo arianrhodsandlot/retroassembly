@@ -12,7 +12,11 @@ function createRequest({
   endpoint,
   json,
   method = json ? 'POST' : 'GET',
-}: { endpoint: string; json?: unknown; method?: string }) {
+}: {
+  endpoint: string
+  json?: unknown
+  method?: string
+}) {
   const input = getApiURL(endpoint)
   const init: RequestInit = { method }
   if (method === 'POST' && json) {

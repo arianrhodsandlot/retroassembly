@@ -6,7 +6,7 @@ import useSWRMutation from 'swr/mutation'
 import { api } from '@/utils/http.ts'
 import { LoginFormFields } from './log-in-form-fields.tsx'
 
-export function LoginForm({ redirectTo }: { redirectTo: string }) {
+export function LoginForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
   const [isRedirecting, setIsRedirecting] = useState(false)
 
   const { error, isMutating, trigger } = useSWRMutation(

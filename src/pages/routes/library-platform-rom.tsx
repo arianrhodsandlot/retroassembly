@@ -19,6 +19,6 @@ export async function loader({ params }: Route.LoaderArgs) {
   return getLoaderData({ rom, state })
 }
 
-export default function LibraryPlatformRomRoute({ loaderData }: Route.ComponentProps) {
+export default function LibraryPlatformRomRoute({ loaderData }: Readonly<Route.ComponentProps>) {
   return <RomPage pageData={loaderData} />
 }

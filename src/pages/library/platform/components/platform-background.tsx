@@ -2,7 +2,7 @@ import { platformMap } from '@/constants/platform.ts'
 import { getCDNUrl } from '@/utils/cdn.ts'
 import { MainBackground } from '../../components/main-background.tsx'
 
-export function PlatformBackground({ platform }: { platform: string }) {
+export function PlatformBackground({ platform }: Readonly<{ platform: string }>) {
   const platformName =
     {
       famicom: 'nes',

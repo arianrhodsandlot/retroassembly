@@ -14,11 +14,7 @@ export function GameEntryDropdownMenu({ rom }) {
   const [selectedGames, setSelectedGames] = useSelectedGames()
 
   function handleCheckedChange(checked: boolean) {
-    if (checked) {
-      setSelectedGames([...selectedGames, rom.id])
-    } else {
-      setSelectedGames(selectedGames.filter((id) => id !== rom.id))
-    }
+    setSelectedGames(checked ? [...selectedGames, rom.id] : selectedGames.filter((id) => id !== rom.id))
   }
 
   function handleClickSelect() {

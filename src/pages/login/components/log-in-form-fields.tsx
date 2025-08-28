@@ -1,10 +1,9 @@
 import { AccountFormField } from '@/pages/components/account-form-field.tsx'
 
-export function LoginFormFields({ register = false }: { register?: boolean }) {
+export function LoginFormFields({ register = false }: Readonly<{ register?: boolean }>) {
   return (
     <>
       <AccountFormField
-         
         autoFocus
         description={register ? 'E.g., johnsmith, admin' : ''}
         iconClass='icon-[mdi--user-card-details]'

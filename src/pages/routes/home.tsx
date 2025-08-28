@@ -13,6 +13,6 @@ export function loader() {
   return { currentUser }
 }
 
-export default function HomeRoute({ loaderData }: Route.ComponentProps) {
+export default function HomeRoute({ loaderData }: Readonly<Route.ComponentProps>) {
   return <HomePage pageData={loaderData} />
 }

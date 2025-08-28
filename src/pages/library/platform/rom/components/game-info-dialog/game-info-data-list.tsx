@@ -1,4 +1,3 @@
- 
 import { DataList, Select, TextArea, TextField } from '@radix-ui/themes'
 import clsx from 'clsx'
 import { range } from 'es-toolkit'
@@ -47,7 +46,7 @@ const dataListFields = [
   },
 ]
 
-export function GameInfoDataList({ autoFocusField }: { autoFocusField?: string }) {
+export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?: string }>) {
   const rom = useRom()
 
   const launchboxGame = rom.launchboxGame || {}

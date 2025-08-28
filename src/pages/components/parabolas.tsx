@@ -435,7 +435,7 @@ export function Paralolas({
   customIcons,
   heightFactor = DEFAULT_CONFIG.HEIGHT_FACTOR,
   objectCount = DEFAULT_CONFIG.OBJECT_COUNT,
-}: ParabolaProps) {
+}: Readonly<ParabolaProps>) {
   const containerRef = useRef<HTMLDivElement>(null)
 
   // Use either provided custom icons or the default console icons

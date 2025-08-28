@@ -21,7 +21,7 @@ export function loader({ request }) {
   return { currentUser, preference }
 }
 
-export function Layout({ children }: { children: ReactNode }) {
+export function Layout({ children }: Readonly<{ children: ReactNode }>) {
   return <AppLayout>{children}</AppLayout>
 }
 
@@ -29,6 +29,6 @@ export default function App() {
   return <Outlet />
 }
 
-export function ErrorBoundary(props: Route.ErrorBoundaryProps) {
+export function ErrorBoundary(props: Readonly<Route.ErrorBoundaryProps>) {
   return <ErrorPage {...props} />
 }

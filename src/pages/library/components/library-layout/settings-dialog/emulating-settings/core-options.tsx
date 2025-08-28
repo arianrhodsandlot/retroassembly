@@ -6,7 +6,10 @@ import { SettingsTitle } from '../settings-title.tsx'
 export function CoreOptions({
   core,
   coreOptions,
-}: { core: CoreName; coreOptions: { defaultOption?: string; name: string; options: string[]; title?: string }[] }) {
+}: Readonly<{
+  core: CoreName
+  coreOptions: { defaultOption?: string; name: string; options: string[]; title?: string }[]
+}>) {
   const { isLoading, preference, update } = usePreference()
 
   const coreOption = preference.emulator.core[core]

@@ -44,7 +44,7 @@ interface YouTubeEmbedProps {
   url: string
 }
 
-export function YouTubeEmbed({ className, url }: YouTubeEmbedProps) {
+export function YouTubeEmbed({ className, url }: Readonly<YouTubeEmbedProps>) {
   if (!url) {
     return
   }
@@ -60,7 +60,7 @@ export function YouTubeEmbed({ className, url }: YouTubeEmbedProps) {
       allowFullScreen
       className={twMerge('aspect-video border-none bg-black', className)}
       referrerPolicy='strict-origin-when-cross-origin'
-      sandbox='allow-same-origin allow-scripts allow-forms'  
+      sandbox='allow-same-origin allow-scripts allow-forms'
       src={src}
       title='YouTube video player'
     />

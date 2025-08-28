@@ -5,7 +5,7 @@ function handleClickLogout() {
   location.assign('/logout')
 }
 
-export function LogoutDialog(props: AlertDialog.RootProps) {
+export function LogoutDialog(props: Readonly<AlertDialog.RootProps>) {
   return (
     <AlertDialog.Root {...props}>
       <AlertDialog.Content>
@@ -18,12 +18,12 @@ export function LogoutDialog(props: AlertDialog.RootProps) {
 
         <div className='flex justify-end gap-4'>
           <AlertDialog.Cancel>
-            <Button variant='soft'>
+            <Button>
               <span className='icon-[mdi--close]' />
               Cancel
             </Button>
           </AlertDialog.Cancel>
-          <Button onClick={handleClickLogout}>
+          <Button onClick={handleClickLogout} variant='soft'>
             <span className='icon-[mdi--logout]' />
             Log out
           </Button>

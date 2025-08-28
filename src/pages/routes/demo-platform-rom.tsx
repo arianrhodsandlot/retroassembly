@@ -13,6 +13,6 @@ export function loader({ params }: Route.LoaderArgs) {
   return { preference, rom }
 }
 
-export default function LibraryPlatformRomRoute({ loaderData }: Route.ComponentProps) {
+export default function LibraryPlatformRomRoute({ loaderData }: Readonly<Route.ComponentProps>) {
   return <RomPage pageData={loaderData} />
 }

@@ -24,7 +24,7 @@ interface GameInfoDialogProps extends PropsWithChildren {
   autoFocusField?: string
 }
 
-export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: GameInfoDialogProps) {
+export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Readonly<GameInfoDialogProps>) {
   const rom = useRom()
 
   const { reloadSilently } = useRouter()

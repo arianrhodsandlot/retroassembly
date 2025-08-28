@@ -7,7 +7,7 @@ interface PageContainerProps extends PropsWithChildren {
   title: string
 }
 
-export function PageContainer({ children, description, title }: PageContainerProps) {
+export function PageContainer({ children, description, title }: Readonly<PageContainerProps>) {
   return (
     <>
       <title>{`Log in - ${metadata.title}`}</title>

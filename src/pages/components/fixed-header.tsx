@@ -3,7 +3,7 @@ import { Fragment } from 'react/jsx-runtime'
 import { Link } from 'react-router'
 import { links } from '@/constants/links.ts'
 
-export function FixedHeader({ currentUser }: { currentUser?: any }) {
+export function FixedHeader({ currentUser }: Readonly<{ currentUser?: any }>) {
   return (
     <div className='border-b-(--accent-9) bg-(--accent-9) fixed z-10 flex w-full items-center justify-between border-b px-8 py-4 text-white shadow shadow-black/30'>
       <Link className='font-extrabold' to='/'>

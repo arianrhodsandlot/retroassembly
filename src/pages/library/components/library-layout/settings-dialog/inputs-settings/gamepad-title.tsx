@@ -1,4 +1,4 @@
-export function GamepadTitle({ id }: { id: string }) {
+export function GamepadTitle({ id }: Readonly<{ id: string }>) {
   const separator = '('
   const [title, ...rest] = id.split(separator)
   const subtitle = rest.join(separator)

@@ -3,7 +3,7 @@ import { isRouteErrorResponse, Link } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
 import type { Route } from '../+types/root.ts'
 
-export function ErrorPage({ error }: Route.ErrorBoundaryProps) {
+export function ErrorPage({ error }: Readonly<Route.ErrorBoundaryProps>) {
   let message = 'Oops!'
   let details = 'An unexpected error occurred.'
   let stack = ''

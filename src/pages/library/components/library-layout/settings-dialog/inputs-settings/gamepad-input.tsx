@@ -15,7 +15,7 @@ interface GamepadInputProps {
   }
 }
 
-export function GamepadInput({ button }: GamepadInputProps) {
+export function GamepadInput({ button }: Readonly<GamepadInputProps>) {
   const { gamepad } = useGamepads()
   if (!gamepad?.id) {
     throw new Error('this should not happen')

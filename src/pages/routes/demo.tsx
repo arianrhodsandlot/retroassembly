@@ -16,6 +16,6 @@ export function loader() {
   }
 }
 
-export default function LibraryRoute({ loaderData }: Route.ComponentProps) {
+export default function LibraryRoute({ loaderData }: Readonly<Route.ComponentProps>) {
   return <LibraryPage pageData={loaderData} />
 }

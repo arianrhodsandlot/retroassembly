@@ -6,7 +6,7 @@ import { DeviceNotes } from './device-notes.tsx'
 
 const unknown = <span className='opacity-40'>Unknown</span>
 
-export function DeviceInfo({ platform, platformInfo }: { platform: string; platformInfo?: PlatformInfo }) {
+export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: string; platformInfo?: PlatformInfo }>) {
   if (!platformInfo) {
     return
   }

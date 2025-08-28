@@ -17,7 +17,7 @@ export function GameOverlayButton({
   dataSnRight,
   disabled = false,
   onClick,
-}: GameOverlayButtonProps) {
+}: Readonly<GameOverlayButtonProps>) {
   const [isLoading, toggleLoading] = useToggle()
 
   async function handleClick(event: MouseEvent<HTMLButtonElement>) {

@@ -5,7 +5,7 @@ import { api } from '@/utils/http.ts'
 import { useSelectedGames } from '../../atoms.ts'
 import { useRouter } from '../../hooks/use-router.ts'
 
-export function DeleteDialog(props: AlertDialog.RootProps) {
+export function DeleteDialog(props: Readonly<AlertDialog.RootProps>) {
   const { onOpenChange } = props
   const { reloadSilently } = useRouter()
   const [selectedGames, setSelectedGames] = useSelectedGames()

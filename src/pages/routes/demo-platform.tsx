@@ -23,6 +23,6 @@ export async function loader({ params }: Route.LoaderArgs) {
   }
 }
 
-export default function DemoPlatformRoute({ loaderData }: Route.ComponentProps) {
+export default function DemoPlatformRoute({ loaderData }: Readonly<Route.ComponentProps>) {
   return <PlatformPage pageData={loaderData} />
 }

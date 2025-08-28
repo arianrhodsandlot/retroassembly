@@ -9,7 +9,7 @@ import { humanizeDate } from '@/utils/misc.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 
-export function GameState({ state }: { state: State }) {
+export function GameState({ state }: Readonly<{ state: State }>) {
   const { hide, setIsPending } = useGameOverlay()
   const { core, emulator } = useEmulator()
   const [loaded, setLoaded] = useState(false)

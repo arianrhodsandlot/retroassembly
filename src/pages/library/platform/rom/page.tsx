@@ -24,10 +24,10 @@ interface RomPageProps {
     state: State | undefined
   }
 }
-export default function RomPage({ pageData }: RomPageProps) {
+export default function RomPage({ pageData }: Readonly<RomPageProps>) {
   const { rom, state } = pageData
   if (!rom) {
-    return '404'
+    return <>404</>
   }
 
   const goodcodes = getRomGoodcodes(rom)

@@ -55,7 +55,11 @@ export function CompanyLogo({
   className,
   company,
   fallback,
-}: { className?: string; company: string; fallback?: ReactNode }) {
+}: Readonly<{
+  className?: string
+  company: string
+  fallback?: ReactNode
+}>) {
   const companyLogo = getCompanyLogo(company)
   if (companyLogo) {
     return (
@@ -67,5 +71,5 @@ export function CompanyLogo({
       />
     )
   }
-  return fallback
+  return <>{fallback}</>
 }

@@ -3,7 +3,7 @@ import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
 import { usePlatform } from '../../hooks/use-platform.ts'
 
-export function GamePlatform({ platform }: { platform: string }) {
+export function GamePlatform({ platform }: Readonly<{ platform: string }>) {
   const currentPlatform = usePlatform()
 
   if (currentPlatform) {

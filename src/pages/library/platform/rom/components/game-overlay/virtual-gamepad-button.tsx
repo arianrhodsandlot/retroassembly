@@ -14,7 +14,7 @@ export function VirtualGamepadButton({
   children,
   className,
   ...props
-}: VirtualGamepadButtonProps) {
+}: Readonly<VirtualGamepadButtonProps>) {
   const { emulator } = useEmulator()
   const [touching, setTouching] = useState(false)
 

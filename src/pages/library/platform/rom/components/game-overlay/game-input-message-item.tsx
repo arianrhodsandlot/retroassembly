@@ -6,7 +6,7 @@ interface GameInputMessageItemProps extends PropsWithChildren {
   keyNames?: string[]
 }
 
-export function GameInputMessageItem({ children, keyNames }: GameInputMessageItemProps) {
+export function GameInputMessageItem({ children, keyNames }: Readonly<GameInputMessageItemProps>) {
   return (
     <div className='flex items-center gap-2'>
       {keyNames?.map((keyName, i) => (

@@ -19,7 +19,7 @@ const defaultTrigger = (
   </IconButton>
 )
 
-export function GameMediaDialog({ children = defaultTrigger }: PropsWithChildren) {
+export function GameMediaDialog({ children = defaultTrigger }: Readonly<PropsWithChildren>) {
   const rom = useRom()
   const { isReloading, reload } = useRouter()
   const isDemo = useIsDemo()

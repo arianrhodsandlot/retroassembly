@@ -1,7 +1,7 @@
 import { Dialog } from '@radix-ui/themes'
 import { useSpatialNavigationPaused } from '../atoms.ts'
 
-export function DialogRoot({ onOpenChange, ...props }: Dialog.RootProps) {
+export function DialogRoot({ onOpenChange, ...props }: Readonly<Dialog.RootProps>) {
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
 
   function handleOpenChange(open: boolean) {

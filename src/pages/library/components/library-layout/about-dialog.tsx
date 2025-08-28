@@ -4,7 +4,7 @@ import { linkMap, links } from '@/constants/links.ts'
 import { metadata } from '@/constants/metadata.ts'
 import { DialogRoot } from '../dialog-root.tsx'
 
-export function AboutDialog({ onOpenChange, ...props }: Dialog.RootProps) {
+export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProps>) {
   function handleOpenChange(open: boolean) {
     onOpenChange?.(open)
   }

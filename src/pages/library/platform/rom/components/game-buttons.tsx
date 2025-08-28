@@ -17,7 +17,7 @@ const isAppleMobileDesktopMode =
   !isChromeLike && isMacLike && /safari/i.test(navigator.userAgent) && screen.height <= 1366
 const mayNeedsUserInteraction = isAppleMobile || isAppleMobileDesktopMode
 
-export function GameButtons({ state }: { state?: State }) {
+export function GameButtons({ state }: Readonly<{ state?: State }>) {
   const { isPreparing, launch } = useEmulator()
   const [, setLaunchButtonRect] = useLaunchButton()
   const { syncStyle } = useFocusIndicator()

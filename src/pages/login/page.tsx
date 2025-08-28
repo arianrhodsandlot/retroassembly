@@ -11,7 +11,7 @@ interface LoginPageProps {
   }
 }
 
-export function LoginPage({ pageData }: LoginPageProps) {
+export function LoginPage({ pageData }: Readonly<LoginPageProps>) {
   const { error, formType, redirectTo } = pageData
 
   if (error) {

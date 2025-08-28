@@ -6,7 +6,7 @@ interface ResetButtonProps extends ButtonProps {
   preference: PreferenceSnippet
 }
 
-export function UpdateButton({ preference, ...props }: ResetButtonProps) {
+export function UpdateButton({ preference, ...props }: Readonly<ResetButtonProps>) {
   const { isLoading, update } = usePreference()
 
   async function handleClickReset() {

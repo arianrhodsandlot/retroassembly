@@ -4,7 +4,10 @@ import { useState } from 'react'
 import { DialogRoot } from '../../components/dialog-root.tsx'
 import { UploadDialog } from './upload-dialog.tsx'
 
-export function UploadButton({ platform, variant = 'soft' }: { platform: string; variant?: ButtonProps['variant'] }) {
+export function UploadButton({
+  platform,
+  variant = 'soft',
+}: Readonly<{ platform: string; variant?: ButtonProps['variant'] }>) {
   const [key, setKey] = useState(Date.now)
   const [open, toggleOpen] = useToggle()
 

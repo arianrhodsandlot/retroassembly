@@ -18,7 +18,7 @@ interface KeyboardInputProps {
   }
 }
 
-export function KeyboardInput({ button }: KeyboardInputProps) {
+export function KeyboardInput({ button }: Readonly<KeyboardInputProps>) {
   const { isLoading, update } = usePreference()
   const keyboardMapping = useKeyboardMapping()
 

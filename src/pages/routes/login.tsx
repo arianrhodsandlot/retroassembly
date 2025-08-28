@@ -38,6 +38,6 @@ export async function loader({ request }: Route.LoaderArgs) {
   return { formType, redirectTo }
 }
 
-export default function LoginRoute({ loaderData }: Route.ComponentProps) {
+export default function LoginRoute({ loaderData }: Readonly<Route.ComponentProps>) {
   return <LoginPage pageData={loaderData} />
 }

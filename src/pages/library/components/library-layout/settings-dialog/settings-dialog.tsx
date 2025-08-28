@@ -16,7 +16,7 @@ const allSettingsTabs = [
   { content: AccountSettings, iconClass: 'icon-[mdi--account]', name: 'account' },
 ]
 
-export function SettingsDialog({ onOpenChange, ...props }: Dialog.RootProps) {
+export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProps>) {
   const [tab, setTab] = useState(allSettingsTabs[0])
   const [TabContent, setTabContent] = useState(() => tab.content)
   const [enableTabAnimation, setEnableTabAnimation] = useState(false)

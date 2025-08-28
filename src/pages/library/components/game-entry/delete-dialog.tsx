@@ -9,7 +9,7 @@ interface DeleteDialogProps extends AlertDialog.RootProps {
   rom: { id: string }
 }
 
-export function DeleteDialog({ rom, ...props }: DeleteDialogProps) {
+export function DeleteDialog({ rom, ...props }: Readonly<DeleteDialogProps>) {
   const { reloadSilently } = useRouter()
   const { actions } = useGameActions(rom)
   const action = actions.find(({ name }) => name === 'delete')

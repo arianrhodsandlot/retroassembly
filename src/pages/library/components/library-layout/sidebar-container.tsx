@@ -2,7 +2,7 @@ import { clsx } from 'clsx'
 import type { ReactNode } from 'react'
 import { usePreference } from '../../hooks/use-preference.ts'
 
-export function SidebarContainer({ children }: { children: ReactNode }) {
+export function SidebarContainer({ children }: Readonly<{ children: ReactNode }>) {
   const { preference } = usePreference()
   return (
     <aside

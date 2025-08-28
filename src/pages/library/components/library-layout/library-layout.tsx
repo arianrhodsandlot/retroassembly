@@ -21,7 +21,7 @@ interface AppLayoutProps {
   title: string
 }
 
-export default function LibraryLayout({ children, title }: AppLayoutProps) {
+export default function LibraryLayout({ children, title }: Readonly<AppLayoutProps>) {
   const isDemo = useIsDemo()
   return (
     <>

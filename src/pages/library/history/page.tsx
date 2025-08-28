@@ -2,11 +2,11 @@ import { GameList } from '../components/game-list/game-list.tsx'
 import LibraryLayout from '../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../components/main-scroll-area.tsx'
 
-export default function HistoryPage({ pageData }: { pageData: any }) {
+export default function HistoryPage({ pageData }: Readonly<{ pageData: any }>) {
   const { page, pagination, roms } = pageData
 
   if (page > 1 && roms.length === 0) {
-    return '404'
+    return <>404</>
   }
 
   return (

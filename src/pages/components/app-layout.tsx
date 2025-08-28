@@ -7,7 +7,7 @@ import { preferenceAtom } from '../atoms.ts'
 import { Head } from './head.tsx'
 import { RadixTheme } from './radix-theme.tsx'
 
-export function AppLayout({ children }: { children: ReactNode }) {
+export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
   const { currentUser, preference } = useLoaderData() || {}
   const hydrateAtom = [preferenceAtom, preference] as const
   const hydrateAtoms = [hydrateAtom]

@@ -1,6 +1,6 @@
 import { IconButton } from '@radix-ui/themes'
 import { fileOpen } from 'browser-fs-access'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'

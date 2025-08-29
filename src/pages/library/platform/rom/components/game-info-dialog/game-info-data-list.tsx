@@ -1,5 +1,5 @@
 import { DataList, Select, TextArea, TextField } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { range } from 'es-toolkit'
 import { DateTime } from 'luxon'
 import { platformMap } from '@/constants/platform.ts'

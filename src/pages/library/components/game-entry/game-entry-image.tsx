@@ -1,6 +1,8 @@
 import { Skeleton } from '@radix-ui/themes'
 import Atropos from 'atropos/react'
-import type { ReactNode } from 'react'
+import { clsx } from 'clsx'
+import { AnimatePresence, motion } from 'motion/react'
+import { useState } from 'react'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { skeletonClassnames } from '../../constants/skeleton-classnames.ts'
 import { useRomCover } from '../../hooks/use-rom-cover.ts'
@@ -8,32 +10,52 @@ import { useRomCover } from '../../hooks/use-rom-cover.ts'
 export function GameEntryImage({ rom }) {
   const goodcodes = getRomGoodcodes(rom || {})
   const { data: cover, isLoading } = useRomCover(rom)
+  const [loaded, setLoaded] = useState(false)
+  const shouldShowskeleton = isLoading || !loaded
 
-  let content: ReactNode
-  if (isLoading) {
-    content = (
-      <div className='flex size-full items-end justify-center'>
-        <Skeleton className={skeletonClassnames[rom.platform] || '!aspect-square !size-full'} loading />
-      </div>
-    )
-  } else if (cover?.src) {
-    content = (
-      <Atropos
-        activeOffset={0}
-        className='size-full'
-        highlight={false}
-        innerClassName='!flex items-end justify-center'
-        shadow={false}
-      >
-        <img
-          alt={goodcodes.rom}
-          className='max-h-full max-w-full rounded object-contain object-bottom'
-          loading='lazy'
-          src={cover.src}
-        />
-      </Atropos>
-    )
+  function handleLoad() {
+    setLoaded(true)
   }
 
-  return <div className='!w-9/10 aspect-square overflow-hidden'>{content}</div>
+  return (
+    <div className='!w-9/10 relative aspect-square overflow-hidden'>
+      <AnimatePresence>
+        {shouldShowskeleton ? (
+          <motion.div
+            animate={{ opacity: 1 }}
+            className='z-11 absolute top-0 flex size-full items-end justify-center'
+            exit={{ opacity: 0 }}
+          >
+            <Skeleton
+              className={skeletonClassnames[rom.platform] || '!aspect-square !size-full'}
+              loading
+              style={{
+                animationDelay: `-${(rom.fileName.length % 10) / 4}s !important`,
+              }}
+            />
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+      {cover?.src ? (
+        <Atropos
+          activeOffset={0}
+          className='size-full'
+          highlight={false}
+          innerClassName={clsx('!flex items-end justify-center transition-opacity', {
+            'opacity-0': !loaded,
+          })}
+          shadow={false}
+        >
+          <img
+            alt={goodcodes.rom}
+            className='max-h-full max-w-full rounded object-contain object-bottom'
+            loading='lazy'
+            onError={handleLoad}
+            onLoad={handleLoad}
+            src={cover.src}
+          />
+        </Atropos>
+      ) : null}
+    </div>
+  )
 }

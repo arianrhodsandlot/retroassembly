@@ -1,3 +1,4 @@
+import { delay } from 'es-toolkit'
 import useSWRImmutable from 'swr/immutable'
 import type { Rom } from '@/controllers/get-roms'
 import { getDemoRomThumbnail, getPlatformGameIcon, getRomLibretroThumbnail } from '@/utils/library.ts'
@@ -38,6 +39,7 @@ export function useRomCover(rom: Rom) {
 
         try {
           await imageLoaded(romCover)
+          await delay(3000)
           validImages.add(romCover)
           return { src: romCover, type: 'rom' }
         } catch {

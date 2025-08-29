@@ -1,5 +1,5 @@
 import { Checkbox, DropdownMenu, IconButton } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useState } from 'react'
 import { useSelectedGames } from '../../atoms.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'

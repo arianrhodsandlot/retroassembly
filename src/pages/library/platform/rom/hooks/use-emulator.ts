@@ -1,4 +1,4 @@
-import { noop } from 'es-toolkit'
+import { attemptAsync, noop } from 'es-toolkit'
 import ky from 'ky'
 import { Nostalgist } from 'nostalgist'
 import { useEffect, useMemo } from 'react'
@@ -157,7 +157,7 @@ export function useEmulator() {
       setIsFullscreen(false)
       focus(launchButton)
       offCancel()
-      await prepare()
+      await attemptAsync(prepare)
     }
   }
 
@@ -187,13 +187,10 @@ export function useEmulator() {
     }
   })
 
-  if (error) {
-    console.error(error)
-  }
-
   return {
     core,
     emulator,
+    error,
     exit,
     isFullscreen,
     isPreparing,

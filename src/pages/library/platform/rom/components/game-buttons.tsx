@@ -1,4 +1,4 @@
-import { HoverCard } from '@radix-ui/themes'
+import { Button, HoverCard } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { type MouseEvent, useEffect } from 'react'
 import type { State } from '@/controllers/get-states.ts'
@@ -18,7 +18,7 @@ const isAppleMobileDesktopMode =
 const mayNeedsUserInteraction = isAppleMobile || isAppleMobileDesktopMode
 
 export function GameButtons({ state }: Readonly<{ state?: State }>) {
-  const { isPreparing, launch } = useEmulator()
+  const { error, isPreparing, launch, prepare } = useEmulator()
   const [, setLaunchButtonRect] = useLaunchButton()
   const { syncStyle } = useFocusIndicator()
 
@@ -52,11 +52,30 @@ export function GameButtons({ state }: Readonly<{ state?: State }>) {
     await launch()
   }
 
+  async function handleClickRetry() {
+    if (!isPreparing) {
+      await prepare()
+    }
+  }
+
   useEffect(() => {
     if (!isPreparing) {
       focus('.launch-button')
     }
   }, [isPreparing])
+
+  if (!isPreparing && error) {
+    return (
+      <div className='bg-(--accent-4) flex h-16 w-full items-center justify-center gap-2 rounded lg:w-80'>
+        <span className='icon-[mdi--warning-decagram]' />
+        <span className='text-sm opacity-60'>Failed to load the emulator.</span>
+        <Button onClick={handleClickRetry} size='1' type='button'>
+          <span className='icon-[mdi--reload]' />
+          Retry
+        </Button>
+      </div>
+    )
+  }
 
   return (
     <div className='flex w-full flex-col items-center gap-4 lg:flex-row'>

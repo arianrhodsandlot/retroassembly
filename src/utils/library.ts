@@ -5,7 +5,7 @@ import { parse } from '@/utils/goodcodes-parser.ts'
 import { platformMap, type PlatformName } from '../constants/platform.ts'
 import { getCDNUrl } from './cdn.ts'
 
-type LibretroThumbnailType = 'boxart' | 'snap' | 'title'
+type LibretroThumbnailType = 'boxart' | 'logo' | 'snap' | 'title'
 
 const { path } = Nostalgist.vendors
 

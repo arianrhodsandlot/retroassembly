@@ -58,7 +58,7 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
           {getRomGoodcodes(rom).rom}
         </Dialog.Title>
 
-        <form onSubmit={handleSubmit}>
+        <form autoComplete='off' onSubmit={handleSubmit}>
           <GameInfoDataList autoFocusField={autoFocusField} />
 
           <div className='flex justify-end gap-4'>

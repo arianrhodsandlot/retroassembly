@@ -1,12 +1,14 @@
 import { Button, DropdownMenu } from '@radix-ui/themes'
 import { useState } from 'react'
 import { links } from '@/constants/links.ts'
+import { useSpatialNavigationPaused } from '../../atoms.ts'
 import { AboutDialog } from './about-dialog.tsx'
 import { LogoutDialog } from './logout-dialog.tsx'
 import { SettingsDialog } from './settings-dialog/settings-dialog.tsx'
 import { ThemeMenuItem } from './theme-menu-item.tsx'
 
 export function SidebarFooter() {
+  const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
   const [settingsDialogOpen, setSettingsDialogOpen] = useState(false)
   const [logoutDialogOpen, setLogoutDialogOpen] = useState(false)
   const [aboutDialogOpen, setAboutDialogOpen] = useState(false)
@@ -22,7 +24,12 @@ export function SidebarFooter() {
           </DropdownMenu.Trigger>
 
           <DropdownMenu.Content variant='solid'>
-            <DropdownMenu.Item onClick={() => setSettingsDialogOpen(true)}>
+            <DropdownMenu.Item
+              onClick={() => {
+                setSettingsDialogOpen(true)
+                setSpatialNavigationPaused(true)
+              }}
+            >
               <span className='icon-[mdi--cog]' />
               Settings
             </DropdownMenu.Item>

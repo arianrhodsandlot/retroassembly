@@ -45,11 +45,13 @@ export function offCancel() {
   cancelHandler = undefined
 }
 export function cancel() {
-  if (cancelHandler) {
-    cancelHandler()
-  } else {
-    globalThis.navigation.back()
-  }
+  try {
+    if (cancelHandler) {
+      cancelHandler()
+    } else {
+      globalThis.history.back()
+    }
+  } catch {}
 }
 
 let moving = false

@@ -1,4 +1,5 @@
 import { AlertDialog, Button } from '@radix-ui/themes'
+import { delay } from 'es-toolkit'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 import { api } from '@/utils/http.ts'
@@ -21,8 +22,9 @@ export function DeleteDialog(props: Readonly<AlertDialog.RootProps>) {
       onError() {
         setClicked(false)
       },
-      onSuccess: () => {
+      async onSuccess() {
         closeDeleteDialog()
+        await delay(500)
         setSelectedGames([])
       },
     },

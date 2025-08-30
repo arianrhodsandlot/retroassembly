@@ -1,16 +1,8 @@
 import { attemptAsync } from 'es-toolkit'
 import useSWRImmutable from 'swr/immutable'
 import { http } from '@/utils/http.ts'
+import { imageLoaded } from '@/utils/image.ts'
 import { getRomLibretroThumbnail } from '@/utils/library.ts'
-
-function imageLoaded(src: string) {
-  const img = new Image()
-  img.src = src
-  return new Promise<void>((resolve, reject) => {
-    img.addEventListener('load', () => resolve())
-    img.addEventListener('error', (error) => reject(error))
-  })
-}
 
 async function getRomLogo(rom) {
   const url = getRomLibretroThumbnail(rom, 'logo')

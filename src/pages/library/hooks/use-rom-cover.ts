@@ -1,20 +1,9 @@
 import useSWRImmutable from 'swr/immutable'
 import type { Rom } from '@/controllers/get-roms'
+import { imageLoaded } from '@/utils/image.ts'
 import { getDemoRomThumbnail, getPlatformGameIcon, getRomLibretroThumbnail } from '@/utils/library.ts'
 import { getFileUrl } from '../utils/file.ts'
 import { useIsDemo } from './use-demo.ts'
-
-const validImages = new Set<string>([])
-const invalidImages = new Set<string>([])
-
-function imageLoaded(src: string) {
-  const img = new Image()
-  img.src = src
-  return new Promise<void>((resolve, reject) => {
-    img.addEventListener('load', () => resolve())
-    img.addEventListener('error', (error) => reject(error))
-  })
-}
 
 const libretroThumbnailTypes = ['boxart', 'title', 'snap'] as const
 export function useRomCover(rom: Rom) {
@@ -31,21 +20,13 @@ export function useRomCover(rom: Rom) {
 
   return useSWRImmutable(covers, async () => {
     for (const romCover of romCovers) {
-      if (romCover && !invalidImages.has(romCover)) {
-        if (validImages.has(romCover)) {
-          return { src: romCover, type: 'rom' }
-        }
-
+      if (romCover) {
         try {
           await imageLoaded(romCover)
-          validImages.add(romCover)
           return { src: romCover, type: 'rom' }
-        } catch {
-          invalidImages.add(romCover)
-        }
+        } catch {}
       }
     }
-    validImages.add(platformCover)
     return { src: platformCover, type: 'platform' }
   })
 }

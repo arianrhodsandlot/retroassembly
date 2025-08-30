@@ -60,14 +60,12 @@ export default function RomPage({ pageData }: Readonly<RomPageProps>) {
 
             <div className='flex flex-col gap-6 lg:pl-4'>
               <GameMedia />
-              {overview ? (
-                <div className='text-(--color-text)/90 prose group max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable] lg:mr-64'>
-                  {overview}
-                  <div className='mt-1 flex justify-end'>
-                    <GameInfoDialog autoFocusField='gameDescription' />
-                  </div>
+              <div className='text-(--color-text)/90 prose group max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable] lg:mr-64'>
+                {overview}
+                <div className='mt-1 flex justify-end'>
+                  <GameInfoDialog autoFocusField='gameDescription' />
                 </div>
-              ) : null}
+              </div>
 
               {launchboxGame?.wikipediaUrl ? (
                 <div>

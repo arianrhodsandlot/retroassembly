@@ -52,7 +52,7 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
     <DialogRoot onOpenChange={setOpen} open={open}>
       <Dialog.Trigger>{children}</Dialog.Trigger>
 
-      <Dialog.Content className='!w-2xl !max-w-screen'>
+      <Dialog.Content aria-describedby={undefined} className='!w-2xl !max-w-screen'>
         <Dialog.Title className='!-ml-1 flex items-center gap-2 text-xl font-semibold'>
           <span className='icon-[mdi--view-list]' />
           {getRomGoodcodes(rom).rom}

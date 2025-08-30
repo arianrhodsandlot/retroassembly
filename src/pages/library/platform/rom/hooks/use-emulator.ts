@@ -43,6 +43,7 @@ const defaultEmulatorStyle: Partial<CSSStyleDeclaration> = {
   transition: 'opacity .1s',
 }
 
+let wakeLock: undefined | WakeLockSentinel
 const originalGetUserMedia = globalThis.navigator?.mediaDevices?.getUserMedia
 export function useEmulator() {
   const rom: Rom = useRom()
@@ -143,6 +144,9 @@ export function useEmulator() {
     if (preference.emulator.fullscreen) {
       toggleFullscreen()
     }
+    try {
+      wakeLock = await navigator.wakeLock.request('screen')
+    } catch {}
     onCancel(noop)
   }
 
@@ -150,10 +154,17 @@ export function useEmulator() {
     const status = emulator?.getStatus() || ''
     if (['paused', 'running'].includes(status)) {
       emulator?.exit()
-      setLaunched(false)
-      try {
-        await document.exitFullscreen()
-      } catch {}
+      const promises: Promise<void>[] = []
+      if (document.fullscreenElement) {
+        promises.push(document.exitFullscreen())
+      }
+      if (wakeLock) {
+        promises.push(wakeLock.release())
+        wakeLock = undefined
+      }
+      if (promises.length > 0) {
+        await Promise.all(promises)
+      }
       setIsFullscreen(false)
       focus(launchButton)
       offCancel()

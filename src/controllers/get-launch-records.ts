@@ -22,12 +22,15 @@ export async function getLaunchRecords({ page = 1, pageSize = 100 }: { page?: nu
     .select({
       core: launchRecordTable.core,
       count: count(launchRecordTable.id),
-      fileName: romTable.fileName,
       id: launchRecordTable.romId,
       lastLaunched: max(launchRecordTable.createdAt),
+      platform: launchRecordTable.platform,
+
+      fileName: romTable.fileName,
+      gameName: romTable.gameName,
+      gameThumbnailFileIds: romTable.gameThumbnailFileIds,
       launchboxGameId: romTable.launchboxGameId,
       libretroGameId: romTable.libretroGameId,
-      platform: launchRecordTable.platform,
     })
     .from(launchRecordTable)
     .where(where)

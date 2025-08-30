@@ -18,7 +18,6 @@ export function GameState({ state }: Readonly<{ state: State }>) {
     async (url) => {
       if (emulator) {
         await emulator.loadState(ky(url))
-        emulator.resume()
       }
     },
     {

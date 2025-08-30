@@ -154,6 +154,7 @@ export function useEmulator() {
     const status = emulator?.getStatus() || ''
     if (['paused', 'running'].includes(status)) {
       emulator?.exit()
+      setLaunched(false)
       const promises: Promise<void>[] = []
       if (document.fullscreenElement) {
         promises.push(document.exitFullscreen())

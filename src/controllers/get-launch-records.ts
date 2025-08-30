@@ -27,8 +27,8 @@ export async function getLaunchRecords({ page = 1, pageSize = 100 }: { page?: nu
       platform: launchRecordTable.platform,
 
       fileName: romTable.fileName,
+      gameBoxartFileIds: romTable.gameBoxartFileIds,
       gameName: romTable.gameName,
-      gameThumbnailFileIds: romTable.gameThumbnailFileIds,
       launchboxGameId: romTable.launchboxGameId,
       libretroGameId: romTable.libretroGameId,
     })

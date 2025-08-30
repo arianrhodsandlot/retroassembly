@@ -10,6 +10,7 @@ import { useEmulatorLaunched } from '@/pages/library/atoms.ts'
 import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
+import { useRouter } from '@/pages/library/hooks/use-router.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { focus, offCancel, onCancel } from '@/pages/library/utils/spatial-navigation.ts'
 import { getCDNUrl } from '@/utils/cdn.ts'
@@ -55,6 +56,7 @@ export function useEmulator() {
   const gamepadMapping = useGamepadMapping()
   const [launched, setLaunched] = useEmulatorLaunched()
   const isDemo = useIsDemo()
+  const { reloadSilently } = useRouter()
   const [isFullscreen, setIsFullscreen] = useIsFullscreen()
   const [launchButton] = useLaunchButton()
 
@@ -170,6 +172,7 @@ export function useEmulator() {
       focus(launchButton)
       offCancel()
       await attemptAsync(prepare)
+      await reloadSilently()
     }
   }
 

@@ -17,6 +17,7 @@ export function getRunTimeEnv() {
       RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE: { node: '1000', workerd: '100' }[runtimeKey] || '100',
       RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST: 'https://msleuth.arianrhodsandlot.workers.dev/',
       RETROASSEMBLY_RUN_TIME_SKIP_HOME_IF_LOGGED_IN: { node: 'true', workerd: 'false' }[runtimeKey] || 'false',
+      RETROASSEMBLY_RUN_TIME_STORAGE_DIRECTORY: path.resolve('data', 'storage'),
       RETROASSEMBLY_RUN_TIME_STORAGE_HOST: '',
       RETROASSEMBLY_RUN_TIME_SUPABASE_ANON_KEY: '',
       RETROASSEMBLY_RUN_TIME_SUPABASE_URL: '',
@@ -27,17 +28,11 @@ export function getRunTimeEnv() {
 export function getDirectories() {
   const runTimeEnv = getRunTimeEnv()
   const dataDirectory = runTimeEnv.RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY
-  const storageDirectory = path.join(dataDirectory, 'storage')
-  return {
-    dataDirectory,
-    romsDirectory: path.join(storageDirectory, 'roms'),
-    statesDirectory: path.join(storageDirectory, 'states'),
-    storageDirectory,
-  }
+  const storageDirectory = runTimeEnv.RETROASSEMBLY_RUN_TIME_STORAGE_DIRECTORY
+  return { dataDirectory, storageDirectory }
 }
 
 export function getDatabasePath() {
-  const runTimeEnv = getRunTimeEnv()
-  const dataDirectory = runTimeEnv.RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY
+  const { dataDirectory } = getDirectories()
   return path.join(dataDirectory, 'retroassembly.sqlite')
 }

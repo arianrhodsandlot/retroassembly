@@ -40,6 +40,9 @@ export function GameMediaImages() {
     if (isDeletingThumbnail) {
       return
     }
+    if (confirm('Are you sure you want to delete this thumbnail?') === false) {
+      return
+    }
     const thumbnailIds = await deleteThumbnail(thumbnailFileId)
     setThumbnailFileIds(thumbnailIds?.split(',') || [])
   }

@@ -39,19 +39,23 @@ export function GameMedia() {
     return (
       <ScrollArea className='rounded lg:bg-zinc-600/10 lg:p-4' scrollbars='both' size='2'>
         <div className='group flex flex-col gap-4 overflow-x-auto lg:flex-row lg:p-0'>
-          {video ? <YouTubeEmbed className='h-48 shrink-0' url={video} /> : null}
+          {video ? (
+            <div className='w-full lg:w-auto'>
+              <YouTubeEmbed className='h-48 shrink-0' url={video} />
+            </div>
+          ) : null}
           {validImages?.map((image) => (
             <a className='shrink-0 empty:hidden' href={image} key={image} rel='noreferrer noopener' target='_blank'>
               <img
                 alt={rom.goodcodes.rom}
-                className='h-full w-auto lg:h-48 lg:w-auto'
+                className='h-auto w-full lg:h-48 lg:w-auto'
                 key={image}
                 loading='lazy'
                 src={image}
               />
             </a>
           ))}
-          <div className='flex items-center'>
+          <div className='flex items-center justify-end p-1.5 lg:w-auto'>
             <GameMediaDialog />
           </div>
         </div>

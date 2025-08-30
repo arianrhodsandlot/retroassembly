@@ -62,13 +62,15 @@ export function GameInfo({ rom }) {
   ]
 
   return (
-    <div className='bg-(--gray-a3) rounded px-8 py-4'>
+    <div className='bg-(--gray-a3) rounded p-4 lg:px-8'>
       <div className='flex flex-col gap-8 lg:flex-row lg:flex-wrap lg:*:min-w-36'>
         {items.map((item) => (
           <div className='group' key={item.title}>
-            <div className='flex items-center gap-2 font-semibold'>
-              <span className={item.icon} />
-              {item.title}
+            <div className='flex items-center justify-between gap-2 font-semibold lg:justify-start'>
+              <span className='inline-flex items-center gap-2'>
+                <span className={item.icon} />
+                {item.title}
+              </span>
               {item.name ? <GameInfoDialog autoFocusField={item.name} /> : null}
             </div>
             <div className='pl-6'>{item.value}</div>

@@ -58,7 +58,7 @@ export function YouTubeEmbed({ className, url }: Readonly<YouTubeEmbedProps>) {
     <iframe
       allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
       allowFullScreen
-      className={twMerge('aspect-video border-none bg-black', className)}
+      className={twMerge('aspect-video max-w-full border-none bg-black', className)}
       referrerPolicy='strict-origin-when-cross-origin'
       sandbox='allow-same-origin allow-scripts allow-forms'
       src={src}

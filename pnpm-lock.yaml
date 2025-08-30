@@ -36,8 +36,8 @@ importers:
         specifier: 4.20250830.0
         version: 4.20250830.0
       '@hono/node-server':
-        specifier: 1.19.0
-        version: 1.19.0(hono@4.9.5)
+        specifier: 1.19.1
+        version: 1.19.1(hono@4.9.5)
       '@hono/vite-dev-server':
         specifier: 0.20.1
         version: 0.20.1(hono@4.9.5)(miniflare@4.20250823.1)(wrangler@4.33.1(@cloudflare/workers-types@4.20250830.0))
@@ -1088,8 +1088,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@hono/node-server@1.19.0':
-    resolution: {integrity: sha512-1k8/8OHf5VIymJEcJyVksFpT+AQ5euY0VA5hUkCnlKpD4mr8FSbvXaHblxeTTEr90OaqWzAkQaqD80qHZQKxBA==}
+  '@hono/node-server@1.19.1':
+    resolution: {integrity: sha512-h44e5s+ByUriaRIbeS/C74O8v90m0A95luyYQGMF7KEn96KkYMXO7bZAwombzTpjQTU4e0TkU8U1WBIXlwuwtA==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
@@ -6757,13 +6757,13 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@hono/node-server@1.19.0(hono@4.9.5)':
+  '@hono/node-server@1.19.1(hono@4.9.5)':
     dependencies:
       hono: 4.9.5
 
   '@hono/vite-dev-server@0.18.3(hono@4.9.5)(miniflare@4.20250823.1)(wrangler@4.33.1(@cloudflare/workers-types@4.20250830.0))':
     dependencies:
-      '@hono/node-server': 1.19.0(hono@4.9.5)
+      '@hono/node-server': 1.19.1(hono@4.9.5)
       hono: 4.9.5
       minimatch: 9.0.5
     optionalDependencies:
@@ -6772,7 +6772,7 @@ snapshots:
 
   '@hono/vite-dev-server@0.20.1(hono@4.9.5)(miniflare@4.20250823.1)(wrangler@4.33.1(@cloudflare/workers-types@4.20250830.0))':
     dependencies:
-      '@hono/node-server': 1.19.0(hono@4.9.5)
+      '@hono/node-server': 1.19.1(hono@4.9.5)
       hono: 4.9.5
       minimatch: 9.0.5
     optionalDependencies:
@@ -9811,7 +9811,7 @@ snapshots:
       hono: 4.9.5
       react-router: 7.8.2(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
     optionalDependencies:
-      '@hono/node-server': 1.19.0(hono@4.9.5)
+      '@hono/node-server': 1.19.1(hono@4.9.5)
       '@react-router/node': 7.8.2(react-router@7.8.2(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(typescript@5.9.2)
     transitivePeerDependencies:
       - miniflare

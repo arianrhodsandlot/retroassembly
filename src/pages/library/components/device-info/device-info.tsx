@@ -36,7 +36,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
           <img alt={platformInfo.name} className='h-20 w-auto lg:px-8 lg:pt-4' src={banner} />
         </h1>
 
-        <div className='bg-(--gray-a3) rounded px-8 py-4'>
+        <div className='bg-(--gray-a3) rounded p-4 lg:px-8'>
           <div className='flex flex-col gap-8 lg:flex-row lg:*:min-w-36'>
             <div>
               <div className='flex h-6 items-center gap-2 font-semibold'>

@@ -11,7 +11,7 @@ import { GameMediaImages } from './game-media-images.tsx'
 const defaultTrigger = (
   <IconButton
     aria-label='Edit images'
-    className='!opacity-0 !transition-opacity group-hover:!opacity-100'
+    className='!transition-opacity group-hover:!opacity-100 lg:!opacity-0'
     title='Edit images'
     variant='ghost'
   >
@@ -41,7 +41,7 @@ export function GameMediaDialog({ children = defaultTrigger }: Readonly<PropsWit
     <DialogRoot onOpenChange={handleOpenChange} open={open}>
       <Dialog.Trigger>{children}</Dialog.Trigger>
 
-      <Dialog.Content aria-describedby={undefined} className='!w-xl !max-w-screen'>
+      <Dialog.Content aria-describedby={undefined} className='lg:!w-xl'>
         <Dialog.Title className='!-ml-1 flex items-center gap-2 text-xl font-semibold'>
           <span className='icon-[mdi--image-multiple]' />
           {getRomGoodcodes(rom).rom}

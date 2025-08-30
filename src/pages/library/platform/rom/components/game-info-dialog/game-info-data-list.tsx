@@ -65,9 +65,9 @@ export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?:
   gameInfo.gamePlayers = Number.parseInt(gameInfo.gamePlayers, 10) ? `${gameInfo.gamePlayers}` : 'unknown'
 
   return (
-    <DataList.Root className='py-4' size='3'>
+    <DataList.Root className='py-4' orientation={{ initial: 'vertical', md: 'horizontal' }} size='3'>
       <DataList.Item>
-        <DataList.Label className='flex items-center gap-2 text-sm' minWidth='32px'>
+        <DataList.Label className='-ml-2 flex items-center gap-2 text-sm lg:ml-0' minWidth='32px'>
           <span className='icon-[mdi--computer-classic]' />
           Platform
         </DataList.Label>
@@ -75,7 +75,7 @@ export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?:
       </DataList.Item>
       {dataListFields.map(({ icon, label, name, options, type, ...valueProps }) => (
         <DataList.Item key={name}>
-          <DataList.Label className='flex items-center gap-2 text-sm' minWidth='32px'>
+          <DataList.Label className='-ml-2 flex items-center gap-2 text-sm lg:ml-0' minWidth='32px'>
             <span className={icon} />
             {label}
           </DataList.Label>

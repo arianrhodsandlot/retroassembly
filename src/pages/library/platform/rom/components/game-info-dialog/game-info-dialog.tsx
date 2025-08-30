@@ -12,7 +12,7 @@ import { GameInfoDataList } from './game-info-data-list.tsx'
 const defaultTrigger = (
   <IconButton
     aria-label='Edit metadata'
-    className='!opacity-0 !transition-opacity group-hover:!opacity-100'
+    className='!transition-opacity group-hover:!opacity-100 lg:!opacity-0'
     title='Edit metadata'
     variant='ghost'
   >
@@ -52,7 +52,7 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
     <DialogRoot onOpenChange={setOpen} open={open}>
       <Dialog.Trigger>{children}</Dialog.Trigger>
 
-      <Dialog.Content aria-describedby={undefined} className='!w-2xl !max-w-screen'>
+      <Dialog.Content aria-describedby={undefined} className='lg:!w-2xl'>
         <Dialog.Title className='!-ml-1 flex items-center gap-2 text-xl font-semibold'>
           <span className='icon-[mdi--view-list]' />
           {getRomGoodcodes(rom).rom}

@@ -1,15 +1,16 @@
-import { and, eq, inArray } from 'drizzle-orm'
+import assert from 'node:assert'
+import { and, eq, inArray, sql } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { romTable } from '../databases/schema.ts'
 
 export async function getRomPlatformCount() {
   const { currentUser, db, preference } = getContext().var
+  assert.ok(currentUser)
   const { library } = db
 
-  const results = await library
-    .selectDistinct({ platform: romTable.platform })
+  const [{ count }] = await library
+    .select({ count: sql`COUNT(DISTINCT ${romTable.platform})` })
     .from(romTable)
-    .orderBy(romTable.fileName)
     .where(
       and(
         eq(romTable.userId, currentUser.id),
@@ -18,5 +19,5 @@ export async function getRomPlatformCount() {
       ),
     )
 
-  return results.length
+  return count
 }

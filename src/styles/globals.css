@@ -6,6 +6,7 @@
 @import 'tailwindcss';
 @import './fonts.css';
 @import './radix/index.css';
+@import "tailwindcss-safe-area";
 
 @plugin '@iconify/tailwind4';
 @plugin '@tailwindcss/typography';

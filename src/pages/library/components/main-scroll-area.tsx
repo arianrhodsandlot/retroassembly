@@ -24,6 +24,7 @@ export function MainScrollArea({ ref, ...props }: { ref?: RefObject<HTMLDivEleme
           ref.current = element
         }
       }}
+      size='2'
     />
   )
 }

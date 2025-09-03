@@ -13,6 +13,7 @@ export function GameOverlay() {
   const keyboardMapping = useKeyboardMapping()
   const gamepadMapping = useGamepadMapping()
   const { toggle } = useGameOverlay()
+
   useEffect(() => {
     async function handleKeydown(event: KeyboardEvent) {
       if (getKeyNameFromCode(event.code) === keyboardMapping.$pause) {

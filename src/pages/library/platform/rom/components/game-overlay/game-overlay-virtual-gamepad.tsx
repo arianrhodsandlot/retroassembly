@@ -30,16 +30,16 @@ export function GameOverlayVirtualGamepad() {
 
   return (
     <div className='fixed inset-0 block lg:hidden'>
-      <div className='absolute inset-x-4 top-4 flex'>
+      <div className='top-safe p-x-2 absolute inset-x-0 flex'>
         <VirtualGamepadButton
-          className={twMerge('absolute left-0 rounded p-2', clsx({ hidden: !gamepadVisible }))}
+          className={twMerge('left-safe absolute rounded p-2', clsx({ hidden: !gamepadVisible }))}
           onClick={async () => await show()}
         >
           <span className='icon-[mdi--pause]' />
         </VirtualGamepadButton>
 
         <VirtualGamepadButton
-          className='absolute right-0 rounded p-2'
+          className='right-safe absolute rounded p-2'
           onClick={() => setGamepadVisible(!gamepadVisible)}
           title='Toggle gamepad'
         >
@@ -47,7 +47,9 @@ export function GameOverlayVirtualGamepad() {
         </VirtualGamepadButton>
       </div>
 
-      <div className={twMerge('absolute bottom-4 left-4 flex flex-col gap-2', clsx({ hidden: !gamepadVisible }))}>
+      <div
+        className={twMerge('bottom-safe left-safe absolute flex flex-col gap-2 p-2', clsx({ hidden: !gamepadVisible }))}
+      >
         <div className='flex w-full gap-2'>
           <VirtualGamepadButton buttonName='l' className='flex-1 rounded px-2 py-1 ring ring-white/20'>
             L1
@@ -73,7 +75,12 @@ export function GameOverlayVirtualGamepad() {
         </VirtualGamepadButton>
       </div>
 
-      <div className={twMerge('absolute bottom-4 right-4 flex flex-col gap-2', clsx({ hidden: !gamepadVisible }))}>
+      <div
+        className={twMerge(
+          'bottom-safe right-safe absolute flex flex-col gap-2 p-2',
+          clsx({ hidden: !gamepadVisible }),
+        )}
+      >
         <div className='flex w-full gap-2'>
           <VirtualGamepadButton buttonName='r2' className='flex-1 rounded px-2 py-1 ring ring-white/20'>
             R2

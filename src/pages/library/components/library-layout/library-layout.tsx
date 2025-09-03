@@ -26,7 +26,7 @@ export default function LibraryLayout({ children, title }: Readonly<AppLayoutPro
   return (
     <>
       <title>{getPostfixedTitle(title)}</title>
-      <div className='library-layout bg-(--accent-9) flex h-screen flex-col lg:flex-row portrait:h-screen landscape:h-screen'>
+      <div className='library-layout p-safe bg-(--accent-9) flex flex-col lg:h-screen lg:flex-row'>
         {isDemo ? <DemoLoginButton /> : null}
 
         <LibraryLayoutHeader />

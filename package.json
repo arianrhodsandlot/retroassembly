@@ -110,6 +110,7 @@
     "tailwind-merge": "3.3.1",
     "tailwindcss": "4.1.12",
     "tailwindcss-motion": "1.1.1",
+    "tailwindcss-safe-area": "1.1.0",
     "temporal-polyfill": "0.3.0",
     "tempy": "3.1.0",
     "tsdown": "0.14.2",

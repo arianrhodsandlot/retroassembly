@@ -38,10 +38,10 @@ export function GameMedia() {
   if (video || title || snap) {
     return (
       <ScrollArea className='rounded lg:bg-zinc-600/10 lg:p-4' scrollbars='both' size='2'>
-        <div className='group flex flex-col gap-4 overflow-x-auto lg:flex-row lg:p-0'>
+        <div className='group flex flex-col gap-4 lg:flex-row lg:p-0'>
           {video ? (
-            <div className='w-full lg:w-auto'>
-              <YouTubeEmbed className='h-48 shrink-0' url={video} />
+            <div className='w-full lg:w-auto lg:min-w-0 lg:shrink-0'>
+              <YouTubeEmbed className='h-auto w-full shrink-0 lg:h-48 lg:w-auto' url={video} />
             </div>
           ) : null}
           {validImages?.map((image) => (

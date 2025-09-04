@@ -79,6 +79,7 @@
     "eslint": "9.34.0",
     "execa": "9.6.0",
     "fs-extra": "11.3.1",
+    "fuse.js": "7.1.0",
     "gamepad.js": "2.1.0",
     "hono-react-router-adapter": "0.6.5",
     "is-docker": "3.0.0",

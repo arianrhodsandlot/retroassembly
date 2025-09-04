@@ -22,6 +22,7 @@ import { getPreference } from '../controllers/get-preference.ts'
 import { getRomContent } from '../controllers/get-rom-content.ts'
 import { getStateContent } from '../controllers/get-state-content.ts'
 import { getStates } from '../controllers/get-states.ts'
+import { searchRoms } from '../controllers/search-roms.ts'
 import { updatePreference } from '../controllers/update-preference.ts'
 import { createFileResponse } from './utils.ts'
 
@@ -239,6 +240,31 @@ app.delete('roms/:id', async (c) => {
 })
 
 app.get(
+  'roms/search',
+
+  zValidator(
+    'query',
+    z.object({
+      page: z.number().default(1),
+      page_size: z.number().default(100),
+      platform: z.string().optional(),
+      query: z.string().min(1),
+    }),
+  ),
+
+  async (c) => {
+    const queryParams = c.req.valid('query')
+    const result = await searchRoms({
+      page: queryParams.page,
+      pageSize: queryParams.page_size,
+      platform: queryParams.platform,
+      query: queryParams.query,
+    })
+    return c.json(result)
+  },
+)
+
+app.get(
   'states',
 
   zValidator(
@@ -328,7 +354,7 @@ app.get(
     'query',
     z.object({
       page: z.number().default(1),
-      page_size: z.number().default(50),
+      page_size: z.number().default(100),
     }),
   ),
 

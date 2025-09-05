@@ -1,7 +1,7 @@
 import assert from 'node:assert'
 import path from 'node:path'
 import { zValidator } from '@hono/zod-validator'
-import { pull } from 'es-toolkit'
+import { delay, pull } from 'es-toolkit'
 import { Hono } from 'hono'
 import { createMiddleware } from 'hono/factory'
 import { z } from 'zod'
@@ -245,14 +245,15 @@ app.get(
   zValidator(
     'query',
     z.object({
-      page: z.number().default(1),
-      page_size: z.number().default(100),
+      page: z.coerce.number().default(1),
+      page_size: z.coerce.number().default(100),
       platform: z.string().optional(),
       query: z.string().min(1),
     }),
   ),
 
   async (c) => {
+    await delay(1000)
     const queryParams = c.req.valid('query')
     const result = await searchRoms({
       page: queryParams.page,
@@ -353,8 +354,8 @@ app.get(
   zValidator(
     'query',
     z.object({
-      page: z.number().default(1),
-      page_size: z.number().default(100),
+      page: z.coerce.number().default(1),
+      page_size: z.coerce.number().default(100),
     }),
   ),
 

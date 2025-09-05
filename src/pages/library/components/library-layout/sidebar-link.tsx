@@ -23,7 +23,7 @@ export function SidebarLink({ active, children, to }) {
   }, [active])
 
   return (
-    <motion.div layout ref={ref}>
+    <motion.div className='flex-1' layout ref={ref}>
       <Button asChild size='3' variant='ghost'>
         <NavigatableLink
           className={clsx('group !m-0 !flex !h-auto !px-4 !py-2.5', {

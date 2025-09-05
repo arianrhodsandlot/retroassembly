@@ -7,6 +7,7 @@ import { PendingMask } from '../pending-mask.tsx'
 import { DemoLoginButton } from './demo-login-button.tsx'
 import { FocusIndicator } from './focus-indicator.tsx'
 import { LibraryLayoutHeader } from './library-layout-header.tsx'
+import { SearchModal } from './search-modal/search-modal.tsx'
 import { SidebarContainer } from './sidebar-container.tsx'
 import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links.tsx'
@@ -23,9 +24,11 @@ interface AppLayoutProps {
 
 export default function LibraryLayout({ children, title }: Readonly<AppLayoutProps>) {
   const isDemo = useIsDemo()
+
   return (
     <>
       <title>{getPostfixedTitle(title)}</title>
+
       <div className='library-layout p-safe bg-(--accent-9) flex flex-col lg:h-screen lg:flex-row'>
         {isDemo ? <DemoLoginButton /> : null}
 
@@ -55,6 +58,8 @@ export default function LibraryLayout({ children, title }: Readonly<AppLayoutPro
           <StatusBar />
         </div>
       </div>
+
+      <SearchModal />
 
       <FocusIndicator />
 

@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import { motion } from 'motion/react'
 import { type FocusEvent, useLayoutEffect, useRef } from 'react'
 import scrollIntoView from 'smooth-scroll-into-view-if-needed'
-import { NavigatableLink } from '../navigatable-link.tsx'
+import { NavigatableLink } from '../../navigatable-link.tsx'
 
 function handleFocus(event: FocusEvent<HTMLAnchorElement>) {
   scrollIntoView(event.currentTarget, {

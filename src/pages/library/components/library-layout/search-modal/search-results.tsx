@@ -1,9 +1,30 @@
 import { SearchResultItem } from './search-result-item.tsx'
 
-export function SearchResults({
-  searchResults,
-}: Readonly<{
-  searchResults?: any
-}>) {
-  return searchResults?.roms.map((rom) => <SearchResultItem key={rom.id} rom={rom} />)
+interface SearchResultsProps {
+  loading: boolean
+  query: string
+  results?: any
+}
+
+export function SearchResults({ loading, query, results }: Readonly<SearchResultsProps>) {
+  if (results?.length) {
+    return (
+      <ul className='border-(--accent-9) bg-(--color-background) -mt-0.5 rounded-b border-2'>
+        {results?.map((rom) => (
+          <SearchResultItem key={rom.id} query={query} rom={rom} />
+        ))}
+      </ul>
+    )
+  }
+
+  if (!loading && query) {
+    return (
+      <div className='border-(--accent-9) bg-(--color-background) -mt-0.5 rounded-b border-2'>
+        <div className='flex w-full items-center justify-center gap-2 py-4 text-lg opacity-60'>
+          <span className='icon-[mdi--magnify-remove-outline] text-xl' />
+          No results found
+        </div>
+      </div>
+    )
+  }
 }

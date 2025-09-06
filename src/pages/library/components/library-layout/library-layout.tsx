@@ -10,7 +10,7 @@ import { LibraryLayoutHeader } from './library-layout-header.tsx'
 import { SearchModal } from './search-modal/search-modal.tsx'
 import { SidebarContainer } from './sidebar-container.tsx'
 import { SidebarFooter } from './sidebar-footer.tsx'
-import { SidebarLinks } from './sidebar-links.tsx'
+import { SidebarLinks } from './sidebar-links/sidebar-links.tsx'
 import { StatusBar } from './status-bar.tsx'
 
 function getPostfixedTitle(title: string) {

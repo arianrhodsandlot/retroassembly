@@ -16,14 +16,13 @@ export function SearchModal() {
     <>
       <AnimatePresence>
         {showSearchModal ? (
-          <motion.button
-            animate={{ backdropFilter: 'blur(2px)', opacity: 1 }}
-            aria-label='Close'
-            className='bg-(--color-background)/20 z-1 absolute inset-0 !cursor-default'
-            exit={{ backdropFilter: 'blur(0)', opacity: 0 }}
-            initial={{ backdropFilter: 'blur(0)', opacity: 0 }}
+          <motion.div
+            animate={{ opacity: 1 }}
+            aria-hidden
+            className='bg-(--color-overlay) z-1 absolute inset-0 !cursor-default'
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
             onClick={handleClickClose}
-            type='button'
           />
         ) : null}
       </AnimatePresence>
@@ -31,7 +30,12 @@ export function SearchModal() {
       <div className='z-1 pointer-events-none absolute inset-0'>
         <AnimatePresence>
           {showSearchModal ? (
-            <motion.div animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} initial={{ opacity: 0, y: -20 }}>
+            <motion.div
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              transition={{ bounce: 0, duration: 0.1 }}
+            >
               <SearchBar />
             </motion.div>
           ) : null}

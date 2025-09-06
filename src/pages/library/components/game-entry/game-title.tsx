@@ -20,7 +20,7 @@ export function GameTitle({ rom }) {
     return <div className='h-8' />
   }
 
-  if (rom.platform === 'arcade') {
+  if (rom.platform === 'arcade1') {
     return (
       <div className='line-clamp-3 h-16 overflow-hidden text-center text-sm font-semibold'>
         {goodcodes.file.slice(4)}

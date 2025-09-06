@@ -253,7 +253,7 @@ app.get(
   ),
 
   async (c) => {
-    await delay(1000)
+    await delay(0)
     const queryParams = c.req.valid('query')
     const result = await searchRoms({
       page: queryParams.page,

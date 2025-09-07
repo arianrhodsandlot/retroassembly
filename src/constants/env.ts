@@ -3,6 +3,7 @@ import { attempt } from 'es-toolkit'
 import { defaults } from 'es-toolkit/compat'
 import { env, getRuntimeKey } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
+import { metadata } from './metadata.ts'
 
 export function getRunTimeEnv() {
   const [, c] = attempt(getContext)
@@ -12,7 +13,8 @@ export function getRunTimeEnv() {
   return defaults(
     { ...runTimeEnv },
     {
-      RETROASSEMBLY_RUN_TIME_ALLOW_CRAWLER: { node: 'false', workerd: 'true' }[runtimeKey] || 'false',
+      RETROASSEMBLY_RUN_TIME_ALLOW_CRAWLER:
+        { node: 'false', workerd: new URL(metadata.link).origin === c?.req.header('origin') }[runtimeKey] || 'false',
       RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY: path.resolve('data'),
       RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE: { node: '1000', workerd: '100' }[runtimeKey] || '100',
       RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST: 'https://msleuth.arianrhodsandlot.workers.dev/',

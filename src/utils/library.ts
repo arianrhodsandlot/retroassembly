@@ -15,15 +15,11 @@ export function getDemoRomThumbnail(rom) {
   return getCDNUrl(repo, `${path.parse(rom.fileName).name}.png`)
 }
 
-export function getRomLibretroThumbnail(
-  rom: { libretroGame?: { name?: null | string; platform?: null | string } | null; platform?: string },
-  type: LibretroThumbnailType = 'boxart',
-) {
-  const name = rom.libretroGame?.name
-  if (!name || !rom.platform) {
+export function getLibretroThumbnail(name: string, platform: string, type: LibretroThumbnailType = 'boxart') {
+  if (!name || !platform) {
     return ''
   }
-  let platformFullName = rom.libretroGame?.platform || platformMap[rom.platform].libretroName
+  let platformFullName = platformMap[platform].libretroName || platform
   if (!platformFullName) {
     return ''
   }
@@ -39,6 +35,18 @@ export function getRomLibretroThumbnail(
   const filePath = path.join(fileDirectory, normalizedFileName)
 
   return getCDNUrl(repo, filePath)
+}
+
+export function getRomLibretroThumbnail(
+  rom: { libretroGame?: { name?: null | string; platform?: null | string } | null; platform?: string },
+  type: LibretroThumbnailType = 'boxart',
+) {
+  const name = rom.libretroGame?.name
+  if (!name || !rom.platform) {
+    return ''
+  }
+  const platform = rom.libretroGame?.platform || platformMap[rom.platform].libretroName || rom.platform
+  return getLibretroThumbnail(name, platform, type)
 }
 
 const esdeAlias = { sms: 'mastersystem', snes: 'snesna', vb: 'virtualboy' }

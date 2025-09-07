@@ -6,7 +6,7 @@ import { useIsDemo } from '../../hooks/use-demo.ts'
 import { PendingMask } from '../pending-mask.tsx'
 import { DemoLoginButton } from './demo-login-button.tsx'
 import { FocusIndicator } from './focus-indicator.tsx'
-import { LibraryLayoutHeader } from './library-layout-header.tsx'
+import { LayoutHeader } from './layout-header/layout-header.tsx'
 import { SearchModal } from './search-modal/search-modal.tsx'
 import { SidebarContainer } from './sidebar-container.tsx'
 import { SidebarFooter } from './sidebar-footer.tsx'
@@ -32,7 +32,7 @@ export default function LibraryLayout({ children, title }: Readonly<AppLayoutPro
       <div className='library-layout p-safe bg-(--accent-9) flex flex-col lg:h-screen lg:flex-row'>
         {isDemo ? <DemoLoginButton /> : null}
 
-        <LibraryLayoutHeader />
+        <LayoutHeader />
 
         <SidebarContainer>
           <div className='flex items-center justify-between px-4 pb-4'>

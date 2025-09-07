@@ -1,15 +1,16 @@
 import { Select } from '@radix-ui/themes'
-import { clsx } from 'clsx'
 import { Fragment } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { useNavigationLinks } from '../../hooks/use-navigation-links.ts'
+import { useNavigationLinks } from '../../../hooks/use-navigation-links.ts'
+import { HeaderLinkItem } from './header-link-item.tsx'
 
-export function LibraryLayoutHeader() {
+export function LayoutHeader() {
   const navitate = useNavigate()
   const { groups, isActive } = useNavigationLinks()
 
   const groupLinks = groups.flatMap(({ links }) => links)
-  const currentRouteName = groupLinks.find(({ to }) => isActive(to))?.name
+  const currentLink = groupLinks.find(({ to }) => isActive(to))
+  const currentRouteName = currentLink?.name
 
   function handleValueChange(value: string) {
     const link = groupLinks.find(({ name }) => name === value)
@@ -26,18 +27,16 @@ export function LibraryLayoutHeader() {
 
       <div className='flex h-5 flex-1 justify-center'>
         <Select.Root onValueChange={handleValueChange} size='2' value={currentRouteName}>
-          <Select.Trigger className='!text-white' variant='ghost' />
+          <Select.Trigger className='!text-white' variant='ghost'>
+            <HeaderLinkItem link={currentLink} />
+          </Select.Trigger>
           <Select.Content>
             {groups.map(({ links, title }, i) => (
               <Fragment key={title}>
                 <Select.Group>
-                  {links.map(({ iconClass, iconUrl, name, text }) => (
-                    <Select.Item key={name} value={name}>
-                      <div className='flex items-center gap-1'>
-                        {iconClass ? <span className={clsx('size-5', iconClass)} /> : null}
-                        {iconUrl ? <img alt={text} className='size-5' src={iconUrl} /> : null}
-                        {text}
-                      </div>
+                  {links.map((link) => (
+                    <Select.Item key={link.name} value={link.name}>
+                      <HeaderLinkItem link={link} />
                     </Select.Item>
                   ))}
                 </Select.Group>

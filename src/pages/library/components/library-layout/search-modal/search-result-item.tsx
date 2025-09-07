@@ -1,5 +1,5 @@
 import { Skeleton } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { compact } from 'es-toolkit'
 import { Link } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'

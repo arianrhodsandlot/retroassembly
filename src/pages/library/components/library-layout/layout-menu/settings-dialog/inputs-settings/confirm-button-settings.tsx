@@ -22,7 +22,7 @@ export function ConfirmButtonSettings() {
         <span className='icon-[mdi--gamepad-circle]' />
         Confirm and Cancel Buttons
       </SettingsTitle>
-      <div className='w-lg px-6'>
+      <div className='lg:w-sm px-6'>
         <RadioCards.Root
           columns='1'
           defaultValue='1'
@@ -30,20 +30,17 @@ export function ConfirmButtonSettings() {
           onValueChange={handleConfirmButtonChange}
           value={preference.input.confirmButtonStyle}
         >
-          <RadioCards.Item value='nintendo'>
-            <div className='flex items-center gap-1'>
-              {switchIcon} Nintendo Style (Use {rightButtonIcon} as confirm,
-              {downButtonIcon} as cancel)
-            </div>
-          </RadioCards.Item>
-          <RadioCards.Item value='xbox'>
-            <div className='flex items-center gap-1'>
-              {xboxIcon} Xbox Style (Use {downButtonIcon} as confirm,
-              {rightButtonIcon} as cancel)
-            </div>
-          </RadioCards.Item>
+          <RadioCards.Item value='nintendo'>{switchIcon} Nintendo Style</RadioCards.Item>
+          <span className='-mt-2 flex flex-wrap items-center gap-1 text-sm'>
+            (Use {rightButtonIcon} as confirm, {downButtonIcon} as cancel)
+          </span>
+
+          <RadioCards.Item value='xbox'>{xboxIcon} Xbox Style</RadioCards.Item>
+          <span className='-mt-2 flex flex-wrap items-center gap-1 text-sm'>
+            (Use {downButtonIcon} as confirm, {rightButtonIcon} as cancel)
+          </span>
         </RadioCards.Root>
-        <div className='mt-2 text-xs opacity-80'>
+        <div className='mt-3 text-xs opacity-80'>
           This only affects navigation in the library and does not change inputs in games.
         </div>
       </div>

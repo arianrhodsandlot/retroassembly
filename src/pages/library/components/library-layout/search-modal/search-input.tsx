@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useSpatialNavigationPaused } from '@/pages/library/atoms.ts'
+import { useShowSearchModal } from '../atoms.ts'
 
 interface SearchInputProps {
   isMutating: boolean
@@ -6,13 +8,22 @@ interface SearchInputProps {
 }
 
 export function SearchInput({ isMutating, onChange }: Readonly<SearchInputProps>) {
+  const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
+  const [, setShowSearchModal] = useShowSearchModal()
+
   const [composing, setComposing] = useState(false)
 
+  function handleClickClose() {
+    setShowSearchModal(false)
+    setSpatialNavigationPaused(false)
+  }
+
   return (
-    <label className='flex items-center gap-2 p-2' htmlFor='query'>
+    <label className='flex items-center gap-2 p-2'>
       <div className='flex size-12 items-center justify-center'>
         {isMutating ? <span className='icon-[mdi--loading] animate-spin' /> : <span className='icon-[mdi--search]' />}
       </div>
+
       <input
         autoFocus
         className='flex-1 outline-0'
@@ -33,6 +44,15 @@ export function SearchInput({ isMutating, onChange }: Readonly<SearchInputProps>
         title='Search'
         type='text'
       />
+
+      <button
+        className='flex size-12 items-center justify-center'
+        onClick={handleClickClose}
+        title='Close'
+        type='button'
+      >
+        <span className='icon-[mdi--close]' />
+      </button>
     </label>
   )
 }

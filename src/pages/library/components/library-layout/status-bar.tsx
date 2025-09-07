@@ -3,7 +3,7 @@ import { capitalize, uniq } from 'es-toolkit'
 import { useGamepads } from '../../hooks/use-gamepads.ts'
 import { useInputMapping } from '../../hooks/use-input-mapping.ts'
 import { usePreference } from '../../hooks/use-preference.ts'
-import { SidebarFooter } from './sidebar-footer.tsx'
+import { LayoutMenu } from './layout-menu/layout-menu.tsx'
 
 const rightButtonIcon = <span className='icon-[mdi--gamepad-circle-right] text-white' />
 const downButtonIcon = <span className='icon-[mdi--gamepad-circle-down] text-white' />
@@ -79,7 +79,7 @@ export function StatusBar() {
         </>
       )}
 
-      {preference.ui.showSidebar ? null : <SidebarFooter />}
+      {preference.ui.showSidebar ? null : <LayoutMenu />}
     </div>
   )
 }

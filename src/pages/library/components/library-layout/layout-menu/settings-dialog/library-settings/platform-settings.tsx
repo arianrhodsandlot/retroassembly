@@ -15,7 +15,7 @@ export function PlatformSettings() {
         Enabled Platforms
       </SettingsTitle>
       <Card>
-        <CheckboxCards.Root columns='4' size='1' value={preference.ui.platforms}>
+        <CheckboxCards.Root columns={{ initial: '1', md: '4' }} size='1' value={preference.ui.platforms}>
           {platforms.map((platform) => (
             <PlatformCheckboxItem
               disabled={preference.ui.platforms.length < 2 && preference.ui.platforms.includes(platform.name)}

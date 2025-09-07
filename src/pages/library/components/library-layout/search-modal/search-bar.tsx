@@ -109,17 +109,27 @@ export function SearchBar() {
   }, [move, inputMapping, select])
 
   return (
-    <div className='z-1 w-2xl pointer-events-auto relative mx-auto mt-16 text-xl shadow-2xl'>
+    <div
+      className={clsx(
+        'z-1 w-2xl pointer-events-none fixed left-1/2 flex max-w-full -translate-x-1/2 flex-col overflow-hidden px-2 text-xl',
+        query && data?.roms?.length ? 'inset-y-14' : 'top-14',
+      )}
+    >
       <form
-        className={clsx('border-(--accent-9) bg-(--color-background) w-full overflow-hidden rounded-t border-2', {
-          'rounded-b': !data,
-        })}
+        className={clsx(
+          'border-(--accent-9) bg-(--color-background) pointer-events-auto w-full shrink-0 overflow-hidden rounded-t border-2',
+          {
+            'rounded-b': !data,
+          },
+        )}
         onSubmit={handleSubmit}
       >
         <SearchInput isMutating={isMutating} onChange={handleChange} />
       </form>
 
-      <SearchResults loading={isMutating} query={query} results={data?.roms} />
+      <div className='border-(--accent-9) bg-(--color-background) w-full overflow-auto rounded-b border-x-2 border-b-2 *:pointer-events-auto empty:hidden'>
+        <SearchResults loading={isMutating} query={query} results={data?.roms} />
+      </div>
     </div>
   )
 }

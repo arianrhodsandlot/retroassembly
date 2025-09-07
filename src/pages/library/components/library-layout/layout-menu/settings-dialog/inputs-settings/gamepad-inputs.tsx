@@ -133,7 +133,7 @@ export function GamepadInputs() {
         {connected ? (
           <div className='flex flex-col gap-4 p-4'>
             {buttonGroups.map(({ buttons, type }) => (
-              <div className='flex gap-4' key={type}>
+              <div className='flex flex-col gap-4 lg:flex-row' key={type}>
                 {buttons.map((button) => (
                   <GamepadInput button={button} key={button.name} />
                 ))}
@@ -149,7 +149,7 @@ export function GamepadInputs() {
           </div>
         ) : (
           <div className='flex items-center justify-center gap-2 py-10 text-2xl opacity-50'>
-            <span className='icon-[svg-spinners--180-ring]' />
+            <span className='icon-[svg-spinners--180-ring] shrink-0' />
             Press any key on your gamepad
           </div>
         )}

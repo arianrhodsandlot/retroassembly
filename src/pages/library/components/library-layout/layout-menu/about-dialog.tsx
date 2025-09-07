@@ -2,7 +2,7 @@ import { Button, Dialog, VisuallyHidden } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { linkMap, links } from '@/constants/links.ts'
 import { metadata } from '@/constants/metadata.ts'
-import { DialogRoot } from '../dialog-root.tsx'
+import { DialogRoot } from '../../dialog-root.tsx'
 
 export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProps>) {
   function handleOpenChange(open: boolean) {

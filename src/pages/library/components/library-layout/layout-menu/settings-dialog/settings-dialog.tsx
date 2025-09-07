@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import { dropRight } from 'es-toolkit'
 import { useState, useTransition } from 'react'
 import { useLoaderData } from 'react-router'
-import { DialogRoot } from '../../dialog-root.tsx'
+import { DialogRoot } from '../../../dialog-root.tsx'
 import { AccountSettings } from './account-settings.tsx'
 import { EmulatingSettings } from './emulating-settings/emulating-settings.tsx'
 import { InputsSettings } from './inputs-settings/inputs-setting.tsx'
@@ -43,15 +43,15 @@ export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootP
 
   return (
     <DialogRoot {...props} onOpenChange={handleOpenChange}>
-      <Dialog.Content aria-describedby={undefined} className='!w-7xl !max-w-screen'>
+      <Dialog.Content aria-describedby={undefined} className='lg:!w-5xl' maxWidth='calc(100vw - var(--space-8))'>
         <Dialog.Title className='flex items-center gap-2'>
           <span className='icon-[mdi--cog] ' />
           Settings
         </Dialog.Title>
 
-        <div className='py-0'>
+        <div>
           <Tabs.Root asChild onValueChange={handleValueChange} value={tab.name}>
-            <div>
+            <>
               <Tabs.List>
                 {settingsTabs.map(({ iconClass, name }) => (
                   <Tabs.Trigger key={name} value={name}>
@@ -70,7 +70,7 @@ export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootP
                   )}
                 </ScrollArea>
               </div>
-            </div>
+            </>
           </Tabs.Root>
         </div>
 

@@ -7,9 +7,9 @@ import { PendingMask } from '../pending-mask.tsx'
 import { DemoLoginButton } from './demo-login-button.tsx'
 import { FocusIndicator } from './focus-indicator.tsx'
 import { LayoutHeader } from './layout-header/layout-header.tsx'
+import { LayoutMenu } from './layout-menu/layout-menu.tsx'
 import { SearchModal } from './search-modal/search-modal.tsx'
 import { SidebarContainer } from './sidebar-container.tsx'
-import { SidebarFooter } from './sidebar-footer.tsx'
 import { SidebarLinks } from './sidebar-links/sidebar-links.tsx'
 import { StatusBar } from './status-bar.tsx'
 
@@ -45,8 +45,8 @@ export default function LibraryLayout({ children, title }: Readonly<AppLayoutPro
             <SidebarLinks />
           </ScrollArea>
           {isDemo ? null : (
-            <div className='border-t border-t-white/30 py-2'>
-              <SidebarFooter />
+            <div className='border-t border-t-white/30 py-2 '>
+              <LayoutMenu />
             </div>
           )}
         </SidebarContainer>

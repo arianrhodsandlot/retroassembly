@@ -1,6 +1,7 @@
 import { Skeleton } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { compact } from 'es-toolkit'
+import { Fragment } from 'react/jsx-runtime'
 import { Link } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
 import type { SearchRoms } from '@/controllers/search-roms.ts'
@@ -57,17 +58,14 @@ export function SearchResultItem({ query, rom }: Readonly<SearchResultItemProps>
             src={cover?.src || ''}
           />
         )}
-        <div className='flex flex-col justify-center gap-1'>
-          <span className='truncate text-base'>
+        <div className='flex min-w-0 flex-1 flex-col justify-center gap-1'>
+          <div className='text-(--color-text) truncate text-base'>
             {[...goodcodes.rom].map((char, index) => (
-              <span
-                className={queryChars.includes(char.toLowerCase()) ? 'text-(--accent-9)' : 'opacity-80'}
-                key={index}
-              >
-                {char}
-              </span>
+              <Fragment key={index}>
+                {queryChars.includes(char.toLowerCase()) ? <span className='text-(--accent-9)'>{char}</span> : char}
+              </Fragment>
             ))}
-          </span>
+          </div>
           <div className='flex items-center gap-1 text-xs'>
             <img
               alt={platformMap[rom.platform].displayName}

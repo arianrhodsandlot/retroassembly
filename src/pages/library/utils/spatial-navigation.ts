@@ -2,7 +2,7 @@ import scrollIntoView from 'smooth-scroll-into-view-if-needed'
 import SpatialNavigation, { type Direction } from 'spatial-navigation-ts'
 
 function isFocusable(element: unknown): element is HTMLElement {
-  const focusableElements = [HTMLAnchorElement, HTMLButtonElement]
+  const focusableElements = [HTMLAnchorElement, HTMLButtonElement, HTMLInputElement]
   const focusable =
     focusableElements.some((clazz) => element instanceof clazz) ||
     (element instanceof Element && element.getAttribute('tabindex'))

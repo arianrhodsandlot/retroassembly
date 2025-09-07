@@ -27,7 +27,7 @@ export function CoreOptions({
   }
 
   return (
-    <div className='flex items-start'>
+    <div className='flex flex-col items-start lg:flex-row'>
       <SettingsTitle>
         <span className='icon-[mdi--wrench]' /> Options
       </SettingsTitle>
@@ -43,7 +43,7 @@ export function CoreOptions({
           </Callout.Text>
         </Callout.Root>
 
-        <div className='grid grid-cols-3 gap-2'>
+        <div className='mb-2 flex grid-cols-3 flex-col gap-2 lg:grid'>
           {coreOptions.map(({ defaultOption, name, options, title }) => (
             <label className='flex w-fit items-center gap-4' key={name}>
               <span className='text-sm'>{title || name}</span>

@@ -47,7 +47,7 @@ export function ShaderSettings() {
             </SettingsTitle>
             <div className='px-6'>
               <RadioCards.Root
-                columns='6'
+                columns={{ initial: '1', md: '5' }}
                 disabled={isLoading}
                 onValueChange={handleShaderChange}
                 size='1'

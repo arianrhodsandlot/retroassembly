@@ -8,7 +8,7 @@ interface ButtonGroup {
   buttons: {
     iconClass?: string
     iconNode?: ReactNode
-    name: keyof NonNullable<Preference['input']['keyboardMapping']>
+    name: keyof NonNullable<NonNullable<Preference['input']>['keyboardMapping']>
     text?: string
   }[]
   type: string
@@ -96,7 +96,7 @@ export function KeyboardInputs() {
     <Card>
       <div className='flex flex-col gap-4 p-4'>
         {buttonGroups.map(({ buttons, type }) => (
-          <div className='flex gap-4' key={type}>
+          <div className='flex flex-col gap-4 lg:flex-row' key={type}>
             {buttons.map((button) => (
               <KeyboardInput button={button} key={button.name} />
             ))}

@@ -2,6 +2,7 @@ import { Select } from '@radix-ui/themes'
 import { Fragment } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useNavigationLinks } from '../../../hooks/use-navigation-links.ts'
+import { LayoutMenu } from '../layout-menu/layout-menu.tsx'
 import { HeaderLinkItem } from './header-link-item.tsx'
 
 export function LayoutHeader() {
@@ -46,6 +47,8 @@ export function LayoutHeader() {
           </Select.Content>
         </Select.Root>
       </div>
+
+      <LayoutMenu />
     </header>
   )
 }

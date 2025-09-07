@@ -59,9 +59,11 @@ export function SearchResultItem({ query, rom }: Readonly<SearchResultItemProps>
         )}
         <div className='flex flex-col justify-center gap-1'>
           <span className='truncate text-base'>
-            {[...goodcodes.rom].map((char) => (
-              // eslint-disable-next-line @eslint-react/no-missing-key
-              <span className={queryChars.includes(char.toLowerCase()) ? 'text-(--accent-9)' : 'opacity-80'}>
+            {[...goodcodes.rom].map((char, index) => (
+              <span
+                className={queryChars.includes(char.toLowerCase()) ? 'text-(--accent-9)' : 'opacity-80'}
+                key={index}
+              >
                 {char}
               </span>
             ))}

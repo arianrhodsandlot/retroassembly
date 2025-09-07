@@ -259,7 +259,7 @@ app.get(
       page: queryParams.page,
       pageSize: queryParams.page_size,
       platform: queryParams.platform,
-      query: queryParams.query,
+      query: queryParams.query.trim().replaceAll(/\s+/g, ' '),
     })
     return c.json(result)
   },

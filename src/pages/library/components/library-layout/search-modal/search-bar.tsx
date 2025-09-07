@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { debounce } from 'es-toolkit'
 import { type FormEvent, useCallback, useEffect, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import useSWRMutation from 'swr/mutation'
 import { useSpatialNavigationPaused } from '@/pages/library/atoms.ts'
 import { useInputMapping } from '@/pages/library/hooks/use-input-mapping.ts'
@@ -14,6 +14,7 @@ import { SearchResults } from './search-results.tsx'
 
 export function SearchBar() {
   const navitate = useNavigate()
+  const location = useLocation()
   const inputMapping = useInputMapping()
   const [, setShowSearchModal] = useShowSearchModal()
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
@@ -24,16 +25,20 @@ export function SearchBar() {
     query ? api(url, { searchParams: { page_size: 10, query } }).json<any>() : null,
   )
 
+  const selectedUrl = selectedResult
+    ? `/library/platform/${encodeURIComponent(selectedResult.platform)}/rom/${encodeURIComponent(selectedResult.fileName)}`
+    : ''
   const select = useCallback(
     function select() {
-      if (selectedResult) {
+      if (selectedUrl) {
         setShowSearchModal(false)
         setSpatialNavigationPaused(false)
-        const url = `/library/platform/${encodeURIComponent(selectedResult.platform)}/rom/${encodeURIComponent(selectedResult.fileName)}`
-        navitate(url)
+        if (selectedUrl !== location.pathname) {
+          navitate(selectedUrl)
+        }
       }
     },
-    [selectedResult, setShowSearchModal, setSpatialNavigationPaused, navitate],
+    [location.pathname, selectedUrl, setShowSearchModal, setSpatialNavigationPaused, navitate],
   )
 
   function handleSubmit(event: FormEvent) {
@@ -47,8 +52,10 @@ export function SearchBar() {
         const trimmedValue = value.trim()
         setQuery(trimmedValue)
         const { roms } = await trigger(trimmedValue)
-        setSelectedResult(roms[0])
-      }, 300),
+        if (roms?.length) {
+          setSelectedResult(roms[0])
+        }
+      }, 200),
     [trigger, setSelectedResult],
   )
 

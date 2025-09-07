@@ -17,10 +17,11 @@ const fuseOptions = {
     { name: 'gameName', weight: 0.4 },
     { name: 'fileName', weight: 0.3 },
     { name: 'gameDeveloper', weight: 0.2 },
-    { name: 'gamePublisher', weight: 0.1 },
+    { name: 'gamePublisher', weight: 0.2 },
+    { name: 'platform', weight: 0.2 },
   ],
   minMatchCharLength: 1,
-  threshold: 0.4,
+  threshold: 0.9,
 }
 const searchableFields = [romTable.fileName, romTable.gameName, romTable.gameDeveloper, romTable.gamePublisher] as const
 
@@ -30,13 +31,15 @@ function createLikeConditions(pattern: string) {
 
 function createSearchConditions(query: string) {
   const conditions = createLikeConditions(`%${query}%`)
-
-  if (query.length > 2) {
+  if (query.length > 1) {
     conditions.push(...createLikeConditions(`%${[...query].join('%')}%`))
-
+  }
+  if (query.length > 2) {
     const words = query.split(/\s+/).filter((word) => word.length > 1)
-    for (const word of words) {
-      conditions.push(...createLikeConditions(`%${word}%`))
+    if (words.length > 1) {
+      for (const word of words) {
+        conditions.push(...createLikeConditions(`%${word}%`))
+      }
     }
   }
 

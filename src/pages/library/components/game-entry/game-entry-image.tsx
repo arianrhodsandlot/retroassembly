@@ -8,7 +8,7 @@ import { skeletonClassnames } from '../../constants/skeleton-classnames.ts'
 import { useRomCover } from '../../hooks/use-rom-cover.ts'
 
 export function GameEntryImage({ rom }) {
-  const goodcodes = getRomGoodcodes(rom || {})
+  const goodcodes = getRomGoodcodes(rom)
   const { data: cover, isLoading } = useRomCover(rom)
   const [loaded, setLoaded] = useState(false)
   const shouldShowskeleton = isLoading || !loaded

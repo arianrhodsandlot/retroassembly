@@ -43,6 +43,10 @@ export function PageBreadcrumb() {
     }
   }
 
+  if (links.length === 1) {
+    return
+  }
+
   return (
     <div className='mt-4 flex max-w-full items-center gap-2 overflow-x-auto px-4 py-1 lg:px-8'>
       {links.map(({ icon, text, url }, i) =>

@@ -1,3 +1,4 @@
+import { attemptAsync } from 'es-toolkit'
 import { defaultPreference } from '@/constants/preference.ts'
 import { getDemoRoms } from '@/controllers/get-demo-roms.ts'
 import { getPlatformInfo } from '@/controllers/get-platform-info.ts'
@@ -9,7 +10,7 @@ export async function loader({ params }: Route.LoaderArgs) {
 
   const preference = structuredClone(defaultPreference)
   preference.ui.platforms = ['gba', 'gbc', 'genesis', 'nes', 'snes']
-  const platformInfo = await getPlatformInfo(platform)
+  const [, platformInfo] = await attemptAsync(() => getPlatformInfo(platform))
 
   return {
     count: 0,

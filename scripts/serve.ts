@@ -9,7 +9,8 @@ async function serveWorkerd() {
 }
 
 async function serveNode() {
-  // @ts-expect-error we can not guarantee that this file exists
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore we can not guarantee that this file exists
   const { default: app } = await import('../dist/server/node.js')
   serve({ ...app, port }, (info) => {
     logServerInfo(info.port)

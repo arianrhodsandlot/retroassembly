@@ -16,7 +16,7 @@ export function LogoutDialog(props: Readonly<AlertDialog.RootProps>) {
 
         <AlertDialog.Description>You can always log back in at any time.</AlertDialog.Description>
 
-        <div className='flex justify-end gap-4'>
+        <div className='mt-4 flex justify-end gap-4'>
           <AlertDialog.Cancel>
             <Button>
               <span className='icon-[mdi--close]' />

@@ -1,7 +1,7 @@
 import { capitalize } from 'es-toolkit'
+import { parse } from 'goodcodes-parser'
 import { Nostalgist } from 'nostalgist'
 import type { Rom } from '@/controllers/get-roms.ts'
-import { parse } from '@/utils/goodcodes-parser.ts'
 import { platformMap, type PlatformName } from '../constants/platform.ts'
 import { getCDNUrl } from './cdn.ts'
 
@@ -19,7 +19,7 @@ export function getLibretroThumbnail(name: string, platform: string, type: Libre
   if (!name || !platform) {
     return ''
   }
-  let platformFullName = platformMap[platform].libretroName || platform
+  let platformFullName = platformMap[platform]?.libretroName || platform
   if (!platformFullName) {
     return ''
   }

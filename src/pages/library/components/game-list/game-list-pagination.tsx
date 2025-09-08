@@ -1,9 +1,11 @@
 import { Button } from '@radix-ui/themes'
 import { range } from 'es-toolkit'
+import { useLoaderData } from 'react-router'
 import type { RomsPagination } from '@/controllers/get-roms'
 import { NavigatableLink } from '../navigatable-link.tsx'
 
-export function GameListPagination({ pagination }: Readonly<{ pagination: RomsPagination }>) {
+export function GameListPagination() {
+  const { pagination } = useLoaderData<{ pagination: RomsPagination }>()
   const { current, pages } = pagination
 
   if (pages <= 1) {

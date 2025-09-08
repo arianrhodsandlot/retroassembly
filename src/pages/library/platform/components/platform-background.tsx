@@ -1,8 +1,10 @@
+import { useLoaderData } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
 import { getCDNUrl } from '@/utils/cdn.ts'
 import { MainBackground } from '../../components/main-background.tsx'
 
-export function PlatformBackground({ platform }: Readonly<{ platform: string }>) {
+export function PlatformBackground() {
+  const { platform } = useLoaderData()
   const platformName =
     {
       famicom: 'nes',

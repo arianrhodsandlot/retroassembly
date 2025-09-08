@@ -61,7 +61,7 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
         <form autoComplete='off' onSubmit={handleSubmit}>
           <GameInfoDataList autoFocusField={autoFocusField} />
 
-          <div className='flex justify-end gap-4'>
+          <div className='mt-4 flex justify-end gap-4'>
             <Dialog.Close>
               <Button disabled={isMutating} variant='soft'>
                 <span className='icon-[mdi--close]' />

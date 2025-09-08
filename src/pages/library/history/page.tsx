@@ -1,6 +1,7 @@
-import { GameList } from '../components/game-list/game-list.tsx'
+import { GameListMain } from '../components/game-list-main.tsx'
 import LibraryLayout from '../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../components/main-scroll-area.tsx'
+import { PageStats } from '../components/page-stats.tsx'
 
 export default function HistoryPage({ pageData }: Readonly<{ pageData: any }>) {
   const { page, pagination, roms } = pageData
@@ -10,20 +11,17 @@ export default function HistoryPage({ pageData }: Readonly<{ pageData: any }>) {
   }
 
   return (
-    <LibraryLayout title='History'>
+    <LibraryLayout title='Library'>
       <MainScrollArea>
-        <div className='flex min-h-full w-full flex-col gap-5 p-4'>
-          <div className='relative flex flex-col justify-between pt-4 lg:flex-row lg:px-4'>
-            <h1 className='text-5xl font-semibold'>History</h1>
-            <div className='text-(--gray-11) flex items-center justify-end gap-2'>
-              <span className='icon-[mdi--bar-chart] text-(--color-text)' />
-              Played
-              <span className='font-bold text-rose-700'>{pagination.total}</span>
-              {pagination.total === 1 ? 'game' : 'games'}
-            </div>
-          </div>
-          <GameList key={`history-${page}`} pagination={pagination} />
-        </div>
+        <GameListMain>
+          <h1 className='text-5xl font-semibold'>History</h1>
+          <PageStats>
+            <span className='icon-[mdi--bar-chart] text-(--color-text)' />
+            Played
+            <span className='font-bold text-rose-700'>{pagination.total}</span>
+            {pagination.total === 1 ? 'game' : 'games'}
+          </PageStats>
+        </GameListMain>
       </MainScrollArea>
     </LibraryLayout>
   )

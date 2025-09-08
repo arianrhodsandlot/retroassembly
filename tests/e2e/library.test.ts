@@ -70,3 +70,24 @@ test('update metadata', async ({ page, pages: { library, login }, roms, user }) 
   await page.getByText('save').click()
   await Promise.all(testMetadata.map(({ value }) => expect(main).toContainText(value)))
 })
+
+test('search', async ({ page, pages: { library, login }, roms, user }) => {
+  const textbox = page.getByRole('textbox')
+  const results = page.getByRole('dialog').locator('a')
+
+  await login.login(user)
+  await library.uploadROMs(roms.map(({ path }) => path))
+
+  await page.getByLabel('search').click()
+  await textbox.fill('babelblox')
+  await expect(results).toHaveCount(1)
+  await textbox.press('Enter')
+  await expect(page).toHaveURL('/library/platform/nes/rom/babelblox.nes')
+
+  await page.getByLabel('search').click()
+  await textbox.fill('a')
+  await expect(results).toHaveCount(2)
+  await textbox.press('ArrowDown')
+  await textbox.press('Enter')
+  await expect(page).toHaveURL('/library/platform/nes/rom/flappybird.nes')
+})

@@ -27,6 +27,7 @@ export function SearchInput({ isMutating, onChange }: Readonly<SearchInputProps>
       <input
         autoFocus
         className='flex-1 outline-0'
+        name='query'
         onChange={(event) => {
           if (!composing) {
             onChange(event.currentTarget.value)

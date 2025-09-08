@@ -44,6 +44,7 @@ export function SearchModal() {
               exit={{ opacity: 0, scale: 0.95 }}
               initial={{ opacity: 0, scale: 0.95 }}
               onAnimationComplete={handleAnimationComplete}
+              role='dialog'
               transition={{ bounce: 0, duration: 0.1 }}
             >
               <SearchBar />

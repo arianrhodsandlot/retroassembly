@@ -32,7 +32,7 @@
     "hono": "4.9.6"
   },
   "devDependencies": {
-    "@arianrhodsandlot/eslint-config": "0.20.0",
+    "@arianrhodsandlot/eslint-config": "0.21.0",
     "@cloudflare/vite-plugin": "1.12.2",
     "@cloudflare/workers-types": "4.20250904.0",
     "@hono/node-server": "1.19.1",

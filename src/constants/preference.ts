@@ -167,7 +167,7 @@ export const defaultPreference: ResolvedPreference = {
 
 export function resolveUserPreference(rawUserPreference: null | PreferenceSnippet) {
   const userPreference = structuredClone(rawUserPreference) || {}
-  for (const key of ['emulator', 'ui', 'input']) {
+  for (const key of ['emulator', 'ui', 'input'] as const) {
     userPreference[key] ||= {}
   }
   const fallbackPreference = structuredClone(defaultPreference)

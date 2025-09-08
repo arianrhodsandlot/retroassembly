@@ -208,6 +208,7 @@ async function performBatchOperations(
 export async function createRoms({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: string }) {
   let gameInfoList = []
   try {
+    // @ts-expect-error msleuth response is not typed
     gameInfoList = await msleuth.identify({
       files: files.map((file, index) => ({ md5: md5s[index], name: file.name })),
       platform,

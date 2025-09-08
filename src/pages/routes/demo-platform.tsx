@@ -5,7 +5,7 @@ import PlatformPage from '../library/platform/page.tsx'
 import type { Route } from './+types/library-platform.ts'
 
 export async function loader({ params }: Route.LoaderArgs) {
-  const { platform } = params
+  const { platform = '' } = params
 
   const preference = structuredClone(defaultPreference)
   preference.ui.platforms = ['gba', 'gbc', 'genesis', 'nes', 'snes']

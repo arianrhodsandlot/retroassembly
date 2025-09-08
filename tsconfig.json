@@ -1,7 +1,17 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./src/tsconfig.vite.json" },
-    { "path": "./src/tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "baseUrl": ".",
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": false,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "noImplicitAny": false,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "rootDirs": [".", "./.react-router/types"],
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules", "dist"],
+  "extends": "@tsconfig/remix/tsconfig.json"
 }

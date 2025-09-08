@@ -234,7 +234,7 @@ export const platforms: Platform[] = [
 
 export const platformMap: Record<string, Platform> = {}
 for (const platform of platforms) {
-  const keys = ['name', 'libretroName', 'launchboxName']
+  const keys = ['name', 'libretroName', 'launchboxName'] as const
   for (const key of keys) {
     const value = platform[key]
     platformMap[value] = platform

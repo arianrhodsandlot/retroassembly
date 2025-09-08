@@ -1,4 +1,3 @@
-import assert from 'node:assert'
 import { and, eq, inArray, like, or } from 'drizzle-orm'
 import Fuse from 'fuse.js'
 import { getContext } from 'hono/context-storage'
@@ -60,8 +59,6 @@ export async function searchRoms(
   } = {} as any,
 ) {
   const { currentUser, db, preference } = getContext().var
-  assert.ok(currentUser)
-
   const { library } = db
 
   const conditions = [

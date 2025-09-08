@@ -1,4 +1,3 @@
-import assert from 'node:assert'
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { romTable } from '../databases/schema.ts'
@@ -17,7 +16,6 @@ export async function updateRom(rom: {
   id: string
 }) {
   const { currentUser, db } = getContext().var
-  assert.ok(currentUser)
 
   const { library } = db
 

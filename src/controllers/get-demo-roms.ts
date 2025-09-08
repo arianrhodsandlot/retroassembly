@@ -2,7 +2,6 @@ import { sortBy } from 'es-toolkit'
 import { uniqueId } from 'es-toolkit/compat'
 import type { Roms } from './get-roms'
 
-// @ts-expect-error demo roms
 const roms = [
   {
     fileName: '31in1realgame-multicart.nes',
@@ -384,7 +383,7 @@ const roms = [
     name: 'uCity',
     platform: 'gbc',
   },
-].map((rom) => ({ ...rom, id: uniqueId() })) as Roms
+].map((rom) => ({ ...rom, id: uniqueId() })) as ({ name: string } & Roms[number])[]
 
 export function getDemoRoms({ platform }: { platform?: string } = {}) {
   if (platform) {

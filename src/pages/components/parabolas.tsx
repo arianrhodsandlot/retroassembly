@@ -195,13 +195,14 @@ function generateObjectConfigs(count: number, baseSize: number): ObjectConfig[] 
 /**
  * Custom hook for managing animation physics in the parabola component
  */
-function useParabolaAnimation(
-  containerRef: React.RefObject<HTMLDivElement>,
-  objectConfigs: ObjectConfig[],
-  heightFactor: number,
-  objectCount: number,
-  iconsLength: number,
-) {
+function useParabolaAnimation(params: {
+  containerRef: React.RefObject<HTMLDivElement | null>
+  heightFactor: number
+  iconsLength: number
+  objectConfigs: ObjectConfig[]
+  objectCount: number
+}) {
+  const { containerRef, heightFactor, iconsLength, objectConfigs, objectCount } = params
   const [containerSize, setContainerSize] = useState({ height: 0, width: 0 })
   const objectsRef = useRef<(HTMLDivElement | null)[]>([])
   const animationRef = useRef<number | undefined>(undefined)
@@ -215,6 +216,7 @@ function useParabolaAnimation(
 
   // Initialize client-side and container size
   useEffect(() => {
+    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setIsClient(true)
 
     function updateContainerSize() {
@@ -222,6 +224,7 @@ function useParabolaAnimation(
         return
       }
 
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setContainerSize({
         height: containerRef.current.clientHeight,
         width: containerRef.current.clientWidth,
@@ -245,7 +248,14 @@ function useParabolaAnimation(
    * Create a new animation state with random properties
    */
   const createNewAnimationState = useCallback(
-    (id: number, containerWidth: number, containerHeight: number, baseSize: number, delayMs = 0): AnimationState => {
+    (params: {
+      baseSize: number
+      containerHeight: number
+      containerWidth: number
+      delayMs?: number
+      id: number
+    }): AnimationState => {
+      const { baseSize, containerHeight, containerWidth, delayMs = 0, id } = params
       const initialPosition = getRandomInitialPosition()
       const initialVelocity = getRandomInitialVelocity(initialPosition, heightFactor)
 
@@ -284,33 +294,40 @@ function useParabolaAnimation(
     nextIdRef.current = objectConfigs.length
 
     // Create initial objects with staggered delays
-    const initialObjects: AnimationState[] = objectConfigs
-      .slice(0, objectCount)
-      .map((config) =>
-        createNewAnimationState(config.id, containerSize.width, containerSize.height, config.baseSize, config.delay),
-      )
+    const initialObjects: AnimationState[] = objectConfigs.slice(0, objectCount).map((config) =>
+      createNewAnimationState({
+        baseSize: config.baseSize,
+        containerHeight: containerSize.height,
+        containerWidth: containerSize.width,
+        delayMs: config.delay,
+        id: config.id,
+      }),
+    )
 
+    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setActiveObjects(initialObjects)
     activeObjectsRef.current = initialObjects
 
-    // Activate delayed objects after their delay time
-    const timeoutIds: NodeJS.Timeout[] = initialObjects
-      .filter((obj) => !obj.active)
-      .map((obj) => {
-        const config = objectConfigs.find((c) => c.id === obj.id)
-        if (!config) {
-          return
-        }
-
-        return setTimeout(() => {
-          setActiveObjects((prevObjects) => {
-            const updatedObjects = prevObjects.map((o) => (o.id === obj.id ? { ...o, active: true } : o))
-            activeObjectsRef.current = updatedObjects
-            return updatedObjects
-          })
-        }, config.delay)
+    // Function to activate a delayed object
+    function activateDelayedObject(objId: number) {
+      setActiveObjects((prevObjects) => {
+        // eslint-disable-next-line sonarjs/no-nested-functions
+        const updatedObjects = prevObjects.map((o) => (o.id === objId ? { ...o, active: true } : o))
+        activeObjectsRef.current = updatedObjects
+        return updatedObjects
       })
-      .filter(Boolean) as NodeJS.Timeout[]
+    }
+
+    // Activate delayed objects after their delay time
+    const timeoutIds: NodeJS.Timeout[] = []
+    for (const obj of initialObjects.filter((o) => !o.active)) {
+      const config = objectConfigs.find((c) => c.id === obj.id)
+      if (config) {
+        // eslint-disable-next-line @eslint-react/web-api/no-leaked-timeout
+        const timeoutId = setTimeout(() => activateDelayedObject(obj.id), config.delay)
+        timeoutIds.push(timeoutId)
+      }
+    }
 
     return () => {
       for (const id of timeoutIds) {
@@ -340,7 +357,7 @@ function useParabolaAnimation(
       let hasChanges = false
 
       // Process existing objects
-      for (let i = updatedObjects.length - 1; i >= 0; i--) {
+      for (let i = updatedObjects.length - 1; i >= 0; i -= 1) {
         const state = updatedObjects[i]
 
         // Skip objects that aren't active yet
@@ -379,13 +396,14 @@ function useParabolaAnimation(
 
       // Add new objects if we're below the object count
       while (updatedObjects.length < objectCount) {
-        const newObject = createNewAnimationState(
-          nextIdRef.current++,
-          containerWidth,
+        const newObject = createNewAnimationState({
+          baseSize: DEFAULT_CONFIG.BASE_SIZE,
           containerHeight,
-          DEFAULT_CONFIG.BASE_SIZE,
-        )
+          containerWidth,
+          id: nextIdRef.current,
+        })
 
+        nextIdRef.current += 1
         updatedObjects.push(newObject)
         hasChanges = true
       }
@@ -448,13 +466,13 @@ export function Paralolas({
   )
 
   // Custom animation hook handles the physics and animation loop
-  const { activeObjects, isClient, objectsRef } = useParabolaAnimation(
+  const { activeObjects, isClient, objectsRef } = useParabolaAnimation({
     containerRef,
-    objectConfigs,
     heightFactor,
+    iconsLength: icons.length,
+    objectConfigs,
     objectCount,
-    icons.length,
-  )
+  })
 
   return (
     <div className='relative size-full overflow-hidden' ref={containerRef}>

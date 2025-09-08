@@ -1,18 +1,7 @@
 import { getCookie } from 'hono/cookie'
 import { createMiddleware } from 'hono/factory'
-import type { ResolvedPreference } from '../../constants/preference.ts'
 import { getCurrentUser } from '../../controllers/get-current-user.ts'
 import { getPreference } from '../../controllers/get-preference.ts'
-
-declare module 'hono' {
-  interface ContextVariableMap {
-    authorized: boolean
-    currentUser: Awaited<ReturnType<typeof getCurrentUser>>
-    preference: ResolvedPreference
-    token: string
-    unauthorized: boolean
-  }
-}
 
 export function globals() {
   return createMiddleware(async function middleware(c, next) {

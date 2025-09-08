@@ -62,10 +62,9 @@ function serverInfo() {
 export default defineConfig(async (env) => {
   const envPort = process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT
   const port = envPort ? Number.parseInt(envPort, 10) || 8000 : 8000
-  const config = {
+  const config: UserConfig = {
     envPrefix: 'RETROASSEMBLY_BUILD_TIME_VITE_',
     plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), devtoolsJson(), serverInfo()],
-    resolve: { alias: {} },
     server: {
       allowedHosts: true,
       hmr: { overlay: false },
@@ -73,7 +72,7 @@ export default defineConfig(async (env) => {
       open: true,
       port,
     },
-  } satisfies UserConfig
+  }
 
   if (getTargetRuntime() === 'workerd') {
     if (env.command === 'serve') {
@@ -81,16 +80,16 @@ export default defineConfig(async (env) => {
     }
     await prepareWranglerConfig()
     const { cloudflare } = await import('@cloudflare/vite-plugin')
-    config.plugins.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
+    config.plugins?.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
     const serverEntry = path.resolve('node_modules', 'react-router-templates', 'cloudflare', 'app', 'entry.server.tsx')
-    config.resolve.alias['@entry.server.tsx'] = serverEntry
+    config.resolve = { alias: { '@entry.server.tsx': serverEntry } }
   } else {
     if (env.command === 'serve') {
       const { storageDirectory } = getDirectories()
       await fs.ensureDir(storageDirectory)
       await import('./src/utils/self-test.ts')
     }
-    config.plugins.push(
+    config.plugins?.push(
       serverAdapter({
         entry: path.resolve('src', 'server', 'app.ts'),
         exclude: [
@@ -113,7 +112,7 @@ export default defineConfig(async (env) => {
       'defaults',
       'entry.server.node.tsx',
     )
-    config.resolve.alias['@entry.server.tsx'] = serverEntry
+    config.resolve = { alias: { '@entry.server.tsx': serverEntry } }
   }
 
   return config

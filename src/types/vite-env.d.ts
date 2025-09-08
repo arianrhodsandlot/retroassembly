@@ -1,4 +1,8 @@
 /// <reference types="vite/client" />
 
-declare const VERSION: string
-declare const BUILD_TIME: string
+declare module 'virtual:react-router/server-build' {
+  import type { ServerBuild } from 'react-router'
+
+  const serverBuild: ServerBuild
+  export = serverBuild
+}

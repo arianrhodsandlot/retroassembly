@@ -100,15 +100,11 @@ app.patch(
     const form = c.req.valid('form')
     const id = c.req.param('id')
     const rom = {
-      ...form,
-      gamePlayers: form.gamePlayers ? Number.parseInt(form.gamePlayers, 10) : 0,
-      gameReleaseDate: stringToUTCDateTime(form.gameReleaseDate)?.toJSDate(),
+      ...Object.fromEntries(Object.entries(form).map(([key, value]) => [key, value || null])),
+      gamePlayers: form.gamePlayers ? Number.parseInt(form.gamePlayers, 10) : null,
+      gameReleaseDate: stringToUTCDateTime(form.gameReleaseDate)?.toJSDate() || null,
     }
-    for (const key in rom) {
-      if (!rom[key]) {
-        rom[key] = null
-      }
-    }
+
     const ret = await updateRom({ id, ...rom })
     return c.json(ret)
   },
@@ -128,7 +124,6 @@ app.post(
     const form = c.req.valid('form')
 
     const { currentUser, storage } = c.var
-    assert.ok(currentUser)
     const id = c.req.param('id')
     const rom = await getRom({ id })
     assert.ok(rom)
@@ -164,7 +159,6 @@ app.post(
     const form = c.req.valid('form')
 
     const { currentUser, storage } = c.var
-    assert.ok(currentUser)
     const id = c.req.param('id')
     const rom = await getRom({ id })
     assert.ok(rom)
@@ -184,11 +178,10 @@ app.delete(
 
   async (c) => {
     const { currentUser } = c.var
-    assert.ok(currentUser)
     const id = c.req.param('id')
     const thumbnailId = c.req.param('thumbnailId')
     const rom = await getRom({ id })
-    assert.ok(rom)
+    assert.ok(rom?.userId === currentUser.id)
     const gameThumbnailFileIds: string[] = rom.gameThumbnailFileIds?.split(',') || []
     pull(gameThumbnailFileIds, [thumbnailId])
     const updatedRom = await updateRom({

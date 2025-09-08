@@ -1,3 +1,4 @@
+import assert from 'node:assert'
 import path from 'node:path'
 import { attempt } from 'es-toolkit'
 import { defaults } from 'es-toolkit/compat'
@@ -9,6 +10,7 @@ export function getRunTimeEnv() {
   const [, c] = attempt(getContext)
   const runTimeEnv = c ? env(c) : process.env
   const runtimeKey = getRuntimeKey()
+  assert.ok(runtimeKey === 'node' || runtimeKey === 'workerd', 'Unsupported runtime')
 
   return defaults(
     { ...runTimeEnv },

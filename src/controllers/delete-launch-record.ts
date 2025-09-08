@@ -1,4 +1,3 @@
-import assert from 'node:assert'
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { launchRecordTable } from '../databases/schema.ts'
@@ -9,7 +8,6 @@ interface DeleteRomParams {
 
 export async function deleteLaunchRecord(params: DeleteRomParams) {
   const { currentUser, db } = getContext().var
-  assert.ok(currentUser)
   const { library } = db
 
   const result = await library

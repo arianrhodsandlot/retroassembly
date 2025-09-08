@@ -76,6 +76,7 @@ export function ScreenshotSlider() {
               swiperRef.current?.slideToLoop(index)
             }}
             style={{
+              // @ts-expect-error css variable is not supported by React.CSSProperties yet
               '--bar-width': index === indicator.current ? `${100 - indicator.progress * 100}%` : '0',
             }}
             title='Slide to this image'

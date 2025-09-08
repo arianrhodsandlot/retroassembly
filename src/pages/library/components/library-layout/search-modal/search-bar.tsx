@@ -51,9 +51,11 @@ export function SearchBar() {
       debounce(async function handleChange(value: string) {
         const trimmedValue = value.trim()
         setQuery(trimmedValue)
-        const { roms } = await trigger(trimmedValue)
-        if (roms?.length) {
-          setSelectedResult(roms[0])
+        if (trimmedValue) {
+          const { roms } = await trigger(trimmedValue)
+          if (roms?.length) {
+            setSelectedResult(roms[0])
+          }
         }
       }, 200),
     [trigger, setSelectedResult],

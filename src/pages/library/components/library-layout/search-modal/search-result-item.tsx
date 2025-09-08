@@ -1,8 +1,10 @@
 import { Skeleton } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { compact } from 'es-toolkit'
+import { useEffect, useRef } from 'react'
 import { Fragment } from 'react/jsx-runtime'
 import { Link } from 'react-router'
+import scrollIntoView from 'smooth-scroll-into-view-if-needed'
 import { platformMap } from '@/constants/platform.ts'
 import type { SearchRoms } from '@/controllers/search-roms.ts'
 import { useSpatialNavigationPaused } from '@/pages/library/atoms.ts'
@@ -16,7 +18,6 @@ interface SearchResultItemProps {
   query: string
   rom: SearchRoms[number]
 }
-
 export function SearchResultItem({ query, rom }: Readonly<SearchResultItemProps>) {
   const { data: cover, isLoading } = useRomCover(rom)
   const goodcodes = getRomGoodcodes(rom)
@@ -34,14 +35,24 @@ export function SearchResultItem({ query, rom }: Readonly<SearchResultItemProps>
   const romUrl = `/library/platform/${encodeURIComponent(rom.platform)}/rom/${encodeURIComponent(rom.fileName)}`
   const queryChars = compact([...query.toLowerCase()])
 
-  function handleMouseEnter() {
-    setSelectedResult(rom)
+  function handleMouseMove() {
+    if (!selected) {
+      setSelectedResult(rom)
+    }
   }
 
+  const ref = useRef<HTMLLIElement>(null)
+
+  useEffect(() => {
+    if (selected && ref.current) {
+      scrollIntoView(ref.current, { scrollMode: 'if-needed' })
+    }
+  }, [selected])
+
   return (
-    <li className='p-1' onMouseEnter={handleMouseEnter}>
+    <li className='p-1' onMouseMove={handleMouseMove} ref={ref}>
       <Link
-        className={clsx('flex items-center gap-2 rounded-sm p-1 transition-colors', {
+        className={clsx('flex items-center gap-2 rounded-sm p-1', {
           'bg-(--accent-4)': selected,
         })}
         onClick={handleClick}

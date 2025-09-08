@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
+  goodcodes-parser:
+    hash: 0d6b63ddf0231e5a7643df8e6fce96b8eb7f167de7fe13b28159cf77c2a13873
+    path: patches/goodcodes-parser.patch
   selector-set:
     hash: d9e1ae2c2c305d4a342bb379999ee53e69dbcff1fa8c729ad499740862b311a7
     path: patches/selector-set.patch
@@ -126,8 +129,8 @@ importers:
         specifier: 3.0.5
         version: 3.0.5
       '@zip.js/zip.js':
-        specifier: 2.7.73
-        version: 2.7.73
+        specifier: 2.8.0
+        version: 2.8.0
       atropos:
         specifier: 2.0.2
         version: 2.0.2
@@ -175,7 +178,7 @@ importers:
         version: 2.1.0
       goodcodes-parser:
         specifier: 2.5.0
-        version: 2.5.0
+        version: 2.5.0(patch_hash=0d6b63ddf0231e5a7643df8e6fce96b8eb7f167de7fe13b28159cf77c2a13873)
       hono-react-router-adapter:
         specifier: 0.6.5
         version: 0.6.5(hono@4.9.6)(miniflare@4.20250902.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2)(wrangler@4.34.0(@cloudflare/workers-types@4.20250906.0))
@@ -2741,8 +2744,8 @@ packages:
       react-dom: '*'
       vite: '*'
 
-  '@zip.js/zip.js@2.7.73':
-    resolution: {integrity: sha512-I2UP8/rdQE5hTtVVL08B7P8XuwXiKuuMUPjNuFOVL/9b+8IsExR9S5jz2H58u0rJjU4M1BikLgqEMG8gZJZVBw==}
+  '@zip.js/zip.js@2.8.0':
+    resolution: {integrity: sha512-9HnLyWoBUw9BKbmtvapI3HedoK2bI+3VFpHA1KR/fWXv4UnbioEVQ7NG80Jpw/X8xpHw39bUe/HXZwXxDSQg2w==}
     engines: {bun: '>=0.7.0', deno: '>=1.0.0', node: '>=16.5.0'}
 
   acorn-jsx@5.3.2:
@@ -8453,7 +8456,7 @@ snapshots:
       vite: 7.1.5(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.30.1)(stylus@0.57.0)(tsx@4.20.3)(yaml@2.8.1)
       vitefu: 1.1.1(vite@7.1.5(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.30.1)(stylus@0.57.0)(tsx@4.20.3)(yaml@2.8.1))
 
-  '@zip.js/zip.js@2.7.73': {}
+  '@zip.js/zip.js@2.8.0': {}
 
   acorn-jsx@5.3.2(acorn@8.15.0):
     dependencies:
@@ -9810,7 +9813,7 @@ snapshots:
 
   globrex@0.1.2: {}
 
-  goodcodes-parser@2.5.0: {}
+  goodcodes-parser@2.5.0(patch_hash=0d6b63ddf0231e5a7643df8e6fce96b8eb7f167de7fe13b28159cf77c2a13873): {}
 
   gopd@1.2.0: {}
 

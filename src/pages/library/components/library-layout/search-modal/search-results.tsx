@@ -1,12 +1,17 @@
+import { useQuery } from './atoms.ts'
 import { SearchResultItem } from './search-result-item.tsx'
 
 interface SearchResultsProps {
   loading: boolean
-  query: string
   results?: any
 }
 
-export function SearchResults({ loading, query, results }: Readonly<SearchResultsProps>) {
+export function SearchResults({ loading, results }: Readonly<SearchResultsProps>) {
+  const [query] = useQuery()
+  if (!query) {
+    return
+  }
+
   if (results?.length) {
     return (
       <ul>

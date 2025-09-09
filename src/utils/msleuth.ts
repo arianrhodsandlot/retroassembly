@@ -32,7 +32,13 @@ function getClient() {
   const { RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST } = getRunTimeEnv()
   const option: Options = { retry: 3, timeout: 30_000 }
   if (MSLEUTH?.fetch && !RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST) {
-    option.fetch = MSLEUTH.fetch.bind(MSLEUTH)
+    option.fetch = async (...args) => {
+      try {
+        return await MSLEUTH.fetch(...args)
+      } catch {
+        return await fetch(...args)
+      }
+    }
   }
   const client = ky.create(option)
   return client

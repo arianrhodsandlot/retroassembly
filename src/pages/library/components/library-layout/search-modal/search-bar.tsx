@@ -1,28 +1,35 @@
 import { clsx } from 'clsx'
-import { debounce } from 'es-toolkit'
-import { type FormEvent, useCallback, useEffect, useMemo, useState } from 'react'
+import { type FormEvent, useCallback, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import useSWRMutation from 'swr/mutation'
+import useSWR from 'swr'
 import { useSpatialNavigationPaused } from '@/pages/library/atoms.ts'
 import { useInputMapping } from '@/pages/library/hooks/use-input-mapping.ts'
 import { Gamepad } from '@/utils/gamepad.ts'
 import { api } from '@/utils/http.ts'
 import { useShowSearchModal } from '../atoms.ts'
-import { useSelectedResult } from './atoms.ts'
+import { useQuery, useSelectedResult } from './atoms.ts'
 import { SearchInput } from './search-input.tsx'
 import { SearchResults } from './search-results.tsx'
 
 export function SearchBar() {
-  const navitate = useNavigate()
+  const navigate = useNavigate()
   const location = useLocation()
   const inputMapping = useInputMapping()
   const [, setShowSearchModal] = useShowSearchModal()
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
 
-  const [query, setQuery] = useState('')
+  const [query] = useQuery()
   const [selectedResult, setSelectedResult] = useSelectedResult()
-  const { data, isMutating, trigger } = useSWRMutation('roms/search', (url, { arg: query }: { arg: string }) =>
-    query ? api(url, { searchParams: { page_size: 10, query } }).json<any>() : null,
+
+  const { data, isLoading: isMutating } = useSWR(
+    query ? ['roms/search', query] : null,
+    ([url, query]) => api(url, { searchParams: { page_size: 10, query } }).json<any>(),
+    {
+      dedupingInterval: 5 * 60 * 1000,
+      keepPreviousData: true,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    },
   )
 
   const selectedUrl = selectedResult
@@ -34,11 +41,11 @@ export function SearchBar() {
         setShowSearchModal(false)
         setSpatialNavigationPaused(false)
         if (selectedUrl !== location.pathname) {
-          navitate(selectedUrl)
+          navigate(selectedUrl)
         }
       }
     },
-    [location.pathname, selectedUrl, setShowSearchModal, setSpatialNavigationPaused, navitate],
+    [location.pathname, selectedUrl, setShowSearchModal, setSpatialNavigationPaused, navigate],
   )
 
   function handleSubmit(event: FormEvent) {
@@ -46,33 +53,20 @@ export function SearchBar() {
     select()
   }
 
-  const handleChange = useMemo(
-    () =>
-      debounce(async function handleChange(value: string) {
-        const trimmedValue = value.trim()
-        setQuery(trimmedValue)
-        if (trimmedValue) {
-          const { roms } = await trigger(trimmedValue)
-          if (roms?.length) {
-            setSelectedResult(roms[0])
-          }
-        }
-      }, 200),
-    [trigger, setSelectedResult],
-  )
-
   const move = useCallback(
     function move(direction: 'down' | 'up') {
       if (data?.roms?.length) {
-        setSelectedResult((prev) => {
-          const currentIndex = data.roms.indexOf(prev)
-          const nextIndex = direction === 'down' ? currentIndex + 1 : currentIndex - 1
-          return data.roms[(nextIndex + data.roms.length) % data.roms.length]
-        })
+        const index = data.roms.indexOf(selectedResult)
+        const newIndex = ({ down: index + 1, up: index - 1 }[direction] + data.roms.length) % data.roms.length
+        setSelectedResult(data.roms[newIndex])
       }
     },
-    [data?.roms, setSelectedResult],
+    [data?.roms, selectedResult, setSelectedResult],
   )
+
+  useEffect(() => {
+    setSelectedResult(data?.roms?.[0])
+  }, [data?.roms, setSelectedResult])
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -120,17 +114,20 @@ export function SearchBar() {
       <form
         className={clsx(
           'border-(--accent-9) bg-(--color-background) pointer-events-auto w-full shrink-0 overflow-hidden rounded-t border-2',
-          {
-            'rounded-b': !data,
-          },
+          { 'rounded-b': !data },
         )}
         onSubmit={handleSubmit}
       >
-        <SearchInput isMutating={isMutating} onChange={handleChange} />
+        <SearchInput isMutating={isMutating} />
       </form>
 
-      <div className='border-(--accent-9) bg-(--color-background) w-full overflow-auto rounded-b border-x-2 border-b-2 *:pointer-events-auto empty:hidden'>
-        <SearchResults loading={isMutating} query={query} results={data?.roms} />
+      <div
+        className={clsx(
+          'border-(--accent-9) bg-(--color-background) w-full overflow-auto rounded-b border-x-2 border-b-2 transition-opacity *:pointer-events-auto empty:hidden',
+          { '*:opacity-50': data?.query !== query },
+        )}
+      >
+        <SearchResults loading={isMutating} results={data?.roms} />
       </div>
     </div>
   )

@@ -1,6 +1,8 @@
 import '../utils/self-test.ts'
 import { serveStatic } from '@hono/node-server/serve-static'
 import { handler } from 'hono-react-router-adapter/node'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore we can not guarantee that this file exists
 import * as build from '../../dist/server/index.js'
 import app from './app.ts'
 

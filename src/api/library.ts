@@ -1,7 +1,7 @@
 import assert from 'node:assert'
 import path from 'node:path'
 import { zValidator } from '@hono/zod-validator'
-import { delay, pull } from 'es-toolkit'
+import { pull } from 'es-toolkit'
 import { Hono } from 'hono'
 import { createMiddleware } from 'hono/factory'
 import { z } from 'zod'
@@ -246,7 +246,6 @@ app.get(
   ),
 
   async (c) => {
-    await delay(0)
     const queryParams = c.req.valid('query')
     const result = await searchRoms({
       page: queryParams.page,

@@ -1,17 +1,29 @@
-import { useState } from 'react'
+import { debounce } from 'es-toolkit'
+import { type ChangeEvent, useMemo, useState } from 'react'
 import { useSpatialNavigationPaused } from '@/pages/library/atoms.ts'
 import { useShowSearchModal } from '../atoms.ts'
+import { useQuery } from './atoms.ts'
 
 interface SearchInputProps {
   isMutating: boolean
-  onChange: (value: string) => void
 }
 
-export function SearchInput({ isMutating, onChange }: Readonly<SearchInputProps>) {
+export function SearchInput({ isMutating }: Readonly<SearchInputProps>) {
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
   const [, setShowSearchModal] = useShowSearchModal()
+  const [query, setQuery] = useQuery()
 
   const [composing, setComposing] = useState(false)
+
+  const handleChange = useMemo(
+    () =>
+      debounce((event: ChangeEvent<HTMLInputElement>) => {
+        if (!composing) {
+          setQuery(event.target.value.trim())
+        }
+      }, 200),
+    [composing, setQuery],
+  )
 
   function handleClickClose() {
     setShowSearchModal(false)
@@ -27,15 +39,12 @@ export function SearchInput({ isMutating, onChange }: Readonly<SearchInputProps>
       <input
         autoFocus
         className='flex-1 outline-0'
+        defaultValue={query}
         name='query'
-        onChange={(event) => {
-          if (!composing) {
-            onChange(event.currentTarget.value)
-          }
-        }}
+        onChange={handleChange}
         onCompositionEnd={(event) => {
-          onChange(event.currentTarget.value)
           setComposing(false)
+          setQuery(event.currentTarget.value.trim())
         }}
         onCompositionStart={() => {
           setComposing(true)

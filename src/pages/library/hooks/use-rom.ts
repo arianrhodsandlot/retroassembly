@@ -1,11 +1,7 @@
-import { useMemo } from 'react'
 import { useLoaderData } from 'react-router'
-import { getRomGoodcodes } from '@/utils/library.ts'
+import type { loader } from '@/pages/routes/library-platform-rom'
 
 export function useRom() {
-  const { rom } = useLoaderData()
-
-  const romWithGoodcodes = useMemo(() => (rom ? { ...rom, goodcodes: getRomGoodcodes(rom) } : undefined), [rom])
-
-  return romWithGoodcodes
+  const { rom } = useLoaderData<typeof loader>()
+  return rom
 }

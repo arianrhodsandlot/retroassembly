@@ -8,7 +8,7 @@ export async function getCurrentUser() {
   const supabase = createSupabase()
   if (supabase) {
     const { data } = await supabase.auth.getUser()
-    return data?.user as { id: string } | undefined
+    return data?.user
   }
 
   const c = getContext()

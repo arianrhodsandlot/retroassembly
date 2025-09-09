@@ -5,9 +5,9 @@ import { getDirectories } from '../constants/env.ts'
 
 export function createStorage() {
   const c = getContext()
-  const { BUCKET } = env(c)
+  const { BUCKET } = env<Env>(c)
   if (BUCKET) {
-    return BUCKET as any
+    return BUCKET
   }
 
   const { storageDirectory } = getDirectories()

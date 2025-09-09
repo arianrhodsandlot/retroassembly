@@ -8,7 +8,7 @@ import { metadata } from './metadata.ts'
 
 export function getRunTimeEnv() {
   const [, c] = attempt(getContext)
-  const runTimeEnv = c ? env(c) : process.env
+  const runTimeEnv = c ? env<Env>(c) : process.env
   const runtimeKey = getRuntimeKey()
   assert.ok(runtimeKey === 'node' || runtimeKey === 'workerd', 'Unsupported runtime')
 

@@ -28,7 +28,7 @@ function createRequest({
 
 function getClient() {
   const c = getContext()
-  const { MSLEUTH } = env(c)
+  const { MSLEUTH } = env<Env>(c)
   const { RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST } = getRunTimeEnv()
   const option: Options = { retry: 3, timeout: 30_000 }
   if (MSLEUTH?.fetch && !RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST) {

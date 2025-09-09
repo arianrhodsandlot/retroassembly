@@ -4,7 +4,7 @@ import useSWRImmutable from 'swr/immutable'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { imageLoaded } from '@/utils/image.ts'
-import { getRomLibretroThumbnail } from '@/utils/library.ts'
+import { getRomGoodcodes, getRomLibretroThumbnail } from '@/utils/library.ts'
 import { GameMediaDialog } from '../game-media-dialog/game-media-dialog.tsx'
 import { YouTubeEmbed } from './youtube-embed.tsx'
 
@@ -47,7 +47,7 @@ export function GameMedia() {
           {validImages?.map((image) => (
             <a className='shrink-0 empty:hidden' href={image} key={image} rel='noreferrer noopener' target='_blank'>
               <img
-                alt={rom.goodcodes.rom}
+                alt={getRomGoodcodes(rom).rom}
                 className='h-auto w-full lg:h-48 lg:w-auto'
                 key={image}
                 loading='lazy'

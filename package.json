@@ -19,7 +19,7 @@
     "test": "playwright test -c tests/e2e"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
+    "pre-commit": "pnpm tsc && pnpm lint-staged"
   },
   "lint-staged": {
     "*.?(m|c)@(j|t)s?(x)": "eslint --flag=unstable_native_nodejs_ts_config --fix",
@@ -34,7 +34,7 @@
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.21.0",
     "@cloudflare/vite-plugin": "1.12.3",
-    "@cloudflare/workers-types": "4.20250906.0",
+    "@cloudflare/workers-types": "4.20250909.0",
     "@hono/node-server": "1.19.1",
     "@hono/vite-dev-server": "0.20.1",
     "@hono/zod-validator": "0.7.2",
@@ -65,7 +65,7 @@
     "@types/react-dom": "19.1.9",
     "@types/signale": "1.4.7",
     "@types/spark-md5": "3.0.5",
-    "@zip.js/zip.js": "2.8.0",
+    "@zip.js/zip.js": "2.8.1",
     "atropos": "2.0.2",
     "browser-fs-access": "0.38.0",
     "canvas-confetti": "1.9.3",

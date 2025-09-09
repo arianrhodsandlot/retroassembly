@@ -1,4 +1,3 @@
-import type { PartialDeep } from 'type-fest'
 import { mergePreference } from '../controllers/utils.ts'
 import type { CoreName } from './core'
 import type { PlatformName } from './platform'
@@ -13,10 +12,10 @@ export interface Preference {
     platform: Record<PlatformName, { core: CoreName }>
     shader: string
     videoSmooth: boolean
-  } | null
+  }
   input: {
     confirmButtonStyle: string
-    gamepadMappings: null | Record<
+    gamepadMappings: Record<
       string,
       {
         $fast_forward: string
@@ -60,8 +59,8 @@ export interface Preference {
       input_player1_x: string
       input_player1_y: string
       input_rewind: string
-    } | null
-  } | null
+    }
+  }
   ui: {
     libraryCoverSize: string
     libraryCoverType: 'boxart'
@@ -70,7 +69,7 @@ export interface Preference {
     showFocusIndicators: string
     showSidebar: boolean
     showTitle: boolean
-  } | null
+  }
 }
 
 export interface ResolvedPreference extends Preference {
@@ -83,7 +82,17 @@ export interface ResolvedPreference extends Preference {
   ui: NonNullable<Preference['ui']>
 }
 
-export type PreferenceSnippet = PartialDeep<Preference>
+type PartialDeepNullable<T> = {
+  [K in keyof T]?: T[K] extends readonly (infer U)[]
+    ? null | readonly PartialDeepNullable<U>[]
+    : T[K] extends (infer U)[]
+      ? null | PartialDeepNullable<U>[]
+      : T[K] extends Record<string, any>
+        ? null | PartialDeepNullable<T[K]>
+        : null | T[K]
+}
+
+export type PreferenceSnippet = PartialDeepNullable<Preference>
 
 export const defaultPreference: ResolvedPreference = {
   emulator: {

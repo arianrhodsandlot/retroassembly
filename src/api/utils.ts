@@ -1,11 +1,13 @@
-export function createFileResponse(object: R2ObjectBody) {
+export function createFileResponse(object: { body: NonSharedBuffer; httpEtag: string; size: number } | R2ObjectBody) {
   const headers = new Headers()
   // this may fail when using miniflare
-  try {
-    object.writeHttpMetadata(headers)
-  } catch {}
+  if ('writeHttpMetadata' in object) {
+    try {
+      object.writeHttpMetadata(headers)
+    } catch {}
+  }
   headers.set('ETag', object.httpEtag)
-  if (object.range && 'offset' in object.range && 'end' in object.range) {
+  if ('range' in object && object.range && 'offset' in object.range && 'end' in object.range) {
     const contentRange = `bytes ${object.range.offset}-${object.range.end ?? object.size - 1}/${object.size}`
     headers.set('Content-Range', contentRange)
   }

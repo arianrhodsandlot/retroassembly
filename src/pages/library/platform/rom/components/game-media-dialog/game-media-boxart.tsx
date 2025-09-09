@@ -12,7 +12,7 @@ export function GameMediaBoxart() {
 
   const { isMutating: isUploadingBoxart, trigger: uploadBoxart } = useSWRMutation(
     `roms/${rom.id}/boxart`,
-    (url, { arg }: { arg: FormData }) => api.post(url, { body: arg }).json(),
+    (url, { arg }: { arg: FormData }) => api.post(url, { body: arg }).json<string>(),
   )
 
   const { isMutating: isResettingingBoxart, trigger: resetBoxart } = useSWRMutation(`roms/${rom.id}/boxart`, (url) =>

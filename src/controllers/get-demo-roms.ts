@@ -1,6 +1,5 @@
 import { sortBy } from 'es-toolkit'
 import { uniqueId } from 'es-toolkit/compat'
-import type { Roms } from './get-roms'
 
 const roms = [
   {
@@ -383,7 +382,7 @@ const roms = [
     name: 'uCity',
     platform: 'gbc',
   },
-].map((rom) => ({ ...rom, id: uniqueId() })) as ({ name: string } & Roms[number])[]
+].map((rom) => ({ ...rom, id: uniqueId() }))
 
 export function getDemoRoms({ platform }: { platform?: string } = {}) {
   if (platform) {

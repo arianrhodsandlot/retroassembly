@@ -114,7 +114,7 @@ export function SearchBar() {
       <form
         className={clsx(
           'border-(--accent-9) bg-(--color-background) pointer-events-auto w-full shrink-0 overflow-hidden rounded-t border-2',
-          { 'rounded-b': !data },
+          { 'rounded-b': !query },
         )}
         onSubmit={handleSubmit}
       >
@@ -127,7 +127,7 @@ export function SearchBar() {
           { '*:opacity-50': data?.query !== query },
         )}
       >
-        <SearchResults loading={isMutating} results={data?.roms} />
+        <SearchResults keyword={data?.query} loading={isMutating} results={data?.roms} />
       </div>
     </div>
   )

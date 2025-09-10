@@ -2,11 +2,12 @@ import { useQuery } from './atoms.ts'
 import { SearchResultItem } from './search-result-item.tsx'
 
 interface SearchResultsProps {
+  keyword: string
   loading: boolean
   results?: any
 }
 
-export function SearchResults({ loading, results }: Readonly<SearchResultsProps>) {
+export function SearchResults({ keyword, loading, results }: Readonly<SearchResultsProps>) {
   const [query] = useQuery()
   if (!query) {
     return
@@ -16,7 +17,7 @@ export function SearchResults({ loading, results }: Readonly<SearchResultsProps>
     return (
       <ul>
         {results?.map((rom) => (
-          <SearchResultItem key={rom.id} query={query} rom={rom} />
+          <SearchResultItem key={rom.id} keyword={keyword} rom={rom} />
         ))}
       </ul>
     )

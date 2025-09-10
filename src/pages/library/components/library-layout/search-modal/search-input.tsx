@@ -49,7 +49,6 @@ export function SearchInput({ isMutating }: Readonly<SearchInputProps>) {
         onCompositionStart={() => {
           setComposing(true)
         }}
-        placeholder='Search for games...'
         spellCheck={false}
         title='Search'
         type='text'

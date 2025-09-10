@@ -15,10 +15,11 @@ import { useShowSearchModal } from '../atoms.ts'
 import { useSelectedResult } from './atoms.ts'
 
 interface SearchResultItemProps {
-  query: string
+  keyword: string
   rom: SearchRoms[number]
 }
-export function SearchResultItem({ query, rom }: Readonly<SearchResultItemProps>) {
+
+export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProps>) {
   const { data: cover, isLoading } = useRomCover(rom)
   const goodcodes = getRomGoodcodes(rom)
   const [, setShowSearchModal] = useShowSearchModal()
@@ -33,7 +34,7 @@ export function SearchResultItem({ query, rom }: Readonly<SearchResultItemProps>
   }
 
   const romUrl = `/library/platform/${encodeURIComponent(rom.platform)}/rom/${encodeURIComponent(rom.fileName)}`
-  const queryChars = compact([...query.toLowerCase()])
+  const keywordChars = compact([...keyword.replace(/\s+/, '').toLowerCase()])
 
   function handleMouseMove() {
     if (!selected) {
@@ -73,7 +74,7 @@ export function SearchResultItem({ query, rom }: Readonly<SearchResultItemProps>
           <div className='text-(--color-text) truncate text-base'>
             {[...goodcodes.rom].map((char, index) => (
               <Fragment key={index}>
-                {queryChars.includes(char.toLowerCase()) ? <span className='text-(--accent-9)'>{char}</span> : char}
+                {keywordChars.includes(char.toLowerCase()) ? <span className='text-(--accent-9)'>{char}</span> : char}
               </Fragment>
             ))}
           </div>

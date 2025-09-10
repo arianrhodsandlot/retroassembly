@@ -6,7 +6,6 @@ import type { Roms } from '@/controllers/get-roms.ts'
 import { DeviceInfo } from '../components/device-info/device-info.tsx'
 import { GameListMain } from '../components/game-list-main.tsx'
 import LibraryLayout from '../components/library-layout/library-layout.tsx'
-import { MainScrollArea } from '../components/main-scroll-area.tsx'
 import { PageStats } from '../components/page-stats.tsx'
 import { useIsDemo } from '../hooks/use-demo.ts'
 import { PlatformBackground } from './components/platform-background.tsx'
@@ -38,25 +37,23 @@ export default function PlatformPage({ pageData }: Readonly<PlatformPageProps>) 
 
   return (
     <LibraryLayout title='Library'>
-      <MainScrollArea>
-        <GameListMain>
-          <div className={clsx('flex w-full justify-between', { 'flex-col': platformInfo })}>
-            {platformInfo ? (
-              <DeviceInfo key={platform} platform={platform} platformInfo={platformInfo} />
-            ) : (
-              <h1 className='text-5xl font-semibold'>{platformMap[platform].displayName}</h1>
-            )}
+      <GameListMain>
+        <div className={clsx('flex w-full justify-between', { 'flex-col': platformInfo })}>
+          {platformInfo ? (
+            <DeviceInfo key={platform} platform={platform} platformInfo={platformInfo} />
+          ) : (
+            <h1 className='text-5xl font-semibold'>{platformMap[platform].displayName}</h1>
+          )}
 
-            {isDemo ? undefined : (
-              <PageStats suffix={<UploadButton platform={platform} />}>
-                <span className='icon-[mdi--bar-chart] text-(--color-text)' />
-                <span className='text-(--accent-9) font-semibold'>{pagination.total}</span>
-                {pagination.total === 1 ? 'game' : 'games'} for {platformMap[platform].displayName}.
-              </PageStats>
-            )}
-          </div>
-        </GameListMain>
-      </MainScrollArea>
+          {isDemo ? undefined : (
+            <PageStats suffix={<UploadButton platform={platform} />}>
+              <span className='icon-[mdi--bar-chart] text-(--color-text)' />
+              <span className='text-(--accent-9) font-semibold'>{pagination.total}</span>
+              {pagination.total === 1 ? 'game' : 'games'} for {platformMap[platform].displayName}.
+            </PageStats>
+          )}
+        </div>
+      </GameListMain>
       <PlatformBackground />
     </LibraryLayout>
   )

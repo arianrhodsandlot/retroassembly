@@ -1,20 +1,18 @@
 import { useEventListener } from '@react-hookz/web'
 import { off, on } from 'delegated-events'
-import { delay } from 'es-toolkit'
 import { useEffect, useState } from 'react'
-import { useLocation, useNavigation } from 'react-router'
+import { useNavigation } from 'react-router'
 import { Gamepad } from '@/utils/gamepad.ts'
 import { useEmulatorLaunched, useShowGameOverlayContent, useSpatialNavigationPaused } from '../atoms.ts'
 import { useMouseIdle } from '../platform/rom/hooks/use-mouse-idle.ts'
 import { getKeyNameFromCode } from '../utils/keyboard.ts'
-import { cancel, click, focus, init, move, resetFocus } from '../utils/spatial-navigation.ts'
+import { cancel, click, focus, init, move } from '../utils/spatial-navigation.ts'
 import { useFocusIndicator } from './use-focus-indicator.ts'
 import { useInputMapping } from './use-input-mapping.ts'
 import { usePreference } from './use-preference.ts'
 
 export function useSpatialNavigation() {
   const { state } = useNavigation()
-  const location = useLocation()
   const inputMapping = useInputMapping()
   const { syncStyle } = useFocusIndicator()
   const isIdle = useMouseIdle(100)
@@ -38,16 +36,6 @@ export function useSpatialNavigation() {
   )
 
   useEffect(init, [])
-
-  // focus after route navigation incase previously focused element is unmounted
-  useEffect(() => {
-    if (location.pathname) {
-      ;(async () => {
-        await delay(0)
-        resetFocus({ force: true })
-      })()
-    }
-  }, [location.pathname])
 
   // keyboard navigation
   useEffect(() => {

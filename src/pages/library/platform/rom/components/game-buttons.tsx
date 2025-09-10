@@ -1,10 +1,9 @@
 import { Button, HoverCard } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import { type MouseEvent, useEffect } from 'react'
+import type { MouseEvent } from 'react'
 import type { State } from '@/controllers/get-states.ts'
 import { useFocusIndicator } from '@/pages/library/hooks/use-focus-indicator.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
-import { focus } from '@/pages/library/utils/spatial-navigation.ts'
 import { useLaunchButton } from '../atoms.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 import { GameSettingsButton } from './game-settings-button.tsx'
@@ -32,7 +31,7 @@ export function GameButtons({ state }: Readonly<{ state?: State }>) {
   }
 
   async function handleClickContinue(event: MouseEvent<HTMLButtonElement>) {
-    if (mayNeedsUserInteraction && !event?.clientX && !event?.clientY) {
+    if (isPreparing || (mayNeedsUserInteraction && !event?.clientX && !event?.clientY)) {
       event.preventDefault()
       event.stopPropagation()
       return
@@ -43,7 +42,7 @@ export function GameButtons({ state }: Readonly<{ state?: State }>) {
   }
 
   async function handleClickStart(event: MouseEvent<HTMLButtonElement>) {
-    if (mayNeedsUserInteraction && !event?.clientX && !event?.clientY) {
+    if (isPreparing || (mayNeedsUserInteraction && !event?.clientX && !event?.clientY)) {
       event.preventDefault()
       event.stopPropagation()
       return
@@ -57,12 +56,6 @@ export function GameButtons({ state }: Readonly<{ state?: State }>) {
       await prepare()
     }
   }
-
-  useEffect(() => {
-    if (!isPreparing) {
-      focus('.launch-button')
-    }
-  }, [isPreparing])
 
   if (!isPreparing && error) {
     return (

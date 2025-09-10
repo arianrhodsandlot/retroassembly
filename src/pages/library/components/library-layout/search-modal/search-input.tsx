@@ -37,6 +37,8 @@ export function SearchInput({ isMutating }: Readonly<SearchInputProps>) {
       </div>
 
       <input
+        aria-label='Search'
+        autoComplete='off'
         autoFocus
         className='flex-1 outline-0'
         defaultValue={query}
@@ -50,7 +52,6 @@ export function SearchInput({ isMutating }: Readonly<SearchInputProps>) {
           setComposing(true)
         }}
         spellCheck={false}
-        title='Search'
         type='text'
       />
 

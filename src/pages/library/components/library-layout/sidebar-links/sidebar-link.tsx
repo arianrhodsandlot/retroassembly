@@ -26,9 +26,10 @@ export function SidebarLink({ active, children, to }) {
     <motion.div className='flex-1' layout ref={ref}>
       <Button asChild size='3' variant='ghost'>
         <NavigatableLink
-          className={clsx('group !m-0 !flex !h-auto !px-4 !py-2.5', {
+          className={clsx('sidebar-link', 'group !m-0 !flex !h-auto !px-4 !py-2.5', {
             '!bg-[#651723]/60 !font-semibold !text-white': active,
             '!text-white hover:!bg-inherit': !active,
+            active,
           })}
           data-sn-focus-style={JSON.stringify({
             backgroundColor: 'rgba(0, 0, 0, 0.2)',

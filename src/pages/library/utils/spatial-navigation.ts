@@ -88,8 +88,16 @@ export function move(direction?: Direction) {
 }
 
 export function resetFocus({ force }: { force?: boolean } = {}) {
-  if (document.activeElement === document.body || force) {
-    focus('.game-entry, .launch-button')
+  // @ts-expect-error force retrieving dataset
+  if (!document.activeElement?.dataset.snEnabled || force) {
+    const selectors = ['.game-entry', '.launch-button', '.sidebar-link.active']
+    for (const selector of selectors) {
+      const element = document.querySelector(selector)
+      if (element) {
+        focus(selector)
+        return
+      }
+    }
   }
 }
 

@@ -39,8 +39,8 @@ importers:
         specifier: 4.20250910.0
         version: 4.20250910.0
       '@hono/node-server':
-        specifier: 1.19.1
-        version: 1.19.1(hono@4.9.6)
+        specifier: 1.19.2
+        version: 1.19.2(hono@4.9.6)
       '@hono/vite-dev-server':
         specifier: 0.20.1
         version: 0.20.1(hono@4.9.6)(miniflare@4.20250906.0)(wrangler@4.35.0(@cloudflare/workers-types@4.20250910.0))
@@ -1092,8 +1092,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@hono/node-server@1.19.1':
-    resolution: {integrity: sha512-h44e5s+ByUriaRIbeS/C74O8v90m0A95luyYQGMF7KEn96KkYMXO7bZAwombzTpjQTU4e0TkU8U1WBIXlwuwtA==}
+  '@hono/node-server@1.19.2':
+    resolution: {integrity: sha512-lndWsd9De/btN998Aiv6gkeMVV2h9Cc0AR0qwFTmxx/YFh/PbrjgoxTpHaNaRn6F4GAkPiVJwI0W0gQF4Wn8EA==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
@@ -5229,8 +5229,8 @@ packages:
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
 
-  rolldown-plugin-dts@0.16.1:
-    resolution: {integrity: sha512-bEfJpvhHm+h2cldNUbj8dT5tF9BJrJawPquScFdodob/55DqYkBis7iar8nkn8wSNIFKxwd2jP9ly/Z7lRME2w==}
+  rolldown-plugin-dts@0.16.2:
+    resolution: {integrity: sha512-WV1J5OqhWL8O8Nd5VAVQghmNcjyQvcGI5w51VszjO9k73avbXpz9X86KLYcKTWXXH6L0f+93JzZxiiSrcYhDLw==}
     engines: {node: '>=20.18.0'}
     peerDependencies:
       '@typescript/native-preview': '>=7.0.0-dev.20250601.1'
@@ -6790,13 +6790,13 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@hono/node-server@1.19.1(hono@4.9.6)':
+  '@hono/node-server@1.19.2(hono@4.9.6)':
     dependencies:
       hono: 4.9.6
 
   '@hono/vite-dev-server@0.18.3(hono@4.9.6)(miniflare@4.20250906.0)(wrangler@4.35.0(@cloudflare/workers-types@4.20250910.0))':
     dependencies:
-      '@hono/node-server': 1.19.1(hono@4.9.6)
+      '@hono/node-server': 1.19.2(hono@4.9.6)
       hono: 4.9.6
       minimatch: 9.0.5
     optionalDependencies:
@@ -6805,7 +6805,7 @@ snapshots:
 
   '@hono/vite-dev-server@0.20.1(hono@4.9.6)(miniflare@4.20250906.0)(wrangler@4.35.0(@cloudflare/workers-types@4.20250910.0))':
     dependencies:
-      '@hono/node-server': 1.19.1(hono@4.9.6)
+      '@hono/node-server': 1.19.2(hono@4.9.6)
       hono: 4.9.6
       minimatch: 9.0.5
     optionalDependencies:
@@ -9849,7 +9849,7 @@ snapshots:
       hono: 4.9.6
       react-router: 7.8.2(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
     optionalDependencies:
-      '@hono/node-server': 1.19.1(hono@4.9.6)
+      '@hono/node-server': 1.19.2(hono@4.9.6)
       '@react-router/node': 7.8.2(react-router@7.8.2(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(typescript@5.9.2)
     transitivePeerDependencies:
       - miniflare
@@ -11225,7 +11225,7 @@ snapshots:
 
   rfdc@1.4.1: {}
 
-  rolldown-plugin-dts@0.16.1(rolldown@1.0.0-beta.36)(typescript@5.9.2):
+  rolldown-plugin-dts@0.16.2(rolldown@1.0.0-beta.36)(typescript@5.9.2):
     dependencies:
       '@babel/generator': 7.28.3
       '@babel/parser': 7.28.4
@@ -11757,7 +11757,7 @@ snapshots:
       empathic: 2.0.0
       hookable: 5.5.3
       rolldown: 1.0.0-beta.36
-      rolldown-plugin-dts: 0.16.1(rolldown@1.0.0-beta.36)(typescript@5.9.2)
+      rolldown-plugin-dts: 0.16.2(rolldown@1.0.0-beta.36)(typescript@5.9.2)
       semver: 7.7.2
       tinyexec: 1.0.1
       tinyglobby: 0.2.15

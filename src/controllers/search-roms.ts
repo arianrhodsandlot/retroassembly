@@ -66,7 +66,8 @@ export async function searchRoms(
     eq(romTable.status, 1),
     platform ? eq(romTable.platform, platform) : inArray(romTable.platform, preference.ui.platforms),
   ]
-  const searchConditions = createSearchConditions(query)
+  const trimmedQuery = query.trim().replaceAll(/\s+/g, ' ')
+  const searchConditions = createSearchConditions(trimmedQuery)
   if (searchConditions) {
     conditions.push(searchConditions)
   }
@@ -75,7 +76,7 @@ export async function searchRoms(
   const allRomResults = await library.select().from(romTable).where(where)
 
   const fuse = new Fuse(allRomResults, fuseOptions)
-  const fuseResults = fuse.search(query)
+  const fuseResults = fuse.search(trimmedQuery)
   const sortedRoms = fuseResults.map((result) => result.item)
 
   const offset = (page - 1) * pageSize
@@ -95,5 +96,6 @@ export async function searchRoms(
     platform,
     query,
     roms: results,
+    trimmedQuery,
   }
 }

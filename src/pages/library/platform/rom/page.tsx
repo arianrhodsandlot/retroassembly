@@ -1,7 +1,6 @@
-import type { ResolvedPreference } from '@/constants/preference.ts'
-import type { Rom } from '@/controllers/get-roms.ts'
-import type { State } from '@/controllers/get-states.ts'
+import { useLoaderData } from 'react-router'
 import { RadixThemePortal } from '@/pages/components/radix-theme-portal.tsx'
+import type { loader } from '@/pages/routes/library-platform-rom.tsx'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../../components/main-scroll-area.tsx'
@@ -17,15 +16,8 @@ import { GameOverlay } from './components/game-overlay/game-overlay.tsx'
 import { PageHooks } from './components/page-hooks.ts'
 import { RomBackground } from './components/rom-background.tsx'
 
-interface RomPageProps {
-  pageData: {
-    preference: ResolvedPreference
-    rom: Rom | undefined
-    state: State | undefined
-  }
-}
-export default function RomPage({ pageData }: Readonly<RomPageProps>) {
-  const { rom, state } = pageData
+export default function RomPage() {
+  const { rom, state } = useLoaderData<typeof loader>()
   if (!rom) {
     return <>404</>
   }
@@ -36,7 +28,7 @@ export default function RomPage({ pageData }: Readonly<RomPageProps>) {
   const overview = rom.gameDescription || launchboxGame?.overview
 
   return (
-    <LibraryLayout title={goodcodes.rom}>
+    <LibraryLayout>
       <MainScrollArea>
         <PageBreadcrumb />
         <div className='flex min-h-full w-full flex-col gap-4 p-4 lg:flex-row'>

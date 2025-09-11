@@ -9,9 +9,9 @@ export async function loader({ request }: Route.LoaderArgs) {
   const query = url.searchParams
   const page = Number.parseInt(new URLSearchParams(query).get('page') || '', 10) || 1
   const [{ pagination, roms }, platformCount] = await Promise.all([getRoms({ page }), getRomPlatformCount()])
-  return getLoaderData({ page, pagination, platformCount, roms })
+  return getLoaderData({ page, pagination, platformCount, roms, title: 'Library' })
 }
 
-export default function LibraryRoute({ loaderData }: Readonly<Route.ComponentProps>) {
-  return <LibraryPage pageData={loaderData} />
+export default function LibraryRoute() {
+  return <LibraryPage />
 }

@@ -1,6 +1,6 @@
 import { ScrollArea } from '@radix-ui/themes'
-import type { ReactNode } from 'react'
-import { Link } from 'react-router'
+import type { PropsWithChildren } from 'react'
+import { Link, useLoaderData } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
 import { PendingMask } from '../pending-mask.tsx'
@@ -17,12 +17,8 @@ function getPostfixedTitle(title: string) {
   return title ? `${title} - ${metadata.title}` : metadata.title
 }
 
-interface AppLayoutProps {
-  children: ReactNode
-  title: string
-}
-
-export default function LibraryLayout({ children, title }: Readonly<AppLayoutProps>) {
+export default function LibraryLayout({ children }: Readonly<PropsWithChildren>) {
+  const { title } = useLoaderData()
   const isDemo = useIsDemo()
 
   return (

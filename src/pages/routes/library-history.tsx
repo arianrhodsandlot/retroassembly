@@ -8,9 +8,9 @@ export async function loader({ request }: Route.LoaderArgs) {
   const query = url.searchParams
   const page = Number.parseInt(new URLSearchParams(query).get('page') || '', 10) || 1
   const { pagination, roms } = await getLaunchRecords({ page })
-  return getLoaderData({ page, pagination, roms })
+  return getLoaderData({ page, pagination, roms, title: 'History' })
 }
 
-export default function LibraryHistoryRoute({ loaderData }: Readonly<Route.ComponentProps>) {
-  return <HistoryPage pageData={loaderData} />
+export default function LibraryHistoryRoute() {
+  return <HistoryPage />
 }

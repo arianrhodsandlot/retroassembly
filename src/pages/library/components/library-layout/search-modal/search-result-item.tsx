@@ -1,4 +1,4 @@
-import { Skeleton } from '@radix-ui/themes'
+import { Badge, Skeleton } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { compact } from 'es-toolkit'
 import { useEffect, useRef } from 'react'
@@ -9,8 +9,10 @@ import { platformMap } from '@/constants/platform.ts'
 import type { SearchRoms } from '@/controllers/search-roms.ts'
 import { useSpatialNavigationPaused } from '@/pages/library/atoms.ts'
 import { skeletonClassnames } from '@/pages/library/constants/skeleton-classnames.ts'
+import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
 import { getPlatformIcon, getRomGoodcodes } from '@/utils/library.ts'
+import { DistrictIcon } from '../../district-icon.tsx'
 import { useShowSearchModal } from '../atoms.ts'
 import { useSelectedResult } from './atoms.ts'
 
@@ -20,11 +22,20 @@ interface SearchResultItemProps {
 }
 
 export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProps>) {
+  const { preference } = usePreference()
   const { data: cover, isLoading } = useRomCover(rom)
-  const goodcodes = getRomGoodcodes(rom)
   const [, setShowSearchModal] = useShowSearchModal()
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
   const [selectedResult, setSelectedResult] = useSelectedResult()
+
+  const goodcodes = getRomGoodcodes(rom)
+
+  const { countries, revision, version = {} } = goodcodes.codes
+  const districts = new Set(countries?.map(({ code }) => code))
+  const revisionText = revision ? `Rev ${revision}` : ''
+  const versionText = Object.keys(version)
+    .filter((text) => text !== 'stable')
+    .join(' ')
 
   const selected = selectedResult === rom
 
@@ -57,6 +68,7 @@ export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProp
           'bg-(--accent-4)': selected,
         })}
         onClick={handleClick}
+        title={rom.fileName}
         to={romUrl}
       >
         {isLoading ? (
@@ -72,10 +84,20 @@ export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProp
         )}
         <div className='flex min-w-0 flex-1 flex-col justify-center gap-1'>
           <div className='text-(--color-text) truncate text-base'>
+            {preference.ui.showDistrictOnTitle
+              ? [...districts].map((district) => <DistrictIcon district={district} key={district} />)
+              : null}
+
             {[...goodcodes.rom].map((char, index) => (
               <Fragment key={index}>
                 {keywordChars.includes(char.toLowerCase()) ? <span className='text-(--accent-9)'>{char}</span> : char}
               </Fragment>
+            ))}
+
+            {compact([revisionText, versionText]).map((text) => (
+              <Badge className='mx-0.5 capitalize' key={text} size='1'>
+                {text}
+              </Badge>
             ))}
           </div>
           <div className='flex items-center gap-1 text-xs'>

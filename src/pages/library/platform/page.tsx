@@ -1,8 +1,7 @@
 import clsx from 'clsx'
+import { useLoaderData } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
-import type { ResolvedPreference } from '@/constants/preference.ts'
-import type { PlatformInfo } from '@/controllers/get-platform-info.ts'
-import type { Roms } from '@/controllers/get-roms.ts'
+import type { loader } from '@/pages/routes/library-platform.tsx'
 import { DeviceInfo } from '../components/device-info/device-info.tsx'
 import { GameListMain } from '../components/game-list-main.tsx'
 import LibraryLayout from '../components/library-layout/library-layout.tsx'
@@ -11,20 +10,8 @@ import { useIsDemo } from '../hooks/use-demo.ts'
 import { PlatformBackground } from './components/platform-background.tsx'
 import { UploadButton } from './components/upload-button.tsx'
 
-interface PlatformPageProps {
-  pageData: {
-    page: number
-    pagination: { current: number; pages: number; size: number; total: number }
-    platform: string
-    platformInfo: PlatformInfo
-    preference: ResolvedPreference
-    roms: Roms
-  }
-}
-
-export default function PlatformPage({ pageData }: Readonly<PlatformPageProps>) {
-  const { page, pagination, platform, platformInfo, roms } = pageData
-  // let platformInfo = 0
+export default function PlatformPage() {
+  const { page, pagination, platform, platformInfo, roms } = useLoaderData<typeof loader>()
   const isDemo = useIsDemo()
 
   if (!platformMap[platform]) {
@@ -36,7 +23,7 @@ export default function PlatformPage({ pageData }: Readonly<PlatformPageProps>) 
   }
 
   return (
-    <LibraryLayout title='Library'>
+    <LibraryLayout>
       <GameListMain>
         <div className={clsx('flex w-full justify-between', { 'flex-col': platformInfo })}>
           {platformInfo ? (

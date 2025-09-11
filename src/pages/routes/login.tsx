@@ -21,23 +21,23 @@ export async function loader({ request }: Route.LoaderArgs) {
       try {
         const { error } = await supabase.auth.exchangeCodeForSession(code)
         if (error) {
-          return { error, formType, redirectTo }
+          return { error, formType, redirectTo, title: 'Login' }
         }
-      } catch (error) {
-        return { error, formType, redirectTo }
+      } catch (error: any) {
+        return { error, formType, redirectTo, title: 'Login' }
       }
 
       throw c.redirect(redirectTo)
     }
 
-    return { formType, redirectTo }
+    return { formType, redirectTo, title: 'Login' }
   }
 
   const userCount = await countUsers()
   const formType = userCount ? 'login' : 'register'
-  return { formType, redirectTo }
+  return { formType, redirectTo, title: 'Login' }
 }
 
-export default function LoginRoute({ loaderData }: Readonly<Route.ComponentProps>) {
-  return <LoginPage pageData={loaderData} />
+export default function LoginRoute() {
+  return <LoginPage />
 }

@@ -1,9 +1,9 @@
 import { useEventListener } from '@react-hookz/web'
 import { off, on } from 'delegated-events'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigation } from 'react-router'
 import { Gamepad } from '@/utils/gamepad.ts'
-import { useEmulatorLaunched, useShowGameOverlayContent, useSpatialNavigationPaused } from '../atoms.ts'
+import { useEmulatorLaunched, usePristine, useShowGameOverlayContent, useSpatialNavigationPaused } from '../atoms.ts'
 import { useMouseIdle } from '../platform/rom/hooks/use-mouse-idle.ts'
 import { getKeyNameFromCode } from '../utils/keyboard.ts'
 import { cancel, click, focus, init, move } from '../utils/spatial-navigation.ts'
@@ -27,13 +27,18 @@ export function useSpatialNavigation() {
 
   const { showFocusIndicators } = preference.ui
 
-  const [pristine, setPristine] = useState(
-    {
+  const [pristine, setPristine] = usePristine()
+
+  useEffect(() => {
+    const initialPristine = {
       always: false,
       auto: true,
       never: false,
-    }[showFocusIndicators],
-  )
+    }[showFocusIndicators]
+    if (pristine) {
+      setPristine(initialPristine === true)
+    }
+  }, [pristine, showFocusIndicators, setPristine])
 
   useEffect(init, [])
 

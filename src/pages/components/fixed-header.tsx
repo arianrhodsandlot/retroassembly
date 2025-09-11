@@ -1,13 +1,15 @@
 import { Button, Tooltip } from '@radix-ui/themes'
 import { Fragment } from 'react/jsx-runtime'
-import { Link } from 'react-router'
+import { Link, useLoaderData } from 'react-router'
 import { links } from '@/constants/links.ts'
+import type { loader } from '../routes/home.tsx'
 
 function handleScrollToTop() {
   scrollTo({ behavior: 'smooth', top: 0 })
 }
 
-export function FixedHeader({ currentUser }: Readonly<{ currentUser?: any }>) {
+export function FixedHeader() {
+  const { currentUser } = useLoaderData<typeof loader>()
   return (
     <div className='border-b-(--accent-9) bg-(--accent-9) fixed z-10 flex w-full items-stretch justify-between border-b px-8  text-white shadow shadow-black/30'>
       <Link className='pt-safe-offset-4 self-center py-4 font-extrabold' to='/'>

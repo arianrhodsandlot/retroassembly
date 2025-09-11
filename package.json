@@ -148,6 +148,7 @@
       "workerd"
     ],
     "patchedDependencies": {
+      "@microsoft/clarity": "patches/@microsoft__clarity.patch",
       "goodcodes-parser": "patches/goodcodes-parser.patch",
       "selector-set": "patches/selector-set.patch",
       "spatial-navigation-ts": "patches/spatial-navigation-ts.patch"

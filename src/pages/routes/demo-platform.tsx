@@ -1,4 +1,5 @@
 import { attemptAsync } from 'es-toolkit'
+import { platformMap } from '@/constants/platform.ts'
 import { defaultPreference } from '@/constants/preference.ts'
 import { getDemoRoms } from '@/controllers/get-demo-roms.ts'
 import { getPlatformInfo } from '@/controllers/get-platform-info.ts'
@@ -21,9 +22,10 @@ export async function loader({ params }: Route.LoaderArgs) {
     platformInfo,
     preference,
     roms: getDemoRoms({ platform }),
+    title: platformMap[platform].displayName,
   }
 }
 
-export default function DemoPlatformRoute({ loaderData }: Readonly<Route.ComponentProps>) {
-  return <PlatformPage pageData={loaderData} />
+export default function DemoPlatformRoute() {
+  return <PlatformPage />
 }

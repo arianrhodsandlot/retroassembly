@@ -1,18 +1,12 @@
+import { useLoaderData } from 'react-router'
+import type { loader } from '../routes/login.tsx'
 import { LoginForm } from './components/log-in-form.tsx'
 import { LogInWithGoogleButton } from './components/log-in-with-google-button.tsx'
 import { PageContainer } from './components/page-container.tsx'
 import { RegisterForm } from './components/register-form.tsx'
 
-interface LoginPageProps {
-  pageData: {
-    error?: Error
-    formType: string
-    redirectTo: string
-  }
-}
-
-export function LoginPage({ pageData }: Readonly<LoginPageProps>) {
-  const { error, formType, redirectTo } = pageData
+export function LoginPage() {
+  const { error, formType, redirectTo } = useLoaderData<typeof loader>()
 
   if (error) {
     return <PageContainer title='Log in'>{error.message}</PageContainer>

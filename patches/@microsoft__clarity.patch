@@ -1,0 +1,10 @@
+diff --git a/index.js b/index.js
+index 14bf46d0b4cd45044e8a939e044bdc5bef0574ca..8162ce2ba61b881e1f00db90610c4a775c236a30 100644
+--- a/index.js
++++ b/index.js
+@@ -1,4 +1,4 @@
+-import { injectScript } from "./src/utils"
++import { injectScript } from "./src/utils.js"
+ 
+ const Clarity = {
+     init(projectId) {

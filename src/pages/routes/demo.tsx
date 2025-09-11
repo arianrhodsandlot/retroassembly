@@ -1,7 +1,6 @@
 import { defaultPreference } from '@/constants/preference.ts'
 import { getDemoRoms } from '@/controllers/get-demo-roms.ts'
 import LibraryPage from '../library/page.tsx'
-import type { Route } from './+types/library.ts'
 
 export function loader() {
   const preference = structuredClone(defaultPreference)
@@ -13,9 +12,10 @@ export function loader() {
     platformCount: 0,
     preference,
     roms: getDemoRoms(),
+    title: 'Library',
   }
 }
 
-export default function LibraryRoute({ loaderData }: Readonly<Route.ComponentProps>) {
-  return <LibraryPage pageData={loaderData} />
+export default function LibraryRoute() {
+  return <LibraryPage />
 }

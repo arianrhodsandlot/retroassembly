@@ -1,23 +1,12 @@
-import type { ResolvedPreference } from '@/constants/preference.ts'
-import type { Roms } from '@/controllers/get-roms.ts'
+import { useLoaderData } from 'react-router'
 import { GameListMain } from './components/game-list-main.tsx'
 import LibraryLayout from './components/library-layout/library-layout.tsx'
 import { PageStats } from './components/page-stats.tsx'
 import { useIsDemo } from './hooks/use-demo.ts'
 import { UploadSelectButton } from './platform/components/upload-select-button.tsx'
 
-interface LibraryPageProps {
-  pageData: {
-    page: number
-    pagination: any
-    platformCount: number
-    preference: ResolvedPreference
-    roms: Roms
-  }
-}
-
-export default function LibraryPage({ pageData }: Readonly<LibraryPageProps>) {
-  const { page, pagination, platformCount, roms } = pageData
+export default function LibraryPage() {
+  const { page, pagination, platformCount, roms } = useLoaderData()
   const isDemo = useIsDemo()
 
   if (page > 1 && roms.length === 0) {
@@ -25,7 +14,7 @@ export default function LibraryPage({ pageData }: Readonly<LibraryPageProps>) {
   }
 
   return (
-    <LibraryLayout title='Library'>
+    <LibraryLayout>
       <GameListMain>
         <div>
           <h1 className='text-5xl font-semibold'>Library</h1>

@@ -1,7 +1,6 @@
 import { getContext } from 'hono/context-storage'
 import { getRunTimeEnv } from '@/constants/env.ts'
 import { HomePage } from '../page.tsx'
-import type { Route } from './+types/home.ts'
 
 export function loader() {
   const c = getContext()
@@ -10,9 +9,9 @@ export function loader() {
   if (currentUser && skipIfLoggedIn) {
     throw c.redirect('/library')
   }
-  return { currentUser }
+  return { currentUser, title: 'RetroAssembly' }
 }
 
-export default function HomeRoute({ loaderData }: Readonly<Route.ComponentProps>) {
-  return <HomePage pageData={loaderData} />
+export default function HomeRoute() {
+  return <HomePage />
 }

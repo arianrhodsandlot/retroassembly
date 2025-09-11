@@ -32,3 +32,8 @@ const selectedGamesAtom = atom<string[]>([])
 export function useSelectedGames() {
   return useAtom(selectedGamesAtom)
 }
+
+const pristineAtom = atom(true)
+export function usePristine() {
+  return useAtom(pristineAtom)
+}

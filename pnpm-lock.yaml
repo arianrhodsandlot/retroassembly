@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
+  '@microsoft/clarity':
+    hash: 6e2d0481958fbc05c134cdb9cfc9416aa81357c2907f7eef3cdadcd0765117a5
+    path: patches/@microsoft__clarity.patch
   goodcodes-parser:
     hash: 0d6b63ddf0231e5a7643df8e6fce96b8eb7f167de7fe13b28159cf77c2a13873
     path: patches/goodcodes-parser.patch
@@ -70,7 +73,7 @@ importers:
         version: 1.0.6(tailwindcss@4.1.13)
       '@microsoft/clarity':
         specifier: 1.0.0
-        version: 1.0.0
+        version: 1.0.0(patch_hash=6e2d0481958fbc05c134cdb9cfc9416aa81357c2907f7eef3cdadcd0765117a5)
       '@playwright/test':
         specifier: 1.55.0
         version: 1.55.0
@@ -7036,7 +7039,7 @@ snapshots:
 
   '@mdn/browser-compat-data@5.7.6': {}
 
-  '@microsoft/clarity@1.0.0': {}
+  '@microsoft/clarity@1.0.0(patch_hash=6e2d0481958fbc05c134cdb9cfc9416aa81357c2907f7eef3cdadcd0765117a5)': {}
 
   '@microsoft/tsdoc-config@0.17.1':
     dependencies:

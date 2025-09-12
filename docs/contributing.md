@@ -30,9 +30,9 @@ Simply run following commands in a terminal then a development server will be la
     node --run=dev
     ```
 
-### Tech Stacks
+### Tech Stack
 #### Frontend
-[React](https://react.dev/), [Tailwind CSS](https://tailwindcss.com/), [Nostalgist.js](https://nostalgist.js.org/)
+[React](https://react.dev/), [React Router](https://reactrouter.com/), [Radix UI](https://www.radix-ui.com/), [Tailwind CSS](https://tailwindcss.com/), [Iconify](https://iconify.design/), [Nostalgist.js](https://nostalgist.js.org/)
 
 #### Backend
 [Hono](https://hono.dev/), [React Router](https://reactrouter.com/), [Drizzle](https://orm.drizzle.team/)

@@ -136,23 +136,9 @@ export function useSpatialNavigation() {
   // auto resize or move the focus indicator
   useEffect(() => {
     const abortController = new AbortController()
-
-    document.addEventListener(
-      'scroll',
-      () => {
-        syncStyle({ transition: false })
-      },
-      { signal: abortController.signal },
-    )
-
-    document.addEventListener(
-      'focusin',
-      () => {
-        syncStyle()
-      },
-      { signal: abortController.signal },
-    )
-
+    const options = { capture: true, signal: abortController.signal }
+    document.addEventListener('scroll', () => syncStyle({ transition: false }), options)
+    document.addEventListener('focusin', () => syncStyle(), options)
     return () => abortController.abort()
   }, [syncStyle])
 

@@ -1,9 +1,8 @@
-import { useToggle } from '@react-hookz/web'
 import { delay } from 'es-toolkit'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export function useMouseIdle(idleTime = 1000) {
-  const [isIdle, setIsIdle] = useToggle()
+  const [isIdle, setIsIdle] = useState(false)
   const abortController = useRef<AbortController>(undefined)
 
   useEffect(() => {

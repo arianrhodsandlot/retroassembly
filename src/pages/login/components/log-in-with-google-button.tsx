@@ -1,13 +1,13 @@
 import { Button } from '@radix-ui/themes'
-import { useToggle } from '@react-hookz/web'
+import { useState } from 'react'
 import { Link } from 'react-router'
 
 export function LogInWithGoogleButton({ redirectTo }: Readonly<{ redirectTo: string }>) {
-  const [clicked, toggleClicked] = useToggle()
+  const [clicked, setClicked] = useState(false)
 
   function handleClick() {
     if (!clicked) {
-      toggleClicked()
+      setClicked(true)
     }
   }
   return (

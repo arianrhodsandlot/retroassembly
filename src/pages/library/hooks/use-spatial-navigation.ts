@@ -1,4 +1,3 @@
-import { useEventListener } from '@react-hookz/web'
 import { off, on } from 'delegated-events'
 import { useEffect } from 'react'
 import { useNavigation } from 'react-router'
@@ -44,6 +43,7 @@ export function useSpatialNavigation() {
 
   // keyboard navigation
   useEffect(() => {
+    const abortController = new AbortController()
     const keyboardDirectionMap = {
       [inputMapping.keyboard.input_player1_down]: 'down',
       [inputMapping.keyboard.input_player1_left]: 'left',
@@ -75,14 +75,15 @@ export function useSpatialNavigation() {
       }
     }
 
-    document.addEventListener('keydown', handleKeydown)
-    return () => document.removeEventListener('keydown', handleKeydown)
+    document.addEventListener('keydown', handleKeydown, { signal: abortController.signal })
+    return () => abortController.abort()
   }, [
     inputMapping.keyboard,
     inputMapping.confirmKey,
     inputMapping.cancelKey,
     isSpatialNavigationPaused,
     showFocusIndicators,
+    setPristine,
   ])
 
   // gamepad navigation
@@ -114,6 +115,7 @@ export function useSpatialNavigation() {
     inputMapping.cancelButton,
     isSpatialNavigationPaused,
     showFocusIndicators,
+    setPristine,
   ])
 
   // focus when an element got hovered
@@ -132,10 +134,27 @@ export function useSpatialNavigation() {
   }, [isIdle])
 
   // auto resize or move the focus indicator
-  useEventListener(globalThis.document, 'scroll', () => syncStyle({ transition: false }), true)
+  useEffect(() => {
+    const abortController = new AbortController()
 
-  // maintain focus status
-  useEventListener(globalThis.document, 'focusin', syncStyle, true)
+    document.addEventListener(
+      'scroll',
+      () => {
+        syncStyle({ transition: false })
+      },
+      { signal: abortController.signal },
+    )
+
+    document.addEventListener(
+      'focusin',
+      () => {
+        syncStyle()
+      },
+      { signal: abortController.signal },
+    )
+
+    return () => abortController.abort()
+  }, [syncStyle])
 
   return { pristine }
 }

@@ -1,7 +1,6 @@
 import { Button, type ButtonProps } from '@radix-ui/themes'
-import { useToggle } from '@react-hookz/web'
 import { clsx } from 'clsx'
-import type { MouseEvent, ReactNode } from 'react'
+import { type MouseEvent, type ReactNode, useState } from 'react'
 
 interface GameOverlayButtonProps {
   children: Iterable<ReactNode>
@@ -18,16 +17,16 @@ export function GameOverlayButton({
   disabled = false,
   onClick,
 }: Readonly<GameOverlayButtonProps>) {
-  const [isLoading, toggleLoading] = useToggle()
+  const [isLoading, setIsLoading] = useState(false)
 
   async function handleClick(event: MouseEvent<HTMLButtonElement>) {
     if (isLoading) {
       return
     }
 
-    toggleLoading()
+    setIsLoading(true)
     await onClick?.(event)
-    toggleLoading()
+    setIsLoading(false)
   }
 
   const [icon, text] = children

@@ -1,5 +1,4 @@
 import { Button, type ButtonProps, DropdownMenu } from '@radix-ui/themes'
-import { useToggle } from '@react-hookz/web'
 import { useState } from 'react'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
@@ -10,13 +9,13 @@ import { UploadDialog } from './upload-dialog.tsx'
 export function UploadSelectButton({ variant = 'soft' }: Readonly<{ variant?: ButtonProps['variant'] }>) {
   const { preference } = usePreference()
   const [key, setKey] = useState(Date.now)
-  const [open, toggleOpen] = useToggle()
+  const [open, setOpen] = useState(false)
   const [selectedPlatform, setSelectedPlatform] = useState('')
 
   function handleClick(platform: string) {
     setKey(Date.now)
     setSelectedPlatform(platform)
-    toggleOpen()
+    setOpen(true)
   }
 
   return (
@@ -44,8 +43,10 @@ export function UploadSelectButton({ variant = 'soft' }: Readonly<{ variant?: Bu
         </DropdownMenu.Content>
       </DropdownMenu.Root>
 
-      <DialogRoot onOpenChange={toggleOpen} open={open}>
-        {selectedPlatform ? <UploadDialog key={key} platform={selectedPlatform} toggleOpen={toggleOpen} /> : null}
+      <DialogRoot onOpenChange={setOpen} open={open}>
+        {selectedPlatform ? (
+          <UploadDialog key={key} platform={selectedPlatform} toggleOpen={() => setOpen(false)} />
+        ) : null}
       </DialogRoot>
     </>
   )

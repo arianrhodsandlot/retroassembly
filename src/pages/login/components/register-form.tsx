@@ -2,22 +2,27 @@ import { Button, Callout } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
-import { api } from '@/utils/http.ts'
+import { client, type InferRequestType } from '@/api/client.ts'
 import { LoginFormFields } from './log-in-form-fields.tsx'
+
+const { $post } = client.auth.register
 
 function validateFormData(formData: FormData) {
   if (formData.get('password') !== formData.get('repeat_password')) {
     throw new Error('Passwords do not match')
   }
-  return formData
+  return {
+    password: formData.get('password')?.toString() || '',
+    username: formData.get('username')?.toString() || '',
+  }
 }
 
 export function RegisterForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
   const [isRedirecting, setIsRedirecting] = useState(false)
 
   const { error, isMutating, trigger } = useSWRMutation(
-    'auth/register',
-    (url, { arg }: { arg: FormData }) => api.post(url, { body: validateFormData(arg) }).json(),
+    { endpoint: 'auth/register', method: 'post' },
+    (key, { arg: form }: { arg: InferRequestType<typeof $post>['form'] }) => $post({ form }),
     {
       onSuccess() {
         setIsRedirecting(true)
@@ -30,7 +35,7 @@ export function RegisterForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     try {
-      await trigger(formData)
+      await trigger(validateFormData(formData))
     } catch {}
   }
 

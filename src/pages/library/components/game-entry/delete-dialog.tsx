@@ -1,7 +1,7 @@
 import { AlertDialog, Button } from '@radix-ui/themes'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
-import { api } from '@/utils/http.ts'
+import { client } from '@/api/client.ts'
 import { useGameActions } from '../../hooks/use-game-actions.ts'
 import { useRouter } from '../../hooks/use-router.ts'
 
@@ -9,19 +9,30 @@ interface DeleteDialogProps extends AlertDialog.RootProps {
   rom: { id: string }
 }
 
+const { ':id': romsEndpoint } = client.roms
+
 export function DeleteDialog({ rom, ...props }: Readonly<DeleteDialogProps>) {
   const { reloadSilently } = useRouter()
   const { actions } = useGameActions(rom)
   const action = actions.find(({ name }) => name === 'delete')
+  const type = action?.type as 'launch_records' | 'roms'
+  const { $delete, $url } = { launch_records: romsEndpoint.launch_records, roms: romsEndpoint }[type]
+  const param = { id: rom.id }
+  const endpoint = $url({ param })
+
   const [clicked, setClicked] = useState(false)
-  const { isMutating, trigger } = useSWRMutation(action?.api, (url) => api.delete(url), {
-    onError() {
-      setClicked(false)
+  const { isMutating, trigger } = useSWRMutation(
+    { endpoint, method: 'delete', param },
+    ({ param }) => $delete({ param }),
+    {
+      onError() {
+        setClicked(false)
+      },
+      onSuccess: () => {
+        closeDeleteDialog()
+      },
     },
-    onSuccess: () => {
-      closeDeleteDialog()
-    },
-  })
+  )
 
   const isLoading = clicked || isMutating
   function closeDeleteDialog() {

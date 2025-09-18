@@ -1,22 +1,27 @@
 import { IconButton } from '@radix-ui/themes'
+import type { InferRequestType } from 'hono'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
+import { client, parseResponse } from '@/api/client.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
-import { api } from '@/utils/http.ts'
 import { GameCover } from '../game-cover.tsx'
 import { selectImageFile } from './utils.ts'
+
+const endpoint = 'roms/:id/boxart'
+const { $delete, $post } = client.roms[':id'].boxart
 
 export function GameMediaBoxart() {
   const initialRom = useRom()
   const [rom, setRom] = useState(initialRom)
-
+  const param = { id: rom.id }
   const { isMutating: isUploadingBoxart, trigger: uploadBoxart } = useSWRMutation(
-    `roms/${rom.id}/boxart`,
-    (url, { arg }: { arg: FormData }) => api.post(url, { body: arg }).json<string>(),
+    { endpoint, method: 'post', param },
+    ({ param }, { arg: form }: { arg: InferRequestType<typeof $post>['form'] }) => $post({ form, param }),
   )
 
-  const { isMutating: isResettingingBoxart, trigger: resetBoxart } = useSWRMutation(`roms/${rom.id}/boxart`, (url) =>
-    api.delete(url),
+  const { isMutating: isResettingingBoxart, trigger: resetBoxart } = useSWRMutation(
+    { endpoint, method: 'delete', param },
+    ({ param }) => $delete({ param }),
   )
 
   async function handleClickResetBoxart() {
@@ -27,9 +32,7 @@ export function GameMediaBoxart() {
   async function handleClickUploadBoxart() {
     const file = await selectImageFile()
     if (file) {
-      const formData = new FormData()
-      formData.append('file', file)
-      const gameBoxartFileIds = await uploadBoxart(formData)
+      const gameBoxartFileIds = await parseResponse(uploadBoxart({ file }))
       setRom({ ...rom, gameBoxartFileIds })
     }
   }

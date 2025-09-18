@@ -3,15 +3,17 @@ import { clsx } from 'clsx'
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
-import { api } from '@/utils/http.ts'
+import { client, type InferRequestType } from '@/api/client.ts'
 import { LoginFormFields } from './log-in-form-fields.tsx'
+
+const { $post } = client.auth.login
 
 export function LoginForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
   const [isRedirecting, setIsRedirecting] = useState(false)
 
   const { error, isMutating, trigger } = useSWRMutation(
-    'auth/login',
-    (url, { arg }: { arg: FormData }) => api.post(url, { body: arg }).json(),
+    { endpoint: 'auth/login', method: 'post' },
+    (key, { arg: form }: { arg: InferRequestType<typeof $post>['form'] }) => $post({ form }),
     {
       onSuccess() {
         setIsRedirecting(true)
@@ -30,7 +32,10 @@ export function LoginForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
     const form = event.currentTarget
     const formData = new FormData(form)
     try {
-      await trigger(formData)
+      await trigger({
+        password: formData.get('password')?.toString() || '',
+        username: formData.get('username')?.toString() || '',
+      })
     } catch {
       form.querySelector('input')?.select()
     }

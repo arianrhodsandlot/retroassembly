@@ -1,11 +1,12 @@
 import { Button, Dialog, IconButton } from '@radix-ui/themes'
+import type { InferRequestType } from 'hono'
 import { type PropsWithChildren, useState } from 'react'
 import useSWRMutation from 'swr/mutation'
+import { client } from '@/api/client.ts'
 import { DialogRoot } from '@/pages/library/components/dialog-root.tsx'
 import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { useRouter } from '@/pages/library/hooks/use-router.ts'
-import { api } from '@/utils/http.ts'
 import { getRomGoodcodes } from '@/utils/library.ts'
 import { GameInfoDataList } from './game-info-data-list.tsx'
 
@@ -32,14 +33,16 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
 
   const [open, setOpen] = useState(false)
 
-  const { isMutating, trigger } = useSWRMutation(`roms/${rom.id}`, (url, { arg }: { arg: FormData }) =>
-    api.patch(url, { body: arg }),
+  const { isMutating, trigger } = useSWRMutation(
+    { endpoint: 'roms', method: 'patch', param: { id: rom.id } },
+    ({ param }, { arg: form }: { arg: InferRequestType<(typeof client.roms)[':id']['$patch']>['form'] }) =>
+      client.roms[':id'].$patch({ form, param }),
   )
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.target as HTMLFormElement)
-    await trigger(formData)
+    await trigger(Object.fromEntries(formData))
     setOpen(false)
     await reloadSilently()
   }

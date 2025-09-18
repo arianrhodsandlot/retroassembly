@@ -1,24 +1,33 @@
 import { IconButton } from '@radix-ui/themes'
 import { fileOpen } from 'browser-fs-access'
 import { clsx } from 'clsx'
+import type { InferRequestType } from 'hono'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
+import { client, parseResponse } from '@/api/client.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
-import { api } from '@/utils/http.ts'
+
+const {
+  ':thumbnailId': { $delete },
+  $post,
+} = client.roms[':id'].thumbnail
 
 export function GameMediaImages() {
   const rom = useRom()
   const [thumbnailFileIds, setThumbnailFileIds] = useState<string[]>(rom.gameThumbnailFileIds?.split(',') || [])
 
+  const param = { id: rom.id }
+
   const { isMutating: isUploadingThumbnail, trigger: uploadThumbnail } = useSWRMutation(
-    `roms/${rom.id}/thumbnail`,
-    (url, { arg }: { arg: FormData }) => api.post(url, { body: arg }).json<string>(),
+    { endpoint: 'roms/:id/thumbnail', method: 'post', param },
+    ({ param }, { arg: form }: { arg: InferRequestType<typeof $post>['form'] }) =>
+      parseResponse($post({ form, param })),
   )
 
   const { isMutating: isDeletingThumbnail, trigger: deleteThumbnail } = useSWRMutation(
-    `roms/${rom.id}/thumbnail`,
-    (url, { arg }: { arg: string }) => api.delete(`${url}/${encodeURIComponent(arg)}`).json<string>(),
+    { endpoint: 'roms/:id/thumbnail/:thumbnailId', method: 'delete', param },
+    (key, { arg: param }: { arg: InferRequestType<typeof $delete>['param'] }) => parseResponse($delete({ param })),
   )
 
   const isLoading = isUploadingThumbnail || isDeletingThumbnail
@@ -29,21 +38,19 @@ export function GameMediaImages() {
     }
     const file = await fileOpen({ extensions: ['.jpg', '.jpeg', '.png', '.svg'] })
     if (file) {
-      const formData = new FormData()
-      formData.append('file', file)
-      const thumbnailIds = await uploadThumbnail(formData)
+      const thumbnailIds = await uploadThumbnail({ file })
       setThumbnailFileIds(thumbnailIds?.split(',') || [])
     }
   }
 
-  async function handleClickDeleteThumbnail(thumbnailFileId: string) {
+  async function handleClickDeleteThumbnail(thumbnailId: string) {
     if (isDeletingThumbnail) {
       return
     }
     if (confirm('Are you sure you want to delete this thumbnail?') === false) {
       return
     }
-    const thumbnailIds = await deleteThumbnail(thumbnailFileId)
+    const thumbnailIds = await deleteThumbnail({ id: rom.id, thumbnailId })
     setThumbnailFileIds(thumbnailIds?.split(',') || [])
   }
 

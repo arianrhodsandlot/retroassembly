@@ -2,9 +2,11 @@ import { AlertDialog, Button } from '@radix-ui/themes'
 import { delay } from 'es-toolkit'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
-import { api } from '@/utils/http.ts'
+import { client } from '@/api/client.ts'
 import { useSelectedGames } from '../../atoms.ts'
 import { useRouter } from '../../hooks/use-router.ts'
+
+const { $delete } = client.roms
 
 export function DeleteDialog(props: Readonly<AlertDialog.RootProps>) {
   const { onOpenChange } = props
@@ -13,18 +15,15 @@ export function DeleteDialog(props: Readonly<AlertDialog.RootProps>) {
   const [clicked, setClicked] = useState(false)
 
   const { isMutating, trigger } = useSWRMutation(
-    'roms',
-    (url) =>
-      api.delete(url, {
-        searchParams: { ids: selectedGames.join(',') },
-      }),
+    { endpoint: 'roms', method: 'delete', query: { ids: selectedGames.join(',') } },
+    ({ query }) => $delete({ query }),
     {
       onError() {
         setClicked(false)
       },
       async onSuccess() {
         closeDeleteDialog()
-        await delay(500)
+        await delay(500) // waiting for animation
         setSelectedGames([])
       },
     },

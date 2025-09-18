@@ -2,9 +2,11 @@ import { Button, Callout, Card } from '@radix-ui/themes'
 import { attemptAsync } from 'es-toolkit'
 import { useLoaderData } from 'react-router'
 import useSWRMutation from 'swr/mutation'
+import { client, type InferRequestType } from '@/api/client.ts'
 import { AccountFormField } from '@/pages/components/account-form-field.tsx'
-import { api } from '@/utils/http.ts'
 import { SettingsTitle } from './settings-title.tsx'
+
+const { $patch } = client.auth.password
 
 function validateFormData(formData: FormData) {
   if (formData.get('new_password') !== formData.get('repeat_new_password')) {
@@ -13,7 +15,10 @@ function validateFormData(formData: FormData) {
   if (formData.get('new_password') === formData.get('password')) {
     throw new Error('The new password is the same as the current password')
   }
-  return formData
+  return {
+    new_password: `${formData.get('new_password')}`,
+    password: `${formData.get('password')}`,
+  }
 }
 
 export function AccountSettings() {
@@ -37,8 +42,8 @@ export function AccountSettings() {
   ] as const
 
   const { data, error, isMutating, reset, trigger } = useSWRMutation(
-    'auth/password',
-    (url, { arg }: { arg: FormData }) => api.patch(url, { body: validateFormData(arg) }).json(),
+    { endpoint: 'auth/password', method: 'patch' },
+    (key, { arg: form }: { arg: InferRequestType<typeof $patch>['form'] }) => $patch({ form }),
   )
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -46,7 +51,7 @@ export function AccountSettings() {
     const form = event.currentTarget
     const formData = new FormData(form)
     reset()
-    const [error] = await attemptAsync(() => trigger(formData))
+    const [error] = await attemptAsync(() => trigger(validateFormData(formData)))
     if (!error) {
       form.reset()
     }

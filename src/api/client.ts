@@ -14,5 +14,5 @@ export const client = hc<AppType>(baseUrl, {
     throw json ?? response
   },
 }).api.v1
-export type { InferRequestType } from 'hono'
+export type { InferRequestType, InferResponseType } from 'hono'
 export { parseResponse }

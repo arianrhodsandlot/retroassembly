@@ -1,24 +1,25 @@
-import ky from 'ky'
 import useSWRImmutable from 'swr/immutable'
 import useSWRMutation from 'swr/mutation'
-import { client } from '@/api/client.ts'
-import type { States } from '@/controllers/get-states.ts'
+import { client, parseResponse } from '@/api/client.ts'
 import { useShowGameOverlayContent } from '@/pages/library/atoms.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { useEmulator } from './use-emulator.ts'
 
-const { $post } = client.states
+const { $get, $post } = client.states
 
 export function useGameStates() {
   const rom = useRom()
   const { core, emulator } = useEmulator()
   const [showGameOverlay] = useShowGameOverlayContent()
 
+  const query = { rom: rom.id, type: 'manual' } as const
   const {
     data: states,
     isLoading: isStatesLoading,
     mutate: reloadStates,
-  } = useSWRImmutable(rom && showGameOverlay ? `/api/v1/roms/${rom.id}/states` : false, (url) => ky<States>(url).json())
+  } = useSWRImmutable(rom && showGameOverlay ? { endpoint: '/api/v1/roms/:id/states', query } : false, ({ query }) =>
+    parseResponse($get({ query })),
+  )
 
   const { isMutating: isSavingState, trigger: saveState } = useSWRMutation('/api/v1/states', async (url) => {
     if (!emulator || !core || !rom) {

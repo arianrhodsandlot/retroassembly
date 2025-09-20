@@ -1,6 +1,5 @@
 import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
-import ky, { type Options } from 'ky'
 import QuickLRU from 'quick-lru'
 import { getRunTimeEnv } from '@/constants/env.ts'
 
@@ -26,22 +25,18 @@ function createRequest({
   return new Request(input, init)
 }
 
-function getClient() {
+function getCFServiceBinding() {
+  const { RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST } = getRunTimeEnv()
+  if (RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST) {
+    return
+  }
   const c = getContext()
   const { MSLEUTH } = env<Env>(c)
-  const { RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST } = getRunTimeEnv()
-  const option: Options = { retry: 3, timeout: 30_000 }
-  if (MSLEUTH?.fetch && !RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST) {
-    option.fetch = async (...args) => {
-      try {
-        return await MSLEUTH.fetch(...args)
-      } catch {
-        return await fetch(...args)
-      }
-    }
-  }
-  const client = ky.create(option)
-  return client
+  return MSLEUTH.fetch
+}
+
+function request(...args: Parameters<typeof fetch>) {
+  return (getCFServiceBinding() || fetch)(...args)
 }
 
 const queryCache = new QuickLRU<string, unknown>({ maxSize: 100 })
@@ -51,16 +46,17 @@ async function query(json: unknown) {
     return queryCache.get(cacheKey)
   }
 
-  const client = getClient()
-  const result = await client(createRequest({ endpoint: 'metadata/query', json })).json()
+  const response = await request(createRequest({ endpoint: 'metadata/query', json }))
+  const result = await response.json()
 
   queryCache.set(cacheKey, result)
   return result
 }
 
 async function identify(json: unknown) {
-  const client = getClient()
-  return await client(createRequest({ endpoint: 'metadata/identify', json })).json()
+  const response = await request(createRequest({ endpoint: 'metadata/identify', json }))
+  const result = await response.json()
+  return result
 }
 
 const platformCache = new Map<string, unknown>()
@@ -70,8 +66,8 @@ async function getPlatform(name: string) {
     return platformCache.get(cacheKey)
   }
 
-  const client = getClient()
-  const result = await client(createRequest({ endpoint: `platform/${encodeURIComponent(name)}` })).json()
+  const response = await request(createRequest({ endpoint: `platform/${encodeURIComponent(name)}` }))
+  const result = await response.json()
 
   platformCache.set(cacheKey, result)
   return result

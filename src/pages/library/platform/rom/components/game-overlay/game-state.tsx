@@ -1,30 +1,21 @@
 import { Badge } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import ky from 'ky'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
-import type { State } from '@/controllers/get-states.ts'
+import type { client, InferResponseType } from '@/api/client.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { humanizeDate } from '@/utils/misc.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 
-export function GameState({ state }: Readonly<{ state: State }>) {
+export function GameState({ state }: Readonly<{ state: InferResponseType<typeof client.states.$get>[number] }>) {
   const { hide, setIsPending } = useGameOverlay()
   const { core, emulator } = useEmulator()
   const [loaded, setLoaded] = useState(false)
   const { isMutating, trigger: loadState } = useSWRMutation(
     getFileUrl(state.fileId),
-    async (url) => {
-      if (emulator) {
-        await emulator.loadState(ky(url))
-      }
-    },
-    {
-      async onSuccess() {
-        await hide()
-      },
-    },
+    (url) => emulator?.loadState(url),
+    { onSuccess: hide },
   )
 
   const loadable = core === state.core

@@ -1,8 +1,6 @@
- 
 import path from 'node:path'
 import { test as base } from '@playwright/test'
 import fs from 'fs-extra'
-import ky from 'ky'
 import { getCDNUrl } from '../../../src/utils/cdn.ts'
 
 interface Rom {
@@ -28,7 +26,8 @@ export const test = base.extend<{ roms: Rom[] }>({
       roms.map(async (rom) => {
         const exists = await fs.pathExists(rom.path)
         if (!exists) {
-          const arrayBuffer = await ky(rom.url).arrayBuffer()
+          const response = await fetch(rom.url)
+          const arrayBuffer = await response.arrayBuffer()
           await fs.writeFile(rom.path, Buffer.from(arrayBuffer))
         }
       }),

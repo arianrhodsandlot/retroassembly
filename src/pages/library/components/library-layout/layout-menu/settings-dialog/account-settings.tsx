@@ -1,8 +1,8 @@
 import { Button, Callout, Card } from '@radix-ui/themes'
-import { attemptAsync } from 'es-toolkit'
+import type { FormEvent } from 'react'
 import { useLoaderData } from 'react-router'
 import useSWRMutation from 'swr/mutation'
-import { client, type InferRequestType } from '@/api/client.ts'
+import { client } from '@/api/client.ts'
 import { AccountFormField } from '@/pages/components/account-form-field.tsx'
 import { SettingsTitle } from './settings-title.tsx'
 
@@ -41,21 +41,20 @@ export function AccountSettings() {
     },
   ] as const
 
-  const { data, error, isMutating, reset, trigger } = useSWRMutation(
+  const {
+    data,
+    error,
+    isMutating,
+    trigger: handleSubmit,
+  } = useSWRMutation(
     { endpoint: 'auth/password', method: 'patch' },
-    (key, { arg: form }: { arg: InferRequestType<typeof $patch>['form'] }) => $patch({ form }),
+    async (key, { arg: event }: { arg: FormEvent<HTMLFormElement> }) => {
+      event.preventDefault()
+      const formData = new FormData(event.currentTarget)
+      const form = validateFormData(formData)
+      return await $patch({ form })
+    },
   )
-
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const form = event.currentTarget
-    const formData = new FormData(form)
-    reset()
-    const [error] = await attemptAsync(() => trigger(validateFormData(formData)))
-    if (!error) {
-      form.reset()
-    }
-  }
 
   return (
     <div>

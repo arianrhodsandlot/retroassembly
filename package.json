@@ -19,7 +19,7 @@
     "test": "playwright test -c tests/e2e"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm tsc && pnpm lint-staged"
+    "pre-commit": "pnpm lint-staged && pnpm tsc"
   },
   "lint-staged": {
     "*.?(m|c)@(j|t)s?(x)": "eslint --flag=unstable_native_nodejs_ts_config --fix",

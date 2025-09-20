@@ -193,5 +193,5 @@ export function resolveUserPreference(rawUserPreference: null | PreferenceSnippe
     delete userPreference.ui.platforms
   }
 
-  return mergePreference(fallbackPreference, userPreference)
+  return mergePreference(fallbackPreference, userPreference) as Preference
 }

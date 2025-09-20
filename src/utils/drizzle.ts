@@ -10,7 +10,7 @@ const config = { casing: 'snake_case', schema } as const
 
 function createDrizzleD1() {
   const c = getContext()
-  const library = drizzleD1(env<any>(c).DB_LIBRARY, config)
+  const library = drizzleD1(env<Env>(c).DB_LIBRARY, config)
   return { library }
 }
 

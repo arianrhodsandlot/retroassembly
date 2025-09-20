@@ -2,14 +2,16 @@ import { clsx } from 'clsx'
 import { type FormEvent, useCallback, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import useSWR from 'swr'
+import { client, parseResponse } from '@/api/client.ts'
 import { useSpatialNavigationPaused } from '@/pages/library/atoms.ts'
 import { useInputMapping } from '@/pages/library/hooks/use-input-mapping.ts'
 import { Gamepad } from '@/utils/gamepad.ts'
-import { api } from '@/utils/http.ts'
 import { useShowSearchModal } from '../atoms.ts'
 import { useQuery, useSelectedResult } from './atoms.ts'
 import { SearchInput } from './search-input.tsx'
 import { SearchResults } from './search-results.tsx'
+
+const { $get } = client.roms.search
 
 export function SearchBar() {
   const navigate = useNavigate()
@@ -22,14 +24,9 @@ export function SearchBar() {
   const [selectedResult, setSelectedResult] = useSelectedResult()
 
   const { data, isLoading: isMutating } = useSWR(
-    query ? ['roms/search', query] : null,
-    ([url, query]) => api(url, { searchParams: { page_size: 10, query } }).json<any>(),
-    {
-      dedupingInterval: 5 * 60 * 1000,
-      keepPreviousData: true,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    },
+    query ? { endpoint: 'roms/search', query: { page_size: '10', query } } : null,
+    ({ query }) => parseResponse($get({ query })),
+    { dedupingInterval: 5 * 60 * 1000, keepPreviousData: true, revalidateOnFocus: false, revalidateOnReconnect: false },
   )
 
   const selectedUrl = selectedResult
@@ -127,7 +124,7 @@ export function SearchBar() {
           { '*:opacity-50': data?.query !== query },
         )}
       >
-        <SearchResults keyword={data?.query} loading={isMutating} results={data?.roms} />
+        <SearchResults keyword={data?.query ?? ''} loading={isMutating} results={data?.roms} />
       </div>
     </div>
   )

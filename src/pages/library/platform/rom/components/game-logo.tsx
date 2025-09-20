@@ -1,6 +1,5 @@
 import { attemptAsync } from 'es-toolkit'
 import useSWRImmutable from 'swr/immutable'
-import { http } from '@/utils/http.ts'
 import { imageLoaded } from '@/utils/image.ts'
 import { getRomLibretroThumbnail } from '@/utils/library.ts'
 
@@ -10,7 +9,8 @@ async function getRomLogo(rom) {
   if (!error) {
     return url
   }
-  const text = await http(url).text()
+  const response = await fetch(url)
+  const text = await response.text()
   if (!text.endsWith('.png')) {
     return ''
   }

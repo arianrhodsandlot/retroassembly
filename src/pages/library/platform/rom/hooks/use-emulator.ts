@@ -1,9 +1,9 @@
 import { attemptAsync, noop } from 'es-toolkit'
-import ky from 'ky'
 import { Nostalgist } from 'nostalgist'
 import { useEffect, useMemo } from 'react'
 import { useLoaderData } from 'react-router'
 import useSWRImmutable from 'swr/immutable'
+import { client } from '@/api/client.ts'
 import { coreUrlMap } from '@/constants/core.ts'
 import type { Rom } from '@/controllers/get-roms.ts'
 import { useEmulatorLaunched } from '@/pages/library/atoms.ts'
@@ -117,12 +117,7 @@ export function useEmulator() {
     setLaunched(true)
 
     if (!isDemo) {
-      const formData = new FormData()
-      formData.append('core', core)
-      formData.append('rom', rom.id)
-      await ky.post('/api/v1/launch_records', {
-        body: formData,
-      })
+      await client.launch_records.$post({ form: { core, rom: rom.id } })
     }
   }
 

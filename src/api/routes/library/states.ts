@@ -32,8 +32,8 @@ export const states = new Hono()
       z.object({
         core: z.string(),
         rom: z.string(),
-        state: z.instanceof(File),
-        thumbnail: z.instanceof(File),
+        state: z.instanceof(Blob),
+        thumbnail: z.instanceof(Blob),
         type: z.enum(['auto', 'manual']),
       }),
     ),

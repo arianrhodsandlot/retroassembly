@@ -3,11 +3,11 @@ import { fileOpen } from 'browser-fs-access'
 import confetti from 'canvas-confetti'
 import { clsx } from 'clsx'
 import { chunk } from 'es-toolkit'
-import ky from 'ky'
 import { useDeferredValue, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useLoaderData } from 'react-router'
 import useSWRMutation from 'swr/mutation'
+import { client } from '@/api/client.ts'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/library.ts'
 import { useRouter } from '../../hooks/use-router.ts'
@@ -32,13 +32,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: stri
 
   async function uploadFiles(url: string, files: File[]) {
     const md5s = await Promise.all(files.map((file) => getROMMd5(file, platform)))
-    const formData = new FormData()
-    for (const file of files) {
-      formData.append('files[]', file)
-    }
-    formData.append('platform', platform)
-    formData.append('md5s', JSON.stringify(md5s))
-    await ky.post(url, { body: formData, timeout: false })
+    await client.roms.$post({ form: { 'files[]': files, md5s: JSON.stringify(md5s), platform } })
   }
 
   const { trigger } = useSWRMutation('/api/v1/roms', async (url: string, { arg: files }: { arg: File[] }) => {

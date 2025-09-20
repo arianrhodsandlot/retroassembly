@@ -16,13 +16,12 @@ export function DeleteDialog({ rom, ...props }: Readonly<DeleteDialogProps>) {
   const { actions } = useGameActions(rom)
   const action = actions.find(({ name }) => name === 'delete')
   const type = action?.type as 'launch_records' | 'roms'
-  const { $delete, $url } = { launch_records: romsEndpoint.launch_records, roms: romsEndpoint }[type]
-  const param = { id: rom.id }
-  const endpoint = $url({ param })
+  const { $delete } = { launch_records: romsEndpoint.launch_records, roms: romsEndpoint }[type]
+  const endpoint = { launch_records: 'roms/:id/launch_records', roms: 'roms' }[type]
 
   const [clicked, setClicked] = useState(false)
   const { isMutating, trigger } = useSWRMutation(
-    { endpoint, method: 'delete', param },
+    { endpoint, method: 'delete', param: { id: rom.id } },
     ({ param }) => $delete({ param }),
     {
       onError() {

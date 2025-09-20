@@ -7,8 +7,8 @@ import { nanoid } from '../utils/misc.ts'
 interface CreateStateParams {
   core: string
   rom: string
-  state: File
-  thumbnail: File
+  state: Blob
+  thumbnail: Blob
   type: 'auto' | 'manual'
 }
 

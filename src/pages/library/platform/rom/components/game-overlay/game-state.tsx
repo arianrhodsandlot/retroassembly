@@ -58,6 +58,7 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
             'opacity-0': !loaded,
             'opacity-80': isMutating,
           })}
+          loading='lazy'
           onError={handleLoaded}
           onLoad={handleLoaded}
           src={getFileUrl(state.thumbnailFileId)}

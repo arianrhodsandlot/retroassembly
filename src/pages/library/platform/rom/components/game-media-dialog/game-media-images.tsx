@@ -68,7 +68,7 @@ export function GameMediaImages() {
             <span className='icon-[mdi--close]' />
           </button>
           <a className='size-20' href={getFileUrl(thumbnailFileId)} rel='noreferrer noopener' target='_blank'>
-            <img alt='Thumbnail' className='size-20 object-contain' src={getFileUrl(thumbnailFileId)} />
+            <img alt='Thumbnail' className='size-20 object-contain' loading='lazy' src={getFileUrl(thumbnailFileId)} />
           </a>
         </div>
       ))}

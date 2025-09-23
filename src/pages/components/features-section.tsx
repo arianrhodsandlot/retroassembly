@@ -27,6 +27,7 @@ const features = [
               <img
                 alt={platform}
                 className={clsx('size-full scale-110 object-contain object-center')}
+                loading='lazy'
                 src={getPlatformDeviceBackground(platform)}
               />
             </div>
@@ -74,6 +75,7 @@ const features = [
             <img
               alt={name}
               className='size-full object-contain'
+              loading='lazy'
               src={getRomLibretroThumbnail({ libretroGame: { name }, platform })}
             />
           </div>

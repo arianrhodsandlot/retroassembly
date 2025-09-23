@@ -47,6 +47,7 @@ export function GameListEmpty() {
             <img
               alt={platform?.displayName}
               className='hidden size-7 lg:inline-block'
+              loading='lazy'
               src={getPlatformIcon(platform.name)}
             />{' '}
             {platform?.displayName} in your library.

@@ -52,6 +52,7 @@ export function CoresSettings() {
                   className={clsx('size-5 object-contain object-center', {
                     invert: ['ngp', 'wonderswan'].includes(selectedPlatform),
                   })}
+                  loading='lazy'
                   src={getPlatformIcon(platformMap[selectedPlatform].name)}
                 />
                 {platformMap[selectedPlatform].displayName}

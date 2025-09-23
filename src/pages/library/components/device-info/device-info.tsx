@@ -33,7 +33,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
     <div className='flex flex-col lg:flex-row'>
       <div className='flex flex-col gap-8'>
         <h1>
-          <img alt={platformInfo.name} className='h-16 w-auto lg:px-8' src={banner} />
+          <img alt={platformInfo.name} className='h-16 w-auto lg:px-8' loading='lazy' src={banner} />
         </h1>
 
         <div className='bg-(--gray-a3) rounded p-4 lg:px-8'>
@@ -96,6 +96,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
         <img
           alt={platformInfo.name}
           className='motion-preset-oscillate motion-duration-2400 mx-auto aspect-video w-4/5 object-contain object-center drop-shadow-2xl [--motion-loop-translate-y:8px]'
+          loading='lazy'
           src={devicePhoto}
         />
       </div>

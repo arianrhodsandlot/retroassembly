@@ -34,6 +34,7 @@ export function PlatformCheckboxItem({ disabled, platform }: Readonly<{ disabled
           className={clsx('size-6 rounded object-contain object-center', {
             invert: ['ngp', 'wonderswan'].includes(platform.name),
           })}
+          loading='lazy'
           src={getPlatformIcon(platform.name)}
         />
         {platform.displayName}

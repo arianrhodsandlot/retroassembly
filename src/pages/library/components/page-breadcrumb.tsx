@@ -27,6 +27,7 @@ export function PageBreadcrumb() {
         <img
           alt={platform.displayName}
           className={clsx('size-6', { invert: ['ngp', 'wonderswan'].includes(platform.name) })}
+          loading='lazy'
           src={getPlatformIcon(platform.name)}
         />
       ),
@@ -36,7 +37,14 @@ export function PageBreadcrumb() {
 
     if (rom) {
       links.push({
-        icon: <img alt={platform.displayName} className='size-5 p-0.5' src={getPlatformGameIcon(rom.platform)} />,
+        icon: (
+          <img
+            alt={platform.displayName}
+            className='size-5 p-0.5'
+            loading='lazy'
+            src={getPlatformGameIcon(rom.platform)}
+          />
+        ),
         text: getRomGoodcodes(rom).rom,
         url: `/${libraryPath}/rom/${rom.id}`,
       })

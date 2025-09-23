@@ -15,6 +15,7 @@ export function GamePlatform({ platform }: Readonly<{ platform: string }>) {
       <img
         alt={platformMap[platform].displayName}
         className={clsx('size-4', { invert: ['ngp', 'wonderswan'].includes(platformMap[platform].name) })}
+        loading='lazy'
         src={getPlatformIcon(platformMap[platform].name)}
       />
       {platformMap[platform].displayName}

@@ -27,6 +27,6 @@ export function GameLogo({ goodcodes, rom, ...props }) {
   const { data } = useSWRImmutable(getRomLibretroThumbnail(rom, 'logo'), () => getRomLogo(rom))
 
   if (data) {
-    return <img alt={`${goodcodes.rom}`} src={data} {...props} />
+    return <img alt={`${goodcodes.rom}`} loading='lazy' src={data} {...props} />
   }
 }

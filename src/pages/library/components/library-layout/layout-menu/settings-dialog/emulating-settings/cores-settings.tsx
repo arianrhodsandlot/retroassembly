@@ -8,6 +8,7 @@ import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 import { UpdateButton } from '../update-button.tsx'
+import { BIOSOptions } from './bios-options.tsx'
 import { CoreOptions } from './core-options.tsx'
 
 export function CoresSettings() {
@@ -79,7 +80,9 @@ export function CoresSettings() {
       </SettingsTitle>
 
       <Card>
-        <label className='flex items-center gap-2'>
+        <BIOSOptions platform={selectedPlatform} />
+
+        <label className='mt-2 flex items-center gap-2'>
           <SettingsTitle as='h4'>
             <span className='icon-[mdi--monitor-screenshot]' /> Emulator
           </SettingsTitle>

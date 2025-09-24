@@ -47,10 +47,12 @@ async function query(json: unknown) {
   }
 
   const response = await request(createRequest({ endpoint: 'metadata/query', json }))
-  const result = await response.json()
+  if (response.ok) {
+    const result = await response.json()
 
-  queryCache.set(cacheKey, result)
-  return result
+    queryCache.set(cacheKey, result)
+    return result
+  }
 }
 
 async function identify(json: unknown) {

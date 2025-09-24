@@ -50,7 +50,7 @@ export function DeleteDialog(props: Readonly<AlertDialog.RootProps>) {
           Delete selected {selectedGames.length} {selectedGames.length === 1 ? 'ROM' : 'ROMs'}
         </AlertDialog.Title>
         <AlertDialog.Description className='whitespace-pre-line !leading-loose' size='2'>
-          {'Are you sure to proceed?\nThe deleted ROM cannot be restored.'}
+          {'Are you sure to proceed?\nThe deleted ROMs cannot be restored.'}
         </AlertDialog.Description>
 
         <div className='mt-4 flex justify-end gap-3'>

@@ -1,8 +1,8 @@
 import { attemptAsync } from 'es-toolkit'
 import { platformMap } from '@/constants/platform.ts'
 import { defaultPreference } from '@/constants/preference.ts'
-import { getDemoRoms } from '@/controllers/get-demo-roms.ts'
-import { getPlatformInfo } from '@/controllers/get-platform-info.ts'
+import { getDemoRoms } from '@/controllers/roms/get-demo-roms.ts'
+import { getPlatformInfo } from '@/controllers/roms/get-platform-info.ts'
 import PlatformPage from '../library/platform/page.tsx'
 import type { Route } from './+types/library-platform.ts'
 

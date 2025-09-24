@@ -1,6 +1,6 @@
 import { getContext } from 'hono/context-storage'
 import { deleteCookie } from 'hono/cookie'
-import { invalidateSession } from '../../controllers/invalidate-session.ts'
+import { invalidateSession } from '@/controllers/sessions/invalidate-session.ts'
 
 export async function loader() {
   const c = getContext()

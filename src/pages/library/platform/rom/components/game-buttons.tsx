@@ -1,7 +1,7 @@
 import { Button, HoverCard } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import type { MouseEvent } from 'react'
-import type { State } from '@/controllers/get-states.ts'
+import type { State } from '@/controllers/states/get-states.ts'
 import { useFocusIndicator } from '@/pages/library/hooks/use-focus-indicator.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { useLaunchButton } from '../atoms.ts'

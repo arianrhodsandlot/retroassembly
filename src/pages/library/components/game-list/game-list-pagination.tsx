@@ -1,7 +1,7 @@
 import { Button } from '@radix-ui/themes'
 import { range } from 'es-toolkit'
 import { useLoaderData } from 'react-router'
-import type { RomsPagination } from '@/controllers/get-roms'
+import type { RomsPagination } from '@/controllers/roms/get-roms.ts'
 import { NavigatableLink } from '../navigatable-link.tsx'
 
 export function GameListPagination() {

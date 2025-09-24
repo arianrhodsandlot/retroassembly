@@ -1,8 +1,8 @@
 import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
 import { z } from 'zod'
-import { createLaunchRecord } from '../../../controllers/create-launch-record.ts'
-import { getLaunchRecords } from '../../../controllers/get-launch-records.ts'
+import { createLaunchRecord } from '@/controllers/launch-records/create-launch-record.ts'
+import { getLaunchRecords } from '@/controllers/launch-records/get-launch-records.ts'
 
 export const launchRecords = new Hono()
 

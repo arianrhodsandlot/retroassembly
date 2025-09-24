@@ -1,8 +1,8 @@
 import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
 import { z } from 'zod'
-import { createState } from '../../../controllers/create-state.ts'
-import { getStates } from '../../../controllers/get-states.ts'
+import { createState } from '../../../controllers/states/create-state.ts'
+import { getStates } from '../../../controllers/states/get-states.ts'
 
 export const states = new Hono()
 

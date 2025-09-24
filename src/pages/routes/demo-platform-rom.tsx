@@ -1,5 +1,5 @@
 import { defaultPreference } from '@/constants/preference.ts'
-import { getDemoRoms } from '@/controllers/get-demo-roms.ts'
+import { getDemoRoms } from '@/controllers/roms/get-demo-roms.ts'
 import RomPage from '../library/platform/rom/page.tsx'
 import type { Route } from './+types/library-platform-rom.ts'
 

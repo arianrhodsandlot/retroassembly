@@ -1,5 +1,5 @@
 import { defaultPreference } from '@/constants/preference.ts'
-import { getDemoRoms } from '@/controllers/get-demo-roms.ts'
+import { getDemoRoms } from '@/controllers/roms/get-demo-roms.ts'
 import LibraryPage from '../library/page.tsx'
 
 export function loader() {

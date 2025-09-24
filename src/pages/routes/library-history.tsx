@@ -1,4 +1,4 @@
-import { getLaunchRecords } from '@/controllers/get-launch-records.ts'
+import { getLaunchRecords } from '@/controllers/launch-records/get-launch-records.ts'
 import { getLoaderData } from '@/utils/loader-data.ts'
 import HistoryPage from '../library/history/page.tsx'
 import type { Route } from './+types/library-history.ts'

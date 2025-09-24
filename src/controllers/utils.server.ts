@@ -45,3 +45,10 @@ export function getConnInfo(context?: Context) {
     }
   } catch {}
 }
+
+export async function getFileContent(id: string) {
+  const { storage } = getContext().var
+
+  const object = await storage.get(id)
+  return object
+}

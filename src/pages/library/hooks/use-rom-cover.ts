@@ -1,6 +1,6 @@
 import { uniq } from 'es-toolkit'
 import useSWRImmutable from 'swr/immutable'
-import type { Rom } from '@/controllers/get-roms'
+import type { Rom } from '@/controllers/roms/get-roms.ts'
 import { imageLoaded } from '@/utils/image.ts'
 import {
   getDemoRomThumbnail,

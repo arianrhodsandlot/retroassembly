@@ -1,8 +1,8 @@
 import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
 import z from 'zod'
-import { getPreference } from '../../../controllers/get-preference.ts'
-import { updatePreference } from '../../../controllers/update-preference.ts'
+import { getPreference } from '@/controllers/preference/get-preference.ts'
+import { updatePreference } from '@/controllers/preference/update-preference.ts'
 
 export const preference = new Hono()
   .get('', async (c) => {

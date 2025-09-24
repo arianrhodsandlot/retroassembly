@@ -5,7 +5,7 @@ import { chunk } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
 import { DateTime } from 'luxon'
 import { romTable } from '@/databases/schema.ts'
-import { msleuth } from '@/utils/msleuth.ts'
+import { msleuth } from '@/utils/server/msleuth.ts'
 
 function getGenres({ launchbox, libretro }) {
   return (

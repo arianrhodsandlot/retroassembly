@@ -2,8 +2,8 @@ import { capitalize } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
 import { Nostalgist } from 'nostalgist'
 import type { Rom } from '@/controllers/roms/get-roms.ts'
-import { platformMap, type PlatformName } from '../constants/platform.ts'
-import { getCDNUrl } from './cdn.ts'
+import { platformMap, type PlatformName } from '../../constants/platform.ts'
+import { getCDNUrl } from '../isomorphic/cdn.ts'
 
 type LibretroThumbnailType = 'boxart' | 'logo' | 'snap' | 'title'
 

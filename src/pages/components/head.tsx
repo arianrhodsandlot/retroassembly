@@ -2,7 +2,7 @@ import { noop } from 'es-toolkit'
 import { useSyncExternalStore } from 'react'
 import { Links, Meta } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
-import { cdnHost } from '@/utils/cdn.ts'
+import { cdnHost } from '@/utils/isomorphic/cdn.ts'
 
 export function Head() {
   const target = useSyncExternalStore(

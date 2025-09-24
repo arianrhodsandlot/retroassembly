@@ -87,7 +87,7 @@ export default defineConfig(async (env) => {
     if (env.command === 'serve') {
       const { storageDirectory } = getDirectories()
       await fs.ensureDir(storageDirectory)
-      await import('./src/utils/self-test.ts')
+      await import('./src/utils/server/self-test.ts')
     }
     config.plugins?.push(
       serverAdapter({

@@ -3,7 +3,7 @@ import Atropos from 'atropos/react'
 import { clsx } from 'clsx'
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
-import { getRomGoodcodes } from '@/utils/library.ts'
+import { getRomGoodcodes } from '@/utils/client/library.ts'
 import { skeletonClassnames } from '../../constants/skeleton-classnames.ts'
 import { useRomCover } from '../../hooks/use-rom-cover.ts'
 

@@ -1,7 +1,7 @@
 import { Button, type ButtonProps, DropdownMenu } from '@radix-ui/themes'
 import { useState } from 'react'
 import { platformMap } from '@/constants/platform.ts'
-import { getPlatformIcon } from '@/utils/library.ts'
+import { getPlatformIcon } from '@/utils/client/library.ts'
 import { DialogRoot } from '../../components/dialog-root.tsx'
 import { usePreference } from '../../hooks/use-preference.ts'
 import { UploadDialog } from './upload-dialog.tsx'

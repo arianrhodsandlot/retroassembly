@@ -2,7 +2,7 @@ import { eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
 import { userTable } from '@/databases/schema.ts'
-import { getConnInfo } from '../utils.server.ts'
+import { getConnInfo } from '@/utils/server/misc.ts'
 
 export async function createUser({ password, username }: { password: string; username: string }) {
   const c = getContext()

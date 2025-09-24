@@ -1,7 +1,7 @@
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { romTable } from '@/databases/schema.ts'
-import { getFileContent } from '../utils.server'
+import { getFileContent } from '@/utils/server/misc.ts'
 
 export async function getRomContent(id: string) {
   const { currentUser, db } = getContext().var

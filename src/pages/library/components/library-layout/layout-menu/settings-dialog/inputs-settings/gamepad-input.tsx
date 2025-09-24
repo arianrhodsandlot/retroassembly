@@ -4,7 +4,7 @@ import { type ReactNode, useEffect, useRef } from 'react'
 import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useGamepads } from '@/pages/library/hooks/use-gamepads.ts'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
-import { Gamepad } from '@/utils/gamepad.ts'
+import { Gamepad } from '@/utils/client/gamepad.ts'
 
 interface GamepadInputProps {
   button: {

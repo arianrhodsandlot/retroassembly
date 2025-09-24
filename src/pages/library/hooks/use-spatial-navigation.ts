@@ -1,7 +1,7 @@
 import { off, on } from 'delegated-events'
 import { useEffect } from 'react'
 import { useNavigation } from 'react-router'
-import { Gamepad } from '@/utils/gamepad.ts'
+import { Gamepad } from '@/utils/client/gamepad.ts'
 import { useEmulatorLaunched, usePristine, useShowGameOverlayContent, useSpatialNavigationPaused } from '../atoms.ts'
 import { useMouseIdle } from '../platform/rom/hooks/use-mouse-idle.ts'
 import { getKeyNameFromCode } from '../utils/keyboard.ts'

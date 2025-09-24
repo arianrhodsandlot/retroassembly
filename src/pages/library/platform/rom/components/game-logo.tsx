@@ -1,7 +1,7 @@
 import { attemptAsync } from 'es-toolkit'
 import useSWRImmutable from 'swr/immutable'
-import { imageLoaded } from '@/utils/image.ts'
-import { getRomLibretroThumbnail } from '@/utils/library.ts'
+import { imageLoaded } from '@/utils/client/image.ts'
+import { getRomLibretroThumbnail } from '@/utils/client/library.ts'
 
 async function getRomLogo(rom) {
   const url = getRomLibretroThumbnail(rom, 'logo')

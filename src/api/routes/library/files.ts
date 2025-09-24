@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { getRunTimeEnv } from '@/constants/env.ts'
-import { getFileContent } from '@/controllers/utils.server.ts'
+import { getFileContent } from '@/utils/server/misc.ts'
 import { createFileResponse } from '../utils.ts'
 
 export const files = new Hono().get(':id{.+}', async (c) => {

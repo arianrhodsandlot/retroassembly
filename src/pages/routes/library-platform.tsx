@@ -3,7 +3,7 @@ import { attemptAsync } from 'es-toolkit'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformInfo } from '@/controllers/roms/get-platform-info.ts'
 import { getRoms } from '@/controllers/roms/get-roms.ts'
-import { getLoaderData } from '@/utils/loader-data.ts'
+import { getLoaderData } from '@/utils/server/loader-data.ts'
 import PlatformPage from '../library/platform/page.tsx'
 import type { Route } from './+types/library-platform.ts'
 

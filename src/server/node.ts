@@ -1,4 +1,4 @@
-import '../utils/self-test.ts'
+import '../utils/server/self-test.ts'
 import { serveStatic } from '@hono/node-server/serve-static'
 import { handler } from 'hono-react-router-adapter/node'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

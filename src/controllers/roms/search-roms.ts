@@ -2,7 +2,7 @@ import { and, eq, inArray, like, or } from 'drizzle-orm'
 import Fuse from 'fuse.js'
 import { getContext } from 'hono/context-storage'
 import { romTable } from '@/databases/schema.ts'
-import { getRomsMetadata } from '../utils.server.ts'
+import { getRomsMetadata } from '../../utils/server/misc.ts'
 
 type SearchRomsReturning = Awaited<ReturnType<typeof searchRoms>>
 export type SearchRoms = SearchRomsReturning['roms']

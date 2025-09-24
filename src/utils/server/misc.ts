@@ -4,7 +4,7 @@ import type { Context } from 'hono'
 import { getRuntimeKey } from 'hono/adapter'
 import { getConnInfo as getCloudflareWorkersConnInfo } from 'hono/cloudflare-workers'
 import { getContext } from 'hono/context-storage'
-import { msleuth } from '../utils/msleuth.ts'
+import { msleuth } from './msleuth.ts'
 
 interface RomMetadataQuery {
   launchboxGameId?: null | number

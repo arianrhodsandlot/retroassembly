@@ -4,7 +4,7 @@ import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 import type { client, InferResponseType } from '@/api/client.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
-import { humanizeDate } from '@/utils/misc.ts'
+import { humanizeDate } from '@/utils/isomorphic/misc.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 

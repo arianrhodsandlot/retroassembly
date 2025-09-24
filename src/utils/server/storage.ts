@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
-import { getDirectories } from '../constants/env.ts'
+import { getDirectories } from '../../constants/env.ts'
 
 export function createStorage() {
   const c = getContext()

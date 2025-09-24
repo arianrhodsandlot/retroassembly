@@ -1,13 +1,13 @@
 import { uniq } from 'es-toolkit'
 import useSWRImmutable from 'swr/immutable'
 import type { Rom } from '@/controllers/roms/get-roms.ts'
-import { imageLoaded } from '@/utils/image.ts'
+import { imageLoaded } from '@/utils/client/image.ts'
 import {
   getDemoRomThumbnail,
   getLibretroThumbnail,
   getPlatformGameIcon,
   getRomLibretroThumbnail,
-} from '@/utils/library.ts'
+} from '@/utils/client/library.ts'
 import { getFileUrl } from '../utils/file.ts'
 import { useIsDemo } from './use-demo.ts'
 

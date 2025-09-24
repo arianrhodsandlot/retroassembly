@@ -1,5 +1,5 @@
 import '@/styles/index.ts'
-import '@/utils/global.ts'
+import '@/utils/client/global.ts'
 import { getContext } from 'hono/context-storage'
 import type { ReactNode } from 'react'
 import { Outlet } from 'react-router'

@@ -1,6 +1,6 @@
 import { useLoaderData } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
-import { getCDNUrl } from '@/utils/cdn.ts'
+import { getCDNUrl } from '@/utils/isomorphic/cdn.ts'
 import { MainBackground } from '../../components/main-background.tsx'
 
 export function PlatformBackground() {

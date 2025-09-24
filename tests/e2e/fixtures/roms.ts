@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { test as base } from '@playwright/test'
 import fs from 'fs-extra'
-import { getCDNUrl } from '../../../src/utils/cdn.ts'
+import { getCDNUrl } from '../../../src/utils/isomorphic/cdn.ts'
 
 interface Rom {
   path: string

@@ -1,4 +1,4 @@
-import { mergePreference } from '../controllers/utils.ts'
+import { mergePreference } from '../utils/isomorphic/preference.ts'
 import type { CoreName } from './core'
 import type { PlatformName } from './platform'
 

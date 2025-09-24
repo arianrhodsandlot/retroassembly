@@ -1,6 +1,6 @@
 import { index, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
-import type { PreferenceSnippet } from '../constants/preference'
-import { nanoid } from '../utils/misc.ts'
+import type { PreferenceSnippet } from '../constants/preference.ts'
+import { nanoid } from '../utils/server/nanoid.ts'
 
 export const statusEnum = {
   deleted: 0,

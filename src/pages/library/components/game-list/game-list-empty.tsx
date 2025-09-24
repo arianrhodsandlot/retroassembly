@@ -1,6 +1,6 @@
 import { Button } from '@radix-ui/themes'
 import { Link, useLocation } from 'react-router'
-import { getPlatformIcon } from '@/utils/library.ts'
+import { getPlatformIcon } from '@/utils/client/library.ts'
 import { usePlatform } from '../../hooks/use-platform.ts'
 import { UploadButton } from '../../platform/components/upload-button.tsx'
 import { UploadSelectButton } from '../../platform/components/upload-select-button.tsx'

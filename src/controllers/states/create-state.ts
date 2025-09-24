@@ -2,7 +2,7 @@ import path from 'node:path'
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { romTable, stateTable } from '@/databases/schema.ts'
-import { nanoid } from '../../utils/misc.ts'
+import { nanoid } from '@/utils/server/nanoid.ts'
 
 interface CreateStateParams {
   core: string

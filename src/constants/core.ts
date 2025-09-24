@@ -1,5 +1,5 @@
 import { range } from 'es-toolkit'
-import { cdnHost } from '@/utils/cdn.ts'
+import { cdnHost } from '@/utils/isomorphic/cdn.ts'
 
 export type CoreName =
   | 'a5200'

@@ -13,7 +13,7 @@ import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { useRouter } from '@/pages/library/hooks/use-router.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { focus, offCancel, onCancel } from '@/pages/library/utils/spatial-navigation.ts'
-import { getCDNUrl } from '@/utils/cdn.ts'
+import { getCDNUrl } from '@/utils/isomorphic/cdn.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
 import { useIsFullscreen, useLaunchButton } from '../atoms.ts'
 

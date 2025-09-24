@@ -1,6 +1,6 @@
 import { Autoplay, FreeMode, Thumbs } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { getPlatformBanner } from '@/utils/library.ts'
+import { getPlatformBanner } from '@/utils/client/library.ts'
 
 const platforms = [
   'atari2600',

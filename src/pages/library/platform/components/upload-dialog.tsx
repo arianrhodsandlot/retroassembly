@@ -9,7 +9,7 @@ import { useLoaderData } from 'react-router'
 import useSWRMutation from 'swr/mutation'
 import { client } from '@/api/client.ts'
 import { platformMap } from '@/constants/platform.ts'
-import { getPlatformIcon } from '@/utils/library.ts'
+import { getPlatformIcon } from '@/utils/client/library.ts'
 import { useRouter } from '../../hooks/use-router.ts'
 import { getROMMd5 } from '../../utils/file.ts'
 

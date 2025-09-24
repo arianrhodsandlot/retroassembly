@@ -1,6 +1,6 @@
 import { clsx } from 'clsx'
 import { platformMap } from '@/constants/platform.ts'
-import { getPlatformIcon } from '@/utils/library.ts'
+import { getPlatformIcon } from '@/utils/client/library.ts'
 import { usePlatform } from '../../hooks/use-platform.ts'
 
 export function GamePlatform({ platform }: Readonly<{ platform: string }>) {

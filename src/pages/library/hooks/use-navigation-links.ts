@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
-import { getPlatformIcon } from '@/utils/library.ts'
+import { getPlatformIcon } from '@/utils/client/library.ts'
 import { useIsDemo } from './use-demo.ts'
 import { usePlatform } from './use-platform.ts'
 import { usePreference } from './use-preference.ts'

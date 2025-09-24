@@ -1,7 +1,7 @@
 import { useLoaderData } from 'react-router'
 import { RadixThemePortal } from '@/pages/components/radix-theme-portal.tsx'
 import type { loader } from '@/pages/routes/library-platform-rom.tsx'
-import { getRomGoodcodes } from '@/utils/library.ts'
+import { getRomGoodcodes } from '@/utils/client/library.ts'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../../components/main-scroll-area.tsx'
 import { PageBreadcrumb } from '../../components/page-breadcrumb.tsx'

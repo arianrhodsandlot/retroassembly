@@ -1,6 +1,6 @@
 import { getRomPlatformCount } from '@/controllers/roms/get-rom-platform-count.ts'
 import { getRoms } from '@/controllers/roms/get-roms.ts'
-import { getLoaderData } from '@/utils/loader-data.ts'
+import { getLoaderData } from '@/utils/server/loader-data.ts'
 import LibraryPage from '../library/page.tsx'
 import type { Route } from './+types/library.ts'
 

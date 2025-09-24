@@ -1,6 +1,6 @@
 import { Badge } from '@radix-ui/themes'
 import { compact } from 'es-toolkit'
-import { getRomGoodcodes } from '@/utils/library.ts'
+import { getRomGoodcodes } from '@/utils/client/library.ts'
 import { usePreference } from '../../hooks/use-preference.ts'
 import { DistrictIcon } from '../district-icon.tsx'
 

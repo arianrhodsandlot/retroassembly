@@ -4,7 +4,7 @@ import { DialogRoot } from '@/pages/library/components/dialog-root.tsx'
 import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { useRouter } from '@/pages/library/hooks/use-router.ts'
-import { getRomGoodcodes } from '@/utils/library.ts'
+import { getRomGoodcodes } from '@/utils/client/library.ts'
 import { GameMediaBoxart } from './game-media-boxart.tsx'
 import { GameMediaImages } from './game-media-images.tsx'
 

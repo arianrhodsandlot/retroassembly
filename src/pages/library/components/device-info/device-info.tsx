@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import type { PlatformInfo } from '@/controllers/roms/get-platform-info.ts'
-import { getPlatformBanner, getPlatformDevicePhoto } from '@/utils/library.ts'
+import { getPlatformBanner, getPlatformDevicePhoto } from '@/utils/client/library.ts'
 import { CompanyLogo } from '../../platform/components/company-logo.tsx'
 import { DeviceNotes } from './device-notes.tsx'
 

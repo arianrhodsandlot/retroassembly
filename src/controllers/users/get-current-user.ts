@@ -2,7 +2,7 @@ import { and, eq, gt } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { DateTime } from 'luxon'
 import { sessionTable, statusEnum, userTable } from '@/databases/schema.ts'
-import { createSupabase } from '@/utils/supabase.ts'
+import { createSupabase } from '@/utils/server/supabase.ts'
 
 export async function getCurrentUser() {
   const supabase = createSupabase()

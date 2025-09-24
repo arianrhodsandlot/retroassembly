@@ -1,8 +1,4 @@
 import { DateTime } from 'luxon'
-import { customAlphabet } from 'nanoid'
-import { nolookalikes } from 'nanoid-dictionary'
-
-export const nanoid = customAlphabet(nolookalikes, 10)
 
 export function restoreTitleForSorting(title: string) {
   // Match titles ending with ", A", ", An", or ", The" followed by optional additional info

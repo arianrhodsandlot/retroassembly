@@ -3,8 +3,8 @@ import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
 import { DateTime } from 'luxon'
 import { sessionTable, statusEnum, userTable } from '@/databases/schema.ts'
-import { nanoid } from '@/utils/misc.ts'
-import { getConnInfo } from '../utils.server.ts'
+import { getConnInfo } from '@/utils/server/misc.ts'
+import { nanoid } from '@/utils/server/nanoid.ts'
 
 const invalidException = new HTTPException(401, { message: 'Invalid username or password' })
 

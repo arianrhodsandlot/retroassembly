@@ -1,4 +1,4 @@
-import type { ResolvedPreference } from '../../constants/preference.ts'
+import type { ResolvedPreference } from '@/constants/preference.ts'
 
 declare module 'hono' {
   interface ContextVariableMap {

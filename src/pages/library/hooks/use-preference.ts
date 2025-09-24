@@ -21,5 +21,5 @@ export function usePreference() {
     }
   }
 
-  return { isLoading, preference: preference || defaultPreference, update }
+  return { isLoading, preference: preference || defaultPreference, setPreference, update }
 }

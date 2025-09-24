@@ -51,7 +51,7 @@ export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootP
 
         <div>
           <Tabs.Root asChild onValueChange={handleValueChange} value={tab.name}>
-            <>
+            <div>
               <Tabs.List>
                 {settingsTabs.map(({ iconClass, name }) => (
                   <Tabs.Trigger key={name} value={name}>
@@ -70,7 +70,7 @@ export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootP
                   )}
                 </ScrollArea>
               </div>
-            </>
+            </div>
           </Tabs.Root>
         </div>
 

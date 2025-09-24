@@ -1,5 +1,4 @@
 import { clsx } from 'clsx'
-import { useEffect } from 'hono/jsx'
 import { useRef, useState } from 'react'
 import { Autoplay, FreeMode, Thumbs } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -20,25 +19,15 @@ export function ScreenshotSlider() {
   const swiperRef = useRef<SwiperType>(null)
   const [swiperDelay, setSliderDelay] = useState(40_000)
 
-  const { data: videoObjectURL, isLoading: isVideoLoading } = useSWRImmutable(video, async (video) => {
-    const response = await fetch(video)
-    const blob = await response.blob()
-    return URL.createObjectURL(blob)
-  })
+  const { isLoading: isVideoLoading } = useSWRImmutable(video, (video) =>
+    fetch(video, { cache: 'force-cache', method: 'head' }),
+  )
 
-  const { isLoading: areImagesLoading } = useSWRImmutable(images, (images) =>
+  const { isLoading: areImagesLoading } = useSWRImmutable(images.slice(0, 1), (images) =>
     Promise.all(images.map((image) => imageLoaded(image))),
   )
 
   const isLoading = isVideoLoading || areImagesLoading
-
-  useEffect(() => {
-    return () => {
-      if (videoObjectURL) {
-        URL.revokeObjectURL(videoObjectURL)
-      }
-    }
-  }, [videoObjectURL])
 
   return (
     <div className='hidden flex-1 shrink-0 flex-col items-center justify-center gap-10 xl:flex'>
@@ -78,7 +67,7 @@ export function ScreenshotSlider() {
                 controls={false}
                 loop
                 muted
-                src={videoObjectURL}
+                src={video}
               />
             </SwiperSlide>
             {images.map((image) => (

@@ -6,7 +6,6 @@ import type { Swiper as SwiperType } from 'swiper/types'
 import useSWRImmutable from 'swr/immutable'
 import { imageLoaded } from '@/utils/image.ts'
 
-const video = '/assets/screenrecordings/import-roms.mp4'
 const images = [
   '/assets/screenshots/library.jpeg',
   '/assets/screenshots/platform.jpeg',
@@ -14,20 +13,13 @@ const images = [
   '/assets/screenshots/menu.jpeg',
 ]
 
+const swiperDelay = 3000
+
 export function ScreenshotSlider() {
   const [indicator, setIndicator] = useState({ current: 0, progress: 0 })
   const swiperRef = useRef<SwiperType>(null)
-  const [swiperDelay, setSliderDelay] = useState(40_000)
 
-  const { isLoading: isVideoLoading } = useSWRImmutable(video, (video) =>
-    fetch(video, { cache: 'force-cache', method: 'head' }),
-  )
-
-  const { isLoading: areImagesLoading } = useSWRImmutable(images.slice(0, 1), (images) =>
-    Promise.all(images.map((image) => imageLoaded(image))),
-  )
-
-  const isLoading = isVideoLoading || areImagesLoading
+  const { isLoading } = useSWRImmutable(images.at(0), (image) => imageLoaded(image))
 
   return (
     <div className='hidden flex-1 shrink-0 flex-col items-center justify-center gap-10 xl:flex'>
@@ -45,31 +37,11 @@ export function ScreenshotSlider() {
             onAutoplayTimeLeft={({ realIndex }, _time, progress) => {
               setIndicator({ current: realIndex, progress })
             }}
-            onSlideChange={({ realIndex }) => {
-              setSliderDelay(realIndex ? 3000 : 20_000)
-              const video = document.querySelector('video')
-              if (video) {
-                video.currentTime = 0
-                if (realIndex === 0) {
-                  video.play()
-                }
-              }
-            }}
             onSwiper={(swiper) => {
               swiperRef.current = swiper
             }}
             spaceBetween={20}
           >
-            <SwiperSlide>
-              <video
-                autoPlay
-                className='block size-full rounded bg-neutral-200 object-contain'
-                controls={false}
-                loop
-                muted
-                src={video}
-              />
-            </SwiperSlide>
             {images.map((image) => (
               <SwiperSlide key={image}>
                 <img alt='library' className='block rounded object-contain' src={image} />
@@ -80,7 +52,7 @@ export function ScreenshotSlider() {
       </div>
 
       <div className='flex gap-2'>
-        {['', ...images].map((image, index) => (
+        {images.map((image, index) => (
           <button
             className={clsx(
               'rounded-xs relative h-1.5 w-20 transition-colors',

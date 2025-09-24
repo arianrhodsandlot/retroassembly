@@ -1,16 +1,4 @@
-@import '@radix-ui/themes/components.css';
-@import '@radix-ui/themes/tokens/base.css';
-@import '@radix-ui/themes/tokens/colors/mauve.css';
-@import '@radix-ui/themes/utilities.css';
-@import 'atropos/scss';
-@import 'tailwindcss';
 @import './fonts.css';
-@import './radix/index.css';
-@import "tailwindcss-safe-area";
-
-@plugin '@iconify/tailwind4';
-@plugin '@tailwindcss/typography';
-@plugin 'tailwindcss-motion';
 
 :root {
   --global-font-family: 'Inter Variable', -apple-system, system-ui, BlinkMacSystemFont, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;

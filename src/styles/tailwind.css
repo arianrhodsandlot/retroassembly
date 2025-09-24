@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+@import 'tailwindcss-safe-area';
+@plugin '@iconify/tailwind4';
+@plugin '@tailwindcss/typography';
+@plugin 'tailwindcss-motion';

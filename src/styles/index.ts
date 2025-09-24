@@ -1,5 +1,6 @@
-import 'swiper/css'
-import 'swiper/css/effect-fade'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
+import 'atropos/scss'
+import './radix/index.css'
+import './swiper.css'
+import './tailwind.css'
+
 import './globals.css'

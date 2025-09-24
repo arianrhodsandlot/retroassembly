@@ -1,3 +1,7 @@
+@import '@radix-ui/themes/components.css';
+@import '@radix-ui/themes/tokens/base.css';
+@import '@radix-ui/themes/tokens/colors/mauve.css';
+@import '@radix-ui/themes/utilities.css';
 @import './light.css';
 @import './dark.css';
 @import './custom.css';

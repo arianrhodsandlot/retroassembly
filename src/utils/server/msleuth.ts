@@ -7,16 +7,22 @@ function getApiURL(endpoint: string): URL {
   return new URL(`api/v1/${endpoint}`, getRunTimeEnv().RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST)
 }
 
+function getFallbackApiURL(endpoint: string): URL {
+  return new URL(`api/v1/${endpoint}`, getRunTimeEnv().RETROASSEMBLY_RUN_TIME_MSLEUTH_FALLBACK_HOST)
+}
+
 function createRequest({
   endpoint,
+  fallback = false,
   json,
   method = json ? 'POST' : 'GET',
 }: {
   endpoint: string
+  fallback?: boolean
   json?: unknown
   method?: string
 }) {
-  const input = getApiURL(endpoint)
+  const input = fallback ? getFallbackApiURL(endpoint) : getApiURL(endpoint)
   const init: RequestInit = { method }
   if (method === 'POST' && json) {
     init.body = JSON.stringify(json)
@@ -35,8 +41,16 @@ function getCFServiceBinding() {
   return MSLEUTH.fetch
 }
 
-function request(...args: Parameters<typeof fetch>) {
-  return (getCFServiceBinding() || fetch)(...args)
+function request(options: { endpoint: string; json?: unknown }) {
+  const input = createRequest(options)
+  const cfFetch = getCFServiceBinding()
+  try {
+    const fetchFunction = cfFetch || fetch
+    return fetchFunction(input)
+  } catch {
+    const fallbackInput = createRequest({ ...options, fallback: true })
+    return fetch(fallbackInput)
+  }
 }
 
 const queryCache = new QuickLRU<string, unknown>({ maxSize: 100 })
@@ -46,7 +60,7 @@ async function query(json: unknown) {
     return queryCache.get(cacheKey)
   }
 
-  const response = await request(createRequest({ endpoint: 'metadata/query', json }))
+  const response = await request({ endpoint: 'metadata/query', json })
   if (response.ok) {
     const result = await response.json()
     queryCache.set(cacheKey, result)
@@ -55,7 +69,7 @@ async function query(json: unknown) {
 }
 
 async function identify(json: unknown) {
-  const response = await request(createRequest({ endpoint: 'metadata/identify', json }))
+  const response = await request({ endpoint: 'metadata/identify', json })
   const result = await response.json()
   return result
 }
@@ -67,7 +81,7 @@ async function getPlatform(name: string) {
     return platformCache.get(cacheKey)
   }
 
-  const response = await request(createRequest({ endpoint: `platform/${encodeURIComponent(name)}` }))
+  const response = await request({ endpoint: `platform/${encodeURIComponent(name)}` })
   if (response.ok) {
     const result = await response.json()
     platformCache.set(cacheKey, result)

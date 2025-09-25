@@ -39,7 +39,7 @@ export interface Platform {
 // https://github.com/RetroPie/RetroPie-Setup/blob/master/platforms.cfg
 export const platforms: Platform[] = [
   {
-    cores: ['mame2003_plus'],
+    cores: ['mame2003_plus', 'fbneo'],
     displayName: 'Arcade',
     fileExtensions: ['zip'].map((name) => `.${name}`),
     launchboxName: 'Arcade',
@@ -70,14 +70,14 @@ export const platforms: Platform[] = [
     libretroName: 'Atari - 7800',
     name: 'atari7800',
   },
-  {
-    cores: ['mednafen_lynx', 'handy'],
-    displayName: 'Atari Lynx',
-    fileExtensions: ['lnx', 'zip'].map((name) => `.${name}`),
-    launchboxName: 'Atari Lynx',
-    libretroName: 'Atari - Lynx',
-    name: 'atarilynx',
-  },
+  // {
+  //   cores: ['mednafen_lynx', 'handy'],
+  //   displayName: 'Atari Lynx',
+  //   fileExtensions: ['lnx', 'zip'].map((name) => `.${name}`),
+  //   launchboxName: 'Atari Lynx',
+  //   libretroName: 'Atari - Lynx',
+  //   name: 'atarilynx',
+  // },
   {
     cores: ['fceumm', 'nestopia', 'quicknes'],
     displayName: 'Family Computer',
@@ -230,7 +230,7 @@ export const platforms: Platform[] = [
     libretroName: 'Bandai - WonderSwan Color',
     name: 'wonderswancolor',
   },
-].filter(({ name }) => !['atari5200', 'atari7800', 'atarilynx', 'fds', 'sega32x'].includes(name)) as Platform[]
+]
 
 export const platformMap: Record<string, Platform> = {}
 for (const platform of platforms) {

@@ -1,4 +1,5 @@
 import { index, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import type { PlatformName } from '@/constants/platform.ts'
 import type { PreferenceSnippet } from '../constants/preference.ts'
 import { nanoid } from '../utils/server/nanoid.ts'
 
@@ -56,7 +57,6 @@ export const sessionTable = sqliteTable(
     index('idx_sessions_activity').on(table.lastActivityAt),
   ],
 )
-
 export const romTable = sqliteTable(
   'roms',
   {
@@ -74,7 +74,7 @@ export const romTable = sqliteTable(
     gameThumbnailFileIds: text(),
     launchboxGameId: integer(),
     libretroGameId: text(),
-    platform: text().notNull(),
+    platform: text().notNull().$type<PlatformName>(),
     ...fileSchema,
   },
   (table) => [

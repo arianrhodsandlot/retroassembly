@@ -6,12 +6,15 @@ const cache = {}
 export async function getPlatformInfo(platform: string) {
   if (platform in cache) {
     try {
-      return await cache[platform]
+      const result = await cache[platform]
+      if (result) {
+        return result
+      }
+      delete cache[platform]
     } catch {
       delete cache[platform]
     }
   }
   const platformInfoPromise = msleuth.getPlatform(platform)
-  cache[platform] = platformInfoPromise
   return platformInfoPromise
 }

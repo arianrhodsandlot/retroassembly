@@ -28,7 +28,7 @@ export function PlatformCheckboxItem({ disabled, platform }: Readonly<{ disabled
       onClick={handleClick}
       value={platform.name}
     >
-      <div className='flex items-center gap-2'>
+      <div className='flex items-center gap-2 text-xs'>
         <img
           alt={platform.displayName}
           className={clsx('size-6 rounded object-contain object-center', {

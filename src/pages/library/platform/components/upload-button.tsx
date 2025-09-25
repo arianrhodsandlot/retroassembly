@@ -1,12 +1,13 @@
 import { Button, type ButtonProps, Dialog } from '@radix-ui/themes'
 import { useState } from 'react'
+import type { PlatformName } from '@/constants/platform.ts'
 import { DialogRoot } from '../../components/dialog-root.tsx'
 import { UploadDialog } from './upload-dialog.tsx'
 
 export function UploadButton({
   platform,
   variant = 'soft',
-}: Readonly<{ platform: string; variant?: ButtonProps['variant'] }>) {
+}: Readonly<{ platform: PlatformName; variant?: ButtonProps['variant'] }>) {
   const [key, setKey] = useState(Date.now)
   const [open, setOpen] = useState(false)
 

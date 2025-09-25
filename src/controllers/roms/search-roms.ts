@@ -1,6 +1,7 @@
 import { and, eq, inArray, like, or } from 'drizzle-orm'
 import Fuse from 'fuse.js'
 import { getContext } from 'hono/context-storage'
+import type { PlatformName } from '@/constants/platform.ts'
 import { romTable } from '@/databases/schema.ts'
 import { getRomsMetadata } from '../../utils/server/misc.ts'
 
@@ -54,7 +55,7 @@ export async function searchRoms(
   }: {
     page?: number
     pageSize?: number
-    platform?: string
+    platform?: PlatformName
     query: string
   } = {} as any,
 ) {

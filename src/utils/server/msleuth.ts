@@ -49,7 +49,6 @@ async function query(json: unknown) {
   const response = await request(createRequest({ endpoint: 'metadata/query', json }))
   if (response.ok) {
     const result = await response.json()
-
     queryCache.set(cacheKey, result)
     return result
   }
@@ -69,10 +68,11 @@ async function getPlatform(name: string) {
   }
 
   const response = await request(createRequest({ endpoint: `platform/${encodeURIComponent(name)}` }))
-  const result = await response.json()
-
-  platformCache.set(cacheKey, result)
-  return result
+  if (response.ok) {
+    const result = await response.json()
+    platformCache.set(cacheKey, result)
+    return result
+  }
 }
 
 export const msleuth = { getPlatform, identify, query }

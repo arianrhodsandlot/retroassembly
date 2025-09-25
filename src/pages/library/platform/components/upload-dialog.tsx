@@ -8,12 +8,12 @@ import { useDropzone } from 'react-dropzone'
 import { useLoaderData } from 'react-router'
 import useSWRMutation from 'swr/mutation'
 import { client } from '@/api/client.ts'
-import { platformMap } from '@/constants/platform.ts'
+import { platformMap, type PlatformName } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
 import { useRouter } from '../../hooks/use-router.ts'
 import { getROMMd5 } from '../../utils/file.ts'
 
-export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: string; toggleOpen: () => void }>) {
+export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: PlatformName; toggleOpen: () => void }>) {
   const { env } = useLoaderData()
   const maxFiles = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE, 10) || 1000
 

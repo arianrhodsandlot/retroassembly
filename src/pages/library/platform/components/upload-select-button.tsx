@@ -1,6 +1,6 @@
 import { Button, type ButtonProps, DropdownMenu } from '@radix-ui/themes'
 import { useState } from 'react'
-import { platformMap } from '@/constants/platform.ts'
+import { platformMap, type PlatformName } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
 import { DialogRoot } from '../../components/dialog-root.tsx'
 import { usePreference } from '../../hooks/use-preference.ts'
@@ -10,9 +10,9 @@ export function UploadSelectButton({ variant = 'soft' }: Readonly<{ variant?: Bu
   const { preference } = usePreference()
   const [key, setKey] = useState(Date.now)
   const [open, setOpen] = useState(false)
-  const [selectedPlatform, setSelectedPlatform] = useState('')
+  const [selectedPlatform, setSelectedPlatform] = useState<PlatformName>()
 
-  function handleClick(platform: string) {
+  function handleClick(platform: PlatformName) {
     setKey(Date.now)
     setSelectedPlatform(platform)
     setOpen(true)

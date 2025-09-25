@@ -3,6 +3,7 @@ import { and, eq, inArray, type InferInsertModel } from 'drizzle-orm'
 import { chunk } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
 import { DateTime } from 'luxon'
+import type { PlatformName } from '@/constants/platform.ts'
 import { romTable } from '@/databases/schema.ts'
 import { getFilePartialDigest } from '@/utils/server/file.ts'
 import { msleuth } from '@/utils/server/msleuth.ts'
@@ -54,7 +55,7 @@ function getReleaseYear({ launchbox, libretro }) {
   }
 }
 
-async function prepareRomData(files: File[], gameInfoList: any[], platform: string) {
+async function prepareRomData(files: File[], gameInfoList: any[], platform: PlatformName) {
   const { currentUser, storage } = getContext().var
 
   return await Promise.all(
@@ -90,7 +91,7 @@ async function prepareRomData(files: File[], gameInfoList: any[], platform: stri
   )
 }
 
-async function findExistingRoms(files: File[], platform: string) {
+async function findExistingRoms(files: File[], platform: PlatformName) {
   const { currentUser, db } = getContext().var
   const { library } = db
 
@@ -191,7 +192,7 @@ async function performBatchOperations(
   return results
 }
 
-export async function createRoms({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: string }) {
+export async function createRoms({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: PlatformName }) {
   let gameInfoList = []
   try {
     // @ts-expect-error msleuth response is not typed

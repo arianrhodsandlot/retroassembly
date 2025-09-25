@@ -1,5 +1,6 @@
 import { and, count, eq, inArray } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
+import type { PlatformName } from '@/constants/platform.ts'
 import { romTable } from '@/databases/schema.ts'
 import { getRomsMetadata } from '../../utils/server/misc.ts'
 
@@ -13,7 +14,7 @@ export async function getRoms({
   page = 1,
   pageSize = 100,
   platform,
-}: { id?: string; page?: number; pageSize?: number; platform?: string } = {}) {
+}: { id?: string; page?: number; pageSize?: number; platform?: PlatformName } = {}) {
   const { currentUser, db, preference } = getContext().var
 
   const { library } = db

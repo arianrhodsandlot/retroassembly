@@ -1,5 +1,6 @@
 import assert from 'node:assert'
 import { getContext } from 'hono/context-storage'
+import type { PlatformName } from '@/constants/platform.ts'
 import { getRom } from '@/controllers/roms/get-rom.ts'
 import { getStates } from '@/controllers/states/get-states.ts'
 import { getRomGoodcodes } from '@/utils/client/library.ts'
@@ -10,7 +11,8 @@ import type { Route } from './+types/library-platform-rom.ts'
 export async function loader({ params }: Route.LoaderArgs) {
   assert.ok(params.fileName)
   assert.ok(params.platform)
-  const rom = await getRom({ fileName: params.fileName, platform: params.platform })
+  const platform = params.platform as PlatformName
+  const rom = await getRom({ fileName: params.fileName, platform })
   if (!rom) {
     throw new Response('Not Found', { status: 404 })
   }

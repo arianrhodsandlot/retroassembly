@@ -9,7 +9,7 @@ export interface Preference {
   emulator: {
     core: Partial<Record<CoreName, Record<string, string>>>
     fullscreen: boolean
-    platform: Record<PlatformName, { bioses: { fileId: string; fileName: string }[]; core: CoreName }>
+    platform: Record<PlatformName, { bioses: { fileId: string; fileName: string }[]; core: CoreName; shader?: string }>
     shader: string
     videoSmooth: boolean
   }

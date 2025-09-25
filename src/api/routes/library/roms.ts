@@ -4,6 +4,7 @@ import { zValidator } from '@hono/zod-validator'
 import { pull } from 'es-toolkit'
 import { Hono } from 'hono'
 import { z } from 'zod'
+import type { PlatformName } from '@/constants/platform.ts'
 import { deleteLaunchRecord } from '@/controllers/launch-records/delete-launch-record.ts'
 import { createRoms } from '@/controllers/roms/create-roms.ts'
 import { deleteRom } from '@/controllers/roms/delete-rom.ts'
@@ -26,7 +27,7 @@ export const roms = new Hono()
       z.object({
         'files[]': z.instanceof(File).array().max(10),
         md5s: z.string().optional(),
-        platform: z.string(),
+        platform: z.string<PlatformName>(),
       }),
     ),
 
@@ -237,7 +238,7 @@ export const roms = new Hono()
       const result = await searchRoms({
         page: queryParams.page,
         pageSize: queryParams.page_size,
-        platform: queryParams.platform,
+        platform: queryParams.platform as PlatformName,
         query: queryParams.query,
       })
       return c.json(result)

@@ -67,8 +67,13 @@ export function useEmulator() {
   const shader = preference.emulator.platform[rom.platform].shader || preference.emulator.shader
 
   const romObject = useMemo(() => ({ fileContent: romUrl, fileName: rom?.fileName }), [rom, romUrl])
+  const bios = preference.emulator.platform[rom.platform].bioses.map(({ fileId, fileName }) => ({
+    fileContent: getFileUrl(fileId),
+    fileName,
+  }))
   const options: NostalgistOption = useMemo(
     () => ({
+      bios,
       cache: true,
       core: coreUrlMap[core] || core,
       retroarchConfig: {
@@ -83,7 +88,7 @@ export function useEmulator() {
       state: state?.fileId ? getFileUrl(state.fileId) : undefined,
       style: { ...defaultEmulatorStyle },
     }),
-    [romObject, core, preference, gamepadMapping, shader, state?.fileId],
+    [romObject, bios, core, preference, gamepadMapping, shader, state?.fileId],
   )
 
   const {

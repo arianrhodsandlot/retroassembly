@@ -1,9 +1,10 @@
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
+import type { PlatformName } from '@/constants/platform.ts'
 import { romTable } from '@/databases/schema.ts'
 import { getRoms } from './get-roms.ts'
 
-export async function getRom(params: { fileName: string; platform: string } | { id: string }) {
+export async function getRom(params: { fileName: string; platform: PlatformName } | { id: string }) {
   if ('id' in params) {
     const {
       roms: [rom],

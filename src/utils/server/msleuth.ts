@@ -41,15 +41,23 @@ function getCFServiceBinding() {
   return MSLEUTH.fetch
 }
 
-function request(options: { endpoint: string; json?: unknown }) {
+async function requestFallback(options: { endpoint: string; json?: unknown }) {
+  const input = createRequest({ ...options, fallback: true })
+  return await fetch(input)
+}
+
+async function request(options: { endpoint: string; json?: unknown }) {
   const input = createRequest(options)
   const cfFetch = getCFServiceBinding()
   try {
     const fetchFunction = cfFetch || fetch
-    return fetchFunction(input)
+    const result = await fetchFunction(input)
+    if (result.ok) {
+      return result
+    }
+    return await requestFallback(options)
   } catch {
-    const fallbackInput = createRequest({ ...options, fallback: true })
-    return fetch(fallbackInput)
+    return await requestFallback(options)
   }
 }
 

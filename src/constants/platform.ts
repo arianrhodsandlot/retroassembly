@@ -8,6 +8,7 @@ export type PlatformName =
   | 'atarilynx'
   | 'famicom'
   | 'fds'
+  | 'gameandwatch'
   | 'gamegear'
   | 'gb'
   | 'gba'
@@ -27,6 +28,7 @@ export type PlatformName =
   | 'wonderswancolor'
 
 export interface Platform {
+  bioses?: { md5?: string; name: string; required: boolean }[]
   cores: CoreName[]
   displayName: string
   fileExtensions: string[]
@@ -39,6 +41,31 @@ export interface Platform {
 // https://github.com/RetroPie/RetroPie-Setup/blob/master/platforms.cfg
 export const platforms: Platform[] = [
   {
+    bioses: [
+      { name: 'neogeo.zip', required: false },
+      { name: 'neocdz.zip', required: false },
+      { name: 'decocass.zip', required: false },
+      { name: 'isgsm.zip', required: false },
+      { name: 'midssio.zip', required: false },
+      { name: 'nmk004.zip', required: false },
+      { name: 'pgm.zip', required: false },
+      { name: 'skns.zip', required: false },
+      { name: 'ym2608.zip', required: false },
+      { name: 'cchip.zip', required: false },
+      { name: 'bubsys.zip', required: false },
+      { name: 'namcoc69.zip', required: false },
+      { name: 'namcoc70.zip', required: false },
+      { name: 'namcoc75.zip', required: false },
+      { name: 'coleco.zip', required: false },
+      { name: 'fdsbios.zip', required: false },
+      { name: 'msx.zip', required: false },
+      { name: 'ngp.zip', required: false },
+      { name: 'spectrum.zip', required: false },
+      { name: 'spec128.zip', required: false },
+      { name: 'spec1282a.zip', required: false },
+      { name: 'channelf.zip', required: false },
+      { name: 'hiscore.dat', required: false },
+    ],
     cores: ['mame2003_plus', 'fbneo'],
     displayName: 'Arcade',
     fileExtensions: ['zip'].map((name) => `.${name}`),
@@ -55,6 +82,7 @@ export const platforms: Platform[] = [
     name: 'atari2600',
   },
   {
+    bioses: [{ md5: '281f20ea4320404ec820fb7ec0693b38', name: '5200.rom', required: false }],
     cores: ['a5200'],
     displayName: 'Atari 5200',
     fileExtensions: ['a52', 'xfd', 'atr', 'atx', 'cdm', 'cas', 'xex', 'zip'].map((name) => `.${name}`),
@@ -63,6 +91,7 @@ export const platforms: Platform[] = [
     name: 'atari5200',
   },
   {
+    bioses: [{ md5: '0763f1ffb006ddbe32e52d497ee848ae', name: '7800 BIOS (U).rom', required: false }],
     cores: ['prosystem'],
     displayName: 'Atari 7800',
     fileExtensions: ['a78', 'zip'].map((name) => `.${name}`),
@@ -70,15 +99,20 @@ export const platforms: Platform[] = [
     libretroName: 'Atari - 7800',
     name: 'atari7800',
   },
-  // {
-  //   cores: ['mednafen_lynx', 'handy'],
-  //   displayName: 'Atari Lynx',
-  //   fileExtensions: ['lnx', 'zip'].map((name) => `.${name}`),
-  //   launchboxName: 'Atari Lynx',
-  //   libretroName: 'Atari - Lynx',
-  //   name: 'atarilynx',
-  // },
   {
+    bioses: [{ md5: 'fcd403db69f54290b51035d82f835e7b', name: 'lynxboot.img', required: true }],
+    cores: ['mednafen_lynx'],
+    displayName: 'Atari Lynx',
+    fileExtensions: ['lnx', 'lyx', 'bll', 'o', 'zip'].map((name) => `.${name}`),
+    launchboxName: 'Atari Lynx',
+    libretroName: 'Atari - Lynx',
+    name: 'atarilynx',
+  },
+  {
+    bioses: [
+      { name: 'nes.pal', required: false },
+      { name: 'gamegenie.nes', required: false },
+    ],
     cores: ['fceumm', 'nestopia', 'quicknes'],
     displayName: 'Family Computer',
     fileExtensions: ['nes', 'unif', 'unf', 'zip'].map((name) => `.${name}`),
@@ -87,6 +121,11 @@ export const platforms: Platform[] = [
     name: 'famicom',
   },
   {
+    bioses: [
+      { md5: 'ca30b50f880eb660a320674ed365ef7a', name: 'disksys.rom', required: true },
+      { name: 'nes.pal', required: false },
+      { md5: '7f98d77d7a094ad7d069b74bd553ec98', name: 'gamegenie.nes', required: false },
+    ],
     cores: ['fceumm', 'nestopia'],
     displayName: 'Famicom Disk System',
     fileExtensions: ['fds', 'zip'].map((name) => `.${name}`),
@@ -95,6 +134,15 @@ export const platforms: Platform[] = [
     name: 'fds',
   },
   {
+    cores: ['gw'],
+    displayName: 'Game & Watch',
+    fileExtensions: ['zip', 'mgw'].map((name) => `.${name}`),
+    launchboxName: 'Nintendo Game & Watch',
+    libretroName: 'Handheld Electronic Game',
+    name: 'gameandwatch',
+  },
+  {
+    bioses: [{ md5: '672e104c3be3a238301aceffc3b23fd6', name: 'bios.gg', required: false }],
     cores: ['genesis_plus_gx', 'gearsystem'],
     displayName: 'Game Gear',
     fileExtensions: ['gg', 'zip'].map((name) => `.${name}`),
@@ -103,6 +151,7 @@ export const platforms: Platform[] = [
     name: 'gamegear',
   },
   {
+    bioses: [{ md5: '32fbbd84168d3482956eb3c5051637f5', name: 'gb_bios.bin', required: false }],
     cores: ['mgba', 'gearboy', 'gambatte', 'tgbdual'],
     displayName: 'Game Boy',
     fileExtensions: ['gb', 'zip'].map((name) => `.${name}`),
@@ -111,6 +160,7 @@ export const platforms: Platform[] = [
     name: 'gb',
   },
   {
+    bioses: [{ md5: 'a860e8c0b6d573d191e4ec7db1b1e4f6', name: 'gba_bios.bin', required: false }],
     cores: ['mgba', 'vba_next'],
     displayName: 'Game Boy Advance',
     fileExtensions: ['gba', 'zip'].map((name) => `.${name}`),
@@ -119,6 +169,7 @@ export const platforms: Platform[] = [
     name: 'gba',
   },
   {
+    bioses: [{ md5: 'dbfce9db9deaa2567f6a84fde55f9680', name: 'gb_bios.bin', required: false }],
     cores: ['mgba', 'gearboy', 'gambatte', 'tgbdual'],
     displayName: 'Game Boy Color',
     fileExtensions: ['gb', 'gbc', 'cgb', 'sgb', 'zip'].map((name) => `.${name}`),
@@ -127,6 +178,10 @@ export const platforms: Platform[] = [
     name: 'gbc',
   },
   {
+    bioses: [
+      { md5: '45e298905a08f9cfb38fd504cd6dbc84', name: 'bios_MD.bin', required: false },
+      { name: 'ggenie.bin', required: false },
+    ],
     cores: ['genesis_plus_gx'],
     displayName: 'Genesis',
     fileExtensions: ['md', 'gen', 'zip'].map((name) => `.${name}`),
@@ -135,6 +190,10 @@ export const platforms: Platform[] = [
     name: 'genesis',
   },
   {
+    bioses: [
+      { md5: '45e298905a08f9cfb38fd504cd6dbc84', name: 'bios_MD.bin', required: false },
+      { name: 'ggenie.bin', required: false },
+    ],
     cores: ['genesis_plus_gx'],
     displayName: 'Megadrive',
     fileExtensions: ['md', 'gen', 'zip'].map((name) => `.${name}`),
@@ -167,6 +226,11 @@ export const platforms: Platform[] = [
     name: 'ngpc',
   },
   {
+    bioses: [
+      { md5: 'e66fa1dc5820d254611fdcdba0662372', name: 'bios_CD_E.bin', required: false },
+      { md5: '2efd74e3232ff260e371b99f84024f7f', name: 'bios_CD_U.bin', required: false },
+      { md5: '278a9397d192149e84e820ac621a8edd', name: 'bios_CD_J.bin', required: false },
+    ],
     cores: ['picodrive'],
     displayName: 'Sega 32X',
     fileExtensions: ['32x', 'zip'].map((name) => `.${name}`),
@@ -191,6 +255,11 @@ export const platforms: Platform[] = [
     name: 'sg-1000',
   },
   {
+    bioses: [
+      { md5: '840481177270d5642a14ca71ee72844c', name: 'bios_E.sms', required: false },
+      { md5: '840481177270d5642a14ca71ee72844c', name: 'bios_U.sms', required: false },
+      { md5: '24a519c53f67b00640d0048ef7089105', name: 'bios_J.sms', required: false },
+    ],
     cores: ['genesis_plus_gx', 'picodrive', 'gearsystem'],
     displayName: 'Master System',
     fileExtensions: ['sms', 'zip'].map((name) => `.${name}`),

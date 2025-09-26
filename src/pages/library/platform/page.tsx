@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useLoaderData } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
 import type { loader } from '@/pages/routes/library-platform.tsx'

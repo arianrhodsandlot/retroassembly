@@ -65,6 +65,7 @@ export function getPlatformGameIcon(platform: string) {
     arcade: 'fba',
     atarilynx: 'lynx',
     famicom: 'nes',
+    gameandwatch: 'gw',
     genesis: 'megadrive',
     sfc: 'snes',
     'sg-1000': 'sg1000',
@@ -72,7 +73,9 @@ export function getPlatformGameIcon(platform: string) {
     vb: 'virtualboy',
   }
   const alias = aliasMap[platform]
-  return getCDNUrl(repo, `themes/batocera/${alias || platform}/_data/svg/game.svg`)
+  const fileNameMap = { gameandwatch: 'console.svg' }
+  const fileName = fileNameMap[platform] || 'game.svg'
+  return getCDNUrl(repo, `themes/batocera/${alias || platform}/_data/svg/${fileName}`)
 }
 
 const platformBannerMap = {

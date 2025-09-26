@@ -117,6 +117,7 @@ export const defaultPreference: ResolvedPreference = {
       atarilynx: { bioses: [], core: 'mednafen_lynx' },
       famicom: { bioses: [], core: 'fceumm' },
       fds: { bioses: [], core: 'fceumm' },
+      gameandwatch: { bioses: [], core: 'gw' },
       gamegear: { bioses: [], core: 'genesis_plus_gx' },
       gb: { bioses: [], core: 'mgba' },
       gba: { bioses: [], core: 'mgba' },

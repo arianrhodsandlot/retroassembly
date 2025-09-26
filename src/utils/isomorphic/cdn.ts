@@ -10,6 +10,7 @@ const repositoryVersions = {
   'libretro-thumbnails/Bandai_-_WonderSwan': 'aa3cfe8', // https://github.com/libretro-thumbnails/Bandai_-_WonderSwan
   'libretro-thumbnails/Bandai_-_WonderSwan_Color': '4937a9a', // https://github.com/libretro-thumbnails/Bandai_-_WonderSwan_Color
   'libretro-thumbnails/FBNeo_-_Arcade_Games': '7a4f51c', // https://github.com/libretro-thumbnails/FBNeo_-_Arcade_Games
+  'libretro-thumbnails/Handheld_Electronic_Game': 'a717495', // https://github.com/libretro-thumbnails/Handheld_Electronic_Game
   'libretro-thumbnails/MAME': '4cac136', // https://github.com/libretro-thumbnails/MAME
   'libretro-thumbnails/Nintendo_-_Family_Computer_Disk_System': '0933747', // https://github.com/libretro-thumbnails/Nintendo_-_Family_Computer_Disk_System
   'libretro-thumbnails/Nintendo_-_Game_Boy': 'd963e89', // https://github.com/libretro-thumbnails/Nintendo_-_Game_Boy

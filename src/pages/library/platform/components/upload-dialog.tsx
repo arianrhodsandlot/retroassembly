@@ -147,11 +147,20 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
                       <Code key={extention}>{extention}</Code>
                     ))}
                   </span>
-                  {platform === 'arcade' ? (
+                  {platform === 'gameandwatch' ? (
                     <>
                       <br />
                       <span>
-                        We support the <b>Full Non-Merged MAME 0.78</b> romsets.
+                        Games can be downloaded from{' '}
+                        <a
+                          className='underline'
+                          href='https://buildbot.libretro.com/assets/cores/Handheld%20Electronic%20Game/'
+                          rel='noreferrer noopener'
+                          target='_blank'
+                        >
+                          buildbot.libretro.com
+                        </a>
+                        .
                       </span>
                     </>
                   ) : null}

@@ -27,7 +27,7 @@ export function CoreOptions({
   }
 
   return (
-    <div className='flex flex-col items-start lg:flex-row'>
+    <div className='flex flex-col items-start'>
       <SettingsTitle>
         <span className='icon-[mdi--wrench]' /> Options
       </SettingsTitle>

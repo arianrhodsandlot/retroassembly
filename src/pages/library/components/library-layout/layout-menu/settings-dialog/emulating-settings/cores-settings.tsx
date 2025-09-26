@@ -1,7 +1,7 @@
 import { Card, Select } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useState } from 'react'
-import { type CoreName, coreOptionsMap } from '@/constants/core.ts'
+import { coreDisplayNameMap, type CoreName, coreOptionsMap } from '@/constants/core.ts'
 import { platformMap } from '@/constants/platform.ts'
 import { usePlatform } from '@/pages/library/hooks/use-platform.ts'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
@@ -82,43 +82,45 @@ export function CoresSettings() {
       <Card>
         <BIOSOptions platform={selectedPlatform} />
 
-        <label className='mt-2 flex items-center gap-2'>
-          <SettingsTitle as='h4'>
-            <span className='icon-[mdi--monitor-screenshot]' /> Emulator
-          </SettingsTitle>
+        <Card className='mt-2'>
+          <label className='mt-2 flex items-center gap-2'>
+            <SettingsTitle as='h4'>
+              <span className='icon-[mdi--monitor-screenshot]' /> Emulator
+            </SettingsTitle>
 
-          <Select.Root onValueChange={handleValueChange} size='2' value={core}>
-            <Select.Trigger disabled={isLoading} />
-            <Select.Content>
-              {platformMap[selectedPlatform].cores.map((core) => (
-                <Select.Item key={core} value={core}>
-                  <div className='flex items-center gap-2'>
-                    <div className='flex size-4 items-center justify-center'>
-                      <span className='icon-[mdi--jigsaw] size-5' />
+            <Select.Root onValueChange={handleValueChange} size='2' value={core}>
+              <Select.Trigger disabled={isLoading} />
+              <Select.Content>
+                {platformMap[selectedPlatform].cores.map((core) => (
+                  <Select.Item key={core} value={core}>
+                    <div className='flex items-center gap-2'>
+                      <div className='flex size-4 items-center justify-center'>
+                        <span className='icon-[mdi--jigsaw] size-5' />
+                      </div>
+                      {coreDisplayNameMap[core]}
                     </div>
-                    {core}
-                  </div>
-                </Select.Item>
-              ))}
-            </Select.Content>
-          </Select.Root>
-        </label>
+                  </Select.Item>
+                ))}
+              </Select.Content>
+            </Select.Root>
+          </label>
 
-        {coreOptions.length > 0 ? <CoreOptions core={core} coreOptions={coreOptions} /> : null}
+          {coreOptions.length > 0 ? <CoreOptions core={core} coreOptions={coreOptions} /> : null}
 
-        <div className='flex justify-end'>
-          <UpdateButton
-            preference={{
-              emulator: {
-                core: { [core]: null },
-                platform: { [selectedPlatform]: { core: null } },
-              },
-            }}
-          >
-            <span className='icon-[mdi--undo]' />
-            Reset to defaults
-          </UpdateButton>
-        </div>
+          <div className='flex justify-end'>
+            <UpdateButton
+              preference={{
+                emulator: {
+                  core: { [core]: null },
+                  platform: { [selectedPlatform]: { core: null } },
+                },
+              }}
+            >
+              <span className='icon-[mdi--undo]' />
+              Reset the emulator and it's option to defaults
+            </UpdateButton>
+          </div>
+        </Card>
       </Card>
     </div>
   )

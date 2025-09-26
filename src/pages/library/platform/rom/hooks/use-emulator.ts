@@ -141,6 +141,7 @@ export function useEmulator() {
     const canvas = emulator.getCanvas()
     if (canvas) {
       canvas.style.opacity = '1'
+      focus('canvas')
     }
 
     if (preference.emulator.fullscreen) {

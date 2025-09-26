@@ -169,7 +169,7 @@ export const platforms: Platform[] = [
     name: 'gba',
   },
   {
-    bioses: [{ md5: 'dbfce9db9deaa2567f6a84fde55f9680', name: 'gb_bios.bin', required: false }],
+    bioses: [{ md5: 'dbfce9db9deaa2567f6a84fde55f9680', name: 'gbc_bios.bin', required: false }],
     cores: ['mgba', 'gearboy', 'gambatte', 'tgbdual'],
     displayName: 'Game Boy Color',
     fileExtensions: ['gb', 'gbc', 'cgb', 'sgb', 'zip'].map((name) => `.${name}`),
@@ -225,19 +225,19 @@ export const platforms: Platform[] = [
     libretroName: 'SNK - Neo Geo Pocket Color',
     name: 'ngpc',
   },
-  {
-    bioses: [
-      { md5: 'e66fa1dc5820d254611fdcdba0662372', name: 'bios_CD_E.bin', required: false },
-      { md5: '2efd74e3232ff260e371b99f84024f7f', name: 'bios_CD_U.bin', required: false },
-      { md5: '278a9397d192149e84e820ac621a8edd', name: 'bios_CD_J.bin', required: false },
-    ],
-    cores: ['picodrive'],
-    displayName: 'Sega 32X',
-    fileExtensions: ['32x', 'zip'].map((name) => `.${name}`),
-    launchboxName: 'Sega 32X',
-    libretroName: 'Sega - 32X',
-    name: 'sega32x',
-  },
+  // {
+  //   bioses: [
+  //     { md5: 'e66fa1dc5820d254611fdcdba0662372', name: 'bios_CD_E.bin', required: false },
+  //     { md5: '2efd74e3232ff260e371b99f84024f7f', name: 'bios_CD_U.bin', required: false },
+  //     { md5: '278a9397d192149e84e820ac621a8edd', name: 'bios_CD_J.bin', required: false },
+  //   ],
+  //   cores: ['picodrive'],
+  //   displayName: 'Sega 32X',
+  //   fileExtensions: ['32x', 'zip'].map((name) => `.${name}`),
+  //   launchboxName: 'Sega 32X',
+  //   libretroName: 'Sega - 32X',
+  //   name: 'sega32x',
+  // },
   {
     cores: ['snes9x', 'snes9x2002', 'snes9x2005', 'snes9x2010'],
     displayName: 'Super Famicom',

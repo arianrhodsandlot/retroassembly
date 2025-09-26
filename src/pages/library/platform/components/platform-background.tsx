@@ -14,9 +14,13 @@ export function PlatformBackground() {
   const imageName =
     {
       atari2600: 'a2600',
+      atari5200: 'a5200',
+      atari7800: 'a7800',
+      atarilynx: 'lynx',
       famicom: 'nes',
       gamegear: 'gg',
       genesis: 'gen',
+      sega32x: '32x',
       vb: 'virtualboy',
     }[platform] || platform
   const platformBackgroundUrl = getCDNUrl(

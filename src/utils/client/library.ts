@@ -73,9 +73,12 @@ export function getPlatformGameIcon(platform: string) {
     vb: 'virtualboy',
   }
   const alias = aliasMap[platform]
-  const fileNameMap = { gameandwatch: 'console.svg' }
-  const fileName = fileNameMap[platform] || 'game.svg'
-  return getCDNUrl(repo, `themes/batocera/${alias || platform}/_data/svg/${fileName}`)
+  const subPath =
+    {
+      fds: 'images/game.png',
+      gameandwatch: 'svg/console.svg',
+    }[platform] || 'svg/game.svg'
+  return getCDNUrl(repo, `themes/batocera/${alias || platform}/_data/${subPath}`)
 }
 
 const platformBannerMap = {

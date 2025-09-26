@@ -22,6 +22,7 @@ export function CoresSettings() {
 
   const { core } = preference.emulator.platform[selectedPlatform]
   const coreOptions = coreOptionsMap[core] || []
+  const showReset = platformMap[selectedPlatform].cores.length > 0 && coreOptions.length > 0
 
   async function handleValueChange(value: CoreName) {
     await update({
@@ -107,19 +108,21 @@ export function CoresSettings() {
 
           {coreOptions.length > 0 ? <CoreOptions core={core} coreOptions={coreOptions} /> : null}
 
-          <div className='flex justify-end'>
-            <UpdateButton
-              preference={{
-                emulator: {
-                  core: { [core]: null },
-                  platform: { [selectedPlatform]: { core: null } },
-                },
-              }}
-            >
-              <span className='icon-[mdi--undo]' />
-              Reset the emulator and it's option to defaults
-            </UpdateButton>
-          </div>
+          {showReset ? (
+            <div className='flex justify-end'>
+              <UpdateButton
+                preference={{
+                  emulator: {
+                    core: { [core]: null },
+                    platform: { [selectedPlatform]: { core: null } },
+                  },
+                }}
+              >
+                <span className='icon-[mdi--undo]' />
+                Reset the emulator and it's option to defaults
+              </UpdateButton>
+            </div>
+          ) : null}
         </Card>
       </Card>
     </div>

@@ -1,7 +1,7 @@
 import { Button, DropdownMenu } from '@radix-ui/themes'
 import { useState } from 'react'
 import { links } from '@/constants/links.ts'
-import { useSpatialNavigationPaused } from '../../../atoms.ts'
+import { useSettingsDialogOpen, useSpatialNavigationPaused } from '../../../atoms.ts'
 import { useShowSearchModal } from '../atoms.ts'
 import { ThemeMenuItem } from '../theme-menu-item.tsx'
 import { AboutDialog } from './about-dialog.tsx'
@@ -12,7 +12,7 @@ export function LayoutMenu() {
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
   const [, setShowSearchModal] = useShowSearchModal()
 
-  const [settingsDialogOpen, setSettingsDialogOpen] = useState(false)
+  const [settingsDialogOpen, setSettingsDialogOpen] = useSettingsDialogOpen()
   const [logoutDialogOpen, setLogoutDialogOpen] = useState(false)
   const [aboutDialogOpen, setAboutDialogOpen] = useState(false)
 

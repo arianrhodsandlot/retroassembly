@@ -1,10 +1,13 @@
 import { useLoaderData } from 'react-router'
+import { platformMap } from '@/constants/platform.ts'
 import { RadixThemePortal } from '@/pages/components/radix-theme-portal.tsx'
 import type { loader } from '@/pages/routes/library-platform-rom.tsx'
 import { getRomGoodcodes } from '@/utils/client/library.ts'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../../components/main-scroll-area.tsx'
 import { PageBreadcrumb } from '../../components/page-breadcrumb.tsx'
+import { usePreference } from '../../hooks/use-preference.ts'
+import { BioseMissingMessage } from './components/biose-missing-message.tsx'
 import { GameAnimatePresence } from './components/game-animate-presence.tsx'
 import { GameButtons } from './components/game-buttons.tsx'
 import { GameCover } from './components/game-cover.tsx'
@@ -18,14 +21,21 @@ import { RomBackground } from './components/rom-background.tsx'
 
 export default function RomPage() {
   const { rom, state } = useLoaderData<typeof loader>()
+  const { preference } = usePreference()
   if (!rom) {
     return <>404</>
   }
 
   const goodcodes = getRomGoodcodes(rom)
-  const { launchboxGame } = rom
+  const { launchboxGame, platform } = rom
 
   const overview = rom.gameDescription || launchboxGame?.overview
+  const { bioses } = preference.emulator.platform[platform]
+
+  const expectedBioses = platformMap[platform].bioses
+  const missingBioses = expectedBioses?.filter(
+    (bios) => bios.required && !bioses?.some((b) => b.fileName === bios.name),
+  )
 
   return (
     <LibraryLayout>
@@ -45,7 +55,7 @@ export default function RomPage() {
 
             <div className='flex flex-col gap-8 lg:flex-col-reverse'>
               <div className='lg:px-4'>
-                <GameButtons state={state} />
+                {missingBioses?.length ? <BioseMissingMessage bioses={missingBioses} /> : <GameButtons state={state} />}
               </div>
               <GameInfo rom={rom} />
             </div>

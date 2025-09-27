@@ -5,6 +5,7 @@ import useSWRMutation from 'swr/mutation'
 import { client, type InferRequestType, parseResponse } from '@/api/client.ts'
 import { platformMap, type PlatformName } from '@/constants/platform.ts'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
+import { getFileMd5 } from '@/utils/isomorphic/misc.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
 const { $delete, $post } = client.preference.bioses
@@ -39,8 +40,14 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
     const { path } = Nostalgist.vendors
     const extensions = expectedBioses?.map((bios) => path.extname(bios.name)) || []
     const file = await fileOpen({ extensions })
-    if (!expectedBioses?.find((bios) => bios.name === file.name)) {
-      alert('The uploaded file is not a valid BIOS file for this platform.')
+    const expectedBios = expectedBioses?.find((bios) => bios.name === file.name)
+    if (!expectedBios) {
+      alert("According to the selected file's name, it is not an expected BIOS file.")
+      return
+    }
+    const md5 = await getFileMd5(file)
+    if (expectedBios.md5 && expectedBios.md5 !== md5) {
+      alert(`The uploaded file is corrupted (MD5 mismatch).\n\nExcepted MD5: ${expectedBios.md5}\nActual MD5: ${md5}`)
       return
     }
     await upload({ file, platform })
@@ -57,7 +64,7 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
     if (bios.required) {
       return '(required)'
     }
-    return ''
+    return '(optional)'
   }
 
   function getBiosClassName(bios: { name: string; required: boolean }) {
@@ -123,7 +130,7 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
             </Button>
           </div>
           <div className='gap-1 text-xs'>
-            <span className='opacity-80'>Expected BIOS files in: </span>
+            <span className='opacity-80'>Expected BIOS {expectedBioses.length > 1 ? 'files' : 'file'}: </span>
             {expectedBioses.map((bios, index) => (
               <span className='mr-1' key={bios.name}>
                 <span className={getBiosClassName(bios)}>

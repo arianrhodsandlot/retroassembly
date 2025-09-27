@@ -91,7 +91,10 @@ export const platforms: Platform[] = [
     name: 'atari5200',
   },
   {
-    bioses: [{ md5: '0763f1ffb006ddbe32e52d497ee848ae', name: '7800 BIOS (U).rom', required: false }],
+    bioses: [
+      { md5: '0763f1ffb006ddbe32e52d497ee848ae', name: '7800 BIOS (U).rom', required: false },
+      { md5: '397bb566584be7b9764e7a68974c4263', name: '7800 BIOS (E).rom', required: false },
+    ],
     cores: ['prosystem'],
     displayName: 'Atari 7800',
     fileExtensions: ['a78', 'zip'].map((name) => `.${name}`),

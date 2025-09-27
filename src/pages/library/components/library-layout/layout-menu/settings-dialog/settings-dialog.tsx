@@ -1,8 +1,8 @@
 import { Button, Dialog, ScrollArea, Tabs } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { dropRight } from 'es-toolkit'
-import { useState, useTransition } from 'react'
 import { useLoaderData } from 'react-router'
+import { useSettingsDialogTabName } from '@/pages/library/atoms.ts'
 import { DialogRoot } from '../../../dialog-root.tsx'
 import { AccountSettings } from './account-settings.tsx'
 import { EmulatingSettings } from './emulating-settings/emulating-settings.tsx'
@@ -17,28 +17,17 @@ const allSettingsTabs = [
 ]
 
 export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProps>) {
-  const [tab, setTab] = useState(allSettingsTabs[0])
-  const [TabContent, setTabContent] = useState(() => tab.content)
-  const [enableTabAnimation, setEnableTabAnimation] = useState(false)
-  const [isPending, startTransition] = useTransition()
+  const [tabName, setTabName] = useSettingsDialogTabName()
+  const { content: TabContent } = allSettingsTabs.find((tab) => tab.name === tabName) || allSettingsTabs[0]
   const { runtimeKey } = useLoaderData()
-
   const settingsTabs = runtimeKey === 'workerd' ? dropRight(allSettingsTabs, 1) : allSettingsTabs
 
   function handleOpenChange(open: boolean) {
-    setEnableTabAnimation(open)
     onOpenChange?.(open)
   }
 
   function handleValueChange(tabName: string) {
-    setEnableTabAnimation(true)
-    const clickedTab = settingsTabs.find((tab) => tabName === tab.name)
-    if (clickedTab) {
-      setTab(clickedTab)
-      startTransition(() => {
-        setTabContent(() => clickedTab.content)
-      })
-    }
+    setTabName(tabName)
   }
 
   return (
@@ -50,7 +39,7 @@ export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootP
         </Dialog.Title>
 
         <div>
-          <Tabs.Root asChild onValueChange={handleValueChange} value={tab.name}>
+          <Tabs.Root asChild onValueChange={handleValueChange} value={tabName}>
             <div>
               <Tabs.List>
                 {settingsTabs.map(({ iconClass, name }) => (
@@ -63,11 +52,9 @@ export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootP
 
               <div className='h-[60vh]'>
                 <ScrollArea size='2'>
-                  {isPending ? null : (
-                    <div className={clsx('p-4', { 'motion-preset-slide-up-sm': enableTabAnimation })} key={tab.name}>
-                      <TabContent />
-                    </div>
-                  )}
+                  <div className='motion-preset-slide-up-sm p-4' key={tabName}>
+                    <TabContent />
+                  </div>
                 </ScrollArea>
               </div>
             </div>

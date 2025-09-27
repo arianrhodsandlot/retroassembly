@@ -1,5 +1,5 @@
 import { BlobReader, BlobWriter, ZipReader } from '@zip.js/zip.js'
-import sparkMd5 from 'spark-md5'
+import { getFileMd5 } from '@/utils/isomorphic/misc.ts'
 
 function isTinyFile(file: File) {
   if (!file) {
@@ -24,11 +24,6 @@ async function getExtractedROM(file: Blob) {
       }
     }
   }
-}
-
-async function getFileMd5(file: Blob) {
-  const buffer = await file.arrayBuffer()
-  return sparkMd5.ArrayBuffer.hash(buffer)
 }
 
 export async function getROMMd5(file: File, platform: string) {

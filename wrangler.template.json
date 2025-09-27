@@ -29,6 +29,7 @@
   "placement": {
     "mode": "smart"
   },
+  "preview_urls": true,
   "r2_buckets": [
     {
       "binding": "BUCKET",

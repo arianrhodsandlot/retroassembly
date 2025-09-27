@@ -1,10 +1,11 @@
 import { useLocation, useNavigate, useNavigation } from 'react-router'
-import { useShouldSuppressLoadingMaskAtom } from '../atoms.ts'
+import { useShouldSuppressLoadingMaskAtom, useSpatialNavigationPaused } from '../atoms.ts'
 
 export function useRouter() {
   const { state } = useNavigation()
   const navigate = useNavigate()
   const location = useLocation()
+  const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
   const [suppressLoadingMaskAtom, setSuppressLoadingMaskAtom] = useShouldSuppressLoadingMaskAtom()
 
   const isNavigating = state === 'loading'
@@ -18,6 +19,7 @@ export function useRouter() {
     if (suppressLoadingMask) {
       setSuppressLoadingMaskAtom(false)
     }
+    setSpatialNavigationPaused(false)
   }
 
   async function reloadSilently() {

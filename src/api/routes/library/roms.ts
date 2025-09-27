@@ -140,7 +140,7 @@ export const roms = new Hono()
   )
 
   .delete(
-    ':id/thumbnail/:thumbnailId',
+    ':id/thumbnail/:thumbnailId{.+}',
 
     async (c) => {
       const { currentUser } = c.var

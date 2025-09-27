@@ -9,7 +9,7 @@ import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
 
 const {
-  ':thumbnailId': { $delete },
+  ':thumbnailId{.+}': { $delete },
   $post,
 } = client.roms[':id'].thumbnail
 

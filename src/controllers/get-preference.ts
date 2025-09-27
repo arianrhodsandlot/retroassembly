@@ -1,5 +1,6 @@
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
+import { platforms } from '@/constants/platform.ts'
 import { resolveUserPreference } from '../constants/preference.ts'
 import { userPreferenceTable } from '../databases/schema.ts'
 
@@ -12,6 +13,11 @@ export async function getPreference() {
     .where(and(eq(userPreferenceTable.userId, currentUser.id), eq(userPreferenceTable.status, 1)))
 
   const [userPreference] = results
+  if (userPreference.ui?.platforms) {
+    userPreference.ui.platforms = userPreference.ui.platforms.filter((platform) =>
+      platforms.some(({ name }) => name === platform),
+    )
+  }
 
   return resolveUserPreference(userPreference)
 }

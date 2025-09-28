@@ -27,7 +27,7 @@ export function BioseMissingMessage({ bioses }: BioseMissingMessageProps) {
       <Callout.Text>
         The game can not be launched without the required{' '}
         <Tooltip
-          content={`A BIOS file is a copy of the operating system used by the hardware that we are emulating. Some emulators need BIOS files in order to correctly emulate hardware and/or software as needed by the content. ${metadata.title} do not share any copyrighted system files or game content. You must provide your own BIOS and content in accordance with your local laws as applicable.`}
+          content={`A BIOS file is a copy of the operating system used by the hardware that we are emulating. Some emulators need BIOS files in order to correctly emulate hardware and/or software as needed by the content. ${metadata.title} does not share any copyrighted system files or game content. You must provide your own BIOS and content in accordance with your local laws as applicable.`}
         >
           <span className='inline-flex cursor-help items-center gap-0.5 underline decoration-dashed'>
             BIOS <span className='icon-[mdi--question-mark-circle-outline]' />

@@ -5,6 +5,7 @@ import { $ } from 'execa'
 import fs from 'fs-extra'
 import isDocker from 'is-docker'
 import { links } from '../src/constants/links.ts'
+import { metadata } from '../src/constants/metadata.ts'
 
 const { env } = process
 export const exec = $({ env: { FORCE_COLOR: 'true' }, verbose: 'short' })
@@ -38,7 +39,7 @@ export function logServerInfo(port: number | string, isDev = false) {
 ║                                                    |__/ ║
 ╚═════════════════════════════════════════════════════════╝`,
   )
-  const title = `${styleText('bold', 'RetroAssembly')}${isDev ? ' dev server' : ''}`
+  const title = `${styleText('bold', metadata.title)}${isDev ? ' dev server' : ''}`
   const url = new URL('', 'http://localhost')
   url.port = port.toString()
   const link = styleText(['green', 'underline'], url.href)

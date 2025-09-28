@@ -17,7 +17,7 @@ export function Head() {
       <meta content='width=device-width,initial-scale=1,viewport-fit=cover,shrink-to-fit=yes' name='viewport' />
       <meta content={metadata.themeColor} name='theme-color' />
       <meta content='telephone=no' name='format-detection' />
-      <meta content='RetroAssembly' name='apple-mobile-web-app-title' />
+      <meta content={metadata.title} name='apple-mobile-web-app-title' />
       <meta content='black-translucent' name='apple-mobile-web-app-status-bar-style' />
       <meta content='yes' name='mobile-web-app-capable' />
 

@@ -1,13 +1,19 @@
 import type { Config } from '@react-router/dev/config'
-import { exec, getTargetRuntime } from './scripts/utils.ts'
+import { build } from 'tsdown'
+import { getTargetRuntime } from './scripts/utils.ts'
 
 export default {
   appDirectory: 'src/pages',
   buildDirectory: 'dist',
   async buildEnd() {
     if (getTargetRuntime() === 'node') {
-      await exec`tsdown src/server/node.ts -d dist/server --no-clean --unbundle`
-      await exec`tsdown scripts/serve.ts -d dist/scripts --no-clean --unbundle`
+      const entries = [
+        { entry: 'src/server/node.ts', outDir: 'dist/server' },
+        { entry: 'scripts/serve.ts', outDir: 'dist/scripts' },
+      ]
+      for (const { entry, outDir } of entries) {
+        await build({ clean: false, entry, logLevel: 'warn', outDir, unbundle: true })
+      }
     }
   },
   future: {

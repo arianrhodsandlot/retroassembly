@@ -1,4 +1,5 @@
 import { useLoaderData } from 'react-router'
+import { metadata } from '@/constants/metadata.ts'
 import type { loader } from '../routes/login.tsx'
 import { LoginForm } from './components/log-in-form.tsx'
 import { LogInWithGoogleButton } from './components/log-in-with-google-button.tsx'
@@ -12,7 +13,7 @@ export function LoginPage() {
     return <PageContainer title='Log in'>{error.message}</PageContainer>
   }
 
-  const title = formType === 'register' ? 'RetroAssembly' : 'Log in to RetroAssembly'
+  const title = formType === 'register' ? metadata.title : `Log in to ${metadata.title}`
   const description = {
     oauth: 'Log in to build your own retro game collection',
     register: 'Create an account to get started',

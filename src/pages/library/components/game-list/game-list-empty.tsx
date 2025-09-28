@@ -1,5 +1,6 @@
 import { Button } from '@radix-ui/themes'
 import { Link, useLocation } from 'react-router'
+import { metadata } from '@/constants/metadata.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
 import { usePlatform } from '../../hooks/use-platform.ts'
 import { UploadButton } from '../../platform/components/upload-button.tsx'
@@ -18,7 +19,7 @@ export function GameListEmpty() {
       {isLibrary ? (
         <>
           <div className='text-(--gray-11)'>
-            Welcome to RetroAssembly. This is where all ROMs uploaded by you will appear.
+            Welcome to {metadata.title}. This is where all ROMs uploaded by you will appear.
           </div>
           <div className='text-(--gray-11)'>
             <UploadSelectButton variant='soft' /> some ROMs to get started.

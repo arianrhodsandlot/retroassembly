@@ -1,5 +1,6 @@
 import { getContext } from 'hono/context-storage'
 import { getRunTimeEnv } from '@/constants/env.ts'
+import { metadata } from '@/constants/metadata.ts'
 import { HomePage } from '../page.tsx'
 
 export function loader() {
@@ -9,7 +10,7 @@ export function loader() {
   if (currentUser && skipIfLoggedIn) {
     throw c.redirect('/library')
   }
-  return { currentUser, title: 'RetroAssembly' }
+  return { currentUser, title: metadata.title }
 }
 
 export default function HomeRoute() {

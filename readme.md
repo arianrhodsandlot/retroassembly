@@ -64,8 +64,13 @@ RetroAssembly aims to support a wide range of vintage gaming systems. Emulation 
 
   | Console | Available Emulators |
   | - | - |
-  | Arcade | `mame2003_plus` |
+  | Arcade | `fbneo`, `mame2003_plus` |
   | Atari 2600 | `stella2014` |
+  | Atari 5200 | `a5200` |
+  | Atari 7800 | `prosystem` |
+  | Atari Lynx | `mednafen_lynx` |
+  | Famicom Disk System | `fceumm`, `nestopia` |
+  | Game & Watch | `gw` |
   | Game Boy | `mgba`, `gearboy`, `gambatte`, `tgbdual` |
   | Game Boy Advance | `mgba`, `vba_next` |
   | Game Boy Color | `mgba`, `gearboy`, `gambatte`, `tgbdual` |
@@ -76,7 +81,7 @@ RetroAssembly aims to support a wide range of vintage gaming systems. Emulation 
   | Neo Geo Pocket Color | `mednafen_ngp` |
   | NES / Family Computer | `fceumm`, `nestopia`, `quicknes` |
   | Sega SG-1000 | `gearsystem` |
-  | Super Famicom / Super NES  | `snes9x`, `snes9x2002`, `snes9x2005`, `snes9x2010` |
+  | Super NES / Super Famicom | `snes9x`, `snes9x2002`, `snes9x2005`, `snes9x2010` |
   | Virtual Boy | `mednafen_vb` |
   | WonderSwan | `mednafen_wswan` |
   | WonderSwan Color | `mednafen_wswan` |

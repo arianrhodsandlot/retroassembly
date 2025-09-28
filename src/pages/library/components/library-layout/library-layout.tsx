@@ -3,6 +3,7 @@ import type { PropsWithChildren } from 'react'
 import { Link, useLoaderData } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
+import { useViewport } from '../../hooks/use-viewport.ts'
 import { PendingMask } from '../pending-mask.tsx'
 import { DemoLoginButton } from './demo-login-button.tsx'
 import { FocusIndicator } from './focus-indicator.tsx'
@@ -20,6 +21,7 @@ function getPostfixedTitle(title: string) {
 export default function LibraryLayout({ children }: Readonly<PropsWithChildren>) {
   const { title } = useLoaderData()
   const isDemo = useIsDemo()
+  const { isLargeScreen } = useViewport()
 
   return (
     <>
@@ -41,9 +43,7 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
             <SidebarLinks />
           </ScrollArea>
           {isDemo ? null : (
-            <div className='border-t border-t-white/30 py-2 '>
-              <LayoutMenu />
-            </div>
+            <div className='border-t border-t-white/30 py-2 '>{isLargeScreen ? <LayoutMenu /> : null}</div>
           )}
         </SidebarContainer>
 

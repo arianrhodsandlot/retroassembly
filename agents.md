@@ -45,6 +45,7 @@ Node.js / Cloudflare Workers, SQLite / Cloudflare D1, Cloudflare R2
 - Use `clsx` to manipulate React `className`s when necessary. Prefer `import { clsx } from 'clsx'` over `import clsx from 'clsx'`.
 - Avoid prop drilling by creating atoms in the closest `atom.ts` to the current files with Jotai. Keep the atom as close to where it's used as possible.
 - Implement proper ARIA attributes for complex components.
+- Use `AbortController` and `AbortSignal` for event listener cleanup instead of manual removal.
 
 ## Common Tasks
 

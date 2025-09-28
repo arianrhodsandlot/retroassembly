@@ -1,6 +1,7 @@
 import { Select } from '@radix-ui/themes'
 import { Fragment } from 'react'
 import { Link, useNavigate } from 'react-router'
+import { useViewport } from '@/pages/library/hooks/use-viewport.ts'
 import { useNavigationLinks } from '../../../hooks/use-navigation-links.ts'
 import { LayoutMenu } from '../layout-menu/layout-menu.tsx'
 import { HeaderLinkItem } from './header-link-item.tsx'
@@ -8,6 +9,7 @@ import { HeaderLinkItem } from './header-link-item.tsx'
 export function LayoutHeader() {
   const navitate = useNavigate()
   const { groups, isActive } = useNavigationLinks()
+  const { isNotLargeScreen } = useViewport()
 
   const groupLinks = groups.flatMap(({ links }) => links)
   const currentLink = groupLinks.find(({ to }) => isActive(to))
@@ -48,7 +50,7 @@ export function LayoutHeader() {
         </Select.Root>
       </div>
 
-      <LayoutMenu />
+      {isNotLargeScreen ? <LayoutMenu /> : null}
     </header>
   )
 }

@@ -13,7 +13,7 @@ export async function getPreference() {
     .where(and(eq(userPreferenceTable.userId, currentUser.id), eq(userPreferenceTable.status, 1)))
 
   const [userPreference] = results
-  if (userPreference.ui?.platforms) {
+  if (userPreference?.ui?.platforms) {
     userPreference.ui.platforms = userPreference.ui.platforms.filter((platform) =>
       platforms.some(({ name }) => name === platform),
     )

@@ -13,7 +13,7 @@ const { ':id': romsEndpoint } = client.roms
 
 export function DeleteDialog({ rom, ...props }: Readonly<DeleteDialogProps>) {
   const { reloadSilently } = useRouter()
-  const { actions } = useGameActions(rom)
+  const { actions } = useGameActions()
   const action = actions.find(({ name }) => name === 'delete')
   const type = action?.type as 'launch_records' | 'roms'
   const { $delete } = { launch_records: romsEndpoint.launch_records, roms: romsEndpoint }[type]

@@ -63,6 +63,7 @@ export default defineConfig(async (env) => {
   const envPort = process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT
   const port = envPort ? Number.parseInt(envPort, 10) || 8000 : 8000
   const config: UserConfig = {
+    build: { cssMinify: 'esbuild' },
     envPrefix: 'RETROASSEMBLY_BUILD_TIME_VITE_',
     plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), devtoolsJson(), serverInfo()],
     server: {

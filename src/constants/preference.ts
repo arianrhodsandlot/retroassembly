@@ -87,7 +87,7 @@ type PartialDeepNullable<T> = {
     ? null | readonly PartialDeepNullable<U>[]
     : T[K] extends (infer U)[]
       ? null | PartialDeepNullable<U>[]
-      : T[K] extends Record<string, any>
+      : T[K] extends Record<string, unknown>
         ? null | PartialDeepNullable<T[K]>
         : null | T[K]
 }

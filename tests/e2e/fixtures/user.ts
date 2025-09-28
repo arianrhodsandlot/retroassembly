@@ -9,7 +9,7 @@ interface User {
 
 export const test = base.extend<{ user: User }>({
   user: [
-    async ({ baseURL, page }, use) => {
+    async ({ baseURL }, use) => {
       const user = {
         password: nanoid(),
         username: nanoid(),

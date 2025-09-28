@@ -48,7 +48,7 @@ export function AccountSettings() {
     trigger: handleSubmit,
   } = useSWRMutation(
     { endpoint: 'auth/password', method: 'patch' },
-    async (key, { arg: event }: { arg: FormEvent<HTMLFormElement> }) => {
+    async (_key, { arg: event }: { arg: FormEvent<HTMLFormElement> }) => {
       event.preventDefault()
       const formData = new FormData(event.currentTarget)
       const form = validateFormData(formData)

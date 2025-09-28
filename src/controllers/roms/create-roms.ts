@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { and, eq, inArray, type InferInsertModel } from 'drizzle-orm'
-import { chunk } from 'es-toolkit'
+import { chunk, omit } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
 import { DateTime } from 'luxon'
 import type { PlatformName } from '@/constants/platform.ts'
@@ -179,8 +179,7 @@ async function performBatchOperations(
     for (const updateChunk of updateChunks) {
       const updateResults = await Promise.all(
         updateChunk.map(async ({ data, rom }) => {
-          // Remove the id from data to avoid trying to update the primary key
-          const { id, ...updateData } = data
+          const updateData = omit(data, ['id'])
           const result = await library.update(romTable).set(updateData).where(eq(romTable.id, rom.id)).returning()
           return result[0]
         }),

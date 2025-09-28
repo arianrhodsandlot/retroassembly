@@ -8,7 +8,7 @@ import { DeleteDialog } from './delete-dialog.tsx'
 
 export function GameEntryDropdownMenu({ rom }) {
   const isDemo = useIsDemo()
-  const { actions } = useGameActions(rom)
+  const { actions } = useGameActions()
   const [menuOpen, setMenuOpen] = useState(false)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [selectedGames, setSelectedGames] = useSelectedGames()

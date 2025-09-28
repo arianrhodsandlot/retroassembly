@@ -21,7 +21,7 @@ export function useGameStates() {
     parseResponse($get({ query })),
   )
 
-  const { isMutating: isSavingState, trigger: saveState } = useSWRMutation('/api/v1/states', async (url) => {
+  const { isMutating: isSavingState, trigger: saveState } = useSWRMutation('/api/v1/states', async () => {
     if (!emulator || !core || !rom) {
       throw new Error('invalid emulator or core or rom')
     }

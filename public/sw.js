@@ -1,22 +1,12 @@
-self.addEventListener('install', (event) => {
-  globalThis.skipWaiting() // Activate the new Service Worker immediately
+self.addEventListener('install', () => {
+  globalThis.skipWaiting()
 })
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    Promise.all([
-      // Clear all caches
-      caches
-        .keys()
-        .then((cacheNames) => {
-          return Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)))
-        }),
-      // Unregister the Service Worker
-      globalThis.registration
-        .unregister()
-        .then(() => {
-          console.info('Service Worker unregistered')
-        }),
-    ]),
-  )
+  async function deleteCaches() {
+    const keys = await caches.keys()
+    await Promise.all(keys.map((key) => caches.delete(key)))
+  }
+
+  event.waitUntil(Promise.all([deleteCaches(), globalThis.registration.unregister()]))
 })

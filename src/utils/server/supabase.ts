@@ -30,7 +30,8 @@ export function createSupabase() {
 
         setAll(cookiesToSet) {
           for (const cookie of cookiesToSet) {
-            setCookie(c, cookie.name, cookie.value, cookie.options as any)
+            // @ts-expect-error types from hono and supabase are not compatible
+            setCookie(c, cookie.name, cookie.value, cookie.options)
           }
         },
       },

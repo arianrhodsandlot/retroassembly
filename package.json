@@ -142,9 +142,6 @@
       "unrs-resolver",
       "workerd"
     ],
-    "overrides": {
-      "vite": "npm:rolldown-vite@7.1.13"
-    },
     "patchedDependencies": {
       "@microsoft/clarity": "patches/@microsoft__clarity.patch",
       "goodcodes-parser": "patches/goodcodes-parser.patch",

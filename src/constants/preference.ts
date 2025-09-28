@@ -110,7 +110,7 @@ export const defaultPreference: ResolvedPreference = {
     },
     fullscreen: false,
     platform: {
-      arcade: { bioses: [], core: 'mame2003_plus' },
+      arcade: { bioses: [], core: 'fbneo' },
       atari2600: { bioses: [], core: 'stella2014' },
       atari5200: { bioses: [], core: 'a5200' },
       atari7800: { bioses: [], core: 'prosystem' },

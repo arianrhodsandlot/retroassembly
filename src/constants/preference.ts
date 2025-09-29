@@ -1,6 +1,7 @@
+import { mapValues } from 'es-toolkit'
 import { mergePreference } from '../utils/isomorphic/preference.ts'
 import type { CoreName } from './core'
-import type { PlatformName } from './platform'
+import { platformMap, type PlatformName } from './platform.ts'
 
 export type PlatformSortBy = 'alphabet' | 'popularity' | 'release_date'
 export type PlatformSortOrder = 'ascending' | 'descending'
@@ -109,38 +110,7 @@ export const defaultPreference: ResolvedPreference = {
       },
     },
     fullscreen: false,
-    platform: {
-      arcade: { bioses: [], core: 'fbneo' },
-      atari2600: { bioses: [], core: 'stella2014' },
-      atari5200: { bioses: [], core: 'a5200' },
-      atari7800: { bioses: [], core: 'prosystem' },
-      atarilynx: { bioses: [], core: 'mednafen_lynx' },
-      channelf: { bioses: [], core: 'freechaf' },
-      colecovision: { bioses: [], core: 'gearcoleco' },
-      famicom: { bioses: [], core: 'fceumm' },
-      fds: { bioses: [], core: 'fceumm' },
-      gameandwatch: { bioses: [], core: 'gw' },
-      gamegear: { bioses: [], core: 'genesis_plus_gx' },
-      gb: { bioses: [], core: 'mgba' },
-      gba: { bioses: [], core: 'mgba' },
-      gbc: { bioses: [], core: 'mgba' },
-      genesis: { bioses: [], core: 'genesis_plus_gx' },
-      megadrive: { bioses: [], core: 'genesis_plus_gx' },
-      nes: { bioses: [], core: 'fceumm' },
-      ngp: { bioses: [], core: 'mednafen_ngp' },
-      ngpc: { bioses: [], core: 'mednafen_ngp' },
-      odyssey2: { bioses: [], core: 'o2em' },
-      pcengine: { bioses: [], core: 'mednafen_pce_fast' },
-      sega32x: { bioses: [], core: 'picodrive' },
-      sfc: { bioses: [], core: 'snes9x' },
-      'sg-1000': { bioses: [], core: 'gearsystem' },
-      sms: { bioses: [], core: 'genesis_plus_gx' },
-      snes: { bioses: [], core: 'snes9x' },
-      vb: { bioses: [], core: 'mednafen_vb' },
-      videopac: { bioses: [], core: 'o2em' },
-      wonderswan: { bioses: [], core: 'mednafen_wswan' },
-      wonderswancolor: { bioses: [], core: 'mednafen_wswan' },
-    },
+    platform: mapValues(platformMap, ({ cores: [core] }) => ({ bioses: [], core })),
     shader: '',
     videoSmooth: false,
   },

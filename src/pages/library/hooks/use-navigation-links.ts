@@ -1,3 +1,4 @@
+import { sortBy } from 'es-toolkit'
 import { useLocation } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
@@ -22,6 +23,8 @@ export function useNavigationLinks() {
     to: getPlatformLink(platform),
   }))
 
+  const sortedPlatformLinks = sortBy(platformLinks, ['text'])
+
   const groups = [
     {
       links: [
@@ -29,7 +32,7 @@ export function useNavigationLinks() {
       ],
       title: '',
     },
-    { links: platformLinks, title: 'Platforms' },
+    { links: sortedPlatformLinks, title: 'Platforms' },
   ]
   if (!isDemo) {
     const historyLink = {

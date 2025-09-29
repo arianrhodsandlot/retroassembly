@@ -49,8 +49,7 @@ export function getRomLibretroThumbnail(
   return getLibretroThumbnail(name, platform, type)
 }
 
-const esdeAlias = { sms: 'mastersystem', snes: 'snesna', vb: 'virtualboy' }
-
+const esdeAlias = { famicom: 'nes', nes: 'famicom', sms: 'mastersystem', snes: 'snesna', vb: 'virtualboy' }
 export function getPlatformIcon(platform: string) {
   return getCDNUrl('Weestuarty/lcars-es-de', `system/icons/${esdeAlias[platform] || platform}.png`)
 }
@@ -84,7 +83,7 @@ export function getPlatformGameIcon(platform: string) {
     }[platform] || 'svg/game.svg'
   const filePath = {
     'batocera-linux/batocera-themes': `themes/batocera/${alias}/_data/${subPath}`,
-    'libretro/retroarch-assets': `/src/xmb/retrosystem/${encodeURIComponent(platformFullName)}-content.svg`,
+    'libretro/retroarch-assets': `xmb/flatux/png/${encodeURIComponent(platformFullName)}-content.svg`,
   }[repo]
   if (filePath) {
     return getCDNUrl(repo, filePath)

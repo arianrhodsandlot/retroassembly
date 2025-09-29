@@ -45,7 +45,7 @@ export function GamepadInput({ button }: Readonly<GamepadInputProps>) {
 
   useEffect(
     () =>
-      Gamepad.onPressed(async (event) => {
+      Gamepad.onPress(async (event) => {
         if (textField.current !== document.activeElement || isLoading) {
           return
         }
@@ -70,6 +70,7 @@ export function GamepadInput({ button }: Readonly<GamepadInputProps>) {
         <TextField.Root
           className='w-28'
           disabled={disabled}
+          inputMode='none'
           onBeforeInput={(event) => event.preventDefault()}
           onChange={(event) => event.preventDefault()}
           onFocus={(event) => event.target.select()}

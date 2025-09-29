@@ -7,6 +7,7 @@ import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { MainScrollArea } from '../../components/main-scroll-area.tsx'
 import { PageBreadcrumb } from '../../components/page-breadcrumb.tsx'
 import { usePreference } from '../../hooks/use-preference.ts'
+import { useViewport } from '../../hooks/use-viewport.ts'
 import { BioseMissingMessage } from './components/biose-missing-message.tsx'
 import { GameAnimatePresence } from './components/game-animate-presence.tsx'
 import { GameButtons } from './components/game-buttons.tsx'
@@ -20,6 +21,7 @@ import { PageHooks } from './components/page-hooks.ts'
 import { RomBackground } from './components/rom-background.tsx'
 
 export default function RomPage() {
+  const { isLargeScreen } = useViewport()
   const { rom, state } = useLoaderData<typeof loader>()
   const { preference } = usePreference()
   if (!rom) {
@@ -43,7 +45,7 @@ export default function RomPage() {
         <PageBreadcrumb />
         <div className='flex min-h-full w-full flex-col gap-4 p-4 lg:flex-row'>
           <div className='group lg:sticky'>
-            <GameCover className='top-4 block w-full lg:w-64' parallax rom={rom} />
+            <GameCover className='top-4 block w-full lg:w-64' parallax={isLargeScreen} rom={rom} />
 
             <div className='mt-2 flex justify-end px-1'>
               <GameMediaDialog />

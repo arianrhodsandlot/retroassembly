@@ -49,9 +49,10 @@ export function getRomLibretroThumbnail(
   return getLibretroThumbnail(name, platform, type)
 }
 
-const esdeAlias = { famicom: 'nes', nes: 'famicom', sms: 'mastersystem', snes: 'snesna', vb: 'virtualboy' }
+const esdeAlias = { sms: 'mastersystem', snes: 'snesna', vb: 'virtualboy' }
 export function getPlatformIcon(platform: string) {
-  return getCDNUrl('Weestuarty/lcars-es-de', `system/icons/${esdeAlias[platform] || platform}.png`)
+  const platformIconAlias = { ...esdeAlias, famicom: 'nes', nes: 'famicom' }
+  return getCDNUrl('Weestuarty/lcars-es-de', `system/icons/${platformIconAlias[platform] || platform}.png`)
 }
 
 export function getPlatformGameIcon(platform: string) {

@@ -21,7 +21,7 @@ export function GameEntrySettings() {
             </SettingsTitle>
             <div className='px-6'>
               <RadioCards.Root
-                columns={{ initial: '1', md: '8' }}
+                columns={{ initial: '1', md: '6' }}
                 onValueChange={(value) => update({ ui: { libraryCoverSize: value } })}
                 size='1'
                 value={preference.ui.libraryCoverSize}

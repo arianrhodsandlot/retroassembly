@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from 'react'
+import { useLoaderData } from 'react-router'
 
 function subscribe(callback: () => void) {
   const controller = new AbortController()
@@ -12,18 +13,17 @@ function getSnapshot() {
   return globalThis.innerWidth
 }
 
-function getServerSnapshot() {
-  return 0
-}
-
 export function useViewport() {
+  const { isLikelyDesktop } = useLoaderData()
   const width = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
-  const isHydrated = width !== 0 // 0 is our SSR default
   const isLargeScreen = width >= 1024
   const isNotLargeScreen = !isLargeScreen
 
+  function getServerSnapshot() {
+    return isLikelyDesktop ? 1024 : 0
+  }
+
   return {
-    isHydrated,
     isLargeScreen,
     isNotLargeScreen,
     width,

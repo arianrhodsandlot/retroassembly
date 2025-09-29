@@ -34,7 +34,7 @@
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.22.0",
     "@cloudflare/vite-plugin": "1.13.7",
-    "@hono/node-server": "1.19.4",
+    "@hono/node-server": "1.19.5",
     "@hono/vite-dev-server": "0.21.1",
     "@hono/zod-validator": "0.7.3",
     "@iconify-json/logos": "1.2.9",

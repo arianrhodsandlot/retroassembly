@@ -26,19 +26,6 @@ export const Gamepad = {
       }
     }
   },
-  handlePressed(event) {
-    const { index, pressed } = event.detail
-    if (pressed || index) {
-      return
-    }
-    const eventName = 'pressed'
-    const callbacks = Gamepad.callbacksMap[eventName]
-    if (callbacks) {
-      for (const callback of callbacks) {
-        callback(event.detail)
-      }
-    }
-  },
   initialize() {
     if (typeof globalThis.navigator?.getGamepads !== 'function') {
       return
@@ -51,17 +38,9 @@ export const Gamepad = {
     listener.start()
     Gamepad.initialized = true
     listener.on('gamepad:button', Gamepad.handlePress)
-    listener.on('gamepad:button', Gamepad.handlePressed)
   },
   offPress(callback: unknown) {
     const eventName = 'press'
-    const callbacks = Gamepad.callbacksMap[eventName]
-    if (callbacks) {
-      pull(callbacks, [callback])
-    }
-  },
-  offPressed(callback: unknown) {
-    const eventName = 'pressed'
     const callbacks = Gamepad.callbacksMap[eventName]
     if (callbacks) {
       pull(callbacks, [callback])
@@ -74,15 +53,6 @@ export const Gamepad = {
     this.initialize()
     return () => {
       Gamepad.offPress(callback)
-    }
-  },
-  onPressed(callback: (event: GamepadButtonEvent) => void) {
-    const eventName = 'pressed'
-    Gamepad.callbacksMap[eventName] ??= []
-    Gamepad.callbacksMap[eventName].push(callback)
-    this.initialize()
-    return () => {
-      Gamepad.offPressed(callback)
     }
   },
 }

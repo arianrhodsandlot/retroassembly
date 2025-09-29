@@ -6,6 +6,7 @@ export type PlatformName =
   | 'atari5200'
   | 'atari7800'
   | 'atarilynx'
+  | 'channelf'
   | 'colecovision'
   | 'famicom'
   | 'fds'
@@ -102,6 +103,19 @@ export const platforms: Platform[] = [
     launchboxName: 'ColecoVision',
     libretroName: 'Coleco - ColecoVision',
     name: 'colecovision',
+  },
+  {
+    bioses: [
+      { md5: 'da98f4bb3242ab80d76629021bb27585', name: 'sl31254.bin', required: true },
+      { md5: '95d339631d867c8f1d15a5f2ec26069d', name: 'sl90025.bin', required: true },
+      { md5: 'ac9804d4c0e9d07e33472e3726ed15c3', name: 'sl31253.bin', required: true },
+    ],
+    cores: ['freechaf'],
+    displayName: 'Channel F',
+    fileExtensions: ['bin', 'rom', 'zip'].map((name) => `.${name}`),
+    launchboxName: 'Fairchild Channel F',
+    libretroName: 'Fairchild - Channel F',
+    name: 'channelf',
   },
   {
     cores: ['stella2014'],

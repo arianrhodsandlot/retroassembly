@@ -2,6 +2,7 @@ import type { PlatformName } from '@/constants/platform'
 
 export const skeletonClassnames: Partial<Record<PlatformName, string>> = {
   atari2600: '!aspect-[7/10] !h-full !w-auto',
+  channelf: '!aspect-[7/10] !h-full !w-auto',
   colecovision: '!aspect-[18/25] !h-full !w-auto',
   famicom: '!aspect-[25/34] !h-full !w-auto',
   genesis: '!aspect-[7/10] !h-full !w-auto',

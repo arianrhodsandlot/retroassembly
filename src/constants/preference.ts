@@ -115,6 +115,7 @@ export const defaultPreference: ResolvedPreference = {
       atari5200: { bioses: [], core: 'a5200' },
       atari7800: { bioses: [], core: 'prosystem' },
       atarilynx: { bioses: [], core: 'mednafen_lynx' },
+      channelf: { bioses: [], core: 'freechaf' },
       colecovision: { bioses: [], core: 'gearcoleco' },
       famicom: { bioses: [], core: 'fceumm' },
       fds: { bioses: [], core: 'fceumm' },

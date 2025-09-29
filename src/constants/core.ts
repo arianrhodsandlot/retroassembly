@@ -33,6 +33,7 @@ export const cores = {
     url: { js: getCoreCDNUrl('fbneo', 'js'), name: 'fbneo', wasm: getCoreCDNUrl('fbneo', 'wasm') },
   },
   fceumm: { displayName: 'FCEUmm' },
+  freechaf: { displayName: 'FreeChaF' },
   gambatte: { displayName: 'Gambatte' },
   gearboy: { displayName: 'Gearboy' },
   gearcoleco: { displayName: 'Gearcoleco' },

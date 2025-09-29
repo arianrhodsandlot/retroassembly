@@ -24,10 +24,10 @@ export function PlatformBackground() {
       sega32x: '32x',
       vb: 'virtualboy',
     }[platform] || platform
-  const platformBackgroundUrl = getCDNUrl(
-    'HerbFargus/es-theme-tronkyfran',
-    `${platformName}/art/${imageName}_art_blur.jpg`,
-  )
+  const repo = { channelf: 'Weestuarty/diamond-es-de' }[platform] || 'HerbFargus/es-theme-tronkyfran'
+  const filePath =
+    { channelf: `/assets/backgrounds/${imageName}.png` }[platform] || `${platformName}/art/${imageName}_art_blur.jpg`
+  const platformBackgroundUrl = getCDNUrl(repo, filePath)
   return (
     <MainBackground alt={platformMap[platform].displayName} key={platformBackgroundUrl} src={platformBackgroundUrl} />
   )

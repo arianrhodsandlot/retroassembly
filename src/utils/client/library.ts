@@ -60,7 +60,10 @@ export function getPlatformGameIcon(platform: string) {
   if (!platformFullName) {
     return ''
   }
-  const repo = 'batocera-linux/batocera-themes'
+  const repo =
+    {
+      channelf: 'libretro/retroarch-assets',
+    }[platform] || 'batocera-linux/batocera-themes'
   const aliasMap: Partial<Record<PlatformName, string>> = {
     arcade: 'fba',
     atarilynx: 'lynx',
@@ -73,13 +76,20 @@ export function getPlatformGameIcon(platform: string) {
     vb: 'virtualboy',
     videopac: 'odyssey2',
   }
-  const alias = aliasMap[platform]
+  const alias = aliasMap[platform] || platform
   const subPath =
     {
       fds: 'images/game.png',
       gameandwatch: 'svg/console.svg',
     }[platform] || 'svg/game.svg'
-  return getCDNUrl(repo, `themes/batocera/${alias || platform}/_data/${subPath}`)
+  const filePath = {
+    'batocera-linux/batocera-themes': `themes/batocera/${alias}/_data/${subPath}`,
+    'libretro/retroarch-assets': `/src/xmb/retrosystem/${encodeURIComponent(platformFullName)}-content.svg`,
+  }[repo]
+  if (filePath) {
+    return getCDNUrl(repo, filePath)
+  }
+  return ''
 }
 
 const platformBannerMap = {

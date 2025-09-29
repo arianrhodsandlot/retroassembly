@@ -6,6 +6,7 @@ export type PlatformName =
   | 'atari5200'
   | 'atari7800'
   | 'atarilynx'
+  | 'colecovision'
   | 'famicom'
   | 'fds'
   | 'gameandwatch'
@@ -92,6 +93,15 @@ export const platforms: Platform[] = [
     launchboxName: 'Philips Videopac+',
     libretroName: 'Philips - Videopac+',
     name: 'videopac',
+  },
+  {
+    bioses: [{ md5: '2c66f5911e5b42b8ebe113403548eee7', name: 'colecovision.rom', required: true }],
+    cores: ['gearcoleco'],
+    displayName: 'ColecoVision',
+    fileExtensions: ['col', 'cv', 'bin', 'rom', 'zip'].map((name) => `.${name}`),
+    launchboxName: 'ColecoVision',
+    libretroName: 'Coleco - ColecoVision',
+    name: 'colecovision',
   },
   {
     cores: ['stella2014'],

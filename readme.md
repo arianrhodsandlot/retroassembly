@@ -69,6 +69,7 @@ RetroAssembly aims to support a wide range of vintage gaming systems. Emulation 
   | Atari 5200 | `a5200` |
   | Atari 7800 | `prosystem` |
   | Atari Lynx | `mednafen_lynx` |
+  | ColecoVision | `gearcoleco` |
   | Famicom Disk System | `fceumm`, `nestopia` |
   | Game & Watch | `gw` |
   | Game Boy | `mgba`, `gearboy`, `gambatte`, `tgbdual` |

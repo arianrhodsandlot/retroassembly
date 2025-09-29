@@ -17,6 +17,7 @@ export function PlatformBackground() {
       atari5200: 'a5200',
       atari7800: 'a7800',
       atarilynx: 'lynx',
+      colecovision: 'col',
       famicom: 'nes',
       gamegear: 'gg',
       genesis: 'gen',

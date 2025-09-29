@@ -35,6 +35,7 @@ export const cores = {
   fceumm: { displayName: 'FCEUmm' },
   gambatte: { displayName: 'Gambatte' },
   gearboy: { displayName: 'Gearboy' },
+  gearcoleco: { displayName: 'Gearcoleco' },
   gearsystem: { displayName: 'Gearsystem' },
   genesis_plus_gx: { displayName: 'Genesis Plus GX' },
   gw: { displayName: 'GW' },

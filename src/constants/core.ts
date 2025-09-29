@@ -46,6 +46,7 @@ export const cores = {
   mednafen_wswan: { displayName: 'Beetle Wonderswan' },
   mgba: { displayName: 'mGBA' },
   nestopia: { displayName: 'Nestopia' },
+  o2em: { displayName: 'O2EM' },
   picodrive: { displayName: 'PicoDrive' },
   prosystem: {
     displayName: 'ProSystem',

@@ -18,12 +18,14 @@ export type PlatformName =
   | 'nes'
   | 'ngp'
   | 'ngpc'
+  | 'odyssey2'
   | 'sega32x'
   | 'sfc'
   | 'sg-1000'
   | 'sms'
   | 'snes'
   | 'vb'
+  | 'videopac'
   | 'wonderswan'
   | 'wonderswancolor'
 
@@ -72,6 +74,24 @@ export const platforms: Platform[] = [
     launchboxName: 'Arcade',
     libretroName: 'MAME',
     name: 'arcade',
+  },
+  {
+    bioses: [{ name: 'o2rom.bin', required: true }],
+    cores: ['o2em'],
+    displayName: 'Magnavox Odyssey 2',
+    fileExtensions: ['bin', 'zip'].map((name) => `.${name}`),
+    launchboxName: 'Magnavox Odyssey 2',
+    libretroName: 'Magnavox - Odyssey2',
+    name: 'odyssey2',
+  },
+  {
+    bioses: [{ name: 'o2rom.bin', required: true }],
+    cores: ['o2em'],
+    displayName: 'Philips Videopac+',
+    fileExtensions: ['bin', 'zip'].map((name) => `.${name}`),
+    launchboxName: 'Philips Videopac+',
+    libretroName: 'Philips - Videopac+',
+    name: 'videopac',
   },
   {
     cores: ['stella2014'],

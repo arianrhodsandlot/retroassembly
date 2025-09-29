@@ -1,4 +1,4 @@
-import { capitalize } from 'es-toolkit'
+import { capitalize, trim } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
 import { Nostalgist } from 'nostalgist'
 import type { Rom } from '@/controllers/roms/get-roms.ts'
@@ -28,7 +28,7 @@ export function getLibretroThumbnail(name: string, platform: string, type: Libre
   }
 
   const normalizedPlatformFullName = platformFullName.replaceAll(' ', '_')
-  const repo = path.join('libretro-thumbnails', normalizedPlatformFullName)
+  const repo = path.join('libretro-thumbnails', trim(normalizedPlatformFullName, '+'))
 
   const fileDirectory = `Named_${capitalize(type)}s`
   const normalizedFileName = `${name.replaceAll(/[&*/:`<>?\\]|\|"/g, '_')}.png`
@@ -71,6 +71,7 @@ export function getPlatformGameIcon(platform: string) {
     'sg-1000': 'sg1000',
     sms: 'mastersystem',
     vb: 'virtualboy',
+    videopac: 'odyssey2',
   }
   const alias = aliasMap[platform]
   const subPath =

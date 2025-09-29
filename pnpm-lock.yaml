@@ -129,8 +129,8 @@ importers:
         specifier: 3.0.5
         version: 3.0.5
       '@zip.js/zip.js':
-        specifier: 2.8.2
-        version: 2.8.2
+        specifier: 2.8.3
+        version: 2.8.3
       atropos:
         specifier: 2.0.2
         version: 2.0.2
@@ -2739,9 +2739,9 @@ packages:
       react-dom: '*'
       vite: '*'
 
-  '@zip.js/zip.js@2.8.2':
-    resolution: {integrity: sha512-PI6UdgpSeVoGvzguKHmy2bwOqI3UYkntLZOCpyJSKIi7234c5aJmQYkJB/P4P2YUJkqhbqvu7iM2/0eJZ178nA==}
-    engines: {bun: '>=0.7.0', deno: '>=1.0.0', node: '>=16.5.0'}
+  '@zip.js/zip.js@2.8.3':
+    resolution: {integrity: sha512-JptkKCqjj6acTiJhiwLqobhBe2pWHsE+Y/SM1nOAV0ROH0qDus7mCp8mTQAiP9X/RVABBCljPnI2pYsRoctB9A==}
+    engines: {bun: '>=0.7.0', deno: '>=1.0.0', node: '>=18.0.0'}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -8468,7 +8468,7 @@ snapshots:
       vitefu: 1.1.1(vite@7.1.7(@types/node@24.5.2)(jiti@2.6.0)(lightningcss@1.30.1)(stylus@0.57.0)(tsx@4.20.3)(yaml@2.8.1))
     optional: true
 
-  '@zip.js/zip.js@2.8.2': {}
+  '@zip.js/zip.js@2.8.3': {}
 
   acorn-jsx@5.3.2(acorn@8.15.0):
     dependencies:

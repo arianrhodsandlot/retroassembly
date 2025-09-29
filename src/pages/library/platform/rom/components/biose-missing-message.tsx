@@ -6,7 +6,7 @@ interface BioseMissingMessageProps {
   bioses: {
     md5?: string | undefined
     name: string
-    required: boolean
+    required?: boolean
   }[]
 }
 

@@ -44,6 +44,7 @@ export const cores = {
   mame2003_plus: { displayName: 'MAME 2003-Plus' },
   mednafen_lynx: { displayName: 'Beetle Lynx' },
   mednafen_ngp: { displayName: 'Beetle NeoPop' },
+  mednafen_pce_fast: { displayName: 'Beetle PC Engine Fast' },
   mednafen_vb: { displayName: 'Beetle VB' },
   mednafen_wswan: { displayName: 'Beetle Wonderswan' },
   mgba: { displayName: 'mGBA' },

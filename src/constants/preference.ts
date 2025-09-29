@@ -130,6 +130,7 @@ export const defaultPreference: ResolvedPreference = {
       ngp: { bioses: [], core: 'mednafen_ngp' },
       ngpc: { bioses: [], core: 'mednafen_ngp' },
       odyssey2: { bioses: [], core: 'o2em' },
+      pcengine: { bioses: [], core: 'mednafen_pce_fast' },
       sega32x: { bioses: [], core: 'picodrive' },
       sfc: { bioses: [], core: 'snes9x' },
       'sg-1000': { bioses: [], core: 'gearsystem' },

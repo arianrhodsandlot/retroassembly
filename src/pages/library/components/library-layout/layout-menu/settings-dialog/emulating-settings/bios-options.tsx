@@ -53,11 +53,11 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
     await upload({ file, platform })
   }
 
-  function isBiosUploaded(bios: { name: string; required: boolean }) {
+  function isBiosUploaded(bios: { name: string; required?: boolean }) {
     return bioses?.some((b) => b.fileName === bios.name)
   }
 
-  function getBiosStatusText(bios: { name: string; required: boolean }) {
+  function getBiosStatusText(bios: { name: string; required?: boolean }) {
     if (isBiosUploaded(bios)) {
       return ''
     }
@@ -67,7 +67,7 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
     return '(optional)'
   }
 
-  function getBiosClassName(bios: { name: string; required: boolean }) {
+  function getBiosClassName(bios: { name: string; required?: boolean }) {
     if (isBiosUploaded(bios)) {
       return 'text-green-700'
     }

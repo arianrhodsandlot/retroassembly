@@ -83,6 +83,7 @@ RetroAssembly aims to support a wide range of vintage gaming systems. Emulation 
   | Neo Geo Pocket | `mednafen_ngp` |
   | Neo Geo Pocket Color | `mednafen_ngp` |
   | NES / Family Computer | `fceumm`, `nestopia`, `quicknes` |
+  | PC Engine (TurboGrafx 16) | `mednafen_pce_fast` |
   | Sega SG-1000 | `gearsystem` |
   | Super NES / Super Famicom | `snes9x`, `snes9x2002`, `snes9x2005`, `snes9x2010` |
   | Virtual Boy | `mednafen_vb` |

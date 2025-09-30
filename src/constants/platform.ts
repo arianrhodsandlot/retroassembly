@@ -17,7 +17,7 @@ interface BasePlatform {
 
 // This link can be used as a reference for the array, but they may be not identical.
 // https://github.com/RetroPie/RetroPie-Setup/blob/master/platforms.cfg
-const basePlatformMap: Record<string, BasePlatform> = {
+const basePlatformMap = {
   arcade: {
     bioses: [
       { name: 'bubsys.zip' },
@@ -203,7 +203,7 @@ const basePlatformMap: Record<string, BasePlatform> = {
   sega32x: {
     cores: ['picodrive'],
     displayName: 'Sega 32X',
-    fileExtensions: ['.bin', '.iso', '.zip'],
+    fileExtensions: ['.32X', '.zip'],
     libretroName: 'Sega - 32X',
   },
   sfc: {
@@ -260,7 +260,7 @@ const basePlatformMap: Record<string, BasePlatform> = {
     fileExtensions: ['.wsc', '.zip'],
     libretroName: 'Bandai - WonderSwan Color',
   },
-}
+} satisfies Record<string, BasePlatform>
 
 export type PlatformName = keyof typeof basePlatformMap
 
@@ -270,6 +270,7 @@ export interface Platform extends BasePlatform {
 
 export const platformMap: Record<PlatformName, Platform> = mapValues(
   basePlatformMap,
-  (platform, name: PlatformName) => ({ name, ...platform }),
+  (platform: BasePlatform, name: PlatformName) => ({ name, ...platform }),
 )
+
 export const platforms = sortBy(Object.values(platformMap), ['displayName'])

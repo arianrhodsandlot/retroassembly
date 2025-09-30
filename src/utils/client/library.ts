@@ -2,7 +2,7 @@ import { capitalize, trim } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
 import { Nostalgist } from 'nostalgist'
 import type { Rom } from '@/controllers/roms/get-roms.ts'
-import { platformMap, type PlatformName } from '../../constants/platform.ts'
+import { platformMap } from '../../constants/platform.ts'
 import { getCDNUrl } from '../isomorphic/cdn.ts'
 
 type LibretroThumbnailType = 'boxart' | 'logo' | 'snap' | 'title'
@@ -49,67 +49,28 @@ export function getRomLibretroThumbnail(
   return getLibretroThumbnail(name, platform, type)
 }
 
-const esdeAlias = { sms: 'mastersystem', snes: 'snesna', vb: 'virtualboy' }
 export function getPlatformIcon(platform: string) {
-  const platformIconAlias = { ...esdeAlias, famicom: 'nes', nes: 'famicom' }
-  return getCDNUrl('Weestuarty/lcars-es-de', `system/icons/${platformIconAlias[platform] || platform}.png`)
+  return getCDNUrl('arianrhodsandlot/retroassembly-assets', `platforms/icons/${platform}.png`)
 }
 
 export function getPlatformGameIcon(platform: string) {
-  const platformFullName = platformMap[platform].libretroName
-  if (!platformFullName) {
-    return ''
-  }
-  const repo =
-    {
-      channelf: 'libretro/retroarch-assets',
-    }[platform] || 'batocera-linux/batocera-themes'
-  const aliasMap: Partial<Record<PlatformName, string>> = {
-    arcade: 'fba',
-    atarilynx: 'lynx',
-    famicom: 'nes',
-    gameandwatch: 'gw',
-    genesis: 'megadrive',
-    sfc: 'snes',
-    'sg-1000': 'sg1000',
-    sms: 'mastersystem',
-    vb: 'virtualboy',
-    videopac: 'odyssey2',
-  }
-  const alias = aliasMap[platform] || platform
-  const subPath =
-    {
-      fds: 'images/game.png',
-      gameandwatch: 'svg/console.svg',
-    }[platform] || 'svg/game.svg'
-  const filePath = {
-    'batocera-linux/batocera-themes': `themes/batocera/${alias}/_data/${subPath}`,
-    'libretro/retroarch-assets': `xmb/flatux/png/${encodeURIComponent(platformFullName)}-content.svg`,
-  }[repo]
-  if (filePath) {
-    return getCDNUrl(repo, filePath)
-  }
-  return ''
+  return getCDNUrl('arianrhodsandlot/retroassembly-assets', `platforms/contents/${platform}.svg`)
 }
 
-const platformBannerMap = {
-  ngp: { filePath: 'ngp/art/system.svg', repo: 'RetroPie/es-theme-carbon' },
-  sfc: { filePath: 'themes/batocera/snes/_data/svg/logo.svg', repo: 'batocera-linux/batocera-themes' },
-  wonderswan: { filePath: 'wonderswan/art/system.svg', repo: 'RetroPie/es-theme-carbon' },
-}
 export function getPlatformBanner(platform: string) {
-  const repo = platformBannerMap[platform]?.repo || 'Weestuarty/lcars-es-de'
-  const filePath =
-    platformBannerMap[platform]?.filePath || `system/logos/system-logo-color/${esdeAlias[platform] || platform}.svg`
-  return getCDNUrl(repo, filePath)
+  return getCDNUrl('arianrhodsandlot/retroassembly-assets', `platforms/logos/${platform}.svg`)
 }
 
 export function getPlatformDevicePhoto(platform: string) {
-  return getCDNUrl('Weestuarty/codywheel-es-de', `assets/systemimages/${esdeAlias[platform] || platform}.png`)
+  return getCDNUrl('arianrhodsandlot/retroassembly-assets', `platforms/photos/${platform}.png`)
 }
 
 export function getPlatformDeviceBackground(platform: string) {
-  return getCDNUrl('Weestuarty/diamond-es-de', `assets/backgrounds/${esdeAlias[platform] || platform}.png`)
+  return getCDNUrl('arianrhodsandlot/retroassembly-assets', `platforms/backgrounds/${platform}.png`)
+}
+
+export function getPlatformBluredBackground(platform: string) {
+  return getCDNUrl('arianrhodsandlot/retroassembly-assets', `platforms/blured-backgrounds/${platform}.jpg`)
 }
 
 export function getRomGoodcodes(rom: Rom) {

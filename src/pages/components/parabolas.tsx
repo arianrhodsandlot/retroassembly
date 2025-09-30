@@ -57,12 +57,12 @@ const DEFAULT_ICONS = [
   'nes',
   'ngp',
   'ngpc',
-  'sg1000',
+  'sg-1000',
   'snes',
-  'virtualboy',
+  'vb',
   'wonderswan',
   'wonderswancolor',
-].map((platform) => getCDNUrl('batocera-linux/batocera-themes', `themes/batocera/${platform}/_data/svg/console.svg`))
+].map((platform) => getCDNUrl('arianrhodsandlot/retroassembly-assets', `platforms/consoles/${platform}.svg`))
 
 // Animation constants with const assertions for better type safety
 const DEFAULT_CONFIG = {
@@ -216,7 +216,6 @@ function useParabolaAnimation(params: {
 
   // Initialize client-side and container size
   useEffect(() => {
-    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setIsClient(true)
 
     function updateContainerSize() {
@@ -224,7 +223,6 @@ function useParabolaAnimation(params: {
         return
       }
 
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setContainerSize({
         height: containerRef.current.clientHeight,
         width: containerRef.current.clientWidth,
@@ -304,7 +302,6 @@ function useParabolaAnimation(params: {
       }),
     )
 
-    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setActiveObjects(initialObjects)
     activeObjectsRef.current = initialObjects
 

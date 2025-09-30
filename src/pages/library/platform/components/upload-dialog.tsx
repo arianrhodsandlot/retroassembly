@@ -79,10 +79,21 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
     }
   })
 
+  function validateFiles(files: File[]) {
+    let message = ''
+    if (files.length > maxFiles) {
+      message = `You can only upload up to ${maxFiles} files at a time.`
+    } else if (files.some((file) => !platformMap[platform].fileExtensions.some((ext) => file.name.endsWith(ext)))) {
+      message = `Please only upload files with the following extensions:\n${platformMap[platform].fileExtensions.join(', ')}`
+    }
+    return message
+  }
+
   async function handleClickSelect() {
     const files = await fileOpen({ extensions: platformMap[platform].fileExtensions, multiple: true })
-    if (files.length > maxFiles) {
-      alert(`You can only upload up to ${maxFiles} files at a time.`)
+    const message = validateFiles(files)
+    if (message) {
+      alert(message)
       return
     }
     setFiles(files)
@@ -92,6 +103,11 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
   async function onDrop(files: File[]) {
     if (files.length > maxFiles) {
       alert(`You can only upload up to ${maxFiles} files at a time.`)
+      return
+    }
+    const message = validateFiles(files)
+    if (message) {
+      alert(message)
       return
     }
     setFiles(files)

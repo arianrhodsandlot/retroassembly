@@ -69,7 +69,7 @@ export function useSpatialNavigation() {
       } else if (keyName === inputMapping.confirmKey || keyName === 'enter' || keyName === 'space') {
         event.preventDefault()
         click(document.activeElement)
-      } else if (keyName === inputMapping.cancelKey) {
+      } else if (keyName === inputMapping.cancelKey || keyName === 'backspace') {
         event.preventDefault()
         cancel()
       }

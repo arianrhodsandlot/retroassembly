@@ -15,7 +15,7 @@ const repositoryVersions = {
   'libretro-thumbnails/Magnavox_-_Odyssey2': '63e9a9e0359c0bc24174b9eaba03e590bae3ab58', // https://github.com/libretro-thumbnails/Magnavox_-_Odyssey2/commits
   'libretro-thumbnails/MAME': '4cac1368aa80bb3a60a1e0549d82c5b778f82b58', // https://github.com/libretro-thumbnails/MAME/commits
   'libretro-thumbnails/NEC_-_PC_Engine_-_TurboGrafx_16': '488bcadd66ba83c473ba55f29ce1e0f6b3bf823e', // https://github.com/libretro-thumbnails/NEC_-_PC_Engine_-_TurboGrafx_16/commits
-  'libretro-thumbnails/Nintendo_-_Family_Computer_Disk_System': '09337470d081504faee7b0b6bcee0bdf8182c292 ', // https://github.com/libretro-thumbnails/Nintendo_-_Family_Computer_Disk_System/commits
+  'libretro-thumbnails/Nintendo_-_Family_Computer_Disk_System': '09337470d081504faee7b0b6bcee0bdf8182c292', // https://github.com/libretro-thumbnails/Nintendo_-_Family_Computer_Disk_System/commits
   'libretro-thumbnails/Nintendo_-_Game_Boy': 'd963e89e95c1fe48df9fdb88ccb60f7d1ffc68d3', // https://github.com/libretro-thumbnails/Nintendo_-_Game_Boy/commits
   'libretro-thumbnails/Nintendo_-_Game_Boy_Advance': '1d180fd504e63eff98cb94653eff2ddcd5d03647', // https://github.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/commits
   'libretro-thumbnails/Nintendo_-_Game_Boy_Color': '2c54e12ed7d9acd3124497bf5a9b107ab69d0d41', // https://github.com/libretro-thumbnails/Nintendo_-_Game_Boy_Color/commits

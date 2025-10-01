@@ -197,7 +197,7 @@ const basePlatformMap = {
     ],
     cores: ['mednafen_pce_fast'],
     displayName: 'PC Engine',
-    fileExtensions: ['.pce', '.iso', '.img', '.bin', '.chd', '.zip'],
+    fileExtensions: ['.pce', '.bin', '.zip'],
     libretroName: 'NEC - PC Engine - TurboGrafx 16',
   },
   sega32x: {

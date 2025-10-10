@@ -30,7 +30,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
   const [progress, setProgress] = useState(0)
   const deferedProgress = useDeferredValue(progress)
 
-  async function uploadFiles(url: string, files: File[]) {
+  async function uploadFiles(_url: string, files: File[]) {
     const md5s = await Promise.all(files.map((file) => getROMMd5(file, platform)))
     await client.roms.$post({ form: { 'files[]': files, md5s: JSON.stringify(md5s), platform } })
   }

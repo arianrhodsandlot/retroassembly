@@ -11,7 +11,7 @@ export function usePreference() {
 
   const { isMutating: isLoading, trigger } = useSWRMutation(
     { endpoint: 'preference', method: 'post' },
-    (key, { arg: json }: { arg: InferRequestType<typeof $post>['json'] }) => $post({ json }),
+    (_key, { arg: json }: { arg: InferRequestType<typeof $post>['json'] }) => $post({ json }),
   )
 
   async function update(value: PreferenceSnippet) {

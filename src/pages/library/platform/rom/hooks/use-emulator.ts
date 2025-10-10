@@ -132,10 +132,12 @@ export function useEmulator() {
     }
     try {
       // @ts-expect-error an ad-hoc patch for disabling request for camera access
+      // eslint-disable-next-line react-hooks/immutability
       globalThis.navigator.mediaDevices.getUserMedia = null
     } catch {}
     await emulator.start()
     try {
+      // eslint-disable-next-line react-hooks/immutability
       globalThis.navigator.mediaDevices.getUserMedia = originalGetUserMedia
     } catch {}
     const canvas = emulator.getCanvas()
@@ -148,6 +150,7 @@ export function useEmulator() {
       toggleFullscreen()
     }
     try {
+      // eslint-disable-next-line react-hooks/globals
       wakeLock = await navigator.wakeLock.request('screen')
     } catch {}
     onCancel(noop)

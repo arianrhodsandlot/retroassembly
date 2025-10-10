@@ -13,7 +13,7 @@ export function LoginForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
 
   const { error, isMutating, trigger } = useSWRMutation(
     { endpoint: 'auth/login', method: 'post' },
-    (key, { arg: form }: { arg: InferRequestType<typeof $post>['form'] }) => $post({ form }),
+    (_key, { arg: form }: { arg: InferRequestType<typeof $post>['form'] }) => $post({ form }),
     {
       onSuccess() {
         setIsRedirecting(true)

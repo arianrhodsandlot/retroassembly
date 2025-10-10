@@ -27,7 +27,7 @@ export function GameMediaImages() {
 
   const { isMutating: isDeletingThumbnail, trigger: deleteThumbnail } = useSWRMutation(
     { endpoint: 'roms/:id/thumbnail/:thumbnailId', method: 'delete', param },
-    (key, { arg: param }: { arg: InferRequestType<typeof $delete>['param'] }) => parseResponse($delete({ param })),
+    (_key, { arg: param }: { arg: InferRequestType<typeof $delete>['param'] }) => parseResponse($delete({ param })),
   )
 
   const isLoading = isUploadingThumbnail || isDeletingThumbnail

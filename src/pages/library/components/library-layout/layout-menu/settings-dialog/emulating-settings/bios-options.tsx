@@ -18,7 +18,7 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
 
   const { isMutating: isDeleting, trigger: handleClickDelete } = useSWRMutation(
     { endpoint: 'preference/bioses', method: 'delete' },
-    (key, { arg: fileName }: { arg: string }) => $delete({ query: { file_name: fileName, platform } }),
+    (_key, { arg: fileName }: { arg: string }) => $delete({ query: { file_name: fileName, platform } }),
     {
       async onSuccess(response) {
         setPreference(await parseResponse(response))
@@ -28,7 +28,7 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
 
   const { isMutating: isUploading, trigger: upload } = useSWRMutation(
     { endpoint: 'preference/bioses', method: 'post' },
-    (key, { arg: form }: { arg: InferRequestType<typeof $post>['form'] }) => $post({ form }),
+    (_key, { arg: form }: { arg: InferRequestType<typeof $post>['form'] }) => $post({ form }),
     {
       async onSuccess(response) {
         setPreference(await parseResponse(response))

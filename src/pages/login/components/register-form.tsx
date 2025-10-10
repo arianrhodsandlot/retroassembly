@@ -22,7 +22,7 @@ export function RegisterForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
 
   const { error, isMutating, trigger } = useSWRMutation(
     { endpoint: 'auth/register', method: 'post' },
-    (key, { arg: form }: { arg: InferRequestType<typeof $post>['form'] }) => $post({ form }),
+    (_key, { arg: form }: { arg: InferRequestType<typeof $post>['form'] }) => $post({ form }),
     {
       onSuccess() {
         setIsRedirecting(true)

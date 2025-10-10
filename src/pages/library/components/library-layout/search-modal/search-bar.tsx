@@ -58,7 +58,7 @@ export function SearchBar() {
         setSelectedResult(data.roms[newIndex])
       }
     },
-    [data?.roms, selectedResult, setSelectedResult],
+    [data, selectedResult, setSelectedResult],
   )
 
   useEffect(() => {

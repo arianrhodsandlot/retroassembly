@@ -1,4 +1,5 @@
 import type { Config } from '@react-router/dev/config'
+import fs from 'fs-extra'
 import { build } from 'tsdown'
 import { getTargetRuntime } from './scripts/utils.ts'
 
@@ -12,8 +13,9 @@ export default {
         { entry: 'scripts/serve.ts', outDir: 'dist/scripts' },
       ]
       for (const { entry, outDir } of entries) {
-        await build({ clean: false, entry, logLevel: 'warn', outDir, unbundle: true })
+        await build({ clean: false, entry, logLevel: 'warn', outDir })
       }
+      await fs.move('dist/scripts', 'dist/server', { overwrite: true })
     }
   },
   future: {

@@ -44,7 +44,7 @@ const basePlatformMap = {
       { name: 'spectrum.zip' },
       { name: 'ym2608.zip' },
     ],
-    cores: ['mame2003_plus', 'fbneo'],
+    cores: ['fbneo', 'mame2003_plus'],
     displayName: 'Arcade',
     fileExtensions: ['.zip'],
     libretroName: 'MAME',

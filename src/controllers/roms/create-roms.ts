@@ -3,7 +3,7 @@ import { and, eq, inArray, type InferInsertModel } from 'drizzle-orm'
 import { chunk, omit } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
 import { DateTime } from 'luxon'
-import type { PlatformName } from '@/constants/platform.ts'
+import { platformMap, type PlatformName } from '@/constants/platform.ts'
 import { romTable } from '@/databases/schema.ts'
 import { getFilePartialDigest } from '@/utils/server/file.ts'
 import { msleuth } from '@/utils/server/msleuth.ts'
@@ -192,6 +192,12 @@ async function performBatchOperations(
 }
 
 export async function createRoms({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: PlatformName }) {
+  for (const file of files) {
+    const ext = path.parse(file.name).ext.toLowerCase()
+    if (!platformMap[platform].fileExtensions.includes(ext)) {
+      throw new Error(`File extension ${ext} is not supported for platform ${platform}`)
+    }
+  }
   let gameInfoList = []
   try {
     // @ts-expect-error msleuth response is not typed

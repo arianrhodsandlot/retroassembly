@@ -18,7 +18,7 @@ export function PendingMask() {
         {isNavigating ? (
           <motion.div
             animate={{ backdropFilter: 'blur(0)', opacity: 1 }}
-            className='bg-(--color-overlay) absolute inset-0 z-10 flex items-center justify-center'
+            className='bg-(--color-overlay) fixed inset-0 z-10 flex items-center justify-center'
             exit={{ backdropFilter: 'blur(0)', opacity: 0 }}
             initial={{ backdropFilter: 'blur(0)', opacity: 0 }}
             transition={{ duration: 0.4 }}

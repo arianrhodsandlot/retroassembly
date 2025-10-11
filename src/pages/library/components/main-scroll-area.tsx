@@ -36,5 +36,5 @@ export function MainScrollArea({ ...props }: PropsWithChildren) {
     }
   }, [location])
 
-  return <div {...props} className='z-1 relative flex-1 overflow-auto' id='main-scroll-area' ref={scrollAreaRef} />
+  return <div {...props} className='z-1 relative flex-1 lg:overflow-auto' id='main-scroll-area' ref={scrollAreaRef} />
 }

@@ -93,37 +93,29 @@ test('search', async ({ page, pages: { library, login }, roms, user }) => {
 })
 
 test('launch a game', async ({ page, pages: { library, login }, roms, user }) => {
-  const toolbar = page.getByRole('toolbar')
   await login.login(user)
   await library.uploadROMs(roms.map(({ path }) => path))
 
   await page.getByText('babelblox').click()
   await page.waitForURL('**', { waitUntil: 'networkidle' })
   await page.getByRole('button').filter({ hasText: 'start' }).click()
-  await toolbar.waitFor({ state: 'visible' })
-  await toolbar.waitFor({ state: 'hidden' })
-  await expect(page.locator('canvas')).toHaveScreenshot()
+  await expect(page.locator('#canvas')).toHaveScreenshot()
   await page.keyboard.press('ArrowDown', { delay: 100 })
-  await expect(page.locator('canvas')).toHaveScreenshot()
+  await expect(page.locator('#canvas')).toHaveScreenshot()
 })
 
 test('continue a game', async ({ page, pages: { library, login }, roms, user }) => {
-  const toolbar = page.getByRole('toolbar')
   await login.login(user)
   await library.uploadROMs(roms.map(({ path }) => path))
 
   await page.getByText('babelblox').click()
   await page.waitForURL('**', { waitUntil: 'networkidle' })
   await page.getByRole('button').filter({ hasText: 'start' }).click()
-  await toolbar.waitFor({ state: 'visible' })
-  await toolbar.waitFor({ state: 'hidden' })
   await page.keyboard.press('ArrowDown', { delay: 100 })
-  await expect(page.locator('canvas')).toHaveScreenshot()
+  await expect(page.locator('#canvas')).toHaveScreenshot()
 
   await page.keyboard.press('Escape')
   await page.getByRole('button').filter({ hasText: 'save & exit' }).click()
   await page.getByText('continue').click()
-  await toolbar.waitFor({ state: 'visible' })
-  await toolbar.waitFor({ state: 'hidden' })
-  await expect(page.locator('canvas')).toHaveScreenshot()
+  await expect(page.locator('#canvas')).toHaveScreenshot()
 })

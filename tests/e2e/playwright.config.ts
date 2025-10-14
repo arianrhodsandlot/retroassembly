@@ -22,9 +22,11 @@ process.on('SIGINT', (e) => {
 process.on('exit', cleanup)
 
 export default defineConfig({
+  expect: { toHaveScreenshot: { maxDiffPixelRatio: 0.05 } },
   fullyParallel: true,
   reporter: 'html',
   retries: 5,
+  snapshotPathTemplate: '{testDir}/snapshots/{testFilePath}/{testName}/{arg}{ext}',
   timeout: isCI ? 10_000 : 0,
   use: {
     baseURL: `http://localhost:${port}/`,

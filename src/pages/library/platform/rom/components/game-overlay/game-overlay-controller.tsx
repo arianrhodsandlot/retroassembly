@@ -36,6 +36,7 @@ export function GameOverlayController() {
           className='hidden flex-col justify-between lg:flex'
           exit={{ opacity: 0 }}
           initial={{ opacity: 0 }}
+          role='toolbar'
           transition={{ duration: 0.2 }}
         >
           <div>

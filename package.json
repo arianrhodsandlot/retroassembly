@@ -29,7 +29,7 @@
   "dependencies": {
     "argon2": "0.44.0",
     "better-sqlite3": "12.4.1",
-    "hono": "4.9.10"
+    "hono": "4.9.12"
   },
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.23.0",
@@ -59,9 +59,9 @@
     "@types/js-cookie": "3.0.6",
     "@types/luxon": "3.7.1",
     "@types/nanoid-dictionary": "4.2.3",
-    "@types/node": "24.7.1",
+    "@types/node": "24.7.2",
     "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.1",
+    "@types/react-dom": "19.2.2",
     "@types/signale": "1.4.7",
     "@types/spark-md5": "3.0.5",
     "@zip.js/zip.js": "2.8.7",
@@ -87,7 +87,7 @@
     "jiti": "2.6.1",
     "jotai": "2.15.0",
     "jotai-ssr": "0.2.0",
-    "lint-staged": "16.2.3",
+    "lint-staged": "16.2.4",
     "luxon": "3.7.2",
     "miniflare": "4.20251008.0",
     "motion": "12.23.24",
@@ -112,8 +112,8 @@
     "tailwindcss-motion": "1.1.1",
     "tailwindcss-safe-area": "1.1.0",
     "tempy": "3.1.0",
-    "tsdown": "0.15.6",
-    "type-fest": "5.0.1",
+    "tsdown": "0.15.7",
+    "type-fest": "5.1.0",
     "typescript": "5.9.3",
     "vite": "7.1.9",
     "vite-plugin-devtools-json": "1.0.0",

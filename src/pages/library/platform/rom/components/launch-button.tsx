@@ -9,6 +9,7 @@ interface LaunchButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export function LaunchButton({ children, disabled, variant = 'solid', ...props }: Readonly<LaunchButtonProps>) {
   return (
     <button
+      aria-disabled={disabled ? 'true' : 'false'}
       className={clsx('launch-button block w-full lg:w-80', { 'opacity-50': disabled })}
       data-sn-enabled
       {...props}

@@ -5,14 +5,14 @@ function isFocusable(element: unknown): element is HTMLElement {
   const focusableElements = [HTMLAnchorElement, HTMLButtonElement, HTMLInputElement]
   const focusable =
     focusableElements.some((clazz) => element instanceof clazz) ||
-    (element instanceof Element && element.getAttribute('tabindex'))
-  if (!focusable || !(element instanceof Element) || !element.isConnected) {
+    (element instanceof HTMLElement && element.getAttribute('tabindex'))
+  if (!focusable || !(element instanceof HTMLElement) || !element.isConnected) {
     return false
   }
   if ('disabled' in element && element.disabled) {
     return false
   }
-  return !element.ariaDisabled
+  return true
 }
 
 export function click(element: unknown) {

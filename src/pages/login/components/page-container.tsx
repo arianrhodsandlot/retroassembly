@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react'
-import { Link } from 'react-router'
+import { Link, useLoaderData } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
+import type { loader } from '../../routes/login.tsx'
 
 interface PageContainerProps extends PropsWithChildren {
   description?: string
@@ -8,6 +9,8 @@ interface PageContainerProps extends PropsWithChildren {
 }
 
 export function PageContainer({ children, description, title }: Readonly<PageContainerProps>) {
+  const { formType } = useLoaderData<typeof loader>()
+
   return (
     <>
       <title>{`Log in - ${metadata.title}`}</title>
@@ -24,9 +27,15 @@ export function PageContainer({ children, description, title }: Readonly<PageCon
 
           <div className='border-t-(--gray-6) mt-4 border-t py-8'>{children}</div>
 
-          <div className='text-(--color-text)/40 hidden text-xs'>
-            By clicking the button, you agree to our Terms of Service and Privacy Policy.
-          </div>
+          {formType === 'oauth' ? (
+            <div className='text-(--color-text)/40 text-center text-xs'>
+              By clicking the button, you agree to our{' '}
+              <a className='underline' href='/privacy-policy.md' rel='noopener noreferrer' target='_blank'>
+                Privacy Policy
+              </a>
+              .
+            </div>
+          ) : null}
         </div>
       </div>
     </>

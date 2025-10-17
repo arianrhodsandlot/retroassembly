@@ -1,7 +1,9 @@
 import { atom, useAtom } from 'jotai'
-import { atomWithReset } from 'jotai/utils'
 
-export const isGameOverlayPendingAtom = atomWithReset(false)
+const isGameOverlayPendingAtom = atom(false)
+export function useIsGameOverlayPendingAtom() {
+  return useAtom(isGameOverlayPendingAtom)
+}
 
 const launchButtonAtom = atom<HTMLButtonElement>()
 export function useLaunchButton() {

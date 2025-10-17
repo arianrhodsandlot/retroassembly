@@ -23,8 +23,11 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
 
   async function handleClick() {
     setIsPending(true)
-    await loadState()
-    setIsPending(false)
+    try {
+      await loadState()
+    } finally {
+      setIsPending(false)
+    }
   }
 
   function handleLoaded() {

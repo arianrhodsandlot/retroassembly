@@ -11,8 +11,6 @@ export function useShowGameOverlayContent() {
   return useAtom(showGameOverlayContentAtom)
 }
 
-export const isGameOverlayPendingAtom = atom(false)
-
 const emulatorLaunchedAtom = atom(false)
 export function useEmulatorLaunched() {
   return useAtom(emulatorLaunchedAtom)

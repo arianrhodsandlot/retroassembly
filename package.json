@@ -29,7 +29,7 @@
   "dependencies": {
     "argon2": "0.44.0",
     "better-sqlite3": "12.4.1",
-    "hono": "4.9.12"
+    "hono": "4.10.1"
   },
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.23.0",
@@ -45,12 +45,12 @@
     "@iconify-json/twemoji": "1.2.4",
     "@iconify/tailwind4": "1.0.6",
     "@microsoft/clarity": "1.0.0",
-    "@playwright/test": "1.56.0",
+    "@playwright/test": "1.56.1",
     "@radix-ui/themes": "3.2.1",
     "@react-router/dev": "7.9.4",
     "@react-router/node": "7.9.4",
     "@supabase/ssr": "0.7.0",
-    "@supabase/supabase-js": "2.75.0",
+    "@supabase/supabase-js": "2.75.1",
     "@tailwindcss/typography": "0.5.19",
     "@tailwindcss/vite": "4.1.14",
     "@tsconfig/remix": "2.0.5",
@@ -59,12 +59,12 @@
     "@types/js-cookie": "3.0.6",
     "@types/luxon": "3.7.1",
     "@types/nanoid-dictionary": "4.2.3",
-    "@types/node": "24.7.2",
+    "@types/node": "24.8.1",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "@types/signale": "1.4.7",
     "@types/spark-md5": "3.0.5",
-    "@zip.js/zip.js": "2.8.7",
+    "@zip.js/zip.js": "2.8.8",
     "atropos": "2.0.2",
     "browser-fs-access": "0.38.0",
     "canvas-confetti": "1.9.3",

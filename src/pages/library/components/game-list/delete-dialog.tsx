@@ -1,6 +1,8 @@
 import { AlertDialog, Button } from '@radix-ui/themes'
-import { delay } from 'es-toolkit'
+import { delay, isPlainObject } from 'es-toolkit'
+import { isMatch } from 'es-toolkit/compat'
 import { useState } from 'react'
+import { mutate } from 'swr'
 import useSWRMutation from 'swr/mutation'
 import { client } from '@/api/client.ts'
 import { useSelectedGames } from '../../atoms.ts'
@@ -41,6 +43,7 @@ export function DeleteDialog(props: Readonly<AlertDialog.RootProps>) {
     setClicked(true)
     await trigger()
     await reloadSilently()
+    await mutate((key) => isPlainObject(key) && isMatch(key, { endpoint: 'roms/search' }), false)
   }
 
   return (

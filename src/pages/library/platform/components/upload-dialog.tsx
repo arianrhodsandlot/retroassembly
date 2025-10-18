@@ -2,10 +2,12 @@ import { Button, Callout, Code, Dialog, Progress } from '@radix-ui/themes'
 import { fileOpen } from 'browser-fs-access'
 import confetti from 'canvas-confetti'
 import { clsx } from 'clsx'
-import { chunk } from 'es-toolkit'
+import { chunk, isPlainObject } from 'es-toolkit'
+import { isMatch } from 'es-toolkit/compat'
 import { useDeferredValue, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useLoaderData } from 'react-router'
+import { mutate } from 'swr'
 import useSWRMutation from 'swr/mutation'
 import { client } from '@/api/client.ts'
 import { platformMap, type PlatformName } from '@/constants/platform.ts'
@@ -70,7 +72,8 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
 
     if (uploadedFiles.success.length === files.length) {
       toggleOpen()
-      reloadSilently()
+      await reloadSilently()
+      await mutate((key) => isPlainObject(key) && isMatch(key, { endpoint: 'roms/search' }), false)
     } else {
       setStatus('done')
     }
@@ -120,9 +123,10 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
     }
   }
 
-  function handleClickDone() {
+  async function handleClickDone() {
     toggleOpen()
-    reloadSilently()
+    await reloadSilently()
+    await mutate((key) => isPlainObject(key) && isMatch(key, { endpoint: 'roms/search' }), false)
   }
 
   return (

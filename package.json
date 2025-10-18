@@ -75,7 +75,7 @@
     "drizzle-orm": "0.44.6",
     "es-toolkit": "1.40.0",
     "esbuild": "0.25.11",
-    "eslint": "9.37.0",
+    "eslint": "9.38.0",
     "execa": "9.6.0",
     "fs-extra": "11.3.2",
     "fuse.js": "7.1.0",

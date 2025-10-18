@@ -31,7 +31,7 @@ WORKDIR /app
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/src/databases ./src/databases
 COPY --from=builder /app/dist/client ./dist/client
-COPY --from=builder /app/dist/scripts ./dist/scripts
+COPY --from=builder /app/dist/server ./dist/server
 COPY --from=deps-production /app/node_modules ./node_modules
 
 VOLUME ["/app/data"]

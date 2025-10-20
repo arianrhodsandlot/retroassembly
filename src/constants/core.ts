@@ -2,7 +2,7 @@ import { cdnHost } from '@/utils/isomorphic/cdn.ts'
 
 const vendorsVersionInfo = {
   name: 'retroassembly-custom-cores',
-  version: '1.21.0-20251011112213',
+  version: '1.21.0-20250731190101',
 }
 
 function getCoreCDNUrl(core: string, ext: string) {

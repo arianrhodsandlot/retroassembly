@@ -16,7 +16,10 @@ export function getRunTimeEnv() {
     { ...runTimeEnv },
     {
       RETROASSEMBLY_RUN_TIME_ALLOW_CRAWLER:
-        { node: 'false', workerd: new URL(metadata.link).origin === c?.req.header('origin') }[runtimeKey] || 'false',
+        {
+          node: 'false',
+          workerd: `${Boolean(c?.req.url && new URL(metadata.link).origin === new URL(c.req.url).origin)}`,
+        }[runtimeKey] || 'false',
       RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY: path.resolve('data'),
       RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE: { node: '1000', workerd: '100' }[runtimeKey] || '100',
       RETROASSEMBLY_RUN_TIME_MSLEUTH_FALLBACK_HOST: 'https://msleuth.fly.dev/',

@@ -3,6 +3,7 @@ import '@/utils/client/global.ts'
 import { getContext } from 'hono/context-storage'
 import type { ReactNode } from 'react'
 import { Outlet } from 'react-router'
+import { getLoaderData } from '@/utils/server/loader-data.ts'
 import type { Route } from './+types/root.ts'
 import { AppLayout } from './components/app-layout.tsx'
 import { ErrorPage } from './components/error-page.tsx'
@@ -17,8 +18,7 @@ export function loader({ request }) {
     throw c.redirect(targetUrl)
   }
 
-  const { currentUser, preference } = c.var
-  return { currentUser, preference }
+  return getLoaderData()
 }
 
 export function Layout({ children }: Readonly<{ children: ReactNode }>) {

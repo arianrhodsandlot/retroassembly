@@ -1,15 +1,19 @@
 import { getRuntimeKey } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
+import { getCookie } from 'hono/cookie'
 import { getRunTimeEnv } from '@/constants/env.ts'
+import { cookieConsentStatusKey } from '@/constants/misc.ts'
 
-export function getLoaderData<T>(data: T) {
+export function getLoaderData<T>(data: T = {} as T) {
   const c = getContext()
   const { currentUser, preference } = c.var
-  const runtimeKey = getRuntimeKey()
+  const cookieConsentStatus = getCookie(c, cookieConsentStatusKey)
   const runTimeEnv = getRunTimeEnv()
   const isLikelyDesktop = c.req.header('sec-ch-ua-mobile') !== '?1'
+  const runtimeKey = getRuntimeKey()
 
   return {
+    cookieConsentStatus,
     currentUser,
     env: {
       RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE: runTimeEnv.RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE,

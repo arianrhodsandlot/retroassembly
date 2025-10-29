@@ -1,7 +1,7 @@
 {
   "name": "RetroAssembly",
   "short_name": "RetroAssembly",
-  "description": "A personal retro game collection cabinet in your browser",
+  "description": "The personal retro game collection cabinet in your browser",
   "start_url": "/library",
   "display": "standalone",
   "background_color": "#be123c",

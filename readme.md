@@ -9,7 +9,7 @@
   <a href="https://hub.docker.com/r/arianrhodsandlot/retroassembly"><img src="https://img.shields.io/docker/pulls/arianrhodsandlot/retroassembly" alt="Docker Hub"></a>
 </p>
 
-RetroAssembly is a personal retro game collection cabinet in your browser.
+RetroAssembly is the personal retro game collection cabinet in your browser.
 
 ![library](public/assets/screenshots/library.jpeg)
 

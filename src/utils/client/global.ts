@@ -1,4 +1,3 @@
-import Clarity from '@microsoft/clarity'
 import { isBrowser } from 'es-toolkit'
 
 if (isBrowser()) {
@@ -7,14 +6,6 @@ if (isBrowser()) {
       delete globalThis.showOpenFilePicker
     }
   } catch {}
-
-  const projectId = import.meta.env.RETROASSEMBLY_BUILD_TIME_VITE_CLARITY_PROJECT_ID
-  if (projectId) {
-    Clarity.init(projectId)
-    if (globalThis.CURRENT_USER?.id) {
-      Clarity.identify(globalThis.CURRENT_USER?.id, undefined, undefined, globalThis.CURRENT_USER?.email)
-    }
-  }
 
   if ('serviceWorker' in navigator) {
     // Unregister Service Workers

@@ -4,6 +4,7 @@ import { ThemeProvider } from 'next-themes'
 import type { ReactNode } from 'react'
 import { Scripts, ScrollRestoration, useLoaderData } from 'react-router'
 import { preferenceAtom } from '../atoms.ts'
+import { CookieConsent } from './cookie-consent.tsx'
 import { Head } from './head.tsx'
 import { RadixTheme } from './radix-theme.tsx'
 
@@ -19,7 +20,10 @@ export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
         <RadixTheme>
           <ThemeProvider attribute='class'>
             <Provider>
-              <HydrationBoundary hydrateAtoms={hydrateAtoms}>{children}</HydrationBoundary>
+              <HydrationBoundary hydrateAtoms={hydrateAtoms}>
+                {children}
+                <CookieConsent />
+              </HydrationBoundary>
             </Provider>
           </ThemeProvider>
         </RadixTheme>

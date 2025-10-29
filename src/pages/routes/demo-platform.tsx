@@ -22,7 +22,7 @@ export async function loader({ params }: Route.LoaderArgs) {
     platformInfo,
     preference,
     roms: getDemoRoms({ platform }),
-    title: platformMap[platform].displayName,
+    title: `${platformMap[platform].displayName} (Demo)`,
   }
 }
 

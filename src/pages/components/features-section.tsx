@@ -145,10 +145,10 @@ export function FeaturesSection() {
         Features
       </h2>
 
-      <div className='flex flex-col'>
+      <ul className='flex flex-col'>
         {features.map((feature, index) => (
-          <div className={clsx('py-8 lg:py-12', { 'bg-(--gray-3)': index % 2 })} key={feature.title}>
-            <div
+          <li className={clsx('py-8 lg:py-12', { 'bg-(--gray-3)': index % 2 })} key={feature.title}>
+            <article
               className={clsx(
                 'lg:w-5xl mx-auto flex w-full flex-col gap-6 px-8 lg:flex lg:flex-row lg:justify-center lg:gap-10',
                 {
@@ -158,23 +158,26 @@ export function FeaturesSection() {
             >
               <div className='flex flex-1 items-center'>
                 <div>
-                  <h3 className='text-(--accent-9) mb-2 flex items-center gap-2 text-xl font-semibold lg:text-2xl'>
-                    <span className={clsx(feature.icon, 'text-3xl lg:text-6xl')} />
-                    {feature.title}
-                  </h3>
+                  <header>
+                    <h3 className='text-(--accent-9) mb-2 flex items-center gap-2 text-xl font-semibold lg:text-2xl'>
+                      <span className={clsx(feature.icon, 'text-3xl lg:text-6xl')} />
+                      <span>{feature.title}</span>
+                    </h3>
+                  </header>
                   <p className='lg:pl-17 text-(--color-text)/60 pl-10 text-lg font-light'>{feature.description}</p>
                 </div>
               </div>
 
               <div className='lg:flex lg:items-center lg:justify-center'>
-                <div className='bg-(--color-background) ring-(--color-text)/10 rounded p-2 ring-1'>
+                <figure className='bg-(--color-background) ring-(--color-text)/10 rounded p-2 ring-1'>
                   <div className='lg:w-100 aspect-5/3 lg:h-60'>{feature.content}</div>
-                </div>
+                  <figcaption className='sr-only'>Demo or visual for {feature.title}</figcaption>
+                </figure>
               </div>
-            </div>
-          </div>
+            </article>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   )
 }

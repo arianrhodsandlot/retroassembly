@@ -12,7 +12,7 @@ export function loader() {
     platformCount: 0,
     preference,
     roms: getDemoRoms(),
-    title: 'Library',
+    title: 'Library (Demo)',
   }
 }
 

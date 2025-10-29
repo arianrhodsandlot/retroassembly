@@ -10,7 +10,7 @@ export function loader({ params }: Route.LoaderArgs) {
   preference.ui.platforms = ['gba', 'gbc', 'genesis', 'nes', 'snes']
   const roms = getDemoRoms({ platform })
   const rom = roms.find((rom) => rom.fileName === params.fileName)
-  return { preference, rom, title: rom?.fileName }
+  return { preference, rom, title: `${rom?.fileName} (Demo)` }
 }
 
 export default function LibraryPlatformRomRoute() {

@@ -10,7 +10,7 @@ export function initClarity() {
 
   const consent = Cookies.get(cookieConsentStatusKey) !== '0'
   if (consent) {
-    const projectId = import.meta.env.RETROASSEMBLY_BUILD_TIME_VITE_CLARITY_PROJECT_ID || 'rkdevrrvyi'
+    const projectId = import.meta.env.RETROASSEMBLY_BUILD_TIME_VITE_CLARITY_PROJECT_ID
     if (projectId) {
       Clarity.init(projectId)
       Clarity.consent(consent)

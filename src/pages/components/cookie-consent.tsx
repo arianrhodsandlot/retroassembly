@@ -6,7 +6,7 @@ import { cookieConsentStatusKey } from '@/constants/misc.ts'
 import { initClarity } from '@/utils/client/clarity.ts'
 
 export function CookieConsent() {
-  const { cookieConsentStatus } = useLoaderData()
+  const { cookieConsentStatus, isOfficialHost } = useLoaderData()
   const [visible, setVisible] = useState(!cookieConsentStatus)
 
   function handleClickAccept() {
@@ -24,7 +24,7 @@ export function CookieConsent() {
     initClarity()
   }, [])
 
-  if (!visible) {
+  if (!visible || !isOfficialHost) {
     return
   }
 

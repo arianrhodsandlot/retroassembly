@@ -24,13 +24,13 @@ export function LayoutHeader() {
 
   return (
     <header className='flex items-center px-2 py-4 lg:hidden'>
-      <Link className='absolute flex items-center gap-2 font-bold' reloadDocument to='/'>
+      <Link className='flex items-center gap-2 font-bold' reloadDocument to='/'>
         <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
       </Link>
 
       <div className='flex h-5 flex-1 justify-center'>
         <Select.Root onValueChange={handleValueChange} size='2' value={currentRouteName}>
-          <Select.Trigger className='!text-white' variant='ghost'>
+          <Select.Trigger className='text-white!' variant='ghost'>
             <HeaderLinkItem link={currentLink} />
           </Select.Trigger>
           <Select.Content>
@@ -50,7 +50,7 @@ export function LayoutHeader() {
         </Select.Root>
       </div>
 
-      {isNotLargeScreen ? <LayoutMenu /> : null}
+      <div className='h-8 w-10'>{isNotLargeScreen ? <LayoutMenu /> : null}</div>
     </header>
   )
 }

@@ -148,9 +148,9 @@ export function GamepadInputs() {
             </div>
           </div>
         ) : (
-          <div className='flex items-center justify-center gap-2 py-10 text-2xl opacity-50'>
-            <span className='icon-[svg-spinners--180-ring] shrink-0' />
-            Press any key on your gamepad
+          <div className='flex flex-col items-center justify-center gap-2 py-10 text-center opacity-50 lg:flex-row'>
+            <span className='icon-[svg-spinners--180-ring] shrink-0 text-2xl' />
+            <span className='lg:text-2xl'>Press any key on your gamepad</span>
           </div>
         )}
       </Card>

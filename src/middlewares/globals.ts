@@ -2,6 +2,7 @@ import { getCookie } from 'hono/cookie'
 import { createMiddleware } from 'hono/factory'
 import { getPreference } from '@/controllers/preference/get-preference.ts'
 import { getCurrentUser } from '@/controllers/users/get-current-user.ts'
+import { getTranslation } from '@/utils/isomorphic/i18n.ts'
 
 export function globals() {
   return createMiddleware(async function middleware(c, next) {
@@ -20,6 +21,11 @@ export function globals() {
       const preference = await getPreference()
       c.set('preference', preference)
     }
+
+    const { i18n, t } = await getTranslation()
+    c.set('i18n', i18n)
+
+    console.info('translation', t('a'))
 
     await next()
   })

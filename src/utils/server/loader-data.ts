@@ -22,6 +22,7 @@ export function getLoaderData<T>(data: T = {} as T) {
     },
     isLikelyDesktop,
     isOfficialHost,
+    locale: 'en',
     preference,
     runtimeKey,
     ...data,

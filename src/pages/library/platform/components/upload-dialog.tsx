@@ -16,7 +16,7 @@ import { useRouter } from '../../hooks/use-router.ts'
 import { getROMMd5 } from '../../utils/file.ts'
 
 export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: PlatformName; toggleOpen: () => void }>) {
-  const { env } = useLoaderData()
+  const { env, isOfficialHost } = useLoaderData()
   const maxFiles = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE, 10) || 1000
 
   const { reloadSilently } = useRouter()
@@ -194,7 +194,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
               <div
                 {...getRootProps()}
                 className={clsx(
-                  'border-(--accent-8) mt-4 flex h-32 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed outline-none',
+                  'border-(--accent-8) mt-4 flex h-48 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed outline-none',
                   { 'bg-(--accent-3)': isDragActive },
                 )}
               >
@@ -211,10 +211,30 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
                 )}
               </div>
 
-              <div className='text-(--accent-9) mt-4 text-xs'>
-                Please upload only ROMs you legally own, such as personal backups of games you purchased or homebrew
-                titles. By uploading, you confirm compliance with all applicable laws.
-              </div>
+              {isOfficialHost ? (
+                <div className='text-(--accent-9) mt-4 flex flex-col gap-1 text-xs'>
+                  <p>
+                    Please upload only ROMs you legally own, such as personal backups of games you purchased or homebrew
+                    titles. By uploading, you confirm compliance with all applicable laws.
+                  </p>
+                  <p>
+                    Useful links about dumping ROMs:{' '}
+                    <a className='underline' href='https://dumping.guide/' rel='noreferrer noopener' target='_blank'>
+                      dumping.guide
+                    </a>
+                    ,{' '}
+                    <a
+                      className='underline'
+                      href='https://emulation.gametechwiki.com/index.php/Ripping_games'
+                      rel='noreferrer noopener'
+                      target='_blank'
+                    >
+                      Ripping games - Emulation General Wiki
+                    </a>
+                    .
+                  </p>
+                </div>
+              ) : null}
 
               <div className='mt-4 flex justify-end'>
                 <Dialog.Close>
@@ -230,7 +250,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
           loading: (
             <div className='my-4'>
               <Progress
-                className='[&>.rt-ProgressIndicator]:!duration-3000'
+                className='[&>.rt-ProgressIndicator]:duration-3000!'
                 max={100}
                 size='3'
                 value={deferedProgress}

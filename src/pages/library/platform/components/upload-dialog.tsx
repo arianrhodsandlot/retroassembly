@@ -1,4 +1,4 @@
-import { Button, Callout, Code, Dialog, Progress } from '@radix-ui/themes'
+import { Button, Dialog, Progress } from '@radix-ui/themes'
 import { fileOpen } from 'browser-fs-access'
 import confetti from 'canvas-confetti'
 import { clsx } from 'clsx'
@@ -11,9 +11,9 @@ import { mutate } from 'swr'
 import useSWRMutation from 'swr/mutation'
 import { client } from '@/api/client.ts'
 import { platformMap, type PlatformName } from '@/constants/platform.ts'
-import { getPlatformIcon } from '@/utils/client/library.ts'
 import { useRouter } from '../../hooks/use-router.ts'
 import { getROMMd5 } from '../../utils/file.ts'
+import { UploadInstruction } from './upload-instruction.tsx'
 
 export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: PlatformName; toggleOpen: () => void }>) {
   const { env, isOfficialHost } = useLoaderData()
@@ -149,47 +149,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
         {
           initial: (
             <>
-              <Callout.Root className={clsx({ hidden: status !== 'initial' })} size='1'>
-                <Callout.Icon>
-                  <span className='icon-[mdi--information] mt-1.5' />
-                </Callout.Icon>
-                <Callout.Text className='text-xs'>
-                  You are uploading ROMs for{' '}
-                  <img
-                    alt={platformMap[platform].displayName}
-                    className='inline-block size-7 align-middle'
-                    src={getPlatformIcon(platform)}
-                  />
-                  <b>{platformMap[platform].displayName}</b>. We support these file extensions for this platform:
-                  <br />
-                  <span className='inline-flex gap-1 py-2'>
-                    {platformMap[platform].fileExtensions.map((extention) => (
-                      <Code key={extention}>{extention}</Code>
-                    ))}
-                  </span>
-                  {platform === 'gameandwatch' ? (
-                    <>
-                      <br />
-                      <span>
-                        Games can be downloaded from{' '}
-                        <a
-                          className='underline'
-                          href='https://buildbot.libretro.com/assets/cores/Handheld%20Electronic%20Game/'
-                          rel='noreferrer noopener'
-                          target='_blank'
-                        >
-                          buildbot.libretro.com
-                        </a>
-                        .
-                      </span>
-                    </>
-                  ) : null}
-                  <br />
-                  <span>
-                    You can upload up to <b>{maxFiles}</b> files at a time.
-                  </span>
-                </Callout.Text>
-              </Callout.Root>
+              <UploadInstruction maxFiles={maxFiles} platform={platform} />
 
               <div
                 {...getRootProps()}

@@ -190,10 +190,10 @@ const basePlatformMap = {
   },
   pcengine: {
     bioses: [
-      { md5: '38179df8f4ac870017db21ebcbf53114', name: 'syscard3.pce', required: true },
-      { md5: 'd3f5b2d4f2a9b6c1e3f3f2e4e6f4c8e1', name: 'syscard2.pce' },
-      { md5: '5e3f3f2e4e6f4c8e1d3f5b2d4f2a9b6c', name: 'syscard1.pce' },
-      { md5: '5e3f3f2e4e6f4c8e1d3f5b2d4f2a9b6c', name: 'gexpress.pce' },
+      { md5: '38179df8f4ac870017db21ebcbf53114', name: 'syscard3.pce' },
+      { name: 'syscard2.pce' },
+      { name: 'syscard1.pce' },
+      { name: 'gexpress.pce' },
     ],
     cores: ['mednafen_pce_fast'],
     displayName: 'PC Engine',

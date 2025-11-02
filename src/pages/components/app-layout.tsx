@@ -1,27 +1,35 @@
+import { isBrowser } from 'es-toolkit'
 import { Provider } from 'jotai'
 import { HydrationBoundary } from 'jotai-ssr'
 import { ThemeProvider } from 'next-themes'
 import type { ReactNode } from 'react'
+import { I18nextProvider } from 'react-i18next'
 import { Scripts, ScrollRestoration, useLoaderData } from 'react-router'
+import { i18n } from '@/utils/isomorphic/i18n.ts'
+import type { getLoaderData } from '@/utils/server/loader-data.ts'
 import { preferenceAtom } from '../atoms.ts'
 import { CookieConsent } from './cookie-consent.tsx'
 import { Head } from './head.tsx'
 import { RadixTheme } from './radix-theme.tsx'
 
+if (isBrowser()) {
+  i18n.changeLanguage(document.documentElement.lang)
+}
+
 export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
-  const { currentUser, preference } = useLoaderData() || {}
+  const { currentUser, language, preference } = useLoaderData<typeof getLoaderData>() || {}
   const hydrateAtom = [preferenceAtom, preference] as const
   const hydrateAtoms = [hydrateAtom]
 
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang={language} prefix='og: https://ogp.me/ns#' suppressHydrationWarning>
       <Head />
       <body>
         <RadixTheme>
           <ThemeProvider attribute='class'>
             <Provider>
               <HydrationBoundary hydrateAtoms={hydrateAtoms}>
-                {children}
+                <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
                 <CookieConsent />
               </HydrationBoundary>
             </Provider>

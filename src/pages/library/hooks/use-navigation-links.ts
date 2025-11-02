@@ -1,4 +1,5 @@
 import { sortBy } from 'es-toolkit'
+import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
@@ -8,6 +9,7 @@ import { usePreference } from './use-preference.ts'
 
 const demoPlatforms = ['gba', 'gbc', 'genesis', 'nes', 'snes']
 export function useNavigationLinks() {
+  const { t } = useTranslation()
   const { preference } = usePreference()
   const platform = usePlatform()
   const location = useLocation()
@@ -28,7 +30,7 @@ export function useNavigationLinks() {
   const groups = [
     {
       links: [
-        { iconClass: 'icon-[mdi--bookshelf]', iconUrl: '', name: 'library', text: 'Library', to: `/${libraryPath}` },
+        { iconClass: 'icon-[mdi--bookshelf]', iconUrl: '', name: 'library', text: t('Library'), to: `/${libraryPath}` },
       ],
       title: '',
     },
@@ -39,7 +41,7 @@ export function useNavigationLinks() {
       iconClass: 'icon-[mdi--history]',
       iconUrl: '',
       name: 'history',
-      text: 'History',
+      text: t('History'),
       to: `/${libraryPath}/history`,
     }
     groups[0].links.push(historyLink)

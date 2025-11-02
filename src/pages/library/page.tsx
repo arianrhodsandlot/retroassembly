@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router'
 import { GameListMain } from './components/game-list-main.tsx'
 import LibraryLayout from './components/library-layout/library-layout.tsx'
@@ -6,6 +7,7 @@ import { useIsDemo } from './hooks/use-demo.ts'
 import { UploadSelectButton } from './platform/components/upload-select-button.tsx'
 
 export default function LibraryPage() {
+  const { t } = useTranslation()
   const { page, pagination, platformCount, roms } = useLoaderData()
   const isDemo = useIsDemo()
 
@@ -17,7 +19,7 @@ export default function LibraryPage() {
     <LibraryLayout>
       <GameListMain>
         <div>
-          <h1 className='text-5xl font-semibold'>Library</h1>
+          <h1 className='text-5xl font-semibold'>{t('Library')}</h1>
           {isDemo ? (
             <div className='text-(--gray-11) mt-4 flex items-start gap-1 text-sm lg:items-center'>
               <span className='icon-[mdi--information-outline] mt-1 shrink-0 lg:mt-0' />

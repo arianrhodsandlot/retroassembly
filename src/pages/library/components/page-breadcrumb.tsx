@@ -1,6 +1,7 @@
 import { Button } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { Fragment } from 'react'
+import { useTranslation } from 'react-i18next'
 import { getPlatformGameIcon, getPlatformIcon, getRomGoodcodes } from '@/utils/client/library.ts'
 import { useIsDemo } from '../hooks/use-demo.ts'
 import { usePlatform } from '../hooks/use-platform.ts'
@@ -8,6 +9,7 @@ import { useRom } from '../hooks/use-rom.ts'
 import { NavigatableLink } from './navigatable-link.tsx'
 
 export function PageBreadcrumb() {
+  const { t } = useTranslation()
   const rom = useRom()
   const platform = usePlatform()
   const isDemo = useIsDemo()
@@ -16,7 +18,7 @@ export function PageBreadcrumb() {
   const links = [
     {
       icon: <span className='icon-[mdi--bookshelf] size-5 p-0.5' />,
-      text: 'Library',
+      text: t('Library'),
       url: `/${libraryPath}`,
     },
   ]
@@ -59,7 +61,7 @@ export function PageBreadcrumb() {
     <div className='mt-4 flex max-w-full items-center gap-2 overflow-x-auto px-4 py-1 lg:px-8'>
       {links.map(({ icon, text, url }, i) =>
         i === links.length - 1 ? (
-          <Button asChild className='!text-(--gray-11) !bg-transparent' key={url} variant='ghost'>
+          <Button asChild className='text-(--gray-11)! bg-transparent!' key={url} variant='ghost'>
             <div>
               {icon}
               {text}
@@ -67,7 +69,7 @@ export function PageBreadcrumb() {
           </Button>
         ) : (
           <Fragment key={url}>
-            <Button asChild className='!text-(--accent-9) !bg-transparent !font-semibold' variant='ghost'>
+            <Button asChild className='text-(--accent-9)! bg-transparent! font-semibold!' variant='ghost'>
               <NavigatableLink to={url}>
                 {icon}
                 {text}

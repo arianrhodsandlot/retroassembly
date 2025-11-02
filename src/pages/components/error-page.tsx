@@ -1,9 +1,12 @@
 import { Button } from '@radix-ui/themes'
+import { useTranslation } from 'react-i18next'
 import { isRouteErrorResponse, Link } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
 import type { Route } from '../+types/root.ts'
 
 export function ErrorPage({ error }: Readonly<Route.ErrorBoundaryProps>) {
+  const { t } = useTranslation()
+
   let message = 'Oops!'
   let details = 'An unexpected error occurred.'
   let stack = ''
@@ -44,12 +47,12 @@ export function ErrorPage({ error }: Readonly<Route.ErrorBoundaryProps>) {
 
             <Button asChild radius='small' size='2' type='button' variant='outline'>
               <Link
-                className='!bg-(--color-background) [.dark_&]:!border-(--gray-4) !border-2 !shadow-none'
+                className='bg-(--color-background)! in-[.dark]:border-(--gray-4)! border-2! shadow-none!'
                 reloadDocument
                 to='/library'
               >
                 <span className='icon-[mdi--bookshelf]' />
-                Library
+                {t('Library')}
               </Link>
             </Button>
           </div>

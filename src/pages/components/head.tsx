@@ -12,7 +12,7 @@ export function Head() {
   )
 
   return (
-    <head lang='en' prefix='og: http://ogp.me/ns#'>
+    <head>
       <meta charSet='utf-8' />
       <meta content='width=device-width,initial-scale=1,viewport-fit=cover,shrink-to-fit=yes' name='viewport' />
       <meta content={metadata.themeColor} name='theme-color' />

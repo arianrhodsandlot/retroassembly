@@ -7,7 +7,7 @@ import { cookieConsentStatusKey } from '@/constants/misc.ts'
 
 export function getLoaderData<T>(data: T = {} as T) {
   const c = getContext()
-  const { currentUser, preference } = c.var
+  const { currentUser, language, preference } = c.var
   const cookieConsentStatus = getCookie(c, cookieConsentStatusKey)
   const runTimeEnv = getRunTimeEnv()
   const isLikelyDesktop = c.req.header('sec-ch-ua-mobile') !== '?1'
@@ -22,7 +22,7 @@ export function getLoaderData<T>(data: T = {} as T) {
     },
     isLikelyDesktop,
     isOfficialHost,
-    locale: 'en',
+    language,
     preference,
     runtimeKey,
     ...data,

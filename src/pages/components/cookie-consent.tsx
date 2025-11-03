@@ -1,11 +1,13 @@
 import { Button } from '@radix-ui/themes'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router'
 import { cookieConsentStatusKey } from '@/constants/misc.ts'
 import { initClarity } from '@/utils/client/clarity.ts'
 
 export function CookieConsent() {
+  const { t } = useTranslation()
   const { cookieConsentStatus, isOfficialHost } = useLoaderData()
   const [visible, setVisible] = useState(!cookieConsentStatus)
 
@@ -33,29 +35,29 @@ export function CookieConsent() {
       <div className='border-(--accent-9) bg-(--color-background) w-2xl pointer-events-auto mx-auto flex max-w-full items-center justify-center gap-2 rounded border px-4 py-2 shadow-xl'>
         <span className='icon-[mdi--cookie] size-6 shrink-0' />
         <div className='text-left'>
-          We use{' '}
+          {t('We use')}{' '}
           <a
             className='underline'
             href='https://en.wikipedia.org/wiki/HTTP_cookie'
             rel='noopener noreferrer'
             target='_blank'
           >
-            cookies
+            {t('cookies')}
           </a>{' '}
-          to improve users' experience. By using the site, you agree to our{' '}
+          {t("to improve users' experience. By using the site, you agree to our")}{' '}
           <a className='underline' href='/privacy-policy.md' rel='noopener noreferrer' target='_blank'>
-            Privacy Policy
+            {t('Privacy Policy')}
           </a>
           .
         </div>
         <div className='flex flex-col gap-2 lg:flex-row'>
           <Button onClick={handleClickAccept} size='1'>
             <span className='icon-[mdi--check]' />
-            Accept
+            {t('Accept')}
           </Button>
           <Button onClick={handleClickDeny} size='1' variant='soft'>
             <span className='icon-[mdi--close]' />
-            Deny
+            {t('Deny')}
           </Button>
         </div>
       </div>

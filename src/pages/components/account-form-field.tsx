@@ -1,6 +1,7 @@
 import { IconButton, TextField } from '@radix-ui/themes'
 import type { RootProps } from '@radix-ui/themes/components/text-field'
 import { type FocusEvent, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 function handleFocus(event: FocusEvent<HTMLInputElement>) {
   event.currentTarget.select()
@@ -19,6 +20,7 @@ export function AccountFormField({
   type = 'text',
   ...props
 }: Readonly<LoginFormFieldProps>) {
+  const { t } = useTranslation()
   const [textFieldType, setTextFieldType] = useState(type)
 
   const iconButtonClass = textFieldType === 'password' ? 'icon-[mdi--eye]' : 'icon-[mdi--eye-off]'
@@ -40,7 +42,7 @@ export function AccountFormField({
               onClick={handleClickIconButton}
               size='1'
               tabIndex={-1}
-              title={textFieldType === 'password' ? 'Show password' : 'Hide password'}
+              title={textFieldType === 'password' ? t('Show password') : t('Hide password')}
               type='button'
               variant='ghost'
             >

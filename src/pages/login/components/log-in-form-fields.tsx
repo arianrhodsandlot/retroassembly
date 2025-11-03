@@ -1,20 +1,23 @@
+import { useTranslation } from 'react-i18next'
 import { AccountFormField } from '@/pages/components/account-form-field.tsx'
 
 export function LoginFormFields({ register = false }: Readonly<{ register?: boolean }>) {
+  const { t } = useTranslation()
+
   return (
     <>
       <AccountFormField
         autoFocus
-        description={register ? 'E.g., johnsmith, admin' : ''}
+        description={register ? t('Username examples') : ''}
         iconClass='icon-[mdi--user-card-details]'
-        label='Username'
+        label={t('Username')}
         name='username'
       />
 
       <AccountFormField
-        description={register ? 'Recommendation: 10+ characters with letters, numbers, and symbols.' : ''}
+        description={register ? t('Recommendation: 10+ characters with letters, numbers, and symbols.') : ''}
         iconClass='icon-[mdi--password]'
-        label='Password'
+        label={t('Password')}
         name='password'
         type='password'
       />
@@ -22,7 +25,7 @@ export function LoginFormFields({ register = false }: Readonly<{ register?: bool
       {register ? (
         <AccountFormField
           iconClass='icon-[mdi--password-check]'
-          label='Repeat password'
+          label={t('Repeat password')}
           name='repeat_password'
           type='password'
         />

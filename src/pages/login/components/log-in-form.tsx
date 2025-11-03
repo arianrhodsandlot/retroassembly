@@ -2,6 +2,7 @@ import { Button, Callout } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client, type InferRequestType } from '@/api/client.ts'
 import { LoginFormFields } from './log-in-form-fields.tsx'
@@ -9,6 +10,7 @@ import { LoginFormFields } from './log-in-form-fields.tsx'
 const { $post } = client.auth.login
 
 export function LoginForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
+  const { t } = useTranslation()
   const [isRedirecting, setIsRedirecting] = useState(false)
 
   const { error, isMutating, trigger } = useSWRMutation(
@@ -47,11 +49,11 @@ export function LoginForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
         <LoginFormFields />
 
         <Button
-          className={clsx('transition-opacity', { '!opacity-50 !cursor-default': isMutating || isRedirecting })}
+          className={clsx('transition-opacity', { 'opacity-50! cursor-default!': isMutating || isRedirecting })}
           type='submit'
         >
           <span className='icon-[mdi--account-check] text-xl' />
-          Log in
+          {t('Log in')}
         </Button>
 
         <AnimatePresence>
@@ -61,7 +63,7 @@ export function LoginForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
                 <Callout.Icon>
                   <span className='icon-[mdi--information]' />
                 </Callout.Icon>
-                <Callout.Text>{error.message || 'Unknown error'}</Callout.Text>
+                <Callout.Text>{error.message || t('Unknown error')}</Callout.Text>
               </Callout.Root>
             </motion.div>
           ) : null}

@@ -1,4 +1,5 @@
 import type { PropsWithChildren } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, useLoaderData } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
 import type { loader } from '../../routes/login.tsx'
@@ -9,11 +10,12 @@ interface PageContainerProps extends PropsWithChildren {
 }
 
 export function PageContainer({ children, description, title }: Readonly<PageContainerProps>) {
+  const { t } = useTranslation()
   const { formType } = useLoaderData<typeof loader>()
 
   return (
     <>
-      <title>{`Log in - ${metadata.title}`}</title>
+      <title>{t('Log in to {{title}}', { title: metadata.title })}</title>
       <div className='bg-(--accent-9) min-h-dvh px-4 py-20'>
         <div className='md:w-3xl bg-(--color-background) mx-auto w-full max-w-full rounded p-10'>
           <div className='flex items-center justify-center gap-4'>
@@ -29,9 +31,9 @@ export function PageContainer({ children, description, title }: Readonly<PageCon
 
           {formType === 'oauth' ? (
             <div className='text-(--color-text)/40 text-center text-xs'>
-              By clicking the button, you agree to our{' '}
+              {t('By clicking the button, you agree to our')}{' '}
               <a className='underline' href='/privacy-policy.md' rel='noopener noreferrer' target='_blank'>
-                Privacy Policy
+                {t('Privacy Policy')}
               </a>
               .
             </div>

@@ -1,8 +1,10 @@
 import { Button } from '@radix-ui/themes'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 
 export function LogInWithGoogleButton({ redirectTo }: Readonly<{ redirectTo: string }>) {
+  const { t } = useTranslation()
   const [clicked, setClicked] = useState(false)
 
   function handleClick() {
@@ -21,7 +23,7 @@ export function LogInWithGoogleButton({ redirectTo }: Readonly<{ redirectTo: str
           }}
         >
           <span className='icon-[logos--google-icon]' />
-          Log in with Google
+          {t('Log in with Google')}
         </Link>
       </Button>
     </div>

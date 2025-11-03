@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
 import type { loader } from '../routes/login.tsx'
@@ -7,16 +8,17 @@ import { PageContainer } from './components/page-container.tsx'
 import { RegisterForm } from './components/register-form.tsx'
 
 export function LoginPage() {
+  const { t } = useTranslation()
   const { error, formType, redirectTo } = useLoaderData<typeof loader>()
 
   if (error) {
-    return <PageContainer title='Log in'>{error.message}</PageContainer>
+    return <PageContainer title={t('Log in')}>{error.message}</PageContainer>
   }
 
-  const title = formType === 'register' ? metadata.title : `Log in to ${metadata.title}`
+  const title = formType === 'register' ? metadata.title : t('Log in to {{title}}', { title: metadata.title })
   const description = {
-    oauth: 'Log in to build your own retro game collection',
-    register: 'Create an account to get started',
+    oauth: t('Log in to build your own retro game collection'),
+    register: t('Create an account to get started'),
   }[formType]
   return (
     <PageContainer description={description} title={title}>

@@ -1,13 +1,18 @@
 @import './fonts.css';
 
 :root {
-  --global-font-family: 'Inter Variable', -apple-system, system-ui, BlinkMacSystemFont, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
+  --global-font-family: 'Inter Variable', 'Apple Color Emoji', 'Segoe UI Emoji', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: var(--global-font-family);
+  text-autospace: normal;
+}
+
+.font-\[Roboto_Slab_Variable\] {
+  font-family: 'Roboto Slab Variable', serif;
 }
 
 button {

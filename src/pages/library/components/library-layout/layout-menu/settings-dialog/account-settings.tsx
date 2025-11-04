@@ -1,5 +1,6 @@
 import { Button, Callout, Card } from '@radix-ui/themes'
 import type { FormEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router'
 import useSWRMutation from 'swr/mutation'
 import { client } from '@/api/client.ts'
@@ -8,34 +9,35 @@ import { SettingsTitle } from './settings-title.tsx'
 
 const { $patch } = client.auth.password
 
-function validateFormData(formData: FormData) {
-  if (formData.get('new_password') !== formData.get('repeat_new_password')) {
-    throw new Error('Passwords do not match')
-  }
-  if (formData.get('new_password') === formData.get('password')) {
-    throw new Error('The new password is the same as the current password')
-  }
-  return {
-    new_password: `${formData.get('new_password')}`,
-    password: `${formData.get('password')}`,
-  }
-}
-
 export function AccountSettings() {
+  const { t } = useTranslation()
   const { currentUser } = useLoaderData()
+
+  function validateFormData(formData: FormData) {
+    if (formData.get('new_password') !== formData.get('repeat_new_password')) {
+      throw new Error(t('Passwords do not match'))
+    }
+    if (formData.get('new_password') === formData.get('password')) {
+      throw new Error(t('The new password is the same as the current password'))
+    }
+    return {
+      new_password: `${formData.get('new_password')}`,
+      password: `${formData.get('password')}`,
+    }
+  }
   const accountFormFields = [
     {
       defaultValue: currentUser.username,
       iconClass: 'icon-[mdi--user-card-details]',
-      label: 'Username',
+      label: t('Username'),
       name: 'username',
       readOnly: true,
     },
-    { iconClass: 'icon-[mdi--password]', label: 'Current Password', name: 'password', type: 'password' },
-    { iconClass: 'icon-[mdi--password-add]', label: 'New Password', name: 'new_password', type: 'password' },
+    { iconClass: 'icon-[mdi--password]', label: t('Current Password'), name: 'password', type: 'password' },
+    { iconClass: 'icon-[mdi--password-add]', label: t('New Password'), name: 'new_password', type: 'password' },
     {
       iconClass: 'icon-[mdi--password-check]',
-      label: 'Repeat New Password',
+      label: t('Repeat New Password'),
       name: 'repeat_new_password',
       type: 'password',
     },
@@ -60,7 +62,7 @@ export function AccountSettings() {
     <div>
       <SettingsTitle>
         <span className='icon-[mdi--password]' />
-        Password
+        {t('Password')}
       </SettingsTitle>
       <Card>
         <form className='lg:w-xl flex flex-col gap-2' onSubmit={handleSubmit}>
@@ -70,11 +72,11 @@ export function AccountSettings() {
             ))}
           </div>
           <div className='pl-2 text-xs opacity-50'>
-            Recommendation: 10+ characters with letters, numbers, and symbols.
+            {t('Recommendation: 10+ characters with letters, numbers, and symbols.')}
           </div>
-          <Button className='!mt-2' loading={isMutating} type='submit'>
+          <Button className='mt-2!' loading={isMutating} type='submit'>
             <span className='icon-[mdi--password-check]' />
-            Update Password
+            {t('Update Password')}
           </Button>
 
           {data ? (
@@ -82,7 +84,7 @@ export function AccountSettings() {
               <Callout.Icon>
                 <span className='icon-[mdi--check]' />
               </Callout.Icon>
-              <Callout.Text>Your password has been updated</Callout.Text>
+              <Callout.Text>{t('Your password has been updated')}</Callout.Text>
             </Callout.Root>
           ) : null}
 
@@ -91,7 +93,7 @@ export function AccountSettings() {
               <Callout.Icon>
                 <span className='icon-[mdi--information]' />
               </Callout.Icon>
-              <Callout.Text>{error.message || 'Unknown error'}</Callout.Text>
+              <Callout.Text>{error.message || t('Unknown error')}</Callout.Text>
             </Callout.Root>
           ) : null}
         </form>

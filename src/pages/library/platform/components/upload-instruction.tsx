@@ -1,24 +1,27 @@
 import { Callout, Code } from '@radix-ui/themes'
 import clsx from 'clsx'
+import { Trans, useTranslation } from 'react-i18next'
 import { platformMap, type PlatformName } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
 
 export function UploadInstruction({ maxFiles, platform }: Readonly<{ maxFiles: number; platform: PlatformName }>) {
+  const { t } = useTranslation()
+
   return (
-    <Callout.Root className={clsx({ hidden: status !== 'initial' })} size='1'>
+    <Callout.Root size='1'>
       <Callout.Icon>
         <span className='icon-[mdi--information] mt-1.5' />
       </Callout.Icon>
       {/* @ts-expect-error the 'as' prop is valid here as it will be passed to a Text internally */}
       <Callout.Text as='div' className='flex flex-col gap-1 text-xs'>
         <p>
-          You are uploading ROMs for{' '}
+          {t('You are uploading ROMs for')}
           <img
             alt={platformMap[platform].displayName}
             className='inline-block size-7 align-middle'
             src={getPlatformIcon(platform)}
           />
-          <b>{platformMap[platform].displayName}</b>. We support these file extensions for this platform:
+          <b>{platformMap[platform].displayName}</b>. {t('We support these file extensions for this platform:')}
           <br />
           <span className='inline-flex gap-1 py-2'>
             {platformMap[platform].fileExtensions.map((extention) => (
@@ -31,13 +34,16 @@ export function UploadInstruction({ maxFiles, platform }: Readonly<{ maxFiles: n
           {
             arcade: (
               <p>
-                Using <b>Full Non-Merged ROMsets</b> can lead to simpler setups and better compatibility.
+                <Trans
+                  i18nKey='Using <1>Full Non-Merged ROMsets</1> can lead to simpler setups and better compatibility.'
+                  components={{ 1: <b /> }}
+                />
               </p>
             ),
             gameandwatch: (
               <p>
                 <span>
-                  Games can be downloaded from{' '}
+                  {t('Games can be downloaded from')}{' '}
                   <a
                     className='underline'
                     href='https://buildbot.libretro.com/assets/cores/Handheld%20Electronic%20Game/'
@@ -52,14 +58,21 @@ export function UploadInstruction({ maxFiles, platform }: Readonly<{ maxFiles: n
             ),
             pcengine: (
               <p>
-                Note that <b>PC Engine CD</b> games are NOT supported.
+                <Trans
+                  i18nKey='Note that <1>PC Engine CD</1> games are NOT supported.'
+                  components={{ 1: <b /> }}
+                />
               </p>
             ),
           }[platform]
         }
 
         <p>
-          You can upload up to <b>{maxFiles}</b> files at a time.
+          <Trans
+            i18nKey='You can upload up to <1>{{maxFiles}}</1> files at a time.'
+            values={{ maxFiles }}
+            components={{ 1: <b /> }}
+          />
         </p>
       </Callout.Text>
     </Callout.Root>

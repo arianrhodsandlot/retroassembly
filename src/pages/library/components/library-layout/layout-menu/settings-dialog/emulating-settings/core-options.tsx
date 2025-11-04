@@ -1,4 +1,5 @@
 import { Callout, Select } from '@radix-ui/themes'
+import { useTranslation } from 'react-i18next'
 import type { CoreName } from '@/constants/core'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { SettingsTitle } from '../settings-title.tsx'
@@ -10,6 +11,7 @@ export function CoreOptions({
   core: CoreName
   coreOptions: { defaultOption?: string; name: string; options: string[]; title?: string }[]
 }>) {
+  const { t } = useTranslation()
   const { isLoading, preference, update } = usePreference()
 
   const coreOption = preference.emulator.core[core]
@@ -29,7 +31,7 @@ export function CoreOptions({
   return (
     <div className='flex flex-col items-start'>
       <SettingsTitle>
-        <span className='icon-[mdi--wrench]' /> Options
+        <span className='icon-[mdi--wrench]' /> {t('Options')}
       </SettingsTitle>
 
       <div className='mt-3 flex flex-1 flex-col gap-2 px-6'>
@@ -38,8 +40,7 @@ export function CoreOptions({
             <span className='icon-[mdi--warning]' />
           </Callout.Icon>
           <Callout.Text>
-            These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and
-            at your own risk.
+            {t('These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.')}
           </Callout.Text>
         </Callout.Root>
 

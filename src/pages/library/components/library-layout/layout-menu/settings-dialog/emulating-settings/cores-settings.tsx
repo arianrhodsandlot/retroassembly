@@ -1,6 +1,7 @@
 import { Card, Select } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { coreDisplayNameMap, type CoreName, coreOptionsMap } from '@/constants/core.ts'
 import { platformMap } from '@/constants/platform.ts'
 import { usePlatform } from '@/pages/library/hooks/use-platform.ts'
@@ -12,6 +13,7 @@ import { BIOSOptions } from './bios-options.tsx'
 import { CoreOptions } from './core-options.tsx'
 
 export function CoresSettings() {
+  const { t } = useTranslation()
   const { isLoading, preference, update } = usePreference()
   const currentPlatform = usePlatform()
   const [selectedPlatform, setSelectedPlatform] = useState(currentPlatform?.name || preference.ui.platforms?.[0])
@@ -40,7 +42,7 @@ export function CoresSettings() {
     <div className='mt-4'>
       <SettingsTitle>
         <span className='icon-[mdi--computer-classic]' />
-        Emulation for
+        {t('Emulation for')}
         <div className='ml-2 flex flex-col gap-2'>
           <Select.Root
             onValueChange={(value: typeof selectedPlatform) => setSelectedPlatform(value)}
@@ -86,7 +88,7 @@ export function CoresSettings() {
         <Card className='mt-2'>
           <label className='mt-2 flex items-center gap-2'>
             <SettingsTitle as='h4'>
-              <span className='icon-[mdi--monitor-screenshot]' /> Emulator
+              <span className='icon-[mdi--monitor-screenshot]' /> {t('Emulator')}
             </SettingsTitle>
 
             <Select.Root onValueChange={handleValueChange} size='2' value={core}>
@@ -119,7 +121,7 @@ export function CoresSettings() {
                 }}
               >
                 <span className='icon-[mdi--undo]' />
-                Reset the emulator and it's option to defaults
+                {t('Reset the emulator and it\'s option to defaults')}
               </UpdateButton>
             </div>
           ) : null}

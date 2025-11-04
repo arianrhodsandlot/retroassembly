@@ -1,6 +1,7 @@
 import { Badge, Button, Card, IconButton, Popover } from '@radix-ui/themes'
 import { fileOpen } from 'browser-fs-access'
 import { Nostalgist } from 'nostalgist'
+import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client, type InferRequestType, parseResponse } from '@/api/client.ts'
 import { platformMap, type PlatformName } from '@/constants/platform.ts'
@@ -11,6 +12,7 @@ import { SettingsTitle } from '../settings-title.tsx'
 const { $delete, $post } = client.preference.bioses
 
 export function BIOSOptions({ platform }: { platform: PlatformName }) {
+  const { t } = useTranslation()
   const { isLoading, preference, setPreference } = usePreference()
   const { bioses } = preference.emulator.platform[platform]
 
@@ -42,12 +44,15 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
     const file = await fileOpen({ extensions })
     const expectedBios = expectedBioses?.find((bios) => bios.name === file.name)
     if (!expectedBios) {
-      alert("According to the selected file's name, it is not an expected BIOS file.")
+      alert(t('According to the selected file\'s name, it is not an expected BIOS file.'))
       return
     }
     const md5 = await getFileMd5(file)
     if (expectedBios.md5 && expectedBios.md5 !== md5) {
-      alert(`The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: ${expectedBios.md5}\nActual MD5: ${md5}`)
+      alert(t('The uploaded file is corrupted (MD5 mismatch).\\n\\nExpected MD5: {{expected}}\\nActual MD5: {{actual}}', {
+        expected: expectedBios.md5,
+        actual: md5,
+      }))
       return
     }
     await upload({ file, platform })
@@ -62,9 +67,9 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
       return ''
     }
     if (bios.required) {
-      return '(required)'
+      return t('(required)')
     }
-    return '(optional)'
+    return t('(optional)')
   }
 
   function getBiosClassName(bios: { name: string; required?: boolean }) {
@@ -85,7 +90,7 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
   return (
     <Card>
       <SettingsTitle as='h4'>
-        <span className='icon-[mdi--chip]' /> BIOS of {platformMap[platform].displayName}
+        <span className='icon-[mdi--chip]' /> {t('BIOS of {{platform}}', { platform: platformMap[platform].displayName })}
       </SettingsTitle>
       <div className='flex flex-col gap-2 px-6'>
         <div className='flex flex-wrap items-center gap-2'>
@@ -95,7 +100,7 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
               {fileName}
               <Popover.Root>
                 <Popover.Trigger>
-                  <IconButton disabled={disabled} size='1' title='Delete' type='button' variant='ghost'>
+                  <IconButton disabled={disabled} size='1' title={t('Delete')} type='button' variant='ghost'>
                     <span className='icon-[mdi--close]' />
                   </IconButton>
                 </Popover.Trigger>
@@ -108,7 +113,7 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
                     variant='soft'
                   >
                     <span className='icon-[mdi--delete]' />
-                    Confirm Delete
+                    {t('Confirm Delete')}
                   </Button>
                 </Popover.Content>
               </Popover.Root>
@@ -126,11 +131,13 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
               variant='soft'
             >
               <span className='icon-[mdi--upload]' />
-              Upload
+              {t('Upload')}
             </Button>
           </div>
           <div className='gap-1 text-xs'>
-            <span className='opacity-80'>Expected BIOS {expectedBioses.length > 1 ? 'files' : 'file'}: </span>
+            <span className='opacity-80'>
+              {t('Expected BIOS file', { count: expectedBioses.length })}
+            </span>
             {expectedBioses.map((bios, index) => (
               <span className='mr-1' key={bios.name}>
                 <span className={getBiosClassName(bios)}>

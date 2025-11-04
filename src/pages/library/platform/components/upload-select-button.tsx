@@ -1,5 +1,6 @@
 import { Button, type ButtonProps, DropdownMenu } from '@radix-ui/themes'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { platformMap, type PlatformName } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
 import { DialogRoot } from '../../components/dialog-root.tsx'
@@ -7,6 +8,7 @@ import { usePreference } from '../../hooks/use-preference.ts'
 import { UploadDialog } from './upload-dialog.tsx'
 
 export function UploadSelectButton({ variant = 'soft' }: Readonly<{ variant?: ButtonProps['variant'] }>) {
+  const { t } = useTranslation()
   const { preference } = usePreference()
   const [key, setKey] = useState(Date.now)
   const [open, setOpen] = useState(false)
@@ -24,7 +26,7 @@ export function UploadSelectButton({ variant = 'soft' }: Readonly<{ variant?: Bu
         <DropdownMenu.Trigger>
           <Button variant={variant}>
             <span className='icon-[mdi--upload]' />
-            Add
+            {t('Add')}
             <DropdownMenu.TriggerIcon />
           </Button>
         </DropdownMenu.Trigger>

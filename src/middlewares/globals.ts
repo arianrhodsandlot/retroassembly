@@ -40,7 +40,7 @@ export function globals() {
       default: 'en',
       header: 'Accept-Language',
       supports: ['en', 'fr', 'ja', 'ko', 'zh-CN'],
-    })
+    }) && 'ja'
     i18n.changeLanguage(language)
     c.set('language', language)
     c.set('i18n', i18n)

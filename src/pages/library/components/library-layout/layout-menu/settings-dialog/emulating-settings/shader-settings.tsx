@@ -1,4 +1,5 @@
 import { Card, HoverCard, RadioCards, Switch } from '@radix-ui/themes'
+import { useTranslation } from 'react-i18next'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { getCDNUrl } from '@/utils/isomorphic/cdn.ts'
 import { SettingsTitle } from '../settings-title.tsx'
@@ -18,6 +19,7 @@ const shaders = [
 ]
 
 export function ShaderSettings() {
+  const { t } = useTranslation()
   const { isLoading, preference, update } = usePreference()
 
   async function handleShaderChange(shader: string) {
@@ -35,7 +37,7 @@ export function ShaderSettings() {
     <div>
       <SettingsTitle>
         <span className='icon-[mdi--video]' />
-        Video
+        {t('Video')}
       </SettingsTitle>
 
       <Card>
@@ -43,7 +45,7 @@ export function ShaderSettings() {
           <div>
             <SettingsTitle className='text-base'>
               <span className='icon-[mdi--monitor-shimmer]' />
-              Shader
+              {t('Shader')}
             </SettingsTitle>
             <div className='px-6'>
               <RadioCards.Root
@@ -57,7 +59,7 @@ export function ShaderSettings() {
                   <div className='relative flex flex-col gap-1' key={shader.id}>
                     <RadioCards.Item value={shader.id}>
                       <span className={shader.id ? 'icon-[mdi--stars]' : 'icon-[mdi--do-not-disturb-alt]'} />
-                      <span className='font-semibold'>{shader.name}</span>
+                      <span className='font-semibold'>{shader.id ? shader.name : t('disabled')}</span>
                     </RadioCards.Item>
                     {shader.thumbnail ? (
                       <div className='absolute inset-0'>
@@ -68,7 +70,7 @@ export function ShaderSettings() {
                               onClick={() => handleShaderChange(shader.id)}
                               type='button'
                             >
-                              select {shader.name}
+                              {t('select {{name}}', { name: shader.name })}
                             </button>
                           </HoverCard.Trigger>
                           <HoverCard.Content align='center' hideWhenDetached side='top' size='1'>
@@ -93,7 +95,7 @@ export function ShaderSettings() {
             <label className='flex items-center gap-2'>
               <SettingsTitle className='mb-0 text-base'>
                 <span className='icon-[mdi--blur]' />
-                Bilinear filtering
+                {t('Bilinear filtering')}
               </SettingsTitle>
               <Switch
                 checked={preference.emulator.videoSmooth}
@@ -109,9 +111,9 @@ export function ShaderSettings() {
               />
             </label>
             <div className='px-6 text-xs opacity-80'>
-              Add a slight blur to the image to take the edge off of the hard pixel edges.
+              {t('Add a slight blur to the image to take the edge off of the hard pixel edges.')}
               <br />
-              Cannot be enabled with shaders.
+              {t('Cannot be enabled with shaders.')}
             </div>
           </div>
 
@@ -119,7 +121,7 @@ export function ShaderSettings() {
             <label className='flex items-center gap-2'>
               <SettingsTitle className='mb-0 text-base'>
                 <span className='icon-[mdi--fullscreen]' />
-                Go fullscreen on launch
+                {t('Go fullscreen on launch')}
               </SettingsTitle>
               <Switch
                 checked={preference.emulator.fullscreen}
@@ -133,7 +135,7 @@ export function ShaderSettings() {
                 }
               />
             </label>
-            <div className='px-6 text-xs opacity-80'>Some browsers may not support fullscreen mode.</div>
+            <div className='px-6 text-xs opacity-80'>{t('Some browsers may not support fullscreen mode.')}</div>
           </div>
         </div>
       </Card>

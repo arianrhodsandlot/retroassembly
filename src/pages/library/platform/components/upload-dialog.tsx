@@ -6,6 +6,7 @@ import { chunk, isPlainObject } from 'es-toolkit'
 import { isMatch } from 'es-toolkit/compat'
 import { useDeferredValue, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { Trans, useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router'
 import { mutate } from 'swr'
 import useSWRMutation from 'swr/mutation'
@@ -16,6 +17,7 @@ import { getROMMd5 } from '../../utils/file.ts'
 import { UploadInstruction } from './upload-instruction.tsx'
 
 export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: PlatformName; toggleOpen: () => void }>) {
+  const { t } = useTranslation()
   const { env, isOfficialHost } = useLoaderData()
   const maxFiles = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE, 10) || 1000
 
@@ -85,9 +87,9 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
   function validateFiles(files: File[]) {
     let message = ''
     if (files.length > maxFiles) {
-      message = `You can only upload up to ${maxFiles} files at a time.`
+      message = t('You can only upload up to {{maxFiles}} files at a time.', { maxFiles })
     } else if (files.some((file) => !platformMap[platform].fileExtensions.some((ext) => file.name.endsWith(ext)))) {
-      message = `Please only upload files with the following extensions:\n${platformMap[platform].fileExtensions.join(', ')}`
+      message = `${t('Please only upload files with the following extensions:')}\n${platformMap[platform].fileExtensions.join(', ')}`
     }
     return message
   }
@@ -105,7 +107,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
 
   async function onDrop(files: File[]) {
     if (files.length > maxFiles) {
-      alert(`You can only upload up to ${maxFiles} files at a time.`)
+      alert(t('You can only upload up to {{maxFiles}} files at a time.', { maxFiles }))
       return
     }
     const message = validateFiles(files)
@@ -138,9 +140,9 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
       <Dialog.Title>
         {
           {
-            done: 'ROMs uploaded',
-            initial: 'Select ROMs',
-            loading: 'Uploading ROMs',
+            done: t('ROMs uploaded'),
+            initial: t('Select ROMs'),
+            loading: t('Uploading ROMs'),
           }[status]
         }
       </Dialog.Title>
@@ -159,13 +161,13 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
                 )}
               >
                 {isDragActive ? (
-                  <span className='text-(--accent-11) text-sm'>Drop files here</span>
+                  <span className='text-(--accent-11) text-sm'>{t('Drop files here')}</span>
                 ) : (
                   <>
-                    <span className='text-(--accent-11) text-sm'>Drag files here or</span>
+                    <span className='text-(--accent-11) text-sm'>{t('Drag files here or')}</span>
                     <Button onClick={handleClickSelect} size='2'>
                       <span className='icon-[mdi--folder-open]' />
-                      Select files
+                      {t('Select files')}
                     </Button>
                   </>
                 )}
@@ -174,11 +176,10 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
               {isOfficialHost ? (
                 <div className='text-(--accent-9) mt-4 flex flex-col gap-1 text-xs'>
                   <p>
-                    Please upload only ROMs you legally own, such as personal backups of games you purchased or homebrew
-                    titles. By uploading, you confirm compliance with all applicable laws.
+                    {t('Please upload only ROMs you legally own, such as personal backups of games you purchased or homebrew titles. By uploading, you confirm compliance with all applicable laws.')}
                   </p>
                   <p>
-                    Useful links about dumping ROMs:{' '}
+                    {t('Useful links about dumping ROMs:')}{' '}
                     <a className='underline' href='https://dumping.guide/' rel='noreferrer noopener' target='_blank'>
                       dumping.guide
                     </a>
@@ -200,7 +201,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
                 <Dialog.Close>
                   <Button variant='soft'>
                     <span className='icon-[mdi--close]' />
-                    Cancel
+                    {t('Cancel')}
                   </Button>
                 </Dialog.Close>
               </div>
@@ -219,8 +220,8 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
                 <span className='icon-[svg-spinners--180-ring] text-zinc' />
                 {uploadedFiles.success.length + uploadedFiles.failure.length + uploadedFiles.loading.length}/
                 {files.length},
-                {uploadedFiles.failure.length > 0 ? <span>{uploadedFiles.failure.length} Failed.</span> : null}
-                <span>Please do not turn off your device!</span>
+                {uploadedFiles.failure.length > 0 ? <span>{uploadedFiles.failure.length} {t('Failed')}.</span> : null}
+                <span>{t('Please do not turn off your device!')}</span>
               </div>
             </div>
           ),
@@ -228,14 +229,17 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
           done: (
             <div>
               <div className='py-10 text-center'>
-                🎉 {uploadedFiles.success.length}/{files.length} ROM(s) have been uploaded.
+                {t('🎉 {{successCount}}/{{totalCount}} ROM(s) have been uploaded.', {
+                  successCount: uploadedFiles.success.length,
+                  totalCount: files.length,
+                })}
               </div>
 
               <div className='mt-4 flex justify-end'>
                 <Dialog.Close>
                   <Button onClick={handleClickDone} variant='soft'>
                     <span className='icon-[mdi--check]' />
-                    Done
+                    {t('Done')}
                   </Button>
                 </Dialog.Close>
               </div>

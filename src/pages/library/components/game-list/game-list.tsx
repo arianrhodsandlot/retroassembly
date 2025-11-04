@@ -24,7 +24,7 @@ export function GameList() {
     )
   }
 
-  const sizeMap = { 'extra-large': 60, 'extra-small': 36, large: 54, medium: 48, small: 42 }
+  const sizeMap = { 'extra large': 60, 'extra-small': 36, large: 54, medium: 48, small: 42 }
   const size = sizeMap[preference.ui.libraryCoverSize]
   const gridTemplateColumns = `repeat(auto-fill,minmax(min(calc(var(--spacing)*${size}),var(--min-width)),1fr))`
 

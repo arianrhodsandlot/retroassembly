@@ -1,23 +1,25 @@
 import { Card, RadioCards, Select, Switch } from '@radix-ui/themes'
 import { clsx } from 'clsx'
+import { useTranslation } from 'react-i18next'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
 export function GameEntrySettings() {
+  const { t } = useTranslation()
   const { isLoading, preference, update } = usePreference()
 
   return (
     <div>
       <SettingsTitle>
         <span className='icon-[mdi--eye]' />
-        Display
+        {t('Display')}
       </SettingsTitle>
       <Card>
         <div className='flex flex-col gap-2 py-2'>
           <label className='flex flex-col gap-2'>
             <SettingsTitle className='text-base'>
               <span className='icon-[mdi--grid]' />
-              Game Cover Size
+              {t('Game Cover Size')}
             </SettingsTitle>
             <div className='px-6'>
               <RadioCards.Root
@@ -33,7 +35,7 @@ export function GameEntrySettings() {
                         className={clsx(
                           'text-2xl',
                           {
-                            'extra-large': 'icon-[mdi--size-extra-large]',
+                            'extra large': 'icon-[mdi--size-extra-large]',
                             'extra-small': 'icon-[mdi--size-extra-small]',
                             large: 'icon-[mdi--size-large]',
                             medium: 'icon-[mdi--size-medium]',
@@ -41,7 +43,7 @@ export function GameEntrySettings() {
                           }[size],
                         )}
                       />
-                      <span className='capitalize'>{size.replace('-', ' ')}</span>
+                      <span className='capitalize'>{t(size.replace('-', ' '))}</span>
                     </div>
                   </RadioCards.Item>
                 ))}
@@ -52,7 +54,7 @@ export function GameEntrySettings() {
           <label className='flex items-center gap-2'>
             <SettingsTitle className='mb-0 text-base'>
               <span className='icon-[mdi--text-long]' />
-              Show Game Titles
+              {t('Show Game Titles')}
             </SettingsTitle>
             <Switch
               checked={preference.ui.showTitle}
@@ -65,7 +67,7 @@ export function GameEntrySettings() {
             <label className='flex items-center gap-2'>
               <SettingsTitle className='mb-0 text-base'>
                 <span className='icon-[mdi--earth]' />
-                Show District on Game Titles
+                {t('Show District on Game Titles')}
               </SettingsTitle>
               <Switch
                 checked={preference.ui.showDistrictOnTitle}
@@ -78,7 +80,7 @@ export function GameEntrySettings() {
           <label className='flex items-center gap-2'>
             <SettingsTitle className='mb-0 text-base'>
               <span className='icon-[mdi--text-long]' />
-              Show Focus Indicators
+              {t('Show Focus Indicators')}
             </SettingsTitle>
             <Select.Root
               onValueChange={(value) => update({ ui: { showFocusIndicators: value } })}
@@ -87,9 +89,9 @@ export function GameEntrySettings() {
             >
               <Select.Trigger />
               <Select.Content>
-                <Select.Item value='auto'>Auto</Select.Item>
-                <Select.Item value='always'>Always</Select.Item>
-                <Select.Item value='never'>Never</Select.Item>
+                <Select.Item value='auto'>{t('Auto')}</Select.Item>
+                <Select.Item value='always'>{t('Always')}</Select.Item>
+                <Select.Item value='never'>{t('Never')}</Select.Item>
               </Select.Content>
             </Select.Root>
           </label>

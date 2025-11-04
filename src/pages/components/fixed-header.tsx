@@ -60,7 +60,7 @@ export function FixedHeader() {
         {currentUser ? (
           <div className='flex items-center '>
             <Button asChild size='2' type='button' variant='outline'>
-              <Link className='!rounded-full !border-2 !bg-white !shadow-none' reloadDocument to='/library'>
+              <Link className='rounded-full! border-2! bg-white! shadow-none!' reloadDocument to='/library'>
                 <span className='icon-[mdi--bookshelf]' />
                 {t('Library')}
               </Link>
@@ -68,7 +68,7 @@ export function FixedHeader() {
           </div>
         ) : (
           <Button asChild radius='full' size='2' type='button' variant='outline'>
-            <Link className='!border-2 !bg-white !shadow-none' reloadDocument to='/login'>
+            <Link className='border-2! bg-white! shadow-none!' reloadDocument to='/login'>
               <span className='icon-[mdi--user-box]' />
               {t('Log in')}
             </Link>

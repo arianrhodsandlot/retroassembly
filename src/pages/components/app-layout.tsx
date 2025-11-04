@@ -29,8 +29,10 @@ export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
           <ThemeProvider attribute='class'>
             <Provider>
               <HydrationBoundary hydrateAtoms={hydrateAtoms}>
-                <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
-                <CookieConsent />
+                <I18nextProvider i18n={i18n}>
+                  {children}
+                  <CookieConsent />
+                </I18nextProvider>
               </HydrationBoundary>
             </Provider>
           </ThemeProvider>

@@ -25,6 +25,7 @@ export const translation = {
   "Automatically fetch game boxarts to enhance your library's visual appeal.":
     "Automatically fetch game boxarts to enhance your library's visual appeal.",
   'Automatic Boxart Retrieval': 'Automatic Boxart Retrieval',
+  Back: 'Back',
   'Bilinear filtering': 'Bilinear filtering',
   'BIOS of {{platform}}': 'BIOS of {{platform}}',
   'Browser-Based Gameplay': 'Browser-Based Gameplay',
@@ -36,8 +37,10 @@ export const translation = {
   'Cloud Sync': 'Cloud Sync',
   ColecoVision: 'ColecoVision',
   Community: 'Community',
+  Confirm: 'Confirm',
   'Confirm and Cancel Buttons': 'Confirm and Cancel Buttons',
   'Confirm Delete': 'Confirm Delete',
+  Connected: 'Connected',
   Continue: 'Continue',
   cookies: 'cookies',
   'Create an account to get started': 'Create an account to get started',
@@ -61,6 +64,8 @@ export const translation = {
   Emulator: 'Emulator',
   'Enabled Platforms': 'Enabled Platforms',
   Error: 'Error',
+  Exit: 'Exit',
+  'Exit fullscreen': 'Exit fullscreen',
   'Expected BIOS file': 'Expected BIOS file: ',
   'Expected BIOS file_other': 'Expected BIOS files: ',
   'extra large': 'extra-large',
@@ -72,6 +77,9 @@ export const translation = {
   'Fast forward': 'Fast forward',
   Features: 'Features',
   'for demonstration': 'for demonstration',
+  Fullscreen: 'Fullscreen',
+  game: 'game',
+  game_other: 'games',
   'Game & Watch': 'Game & Watch',
   'Game Boy': 'Game Boy',
   'Game Boy Advance': 'Game Boy Advance',
@@ -81,8 +89,7 @@ export const translation = {
   Gamepad: 'Gamepad',
   'Gamepad Tester': 'Gamepad Tester',
   'Games can be downloaded from': 'Games can be downloaded from',
-  gameStats:
-    '<1>{{gameCount}}</1> {{gameCountPlural, plural, one {game} other {games}}} for <3>{{platformCount}}</3> {{count, plural, one {platform} other {platforms}}} in total',
+  gameStats: '<1>{{gameCount}}</1> {{game}} for <3>{{platformCount}}</3> {{platform}} in total',
   Genesis: 'Genesis',
   Genres: 'Genres',
   'GitHub issues/discussions': 'GitHub issues/discussions',
@@ -111,6 +118,7 @@ export const translation = {
   medium: 'medium',
   Megadrive: 'Megadrive',
   Menu: 'Menu',
+  Move: 'Move',
   'Multi-Platform Support': 'Multi-Platform Support',
   'Navigate seamlessly using a keyboard or a gamepad without needing a mouse.':
     'Navigate seamlessly using a keyboard or a gamepad without needing a mouse.',
@@ -131,8 +139,10 @@ export const translation = {
   Pause: 'Pause',
   'PC Engine': 'PC Engine',
   'Philips Videopac+': 'Philips Videopac+',
-  Platform: 'Platform',
-  playedGamesStats: 'Played <1>{{gameCount}}</1> {{gameCountPlural, plural, one {game} other {games}}}',
+  platform: 'platform',
+  platform_other: 'platforms',
+  platformGamesStats: '<1>{{gameCount}}</1> {{game}} for {{platform}}.',
+  playedGamesStats: 'Played <1>{{gameCount}}</1> {{game}}',
   Players: 'Players',
   'Play retro games directly in your browser without additional software.':
     'Play retro games directly in your browser without additional software.',
@@ -154,6 +164,8 @@ export const translation = {
   'Repeat password': 'Repeat password',
   "Reset the emulator and it's option to defaults": "Reset the emulator and it's option to defaults",
   'Reset to defaults': 'Reset to defaults',
+  Restart: 'Restart',
+  Resume: 'Resume',
   'retrobrews project': 'retrobrews project',
   Retry: 'Retry',
   Rewind: 'Rewind',
@@ -161,8 +173,12 @@ export const translation = {
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
     'Rewind gameplay using "R" on the keyboard or a controller button combination',
   'ROMs uploaded': 'ROMs uploaded',
+  'Save & Exit': 'Save & Exit',
+  'Save State': 'Save State',
   'Scroll to top': 'Scroll to top',
   Search: 'Search',
+  'Search (⌘ + K)': 'Search (⌘ + K)',
+  'Search (Ctrl + K)': 'Search (Ctrl + K)',
   'Sega 32X': 'Sega 32X',
   'Sega SG-1000': 'Sega SG-1000',
   'select {{name}}': 'select {{name}}',
@@ -245,7 +261,4 @@ export const translation = {
     'Your settings will be saved and take effect immediately once changed.',
   'Your valuable feedback will greatly contribute to enhancing the user experience.':
     'Your valuable feedback will greatly contribute to enhancing the user experience.',
-
-  // Platform page
-  platformGamesStats: '{{gameCount}} {{gameCountPlural, plural, one {game} other {games}}} for {{platform}}.',
 }

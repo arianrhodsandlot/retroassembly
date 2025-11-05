@@ -34,7 +34,7 @@ export function useNavigationLinks() {
       ],
       title: '',
     },
-    { links: sortedPlatformLinks, title: 'Platforms' },
+    { links: sortedPlatformLinks, title: t('platform_other') },
   ]
   if (!isDemo) {
     const historyLink = {

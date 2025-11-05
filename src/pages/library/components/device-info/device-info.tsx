@@ -44,7 +44,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
             <div>
               <div className='flex h-6 items-center gap-2 font-semibold'>
                 <span className='icon-[mdi--calendar]' />
-                <span className='text-xs'>{t('Released')}</span>
+                <span>{t('Released')}</span>
               </div>
               <div className='mt-1 pl-6'>
                 {releaseDateTime.isValid ? (
@@ -62,7 +62,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
               <div>
                 <div className='flex h-6 items-center gap-2 font-semibold'>
                   <span className='icon-[mdi--factory]' />
-                  <span className='text-xs'>
+                  <span>
                     {t('Developer')} & {t('Manufacturer')}
                   </span>
                 </div>
@@ -75,7 +75,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
                 <div>
                   <div className='flex h-6 items-center gap-2 font-semibold'>
                     <span className='icon-[mdi--factory]' />
-                    <span className='text-xs'>{t('Developer')}</span>
+                    <span>{t('Developer')}</span>
                   </div>
                   <div className='mt-1 pl-6'>
                     <CompanyLogo className='h-5' company={developer || ''} fallback={developer || 'unknown'} />
@@ -84,7 +84,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
                 <div>
                   <div className='flex h-6 items-center gap-2 font-semibold'>
                     <span className='icon-[mdi--factory]' />
-                    <span className='text-xs'>{t('Manufacturer')}</span>
+                    <span>{t('Manufacturer')}</span>
                   </div>
                   <div className='mt-1 pl-6'>
                     <CompanyLogo className='h-5' company={manufacturer || ''} fallback={manufacturer || 'unknown'} />

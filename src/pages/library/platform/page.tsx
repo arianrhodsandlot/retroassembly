@@ -14,6 +14,7 @@ import { UploadButton } from './components/upload-button.tsx'
 export default function PlatformPage() {
   const { t } = useTranslation()
   const { page, pagination, platform, platformInfo, roms } = useLoaderData<typeof loader>()
+  const gameLabel = t('game', { count: pagination.total })
   const isDemo = useIsDemo()
 
   if (!platformMap[platform]) {
@@ -38,11 +39,13 @@ export default function PlatformPage() {
             <PageStats suffix={<UploadButton platform={platform} />}>
               <span className='icon-[mdi--bar-chart] text-(--color-text)' />
               <Trans
+                components={{
+                  1: <span className='text-(--accent-9) font-semibold' />,
+                }}
                 i18nKey='platformGamesStats'
                 values={{
-                  count: pagination.total,
+                  game: gameLabel,
                   gameCount: pagination.total,
-                  gameCountPlural: pagination.total,
                   platform: t(platformMap[platform].displayName),
                 }}
               />

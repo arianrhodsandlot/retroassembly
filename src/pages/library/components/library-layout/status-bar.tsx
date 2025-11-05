@@ -1,5 +1,6 @@
 import { Kbd } from '@radix-ui/themes'
 import { capitalize, uniq } from 'es-toolkit'
+import { useTranslation } from 'react-i18next'
 import { useGamepads } from '../../hooks/use-gamepads.ts'
 import { useInputMapping } from '../../hooks/use-input-mapping.ts'
 import { usePreference } from '../../hooks/use-preference.ts'
@@ -9,6 +10,7 @@ const rightButtonIcon = <span className='icon-[mdi--gamepad-circle-right] text-w
 const downButtonIcon = <span className='icon-[mdi--gamepad-circle-down] text-white' />
 
 export function StatusBar() {
+  const { t } = useTranslation()
   const { connected } = useGamepads()
   const { keyboard: keyboardMapping } = useInputMapping()
   const { preference } = usePreference()
@@ -27,25 +29,25 @@ export function StatusBar() {
         <>
           <span className='flex items-center gap-2'>
             <span className='icon-[mdi--microsoft-xbox-gamepad] text-white' />
-            Connected
+            {t('Connected')}
           </span>
           <span className='flex items-center gap-2'>
             <span className='icon-[mdi--gamepad] text-white' />
-            Navigation
+            {t('Move')}
           </span>
           <span className='flex items-center gap-2'>
             {{ nintendo: rightButtonIcon, xbox: downButtonIcon }[confirmButtonStyle]}
-            Confirm
+            {t('Confirm')}
           </span>
           <span className='flex items-center gap-2'>
             {{ nintendo: downButtonIcon, xbox: rightButtonIcon }[confirmButtonStyle]}
-            Back
+            {t('Back')}
           </span>
         </>
       ) : (
         <>
           <span className='flex items-center gap-2'>
-            <Kbd className='!text-(--accent-9)' size='1'>
+            <Kbd className='text-(--accent-9)!' size='1'>
               {[
                 keyboardMapping.input_player1_up,
                 keyboardMapping.input_player1_down,
@@ -53,27 +55,27 @@ export function StatusBar() {
                 keyboardMapping.input_player1_right,
               ]
                 .filter(Boolean)
-                .map((key) => capitalize(key))
+                .map((key) => ({ down: '↓', left: '←', right: '→', up: '↑' })[key] || capitalize(key))
                 .join(' ')}
             </Kbd>
-            Navigation
+            {t('Move')}
           </span>
 
           {keyboarMappingConfirm ? (
             <span className='flex items-center gap-2'>
-              <Kbd className='!text-(--accent-9)' size='1'>
+              <Kbd className='text-(--accent-9)!' size='1'>
                 {uniq(['Enter', capitalize(keyboarMappingConfirm)]).join(' / ')}
               </Kbd>
-              Confirm
+              {t('Confirm')}
             </span>
           ) : null}
 
           {keyboarMappingCancel ? (
             <span className='flex items-center gap-2'>
-              <Kbd className='!text-(--accent-9)' size='1'>
+              <Kbd className='text-(--accent-9)!' size='1'>
                 {capitalize(keyboarMappingCancel)}
               </Kbd>
-              Back
+              {t('Back')}
             </span>
           ) : null}
         </>

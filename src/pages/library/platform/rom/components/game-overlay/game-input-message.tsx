@@ -1,18 +1,20 @@
 import { capitalize, compact } from 'es-toolkit'
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useGamepads } from '@/pages/library/hooks/use-gamepads.ts'
 import { useInputMapping } from '@/pages/library/hooks/use-input-mapping.ts'
 import { GameInputMessageItem } from './game-input-message-item.tsx'
 
 export function GameInputMessage() {
+  const { t } = useTranslation()
   const { connected } = useGamepads()
   const { keyboard: keyboardMapping } = useInputMapping()
 
   const messages: { keyNames: string[]; message: ReactNode }[] = connected
     ? [
-        { keyNames: ['L1', 'R1'], message: 'Pause' },
-        { keyNames: ['Select', 'L2'], message: 'Rewind' },
-        { keyNames: ['Select', 'R2'], message: 'Fast forward' },
+        { keyNames: ['L1', 'R1'], message: t('Pause') },
+        { keyNames: ['Select', 'L2'], message: t('Rewind') },
+        { keyNames: ['Select', 'R2'], message: t('Fast forward') },
       ]
     : [
         {
@@ -23,7 +25,7 @@ export function GameInputMessage() {
               keyboardMapping.input_player1_left,
               keyboardMapping.input_player1_right,
             ])
-              .map((key) => capitalize(key))
+              .map((key) => ({ down: '↓', left: '←', right: '→', up: '↑' })[key] || capitalize(key))
               .join(' '),
           ],
           message: <span className='icon-[mdi--gamepad]' />,
@@ -44,9 +46,9 @@ export function GameInputMessage() {
           keyNames: compact([keyboardMapping.input_player1_b]),
           message: <span className='icon-[mdi--gamepad-circle-down]' />,
         },
-        { keyNames: compact([keyboardMapping.$pause]), message: 'Pause' },
-        { keyNames: compact([keyboardMapping.input_rewind]), message: 'Rewind' },
-        { keyNames: compact([keyboardMapping.input_hold_fast_forward]), message: 'Fast forward' },
+        { keyNames: compact([keyboardMapping.$pause]), message: t('Pause') },
+        { keyNames: compact([keyboardMapping.input_rewind]), message: t('Rewind') },
+        { keyNames: compact([keyboardMapping.input_hold_fast_forward]), message: t('Fast forward') },
       ]
 
   return messages

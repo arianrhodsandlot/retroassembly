@@ -34,9 +34,9 @@ export function GameOverlayButton({
   return (
     <Button
       className={clsx(
-        '!border-1 border-solid border-white !bg-black/30 !text-white !shadow-none !transition-all !duration-300',
-        'focus:!text-(--accent-9) focus:!bg-white/80',
-        { '!opacity-40': isLoading },
+        'border! bg-black/30! text-white! shadow-none! transition-all! duration-300! border-solid border-white',
+        'focus:text-(--accent-9)! focus:bg-white/80!',
+        { 'opacity-40!': isLoading },
       )}
       data-sn-enabled
       data-sn-focus-style={JSON.stringify({

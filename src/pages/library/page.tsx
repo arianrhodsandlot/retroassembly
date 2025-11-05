@@ -9,6 +9,8 @@ import { UploadSelectButton } from './platform/components/upload-select-button.t
 export default function LibraryPage() {
   const { t } = useTranslation()
   const { page, pagination, platformCount, roms } = useLoaderData()
+  const gameLabel = t('game', { count: pagination.total })
+  const platformLabel = t('platform', { count: platformCount })
   const isDemo = useIsDemo()
 
   if (page > 1 && roms.length === 0) {
@@ -44,11 +46,10 @@ export default function LibraryPage() {
               }}
               i18nKey='gameStats'
               values={{
-                count: platformCount,
+                game: gameLabel,
                 gameCount: pagination.total,
-                gameCountPlural: pagination.total,
+                platform: platformLabel,
                 platformCount,
-                platformCountPlural: platformCount,
               }}
             />
           </PageStats>

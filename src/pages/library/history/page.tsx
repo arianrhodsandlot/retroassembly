@@ -8,6 +8,7 @@ import { PageStats } from '../components/page-stats.tsx'
 export default function HistoryPage() {
   const { t } = useTranslation()
   const { page, pagination, roms, title } = useLoaderData<typeof loader>()
+  const gameLabel = t('game', { count: pagination.total })
 
   if (page > 1 && roms.length === 0) {
     return <>{t('404')}</>
@@ -25,9 +26,8 @@ export default function HistoryPage() {
             }}
             i18nKey='playedGamesStats'
             values={{
-              count: pagination.total,
+              game: gameLabel,
               gameCount: pagination.total,
-              gameCountPlural: pagination.total,
             }}
           />
         </PageStats>

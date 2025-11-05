@@ -34,7 +34,7 @@ export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootP
 
   return (
     <DialogRoot {...props} onOpenChange={handleOpenChange}>
-      <Dialog.Content aria-describedby={undefined} className='lg:!w-5xl' maxWidth='calc(100vw - var(--space-8))'>
+      <Dialog.Content aria-describedby={undefined} className='lg:w-5xl!' maxWidth='calc(100vw - var(--space-8))'>
         <Dialog.Title className='flex items-center gap-2'>
           <span className='icon-[mdi--cog] ' />
           {t('Settings')}

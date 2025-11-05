@@ -1,6 +1,7 @@
 import { noop } from 'es-toolkit'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useRomCover } from '@/pages/library/hooks/use-rom-cover.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { focus, offCancel, onCancel } from '@/pages/library/utils/spatial-navigation.ts'
@@ -19,6 +20,7 @@ function handleAnimationComplete(animation) {
 }
 
 export function GameOverlayContent() {
+  const { t } = useTranslation()
   const rom = useRom()
   if (!rom) {
     throw new Error('No rom found')
@@ -62,7 +64,7 @@ export function GameOverlayContent() {
               </div>
               <div className='text-3xl font-semibold'>{goodcodes.rom}</div>
             </div>
-            <div className='game-overlay-buttons flex flex-col gap-8 lg:flex-row'>
+            <div className='game-overlay-buttons flex flex-col gap-5 lg:flex-row'>
               <GameOverlayButtons />
             </div>
             <GameStates />
@@ -75,11 +77,11 @@ export function GameOverlayContent() {
               <GameInputMessage />
             </div>
             {isFullscreen ? (
-              <ControllerButton onClick={toggleFullscreen} title='Exit fullscreen'>
+              <ControllerButton onClick={toggleFullscreen} title={t('Exit fullscreen')}>
                 <span className='icon-[mdi--fullscreen-exit]' />
               </ControllerButton>
             ) : (
-              <ControllerButton onClick={toggleFullscreen} title='Fullscreen'>
+              <ControllerButton onClick={toggleFullscreen} title={t('Fullscreen')}>
                 <span className='icon-[mdi--fullscreen]' />
               </ControllerButton>
             )}

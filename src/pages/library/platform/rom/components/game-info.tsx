@@ -22,7 +22,7 @@ export function GameInfo({ rom }) {
     {
       icon: 'icon-[mdi--computer-classic]',
       name: '',
-      title: t('Platform'),
+      title: t('platform'),
       value: t(platformMap[rom.platform].displayName),
     },
     {
@@ -70,7 +70,7 @@ export function GameInfo({ rom }) {
         {items.map((item) => (
           <div className='group' key={item.title}>
             <div className='flex items-center justify-between gap-2 font-semibold lg:justify-start'>
-              <span className='inline-flex items-center gap-2'>
+              <span className='inline-flex items-center gap-2 capitalize'>
                 <span className={item.icon} />
                 {item.title}
               </span>

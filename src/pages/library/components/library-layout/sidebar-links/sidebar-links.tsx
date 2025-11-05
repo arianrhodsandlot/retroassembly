@@ -17,7 +17,7 @@ export function SidebarLinks() {
       {groups.map(({ links, title }, index) => (
         <div className={clsx({ 'mt-4': index })} key={title}>
           {title ? (
-            <h3 className='flex items-center gap-2 px-4 text-sm text-white/50'>
+            <h3 className='flex items-center gap-2 px-4 text-sm capitalize text-white/50'>
               <span className='icon-[mdi--gamepad-classic] size-5 p-0.5' />
               {title}
             </h3>

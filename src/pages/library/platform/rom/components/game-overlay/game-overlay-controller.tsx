@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react'
+import { useTranslation } from 'react-i18next'
 import { useEmulatorLaunched } from '@/pages/library/atoms.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
@@ -8,6 +9,7 @@ import { ControllerButton } from './controller-button.tsx'
 import { GameInputMessage } from './game-input-message.tsx'
 
 export function GameOverlayController() {
+  const { t } = useTranslation()
   const rom = useRom()
   if (!rom) {
     throw new Error('No rom found')
@@ -41,7 +43,7 @@ export function GameOverlayController() {
         >
           <div>
             <div className='bg-linear-to-b flex h-20 w-full items-center justify-end from-black/70 to-black/40 px-4'>
-              <ControllerButton onClick={handleClickExit} title='Exit'>
+              <ControllerButton onClick={handleClickExit} title={t('Exit')}>
                 <span className='icon-[mdi--close]' />
               </ControllerButton>
             </div>
@@ -51,18 +53,18 @@ export function GameOverlayController() {
           <div>
             <div className='bg-linear-to-b h-20 from-transparent to-black/40' />
             <div className='bg-linear-to-b flex h-20 w-full items-center from-black/40 to-black/70 px-4'>
-              <ControllerButton onClick={handleClickPause} title='Pause'>
+              <ControllerButton onClick={handleClickPause} title={t('Pause')}>
                 <span className='icon-[mdi--pause]' />
               </ControllerButton>
               <div className='hidden flex-1 items-center justify-center gap-4 lg:flex'>
                 <GameInputMessage />
               </div>
               {isFullscreen ? (
-                <ControllerButton onClick={toggleFullscreen} title='Exit fullscreen'>
+                <ControllerButton onClick={toggleFullscreen} title={t('Exit fullscreen')}>
                   <span className='icon-[mdi--fullscreen-exit]' />
                 </ControllerButton>
               ) : (
-                <ControllerButton onClick={toggleFullscreen} title='Fullscreen'>
+                <ControllerButton onClick={toggleFullscreen} title={t('Fullscreen')}>
                   <span className='icon-[mdi--fullscreen]' />
                 </ControllerButton>
               )}

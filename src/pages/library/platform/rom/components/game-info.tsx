@@ -1,10 +1,13 @@
 import { DateTime } from 'luxon'
+import { useTranslation } from 'react-i18next'
 import { platformMap } from '@/constants/platform.ts'
 import { GameInfoDialog } from './game-info-dialog/game-info-dialog.tsx'
 
-const unknown = <span className='opacity-40'>Unknown</span>
-
 export function GameInfo({ rom }) {
+  const { t } = useTranslation()
+
+  const unknown = <span className='opacity-40'>{t('Unknown')}</span>
+
   const launchboxGame = rom.launchboxGame || {}
   const rawReleaseDate = rom.gameReleaseDate ?? launchboxGame.releaseDate
   const releaseDateValue =
@@ -19,13 +22,13 @@ export function GameInfo({ rom }) {
     {
       icon: 'icon-[mdi--computer-classic]',
       name: '',
-      title: 'Platform',
-      value: platformMap[rom.platform].displayName,
+      title: t('Platform'),
+      value: t(platformMap[rom.platform].displayName),
     },
     {
       icon: 'icon-[mdi--calendar]',
       name: 'gameReleaseDate',
-      title: 'Released',
+      title: t('Released'),
       value: releaseDateValue ? (
         <>
           {releaseDateValue}
@@ -38,25 +41,25 @@ export function GameInfo({ rom }) {
     {
       icon: 'icon-[mdi--tag-multiple]',
       name: 'gameGenres',
-      title: 'Genres',
+      title: t('Genres'),
       value: (rom.gameGenres ?? launchboxGame.genres)?.trim() || unknown,
     },
     {
       icon: 'icon-[mdi--person-multiple]',
       name: 'gamePlayers',
-      title: 'Players',
+      title: t('Players'),
       value: rom.gamePlayers ?? launchboxGame.maxPlayers ?? unknown,
     },
     {
       icon: 'icon-[mdi--chip]',
       name: 'gameDeveloper',
-      title: 'Developer',
+      title: t('Developer'),
       value: (rom.gameDeveloper ?? launchboxGame.developer)?.trim() || unknown,
     },
     {
       icon: 'icon-[mdi--earth]',
       name: 'gamePublisher',
-      title: 'Publisher',
+      title: t('Publisher'),
       value: (rom.gamePublisher ?? launchboxGame.publisher)?.trim() || unknown,
     },
   ]

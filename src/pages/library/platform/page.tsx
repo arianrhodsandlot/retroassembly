@@ -1,4 +1,5 @@
 import { clsx } from 'clsx'
+import { Trans, useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
 import type { loader } from '@/pages/routes/library-platform.tsx'
@@ -11,15 +12,16 @@ import { PlatformBackground } from './components/platform-background.tsx'
 import { UploadButton } from './components/upload-button.tsx'
 
 export default function PlatformPage() {
+  const { t } = useTranslation()
   const { page, pagination, platform, platformInfo, roms } = useLoaderData<typeof loader>()
   const isDemo = useIsDemo()
 
   if (!platformMap[platform]) {
-    return <>404 not found</>
+    return <>{t('404')}</>
   }
 
   if (page > 1 && roms.length === 0) {
-    return <>404</>
+    return <>{t('404')}</>
   }
 
   return (
@@ -29,14 +31,21 @@ export default function PlatformPage() {
           {platformInfo ? (
             <DeviceInfo key={platform} platform={platform} platformInfo={platformInfo} />
           ) : (
-            <h1 className='text-5xl font-semibold'>{platformMap[platform].displayName}</h1>
+            <h1 className='text-5xl font-semibold'>{t(platformMap[platform].displayName)}</h1>
           )}
 
           {isDemo ? undefined : (
             <PageStats suffix={<UploadButton platform={platform} />}>
               <span className='icon-[mdi--bar-chart] text-(--color-text)' />
-              <span className='text-(--accent-9) font-semibold'>{pagination.total}</span>
-              {pagination.total === 1 ? 'game' : 'games'} for {platformMap[platform].displayName}.
+              <Trans
+                i18nKey='platformGamesStats'
+                values={{
+                  count: pagination.total,
+                  gameCount: pagination.total,
+                  gameCountPlural: pagination.total,
+                  platform: t(platformMap[platform].displayName),
+                }}
+              />
             </PageStats>
           )}
         </div>

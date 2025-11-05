@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
 import { RadixThemePortal } from '@/pages/components/radix-theme-portal.tsx'
@@ -21,6 +22,7 @@ import { PageHooks } from './components/page-hooks.ts'
 import { RomBackground } from './components/rom-background.tsx'
 
 export default function RomPage() {
+  const { t } = useTranslation()
   const { isLargeScreen } = useViewport()
   const { rom, state } = useLoaderData<typeof loader>()
   const { preference } = usePreference()
@@ -79,7 +81,7 @@ export default function RomPage() {
                     rel='noreferrer noopener'
                     target='_blank'
                   >
-                    <span className='icon-[mdi--wikipedia] size-6' /> Read more on Wikipedia.
+                    <span className='icon-[mdi--wikipedia] size-6' /> {t('Read more on Wikipedia')}
                   </a>
                 </div>
               ) : null}

@@ -6,7 +6,7 @@ import { chunk, isPlainObject } from 'es-toolkit'
 import { isMatch } from 'es-toolkit/compat'
 import { useDeferredValue, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router'
 import { mutate } from 'swr'
 import useSWRMutation from 'swr/mutation'
@@ -176,7 +176,9 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
               {isOfficialHost ? (
                 <div className='text-(--accent-9) mt-4 flex flex-col gap-1 text-xs'>
                   <p>
-                    {t('Please upload only ROMs you legally own, such as personal backups of games you purchased or homebrew titles. By uploading, you confirm compliance with all applicable laws.')}
+                    {t(
+                      'Please upload only ROMs you legally own, such as personal backups of games you purchased or homebrew titles. By uploading, you confirm compliance with all applicable laws.',
+                    )}
                   </p>
                   <p>
                     {t('Useful links about dumping ROMs:')}{' '}
@@ -220,7 +222,11 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
                 <span className='icon-[svg-spinners--180-ring] text-zinc' />
                 {uploadedFiles.success.length + uploadedFiles.failure.length + uploadedFiles.loading.length}/
                 {files.length},
-                {uploadedFiles.failure.length > 0 ? <span>{uploadedFiles.failure.length} {t('Failed')}.</span> : null}
+                {uploadedFiles.failure.length > 0 ? (
+                  <span>
+                    {uploadedFiles.failure.length} {t('Failed')}.
+                  </span>
+                ) : null}
                 <span>{t('Please do not turn off your device!')}</span>
               </div>
             </div>

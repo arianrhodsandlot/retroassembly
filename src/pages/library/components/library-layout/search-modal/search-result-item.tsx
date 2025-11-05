@@ -3,6 +3,7 @@ import { clsx } from 'clsx'
 import { compact } from 'es-toolkit'
 import { useEffect, useRef } from 'react'
 import { Fragment } from 'react/jsx-runtime'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import scrollIntoView from 'smooth-scroll-into-view-if-needed'
 import { platformMap } from '@/constants/platform.ts'
@@ -22,6 +23,7 @@ interface SearchResultItemProps {
 }
 
 export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProps>) {
+  const { t } = useTranslation()
   const { preference } = usePreference()
   const { data: cover, isLoading } = useRomCover(rom)
   const [, setShowSearchModal] = useShowSearchModal()
@@ -102,11 +104,11 @@ export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProp
           </div>
           <div className='flex items-center gap-1 text-xs'>
             <img
-              alt={platformMap[rom.platform].displayName}
+              alt={t(platformMap[rom.platform].displayName)}
               className='block size-4 object-contain'
               src={getPlatformIcon(rom.platform)}
             />
-            {platformMap[rom.platform].displayName}
+            {t(platformMap[rom.platform].displayName)}
           </div>
         </div>
       </Link>

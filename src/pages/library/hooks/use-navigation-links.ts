@@ -21,11 +21,11 @@ export function useNavigationLinks() {
     iconClass: '',
     iconUrl: getPlatformIcon(platform),
     name: platform,
-    text: platformMap[platform].displayName,
+    text: t(platformMap[platform].displayName),
     to: getPlatformLink(platform),
   }))
 
-  const sortedPlatformLinks = sortBy(platformLinks, ['text'])
+  const sortedPlatformLinks = sortBy(platformLinks, ['name'])
 
   const groups = [
     {

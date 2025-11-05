@@ -1,6 +1,7 @@
 import { Button, HoverCard } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import type { MouseEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { State } from '@/controllers/states/get-states.ts'
 import { useFocusIndicator } from '@/pages/library/hooks/use-focus-indicator.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
@@ -17,6 +18,7 @@ const isAppleMobileDesktopMode =
 const mayNeedsUserInteraction = isAppleMobile || isAppleMobileDesktopMode
 
 export function GameButtons({ state }: Readonly<{ state?: State }>) {
+  const { t } = useTranslation()
   const { error, isPreparing, launch, prepare } = useEmulator()
   const [, setLaunchButtonRect] = useLaunchButton()
   const { syncStyle } = useFocusIndicator()
@@ -61,10 +63,10 @@ export function GameButtons({ state }: Readonly<{ state?: State }>) {
     return (
       <div className='bg-(--accent-4) flex h-16 w-full items-center justify-center gap-2 rounded lg:w-80'>
         <span className='icon-[mdi--warning-decagram]' />
-        <span className='text-sm opacity-60'>Failed to load the emulator.</span>
+        <span className='text-sm opacity-60'>{t('Failed to load the emulator.')}</span>
         <Button onClick={handleClickRetry} size='1' type='button'>
           <span className='icon-[mdi--reload]' />
-          Retry
+          {t('Retry')}
         </Button>
       </div>
     )
@@ -84,18 +86,18 @@ export function GameButtons({ state }: Readonly<{ state?: State }>) {
               )}
             />
           )}
-          <span className='w-52 text-2xl font-semibold'>Continue</span>
+          <span className='w-52 text-2xl font-semibold'>{t('Continue')}</span>
           <HoverCard.Root>
             <HoverCard.Trigger>
               <img
-                alt='state'
+                alt={t('state')}
                 className='size-10 rounded-sm border-2 border-white bg-neutral-200 object-cover shadow'
                 src={getFileUrl(state.thumbnailFileId)}
               />
             </HoverCard.Trigger>
             <HoverCard.Content align='center' hideWhenDetached side='top' size='1'>
               <img
-                alt='state'
+                alt={t('state')}
                 className='size-48 cursor-pointer rounded-sm border-2 border-white bg-neutral-200 object-cover shadow'
                 src={getFileUrl(state.thumbnailFileId)}
               />
@@ -115,7 +117,7 @@ export function GameButtons({ state }: Readonly<{ state?: State }>) {
             )}
           />
         )}
-        <span className='w-52 text-2xl font-semibold'>Start</span>
+        <span className='w-52 text-2xl font-semibold'>{t('Start')}</span>
       </LaunchButton>
 
       <GameSettingsButton />

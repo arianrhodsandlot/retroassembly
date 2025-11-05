@@ -67,13 +67,13 @@ export function CoresSettings() {
                 <Select.Item key={platformMap[platform].name} value={platformMap[platform].name}>
                   <div className='flex items-center gap-2'>
                     <img
-                      alt={platformMap[platform].displayName}
+                      alt={t(platformMap[platform].displayName)}
                       className={clsx('size-5 object-contain object-center', {
                         invert: ['ngp', 'wonderswan'].includes(platform),
                       })}
                       src={getPlatformIcon(platformMap[platform].name)}
                     />
-                    {platformMap[platform].displayName}
+                    {t(platformMap[platform].displayName)}
                   </div>
                 </Select.Item>
               ))}
@@ -121,7 +121,7 @@ export function CoresSettings() {
                 }}
               >
                 <span className='icon-[mdi--undo]' />
-                {t('Reset the emulator and it\'s option to defaults')}
+                {t("Reset the emulator and it's option to defaults")}
               </UpdateButton>
             </div>
           ) : null}

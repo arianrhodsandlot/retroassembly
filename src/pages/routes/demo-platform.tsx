@@ -1,4 +1,5 @@
 import { attemptAsync } from 'es-toolkit'
+import { getContext } from 'hono/context-storage'
 import { platformMap } from '@/constants/platform.ts'
 import { defaultPreference } from '@/constants/preference.ts'
 import { getDemoRoms } from '@/controllers/roms/get-demo-roms.ts'
@@ -7,6 +8,7 @@ import PlatformPage from '../library/platform/page.tsx'
 import type { Route } from './+types/library-platform.ts'
 
 export async function loader({ params }: Route.LoaderArgs) {
+  const { t } = getContext().var
   const { platform = '' } = params
 
   const preference = structuredClone(defaultPreference)
@@ -22,7 +24,7 @@ export async function loader({ params }: Route.LoaderArgs) {
     platformInfo,
     preference,
     roms: getDemoRoms({ platform }),
-    title: `${platformMap[platform].displayName} (Demo)`,
+    title: `${t(platformMap[platform].displayName)} (Demo)`,
   }
 }
 

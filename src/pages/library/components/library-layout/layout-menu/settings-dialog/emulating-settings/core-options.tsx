@@ -40,7 +40,9 @@ export function CoreOptions({
             <span className='icon-[mdi--warning]' />
           </Callout.Icon>
           <Callout.Text>
-            {t('These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.')}
+            {t(
+              'These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.',
+            )}
           </Callout.Text>
         </Callout.Root>
 

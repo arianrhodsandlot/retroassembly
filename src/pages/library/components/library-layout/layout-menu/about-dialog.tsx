@@ -1,10 +1,13 @@
 import { Button, Dialog, VisuallyHidden } from '@radix-ui/themes'
 import { clsx } from 'clsx'
+import { useTranslation } from 'react-i18next'
 import { linkMap, links } from '@/constants/links.ts'
 import { metadata } from '@/constants/metadata.ts'
 import { DialogRoot } from '../../dialog-root.tsx'
 
 export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProps>) {
+  const { t } = useTranslation()
+
   function handleOpenChange(open: boolean) {
     onOpenChange?.(open)
   }
@@ -13,18 +16,18 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
     <DialogRoot {...props} onOpenChange={handleOpenChange}>
       <Dialog.Content aria-describedby={undefined} width='360px'>
         <VisuallyHidden>
-          <Dialog.Title className='flex items-center gap-2'>About</Dialog.Title>
+          <Dialog.Title className='flex items-center gap-2'>{t('About')}</Dialog.Title>
         </VisuallyHidden>
         <div className='flex flex-col items-center gap-2 p-2 text-center'>
           <img alt='logo' height='56' src='/assets/logo/logo-192x192.png' width='56' />
           <a className='text-xl font-semibold' href={metadata.link} rel='noreferrer noopener' target='_blank'>
             {metadata.title}
           </a>
-          <div className='text-sm'>{metadata.description}</div>
+          <div className='text-sm'>{t(metadata.description)}</div>
           <div className='flex flex-col gap-2 py-2 text-xs opacity-70'>
             {metadata.version ? (
               <div>
-                Version:
+                {t('Version')}:
                 <a
                   className='ml-0.5 underline'
                   href={`${linkMap.github.url}/tree/${metadata.version}`}
@@ -36,7 +39,7 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
               </div>
             ) : null}
             <div>
-              Date: <span className='ml-0.5'>{metadata.buildDate}</span>
+              {t('Date')}: <span className='ml-0.5'>{metadata.buildDate}</span>
             </div>
           </div>
           <div className='mb-4 mt-1 flex items-center justify-center gap-2 text-xs'>

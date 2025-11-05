@@ -1,12 +1,18 @@
+import { useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformBluredBackground } from '@/utils/client/library.ts'
 import { MainBackground } from '../../components/main-background.tsx'
 
 export function PlatformBackground() {
+  const { t } = useTranslation()
   const { platform } = useLoaderData()
   const platformBackgroundUrl = getPlatformBluredBackground(platform)
   return (
-    <MainBackground alt={platformMap[platform].displayName} key={platformBackgroundUrl} src={platformBackgroundUrl} />
+    <MainBackground
+      alt={t(platformMap[platform].displayName)}
+      key={platformBackgroundUrl}
+      src={platformBackgroundUrl}
+    />
   )
 }

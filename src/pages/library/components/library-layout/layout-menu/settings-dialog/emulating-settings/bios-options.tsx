@@ -44,15 +44,20 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
     const file = await fileOpen({ extensions })
     const expectedBios = expectedBioses?.find((bios) => bios.name === file.name)
     if (!expectedBios) {
-      alert(t('According to the selected file\'s name, it is not an expected BIOS file.'))
+      alert(t("According to the selected file's name, it is not an expected BIOS file."))
       return
     }
     const md5 = await getFileMd5(file)
     if (expectedBios.md5 && expectedBios.md5 !== md5) {
-      alert(t('The uploaded file is corrupted (MD5 mismatch).\\n\\nExpected MD5: {{expected}}\\nActual MD5: {{actual}}', {
-        expected: expectedBios.md5,
-        actual: md5,
-      }))
+      alert(
+        t(
+          String.raw`The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: {{expected}}\nActual MD5: {{actual}}`,
+          {
+            actual: md5,
+            expected: expectedBios.md5,
+          },
+        ),
+      )
       return
     }
     await upload({ file, platform })
@@ -90,7 +95,8 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
   return (
     <Card>
       <SettingsTitle as='h4'>
-        <span className='icon-[mdi--chip]' /> {t('BIOS of {{platform}}', { platform: platformMap[platform].displayName })}
+        <span className='icon-[mdi--chip]' />{' '}
+        {t('BIOS of {{platform}}', { platform: t(platformMap[platform].displayName) })}
       </SettingsTitle>
       <div className='flex flex-col gap-2 px-6'>
         <div className='flex flex-wrap items-center gap-2'>
@@ -135,9 +141,7 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
             </Button>
           </div>
           <div className='gap-1 text-xs'>
-            <span className='opacity-80'>
-              {t('Expected BIOS file', { count: expectedBioses.length })}
-            </span>
+            <span className='opacity-80'>{t('Expected BIOS file', { count: expectedBioses.length })}</span>
             {expectedBioses.map((bios, index) => (
               <span className='mr-1' key={bios.name}>
                 <span className={getBiosClassName(bios)}>

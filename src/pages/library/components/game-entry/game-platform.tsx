@@ -1,9 +1,11 @@
 import { clsx } from 'clsx'
+import { useTranslation } from 'react-i18next'
 import { platformMap } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
 import { usePlatform } from '../../hooks/use-platform.ts'
 
 export function GamePlatform({ platform }: Readonly<{ platform: string }>) {
+  const { t } = useTranslation()
   const currentPlatform = usePlatform()
 
   if (currentPlatform) {
@@ -13,12 +15,12 @@ export function GamePlatform({ platform }: Readonly<{ platform: string }>) {
   return (
     <div className='text-(--color-text)/40 mt-1 flex items-center justify-center gap-2 text-xs'>
       <img
-        alt={platformMap[platform].displayName}
+        alt={t(platformMap[platform].displayName)}
         className={clsx('size-4', { invert: ['ngp', 'wonderswan'].includes(platformMap[platform].name) })}
         loading='lazy'
         src={getPlatformIcon(platformMap[platform].name)}
       />
-      {platformMap[platform].displayName}
+      {t(platformMap[platform].displayName)}
     </div>
   )
 }

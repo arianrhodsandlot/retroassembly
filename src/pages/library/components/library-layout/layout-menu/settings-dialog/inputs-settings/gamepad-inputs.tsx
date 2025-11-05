@@ -66,7 +66,9 @@ export function GamepadInputs() {
         },
         {
           iconNode: (
-            <div className='inline-flex size-7 items-center justify-center rounded-full border-2 border-current'>L3</div>
+            <div className='inline-flex size-7 items-center justify-center rounded-full border-2 border-current'>
+              L3
+            </div>
           ),
           name: 'input_player1_l3_btn',
         },
@@ -85,7 +87,9 @@ export function GamepadInputs() {
         },
         {
           iconNode: (
-            <div className='inline-flex size-7 items-center justify-center rounded-full border-2 border-current'>R3</div>
+            <div className='inline-flex size-7 items-center justify-center rounded-full border-2 border-current'>
+              R3
+            </div>
           ),
           name: 'input_player1_r3_btn',
         },

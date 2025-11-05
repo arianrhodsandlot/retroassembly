@@ -1,3 +1,4 @@
+import { Trans, useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router'
 import type { loader } from '@/pages/routes/library-history.tsx'
 import { GameListMain } from '../components/game-list-main.tsx'
@@ -5,10 +6,11 @@ import LibraryLayout from '../components/library-layout/library-layout.tsx'
 import { PageStats } from '../components/page-stats.tsx'
 
 export default function HistoryPage() {
+  const { t } = useTranslation()
   const { page, pagination, roms, title } = useLoaderData<typeof loader>()
 
   if (page > 1 && roms.length === 0) {
-    return <>404</>
+    return <>{t('404')}</>
   }
 
   return (
@@ -17,9 +19,17 @@ export default function HistoryPage() {
         <h1 className='text-5xl font-semibold'>{title}</h1>
         <PageStats>
           <span className='icon-[mdi--bar-chart] text-(--color-text)' />
-          Played
-          <span className='font-bold text-rose-700'>{pagination.total}</span>
-          {pagination.total === 1 ? 'game' : 'games'}
+          <Trans
+            components={{
+              1: <span className='font-bold text-rose-700' />,
+            }}
+            i18nKey='playedGamesStats'
+            values={{
+              count: pagination.total,
+              gameCount: pagination.total,
+              gameCountPlural: pagination.total,
+            }}
+          />
         </PageStats>
       </GameListMain>
     </LibraryLayout>

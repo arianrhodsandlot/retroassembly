@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon'
+import { useTranslation } from 'react-i18next'
 import type { PlatformInfo } from '@/controllers/roms/get-platform-info.ts'
 import { getPlatformBanner, getPlatformDevicePhoto } from '@/utils/client/library.ts'
 import { CompanyLogo } from '../../platform/components/company-logo.tsx'
@@ -7,6 +8,8 @@ import { DeviceNotes } from './device-notes.tsx'
 const unknown = <span className='opacity-40'>Unknown</span>
 
 export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: string; platformInfo?: PlatformInfo }>) {
+  const { t } = useTranslation()
+
   if (!platformInfo) {
     return
   }
@@ -41,7 +44,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
             <div>
               <div className='flex h-6 items-center gap-2 font-semibold'>
                 <span className='icon-[mdi--calendar]' />
-                <span className='text-xs'>Released</span>
+                <span className='text-xs'>{t('Released')}</span>
               </div>
               <div className='mt-1 pl-6'>
                 {releaseDateTime.isValid ? (
@@ -59,7 +62,9 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
               <div>
                 <div className='flex h-6 items-center gap-2 font-semibold'>
                   <span className='icon-[mdi--factory]' />
-                  <span className='text-xs'>Developer & Manufacturer</span>
+                  <span className='text-xs'>
+                    {t('Developer')} & {t('Manufacturer')}
+                  </span>
                 </div>
                 <div className='mt-1 pl-6'>
                   <CompanyLogo className='h-5' company={manufacturer || ''} fallback={manufacturer || 'unknown'} />
@@ -70,7 +75,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
                 <div>
                   <div className='flex h-6 items-center gap-2 font-semibold'>
                     <span className='icon-[mdi--factory]' />
-                    <span className='text-xs'>Developer</span>
+                    <span className='text-xs'>{t('Developer')}</span>
                   </div>
                   <div className='mt-1 pl-6'>
                     <CompanyLogo className='h-5' company={developer || ''} fallback={developer || 'unknown'} />
@@ -79,7 +84,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
                 <div>
                   <div className='flex h-6 items-center gap-2 font-semibold'>
                     <span className='icon-[mdi--factory]' />
-                    <span className='text-xs'>Manufacturer</span>
+                    <span className='text-xs'>{t('Manufacturer')}</span>
                   </div>
                   <div className='mt-1 pl-6'>
                     <CompanyLogo className='h-5' company={manufacturer || ''} fallback={manufacturer || 'unknown'} />

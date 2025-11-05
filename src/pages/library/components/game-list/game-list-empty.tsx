@@ -1,4 +1,5 @@
 import { Button } from '@radix-ui/themes'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
@@ -7,6 +8,7 @@ import { UploadButton } from '../../platform/components/upload-button.tsx'
 import { UploadSelectButton } from '../../platform/components/upload-select-button.tsx'
 
 export function GameListEmpty() {
+  const { t } = useTranslation()
   const { pathname } = useLocation()
   const platform = usePlatform()
 
@@ -19,24 +21,37 @@ export function GameListEmpty() {
       {isLibrary ? (
         <>
           <div className='text-(--gray-11)'>
-            Welcome to {metadata.title}. This is where all ROMs uploaded by you will appear.
+            {t('Welcome to {{title}}. This is where all ROMs uploaded by you will appear.', {
+              title: metadata.title,
+            })}
           </div>
           <div className='text-(--gray-11)'>
-            <UploadSelectButton variant='soft' /> some ROMs to get started.
+            <Trans
+              components={{
+                1: <UploadSelectButton variant='soft' />,
+              }}
+              i18nKey='uploadRomsToGetStarted'
+            />
           </div>
         </>
       ) : null}
 
       {isHistory ? (
         <>
-          <div className='text-(--gray-11)'>You haven't played any games yet.</div>
+          <div className='text-(--gray-11)'>{t("You haven't played any games yet.")}</div>
           <div className='text-(--gray-11)'>
-            Play some games from your{' '}
-            <Button asChild variant='outline'>
-              <Link to='/library'>
-                <span className='icon-[mdi--bookshelf] ' /> Library
-              </Link>
-            </Button>
+            <Trans
+              components={{
+                1: (
+                  <Button asChild variant='outline'>
+                    <Link to='/library'>
+                      <span className='icon-[mdi--bookshelf] ' /> {t('Library')}
+                    </Link>
+                  </Button>
+                ),
+              }}
+              i18nKey='playSomeGamesFromLibrary'
+            />
           </div>
         </>
       ) : null}
@@ -44,17 +59,30 @@ export function GameListEmpty() {
       {platform ? (
         <>
           <div className='text-(--gray-11) flex items-center gap-1'>
-            There are no games for{' '}
-            <img
-              alt={platform?.displayName}
-              className='hidden size-7 lg:inline-block'
-              loading='lazy'
-              src={getPlatformIcon(platform.name)}
-            />{' '}
-            {platform?.displayName} in your library.
+            <Trans
+              components={{
+                1: (
+                  <img
+                    alt={t(platform.displayName)}
+                    className='hidden size-7 lg:inline-block'
+                    loading='lazy'
+                    src={getPlatformIcon(platform.name)}
+                  />
+                ),
+              }}
+              i18nKey='noGamesForPlatform'
+              values={{
+                platform: t(platform.displayName),
+              }}
+            />
           </div>
           <div className='text-(--gray-11) flex items-center gap-1'>
-            <UploadButton platform={platform?.name} variant='soft' /> some ROMs to get started.
+            <Trans
+              components={{
+                1: <UploadButton platform={platform?.name} variant='soft' />,
+              }}
+              i18nKey='uploadRomsToGetStarted'
+            />
           </div>
         </>
       ) : null}

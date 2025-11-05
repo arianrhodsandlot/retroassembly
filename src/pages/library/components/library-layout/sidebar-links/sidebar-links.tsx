@@ -23,7 +23,7 @@ export function SidebarLinks() {
             </h3>
           ) : null}
 
-          <div className={clsx('flex flex-col gap-y-2', { 'mt-2': title })}>
+          <div className={clsx('flex w-full flex-col gap-y-2 overflow-hidden', { 'mt-2': title })}>
             {links.map(({ iconClass, iconUrl, name, text, to }) => (
               <div className='relative flex items-center' key={name}>
                 <SidebarLink active={isActive(to)} to={to}>

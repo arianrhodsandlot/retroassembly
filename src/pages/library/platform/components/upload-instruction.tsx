@@ -1,5 +1,4 @@
 import { Callout, Code } from '@radix-ui/themes'
-import clsx from 'clsx'
 import { Trans, useTranslation } from 'react-i18next'
 import { platformMap, type PlatformName } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
@@ -17,11 +16,11 @@ export function UploadInstruction({ maxFiles, platform }: Readonly<{ maxFiles: n
         <p>
           {t('You are uploading ROMs for')}
           <img
-            alt={platformMap[platform].displayName}
+            alt={t(platformMap[platform].displayName)}
             className='inline-block size-7 align-middle'
             src={getPlatformIcon(platform)}
           />
-          <b>{platformMap[platform].displayName}</b>. {t('We support these file extensions for this platform:')}
+          <b>{t(platformMap[platform].displayName)}</b>. {t('We support these file extensions for this platform:')}
           <br />
           <span className='inline-flex gap-1 py-2'>
             {platformMap[platform].fileExtensions.map((extention) => (
@@ -35,8 +34,8 @@ export function UploadInstruction({ maxFiles, platform }: Readonly<{ maxFiles: n
             arcade: (
               <p>
                 <Trans
-                  i18nKey='Using <1>Full Non-Merged ROMsets</1> can lead to simpler setups and better compatibility.'
                   components={{ 1: <b /> }}
+                  i18nKey='Using <1>Full Non-Merged ROMsets</1> can lead to simpler setups and better compatibility.'
                 />
               </p>
             ),
@@ -58,10 +57,7 @@ export function UploadInstruction({ maxFiles, platform }: Readonly<{ maxFiles: n
             ),
             pcengine: (
               <p>
-                <Trans
-                  i18nKey='Note that <1>PC Engine CD</1> games are NOT supported.'
-                  components={{ 1: <b /> }}
-                />
+                <Trans components={{ 1: <b /> }} i18nKey='Note that <1>PC Engine CD</1> games are NOT supported.' />
               </p>
             ),
           }[platform]
@@ -69,9 +65,9 @@ export function UploadInstruction({ maxFiles, platform }: Readonly<{ maxFiles: n
 
         <p>
           <Trans
+            components={{ 1: <b /> }}
             i18nKey='You can upload up to <1>{{maxFiles}}</1> files at a time.'
             values={{ maxFiles }}
-            components={{ 1: <b /> }}
           />
         </p>
       </Callout.Text>

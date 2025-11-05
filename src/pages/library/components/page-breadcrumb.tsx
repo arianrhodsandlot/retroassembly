@@ -27,13 +27,13 @@ export function PageBreadcrumb() {
     links.push({
       icon: (
         <img
-          alt={platform.displayName}
+          alt={t(platform.displayName)}
           className={clsx('size-6', { invert: ['ngp', 'wonderswan'].includes(platform.name) })}
           loading='lazy'
           src={getPlatformIcon(platform.name)}
         />
       ),
-      text: platform.displayName,
+      text: t(platform.displayName),
       url: `/${libraryPath}/platform/${platform.name}`,
     })
 
@@ -41,7 +41,7 @@ export function PageBreadcrumb() {
       links.push({
         icon: (
           <img
-            alt={platform.displayName}
+            alt={t(platform.displayName)}
             className='size-5 p-0.5'
             loading='lazy'
             src={getPlatformGameIcon(rom.platform)}

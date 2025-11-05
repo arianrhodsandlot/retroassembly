@@ -35,7 +35,7 @@ export function GameEntrySettings() {
                         className={clsx(
                           'text-2xl',
                           {
-                            'extra large': 'icon-[mdi--size-extra-large]',
+                            'extra-large': 'icon-[mdi--size-extra-large]',
                             'extra-small': 'icon-[mdi--size-extra-small]',
                             large: 'icon-[mdi--size-large]',
                             medium: 'icon-[mdi--size-medium]',

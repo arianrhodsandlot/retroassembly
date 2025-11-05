@@ -2,52 +2,54 @@ import { DataList, Select, TextArea, TextField } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { range } from 'es-toolkit'
 import { DateTime } from 'luxon'
+import { useTranslation } from 'react-i18next'
 import { platformMap } from '@/constants/platform.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 
-const dataListFields = [
-  {
-    icon: 'icon-[mdi--calendar]',
-    label: 'Released',
-    name: 'gameReleaseDate',
-    placeholder: `e.g. ${DateTime.fromISO('1990-01-01').toISODate()}`,
-    type: 'input' as const,
-  },
-  {
-    icon: 'icon-[mdi--tag-multiple]',
-    label: 'Genres',
-    name: 'gameGenres',
-    type: 'input' as const,
-  },
-  {
-    icon: 'icon-[mdi--person-multiple]',
-    label: 'Players',
-    name: 'gamePlayers',
-    options: [...range(1, 11).map((v) => `${v}`), 'unknown'],
-    type: 'select' as const,
-  },
-  {
-    icon: 'icon-[mdi--chip]',
-    label: 'Developer',
-    name: 'gameDeveloper',
-    type: 'input' as const,
-  },
-  {
-    icon: 'icon-[mdi--earth]',
-    label: 'Publisher',
-    name: 'gamePublisher',
-    type: 'input' as const,
-  },
-  {
-    icon: 'icon-[mdi--note]',
-    label: 'Description',
-    name: 'gameDescription',
-    type: 'textarea' as const,
-  },
-]
-
 export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?: string }>) {
+  const { t } = useTranslation()
   const rom = useRom()
+
+  const dataListFields = [
+    {
+      icon: 'icon-[mdi--calendar]',
+      label: t('Released'),
+      name: 'gameReleaseDate',
+      placeholder: `e.g. ${DateTime.fromISO('1990-01-01').toISODate()}`,
+      type: 'input' as const,
+    },
+    {
+      icon: 'icon-[mdi--tag-multiple]',
+      label: t('Genres'),
+      name: 'gameGenres',
+      type: 'input' as const,
+    },
+    {
+      icon: 'icon-[mdi--person-multiple]',
+      label: t('Players'),
+      name: 'gamePlayers',
+      options: [...range(1, 11).map((v) => `${v}`), 'unknown'],
+      type: 'select' as const,
+    },
+    {
+      icon: 'icon-[mdi--chip]',
+      label: t('Developer'),
+      name: 'gameDeveloper',
+      type: 'input' as const,
+    },
+    {
+      icon: 'icon-[mdi--earth]',
+      label: t('Publisher'),
+      name: 'gamePublisher',
+      type: 'input' as const,
+    },
+    {
+      icon: 'icon-[mdi--note]',
+      label: t('Description'),
+      name: 'gameDescription',
+      type: 'textarea' as const,
+    },
+  ]
 
   const launchboxGame = rom.launchboxGame || {}
   const gameInfo = {
@@ -71,7 +73,7 @@ export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?:
           <span className='icon-[mdi--computer-classic]' />
           Platform
         </DataList.Label>
-        <DataList.Value>{platformMap[rom.platform].displayName}</DataList.Value>
+        <DataList.Value>{t(platformMap[rom.platform].displayName)}</DataList.Value>
       </DataList.Item>
       {dataListFields.map(({ icon, label, name, options, type, ...valueProps }) => (
         <DataList.Item key={name}>

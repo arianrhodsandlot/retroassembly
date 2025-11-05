@@ -13,6 +13,7 @@ declare module 'hono' {
     i18n: typeof i18n
     language: string
     preference: ResolvedPreference
+    t: typeof i18n.t
     token: string
     unauthorized: boolean
   }
@@ -36,14 +37,16 @@ export function globals() {
       c.set('preference', preference)
     }
 
-    const language = accepts(c, {
-      default: 'en',
-      header: 'Accept-Language',
-      supports: ['en', 'fr', 'ja', 'ko', 'zh-CN'],
-    }) && 'ja'
+    const language =
+      accepts(c, {
+        default: 'en',
+        header: 'Accept-Language',
+        supports: ['en', 'fr', 'ja', 'ko', 'zh-CN'],
+      }) && 'en'
     i18n.changeLanguage(language)
     c.set('language', language)
     c.set('i18n', i18n)
+    c.set('t', i18n.t)
 
     await next()
   })

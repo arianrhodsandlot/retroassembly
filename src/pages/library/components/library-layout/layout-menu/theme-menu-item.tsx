@@ -2,9 +2,11 @@ import { DropdownMenu } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { delay } from 'es-toolkit'
 import { useTheme } from 'next-themes'
+import { useTranslation } from 'react-i18next'
 
 export function ThemeMenuItem() {
   const { setTheme, systemTheme, theme } = useTheme()
+  const { t } = useTranslation()
 
   async function updateTheme(theme: string) {
     await delay(100)
@@ -21,25 +23,25 @@ export function ThemeMenuItem() {
     <DropdownMenu.Sub>
       <DropdownMenu.SubTrigger>
         <span className='icon-[mdi--theme-light-dark]' />
-        Theme
+        {t('Theme')}
       </DropdownMenu.SubTrigger>
       <DropdownMenu.SubContent>
         <DropdownMenu.Item onClick={() => updateTheme('')}>
           <span className={clsx('icon-[mdi--check]', { 'opacity-0': theme !== 'system' })} />
           {systemTheme === 'light' ? <span className='icon-[mdi--weather-sunny]' /> : null}
           {systemTheme === 'dark' ? <span className='icon-[mdi--moon-and-stars]' /> : null}
-          System
+          {t('System')}
         </DropdownMenu.Item>
         <DropdownMenu.Separator />
         <DropdownMenu.Item onClick={() => updateTheme('light')}>
           <span className={clsx('icon-[mdi--check]', { 'opacity-0': theme !== 'light' })} />
           <span className='icon-[mdi--weather-sunny]' />
-          Light
+          {t('Light')}
         </DropdownMenu.Item>
         <DropdownMenu.Item onClick={() => updateTheme('dark')}>
           <span className={clsx('icon-[mdi--check]', { 'opacity-0': theme !== 'dark' })} />
           <span className='icon-[mdi--moon-and-stars]' />
-          Dark
+          {t('Dark')}
         </DropdownMenu.Item>
       </DropdownMenu.SubContent>
     </DropdownMenu.Sub>

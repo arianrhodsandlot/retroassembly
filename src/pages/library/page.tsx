@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router'
 import { GameListMain } from './components/game-list-main.tsx'
 import LibraryLayout from './components/library-layout/library-layout.tsx'
@@ -24,11 +24,11 @@ export default function LibraryPage() {
             <div className='text-(--gray-11) mt-4 flex items-start gap-1 text-sm lg:items-center'>
               <span className='icon-[mdi--information-outline] mt-1 shrink-0 lg:mt-0' />
               <span>
-                These free (legal) games are all picked from{' '}
+                {t('These free (legal) games are all picked from')}{' '}
                 <a className='underline' href='https://retrobrews.github.io/' rel='noreferrer noopener' target='_blank'>
-                  retrobrews project
+                  {t('retrobrews project')}
                 </a>{' '}
-                for demonstration.
+                {t('for demonstration')}
               </span>
             </div>
           ) : null}
@@ -37,9 +37,20 @@ export default function LibraryPage() {
         {isDemo ? undefined : (
           <PageStats suffix={<UploadSelectButton />}>
             <span className='icon-[mdi--bar-chart] text-(--color-text)' />
-            <span className='text-(--accent-9) font-semibold'>{pagination.total}</span> games for{' '}
-            <span className='text-(--accent-9) font-semibold'>{platformCount}</span>{' '}
-            {platformCount === 1 ? 'platform' : 'platforms'} in total.
+            <Trans
+              components={{
+                1: <span className='text-(--accent-9) font-semibold' />,
+                3: <span className='text-(--accent-9) font-semibold' />,
+              }}
+              i18nKey='gameStats'
+              values={{
+                count: platformCount,
+                gameCount: pagination.total,
+                gameCountPlural: pagination.total,
+                platformCount,
+                platformCountPlural: platformCount,
+              }}
+            />
           </PageStats>
         )}
       </GameListMain>

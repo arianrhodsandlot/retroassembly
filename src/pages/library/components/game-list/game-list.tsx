@@ -18,18 +18,18 @@ export function GameList() {
 
   if (!roms?.length) {
     return (
-      <div className='border-t-1 border-t-(--gray-6) border border-transparent'>
+      <div className='border-t-(--gray-6) border border-transparent'>
         <GameListEmpty />
       </div>
     )
   }
 
-  const sizeMap = { 'extra large': 60, 'extra-small': 36, large: 54, medium: 48, small: 42 }
+  const sizeMap = { 'extra-small': 36, 'extra large': 60, large: 54, medium: 48, small: 42 }
   const size = sizeMap[preference.ui.libraryCoverSize]
   const gridTemplateColumns = `repeat(auto-fill,minmax(min(calc(var(--spacing)*${size}),var(--min-width)),1fr))`
 
   return (
-    <div className='border-t-1 border-t-(--gray-6) flex flex-col border border-transparent pt-4 [--min-width:150px] lg:[--min-width:100%]'>
+    <div className='border-t-(--gray-6) flex flex-col border border-transparent pt-4 [--min-width:150px] lg:[--min-width:100%]'>
       <GameListActions />
       <div className='mt-4 grid' style={{ gridTemplateColumns }}>
         {roms.map((rom) => (

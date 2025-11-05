@@ -32,25 +32,29 @@ export function ConfirmButtonSettings() {
           onValueChange={handleConfirmButtonChange}
           value={preference.input.confirmButtonStyle}
         >
-          <RadioCards.Item value='nintendo'>{switchIcon} {t('Nintendo Style')}</RadioCards.Item>
+          <RadioCards.Item value='nintendo'>
+            {switchIcon} {t('Nintendo Style')}
+          </RadioCards.Item>
           <span className='-mt-2 flex flex-wrap items-center gap-1 text-sm'>
             <Trans
-              i18nKey="Nintendo button explanation"
               components={{
-                rightButton: rightButtonIcon,
                 downButton: downButtonIcon,
+                rightButton: rightButtonIcon,
               }}
+              i18nKey='Nintendo button explanation'
             />
           </span>
 
-          <RadioCards.Item value='xbox'>{xboxIcon} {t('Xbox Style')}</RadioCards.Item>
+          <RadioCards.Item value='xbox'>
+            {xboxIcon} {t('Xbox Style')}
+          </RadioCards.Item>
           <span className='-mt-2 flex flex-wrap items-center gap-1 text-sm'>
             <Trans
-              i18nKey="Xbox button explanation"
               components={{
-                rightButton: rightButtonIcon,
                 downButton: downButtonIcon,
+                rightButton: rightButtonIcon,
               }}
+              i18nKey='Xbox button explanation'
             />
           </span>
         </RadioCards.Root>

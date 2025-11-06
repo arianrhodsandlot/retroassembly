@@ -75,7 +75,7 @@ export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProp
       >
         {isLoading ? (
           <div className='flex size-12 shrink-0 items-center justify-center'>
-            <Skeleton className={skeletonClassnames[rom.platform] || '!aspect-square !size-full'} loading />
+            <Skeleton className={skeletonClassnames[rom.platform] || 'aspect-square! size-full!'} loading />
           </div>
         ) : (
           <img

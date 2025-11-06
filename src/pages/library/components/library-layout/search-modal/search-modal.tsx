@@ -69,7 +69,7 @@ export function SearchModal() {
           <motion.div
             animate={{ opacity: 1 }}
             aria-hidden
-            className='bg-(--color-overlay) z-1 absolute inset-0 !cursor-default'
+            className='bg-(--color-overlay) z-1 cursor-default! absolute inset-0'
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
             onClick={close}

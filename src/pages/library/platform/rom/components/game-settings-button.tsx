@@ -6,7 +6,7 @@ export function GameSettingsButton() {
     <DialogRoot>
       <Dialog.Trigger>
         <IconButton
-          className='!bg-(--color-background) !hidden !size-16 !border-2 !shadow-none'
+          className='bg-(--color-background)! hidden! size-16! border-2! shadow-none!'
           title='Settings'
           variant='outline'
         >

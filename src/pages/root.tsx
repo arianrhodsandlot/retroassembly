@@ -1,6 +1,7 @@
 import '@/styles/index.ts'
 import '@/utils/client/global.ts'
 import { getContext } from 'hono/context-storage'
+import { match } from 'path-to-regexp'
 import type { ReactNode } from 'react'
 import { Outlet } from 'react-router'
 import { getLoaderData } from '@/utils/server/loader-data.ts'
@@ -11,6 +12,7 @@ import { ErrorPage } from './components/error-page.tsx'
 const disabledHost = 'next.retroassembly.com'
 const targetUrl = 'https://retroassembly.com/'
 
+const defaultLanguage = 'en'
 export function loader({ request }) {
   const c = getContext()
 
@@ -18,7 +20,23 @@ export function loader({ request }) {
     throw c.redirect(targetUrl)
   }
 
-  return getLoaderData()
+  const path = c.req.path.endsWith('.data') ? c.req.path.slice(0, -5) : c.req.path
+  const matched = match('/{:language}')(path)
+  const { resources = {} } = c.var.i18n.options
+  const isHome = matched && (!matched.params.language || `${matched.params.language}` in resources)
+  const { origin } = new URL(c.req.url)
+  const homeHeadElements = Object.keys(resources).map((language) => ({
+    props: {
+      href: new URL(`${language === defaultLanguage ? '' : language}`, origin).href,
+      hrefLang: language,
+      key: language,
+      rel: 'alternate',
+    },
+    type: 'link',
+  }))
+  const headElements = isHome ? homeHeadElements : []
+
+  return getLoaderData({ headElements })
 }
 
 export function Layout({ children }: Readonly<{ children: ReactNode }>) {

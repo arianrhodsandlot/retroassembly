@@ -1,10 +1,11 @@
 import { noop } from 'es-toolkit'
-import { useSyncExternalStore } from 'react'
-import { Links, Meta } from 'react-router'
+import { createElement, useSyncExternalStore } from 'react'
+import { Links, Meta, useLoaderData } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
 import { cdnHost } from '@/utils/isomorphic/cdn.ts'
 
 export function Head() {
+  const { headElements } = useLoaderData() || {}
   const target = useSyncExternalStore(
     () => noop,
     () => (globalThis.self === globalThis.top ? '_self' : '_blank'),
@@ -52,6 +53,8 @@ export function Head() {
       {/* perfermance */}
       <link href={cdnHost} rel='dns-prefetch' />
       <link crossOrigin='anonymous' href={cdnHost} rel='preconnect' />
+
+      {headElements?.map(({ children, props, type }) => createElement(type, props, children))}
 
       <Meta />
       <Links />

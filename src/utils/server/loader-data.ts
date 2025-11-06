@@ -7,7 +7,7 @@ import { cookieConsentStatusKey } from '@/constants/misc.ts'
 
 export function getLoaderData<T>(data: T = {} as T) {
   const c = getContext()
-  const { currentUser, language, preference } = c.var
+  const { currentUser, detectedLanguage, language, preference } = c.var
   const cookieConsentStatus = getCookie(c, cookieConsentStatusKey)
   const runTimeEnv = getRunTimeEnv()
   const isLikelyDesktop = c.req.header('sec-ch-ua-mobile') !== '?1'
@@ -17,6 +17,7 @@ export function getLoaderData<T>(data: T = {} as T) {
   return {
     cookieConsentStatus,
     currentUser,
+    detectedLanguage,
     env: {
       RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE: runTimeEnv.RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE,
     },

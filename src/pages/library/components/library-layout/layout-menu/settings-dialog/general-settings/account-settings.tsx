@@ -5,7 +5,7 @@ import { useLoaderData } from 'react-router'
 import useSWRMutation from 'swr/mutation'
 import { client } from '@/api/client.ts'
 import { AccountFormField } from '@/pages/components/account-form-field.tsx'
-import { SettingsTitle } from './settings-title.tsx'
+import { SettingsTitle } from '../settings-title.tsx'
 
 const { $patch } = client.auth.password
 

@@ -13,6 +13,7 @@ declare module 'hono' {
   interface ContextVariableMap {
     authorized: boolean
     currentUser: { id: string }
+    detectedLanguage: string
     i18n: typeof i18n
     language: string
     preference: ResolvedPreference
@@ -23,6 +24,15 @@ declare module 'hono' {
 }
 
 const supportLanguages = locales.map(({ code }) => code)
+
+function getDetectedLanguage(c: Context) {
+  return accepts(c, {
+    default: defaultLanguage,
+    header: 'Accept-Language',
+    supports: supportLanguages,
+  })
+}
+
 function getLanguage(c: Context) {
   const { preference } = c.var
 
@@ -37,8 +47,9 @@ function getLanguage(c: Context) {
     language = segments[0] || defaultLanguage
   } else if (isLibrary || isDemo) {
     language =
-      preference?.ui?.language ||
-      accepts(c, { default: defaultLanguage, header: 'Accept-Language', supports: supportLanguages })
+      !preference?.ui?.language || preference?.ui?.language === 'auto'
+        ? c.var.detectedLanguage
+        : preference?.ui?.language
   }
 
   if (!supportLanguages.includes(language)) {
@@ -61,6 +72,8 @@ export function globals() {
       const preference = await getPreference()
       c.set('preference', preference)
     }
+
+    c.set('detectedLanguage', getDetectedLanguage(c))
 
     const language = getLanguage(c)
     i18n.changeLanguage(language)

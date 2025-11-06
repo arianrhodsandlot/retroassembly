@@ -1,28 +1,24 @@
 import { Button, Dialog, ScrollArea, Tabs } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import { dropRight } from 'es-toolkit'
 import { useTranslation } from 'react-i18next'
-import { useLoaderData } from 'react-router'
 import { useSettingsDialogTabName } from '@/pages/library/atoms.ts'
 import { DialogRoot } from '../../../dialog-root.tsx'
-import { AccountSettings } from './account-settings.tsx'
 import { EmulatingSettings } from './emulating-settings/emulating-settings.tsx'
+import { GeneralSettings } from './general-settings/general-settings.tsx'
 import { InputsSettings } from './inputs-settings/inputs-setting.tsx'
 import { LibrarySettings } from './library-settings/library-settings.tsx'
 
-const allSettingsTabs = [
+const settingsTabs = [
   { content: LibrarySettings, iconClass: 'icon-[mdi--bookshelf]', name: 'library' },
   { content: InputsSettings, iconClass: 'icon-[mdi--controller]', name: 'inputs' },
   { content: EmulatingSettings, iconClass: 'icon-[simple-icons--retroarch]', name: 'emulating' },
-  { content: AccountSettings, iconClass: 'icon-[mdi--account]', name: 'account' },
+  { content: GeneralSettings, iconClass: 'icon-[mdi--cog]', name: 'general' },
 ]
 
 export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProps>) {
   const { t } = useTranslation()
   const [tabName, setTabName] = useSettingsDialogTabName()
-  const { content: TabContent } = allSettingsTabs.find((tab) => tab.name === tabName) || allSettingsTabs[0]
-  const { runtimeKey } = useLoaderData()
-  const settingsTabs = runtimeKey === 'workerd' ? dropRight(allSettingsTabs, 1) : allSettingsTabs
+  const { content: TabContent } = settingsTabs.find((tab) => tab.name === tabName) || settingsTabs[0]
 
   function handleOpenChange(open: boolean) {
     onOpenChange?.(open)

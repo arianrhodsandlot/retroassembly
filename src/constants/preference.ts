@@ -141,7 +141,7 @@ export const defaultPreference: ResolvedPreference = {
     },
   },
   ui: {
-    language: '',
+    language: 'auto',
     libraryCoverSize: 'medium',
     libraryCoverType: 'boxart',
     platforms: ['arcade', 'atari2600', 'gb', 'gba', 'gbc', 'genesis', 'nes', 'snes'],

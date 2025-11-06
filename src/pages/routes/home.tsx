@@ -1,6 +1,7 @@
 import { getContext } from 'hono/context-storage'
 import { getRunTimeEnv } from '@/constants/env.ts'
 import { metadata } from '@/constants/metadata.ts'
+import { locales } from '@/locales/index.ts'
 import { getLoaderData } from '@/utils/server/loader-data.ts'
 import { HomePage } from '../page.tsx'
 import type { Route } from './+types/home.ts'
@@ -8,9 +9,8 @@ import type { Route } from './+types/home.ts'
 export function loader({ params }: Route.LoaderArgs) {
   const loaderData = getLoaderData({ title: metadata.title })
   const c = getContext()
-  const { i18n } = c.var
 
-  if (params.language && i18n.options.resources && !(params.language in i18n.options.resources)) {
+  if (params.language && !locales.some(({ code }) => params.language === code)) {
     throw new Response('Not Found', { status: 404 })
   }
 

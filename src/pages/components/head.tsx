@@ -1,10 +1,12 @@
 import { noop } from 'es-toolkit'
 import { createElement, useSyncExternalStore } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Links, Meta, useLoaderData } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
 import { cdnHost } from '@/utils/isomorphic/cdn.ts'
 
 export function Head() {
+  const { t } = useTranslation()
   const { headElements } = useLoaderData() || {}
   const target = useSyncExternalStore(
     () => noop,
@@ -25,7 +27,7 @@ export function Head() {
       <base target={target} />
 
       {/* metadata related */}
-      <meta content={metadata.description} name='description' />
+      <meta content={t('metadata.description')} name='description' />
       <link href={metadata.link} rel='canonical' />
 
       <link href={new URL('/assets/logo/logo-192x192.png', metadata.link).href} rel='icon' sizes='any' />
@@ -41,13 +43,13 @@ export function Head() {
       <meta content='website' property='og:type' />
       <meta content={metadata.link} property='og:url' />
       <meta content={metadata.title} property='og:title' />
-      <meta content={metadata.description} property='og:description' />
+      <meta content={t('metadata.description')} property='og:description' />
       <meta content={new URL('/assets/screenshots/library.jpeg', metadata.link).href} property='og:image' />
 
       <meta content='summary_large_image' name='twitter:card' />
       <meta content={metadata.link} name='twitter:url' />
       <meta content={metadata.title} name='twitter:title' />
-      <meta content={metadata.description} name='twitter:description' />
+      <meta content={t('metadata.description')} name='twitter:description' />
       <meta content={new URL('/assets/screenshots/library.jpeg', metadata.link).href} name='twitter:image' />
 
       {/* perfermance */}

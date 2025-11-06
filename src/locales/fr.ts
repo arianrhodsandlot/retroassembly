@@ -216,7 +216,6 @@ export const translation = {
     'Le nouveau mot de passe est identique au mot de passe actuel',
   'The personal retro game collection cabinet in your browser':
     'Le cabinet de collection de jeux rétro personnel dans votre navigateur',
-  'There are no games for': "Il n'y a pas de jeux pour",
   'The requested page could not be found.': 'La page demandée est introuvable.',
   'These free (legal) games are all picked from': 'Ces jeux gratuits (légaux) sont tous sélectionnés à partir du',
   'These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.':

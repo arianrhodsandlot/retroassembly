@@ -212,7 +212,6 @@ export const translation = {
   'The new password is the same as the current password': '新しいパスワードは現在のパスワードと同じです',
   'The personal retro game collection cabinet in your browser':
     'ブラウザ内の個人用レトロゲームコレクションキャビネット',
-  'There are no games for': '次のゲームはありません：',
   'The requested page could not be found.': '要求されたページが見つかりませんでした。',
   'These free (legal) games are all picked from': 'これらの無料（合法）ゲームはすべて',
   'These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.':

@@ -209,7 +209,6 @@ export const translation = {
   'the MIT License': 'MIT 라이선스',
   'The new password is the same as the current password': '새 비밀번호가 현재 비밀번호와 동일합니다',
   'The personal retro game collection cabinet in your browser': '브라우저 내 개인 레트로 게임 컬렉션 캐비닛',
-  'There are no games for': '다음에 대한 게임이 없습니다:',
   'The requested page could not be found.': '요청한 페이지를 찾을 수 없습니다.',
   'These free (legal) games are all picked from': '이 무료 (합법적) 게임들은 모두',
   'These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.':

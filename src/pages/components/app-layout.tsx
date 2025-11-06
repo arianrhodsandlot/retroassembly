@@ -27,26 +27,26 @@ export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
 
   return (
     <html lang={language} prefix='og: https://ogp.me/ns#' suppressHydrationWarning>
-      <Head />
-      <body>
-        <RadixTheme>
-          <ThemeProvider attribute='class'>
-            <Provider>
-              <HydrationBoundary hydrateAtoms={hydrateAtoms}>
-                <I18nextProvider i18n={i18n}>
+      <I18nextProvider i18n={i18n}>
+        <Head />
+        <body>
+          <RadixTheme>
+            <ThemeProvider attribute='class'>
+              <Provider>
+                <HydrationBoundary hydrateAtoms={hydrateAtoms}>
                   {children}
                   <CookieConsent />
-                </I18nextProvider>
-              </HydrationBoundary>
-            </Provider>
-          </ThemeProvider>
-        </RadixTheme>
-        <ScrollRestoration />
-        {currentUser ? (
-          <script dangerouslySetInnerHTML={{ __html: `globalThis.CURRENT_USER=${JSON.stringify(currentUser)}` }} />
-        ) : null}
-        <Scripts />
-      </body>
+                </HydrationBoundary>
+              </Provider>
+            </ThemeProvider>
+          </RadixTheme>
+          <ScrollRestoration />
+          {currentUser ? (
+            <script dangerouslySetInnerHTML={{ __html: `globalThis.CURRENT_USER=${JSON.stringify(currentUser)}` }} />
+          ) : null}
+          <Scripts />
+        </body>
+      </I18nextProvider>
     </html>
   )
 }

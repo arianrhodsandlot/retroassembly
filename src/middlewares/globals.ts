@@ -6,7 +6,8 @@ import { match } from 'path-to-regexp'
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import { getPreference } from '@/controllers/preference/get-preference.ts'
 import { getCurrentUser } from '@/controllers/users/get-current-user.ts'
-import { i18n } from '@/utils/isomorphic/i18n.ts'
+import { locales } from '@/locales/index.ts'
+import { defaultLanguage, i18n } from '@/utils/isomorphic/i18n.ts'
 
 declare module 'hono' {
   interface ContextVariableMap {
@@ -21,8 +22,7 @@ declare module 'hono' {
   }
 }
 
-const defaultLanguage = 'en'
-const supportLanguages = Object.keys(i18n.options.resources || {})
+const supportLanguages = locales.map(({ code }) => code)
 function getLanguage(c: Context) {
   const { preference } = c.var
 

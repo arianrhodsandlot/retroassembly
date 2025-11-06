@@ -24,7 +24,7 @@ test('log out', async ({ page, pages: { library, login }, user }) => {
 test('update password', async ({ page, pages: { library, login }, user }) => {
   await login.login(user)
 
-  await library.gotoSettingsTab('account')
+  await library.gotoSettingsTab('general')
   await page.getByLabel('current password').fill(user.password)
   await page.getByLabel('new password').first().fill('new_password')
   await page.getByLabel('repeat new password').first().fill('wrong_new_password')

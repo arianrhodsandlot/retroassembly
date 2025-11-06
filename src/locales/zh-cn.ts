@@ -9,6 +9,7 @@ export const translation = {
   "According to the selected file's name, it is not an expected BIOS file.":
     '根据所选文件的名称，这不是一个期望的BIOS文件。',
   account: '账户',
+  Account: '账户',
   Add: '添加',
   'Add a slight blur to the image to take the edge off of the hard pixel edges.':
     '为图像添加轻微模糊以柔化像素的硬边缘。',
@@ -47,6 +48,7 @@ export const translation = {
   'Current Password': '当前密码',
   Dark: '深色',
   Date: '日期',
+  'Date Format': '日期格式',
   Delete: '删除',
   'Demo or visual for': '演示或视觉效果：',
   Deny: '拒绝',
@@ -89,6 +91,7 @@ export const translation = {
   'Gamepad Tester': '手柄测试器',
   'Games can be downloaded from': '游戏可从以下地址下载：',
   gameStats: '总共有<1>{{gameCount}}</1>个{{game}}，<3>{{platformCount}}</3>个{{platform}}',
+  general: '通用',
   Genesis: 'Genesis',
   Genres: '类型',
   'GitHub issues/discussions': 'GitHub议题/讨论',
@@ -97,10 +100,12 @@ export const translation = {
   History: '历史',
   Home: '首页',
   inputs: '输入',
+  'Interface Language': '界面语言',
   'in your library.': '在您的游戏库中。',
   'Join our Discord': '加入我们的Discord',
   Keyboard: '键盘',
   'Keyboard/Gamepad-Friendly Navigation': '键盘/手柄友好导航',
+  Language: '语言',
   large: '大',
   library: '游戏库',
   Library: '游戏库',
@@ -208,7 +213,7 @@ export const translation = {
   'The requested page could not be found.': '找不到请求的页面。',
   'These free (legal) games are all picked from': '这些免费（合法）游戏都来自',
   'These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.':
-    '这些选项不保证生效，可能导致启动失败。请谨慎调整，风险自负。',
+    '这些选项不保证生效，且可能导致启动失败。请谨慎调整，风险自负。',
   'The uploaded file is corrupted (MD5 mismatch).\\n\\nExpected MD5: {{expected}}\\nActual MD5: {{actual}}':
     '上传的文件已损坏（MD5不匹配）。\n\n期望的MD5: {{expected}}\n实际MD5: {{actual}}',
   'This only affects navigation in the library and does not change inputs in games.':

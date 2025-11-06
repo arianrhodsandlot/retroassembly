@@ -61,8 +61,8 @@ export function AccountSettings() {
   return (
     <div>
       <SettingsTitle>
-        <span className='icon-[mdi--password]' />
-        {t('Password')}
+        <span className='icon-[mdi--account]' />
+        {t('Account')}
       </SettingsTitle>
       <Card>
         <form className='lg:w-xl flex flex-col gap-2' onSubmit={handleSubmit}>

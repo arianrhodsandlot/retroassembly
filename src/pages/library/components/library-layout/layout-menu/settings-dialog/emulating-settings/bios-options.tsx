@@ -1,4 +1,4 @@
-import { Badge, Button, Card, IconButton, Popover } from '@radix-ui/themes'
+import { Badge, Button, IconButton, Popover } from '@radix-ui/themes'
 import { fileOpen } from 'browser-fs-access'
 import { Nostalgist } from 'nostalgist'
 import { useTranslation } from 'react-i18next'
@@ -93,7 +93,7 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
   }
 
   return (
-    <Card>
+    <div>
       <SettingsTitle as='h4'>
         <span className='icon-[mdi--chip]' />{' '}
         {t('BIOS of {{platform}}', { platform: t(platformMap[platform].displayName) })}
@@ -153,6 +153,6 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   )
 }

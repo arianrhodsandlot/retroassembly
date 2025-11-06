@@ -40,9 +40,10 @@ function getLanguage(c: Context) {
   const segments = path.split('/').slice(1)
   const isDemo = match('/demo{/*path}')(path)
   const isLibrary = match('/library{/*path}')(path)
-  const isHome = !isDemo && !isLibrary && match('/{:language}')(path)
+  const isLogin = path === '/login'
+  const isHome = !isDemo && !isLibrary && !isLogin && match('/{:language}')(path)
 
-  let language = defaultLanguage
+  let language = c.var.detectedLanguage
   if (isHome) {
     language = segments[0] || defaultLanguage
   } else if (isLibrary || isDemo) {

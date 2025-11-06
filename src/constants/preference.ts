@@ -63,6 +63,7 @@ export interface Preference {
     }
   }
   ui: {
+    dateFormat: string
     language: string
     libraryCoverSize: string
     libraryCoverType: 'boxart'
@@ -141,6 +142,7 @@ export const defaultPreference: ResolvedPreference = {
     },
   },
   ui: {
+    dateFormat: 'auto',
     language: 'auto',
     libraryCoverSize: 'medium',
     libraryCoverType: 'boxart',

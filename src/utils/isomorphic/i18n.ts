@@ -19,3 +19,24 @@ i18next.init({
 })
 
 export { i18next as i18n }
+
+const euDateFormat = 'dd/MM/yyyy'
+const dotDateFormat = 'dd.MM.yyyy'
+const usDateFormat = 'MM/dd/yyyy'
+const isoDateFormat = 'yyyy-MM-dd'
+const asiaDateFormat = 'yyyy/MM/dd'
+export const dateFormats = [asiaDateFormat, dotDateFormat, euDateFormat, isoDateFormat, usDateFormat]
+
+export const dateFormatMap = {
+  de: dotDateFormat,
+  en: usDateFormat,
+  es: euDateFormat,
+  fr: euDateFormat,
+  it: euDateFormat,
+  ja: asiaDateFormat,
+  ko: asiaDateFormat,
+  pt: euDateFormat,
+  ru: dotDateFormat,
+  'zh-CN': asiaDateFormat,
+  'zh-TW': asiaDateFormat,
+}

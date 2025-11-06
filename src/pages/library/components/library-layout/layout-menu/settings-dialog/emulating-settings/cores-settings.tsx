@@ -85,7 +85,7 @@ export function CoresSettings() {
       <Card>
         <BIOSOptions platform={selectedPlatform} />
 
-        <Card className='mt-2'>
+        <div className='mt-2'>
           <label className='mt-2 flex items-center gap-2'>
             <SettingsTitle as='h4'>
               <span className='icon-[mdi--monitor-screenshot]' /> {t('Emulator')}
@@ -125,7 +125,7 @@ export function CoresSettings() {
               </UpdateButton>
             </div>
           ) : null}
-        </Card>
+        </div>
       </Card>
     </div>
   )

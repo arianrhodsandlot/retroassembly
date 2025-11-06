@@ -4,7 +4,7 @@ import { platformMap } from '@/constants/platform.ts'
 import { GameInfoDialog } from './game-info-dialog/game-info-dialog.tsx'
 
 export function GameInfo({ rom }) {
-  const { t } = useTranslation()
+  const { i18n, t } = useTranslation()
 
   const unknown = <span className='opacity-40'>{t('Unknown')}</span>
 
@@ -16,7 +16,7 @@ export function GameInfo({ rom }) {
     launchboxGame.releaseYear
   const releaseDate = new Date(`${releaseDateValue}`)
   const releaseDateTime = DateTime.fromJSDate(releaseDate, { zone: 'utc' })
-  const relativeReleaseDate = releaseDateTime.isValid ? releaseDateTime.toRelative({ locale: 'en' }) : null
+  const relativeReleaseDate = releaseDateTime.isValid ? releaseDateTime.toRelative({ locale: i18n.language }) : null
 
   const items = [
     {
@@ -31,8 +31,9 @@ export function GameInfo({ rom }) {
       title: t('Released'),
       value: releaseDateValue ? (
         <>
+          {i18n.language}
           {releaseDateValue}
-          <span className='ml-1.5 text-xs opacity-50'>{relativeReleaseDate}</span>
+          {relativeReleaseDate ? <span className='ml-1.5 text-xs opacity-50'>{relativeReleaseDate}</span> : null}
         </>
       ) : (
         unknown

@@ -1,11 +1,12 @@
 import { Button, DropdownMenu } from '@radix-ui/themes'
-import { Link, useLoaderData } from 'react-router'
+import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router'
 import { locales } from '@/locales/index.ts'
 import { defaultLanguage } from '@/utils/isomorphic/i18n.ts'
 
 export function LanguageSelector() {
-  const { language } = useLoaderData()
-  const { code, name } = locales.find((lang) => lang.code === language) || locales[0]
+  const { i18n } = useTranslation()
+  const { code, name } = locales.find((lang) => lang.code === i18n.language) || locales[0]
 
   return (
     <DropdownMenu.Root modal={false}>

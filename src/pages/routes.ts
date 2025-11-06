@@ -1,7 +1,7 @@
 import { index, prefix, route, type RouteConfig } from '@react-router/dev/routes'
 
 export default [
-  index('routes/home.tsx'),
+  ...prefix('', [route(':language?', 'routes/home.tsx')]),
 
   ...prefix('login', [index('routes/login.tsx'), route('google', 'routes/login-google.ts')]),
   route('logout', 'routes/logout.ts'),

@@ -233,6 +233,9 @@ importers:
       nostalgist:
         specifier: 0.17.1
         version: 0.17.1
+      path-to-regexp:
+        specifier: 8.3.0
+        version: 8.3.0
       quick-lru:
         specifier: 7.3.0
         version: 7.3.0
@@ -4899,6 +4902,9 @@ packages:
 
   path-to-regexp@6.3.0:
     resolution: {integrity: sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ==}
+
+  path-to-regexp@8.3.0:
+    resolution: {integrity: sha512-7jdwVIRtsP8MYpdXSwOS0YdD0Du+qOoF/AEPIt88PcCFrZCzx41oxku1jD88hZBwbNUIEfpqvuhjFaMAqMTWnA==}
 
   pathe@1.1.2:
     resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
@@ -10904,6 +10910,8 @@ snapshots:
       minipass: 7.1.2
 
   path-to-regexp@6.3.0: {}
+
+  path-to-regexp@8.3.0: {}
 
   pathe@1.1.2: {}
 

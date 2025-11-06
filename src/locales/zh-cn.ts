@@ -165,10 +165,10 @@ export const translation = {
   Resume: '继续',
   'retrobrews project': 'retrobrews项目',
   Retry: '重试',
-  Rewind: '倒带',
-  'Rewind Gameplay': '游戏回放',
+  Rewind: '回溯',
+  'Rewind Gameplay': '游戏回溯',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
-    '使用键盘上的 "R" 键或手柄按钮组合来回放游戏',
+    '使用键盘上的“R”键或手柄按钮组合来回溯游戏',
   'ROMs uploaded': 'ROM上传完成',
   'Save & Exit': '存档并退出',
   'Save State': '存档',
@@ -233,7 +233,7 @@ export const translation = {
   Video: '视频',
   'Virtual Boy': 'Virtual Boy',
   'Visit our GitHub': '访问我们的GitHub',
-  'We kindly request your assistance in reporting any ideas or bugs on our': '我们恳请您协助报告想法或错误，请前往：',
+  'We kindly request your assistance in reporting any ideas or bugs on our': '我们恳请您协助报告想法或bug，请前往：',
   'Welcome to {{title}}. This is where all ROMs uploaded by you will appear.':
     '欢迎来到{{title}}。这里将显示您上传的所有ROM。',
   'We support these file extensions for this platform:': '此平台支持的文件扩展名：',

@@ -3,13 +3,19 @@ import { getRunTimeEnv } from '@/constants/env.ts'
 import { metadata } from '@/constants/metadata.ts'
 import { getLoaderData } from '@/utils/server/loader-data.ts'
 import { HomePage } from '../page.tsx'
+import type { Route } from './+types/home.ts'
 
-export function loader() {
+export function loader({ params }: Route.LoaderArgs) {
   const loaderData = getLoaderData({ title: metadata.title })
+  const c = getContext()
+  const { i18n } = c.var
+
+  if (params.language && i18n.options.resources && !(params.language in i18n.options.resources)) {
+    throw new Response('Not Found', { status: 404 })
+  }
 
   const skipIfLoggedIn = getRunTimeEnv().RETROASSEMBLY_RUN_TIME_SKIP_HOME_IF_LOGGED_IN === 'true'
   if (loaderData.currentUser && skipIfLoggedIn) {
-    const c = getContext()
     throw c.redirect('/library')
   }
 

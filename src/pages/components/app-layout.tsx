@@ -2,7 +2,7 @@ import { isBrowser } from 'es-toolkit'
 import { Provider } from 'jotai'
 import { HydrationBoundary } from 'jotai-ssr'
 import { ThemeProvider } from 'next-themes'
-import type { ReactNode } from 'react'
+import { type ReactNode, useEffect } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Scripts, ScrollRestoration, useLoaderData } from 'react-router'
 import { i18n } from '@/utils/isomorphic/i18n.ts'
@@ -20,6 +20,10 @@ export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
   const { currentUser, language, preference } = useLoaderData<typeof getLoaderData>() || {}
   const hydrateAtom = [preferenceAtom, preference] as const
   const hydrateAtoms = [hydrateAtom]
+
+  useEffect(() => {
+    i18n.changeLanguage(language)
+  }, [language])
 
   return (
     <html lang={language} prefix='og: https://ogp.me/ns#' suppressHydrationWarning>

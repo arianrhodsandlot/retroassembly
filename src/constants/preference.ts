@@ -63,6 +63,7 @@ export interface Preference {
     }
   }
   ui: {
+    language: string
     libraryCoverSize: string
     libraryCoverType: 'boxart'
     platforms: PlatformName[]
@@ -140,6 +141,7 @@ export const defaultPreference: ResolvedPreference = {
     },
   },
   ui: {
+    language: '',
     libraryCoverSize: 'medium',
     libraryCoverType: 'boxart',
     platforms: ['arcade', 'atari2600', 'gb', 'gba', 'gbc', 'genesis', 'nes', 'snes'],

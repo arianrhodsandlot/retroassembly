@@ -2,5 +2,6 @@ import { useLocation } from 'react-router'
 
 export function useIsDemo() {
   const location = useLocation()
-  return location.pathname === '/demo' || location.pathname.startsWith('/demo/')
+  const segments = location.pathname.split('/').slice(1)
+  return segments[0] === 'demo'
 }

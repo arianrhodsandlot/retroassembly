@@ -8,7 +8,8 @@ import { initClarity } from '@/utils/client/clarity.ts'
 
 export function CookieConsent() {
   const { t } = useTranslation()
-  const { cookieConsentStatus, isOfficialHost } = useLoaderData()
+  const loaderData = useLoaderData()
+  const { cookieConsentStatus, isOfficialHost } = loaderData || {}
   const [visible, setVisible] = useState(!cookieConsentStatus)
 
   function handleClickAccept() {

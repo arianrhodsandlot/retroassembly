@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useLoaderData } from 'react-router'
 import { links } from '@/constants/links.ts'
 import type { loader } from '../routes/home.tsx'
+import { LanguageSelector } from './language-selector.tsx'
 
 function handleScrollToTop() {
   scrollTo({ behavior: 'smooth', top: 0 })
@@ -18,8 +19,14 @@ export function FixedHeader() {
       <Link className='pt-safe-offset-4 self-center py-4 font-extrabold' to='/'>
         <img alt='Logo' className='motion-preset-expand' height={32} src='/assets/logo/logo-512x512.png' width={32} />
       </Link>
+
       <button className='flex-1' onClick={handleScrollToTop} title={t('Scroll to top')} type='button' />
+
       <div className='pt-safe-offset-4 flex items-center gap-4 py-4 text-xl'>
+        <LanguageSelector />
+
+        <div className='h-5 w-px bg-white/50' />
+
         {links.map((link) => (
           <Fragment key={link.name}>
             {link.name === 'GitHub' ? (
@@ -56,7 +63,9 @@ export function FixedHeader() {
             )}
           </Fragment>
         ))}
+
         <div className='h-5 w-px bg-white/50' />
+
         {currentUser ? (
           <div className='flex items-center '>
             <Button asChild size='2' type='button' variant='outline'>

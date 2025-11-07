@@ -13,7 +13,7 @@ function handleFocus(event: FocusEvent<HTMLAnchorElement>) {
   })
 }
 
-export function SidebarLink({ active, children, to }) {
+export function SidebarLink({ active, children, title, to }) {
   const ref = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
@@ -23,7 +23,7 @@ export function SidebarLink({ active, children, to }) {
   }, [active])
 
   return (
-    <motion.div className='flex-1' layout ref={ref}>
+    <motion.div className='max-w-full flex-1' layout ref={ref}>
       <Button asChild size='3' variant='ghost'>
         <NavigatableLink
           className={clsx('sidebar-link', 'm-0! flex! h-auto! px-4! py-2.5! group', {
@@ -35,6 +35,7 @@ export function SidebarLink({ active, children, to }) {
             backgroundColor: 'rgba(0, 0, 0, 0.2)',
           })}
           onFocus={handleFocus}
+          title={title}
           to={to}
         >
           <div className='flex h-auto w-full items-center justify-start gap-2'>{children}</div>

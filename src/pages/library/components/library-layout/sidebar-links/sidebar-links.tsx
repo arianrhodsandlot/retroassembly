@@ -13,7 +13,7 @@ export function SidebarLinks() {
   }
 
   return (
-    <>
+    <div className='w-72'>
       {groups.map(({ links, title }, index) => (
         <div className={clsx({ 'mt-4': index })} key={title}>
           {title ? (
@@ -26,7 +26,7 @@ export function SidebarLinks() {
           <div className={clsx('flex w-full flex-col gap-y-2 overflow-hidden', { 'mt-2': title })}>
             {links.map(({ iconClass, iconUrl, name, text, to }) => (
               <div className='relative flex items-center' key={name}>
-                <SidebarLink active={isActive(to)} to={to}>
+                <SidebarLink active={isActive(to)} title={text} to={to}>
                   {iconClass ? <span className={clsx('size-5 p-0.5', iconClass)} /> : null}
 
                   {iconUrl ? (
@@ -37,7 +37,9 @@ export function SidebarLinks() {
                     />
                   ) : null}
 
-                  <span className={clsx({ 'group-hover:opacity-100 opacity-90': !isActive(to) })}>{text}</span>
+                  <span className={clsx('truncate', { 'group-hover:opacity-100 opacity-90': !isActive(to) })}>
+                    {text}
+                  </span>
                 </SidebarLink>
 
                 {shouldShowsSearchButton(name) ? <SearchButton /> : null}
@@ -46,6 +48,6 @@ export function SidebarLinks() {
           </div>
         </div>
       ))}
-    </>
+    </div>
   )
 }

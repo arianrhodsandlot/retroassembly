@@ -1,7 +1,10 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { RadixThemePortal } from '@/pages/components/radix-theme-portal.tsx'
 
 export function DemoLoginButton() {
+  const { t } = useTranslation()
+
   return (
     <RadixThemePortal>
       <div className='pointer-events-none fixed inset-x-4 bottom-8 flex justify-center lg:bottom-20'>
@@ -11,7 +14,7 @@ export function DemoLoginButton() {
           to='/login'
         >
           <span className='icon-[mdi--user-box] shrink-0' />
-          <span>Log in to build a library uniquely yours!</span>
+          <span>{t('Log in to build a library uniquely yours!')}</span>
         </Link>
       </div>
     </RadixThemePortal>

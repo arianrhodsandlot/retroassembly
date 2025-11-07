@@ -5,6 +5,8 @@ export const translation = {
   '🎉 {{successCount}}/{{totalCount}} ROM(s) have been uploaded.':
     '🎉 {{successCount}}/{{totalCount}}개의 ROM이 업로드되었습니다.',
   '404': '404',
+  'A BIOS file is a copy of the operating system used by the hardware that we are emulating. Some emulators need BIOS files in order to correctly emulate hardware and/or software as needed by the content. {{title}} does not share any copyrighted system files or game content. You must provide your own BIOS and content in accordance with your local laws as applicable.':
+    'BIOS 파일은 우리가 에뮬레이션하는 하드웨어에서 사용되는 운영체제의 사본입니다. 일부 에뮬레이터는 콘텐츠에 따라 필요한 하드웨어 및/또는 소프트웨어를 정확하게 에뮬레이션하기 위해 BIOS 파일이 필요합니다. {{title}}는 저작권이 있는 시스템 파일이나 게임 콘텐츠를 제공하지 않습니다. 적용되는 현지 법률에 따라 BIOS와 콘텐츠는 직접 준비해야 합니다.',
   About: '정보',
   Accept: '수락',
   "According to the selected file's name, it is not an expected BIOS file.":
@@ -28,6 +30,7 @@ export const translation = {
   'Automatic Boxart Retrieval': '자동 박스아트 검색',
   Back: '뒤로',
   'Bilinear filtering': '바이리니어 필터링',
+  BIOS: 'BIOS',
   'BIOS of {{platform}}': '{{platform}}의 BIOS',
   'Browser-Based Gameplay': '브라우저 기반 게임플레이',
   'By clicking the button, you agree to our': '버튼을 클릭하면 당사의',
@@ -114,6 +117,7 @@ export const translation = {
   'Live demo': '라이브 데모',
   'Log in': '로그인',
   'Log in to {{title}}': '{{title}}에 로그인',
+  'Log in to build a library uniquely yours!': '로그인하여 나만의 독특한 라이브러리를 구축하세요!',
   'Log in to build your own retro game collection': '로그인하여 나만의 레트로 게임 컬렉션을 만드세요',
   'Log in with Google': 'Google로 로그인',
   'Log out of {{title}}?': '{{title}}에서 로그아웃하시겠습니까?',
@@ -211,6 +215,8 @@ export const translation = {
   'Supports a wide range of retro gaming systems.': '다양한 레트로 게임 시스템을 지원합니다.',
   'Sync your games and states then access them from anywhere.': '게임과 저장 상태를 동기화하고 어디서나 액세스하세요.',
   System: '시스템',
+  'The game can not be launched without the required <tooltip/>: <strong>{{biosList}}</strong>.':
+    '필수 <tooltip/> 없이는 게임을 실행할 수 없습니다: <strong>{{biosList}}</strong>.',
   Theme: '테마',
   'the MIT License': 'MIT 라이선스',
   'The new password is the same as the current password': '새 비밀번호가 현재 비밀번호와 동일합니다',
@@ -231,6 +237,7 @@ export const translation = {
   'Unknown error': '알 수 없는 오류',
   'Update Password': '비밀번호 업데이트',
   Upload: '업로드',
+  'Upload…': '업로드…',
   'Uploading ROMs': 'ROM 업로드 중',
   uploadRomsToGetStarted: '<1></1> ROM을 업로드하여 시작하세요.',
   'Useful links about dumping ROMs:': 'ROM 덤핑에 대한 유용한 링크:',

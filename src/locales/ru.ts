@@ -4,6 +4,8 @@ export const translation = {
   '(required)': '(обязательно)',
   '🎉 {{successCount}}/{{totalCount}} ROM(s) have been uploaded.': '🎉 {{successCount}}/{{totalCount}} ROM загружено.',
   '404': '404',
+  'A BIOS file is a copy of the operating system used by the hardware that we are emulating. Some emulators need BIOS files in order to correctly emulate hardware and/or software as needed by the content. {{title}} does not share any copyrighted system files or game content. You must provide your own BIOS and content in accordance with your local laws as applicable.':
+    'Файл BIOS — это копия операционной системы оборудования, которое мы эмулируем. Некоторым эмуляторам нужны файлы BIOS, чтобы корректно эмулировать оборудование и/или программное обеспечение, необходимое для контента. {{title}} не распространяет системные файлы или игровые материалы, защищённые авторским правом. Вы должны предоставить собственные BIOS и контент в соответствии с применимым местным законодательством.',
   About: 'О программе',
   Accept: 'Принять',
   "According to the selected file's name, it is not an expected BIOS file.":
@@ -27,6 +29,7 @@ export const translation = {
   'Automatic Boxart Retrieval': 'Автоматическое получение обложек',
   Back: 'Назад',
   'Bilinear filtering': 'Билинейная фильтрация',
+  BIOS: 'BIOS',
   'BIOS of {{platform}}': 'BIOS {{platform}}',
   'Browser-Based Gameplay': 'Игра в браузере',
   'By clicking the button, you agree to our': 'Нажимая кнопку, вы соглашаетесь с нашей',
@@ -113,6 +116,7 @@ export const translation = {
   'Live demo': 'Живая демонстрация',
   'Log in': 'Войти',
   'Log in to {{title}}': 'Войти в {{title}}',
+  'Log in to build a library uniquely yours!': 'Войдите, чтобы создать уникальную библиотеку только для вас!',
   'Log in to build your own retro game collection': 'Войдите, чтобы создать свою коллекцию ретро-игр',
   'Log in with Google': 'Войти через Google',
   'Log out of {{title}}?': 'Выйти из {{title}}?',
@@ -214,6 +218,8 @@ export const translation = {
   'Sync your games and states then access them from anywhere.':
     'Синхронизируйте игры и состояния, затем получайте к ним доступ отовсюду.',
   System: 'Система',
+  'The game can not be launched without the required <tooltip/>: <strong>{{biosList}}</strong>.':
+    'Без требуемого <tooltip/> игру запустить нельзя: <strong>{{biosList}}</strong>.',
   Theme: 'Тема',
   'the MIT License': 'лицензию MIT',
   'The new password is the same as the current password': 'Новый пароль совпадает с текущим паролем',
@@ -235,6 +241,7 @@ export const translation = {
   'Unknown error': 'Неизвестная ошибка',
   'Update Password': 'Обновить пароль',
   Upload: 'Загрузить',
+  'Upload…': 'Загрузить…',
   'Uploading ROMs': 'Загрузка ROM',
   uploadRomsToGetStarted: '<1></1> несколько ROM для начала.',
   'Useful links about dumping ROMs:': 'Полезные ссылки о создании ROM:',

@@ -7,8 +7,8 @@ export function SidebarContainer({ children }: Readonly<{ children: ReactNode }>
   return (
     <aside
       className={clsx(
-        'hidden w-64 shrink-0 flex-col pt-4 text-white transition-all lg:flex',
-        preference.ui.showSidebar ? 'ml-4' : '-ml-64',
+        'hidden w-72 shrink-0 flex-col pt-4 text-white transition-all lg:flex',
+        preference.ui.showSidebar ? 'ml-4' : '-ml-72',
       )}
     >
       {children}

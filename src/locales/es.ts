@@ -5,6 +5,8 @@ export const translation = {
   '🎉 {{successCount}}/{{totalCount}} ROM(s) have been uploaded.':
     '🎉 {{successCount}}/{{totalCount}} ROM(s) han sido subidas.',
   '404': '404',
+  'A BIOS file is a copy of the operating system used by the hardware that we are emulating. Some emulators need BIOS files in order to correctly emulate hardware and/or software as needed by the content. {{title}} does not share any copyrighted system files or game content. You must provide your own BIOS and content in accordance with your local laws as applicable.':
+    'Un archivo BIOS es una copia del sistema operativo utilizado por el hardware que estamos emulando. Algunos emuladores necesitan archivos BIOS para emular correctamente el hardware y/o el software según lo requiera el contenido. {{title}} no comparte archivos de sistema ni contenido de juegos protegidos por derechos de autor. Debes proporcionar tu propio BIOS y contenido conforme a las leyes locales aplicables.',
   About: 'Acerca de',
   Accept: 'Aceptar',
   "According to the selected file's name, it is not an expected BIOS file.":
@@ -28,6 +30,7 @@ export const translation = {
   'Automatic Boxart Retrieval': 'Obtención Automática de Carátulas',
   Back: 'Atrás',
   'Bilinear filtering': 'Filtrado bilineal',
+  BIOS: 'BIOS',
   'BIOS of {{platform}}': 'BIOS de {{platform}}',
   'Browser-Based Gameplay': 'Juego Basado en Navegador',
   'By clicking the button, you agree to our': 'Al hacer clic en el botón, aceptas nuestra',
@@ -114,6 +117,7 @@ export const translation = {
   'Live demo': 'Demo en vivo',
   'Log in': 'Iniciar sesión',
   'Log in to {{title}}': 'Iniciar sesión en {{title}}',
+  'Log in to build a library uniquely yours!': '¡Inicia sesión para construir una biblioteca única tuya!',
   'Log in to build your own retro game collection': 'Inicia sesión para construir tu propia colección de juegos retro',
   'Log in with Google': 'Iniciar sesión con Google',
   'Log out of {{title}}?': '¿Cerrar sesión de {{title}}?',
@@ -216,6 +220,8 @@ export const translation = {
   'Sync your games and states then access them from anywhere.':
     'Sincroniza tus juegos y estados y luego accede a ellos desde cualquier lugar.',
   System: 'Sistema',
+  'The game can not be launched without the required <tooltip/>: <strong>{{biosList}}</strong>.':
+    'El juego no puede iniciarse sin el <tooltip/> requerido: <strong>{{biosList}}</strong>.',
   Theme: 'Tema',
   'the MIT License': 'la Licencia MIT',
   'The new password is the same as the current password': 'La nueva contraseña es igual a la contraseña actual',
@@ -237,6 +243,7 @@ export const translation = {
   'Unknown error': 'Error desconocido',
   'Update Password': 'Actualizar Contraseña',
   Upload: 'Subir',
+  'Upload…': 'Subir…',
   'Uploading ROMs': 'Subiendo ROMs',
   uploadRomsToGetStarted: '<1></1> algunas ROMs para empezar.',
   'Useful links about dumping ROMs:': 'Enlaces útiles sobre volcar ROMs:',

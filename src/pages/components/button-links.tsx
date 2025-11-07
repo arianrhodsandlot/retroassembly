@@ -6,7 +6,7 @@ export function ButtonLinks() {
   const { t } = useTranslation()
 
   return (
-    <div className='lg:*:w-54! mt-8 flex flex-col justify-center gap-4 lg:flex-row'>
+    <div className='lg:*:min-w-48! mt-8 flex flex-col justify-center gap-4 lg:flex-row'>
       <Button asChild radius='small' size='4' type='button'>
         <Link reloadDocument to='/demo'>
           <span className='icon-[mdi--presentation-play]' />

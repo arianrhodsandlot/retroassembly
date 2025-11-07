@@ -5,6 +5,8 @@ export const translation = {
   '🎉 {{successCount}}/{{totalCount}} ROM(s) have been uploaded.':
     '🎉 {{successCount}}/{{totalCount}}個のROMがアップロードされました。',
   '404': '404',
+  'A BIOS file is a copy of the operating system used by the hardware that we are emulating. Some emulators need BIOS files in order to correctly emulate hardware and/or software as needed by the content. {{title}} does not share any copyrighted system files or game content. You must provide your own BIOS and content in accordance with your local laws as applicable.':
+    'BIOS ファイルは、私たちがエミュレートしているハードウェアで使用されているオペレーティングシステムのコピーです。コンテンツの要件に応じて、ハードウェアやソフトウェアを正しくエミュレートするために BIOS ファイルが必要なエミュレーターもあります。{{title}} は著作権で保護されたシステムファイルやゲームコンテンツを共有しません。適用される現地法に従って、ご自身で BIOS とコンテンツを用意してください。',
   About: 'について',
   Accept: '同意する',
   "According to the selected file's name, it is not an expected BIOS file.":
@@ -28,6 +30,7 @@ export const translation = {
   'Automatic Boxart Retrieval': 'ボックスアート自動取得',
   Back: '戻る',
   'Bilinear filtering': 'バイリニアフィルタリング',
+  BIOS: 'BIOS',
   'BIOS of {{platform}}': '{{platform}}のBIOS',
   'Browser-Based Gameplay': 'ブラウザベースのゲームプレイ',
   'By clicking the button, you agree to our': 'ボタンをクリックすることで、当社の',
@@ -114,6 +117,7 @@ export const translation = {
   'Live demo': 'ライブデモ',
   'Log in': 'ログイン',
   'Log in to {{title}}': '{{title}}へログイン',
+  'Log in to build a library uniquely yours!': 'ログインしてあなただけのユニークなライブラリを作りましょう！',
   'Log in to build your own retro game collection': 'ログインして自分だけのレトロゲームコレクションを作りましょう',
   'Log in with Google': 'Googleでログイン',
   'Log out of {{title}}?': '{{title}}からログアウトしますか？',
@@ -213,6 +217,8 @@ export const translation = {
   'Sync your games and states then access them from anywhere.':
     'ゲームとセーブデータを同期して、どこからでもアクセスできます。',
   System: 'システム',
+  'The game can not be launched without the required <tooltip/>: <strong>{{biosList}}</strong>.':
+    '必要な <tooltip/> がないとゲームを起動できません: <strong>{{biosList}}</strong>。',
   Theme: 'テーマ',
   'the MIT License': 'MITライセンス',
   'The new password is the same as the current password': '新しいパスワードは現在のパスワードと同じです',
@@ -234,6 +240,7 @@ export const translation = {
   'Unknown error': '不明なエラー',
   'Update Password': 'パスワードを更新',
   Upload: 'アップロード',
+  'Upload…': 'アップロード…',
   'Uploading ROMs': 'ROMアップロード中',
   uploadRomsToGetStarted: '<1></1>いくつかのROMで始めましょう。',
   'Useful links about dumping ROMs:': 'ROMダンプに関する有用なリンク：',

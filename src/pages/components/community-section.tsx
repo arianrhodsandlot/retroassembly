@@ -34,7 +34,7 @@ export function CommunitySection() {
         <div className='flex flex-col justify-center gap-4 space-x-8 px-8 font-semibold lg:flex-row lg:px-0'>
           {links.map((link) => (
             <a
-              className='inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-black lg:w-72'
+              className='inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-black lg:w-auto lg:min-w-64'
               href={link.url}
               key={link.name}
               rel='noreferrer noopener'

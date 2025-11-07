@@ -1,7 +1,7 @@
 @import './fonts.css';
 
 :root {
-  --global-font-family: 'Inter Variable', 'Apple Color Emoji', 'Segoe UI Emoji', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --global-font-family: 'Inter Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 body {

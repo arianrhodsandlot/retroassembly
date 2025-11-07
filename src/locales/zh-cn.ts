@@ -4,6 +4,8 @@ export const translation = {
   '(required)': '(必需)',
   '🎉 {{successCount}}/{{totalCount}} ROM(s) have been uploaded.': '🎉 已上传{{successCount}}/{{totalCount}}个ROM。',
   '404': '404',
+  'A BIOS file is a copy of the operating system used by the hardware that we are emulating. Some emulators need BIOS files in order to correctly emulate hardware and/or software as needed by the content. {{title}} does not share any copyrighted system files or game content. You must provide your own BIOS and content in accordance with your local laws as applicable.':
+    'BIOS文件是用于我们所模拟硬件的操作系统副本。某些模拟器需要BIOS文件才能按内容需求正确模拟硬件和/或软件。{{title}}不会提供任何受版权保护的系统文件或游戏内容。您必须根据适用的当地法律自行提供BIOS和内容。',
   About: '关于',
   Accept: '接受',
   "According to the selected file's name, it is not an expected BIOS file.":
@@ -27,6 +29,7 @@ export const translation = {
   'Automatic Boxart Retrieval': '自动获取游戏封面',
   Back: '返回',
   'Bilinear filtering': '双线性过滤',
+  BIOS: 'BIOS',
   'BIOS of {{platform}}': '{{platform}}的BIOS',
   'Browser-Based Gameplay': '基于浏览器的游戏',
   'By clicking the button, you agree to our': '点击按钮即表示您同意我们的',
@@ -113,6 +116,7 @@ export const translation = {
   'Live demo': '在线演示',
   'Log in': '登录',
   'Log in to {{title}}': '登录到{{title}}',
+  'Log in to build a library uniquely yours!': '登录以构建独一无二的您的游戏库！',
   'Log in to build your own retro game collection': '登录以构建您自己的复古游戏收藏',
   'Log in with Google': '使用Google登录',
   'Log out of {{title}}?': '从{{title}}注销？',
@@ -207,11 +211,12 @@ export const translation = {
   'Supports a wide range of retro gaming systems.': '支持各种复古游戏系统。',
   'Sync your games and states then access them from anywhere.': '同步您的游戏和存档，随时随地访问。',
   System: '系统',
+  'The game can not be launched without the required <tooltip/>: <strong>{{biosList}}</strong>.':
+    '缺少必需的<tooltip/>时，游戏无法启动：<strong>{{biosList}}</strong>。',
   Theme: '主题',
   'the MIT License': 'MIT许可协议',
   'The new password is the same as the current password': '新密码与当前密码相同',
   'The personal retro game collection cabinet in your browser': '您浏览器中的个人复古游戏收藏柜',
-  'The requested page could not be found.': '找不到请求的页面。',
   'These free (legal) games are all picked from': '这些免费（合法）游戏都来自',
   'These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.':
     '这些选项不保证生效，且可能导致启动失败。请谨慎调整，风险自负。',
@@ -226,6 +231,7 @@ export const translation = {
   'Unknown error': '未知错误',
   'Update Password': '更新密码',
   Upload: '上传',
+  'Upload…': '上传…',
   'Uploading ROMs': '正在上传ROM',
   uploadRomsToGetStarted: '<1></1>一些ROM来开始吧。',
   'Useful links about dumping ROMs:': '关于ROM转储的有用链接：',

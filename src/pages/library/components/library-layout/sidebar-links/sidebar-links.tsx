@@ -13,7 +13,7 @@ export function SidebarLinks() {
   }
 
   return (
-    <div className='w-72'>
+    <div className='w-64'>
       {groups.map(({ links, title }, index) => (
         <div className={clsx({ 'mt-4': index })} key={title}>
           {title ? (

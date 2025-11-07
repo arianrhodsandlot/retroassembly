@@ -35,7 +35,7 @@ export function GameEntryImage({ rom }) {
       activeOffset={0}
       className='size-full'
       highlight={false}
-      innerClassName={clsx('!flex items-end justify-center transition-opacity', {
+      innerClassName={clsx('flex! items-end justify-center transition-opacity', {
         'opacity-0': !loaded,
       })}
       shadow={false}
@@ -51,16 +51,16 @@ export function GameEntryImage({ rom }) {
   )
 
   return (
-    <div className='!w-9/10 relative aspect-square overflow-hidden'>
+    <div className='w-9/10! relative aspect-square overflow-hidden'>
       <AnimatePresence>
         {shouldShowskeleton ? (
           <motion.div
             animate={{ opacity: 1 }}
-            className='z-11 absolute top-0 flex size-full items-end justify-center'
+            className='absolute top-0 flex size-full items-end justify-center'
             exit={{ opacity: 0 }}
           >
             <Skeleton
-              className={skeletonClassnames[rom.platform] || '!aspect-square !size-full'}
+              className={skeletonClassnames[rom.platform] || 'aspect-square! size-full!'}
               loading
               style={{
                 animationDelay: `-${(rom.fileName.length % 10) / 4}s !important`,

@@ -8,6 +8,7 @@ import { PendingMask } from '../pending-mask.tsx'
 import { DemoLoginButton } from './demo-login-button.tsx'
 import { FocusIndicator } from './focus-indicator.tsx'
 import { LayoutHeader } from './layout-header/layout-header.tsx'
+import { LayoutMain } from './layout-main.tsx'
 import { LayoutMenu } from './layout-menu/layout-menu.tsx'
 import { SearchModal } from './search-modal/search-modal.tsx'
 import { SidebarContainer } from './sidebar-container.tsx'
@@ -27,11 +28,15 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
     <>
       <title>{getPostfixedTitle(title)}</title>
 
-      <div className='library-layout p-safe bg-(--accent-9) flex flex-col lg:h-dvh lg:flex-row'>
+      <div className='library-layout p-safe flex flex-col'>
         {isDemo ? <DemoLoginButton /> : null}
 
         <LayoutHeader />
 
+        <LayoutMain>{children}</LayoutMain>
+
+        <div className='bg-(--accent-9) z-1 left-72 right-0 top-0 hidden h-4 lg:fixed lg:block' />
+        <StatusBar />
         <SidebarContainer>
           <div className='flex items-center justify-between px-4 pb-4'>
             <Link className='flex items-center gap-2 font-bold' reloadDocument to='/'>
@@ -46,13 +51,6 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
             <div className='border-t border-t-white/30 py-2 '>{isLargeScreen ? <LayoutMenu /> : null}</div>
           )}
         </SidebarContainer>
-
-        <div className='flex min-h-0 min-w-0 flex-1 flex-col gap-4 p-2 pt-0 lg:p-4'>
-          <main className='bg-(--color-background) relative flex flex-1 overflow-hidden rounded shadow-[0_0_12px] shadow-black/10 transition-colors duration-500'>
-            {children}
-          </main>
-          <StatusBar />
-        </div>
       </div>
 
       <SearchModal />

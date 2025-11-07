@@ -27,6 +27,7 @@ export default function PlatformPage() {
 
   return (
     <LibraryLayout>
+      <PlatformBackground />
       <GameListMain>
         <div className={clsx('flex w-full justify-between', { 'flex-col': platformInfo })}>
           {platformInfo ? (
@@ -53,7 +54,6 @@ export default function PlatformPage() {
           )}
         </div>
       </GameListMain>
-      <PlatformBackground />
     </LibraryLayout>
   )
 }

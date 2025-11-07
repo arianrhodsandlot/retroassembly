@@ -23,7 +23,7 @@ export function LayoutHeader() {
   }
 
   return (
-    <header className='flex items-center px-2 py-4 lg:hidden'>
+    <header className='bg-(--accent-9) flex items-center px-4 py-2 lg:hidden'>
       <Link className='flex items-center gap-2 font-bold' reloadDocument to='/'>
         <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
       </Link>
@@ -50,7 +50,7 @@ export function LayoutHeader() {
         </Select.Root>
       </div>
 
-      <div className='h-8 w-10'>{isNotLargeScreen ? <LayoutMenu /> : null}</div>
+      <div className='-mr-3 h-8 w-10'>{isNotLargeScreen ? <LayoutMenu /> : null}</div>
     </header>
   )
 }

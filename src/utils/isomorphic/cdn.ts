@@ -1,7 +1,7 @@
 import { encodeRFC3986URIComponent } from './misc.ts'
 
 const repositoryVersions = {
-  'arianrhodsandlot/retroassembly-assets': '66261d025e384cccf5cf00a55db6fec909a7d464', // https://github.com/arianrhodsandlot/retroassembly-assets/commits
+  'arianrhodsandlot/retroassembly-assets': 'e568f464b2af1f4694e3f392c4cfea6d39a392a9', // https://github.com/arianrhodsandlot/retroassembly-assets/commits
   'libretro-thumbnails/Atari_-_2600': '13f3b4c2393c79f8f03850609067fe9db5da40a1', // https://github.com/libretro-thumbnails/Atari_-_2600/commits
   'libretro-thumbnails/Atari_-_5200': '30b60c8a3bf2eff5c977ca09e909b9ef06a8c5c0', // https://github.com/libretro-thumbnails/Atari_-_5200/commits
   'libretro-thumbnails/Atari_-_7800': 'c8190373b1d1c1fb7a82c351fbca880fab9d1993', // https://github.com/libretro-thumbnails/Atari_-_7800/commits

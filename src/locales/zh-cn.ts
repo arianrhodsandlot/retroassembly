@@ -175,6 +175,7 @@ export const translation = {
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
     '使用键盘上的“R”键或手柄按钮组合来回溯游戏',
   'ROMs uploaded': 'ROM上传完成',
+  Save: '保存',
   'Save & Exit': '存档并退出',
   'Save State': '存档',
   'Scroll to top': '滚动到顶部',

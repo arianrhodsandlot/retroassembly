@@ -1,6 +1,7 @@
 import { Button, Dialog, IconButton } from '@radix-ui/themes'
 import type { InferRequestType } from 'hono'
 import { type PropsWithChildren, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client } from '@/api/client.ts'
 import { DialogRoot } from '@/pages/library/components/dialog-root.tsx'
@@ -13,7 +14,7 @@ import { GameInfoDataList } from './game-info-data-list.tsx'
 const defaultTrigger = (
   <IconButton
     aria-label='Edit metadata'
-    className='!transition-opacity group-hover:!opacity-100 lg:!opacity-0'
+    className='transition-opacity! group-hover:opacity-100! lg:opacity-0!'
     title='Edit metadata'
     variant='ghost'
   >
@@ -27,6 +28,7 @@ interface GameInfoDialogProps extends PropsWithChildren {
 
 export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Readonly<GameInfoDialogProps>) {
   const rom = useRom()
+  const { t } = useTranslation()
 
   const { reloadSilently } = useRouter()
   const isDemo = useIsDemo()
@@ -55,8 +57,8 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
     <DialogRoot onOpenChange={setOpen} open={open}>
       <Dialog.Trigger>{children}</Dialog.Trigger>
 
-      <Dialog.Content aria-describedby={undefined} className='lg:!w-2xl'>
-        <Dialog.Title className='!-ml-1 flex items-center gap-2 text-xl font-semibold'>
+      <Dialog.Content aria-describedby={undefined} className='lg:w-2xl!'>
+        <Dialog.Title className='-ml-1! flex items-center gap-2 text-xl font-semibold'>
           <span className='icon-[mdi--view-list]' />
           {getRomGoodcodes(rom).rom}
         </Dialog.Title>
@@ -68,12 +70,12 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
             <Dialog.Close>
               <Button disabled={isMutating} variant='soft'>
                 <span className='icon-[mdi--close]' />
-                Cancel
+                {t('Cancel')}
               </Button>
             </Dialog.Close>
             <Button loading={isMutating} type='submit'>
               <span className='icon-[mdi--content-save]' />
-              Save
+              {t('Save')}
             </Button>
           </div>
         </form>

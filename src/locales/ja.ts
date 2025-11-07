@@ -178,6 +178,7 @@ export const translation = {
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
     'キーボードの「R」キーまたはコントローラーのボタン組み合わせを使用してゲームプレイを巻き戻します',
   'ROMs uploaded': 'ROMアップロード完了',
+  Save: '保存',
   'Save & Exit': '保存して終了',
   'Save State': 'ステートを保存',
   'Scroll to top': 'トップへスクロール',

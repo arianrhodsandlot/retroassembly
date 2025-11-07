@@ -47,7 +47,7 @@ test('delete multiple roms', async ({ page, pages: { library, login }, roms, use
 test('update metadata', async ({ page, pages: { library, login }, roms, user }) => {
   const main = page.getByRole('main')
   const testMetadata = [
-    { label: 'released', value: '2000-01-01' },
+    { label: 'released', value: '01/02/2000' },
     { label: 'genres', value: 'test genre' },
     { label: 'players', value: '5' },
     { label: 'developer', value: 'test developer' },

@@ -180,6 +180,7 @@ export const translation = {
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
     'Перематывайте игровой процесс, используя "R" на клавиатуре или комбинацию кнопок контроллера',
   'ROMs uploaded': 'ROM загружено',
+  Save: 'Сохранить',
   'Save & Exit': 'Сохранить и выйти',
   'Save State': 'Сохранить состояние',
   'Scroll to top': 'Прокрутить вверх',

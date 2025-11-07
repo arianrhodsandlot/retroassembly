@@ -182,6 +182,7 @@ export const translation = {
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
     'Spulen Sie das Gameplay mit "R" auf der Tastatur oder einer Controller-Tastenkombination zurück',
   'ROMs uploaded': 'ROMs hochgeladen',
+  Save: 'Speichern',
   'Save & Exit': 'Speichern & Beenden',
   'Save State': 'Spielstand speichern',
   'Scroll to top': 'Nach oben scrollen',

@@ -1,32 +1,16 @@
-import { DateTime } from 'luxon'
 import { useTranslation } from 'react-i18next'
 import { platformMap } from '@/constants/platform.ts'
-import { usePreference } from '@/pages/library/hooks/use-preference.ts'
-import { dateFormatMap } from '@/utils/isomorphic/i18n.ts'
+import { useDate } from '@/pages/library/hooks/use-date.ts'
 import { GameInfoDialog } from './game-info-dialog/game-info-dialog.tsx'
 
-function getRelaseDateTimeDisplayTexts({ i18n, preference, rom }) {
-  const launchboxGame = rom.launchboxGame || {}
-  const rawReleaseDate = rom.gameReleaseDate ?? launchboxGame.releaseDate
-  const dateFormat = preference.ui.dateFormat === 'auto' ? dateFormatMap[i18n.language] : preference.ui.dateFormat
-  const releaseDateValue =
-    (rawReleaseDate ? DateTime.fromJSDate(new Date(rawReleaseDate)).setZone('utc').toFormat(dateFormat) : '') ||
-    rom.gameReleaseYear ||
-    launchboxGame.releaseYear
-  const releaseDate = new Date(`${releaseDateValue}`)
-  const releaseDateTime = DateTime.fromJSDate(releaseDate, { zone: 'utc' })
-  const relativeReleaseDate = releaseDateTime.isValid ? releaseDateTime.toRelative({ locale: i18n.language }) : null
-  return { relativeReleaseDate, releaseDateValue }
-}
-
 export function GameInfo({ rom }) {
-  const { i18n, t } = useTranslation()
-  const { preference } = usePreference()
+  const { t } = useTranslation()
+  const { formatDate, formatDateRelative, isValidDate } = useDate()
   const launchboxGame = rom.launchboxGame || {}
 
   const unknown = <span className='opacity-40'>{t('Unknown')}</span>
 
-  const { relativeReleaseDate, releaseDateValue } = getRelaseDateTimeDisplayTexts({ i18n, preference, rom })
+  const releaseDate = rom.gameReleaseDate ?? launchboxGame.releaseDate
 
   const items = [
     {
@@ -39,10 +23,10 @@ export function GameInfo({ rom }) {
       icon: 'icon-[mdi--calendar]',
       name: 'gameReleaseDate',
       title: t('Released'),
-      value: releaseDateValue ? (
+      value: isValidDate(releaseDate) ? (
         <>
-          {releaseDateValue}
-          {relativeReleaseDate ? <span className='ml-1.5 text-xs opacity-50'>{relativeReleaseDate}</span> : null}
+          {formatDate(releaseDate)}
+          <span className='ml-1.5 text-xs opacity-50'>{formatDateRelative(releaseDate)}</span>
         </>
       ) : (
         unknown

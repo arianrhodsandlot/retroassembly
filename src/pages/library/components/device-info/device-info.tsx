@@ -1,17 +1,13 @@
-import { DateTime } from 'luxon'
 import { useTranslation } from 'react-i18next'
 import type { PlatformInfo } from '@/controllers/roms/get-platform-info.ts'
 import { getPlatformBanner, getPlatformDevicePhoto } from '@/utils/client/library.ts'
-import { dateFormatMap } from '@/utils/isomorphic/i18n.ts'
-import { usePreference } from '../../hooks/use-preference.ts'
+import { useDate } from '../../hooks/use-date.ts'
 import { CompanyLogo } from '../../platform/components/company-logo.tsx'
 import { DeviceNotes } from './device-notes.tsx'
 
-const unknown = <span className='opacity-40'>Unknown</span>
-
 export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: string; platformInfo?: PlatformInfo }>) {
-  const { i18n, t } = useTranslation()
-  const { preference } = usePreference()
+  const { t } = useTranslation()
+  const { formatDate, formatDateRelative, isValidDate } = useDate()
 
   if (!platformInfo) {
     return
@@ -32,10 +28,6 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
     manufacturer = 'Nintendo'
   }
 
-  const releaseDateTime = DateTime.fromISO(platformInfo.releaseDate)
-  const relativeReleaseDate = releaseDateTime.isValid ? releaseDateTime.toRelative({ locale: i18n.language }) : null
-  const dateFormat = preference.ui.dateFormat === 'auto' ? dateFormatMap[i18n.language] : preference.ui.dateFormat
-
   return (
     <div className='flex flex-col lg:flex-row'>
       <div className='flex flex-col gap-8'>
@@ -51,13 +43,13 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
                 <span>{t('Released')}</span>
               </div>
               <div className='mt-1 pl-6'>
-                {releaseDateTime.isValid ? (
+                {isValidDate(platformInfo.releaseDate) ? (
                   <>
-                    {releaseDateTime.toFormat(dateFormat)}
-                    <span className='ml-1.5 text-xs opacity-50'>{relativeReleaseDate}</span>
+                    {formatDate(platformInfo.releaseDate)}
+                    <span className='ml-1.5 text-xs opacity-50'>{formatDateRelative(platformInfo.releaseDate)}</span>
                   </>
                 ) : (
-                  unknown
+                  <span className='opacity-40'>{t('Unknown')}</span>
                 )}
               </div>
             </div>
@@ -71,7 +63,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
                   </span>
                 </div>
                 <div className='mt-1 pl-6'>
-                  <CompanyLogo className='h-5' company={manufacturer || ''} fallback={t(manufacturer || 'unknown')} />
+                  <CompanyLogo className='h-5' company={manufacturer || ''} fallback={t(manufacturer)} />
                 </div>
               </div>
             ) : (
@@ -82,7 +74,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
                     <span>{t('Developer')}</span>
                   </div>
                   <div className='mt-1 pl-6'>
-                    <CompanyLogo className='h-5' company={developer || ''} fallback={t(developer || 'unknown')} />
+                    <CompanyLogo className='h-5' company={developer || ''} fallback={t(developer)} />
                   </div>
                 </div>
                 <div>
@@ -91,7 +83,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
                     <span>{t('Manufacturer')}</span>
                   </div>
                   <div className='mt-1 pl-6'>
-                    <CompanyLogo className='h-5' company={manufacturer || ''} fallback={t(manufacturer || 'unknown')} />
+                    <CompanyLogo className='h-5' company={manufacturer || ''} fallback={t(manufacturer)} />
                   </div>
                 </div>
               </>

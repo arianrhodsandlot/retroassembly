@@ -1,21 +1,22 @@
 import { DataList, Select, TextArea, TextField } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { range } from 'es-toolkit'
-import { DateTime } from 'luxon'
 import { useTranslation } from 'react-i18next'
 import { platformMap } from '@/constants/platform.ts'
+import { useDate } from '@/pages/library/hooks/use-date.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
 
 export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?: string }>) {
   const { t } = useTranslation()
   const rom = useRom()
+  const { formatDate, isValidDate } = useDate()
 
   const dataListFields = [
     {
       icon: 'icon-[mdi--calendar]',
       label: t('Released'),
       name: 'gameReleaseDate',
-      placeholder: `e.g. ${DateTime.fromISO('1990-01-01').toISODate()}`,
+      placeholder: `e.g. ${formatDate('1990-03-15')}`,
       type: 'input' as const,
     },
     {
@@ -60,18 +61,15 @@ export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?:
     gamePublisher: rom.gamePublisher ?? launchboxGame.publisher,
     gameReleaseDate: rom.gameReleaseDate ?? launchboxGame.releaseDate,
   }
-  const date = new Date(gameInfo.gameReleaseDate)
-  if (date.getTime()) {
-    gameInfo.gameReleaseDate = DateTime.fromJSDate(date).setZone('utc').toISODate()
-  }
+  gameInfo.gameReleaseDate = isValidDate(gameInfo.gameReleaseDate) ? formatDate(gameInfo.gameReleaseDate) : ''
   gameInfo.gamePlayers = Number.parseInt(gameInfo.gamePlayers, 10) ? `${gameInfo.gamePlayers}` : 'unknown'
 
   return (
     <DataList.Root className='py-4' orientation={{ initial: 'vertical', md: 'horizontal' }} size='3'>
       <DataList.Item>
-        <DataList.Label className='-ml-2 flex items-center gap-2 text-sm lg:ml-0' minWidth='32px'>
+        <DataList.Label className='-ml-2 flex items-center gap-2 text-sm capitalize lg:ml-0' minWidth='32px'>
           <span className='icon-[mdi--computer-classic]' />
-          Platform
+          {t('platform')}
         </DataList.Label>
         <DataList.Value>{t(platformMap[rom.platform].displayName)}</DataList.Value>
       </DataList.Item>

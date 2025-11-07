@@ -181,6 +181,7 @@ export const translation = {
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
     'Rebobina el juego usando "R" en el teclado o una combinación de botones del controlador',
   'ROMs uploaded': 'ROMs subidas',
+  Save: 'Guardar',
   'Save & Exit': 'Guardar y Salir',
   'Save State': 'Guardar Estado',
   'Scroll to top': 'Desplazar arriba',

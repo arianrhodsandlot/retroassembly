@@ -50,7 +50,7 @@ function serverInfo() {
       httpServer?.on('listening', () => {
         const address = httpServer?.address()
         if (address && typeof address === 'object') {
-          logServerInfo(address.port, true)
+          logServerInfo('localhost', address.port, true)
         }
       })
     },

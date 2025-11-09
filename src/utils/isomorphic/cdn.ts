@@ -19,7 +19,7 @@ const repositoryVersions = {
   'libretro-thumbnails/Nintendo_-_Game_Boy': 'd963e89e95c1fe48df9fdb88ccb60f7d1ffc68d3', // https://github.com/libretro-thumbnails/Nintendo_-_Game_Boy/commits
   'libretro-thumbnails/Nintendo_-_Game_Boy_Advance': '1d180fd504e63eff98cb94653eff2ddcd5d03647', // https://github.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/commits
   'libretro-thumbnails/Nintendo_-_Game_Boy_Color': '2c54e12ed7d9acd3124497bf5a9b107ab69d0d41', // https://github.com/libretro-thumbnails/Nintendo_-_Game_Boy_Color/commits
-  'libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System': '5b7621c81581abf2757a421338ff1804a1bbe3ae', // https://github.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/commits
+  'libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System': '3a643f8f02de91356b34d21b95d2c2b68d859915', // https://github.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/commits
   'libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System': '8ab381469ab76eb65d6db494fc6195a84c3ef4de', // https://github.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/commits
   'libretro-thumbnails/Nintendo_-_Virtual_Boy': '75693093d5c9bce8fc61ec073877384c47c82cb6', // https://github.com/libretro-thumbnails/Nintendo_-_Virtual_Boy/commits
   'libretro-thumbnails/Philips_-_Videopac': '2a43c1d80347b2f2d8122e49adb8f7366eb15551', // https://github.com/libretro-thumbnails/Philips_-_Videopac/commits

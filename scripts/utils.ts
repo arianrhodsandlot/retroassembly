@@ -27,7 +27,7 @@ export async function prepareWranglerConfig({ force = false } = {}) {
   }
 }
 
-export function logServerInfo(port: number | string, isDev = false) {
+export function logServerInfo(hostname: string, port: number | string, isDev = false) {
   const banner = styleText(
     'red',
     String.raw`
@@ -40,7 +40,7 @@ export function logServerInfo(port: number | string, isDev = false) {
 ╚═════════════════════════════════════════════════════════╝`,
   )
   const title = `${styleText('bold', metadata.title)}${isDev ? ' dev server' : ''}`
-  const url = new URL('', 'http://localhost')
+  const url = new URL('', `http://${hostname}`)
   url.port = port.toString()
   const link = styleText(['green', 'underline'], url.href)
   const messages = [title, `is running at ${link}`]

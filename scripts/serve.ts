@@ -12,8 +12,9 @@ async function serveNode() {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore we can not guarantee that this file exists
   const { default: app } = await import('../dist/server/node.js')
-  serve({ ...app, port }, (info) => {
-    logServerInfo(info.port)
+  const hostname = '0.0.0.0'
+  serve({ ...app, hostname, port }, (info) => {
+    logServerInfo(hostname, info.port)
   })
 }
 

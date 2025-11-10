@@ -3,6 +3,7 @@ import type { PropsWithChildren } from 'react'
 import { Link, useLoaderData } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
+import { useFocusRestoration } from '../../hooks/use-focus-restoration.ts'
 import { useViewport } from '../../hooks/use-viewport.ts'
 import { PendingMask } from '../pending-mask.tsx'
 import { DemoLoginButton } from './demo-login-button.tsx'
@@ -23,6 +24,8 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
   const { title } = useLoaderData()
   const isDemo = useIsDemo()
   const { isLargeScreen } = useViewport()
+
+  useFocusRestoration()
 
   return (
     <>

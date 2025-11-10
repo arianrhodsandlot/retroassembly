@@ -29,7 +29,7 @@ export function useMouseIdle(idleTime = 1000) {
       abortController.current?.abort()
       eventAbortController.abort()
     }
-  }, [idleTime, setIsIdle])
+  }, [idleTime])
 
   return isIdle
 }

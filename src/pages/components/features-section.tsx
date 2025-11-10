@@ -169,7 +169,7 @@ export function FeaturesSection() {
                 <div>
                   <header>
                     <h3 className='text-(--accent-9) mb-2 flex items-center gap-2 text-xl font-semibold lg:text-2xl'>
-                      <span className={clsx(feature.icon, 'text-3xl lg:text-6xl')} />
+                      <span className={clsx(feature.icon, 'shrink-0 text-3xl lg:text-6xl')} />
                       <span>{feature.title}</span>
                     </h3>
                   </header>

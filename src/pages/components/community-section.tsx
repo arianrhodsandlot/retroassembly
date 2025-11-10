@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
 import { linkMap, links } from '@/constants/links.ts'
 
@@ -40,7 +41,7 @@ export function CommunitySection() {
               rel='noreferrer noopener'
               target='_blank'
             >
-              <span className={link.logo} />
+              <span className={clsx('size-4 shrink-0', link.logo)} />
               {t(link.text)}
             </a>
           ))}

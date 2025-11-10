@@ -38,7 +38,7 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
 
         <LayoutMain>{children}</LayoutMain>
 
-        <div className='bg-(--accent-9) z-1 left-72 right-0 top-0 hidden h-4 lg:fixed lg:block' />
+        <div className='bg-(--accent-9) z-11 left-72 right-0 top-0 hidden h-4 lg:fixed lg:block' />
         <StatusBar />
         <SidebarContainer>
           <div className='flex items-center justify-between px-4 pb-4'>

@@ -19,7 +19,9 @@ export const translation = {
   'All rights reserved': 'Alle Rechte vorbehalten',
   Always: 'Immer',
   'An unexpected error occurred.': 'Ein unerwarteter Fehler ist aufgetreten.',
-  Arcade: 'Spielhalle',
+  Arcade: 'Arcade',
+  'Are you sure to proceed?\nThe deleted ROMs cannot be restored.':
+    'Sind Sie sicher, dass Sie fortfahren möchten?\nGelöschte ROMs können nicht wiederhergestellt werden.',
   'Atari 2600': 'Atari 2600',
   'Atari 5200': 'Atari 5200',
   'Atari 7800': 'Atari 7800',
@@ -54,7 +56,10 @@ export const translation = {
   Date: 'Datum',
   'Date Format': 'Datumsformat',
   Delete: 'Löschen',
-  'Demo or visual for': 'Demo oder Visual für',
+  'Delete from history': 'Aus dem Verlauf löschen',
+  'Delete selected {{count}} {{items}}': 'Ausgewählte {{count}} {{items}} löschen',
+  'Delete the ROM': 'ROM löschen',
+  'Demo or visual for': 'Demo oder visuell für',
   Deny: 'Verweigern',
   Description: 'Beschreibung',
   Developer: 'Entwickler',
@@ -121,6 +126,7 @@ export const translation = {
   'Log in to build your own retro game collection':
     'Melden Sie sich an, um Ihre eigene Retro-Spiele-Sammlung aufzubauen',
   'Log in with Google': 'Mit Google anmelden',
+  'Log out': 'Abmelden',
   'Log out of {{title}}?': 'Von {{title}} abmelden?',
   'Magnavox Odyssey 2': 'Magnavox Odyssey 2',
   Manufacturer: 'Hersteller',
@@ -166,8 +172,6 @@ export const translation = {
     'Das Fairchild Channel F ist eine Heimvideospielkonsole, die im November 1976 von Fairchild Semiconductor veröffentlicht wurde.\n\nSie hat die Auszeichnung, die erste programmierbare Videospielkonsole auf ROM-Cartridge-Basis und die erste Konsole zu sein, die einen Mikroprozessor verwendet. Sie wurde als Video Entertainment System oder VES auf den Markt gebracht, aber als Atari im folgenden Jahr ihr VCS veröffentlichte, benannte Fairchild seine Maschine um.',
   platform_colecovision_note:
     'Die ColecoVision ist eine Heimvideospielkonsole der zweiten Generation (1976-1992), die von Coleco Industries entwickelt und vertrieben wurde. Sie wurde im August 1982 in Nordamerika zum Einzelhandelspreis von 175 $ veröffentlicht. Die Konsole wurde später in Europa (1983) veröffentlicht. Die ColecoVision bot eine näher an Arcade-Spielen liegende Erfahrung als ihre Konkurrenten zu dieser Zeit. Die Konsole wurde Mitte 1985 eingestellt.',
-  platform_famicom_note:
-    'Das Nintendo Entertainment System ist eine 8-Bit-Videospielkonsole, die von Nintendo 1985 in Nordamerika, 1986 in Europa und 1987 in Australien veröffentlicht wurde. In den meisten asiatischen Ländern, einschließlich Japan (wo sie erstmals 1983 veröffentlicht wurde), China, Vietnam, Singapur, dem Nahen Osten und Hongkong, wurde sie als Family Computer vermarktet, allgemein abgekürzt als Famicom oder kurz FC. In Südkorea war sie als Hyundai Comboy bekannt und wurde von Hynix, damals bekannt als Hyundai Electronics, vertrieben.',
   platform_fds_note:
     'Das Family Computer Disk System, manchmal abgekürzt als Famicom Disk System oder einfach Disk System und abgekürzt als FDS oder FCD, ist ein Peripheriegerät für Nintendos Heimvideospielkonsole Family Computer, das am 21. Februar 1986 in Japan veröffentlicht wurde. Es verwendet proprietäre Disketten, sogenannte "Disk Cards", zur Datenspeicherung. Während seiner gesamten Produktionszeit von 1986 bis 2003 wurden 4,44 Millionen Einheiten verkauft. Das Gerät wird mit dem Famicom-Deck verbunden, indem eine spezielle Cartridge, bekannt als RAM-Adapter, in den Cartridge-Anschluss des Systems gesteckt und das Kabel dieser Cartridge an das Diskettenlaufwerk angeschlossen wird. Der RAM-Adapter enthält 32 Kilobyte (KB) RAM zur temporären Programmspeicherung, 8 KB RAM zur Speicherung von Kachel- und Sprite-Daten und einen ASIC, bekannt als 2C33. Der ASIC fungiert als Disk-Controller für das Diskettenlaufwerk und enthält auch zusätzliche Soundhardware mit einem Single-Cycle-Wavetable-Lookup-Synthesizer. Schließlich ist im 2C33 ein 8-KB-BIOS-ROM eingebettet. Die verwendeten Disk Cards sind doppelseitig mit einer Gesamtkapazität von 112 KB pro Disk. Viele Spiele erstrecken sich über beide Seiten einer Disk, sodass der Benutzer an einem bestimmten Punkt im Spiel die Seite wechseln muss. Einige Spiele verwenden zwei vollständige Disks mit insgesamt vier Seiten. Das Disk System kann mit sechs C-Batterien oder dem mitgelieferten Netzteil betrieben werden. Die Batterien halten in der Regel fünf Monate bei täglichem Spielen. Die Batterieoption ist auf die Wahrscheinlichkeit zurückzuführen, dass ein Standardsatz an Steckdosen bereits von einem Famicom und einem Fernseher belegt ist.',
   platform_gameandwatch_note:
@@ -180,8 +184,6 @@ export const translation = {
     'Der Game Boy Advance (abgekürzt GBA) ist eine tragbare 32-Bit-Videospielkonsole, die von Nintendo als Nachfolger des Game Boy Color entwickelt, hergestellt und vermarktet wurde. Sie wurde am 21. März 2001 in Japan, am 11. Juni 2001 in Nordamerika, am 22. Juni 2001 in Australien und Europa und am 8. Juni 2004 in Festlandchina (iQue Player) veröffentlicht. Nintendos Konkurrenten auf dem Handheld-Markt zu dieser Zeit waren der Neo Geo Pocket Color, der WonderSwan, der GP32, der Tapwave Zodiac und der N-Gage. Trotz der besten Bemühungen der Konkurrenten behielt Nintendo mit dem Game Boy Advance einen Mehrheitsmarktanteil. Zum 30. Juni 2010 hatte die Game Boy Advance-Serie weltweit 81,51 Millionen Einheiten verkauft. Sein Nachfolger, der Nintendo DS, wurde im November 2004 veröffentlicht und ist ebenfalls mit Game Boy Advance-Software kompatibel.',
   platform_gbc_note:
     'Der Game Boy Color (abgekürzt GBC) ist eine tragbare Spielkonsole, die von Nintendo hergestellt wurde und am 21. Oktober 1998 in Japan veröffentlicht wurde und im November desselben Jahres auf internationalen Märkten veröffentlicht wurde. Sie ist der Nachfolger des Game Boy. Der Game Boy Color verfügt, wie der Name schon sagt, über einen Farbbildschirm, aber keine Hintergrundbeleuchtung. Sie ist etwas dicker und größer als der Game Boy Pocket, eine 1996 veröffentlichte neu gestaltete Game Boy. Wie beim ursprünglichen Game Boy verfügt sie über einen benutzerdefinierten 8-Bit-Prozessor, der etwas mit einer Zilog Z80-Zentralverarbeitungseinheit (CPU) verwandt ist. Der ursprüngliche Name - mit seiner amerikanisch-englischen Schreibweise von "color" - blieb auch auf Märkten unverändert, auf denen "colour" die akzeptierte englische Schreibweise war. Die Hauptkonkurrenten des Game Boy Color waren SNKs Neo Geo Pocket und Bandais WonderSwan, die viel fortschrittlicher waren (beide nur in Japan veröffentlicht), obwohl der Game Boy Color sie bei weitem übertraf. Der Game Boy und der Game Boy Color verkauften zusammen weltweit 118,69 Millionen Einheiten. Sie wurde 2003 eingestellt, kurz nach der Veröffentlichung des Game Boy Advance SP.',
-  platform_genesis_note:
-    'Das Sega Genesis, in den meisten Regionen außerhalb Nordamerikas als Mega Drive bekannt, ist eine 16-Bit-Heimvideospielkonsole, die von Sega Enterprises, Ltd. entwickelt und verkauft wurde. Das Genesis war Segas dritte Konsole und der Nachfolger des Master System. Sega veröffentlichte die Konsole erstmals 1988 in Japan als Mega Drive, gefolgt von einem Debüt in Nordamerika als Genesis im Jahr 1989. 1990 wurde die Konsole in Europa von Virgin Mastertronic als Mega Drive, von Ozisoft in Australasien und von Tec Toy in Brasilien vertrieben. In Südkorea wurden die Systeme von Samsung vertrieben und waren als Super Gam*Boy und später als Super Aladdin Boy bekannt.\n\nDer Hauptmikroprozessor des Genesis ist eine 16/32-Bit Motorola 68000 CPU mit 7,6 MHz Taktfrequenz. Die Konsole enthält auch einen Zilog Z80-Subprozessor, der hauptsächlich zur Steuerung der Soundhardware verwendet wurde und auch Rückwärtskompatibilität mit dem Master System bietet.',
   platform_megadrive_note:
     'Das Sega Genesis, in den meisten Regionen außerhalb Nordamerikas als Mega Drive bekannt, ist eine 16-Bit-Heimvideospielkonsole, die von Sega Enterprises, Ltd. entwickelt und verkauft wurde. Das Genesis war Segas dritte Konsole und der Nachfolger des Master System. Sega veröffentlichte die Konsole erstmals 1988 in Japan als Mega Drive, gefolgt von einem Debüt in Nordamerika als Genesis im Jahr 1989. 1990 wurde die Konsole in Europa von Virgin Mastertronic als Mega Drive, von Ozisoft in Australasien und von Tec Toy in Brasilien vertrieben. In Südkorea wurden die Systeme von Samsung vertrieben und waren als Super Gam*Boy und später als Super Aladdin Boy bekannt.\n\nDer Hauptmikroprozessor des Genesis ist eine 16/32-Bit Motorola 68000 CPU mit 7,6 MHz Taktfrequenz. Die Konsole enthält auch einen Zilog Z80-Subprozessor, der hauptsächlich zur Steuerung der Soundhardware verwendet wurde und auch Rückwärtskompatibilität mit dem Master System bietet.',
   platform_nes_note:
@@ -197,8 +199,6 @@ export const translation = {
     'Die PC Engine ist eine Videospielkonsole, die erstmals am 30. Oktober 1987 von NEC und Hudson Soft in Japan veröffentlicht wurde. Das System wurde Ende August 1989 unter dem Namen TurboGrafx-16 auf dem amerikanischen Markt veröffentlicht. Es konkurrierte ursprünglich mit Nintendos Family Computer-Konsole, konkurrierte aber schließlich mit SEGAs SEGA Genesis / SEGA Mega Drive und später mit Nintendos Super Nintendo Entertainment System.\nEine PAL-Version basierend auf dem amerikanischen Redesign wurde auch 1990 in einigen europäischen Ländern (einschließlich Spanien) unter dem Namen Turbografx (ohne die "16" vom amerikanischen Namen und mit dem "G" in "Grafx" in Kleinbuchstaben geändert) veröffentlicht, aber die Konsole war sehr schwer zu finden, da nur sehr wenige Einheiten hergestellt wurden, da europäische Pläne für eine groß angelegte Veröffentlichung abgesagt wurden. Frankreich hingegen erhielt legal importierte japanische Konsolen.\nDie PC Engine war ein 8-Bit-System mit einem 16-Bit-Grafikchip, der 512 Farben auf dem Bildschirm anzeigen konnte. Sie wurde 1994 eingestellt.',
   platform_sega32x_note:
     'Das Sega 32X ist ein Add-On für die Sega Genesis-Videospielkonsole. Mit dem Codenamen "Project Mars" wurde das 32X entwickelt, um die Leistung des Genesis zu erweitern und als Übergangskonsole in die 32-Bit-Ära zu dienen, bis das Sega Saturn veröffentlicht wurde. Unabhängig vom Genesis verwendet das 32X seine eigenen ROM-Cartridges und verfügt über eine eigene Spielebibliothek. Das Add-On wurde in Japan als Super 32X (スーパー32X), in Nordamerika als Sega Genesis 32X, in der PAL-Region als Sega Mega Drive 32X und in Brasilien als Sega Mega 32X vertrieben.\n\nAuf der Consumer Electronics Show im Juni 1994 von Sega vorgestellt, wurde das 32X als kostengünstige Option für Verbraucher präsentiert, die 32-Bit-Spiele spielen möchten. Als Reaktion auf den Atari Jaguar und Bedenken, dass der Saturn erst Ende 1994 auf den Markt kommen würde, entwickelt, wurde das Produkt zunächst als völlig neue Konsole konzipiert. Auf Vorschlag des Sega of America-Managers Joe Miller und seines Teams wurde die Konsole in ein Add-On für den bestehenden Genesis umgewandelt und leistungsfähiger gemacht. Das endgültige Design enthielt zwei 32-Bit-CPU-Chips und einen 3D-Grafikprozessor. Um das neue Add-On bis zum geplanten Veröffentlichungstermin im November 1994 auf den Markt zu bringen, wurden die Entwicklung des neuen Systems und seiner Spiele beschleunigt. Die Konsole konnte keine Third-Party-Videospielentwickler und Verbraucher anziehen, da gleichzeitig die Veröffentlichung des Sega Saturn in Japan angekündigt wurde. Segas Bemühungen, das 32X schnell auf den Markt zu bringen, verkürzten die für die Spieleentwicklung verfügbare Zeit, was zu einer schwachen Bibliothek von vierzig Titeln führte, die die Hardware des Add-Ons nicht voll nutzen konnten, einschließlich Genesis-Ports. Bis Ende 1994 hatte das 32X 665.000 Einheiten verkauft. Nach Preissenkungen im Jahr 1995 wurde es 1996 eingestellt, als Sega seine Aufmerksamkeit auf den Saturn konzentrierte.\n\nDas 32X gilt als kommerzieller Misserfolg. Die Reaktion nach der Enthüllung und Markteinführung des Add-Ons war positiv und hob den niedrigen Preis des Systems und die Leistungserweiterung für den Genesis hervor. Spätere Kritiken, sowohl zeitgenössisch als auch retrospektiv, für das 32X waren größtenteils negativ aufgrund seiner oberflächlichen Spielebibliothek, seines schlechten Markt-Timings und der daraus resultierenden Marktsegmentierung für den Genesis.',
-  platform_sfc_note:
-    'Das Super Nintendo Entertainment System (auch bekannt als Super NES, SNES oder Super Nintendo sowie Super Famicom in Japan) ist eine 16-Bit-Heimvideospielkonsole, die von Nintendo entwickelt wurde und 1990 in Japan, 1991 in Nordamerika, 1992 in Europa und Australasien (Ozeanien) und 1993 in Südamerika veröffentlicht wurde. In Japan heißt das System Super Famicom und übernimmt offiziell den abgekürzten Namen seines Vorgängers, des Family Computer, oder kurz SFC. In Südkorea ist sie als Super Comboy bekannt und wurde von Hyundai Electronics vertrieben. Obwohl jede Version im Wesentlichen gleich ist, verhindern mehrere Formen der Regionalsperrung, dass die verschiedenen Versionen miteinander kompatibel sind.',
   platform_sg1000_note:
     'Das Sega SG-1000 (Sega Game 1000) (alias Mark I) war der erste Versuch des Unternehmens mit Heimkonsolen. Es wurde zunächst 1981 auf dem Markt getestet und schließlich im Juli 1983 an japanische Verbraucher veröffentlicht. Es war ein ziemlich fortschrittliches System für seine Zeit und hatte beeindruckende technische Spezifikationen. Das System wurde bis 1985 in Japan verkauft und auf verschiedenen Märkten in Europa und Australasien veröffentlicht.\n\n1984 veröffentlichte Sega eine aktualisierte Version der Konsole namens SG-1000 Mark II. Diese neu gestaltete Version verwendete Controller anstelle der ursprünglichen Joysticks und hatte Halterungen, um sie auf beiden Seiten zu verstauen. Sie hatte auch einen Steckplatz, der eine Tastaturanbindung namens SK-1100 ermöglichte und mit der Software von Segas SC-3000-Computer kompatibel war. Sega verkaufte auch einen optionalen Adapter namens Card Catcher. Dieser Adapter würde es dem SG-1000 ermöglichen, Segas "Game Card"-Software abzuspielen.',
   platform_sms_note:
@@ -245,6 +245,8 @@ export const translation = {
   'Rewind Gameplay': 'Gameplay zurückspulen',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
     'Spulen Sie das Gameplay mit "R" auf der Tastatur oder einer Controller-Tastenkombination zurück',
+  ROM: 'ROM',
+  ROM_other: 'ROMs',
   'ROMs uploaded': 'ROMs hochgeladen',
   Save: 'Speichern',
   'Save & Exit': 'Speichern & Beenden',
@@ -255,11 +257,13 @@ export const translation = {
   'Search (Ctrl + K)': 'Suchen (Strg + K)',
   'Sega 32X': 'Sega 32X',
   'Sega SG-1000': 'Sega SG-1000',
+  Select: 'Auswählen',
   'select {{name}}': '{{name}} auswählen',
   'Select all': 'Alle auswählen',
+  'Selected <1>{{count}}</1> {{items}}': 'Ausgewählte <1>{{count}}</1> {{items}}',
   'Select files': 'Dateien auswählen',
   'Select ROMs': 'ROMs auswählen',
-  'Self-Hosting with Docker': 'Self-Hosting mit Docker',
+  'Self-Hosting with Docker': 'Selbsthosting mit Docker',
   Settings: 'Einstellungen',
   Shader: 'Shader',
   'Show District on Game Titles': 'Region in Spieltiteln anzeigen',
@@ -292,7 +296,7 @@ export const translation = {
   'These free (legal) games are all picked from': 'Diese kostenlosen (legalen) Spiele sind alle ausgewählt von',
   'These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.':
     'Diese Optionen sind nicht garantiert wirksam oder können zu Startfehlern führen. Passen Sie sie mit Vorsicht und auf eigenes Risiko an.',
-  'The uploaded file is corrupted (MD5 mismatch).\\n\\nExpected MD5: {{expected}}\\nActual MD5: {{actual}}':
+  'The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: {{expected}}\nActual MD5: {{actual}}':
     'Die hochgeladene Datei ist beschädigt (MD5-Abweichung).\n\nErwartete MD5: {{expected}}\nTatsächliche MD5: {{actual}}',
   'This only affects navigation in the library and does not change inputs in games.':
     'Dies betrifft nur die Navigation in der Bibliothek und ändert nicht die Eingaben in Spielen.',

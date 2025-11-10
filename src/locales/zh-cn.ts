@@ -19,6 +19,7 @@ export const translation = {
   Always: '总是',
   'An unexpected error occurred.': '发生了意外错误。',
   Arcade: '街机',
+  'Are you sure to proceed?\nThe deleted ROMs cannot be restored.': '您确定要继续吗？\n删除的ROM无法恢复。',
   'Atari 2600': '雅达利2600',
   'Atari 5200': '雅达利5200',
   'Atari 7800': '雅达利7800',
@@ -53,6 +54,9 @@ export const translation = {
   Date: '日期',
   'Date Format': '日期格式',
   Delete: '删除',
+  'Delete from history': '从历史记录中删除',
+  'Delete selected {{count}} {{items}}': '删除已选择的{{count}}个{{items}}',
+  'Delete the ROM': '删除ROM',
   'Demo or visual for': '演示或视觉效果：',
   Deny: '拒绝',
   Description: '描述',
@@ -119,6 +123,7 @@ export const translation = {
   'Log in to build a library uniquely yours!': '登录以构建独一无二的您的游戏库！',
   'Log in to build your own retro game collection': '登录以构建您自己的复古游戏收藏',
   'Log in with Google': '使用Google登录',
+  'Log out': '注销',
   'Log out of {{title}}?': '从{{title}}注销？',
   'Magnavox Odyssey 2': '米罗华奥德赛²',
   Manufacturer: '制造商',
@@ -149,7 +154,7 @@ export const translation = {
   'Philips Videopac+': 'Philips Videopac+',
   platform: '平台',
   platform_arcade_note:
-    '从1971年的《太空战争！》开始，电子游戏最早的形式就是街机游戏，各种游戏都需要街机设备。存在多种形式的街机，包括传统的操纵杆和按钮配置，以及具有独特屏幕、控制装置和机柜的专用特殊机柜。',
+    '从1971年的《太空大战！》开始，电子游戏最早的形式就是街机游戏，各种游戏都需要街机设备。存在多种形式的街机，包括传统的操纵杆和按钮配置，以及具有独特屏幕、控制装置和机柜的专用特殊机柜。',
   platform_atari2600_note:
     '雅达利视频计算机系统（VCS），后来更名为雅达利2600，是由雅达利公司开发和发行的第二代（1976-1992）家用游戏机。它于1977年9月11日在北美发行，零售价为199美元。该游戏机后来在欧洲（1978年）和日本（1983年-作为雅达利2800）发行。雅达利2600推广了基于微处理器的硬件和ROM卡带游戏的使用。该游戏机于1992年1月1日停产。后来作为雅达利2600+重新发行。',
   platform_atari5200_note:
@@ -163,7 +168,7 @@ export const translation = {
   platform_colecovision_note:
     'ColecoVision是由Coleco Industries开发和发行的第二代（1976-1992）家用游戏机。它于1982年8月在北美发行，零售价为175美元。该游戏机后来在欧洲（1983年）发行。ColecoVision提供了比当时竞争对手更接近街机游戏的体验。该游戏机于1985年中期停产。',
   platform_fds_note:
-    '家用计算机磁碟机，有时简称为Famicom磁碟机或简称磁碟机，缩写为FDS或FCD，是任天堂家用计算机游戏机的外设，于1986年2月21日在日本发布。它使用专有的软盘"磁碟卡"进行数据存储。在其整个生产期间（1986-2003），共售出444万台。该设备通过将一个称为RAM适配器的特殊卡带插入系统的卡带槽，并将该卡带的电缆连接到磁碟驱动器，从而连接到Famicom主机。RAM适配器包含32千字节（KB）的RAM用于临时程序存储，8 KB的RAM用于图块和精灵数据存储，以及一个称为2C33的ASIC。ASIC充当软盘驱动器的磁盘控制器，还包括一个单周期波表查找合成器的额外声音硬件。最后，2C33中嵌入了一个8KB的BIOS ROM。使用的磁碟卡是双面的，每张磁盘的总容量为112 KB。许多游戏跨越磁盘的两面，要求用户在游戏过程中的某个时刻切换磁盘面。少数游戏使用两张完整的磁盘，总共四面。磁碟系统能够使用六节C型电池或提供的交流适配器运行。电池通常可以持续五个月的日常游戏。电池选项是由于一套标准的交流插头很可能已经被Famicom和电视占用。',
+    'FC磁碟机，有时简称为Famicom磁碟机或简称磁碟机，缩写为FDS或FCD，是任天堂家用计算机游戏机的外设，于1986年2月21日在日本发布。它使用专有的软盘"磁碟卡"进行数据存储。在其整个生产期间（1986-2003），共售出444万台。该设备通过将一个称为RAM适配器的特殊卡带插入系统的卡带槽，并将该卡带的电缆连接到磁碟驱动器，从而连接到Famicom主机。RAM适配器包含32千字节（KB）的RAM用于临时程序存储，8 KB的RAM用于图块和精灵数据存储，以及一个称为2C33的ASIC。ASIC充当软盘驱动器的磁盘控制器，还包括一个单周期波表查找合成器的额外声音硬件。最后，2C33中嵌入了一个8KB的BIOS ROM。使用的磁碟卡是双面的，每张磁盘的总容量为112 KB。许多游戏跨越磁盘的两面，要求用户在游戏过程中的某个时刻切换磁盘面。少数游戏使用两张完整的磁盘，总共四面。磁碟系统能够使用六节C型电池或提供的交流适配器运行。电池通常可以持续五个月的日常游戏。使用电池是由于标准的交流插头很可能已经被Famicom和电视占用。',
   platform_gameandwatch_note:
     'Game & Watch系列是任天堂从1980年到1991年生产的总共60款掌上电子游戏。由游戏设计师横井军平创作，每个Game & Watch除了时钟、闹钟或两者外，还可以在LCD屏幕上玩单个游戏。这款游戏机启发任天堂制作了Game Boy。它是任天堂最早取得重大成功的产品。',
   platform_gamegear_note:
@@ -184,7 +189,7 @@ export const translation = {
     'Neo Geo Pocket Color（也被风格化为NEOGEOPOCKET COLOR，通常缩写为NGPC），是SNK制造的16位彩色掌上游戏机。它是SNK于1998年在日本首次亮相的单色Neo Geo Pocket掌机的继任者，Color完全向后兼容。Neo Geo Pocket Color于1999年3月16日在日本、1999年8月6日在北美和1999年10月1日在欧洲发布，进入了所有由任天堂主导的市场。在美国和日本都有良好的销售开端，拥有14款首发游戏（当时的记录），但随后在美国的零售支持较低，SNK的美国管理层缺乏与第三方开发商的沟通，任天堂宝可梦特许经营的狂热，对32位Game Boy Advance的期待，以及在日本万代的WonderSwan的激烈竞争，导致两个地区的销售下降。与此同时，SNK至少一年来一直陷入财务困境；该公司很快倒闭，并于2000年1月被美国柏青哥制造商Aruze收购。然而，Aruze没有足够支持SNK的视频游戏业务，导致SNK的原始创始人和其他几名员工离开并成立了一家新公司BrezzaSoft。最终在2000年6月13日，Aruze决定退出北美和欧洲市场，标志着SNK全球业务的结束以及Neo Geo硬件和软件在那里的停产。然而，Neo Geo Pocket Color（以及其他SNK/Neo Geo产品）在日本一直持续到2001年。它是SNK的最后一款游戏机，因为该公司于2001年10月22日破产。尽管失败了，Neo Geo Pocket Color被认为是一款有影响力的系统。该系统发布了许多广受好评的游戏，如《SNK vs. Capcom：千禧之战》、《拳皇R-2》以及其他源自SNK的MVS和AES的优质街机游戏。它还配备了一个街机风格的微动开关"咔哒摇杆"操纵杆，因其准确性和非常适合格斗游戏而受到赞扬。该系统的显示器和40小时电池寿命也得到了好评。',
   platform_odyssey2_note:
     '米罗华奥德赛²是由米罗华开发和发行的第二代（1976-1992）家用游戏机。它于1979年2月在北美发行，零售价为179美元。该游戏机还在欧洲（1979年）以及后来在南美（1983年）和日本（1982年）发行。Odyssey 2包括一个完整的字母数字薄膜键盘，用于教育游戏、选择选项或编程。该游戏机于1984年3月20日停产。',
-  platform_other: '平',
+  platform_other: '平台',
   platform_pcengine_note:
     'PC Engine是NEC和Hudson Soft于1987年10月30日在日本首次发布的游戏机。该系统于1989年8月下旬以TurboGrafx-16的名义在美国市场发布。它最初是任天堂家用计算机游戏机的竞争对手，但最终与世嘉的世嘉Genesis/世嘉Mega Drive以及后来任天堂的超级任天堂竞争。\n基于美国重新设计的PAL版本也于1990年在一些欧洲国家（包括西班牙）以Turbografx的名义发布（没有美国名称中的"16"，并且"Grafx"的"G"改为小写），但由于只生产了很少的单位，因为取消了大规模发布的欧洲计划，所以很难找到该游戏机。另一方面，法国收到了合法进口的日本游戏机。\nPC Engine是一个具有16位图形芯片的8位系统，能够在屏幕上显示512种颜色。它于1994年停产。',
   platform_sega32x_note:
@@ -231,7 +236,9 @@ export const translation = {
   Rewind: '回溯',
   'Rewind Gameplay': '游戏回溯',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
-    '使用键盘上的“R”键或手柄按钮组合来回溯游戏',
+    '使用键盘上的"R"键或手柄按钮组合来回溯游戏',
+  ROM: 'ROM',
+  ROM_other: 'ROM',
   'ROMs uploaded': 'ROM上传完成',
   Save: '保存',
   'Save & Exit': '存档并退出',
@@ -242,8 +249,10 @@ export const translation = {
   'Search (Ctrl + K)': '搜索 (Ctrl + K)',
   'Sega 32X': 'Sega 32X',
   'Sega SG-1000': 'Sega SG-1000',
+  Select: '选择',
   'select {{name}}': '选择 {{name}}',
   'Select all': '全选',
+  'Selected <1>{{count}}</1> {{items}}': '已选择<1>{{count}}</1>个{{items}}',
   'Select files': '选择文件',
   'Select ROMs': '选择ROM',
   'Self-Hosting with Docker': '使用Docker自托管',
@@ -271,10 +280,11 @@ export const translation = {
   'the MIT License': 'MIT许可协议',
   'The new password is the same as the current password': '新密码与当前密码相同',
   'The personal retro game collection cabinet in your browser': '您浏览器中的个人复古游戏收藏柜',
+  'The requested page could not be found.': '找不到请求的页面。',
   'These free (legal) games are all picked from': '这些免费（合法）游戏都来自',
   'These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.':
     '这些选项不保证生效，且可能导致启动失败。请谨慎调整，风险自负。',
-  'The uploaded file is corrupted (MD5 mismatch).\\n\\nExpected MD5: {{expected}}\\nActual MD5: {{actual}}':
+  'The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: {{expected}}\nActual MD5: {{actual}}':
     '上传的文件已损坏（MD5不匹配）。\n\n期望的MD5: {{expected}}\n实际MD5: {{actual}}',
   'This only affects navigation in the library and does not change inputs in games.':
     '这仅影响游戏库中的导航，不会更改游戏内的输入。',

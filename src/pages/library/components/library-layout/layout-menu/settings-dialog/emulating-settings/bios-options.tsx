@@ -49,15 +49,11 @@ export function BIOSOptions({ platform }: { platform: PlatformName }) {
     }
     const md5 = await getFileMd5(file)
     if (expectedBios.md5 && expectedBios.md5 !== md5) {
-      alert(
-        t(
-          String.raw`The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: {{expected}}\nActual MD5: {{actual}}`,
-          {
-            actual: md5,
-            expected: expectedBios.md5,
-          },
-        ),
+      const message = t(
+        `The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: {{expected}}\nActual MD5: {{actual}}`,
+        { actual: md5, expected: expectedBios.md5 },
       )
+      alert(message)
       return
     }
     await upload({ file, platform })

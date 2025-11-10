@@ -2,6 +2,7 @@ import { AlertDialog, Button } from '@radix-ui/themes'
 import { delay, isPlainObject } from 'es-toolkit'
 import { isMatch } from 'es-toolkit/compat'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { mutate } from 'swr'
 import useSWRMutation from 'swr/mutation'
 import { client } from '@/api/client.ts'
@@ -15,6 +16,7 @@ export function DeleteDialog(props: Readonly<AlertDialog.RootProps>) {
   const { reloadSilently } = useRouter()
   const [selectedGames, setSelectedGames] = useSelectedGames()
   const [clicked, setClicked] = useState(false)
+  const { t } = useTranslation()
 
   const { isMutating, trigger } = useSWRMutation(
     { endpoint: 'roms', method: 'delete', query: { ids: selectedGames.join(',') } },
@@ -50,22 +52,25 @@ export function DeleteDialog(props: Readonly<AlertDialog.RootProps>) {
     <AlertDialog.Root {...props}>
       <AlertDialog.Content maxWidth='450px'>
         <AlertDialog.Title>
-          Delete selected {selectedGames.length} {selectedGames.length === 1 ? 'ROM' : 'ROMs'}
+          {t('Delete selected {{count}} {{items}}', {
+            count: selectedGames.length,
+            items: t('ROM', { count: selectedGames.length }),
+          })}
         </AlertDialog.Title>
         <AlertDialog.Description className='leading-loose! whitespace-pre-line' size='2'>
-          {'Are you sure to proceed?\nThe deleted ROMs cannot be restored.'}
+          {t('Are you sure to proceed?\nThe deleted ROMs cannot be restored.')}
         </AlertDialog.Description>
 
         <div className='mt-4 flex justify-end gap-3'>
           <AlertDialog.Cancel>
             <Button disabled={isLoading}>
               <span className='icon-[mdi--close]' />
-              Cancel
+              {t('Cancel')}
             </Button>
           </AlertDialog.Cancel>
           <Button loading={isLoading} onClick={handleClickConfirmDelete} variant='soft'>
             <span className='icon-[mdi--delete]' />
-            Delete
+            {t('Delete')}
           </Button>
         </div>
       </AlertDialog.Content>

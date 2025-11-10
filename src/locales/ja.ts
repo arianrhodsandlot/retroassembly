@@ -20,6 +20,8 @@ export const translation = {
   Always: '常に',
   'An unexpected error occurred.': '予期しないエラーが発生しました。',
   Arcade: 'アーケードゲーム',
+  'Are you sure to proceed?\nThe deleted ROMs cannot be restored.':
+    '本当に続行してもよろしいですか？\n削除されたROMは復元できません。',
   'Atari 2600': 'Atari 2600',
   'Atari 5200': 'Atari 5200',
   'Atari 7800': 'Atari 7800',
@@ -54,7 +56,10 @@ export const translation = {
   Date: '日付',
   'Date Format': '日付形式',
   Delete: '削除',
-  'Demo or visual for': 'デモまたはビジュアル：',
+  'Delete from history': '履歴から削除',
+  'Delete selected {{count}} {{items}}': '選択した{{count}}個の{{items}}を削除',
+  'Delete the ROM': 'ROMを削除',
+  'Demo or visual for': 'デモまたはビジュアル:',
   Deny: '拒否する',
   Description: '説明',
   Developer: '開発者',
@@ -120,6 +125,7 @@ export const translation = {
   'Log in to build a library uniquely yours!': 'ログインしてあなただけのユニークなライブラリを作りましょう！',
   'Log in to build your own retro game collection': 'ログインして自分だけのレトロゲームコレクションを作りましょう',
   'Log in with Google': 'Googleでログイン',
+  'Log out': 'ログアウト',
   'Log out of {{title}}?': '{{title}}からログアウトしますか？',
   'Magnavox Odyssey 2': 'Magnavox Odyssey 2',
   Manufacturer: 'メーカー',
@@ -164,8 +170,6 @@ export const translation = {
     'Fairchild Channel Fは、Fairchild Semiconductorが1976年11月に発売した家庭用ゲーム機です。\n\nプログラマブルROMカートリッジベースのビデオゲーム機として初めて、マイクロプロセッサを使用した初めてのゲーム機でもあります。Video Entertainment System（VES）として発売されましたが、翌年Atariが自社のVCSを発売すると、Fairchildは機器の名称を変更しました。',
   platform_colecovision_note:
     'ColecoVisionは、Coleco Industriesが開発・販売した第2世代（1976-1992）の家庭用ゲーム機です。1982年8月に北米で175ドルの小売価格で発売されました。その後、欧州（1983年）で発売されました。ColecoVisionは、当時の競合他社よりもアーケードゲームに近い体験を提供しました。このゲーム機は1985年半ばに生産終了しました。',
-  platform_famicom_note:
-    'Nintendo Entertainment Systemは、任天堂が1985年に北米、1986年に欧州、1987年にオーストラリアで発売した8ビットのビデオゲーム機です。日本（1983年に最初に発売）、中国、ベトナム、シンガポール、中東、香港を含むアジアのほとんどの地域では、Family Computerとして発売され、一般的にFamicom（ファミコン）またはFCと略されます。韓国では、Hyundai Comboy（現代コンボイ）として知られ、当時Hyundai Electronicsとして知られていたHynixによって販売されました。',
   platform_fds_note:
     'Family Computer Disk System、Famicom Disk SystemまたはDisk Systemと略され、FDSまたはFCDとも略されるこのシステムは、任天堂のFamily Computerホームビデオゲーム機の周辺機器で、1986年2月21日に日本で発売されました。データ保存には「ディスクカード」と呼ばれる専用フロッピーディスクを使用します。1986年から2003年までの全生産期間を通じて、444万台が販売されました。この装置は、RAMアダプターと呼ばれる特殊カートリッジをシステムのカートリッジポートに差し込み、そのカートリッジのケーブルをディスクドライブに接続することで、Famicom本体に接続されます。RAMアダプターには、一時的なプログラム保存用の32キロバイト（KB）のRAM、タイルとスプライトデータ保存用の8KBのRAM、および2C33として知られるASICが含まれています。ASICはフロッピードライブのディスクコントローラーとして機能し、シングルサイクル波形テーブルルックアップシンセサイザーを備えた追加のサウンドハードウェアも含まれています。最後に、2C33には8KBのBIOS ROMが組み込まれています。使用されるディスクカードは両面で、ディスクあたりの合計容量は112KBです。多くのゲームはディスクの両面にまたがり、ゲームプレイ中のある時点でユーザーが面を切り替える必要があります。いくつかのゲームは2枚のディスクを使用し、合計4面になります。Disk Systemは6本の単三電池または付属のACアダプターで動作できます。電池は毎日のゲームプレイで通常5か月持続します。電池オプションは、標準的なACプラグのセットがすでにFamicomとテレビで使用されている可能性が高いためです。',
   platform_gameandwatch_note:
@@ -178,8 +182,6 @@ export const translation = {
     'Game Boy Advance（GBAと略記）は、任天堂がGame Boy Colorの後継機として開発、製造、販売した32ビットの携帯ゲーム機です。2001年3月21日に日本で、2001年6月11日に北米で、2001年6月22日にオーストラリアと欧州で、2004年6月8日に中国本土（iQue Player）で発売されました。当時、任天堂の携帯市場での競合相手は、Neo Geo Pocket Color、WonderSwan、GP32、Tapwave Zodiac、N-Gageでした。競合他社の最善の努力にもかかわらず、任天堂はGame Boy Advanceで過半数の市場シェアを維持しました。2010年6月30日現在、Game Boy Advanceシリーズは世界中で8151万台を販売しました。その後継機であるNintendo DSは2004年11月に発売され、Game Boy Advanceソフトウェアとも互換性があります。',
   platform_gbc_note:
     'Game Boy Color（GBCと略記）は、任天堂が製造した携帯ゲーム機で、1998年10月21日に日本で発売され、同年11月に国際市場で発売されました。Game Boyの後継機です。Game Boy Colorは、その名前が示すように、カラースクリーンを備えていますが、バックライトはありません。1996年に発売されたGame Boyの再設計版であるGame Boy Pocketよりもわずかに厚くて高いです。オリジナルのGame Boyと同様に、Zilog Z80中央処理装置（CPU）に多少関連するカスタム8ビットプロセッサを搭載しています。元の名前（米国英語のスペル「color」）は、「colour」が一般的な英語のスペルである市場でも変更されませんでした。Game Boy Colorの主な競合相手は、SNKのNeo Geo PocketとバンダイのWonderSwan（両方とも日本でのみ発売）という、はるかに高度な製品でしたが、Game Boy Colorはこれらを大幅に上回りました。Game BoyとGame Boy Colorを合わせて、世界中で1億1869万台が販売されました。Game Boy Advance SPの発売直後の2003年に生産終了しました。',
-  platform_genesis_note:
-    'Sega Genesisは、北米以外のほとんどの地域ではMega Driveとして知られており、Sega Enterprises, Ltd.によって開発・販売された16ビットの家庭用ゲーム機です。GenesisはSegaの3番目のゲーム機であり、Master Systemの後継機です。Segaは1988年に日本でMega Driveとして最初に発売し、1989年に北米でGenesisの名称でデビューしました。1990年には、欧州でVirgin MastronicによってMega Driveとして、オーストララシアでOzisoftによって、ブラジルでTec Toyによって配布されました。韓国では、サムスンによって配布され、Super Gam*Boy、後にSuper Aladdin Boyとして知られていました。\n\nGenesisのメインマイクロプロセッサーは、7.6MHzでクロックされる16/32ビットMotorola 68000 CPUです。このゲーム機には、主にサウンドハードウェアを制御し、Master Systemとの下位互換性を提供するために使用されたZilog Z80サブプロセッサも含まれています。',
   platform_megadrive_note:
     'Sega Genesisは、北米以外のほとんどの地域ではMega Driveとして知られており、Sega Enterprises, Ltd.によって開発・販売された16ビットの家庭用ゲーム機です。GenesisはSegaの3番目のゲーム機であり、Master Systemの後継機です。Segaは1988年に日本でMega Driveとして最初に発売し、1989年に北米でGenesisの名称でデビューしました。1990年には、欧州でVirgin MastronicによってMega Driveとして、オーストララシアでOzisoftによって、ブラジルでTec Toyによって配布されました。韓国では、サムスンによって配布され、Super Gam*Boy、後にSuper Aladdin Boyとして知られていました。\n\nGenesisのメインマイクロプロセッサーは、7.6MHzでクロックされる16/32ビットMotorola 68000 CPUです。このゲーム機には、主にサウンドハードウェアを制御し、Master Systemとの下位互換性を提供するために使用されたZilog Z80サブプロセッサも含まれています。',
   platform_nes_note:
@@ -195,8 +197,6 @@ export const translation = {
     'PC Engineは、NECとHudson Softが1987年10月30日に日本で最初に発売したビデオゲーム機です。このシステムは1989年8月下旬にTurboGrafx-16の名称で米国市場で発売されました。元々は任天堂のFamily Computer対抗機として、後にセガのSEGA Genesis / SEGA Mega Driveと任天堂のSuper Nintendo Entertainment Systemと競争することになりました。\n米国の再設計に基づくPAL版も、1990年にスペインを含むいくつかの欧州諸国でTurbografx（米国名の「16」なし、「Grafx」の「G」を小文字に変更）の名称で発売されましたが、大規模な発売のための欧州計画がキャンセルされたため、非常に少数のユニットしか製造されず、ゲーム機を見つけるのは非常に困難でした。一方、フランスは合法的に輸入された日本のゲーム機を受け取りました。\nPC Engineは、画面上に512色を表示できる16ビットグラフィックチップを搭載した8ビットシステムでした。1994年に生産終了しました。',
   platform_sega32x_note:
     'Sega 32Xは、Sega Genesisビデオゲーム機用のアドオンです。コードネーム「プロジェクトマーズ」で、32XはGenesisのパワーを拡張し、Sega Saturnのリリースまで32ビット時代への過渡的なゲーム機として機能するように設計されました。Genesisとは独立して、32Xは独自のROMカートリッジを使用し、独自のゲームライブラリを持っています。このアドオンは、日本ではSuper 32X（スーパー32X）、北米ではSega Genesis 32X、PAL地域ではSega Mega Drive 32X、ブラジルではSega Mega 32Xという名称で配布されました。\n\n1994年6月のConsumer Electronics ShowでSegaによって発表された32Xは、32ビットゲームをプレイしたい消費者向けの低コストオプションとして提示されました。Atari JaguarとSaturnが1994年末までに市場に出ないという懸念に対応して開発され、この製品は当初全く新しいゲーム機として構想されました。Sega of AmericaのエグゼクティブJoe Millerとそのチームの提案により、ゲーム機は既存のGenesisへのアドオンに変換され、より強力になりました。最終設計には、2つの32ビット中央処理装置チップと3Dグラフィックスプロセッサが含まれていました。1994年11月の予定リリース日までに新しいアドオンを市場に投入するために、新システムとそのゲームの開発は急がれました。Sega Saturnの日本での同時リリースの発表により、ゲーム機はサードパーティのビデオゲーム開発者と消費者を引きつけることができませんでした。Segaの32Xを市場に急いで投入する努力は、ゲーム開発に利用できる時間を削減し、Genesisポートを含む、アドオンのハードウェアを完全に活用できない40タイトルの弱いライブラリをもたらしました。1994年末までに、32Xは665,000台を販売しました。1995年の値下げ後、Segaがその焦点をSaturnに移したため、1996年に生産終了しました。\n\n32Xは商業的失敗と見なされています。アドオンの発表とローンチ後の評価は肯定的で、システムの低価格とGenesisへのパワー拡張を強調しました。後の32Xのレビュー、同時代と回顧の両方で、そのゲームライブラリの薄さ、市場タイミングの悪さ、およびその結果としてのGenesisの市場分断化のため、ほとんど否定的でした。',
-  platform_sfc_note:
-    'Super Nintendo Entertainment System（Super NES、SNESまたはSuper Nintendoとしても知られ、日本ではSuper Famicomとしても知られる）は、任天堂が開発した16ビットの家庭用ゲーム機で、1990年に日本で、1991年に北米で、1992年に欧州とオーストララシア（オセアニア）で、1993年に南米で発売されました。日本では、このシステムはSuper Famicomと呼ばれ、その前身であるFamily Computerの略称を正式に採用し、またはSFCと略されます。韓国では、Super Comboyとして知られ、Hyundai Electronicsによって配布されました。各バージョンは本質的に同じですが、いくつかの形式の地域ロックにより、異なるバージョンが互いに互換性がないようになっています。',
   platform_sg1000_note:
     'SegaのSG-1000（Sega Game 1000）（別名Mark I）は、同社の家庭用ゲーム機への最初の試みでした。1981年にテストマーケティングされ、最終的に1983年7月に日本の消費者向けにリリースされました。当時としてはかなり先進的なシステムで、印象的な技術仕様を備えていました。このシステムは1985年まで日本で販売され、欧州とオーストララシアのさまざまな市場で発売されました。\n\n1984年、Segaはコンソールの更新版であるSG-1000 Mark IIを発売しました。この再設計版は、元のジョイスティックの代わりにゲームパッドを使用し、両側に保管用のマウントがありました。また、SK-1100と呼ばれるキーボードアタッチメントを使用できるスロットが備わっており、Sega SC-3000コンピュータのソフトウェアと互換性がありました。Segaはまた、Card Catcherと呼ばれるオプションのアダプタを販売しました。このアダプタにより、SG-1000はSegaの「ゲームカード」ソフトウェアをプレイできるようになりました。',
   platform_sms_note:
@@ -241,6 +241,8 @@ export const translation = {
   'Rewind Gameplay': 'ゲームプレイの巻き戻し',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
     'キーボードの「R」キーまたはコントローラーのボタン組み合わせを使用してゲームプレイを巻き戻します',
+  ROM: 'ROM',
+  ROM_other: 'ROM',
   'ROMs uploaded': 'ROMアップロード完了',
   Save: '保存',
   'Save & Exit': '保存して終了',
@@ -251,11 +253,13 @@ export const translation = {
   'Search (Ctrl + K)': '検索 (Ctrl + K)',
   'Sega 32X': 'Sega 32X',
   'Sega SG-1000': 'セガ・SG-1000',
+  Select: '選択',
   'select {{name}}': '{{name}}を選択',
   'Select all': 'すべて選択',
+  'Selected <1>{{count}}</1> {{items}}': '選択済み<1>{{count}}</1> {{items}}',
   'Select files': 'ファイルを選択',
-  'Select ROMs': 'ROM選択',
-  'Self-Hosting with Docker': 'Dockerでのセルフホスティング',
+  'Select ROMs': 'ROMを選択',
+  'Self-Hosting with Docker': 'Dockerを使用したセルフホスティング',
   Settings: '設定',
   Shader: 'シェーダー',
   'Show District on Game Titles': 'タイトルに地域を表示',
@@ -288,7 +292,7 @@ export const translation = {
   'These free (legal) games are all picked from': 'これらの無料（合法）ゲームはすべて',
   'These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.':
     'これらのオプションは効果が保証されておらず、起動失敗の原因となる可能性があります。慎重に調整し、自己責任でお使いください。',
-  'The uploaded file is corrupted (MD5 mismatch).\\n\\nExpected MD5: {{expected}}\\nActual MD5: {{actual}}':
+  'The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: {{expected}}\nActual MD5: {{actual}}':
     'アップロードされたファイルが破損しています（MD5不一致）。\n\n期待されるMD5: {{expected}}\n実際のMD5: {{actual}}',
   'This only affects navigation in the library and does not change inputs in games.':
     'これはライブラリのナビゲーションにのみ影響し、ゲーム内の入力は変更されません。',

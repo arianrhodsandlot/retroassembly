@@ -18,6 +18,7 @@ export const translation = {
   Always: '總是',
   'An unexpected error occurred.': '發生了意外錯誤。',
   Arcade: '街機',
+  'Are you sure to proceed?\nThe deleted ROMs cannot be restored.': '您確定要繼續嗎？\n已刪除的ROM無法復原。',
   'Atari 2600': 'Atari 2600',
   'Atari 5200': 'Atari 5200',
   'Atari 7800': 'Atari 7800',
@@ -52,6 +53,9 @@ export const translation = {
   Date: '日期',
   'Date Format': '日期格式',
   Delete: '刪除',
+  'Delete from history': '從歷史記錄中刪除',
+  'Delete selected {{count}} {{items}}': '刪除已選擇的{{count}}個{{items}}',
+  'Delete the ROM': '刪除ROM',
   'Demo or visual for': '演示或視覺效果',
   Deny: '拒絕',
   Description: '描述',
@@ -118,6 +122,7 @@ export const translation = {
   'Log in to build a library uniquely yours!': '登入以建立獨一無二的您的遊戲庫！',
   'Log in to build your own retro game collection': '登入以建立您自己的復古遊戲收藏',
   'Log in with Google': '使用Google登入',
+  'Log out': '登出',
   'Log out of {{title}}?': '要登出{{title}}嗎？',
   'Magnavox Odyssey 2': 'Magnavox Odyssey 2',
   Manufacturer: '製造商',
@@ -161,8 +166,6 @@ export const translation = {
     '飛兆Channel F是飛兆半導體於1976年11月發佈的家用遊戲機。\n\n它是第一款可程式化ROM卡匣遊戲機，也是第一款使用微處理器的遊戲機。它最初以視訊娛樂系統（VES）的名義發佈，但當雅達利在第二年發佈他們的VCS時，飛兆將其機器重新命名。',
   platform_colecovision_note:
     'ColecoVision是由Coleco Industries開發和發行的第二代（1976-1992）家用遊戲機。它於1982年8月在北美發行，零售價為175美元。該遊戲機後來在歐洲（1983年）發行。ColecoVision提供了比當時競爭對手更接近街機遊戲的體驗。該遊戲機於1985年中期停產。',
-  platform_famicom_note:
-    '任天堂娛樂系統是任天堂於1985年在北美、1986年在歐洲和1987年在澳洲發佈的8位元遊戲機。在包括日本（1983年首次發佈）、中國、越南、新加坡、中東和香港在內的大部分亞洲地區，它以家庭電腦（Family Computer）的名義發佈，通常縮寫為Famicom或FC。在韓國，它被稱為現代Comboy，由當時稱為現代電子的海力士發行。',
   platform_fds_note:
     '家庭電腦磁碟機，有時簡稱為Famicom磁碟機或簡稱磁碟機，縮寫為FDS或FCD，是任天堂家庭電腦遊戲機的外設，於1986年2月21日在日本發佈。它使用專有的軟碟「磁碟卡」進行資料儲存。在其整個生產期間（1986-2003），共售出444萬台。該裝置通過將一個稱為RAM適配器的特殊卡匣插入系統的卡匣槽，並將該卡匣的電纜連接到磁碟驅動器，從而連接到Famicom主機。RAM適配器包含32千位元組（KB）的RAM用於臨時程式儲存，8 KB的RAM用於圖塊和精靈資料儲存，以及一個稱為2C33的ASIC。ASIC充當軟碟驅動器的磁碟控制器，還包括一個單週期波表查找合成器的額外聲音硬體。最後，2C33中嵌入了一個8KB的BIOS ROM。使用的磁碟卡是雙面的，每張磁碟的總容量為112 KB。許多遊戲跨越磁碟的兩面，要求使用者在遊戲過程中的某個時刻切換磁碟面。少數遊戲使用兩張完整的磁碟，總共四面。磁碟系統能夠使用六節C型電池或提供的交流適配器運行。電池通常可以持續五個月的日常遊戲。電池選項是由於一套標準的交流插頭很可能已經被Famicom和電視佔用。',
   platform_gameandwatch_note:
@@ -175,8 +178,6 @@ export const translation = {
     'Game Boy Advance（縮寫為GBA）是任天堂開發、製造和銷售的32位元掌上遊戲機，作為Game Boy Color的繼任者。它於2001年3月21日在日本、2001年6月11日在北美、2001年6月22日在澳洲和歐洲，以及2004年6月8日在中國大陸（iQue Player）發佈。當時任天堂在掌上市場的競爭對手是Neo Geo Pocket Color、WonderSwan、GP32、Tapwave Zodiac和N-Gage。儘管競爭對手做出了最大的努力，任天堂仍然憑藉Game Boy Advance保持了多數市場份額。截至2010年6月30日，Game Boy Advance系列已在全球售出8151萬台。它的繼任者任天堂DS於2004年11月發佈，也相容Game Boy Advance軟體。',
   platform_gbc_note:
     'Game Boy Color（縮寫為GBC）是任天堂製造的掌上遊戲機，於1998年10月21日在日本發佈，並於同年11月在國際市場發佈。它是Game Boy的繼任者。Game Boy Color，正如其名稱所示，具有彩色螢幕，但沒有背光。它比Game Boy Pocket稍厚稍高，後者是1996年發佈的Game Boy的重新設計版本。與最初的Game Boy一樣，它有一個自訂的8位元處理器，與Zilog Z80中央處理單元（CPU）有些相關。原始名稱-使用美式英語拼寫的「color」-即使在「colour」是公認的英語拼寫的市場中也保持不變。Game Boy Color的主要競爭對手是SNK的Neo Geo Pocket和萬代的WonderSwan（兩者僅在日本發佈）這些更先進的產品，儘管Game Boy Color的銷量遠遠超過了這些產品。Game Boy和Game Boy Color合計在全球售出1.1869億台。它在Game Boy Advance SP發佈後不久的2003年停產。',
-  platform_genesis_note:
-    '世嘉Genesis，在北美以外的大多數地區被稱為Mega Drive，是由世嘉企業有限公司開發和銷售的16位元家用遊戲機。Genesis是世嘉的第三款遊戲機，也是Master System的繼任者。世嘉於1988年在日本首次發佈了Mega Drive，隨後於1989年在北美以Genesis的名義首次亮相。1990年，該遊戲機在歐洲由Virgin Mastertronic以Mega Drive的名義發行，在澳大拉西亞由Ozisoft發行，在巴西由Tec Toy發行。在韓國，該系統由三星發行，被稱為Super Gam*Boy，後來被稱為Super Aladdin Boy。\n\nGenesis的主要微處理器是以7.6 MHz時脈頻率運行的16/32位元Motorola 68000 CPU。該遊戲機還包括一個Zilog Z80子處理器，主要用於控制聲音硬體，並提供與Master System的向後相容性。',
   platform_megadrive_note:
     '世嘉Genesis，在北美以外的大多數地區被稱為Mega Drive，是由世嘉企業有限公司開發和銷售的16位元家用遊戲機。Genesis是世嘉的第三款遊戲機，也是Master System的繼任者。世嘉於1988年在日本首次發佈了Mega Drive，隨後於1989年在北美以Genesis的名義首次亮相。1990年，該遊戲機在歐洲由Virgin Mastertronic以Mega Drive的名義發行，在澳大拉西亞由Ozisoft發行，在巴西由Tec Toy發行。在韓國，該系統由三星發行，被稱為Super Gam*Boy，後來被稱為Super Aladdin Boy。\n\nGenesis的主要微處理器是以7.6 MHz時脈頻率運行的16/32位元Motorola 68000 CPU。該遊戲機還包括一個Zilog Z80子處理器，主要用於控制聲音硬體，並提供與Master System的向後相容性。',
   platform_nes_note:
@@ -192,8 +193,6 @@ export const translation = {
     'PC Engine是NEC和Hudson Soft於1987年10月30日在日本首次發佈的遊戲機。該系統於1989年8月下旬以TurboGrafx-16的名義在美國市場發佈。它最初是任天堂家庭電腦遊戲機的競爭對手，但最終與世嘉的世嘉Genesis/世嘉Mega Drive以及後來任天堂的超級任天堂娛樂系統競爭。\n基於美國重新設計的PAL版本也於1990年在一些歐洲國家（包括西班牙）以Turbografx的名義發佈（沒有美國名稱中的「16」，並且「Grafx」的「G」改為小寫），但由於只生產了很少的單位，因為取消了大規模發佈的歐洲計畫，所以很難找到該遊戲機。另一方面，法國收到了合法進口的日本遊戲機。\nPC Engine是一個具有16位元圖形晶片的8位元系統，能夠在螢幕上顯示512種顏色。它於1994年停產。',
   platform_sega32x_note:
     '世嘉32X是世嘉Genesis遊戲機的附加元件。代號為「火星計畫」，32X旨在擴展Genesis的能力，並作為32位元時代的過渡遊戲機，直到世嘉土星發佈。獨立於Genesis，32X使用自己的ROM卡匣，並擁有自己的遊戲庫。該附加元件在日本以Super 32X（スーパー32X）的名義發行，在北美以世嘉Genesis 32X的名義發行，在PAL地區以世嘉Mega Drive 32X的名義發行，在巴西以世嘉Mega 32X的名義發行。\n\n世嘉在1994年6月的消費電子展上公佈了32X，32X被定位為消費者尋求玩32位元遊戲的低成本選擇。為了應對雅達利Jaguar以及對土星在1994年底前無法上市的擔憂而開發，該產品最初被構想為一個全新的遊戲機。在世嘉美國執行官Joe Miller及其團隊的建議下，該遊戲機被轉換為現有Genesis的附加元件，並變得更加強大。最終設計包含兩個32位元中央處理單元晶片和一個3D圖形處理器。為了在1994年11月的預定發佈日期前將新的附加元件推向市場，新系統及其遊戲的開發被趕工。由於世嘉土星在日本同時發佈的公告，該遊戲機未能吸引第三方視訊遊戲開發商和消費者。世嘉急於將32X推向市場的努力削減了遊戲開發的可用時間，導致遊戲庫薄弱，只有四十款遊戲無法充分利用附加元件的硬體，包括Genesis端口。到1994年底，32X已售出665,000台。在1995年降價後，它於1996年停產，因為世嘉將其重點轉向土星。\n\n32X被認為是商業失敗。附加元件公佈和發佈後的接待是積極的，強調了系統的低價格和對Genesis的功率擴展。後來對32X的評論，無論是當代還是回顧性的，大多是負面的，因為其遊戲庫薄弱、市場時機不佳以及由此導致的Genesis市場分散。',
-  platform_sfc_note:
-    '超級任天堂娛樂系統（也被稱為超級NES、SNES或超級任天堂，以及日本的超級Famicom）是任天堂開發的16位元家用遊戲機，於1990年在日本、1991年在北美、1992年在歐洲和大洋洲、1993年在南美發佈。在日本，該系統被稱為超級Famicom，正式採用其前身家庭電腦的縮寫名稱，或簡稱SFC。在韓國，它被稱為超級Comboy，由現代電子發行。儘管每個版本基本相同，但幾種形式的區域鎖定防止不同版本彼此相容。',
   platform_sg1000_note:
     '世嘉的SG-1000（世嘉遊戲1000）（又名Mark I）是該公司在家用遊戲機方面的第一次嘗試。它最初於1981年進行試銷，最終於1983年7月向日本消費者發佈。它在當時是一個相當先進的系統，具有令人印象深刻的技術規格。該系統將在日本銷售到1985年，並在歐洲和大洋洲的各個市場發佈。\n\n1984年，世嘉發佈了該遊戲機的更新版本，稱為SG-1000 Mark II。這個重新設計的版本使用遊戲手把代替原始的搖桿，並在兩側有安裝架來儲存它們。它還設有一個插槽，允許稱為SK-1100的鍵盤附件，並與世嘉SC-3000電腦的軟體相容。世嘉還出售了一個名為Card Catcher的可選適配器。該適配器允許SG-1000玩世嘉「遊戲卡」軟體。',
   platform_sms_note:
@@ -238,6 +237,8 @@ export const translation = {
   'Rewind Gameplay': '倒轉遊戲進程',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
     '使用鍵盤上的"R"或控制器按鈕組合來倒轉遊戲進程',
+  ROM: 'ROM',
+  ROM_other: 'ROM',
   'ROMs uploaded': 'ROM已上傳',
   Save: '儲存',
   'Save & Exit': '儲存並退出',
@@ -248,8 +249,10 @@ export const translation = {
   'Search (Ctrl + K)': '搜尋（Ctrl + K）',
   'Sega 32X': 'Sega 32X',
   'Sega SG-1000': 'Sega SG-1000',
+  Select: '選擇',
   'select {{name}}': '選擇 {{name}}',
   'Select all': '全選',
+  'Selected <1>{{count}}</1> {{items}}': '已選擇<1>{{count}}</1>個{{items}}',
   'Select files': '選擇檔案',
   'Select ROMs': '選擇 ROM',
   'Self-Hosting with Docker': '使用Docker自架',
@@ -281,7 +284,7 @@ export const translation = {
   'These free (legal) games are all picked from': '這些免費（合法）遊戲都來自',
   'These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.':
     '這些選項不保證生效，或可能導致啟動失敗。請謹慎調整，風險自負。',
-  'The uploaded file is corrupted (MD5 mismatch).\\n\\nExpected MD5: {{expected}}\\nActual MD5: {{actual}}':
+  'The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: {{expected}}\nActual MD5: {{actual}}':
     '上傳的檔案已損壞（MD5 不符）。\n\n預期 MD5：{{expected}}\n實際 MD5：{{actual}}',
   'This only affects navigation in the library and does not change inputs in games.':
     '這只影響遊戲庫中的導航，不會改變遊戲中的輸入。',

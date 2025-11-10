@@ -21,11 +21,19 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
     developer = 'Various companies'
     manufacturer = 'Various companies'
   }
+
   if (developer?.toLowerCase().includes('nintendo')) {
     developer = 'Nintendo'
   }
   if (manufacturer?.toLowerCase().includes('nintendo')) {
     manufacturer = 'Nintendo'
+  }
+
+  if (developer?.toLowerCase().includes('atari')) {
+    developer = 'Atari'
+  }
+  if (manufacturer?.toLowerCase().includes('atari')) {
+    manufacturer = 'Atari'
   }
 
   return (

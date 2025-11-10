@@ -12,6 +12,12 @@ interface BasePlatform {
   cores: CoreName[]
   displayName: string
   fileExtensions: string[]
+  info: {
+    developer?: string
+    manufacturer?: string
+    notesI18nKey: string
+    releaseDate: string
+  }
   libretroName: string
 }
 
@@ -47,12 +53,22 @@ const basePlatformMap = {
     cores: ['fbneo', 'mame2003_plus'],
     displayName: 'Arcade',
     fileExtensions: ['.zip'],
+    info: {
+      notesI18nKey: 'platform_arcade_note',
+      releaseDate: '1971-10-15T00:00:00-07:00',
+    },
     libretroName: 'MAME',
   },
   atari2600: {
     cores: ['stella2014'],
     displayName: 'Atari 2600',
     fileExtensions: ['.a26', '.zip'],
+    info: {
+      developer: 'Atari, Inc.',
+      manufacturer: 'Atari, Inc.',
+      notesI18nKey: 'platform_atari2600_note',
+      releaseDate: '1977-09-11T00:00:00-07:00',
+    },
     libretroName: 'Atari - 2600',
   },
   atari5200: {
@@ -60,6 +76,12 @@ const basePlatformMap = {
     cores: ['a5200'],
     displayName: 'Atari 5200',
     fileExtensions: ['.a52', '.xfd', '.atr', '.atx', '.cdm', '.cas', '.xex', '.zip'],
+    info: {
+      developer: 'Atari, Inc.',
+      manufacturer: 'Atari, Inc.',
+      notesI18nKey: 'platform_atari5200_note',
+      releaseDate: '1982-11-01T00:00:00-08:00',
+    },
     libretroName: 'Atari - 5200',
   },
   atari7800: {
@@ -70,6 +92,12 @@ const basePlatformMap = {
     cores: ['prosystem'],
     displayName: 'Atari 7800',
     fileExtensions: ['.a78', '.zip'],
+    info: {
+      developer: 'Atari Corporation',
+      manufacturer: 'Atari Corporation',
+      notesI18nKey: 'platform_atari7800_note',
+      releaseDate: '1986-05-01T00:00:00-07:00',
+    },
     libretroName: 'Atari - 7800',
   },
   atarilynx: {
@@ -77,6 +105,12 @@ const basePlatformMap = {
     cores: ['mednafen_lynx'],
     displayName: 'Atari Lynx',
     fileExtensions: ['.lnx', '.lyx', '.bll', '.o', '.zip'],
+    info: {
+      developer: 'Atari Corporation, Epyx, Inc.',
+      manufacturer: 'Atari Corporation',
+      notesI18nKey: 'platform_atarilynx_note',
+      releaseDate: '1989-09-01T00:00:00-07:00',
+    },
     libretroName: 'Atari - Lynx',
   },
   channelf: {
@@ -88,6 +122,12 @@ const basePlatformMap = {
     cores: ['freechaf'],
     displayName: 'Channel F',
     fileExtensions: ['.bin', '.rom', '.zip'],
+    info: {
+      developer: 'Fairchild Semiconductor',
+      manufacturer: 'Fairchild Semiconductor',
+      notesI18nKey: 'platform_channelf_note',
+      releaseDate: '1976-11-01T00:00:00-08:00',
+    },
     libretroName: 'Fairchild - Channel F',
   },
   colecovision: {
@@ -95,6 +135,12 @@ const basePlatformMap = {
     cores: ['gearcoleco'],
     displayName: 'ColecoVision',
     fileExtensions: ['.col', '.cv', '.bin', '.rom', '.zip'],
+    info: {
+      developer: 'Coleco Industries, Inc.',
+      manufacturer: 'Coleco Industries, Inc.',
+      notesI18nKey: 'platform_colecovision_note',
+      releaseDate: '1982-08-01T00:00:00-07:00',
+    },
     libretroName: 'Coleco - ColecoVision',
   },
   famicom: {
@@ -102,6 +148,12 @@ const basePlatformMap = {
     cores: ['fceumm', 'nestopia', 'quicknes'],
     displayName: 'Family Computer',
     fileExtensions: ['.nes', '.unif', '.unf', '.zip'],
+    info: {
+      developer: 'Nintendo R&D2',
+      manufacturer: 'Nintendo Co., Ltd.',
+      notesI18nKey: 'platform_nes_note',
+      releaseDate: '1983-07-15T00:00:00-07:00',
+    },
     libretroName: 'Nintendo - Nintendo Entertainment System',
   },
   fds: {
@@ -113,12 +165,24 @@ const basePlatformMap = {
     cores: ['fceumm', 'nestopia'],
     displayName: 'Famicom Disk System',
     fileExtensions: ['.fds', '.zip'],
+    info: {
+      developer: 'Nintendo',
+      manufacturer: 'Mitsumi',
+      notesI18nKey: 'platform_fds_note',
+      releaseDate: '1986-02-21T00:00:00-08:00',
+    },
     libretroName: 'Nintendo - Family Computer Disk System',
   },
   gameandwatch: {
     cores: ['gw'],
     displayName: 'Game & Watch',
     fileExtensions: ['.zip', '.mgw'],
+    info: {
+      developer: 'Nintendo',
+      manufacturer: 'Nintendo',
+      notesI18nKey: 'platform_gameandwatch_note',
+      releaseDate: '1980-04-28T00:00:00-07:00',
+    },
     libretroName: 'Handheld Electronic Game',
   },
   gamegear: {
@@ -126,6 +190,12 @@ const basePlatformMap = {
     cores: ['genesis_plus_gx', 'gearsystem'],
     displayName: 'Game Gear',
     fileExtensions: ['.gg', '.zip'],
+    info: {
+      developer: 'Nintendo',
+      manufacturer: 'Nintendo',
+      notesI18nKey: 'platform_gamegear_note',
+      releaseDate: '1990-10-06T00:00:00-07:00',
+    },
     libretroName: 'Sega - Game Gear',
   },
   gb: {
@@ -133,6 +203,12 @@ const basePlatformMap = {
     cores: ['mgba', 'gearboy', 'gambatte', 'tgbdual'],
     displayName: 'Game Boy',
     fileExtensions: ['.gb', '.zip'],
+    info: {
+      developer: 'Nintendo',
+      manufacturer: 'Nintendo',
+      notesI18nKey: 'platform_gb_note',
+      releaseDate: '1989-04-21T00:00:00-07:00',
+    },
     libretroName: 'Nintendo - Game Boy',
   },
   gba: {
@@ -140,6 +216,12 @@ const basePlatformMap = {
     cores: ['mgba', 'vba_next'],
     displayName: 'Game Boy Advance',
     fileExtensions: ['.gba', '.zip'],
+    info: {
+      developer: 'Nintendo',
+      manufacturer: 'Nintendo',
+      notesI18nKey: 'platform_gba_note',
+      releaseDate: '2001-06-11T00:00:00-07:00',
+    },
     libretroName: 'Nintendo - Game Boy Advance',
   },
   gbc: {
@@ -147,6 +229,12 @@ const basePlatformMap = {
     cores: ['mgba', 'gearboy', 'gambatte', 'tgbdual'],
     displayName: 'Game Boy Color',
     fileExtensions: ['.gb', '.gbc', '.cgb', '.sgb', '.zip'],
+    info: {
+      developer: 'Nintendo',
+      manufacturer: 'Nintendo',
+      notesI18nKey: 'platform_gbc_note',
+      releaseDate: '1998-10-21T00:00:00-07:00',
+    },
     libretroName: 'Nintendo - Game Boy Color',
   },
   genesis: {
@@ -154,6 +242,12 @@ const basePlatformMap = {
     cores: ['genesis_plus_gx'],
     displayName: 'Genesis',
     fileExtensions: ['.md', '.gen', '.zip'],
+    info: {
+      developer: 'Sega Enterprises',
+      manufacturer: 'Sega Enterprises',
+      notesI18nKey: 'platform_megadrive_note',
+      releaseDate: '1989-08-14T00:00:00-07:00',
+    },
     libretroName: 'Sega - Mega Drive - Genesis',
   },
   megadrive: {
@@ -161,24 +255,48 @@ const basePlatformMap = {
     cores: ['genesis_plus_gx'],
     displayName: 'Megadrive',
     fileExtensions: ['.md', '.gen', '.zip'],
+    info: {
+      developer: 'Sega Enterprises',
+      manufacturer: 'Sega Enterprises',
+      notesI18nKey: 'platform_megadrive_note',
+      releaseDate: '1989-08-14T00:00:00-07:00',
+    },
     libretroName: 'Sega - Mega Drive - Genesis',
   },
   nes: {
     cores: ['fceumm', 'nestopia', 'quicknes'],
     displayName: 'NES',
     fileExtensions: ['.nes', '.unif', '.unf', '.zip'],
+    info: {
+      developer: 'Nintendo R&D2',
+      manufacturer: 'Nintendo Co., Ltd.',
+      notesI18nKey: 'platform_nes_note',
+      releaseDate: '1983-07-15T00:00:00-07:00',
+    },
     libretroName: 'Nintendo - Nintendo Entertainment System',
   },
   ngp: {
     cores: ['mednafen_ngp'],
     displayName: 'Neo Geo Pocket',
     fileExtensions: ['.ngp', '.zip'],
+    info: {
+      developer: 'SNK',
+      manufacturer: 'SNK',
+      notesI18nKey: 'platform_ngp_note',
+      releaseDate: '1998-12-31T00:00:00-08:00',
+    },
     libretroName: 'SNK - Neo Geo Pocket',
   },
   ngpc: {
     cores: ['mednafen_ngp'],
     displayName: 'Neo Geo Pocket Color',
     fileExtensions: ['.ngc', '.zip'],
+    info: {
+      developer: 'SNK',
+      manufacturer: 'SNK',
+      notesI18nKey: 'platform_ngpc_note',
+      releaseDate: '1999-03-16T00:00:00-08:00',
+    },
     libretroName: 'SNK - Neo Geo Pocket Color',
   },
   odyssey2: {
@@ -186,6 +304,12 @@ const basePlatformMap = {
     cores: ['o2em'],
     displayName: 'Magnavox Odyssey 2',
     fileExtensions: ['.bin', '.zip'],
+    info: {
+      developer: 'Magnavox / Philips',
+      manufacturer: 'Magnavox / Philips',
+      notesI18nKey: 'platform_odyssey2_note',
+      releaseDate: '1978-12-01T00:00:00-08:00',
+    },
     libretroName: 'Magnavox - Odyssey2',
   },
   pcengine: {
@@ -198,24 +322,48 @@ const basePlatformMap = {
     cores: ['mednafen_pce_fast'],
     displayName: 'PC Engine',
     fileExtensions: ['.pce', '.bin', '.zip'],
+    info: {
+      developer: 'NEC Corporation, Hudson Soft',
+      manufacturer: 'NEC Corporation, Hudson Soft',
+      notesI18nKey: 'platform_pcengine_note',
+      releaseDate: '1989-08-29T00:00:00-07:00',
+    },
     libretroName: 'NEC - PC Engine - TurboGrafx 16',
   },
   sega32x: {
     cores: ['picodrive'],
     displayName: 'Sega 32X',
     fileExtensions: ['.32X', '.zip'],
+    info: {
+      developer: 'Nintendo',
+      manufacturer: 'Nintendo',
+      notesI18nKey: 'platform_sega32x_note',
+      releaseDate: '1994-06-01T00:00:00-07:00',
+    },
     libretroName: 'Sega - 32X',
   },
   sfc: {
     cores: ['snes9x', 'snes9x2002', 'snes9x2005', 'snes9x2010'],
     displayName: 'Super Famicom',
     fileExtensions: ['.smc', '.sfc', '.zip'],
+    info: {
+      developer: 'Nintendo',
+      manufacturer: 'Nintendo',
+      notesI18nKey: 'platform_snes_note',
+      releaseDate: '1994-06-01T00:00:00-07:00',
+    },
     libretroName: 'Nintendo - Super Nintendo Entertainment System',
   },
   'sg-1000': {
     cores: ['gearsystem'],
     displayName: 'Sega SG-1000',
     fileExtensions: ['.sg', '.zip'],
+    info: {
+      developer: 'Sega',
+      manufacturer: 'Sega',
+      notesI18nKey: 'platform_sg1000_note',
+      releaseDate: '1983-07-15T00:00:00-07:00',
+    },
     libretroName: 'Sega - SG-1000',
   },
   sms: {
@@ -227,18 +375,36 @@ const basePlatformMap = {
     cores: ['genesis_plus_gx', 'picodrive', 'gearsystem'],
     displayName: 'Master System',
     fileExtensions: ['.sms', '.zip'],
+    info: {
+      developer: 'SEGA Enterprises Ltd.',
+      manufacturer: 'SEGA Enterprises Ltd.',
+      notesI18nKey: 'platform_sms_note',
+      releaseDate: '1986-09-01T00:00:00-07:00',
+    },
     libretroName: 'Sega - Master System - Mark III',
   },
   snes: {
     cores: ['snes9x', 'snes9x2002', 'snes9x2005', 'snes9x2010'],
     displayName: 'Super NES',
     fileExtensions: ['.smc', '.sfc', '.zip'],
+    info: {
+      developer: 'Nintendo',
+      manufacturer: 'Nintendo',
+      notesI18nKey: 'platform_snes_note',
+      releaseDate: '1990-11-21T00:00:00-08:00',
+    },
     libretroName: 'Nintendo - Super Nintendo Entertainment System',
   },
   vb: {
     cores: ['mednafen_vb'],
     displayName: 'Virtual Boy',
     fileExtensions: ['.vb', '.vboy', '.zip'],
+    info: {
+      developer: 'Nintendo',
+      manufacturer: 'Nintendo',
+      notesI18nKey: 'platform_vb_note',
+      releaseDate: '1995-07-21T00:00:00-07:00',
+    },
     libretroName: 'Nintendo - Virtual Boy',
   },
   videopac: {
@@ -246,18 +412,36 @@ const basePlatformMap = {
     cores: ['o2em'],
     displayName: 'Philips Videopac+',
     fileExtensions: ['.bin', '.zip'],
+    info: {
+      developer: 'Philips',
+      manufacturer: 'Philips',
+      notesI18nKey: 'platform_videopac_note',
+      releaseDate: '1983-08-01T00:00:00-07:00',
+    },
     libretroName: 'Philips - Videopac+',
   },
   wonderswan: {
     cores: ['mednafen_wswan'],
     displayName: 'WonderSwan',
     fileExtensions: ['.ws', '.zip'],
+    info: {
+      developer: 'Bandai Co., Ltd.',
+      manufacturer: 'Bandai Co., Ltd.',
+      notesI18nKey: 'platform_wonderswan_note',
+      releaseDate: '1999-03-04T00:00:00-08:00',
+    },
     libretroName: 'Bandai - WonderSwan',
   },
   wonderswancolor: {
     cores: ['mednafen_wswan'],
     displayName: 'WonderSwan Color',
     fileExtensions: ['.wsc', '.zip'],
+    info: {
+      developer: 'Bandai Co., Ltd.',
+      manufacturer: 'Bandai Co., Ltd.',
+      notesI18nKey: 'platform_wonderswancolor_note',
+      releaseDate: '2000-12-09T00:00:00-08:00',
+    },
     libretroName: 'Bandai - WonderSwan Color',
   },
 } satisfies Record<string, BasePlatform>

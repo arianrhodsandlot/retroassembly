@@ -35,7 +35,7 @@ Node.js / Cloudflare Workers, SQLite / Cloudflare D1, Cloudflare R2
 - Single quotes, no semicolons, two‑space indentation
 - Use function declarations (`function xx() {}`) over function expressions (`const xx = () => {}`)
 - Make use of modern features from the latest ECMAScript and the latest browsers.
-- For complex data transformations, use helper functions from `es-toolkit`, while using JavaScript's built-in helpers like `for of`, `.map`, `.flatMap` for simple cases. But never use `.reduce`. There is always a better way to make it clear.
+- For complex data transformations, use helper functions from `es-toolkit`, while use JavaScript's built-in helpers like `for of`, `.map`, `.flatMap` for simple cases. But never use `.reduce`. There is always a better way to make it clear.
 - Never use `promise.then` or `promise.catch`. We prefer `async` and `await`. If error handling becomes verbose, try using `attemptAsync` from `es-toolkit`.
 
 ### React Guidelines

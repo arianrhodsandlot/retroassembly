@@ -1,4 +1,3 @@
-import { attemptAsync } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
 import { platformMap, type PlatformName } from '@/constants/platform.ts'
 import { getPlatformInfo } from '@/controllers/roms/get-platform-info.ts'
@@ -13,7 +12,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   const url = new URL(request.url)
   const page = Number.parseInt(url.searchParams.get('page') || '1', 10) || 1
   const { pagination, roms } = await getRoms({ page, platform })
-  const [, platformInfo] = await attemptAsync(() => getPlatformInfo(platform))
+  const platformInfo = getPlatformInfo(platform)
 
   return getLoaderData({ page, pagination, platform, platformInfo, roms, title: t(platformMap[platform].displayName) })
 }

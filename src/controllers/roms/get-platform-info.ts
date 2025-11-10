@@ -1,20 +1,10 @@
-import { msleuth } from '../../utils/server/msleuth.ts'
+import { getContext } from 'hono/context-storage'
+import { platformMap } from '@/constants/platform.ts'
 
 export type PlatformInfo = Awaited<ReturnType<typeof getPlatformInfo>>
 
-const cache = {}
-export async function getPlatformInfo(platform: string) {
-  if (platform in cache) {
-    try {
-      const result = await cache[platform]
-      if (result) {
-        return result
-      }
-      delete cache[platform]
-    } catch {
-      delete cache[platform]
-    }
-  }
-  const platformInfoPromise = msleuth.getPlatform(platform)
-  return platformInfoPromise
+export function getPlatformInfo(platform: string) {
+  const { t } = getContext().var
+  const platformInfo = { ...platformMap[platform].info, notes: t(platformMap[platform].info.notesI18nKey) }
+  return platformInfo
 }

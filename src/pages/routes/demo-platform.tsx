@@ -1,4 +1,3 @@
-import { attemptAsync } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
 import { platformMap } from '@/constants/platform.ts'
 import { defaultPreference } from '@/constants/preference.ts'
@@ -7,13 +6,13 @@ import { getPlatformInfo } from '@/controllers/roms/get-platform-info.ts'
 import PlatformPage from '../library/platform/page.tsx'
 import type { Route } from './+types/library-platform.ts'
 
-export async function loader({ params }: Route.LoaderArgs) {
+export function loader({ params }: Route.LoaderArgs) {
   const { t } = getContext().var
   const { platform = '' } = params
 
   const preference = structuredClone(defaultPreference)
   preference.ui.platforms = ['gba', 'gbc', 'genesis', 'nes', 'snes']
-  const [, platformInfo] = await attemptAsync(() => getPlatformInfo(platform))
+  const platformInfo = getPlatformInfo(platform)
 
   return {
     count: 0,

@@ -7,18 +7,18 @@ import { isMatch } from 'es-toolkit/compat'
 import { useDeferredValue, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
-import { useLoaderData } from 'react-router'
 import { mutate } from 'swr'
 import useSWRMutation from 'swr/mutation'
 import { client } from '@/api/client.ts'
 import { platformMap, type PlatformName } from '@/constants/platform.ts'
+import { useGlobalLoaderData } from '@/pages/hooks/use-global-loader-data.ts'
 import { useRouter } from '../../hooks/use-router.ts'
 import { getROMMd5 } from '../../utils/file.ts'
 import { UploadInstruction } from './upload-instruction.tsx'
 
 export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: PlatformName; toggleOpen: () => void }>) {
   const { t } = useTranslation()
-  const { env, isOfficialHost } = useLoaderData()
+  const { env, isOfficialHost } = useGlobalLoaderData()
   const maxFiles = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE, 10) || 1000
 
   const { reloadSilently } = useRouter()

@@ -1,6 +1,6 @@
 import { keyBy, mapValues } from 'es-toolkit'
 import i18next from 'i18next'
-import { locales } from '@/locales/index.ts'
+import { locales } from '@/locales/locales.ts'
 
 export const defaultLanguage = 'en'
 

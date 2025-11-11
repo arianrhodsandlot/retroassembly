@@ -26,6 +26,7 @@ export function getLoaderData<T>(data: T = {} as T) {
     language,
     preference,
     runtimeKey,
+    title: metadata.title,
     ...data,
   }
 }

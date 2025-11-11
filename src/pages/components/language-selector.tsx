@@ -1,7 +1,7 @@
 import { Button, DropdownMenu } from '@radix-ui/themes'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
-import { locales } from '@/locales/index.ts'
+import { locales } from '@/locales/locales.ts'
 import { defaultLanguage } from '@/utils/isomorphic/i18n.ts'
 
 export function LanguageSelector() {
@@ -19,7 +19,7 @@ export function LanguageSelector() {
       <DropdownMenu.Content>
         {locales.map((locale) => (
           <DropdownMenu.Item asChild key={locale.code}>
-            <Link replace to={`/${locale.code === defaultLanguage ? '' : locale.code}`}>
+            <Link replace to={`/${locale.code === defaultLanguage ? '' : locale.code.toLowerCase()}`}>
               {locale.name}
               {locale.code === code ? <span className='icon-[mdi--check]' /> : null}
             </Link>

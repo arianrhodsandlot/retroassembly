@@ -1,9 +1,9 @@
-import { useLoaderData } from 'react-router'
+import { useGlobalLoaderData } from '@/pages/hooks/use-global-loader-data.ts'
 import { AccountSettings } from './account-settings.tsx'
 import { LanguageSettings } from './language-settings.tsx'
 
 export function GeneralSettings() {
-  const { runtimeKey } = useLoaderData()
+  const { runtimeKey } = useGlobalLoaderData()
   return (
     <div className='flex flex-col gap-4'>
       <LanguageSettings />

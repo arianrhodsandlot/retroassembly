@@ -2,14 +2,13 @@ import { Button } from '@radix-ui/themes'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useLoaderData } from 'react-router'
 import { cookieConsentStatusKey } from '@/constants/misc.ts'
 import { initClarity } from '@/utils/client/clarity.ts'
+import { useGlobalLoaderData } from '../hooks/use-global-loader-data.ts'
 
 export function CookieConsent() {
   const { t } = useTranslation()
-  const loaderData = useLoaderData()
-  const { cookieConsentStatus, isOfficialHost } = loaderData || {}
+  const { cookieConsentStatus, isOfficialHost } = useGlobalLoaderData()
   const [visible, setVisible] = useState(!cookieConsentStatus)
 
   function handleClickAccept() {

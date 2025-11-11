@@ -27,7 +27,7 @@ export function loader({ request }) {
   const { origin } = new URL(c.req.url)
   const homeHeadElements = Object.keys(resources).map((language) => ({
     props: {
-      href: new URL(`${language === defaultLanguage ? '' : language}`, origin).href,
+      href: new URL(`${language === defaultLanguage ? '' : language.toLowerCase()}`, origin).href,
       hrefLang: language,
       key: language,
       rel: 'alternate',

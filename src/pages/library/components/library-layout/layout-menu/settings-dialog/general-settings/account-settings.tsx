@@ -1,17 +1,17 @@
 import { Button, Callout, Card } from '@radix-ui/themes'
 import type { FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useLoaderData } from 'react-router'
 import useSWRMutation from 'swr/mutation'
 import { client } from '@/api/client.ts'
 import { AccountFormField } from '@/pages/components/account-form-field.tsx'
+import { useGlobalLoaderData } from '@/pages/hooks/use-global-loader-data.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
 const { $patch } = client.auth.password
 
 export function AccountSettings() {
   const { t } = useTranslation()
-  const { currentUser } = useLoaderData()
+  const { currentUser } = useGlobalLoaderData()
 
   function validateFormData(formData: FormData) {
     if (formData.get('new_password') !== formData.get('repeat_new_password')) {
@@ -27,7 +27,7 @@ export function AccountSettings() {
   }
   const accountFormFields = [
     {
-      defaultValue: currentUser.username,
+      defaultValue: 'username' in currentUser ? currentUser.username : '',
       iconClass: 'icon-[mdi--user-card-details]',
       label: t('Username'),
       name: 'username',

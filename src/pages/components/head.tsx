@@ -3,11 +3,12 @@ import { createElement, useSyncExternalStore } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Links, Meta, useLoaderData } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
+import type { loader } from '@/pages/root.tsx'
 import { cdnHost } from '@/utils/isomorphic/cdn.ts'
 
 export function Head() {
   const { t } = useTranslation()
-  const { headElements } = useLoaderData() || {}
+  const { headElements } = useLoaderData<typeof loader>()
   const target = useSyncExternalStore(
     () => noop,
     () => (globalThis.self === globalThis.top ? '_self' : '_blank'),
@@ -27,7 +28,7 @@ export function Head() {
       <base target={target} />
 
       {/* metadata related */}
-      <meta content={t('metadata.description')} name='description' />
+      <meta content={t(metadata.description)} name='description' />
       <link href={metadata.link} rel='canonical' />
 
       <link href={new URL('/assets/logo/logo-192x192.png', metadata.link).href} rel='icon' sizes='any' />
@@ -43,20 +44,20 @@ export function Head() {
       <meta content='website' property='og:type' />
       <meta content={metadata.link} property='og:url' />
       <meta content={metadata.title} property='og:title' />
-      <meta content={t('metadata.description')} property='og:description' />
+      <meta content={t(metadata.description)} property='og:description' />
       <meta content={new URL('/assets/screenshots/library.jpeg', metadata.link).href} property='og:image' />
 
       <meta content='summary_large_image' name='twitter:card' />
       <meta content={metadata.link} name='twitter:url' />
       <meta content={metadata.title} name='twitter:title' />
-      <meta content={t('metadata.description')} name='twitter:description' />
+      <meta content={t(metadata.description)} name='twitter:description' />
       <meta content={new URL('/assets/screenshots/library.jpeg', metadata.link).href} name='twitter:image' />
 
       {/* perfermance */}
       <link href={cdnHost} rel='dns-prefetch' />
       <link crossOrigin='anonymous' href={cdnHost} rel='preconnect' />
 
-      {headElements?.map(({ children, props, type }) => createElement(type, props, children))}
+      {headElements?.map(({ props, type }) => createElement(type, props))}
 
       <Meta />
       <Links />

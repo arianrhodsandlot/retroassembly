@@ -6,13 +6,13 @@ import { match } from 'path-to-regexp'
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import { getPreference } from '@/controllers/preference/get-preference.ts'
 import { getCurrentUser } from '@/controllers/users/get-current-user.ts'
-import { locales } from '@/locales/index.ts'
+import { locales } from '@/locales/locales.ts'
 import { defaultLanguage, i18n } from '@/utils/isomorphic/i18n.ts'
 
 declare module 'hono' {
   interface ContextVariableMap {
     authorized: boolean
-    currentUser: { id: string }
+    currentUser: NonNullable<Awaited<ReturnType<typeof getCurrentUser>>>
     detectedLanguage: string
     i18n: typeof i18n
     language: string
@@ -38,6 +38,7 @@ function getLanguage(c: Context) {
 
   const path = c.req.path.endsWith('.data') ? c.req.path.slice(0, -5) : c.req.path
   const segments = path.split('/').slice(1)
+  const [segment] = segments
   const isDemo = match('/demo{/*path}')(path)
   const isLibrary = match('/library{/*path}')(path)
   const isLogin = path === '/login'
@@ -45,7 +46,7 @@ function getLanguage(c: Context) {
 
   let language = c.var.detectedLanguage
   if (isHome) {
-    language = segments[0] || defaultLanguage
+    language = locales.find(({ code }) => segment === code.toLowerCase())?.code || defaultLanguage
   } else if (isLibrary || isDemo) {
     language =
       !preference?.ui?.language || preference?.ui?.language === 'auto'

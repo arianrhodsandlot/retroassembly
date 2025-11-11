@@ -13,6 +13,7 @@ import { useRom } from '@/pages/library/hooks/use-rom.ts'
 import { useRouter } from '@/pages/library/hooks/use-router.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { focus, offCancel, onCancel } from '@/pages/library/utils/spatial-navigation.ts'
+import type { loader } from '@/pages/routes/library-platform-rom.tsx'
 import { getCDNUrl } from '@/utils/isomorphic/cdn.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
 import { useIsFullscreen, useLaunchButton } from '../atoms.ts'
@@ -51,7 +52,7 @@ export function useEmulator() {
   if (!rom) {
     throw new Error('this should not happen')
   }
-  const { state } = useLoaderData()
+  const { state } = useLoaderData<typeof loader>()
   const { preference } = usePreference()
   const gamepadMapping = useGamepadMapping()
   const [launched, setLaunched] = useEmulatorLaunched()

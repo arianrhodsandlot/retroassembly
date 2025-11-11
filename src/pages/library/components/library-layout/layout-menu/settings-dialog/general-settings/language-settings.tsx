@@ -1,14 +1,14 @@
 import { Card, Select } from '@radix-ui/themes'
 import { useTranslation } from 'react-i18next'
-import { useLoaderData } from 'react-router'
-import { locales } from '@/locales/index.ts'
+import { locales } from '@/locales/locales.ts'
+import { useGlobalLoaderData } from '@/pages/hooks/use-global-loader-data.ts'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { dateFormatMap, dateFormats } from '@/utils/isomorphic/i18n.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
 export function LanguageSettings() {
   const { i18n, t } = useTranslation()
-  const { detectedLanguage } = useLoaderData()
+  const { detectedLanguage } = useGlobalLoaderData()
   const { isLoading, preference, update } = usePreference()
 
   return (

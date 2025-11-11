@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react'
-import { useLoaderData } from 'react-router'
+import { useGlobalLoaderData } from '@/pages/hooks/use-global-loader-data.ts'
 
 function subscribe(callback: () => void) {
   const controller = new AbortController()
@@ -14,7 +14,7 @@ function getSnapshot() {
 }
 
 export function useViewport() {
-  const { isLikelyDesktop } = useLoaderData()
+  const { isLikelyDesktop } = useGlobalLoaderData()
   const width = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
   const isLargeScreen = width >= 1024
   const isNotLargeScreen = !isLargeScreen

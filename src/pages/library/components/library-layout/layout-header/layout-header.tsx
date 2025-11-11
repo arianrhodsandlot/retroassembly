@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useGlobalLoaderData } from '@/pages/hooks/use-global-loader-data.ts'
 import { useViewport } from '@/pages/library/hooks/use-viewport.ts'
-import { defaultLanguage } from '@/utils/isomorphic/i18n.ts'
+import { getHomePath } from '@/utils/isomorphic/misc.ts'
 import { useNavigationLinks } from '../../../hooks/use-navigation-links.ts'
 import { LayoutMenu } from '../layout-menu/layout-menu.tsx'
 import { HeaderLinkItem } from './header-link-item.tsx'
@@ -27,11 +27,7 @@ export function LayoutHeader() {
 
   return (
     <header className='bg-(--accent-9) flex items-center px-4 py-2 lg:hidden'>
-      <Link
-        className='flex items-center gap-2 font-bold'
-        reloadDocument
-        to={language === defaultLanguage ? '/' : `/${language}`}
-      >
+      <Link className='flex items-center gap-2 font-bold' reloadDocument to={getHomePath(language)}>
         <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
       </Link>
 

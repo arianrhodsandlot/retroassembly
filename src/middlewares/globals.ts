@@ -34,7 +34,7 @@ function getDetectedLanguage(c: Context) {
 }
 
 function getLanguage(c: Context) {
-  const { preference } = c.var
+  const { detectedLanguage, preference } = c.var
 
   const path = c.req.path.endsWith('.data') ? c.req.path.slice(0, -5) : c.req.path
   const segments = path.split('/').slice(1)
@@ -44,14 +44,12 @@ function getLanguage(c: Context) {
   const isLogin = path === '/login'
   const isHome = !isDemo && !isLibrary && !isLogin && match('/{:language}')(path)
 
-  let language = c.var.detectedLanguage
+  let language = detectedLanguage
   if (isHome) {
     language = locales.find(({ code }) => segment === code.toLowerCase())?.code || defaultLanguage
   } else if (isLibrary || isDemo) {
     language =
-      !preference?.ui?.language || preference?.ui?.language === 'auto'
-        ? c.var.detectedLanguage
-        : preference?.ui?.language
+      !preference?.ui?.language || preference?.ui?.language === 'auto' ? detectedLanguage : preference?.ui?.language
   }
 
   if (!supportLanguages.includes(language)) {

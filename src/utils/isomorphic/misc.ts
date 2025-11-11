@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
 import sparkMd5 from 'spark-md5'
+import { defaultLanguage } from './i18n.ts'
 
 export function restoreTitleForSorting(title: string) {
   // Match titles ending with ", A", ", An", or ", The" followed by optional additional info
@@ -62,4 +63,8 @@ export function serializeCookieHeader(name: string, value: string, options: any)
 export async function getFileMd5(file: Blob) {
   const buffer = await file.arrayBuffer()
   return sparkMd5.ArrayBuffer.hash(buffer)
+}
+
+export function getHomePath(language: string) {
+  return `/${language === defaultLanguage ? '' : language.toLowerCase()}`
 }

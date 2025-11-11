@@ -3,7 +3,7 @@ import type { PropsWithChildren } from 'react'
 import { Link } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
 import { useGlobalLoaderData } from '@/pages/hooks/use-global-loader-data.ts'
-import { defaultLanguage } from '@/utils/isomorphic/i18n.ts'
+import { getHomePath } from '@/utils/isomorphic/misc.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
 import { useFocusRestoration } from '../../hooks/use-focus-restoration.ts'
 import { useViewport } from '../../hooks/use-viewport.ts'
@@ -44,11 +44,7 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
         <StatusBar />
         <SidebarContainer>
           <div className='flex items-center justify-between px-4 pb-4'>
-            <Link
-              className='flex items-center gap-2 font-bold'
-              reloadDocument
-              to={language === defaultLanguage ? '/' : `/${language}`}
-            >
+            <Link className='flex items-center gap-2 font-bold' reloadDocument to={getHomePath(language)}>
               <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
               <span className='font-[Roboto_Slab_Variable] font-semibold'>{metadata.title}</span>
             </Link>

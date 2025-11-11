@@ -4,10 +4,10 @@ import { HydrationBoundary } from 'jotai-ssr'
 import { ThemeProvider } from 'next-themes'
 import { type ReactNode, useEffect } from 'react'
 import { I18nextProvider } from 'react-i18next'
-import { Scripts, ScrollRestoration, useLoaderData } from 'react-router'
+import { Scripts, ScrollRestoration } from 'react-router'
 import { i18n } from '@/utils/isomorphic/i18n.ts'
-import type { getLoaderData } from '@/utils/server/loader-data.ts'
 import { preferenceAtom } from '../atoms.ts'
+import { useGlobalLoaderData } from '../hooks/use-global-loader-data.ts'
 import { CookieConsent } from './cookie-consent.tsx'
 import { Head } from './head.tsx'
 import { RadixTheme } from './radix-theme.tsx'
@@ -17,7 +17,7 @@ if (isBrowser()) {
 }
 
 export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
-  const { currentUser, language, preference } = useLoaderData<typeof getLoaderData>() || {}
+  const { currentUser, language, preference } = useGlobalLoaderData() || {}
   const hydrateAtom = [preferenceAtom, preference] as const
   const hydrateAtoms = [hydrateAtom]
 

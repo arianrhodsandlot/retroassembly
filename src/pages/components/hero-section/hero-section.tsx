@@ -15,6 +15,7 @@ export function HeroSection() {
           <ScreenshotSlider />
         </div>
       </div>
+
       <div className='w-6xl pointer-events-none mx-auto flex max-w-full items-center gap-4 pb-8'>
         <LogoSlider />
       </div>

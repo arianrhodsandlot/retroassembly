@@ -8,7 +8,7 @@ import { cdnHost } from '@/utils/isomorphic/cdn.ts'
 
 export function Head() {
   const { t } = useTranslation()
-  const { headElements } = useLoaderData<typeof loader>()
+  const { headElements } = useLoaderData<typeof loader>() || {}
   const target = useSyncExternalStore(
     () => noop,
     () => (globalThis.self === globalThis.top ? '_self' : '_blank'),
@@ -31,13 +31,9 @@ export function Head() {
       <meta content={t(metadata.description)} name='description' />
       <link href={metadata.link} rel='canonical' />
 
-      <link href={new URL('/assets/logo/logo-192x192.png', metadata.link).href} rel='icon' sizes='any' />
-      <link href={new URL('/assets/logo/logo.svg', metadata.link).href} rel='icon' type='image/svg+xml' />
-      <link
-        href={new URL('/assets/logo/apple-touch-icon.png', metadata.link).href}
-        rel='apple-touch-icon'
-        sizes='any'
-      />
+      <link href='/assets/logo/logo-192x192.png' rel='icon' sizes='any' />
+      <link href='/assets/logo/logo.svg' rel='icon' type='image/svg+xml' />
+      <link href='/assets/logo/apple-touch-icon.png' rel='apple-touch-icon' sizes='any' />
 
       <link href='/manifest.webmanifest' rel='manifest' />
 

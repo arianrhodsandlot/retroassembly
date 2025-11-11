@@ -18,6 +18,11 @@ export function loader({ params }: Route.LoaderArgs) {
   const { detectedLanguage, language } = loaderData
   const c = getContext()
 
+  const skipIfLoggedIn = getRunTimeEnv().RETROASSEMBLY_RUN_TIME_SKIP_HOME_IF_LOGGED_IN === 'true'
+  if (loaderData.currentUser && skipIfLoggedIn) {
+    throw c.redirect('/library')
+  }
+
   const isDetectedLanguage = language === detectedLanguage
 
   if (!params.language) {
@@ -31,11 +36,6 @@ export function loader({ params }: Route.LoaderArgs) {
     }
   } else if (params.language === defaultLanguage || !isValidLanguage(params.language)) {
     throw new Response('Not Found', { status: 404 })
-  }
-
-  const skipIfLoggedIn = getRunTimeEnv().RETROASSEMBLY_RUN_TIME_SKIP_HOME_IF_LOGGED_IN === 'true'
-  if (loaderData.currentUser && skipIfLoggedIn) {
-    throw c.redirect('/library')
   }
 
   return loaderData

@@ -3,12 +3,14 @@ import { clsx } from 'clsx'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
 import type { client, InferResponseType } from '@/api/client.ts'
+import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { humanizeDate } from '@/utils/isomorphic/misc.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 
 export function GameState({ state }: Readonly<{ state: InferResponseType<typeof client.states.$get>[number] }>) {
+  const { preference } = usePreference()
   const { hide, setIsPending } = useGameOverlay()
   const { core, emulator } = useEmulator()
   const [loaded, setLoaded] = useState(false)
@@ -81,7 +83,7 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
           <span className='icon-[svg-spinners--180-ring] text-(--accent-9) block size-3' />
         ) : (
           <>
-            Saved at <Badge>{humanizeDate(state.createdAt)}</Badge>
+            Saved at <Badge>{humanizeDate(state.createdAt, preference.ui.dateFormat)}</Badge>
           </>
         )}
       </div>

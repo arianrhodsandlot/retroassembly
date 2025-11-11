@@ -1,13 +1,14 @@
 import { getContext } from 'hono/context-storage'
 import { defaultPreference } from '@/constants/preference.ts'
 import { getDemoRoms } from '@/controllers/roms/get-demo-roms.ts'
+import { getLoaderData } from '@/utils/server/loader-data.ts'
 import LibraryPage from '../library/page.tsx'
 
 export function loader() {
   const { t } = getContext().var
   const preference = structuredClone(defaultPreference)
   preference.ui.platforms = ['gba', 'gbc', 'genesis', 'nes', 'snes']
-  return {
+  return getLoaderData({
     count: 0,
     page: 1,
     pagination: { current: 1, pages: 1, size: 0, total: 0 },
@@ -15,7 +16,7 @@ export function loader() {
     preference,
     roms: getDemoRoms(),
     title: `${t('Library')} (Demo)`,
-  }
+  })
 }
 
 export default function LibraryRoute() {

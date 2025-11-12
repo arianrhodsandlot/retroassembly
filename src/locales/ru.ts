@@ -15,8 +15,12 @@ export const translation = {
   Add: 'Добавить',
   'Add a slight blur to the image to take the edge off of the hard pixel edges.':
     'Добавляет лёгкое размытие к изображению для смягчения резких краёв пикселей.',
+  'Adding these ROMs would exceed the maximum allowed ROM count of {{maxRomCount}}.':
+    'Добавление этих ROMов превысит максимально допустимое количество ROMов {{maxRomCount}}.',
   'All rights reserved': 'Все права защищены',
   Always: 'Всегда',
+  'And you can have up to <1>{{maxRomCount}}</1> ROMs in your library.':
+    'И вы можете иметь до <1>{{maxRomCount}}</1> ROM в вашей библиотеке.',
   'An unexpected error occurred.': 'Произошла неожиданная ошибка.',
   Arcade: 'Аркада',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.':

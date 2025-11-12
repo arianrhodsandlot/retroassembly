@@ -20,6 +20,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
   const { t } = useTranslation()
   const { env, isOfficialHost } = useGlobalLoaderData()
   const maxFiles = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE, 10) || 1000
+  const maxRomCount = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_ROM_COUNT, 10) || Infinity
 
   const { reloadSilently } = useRouter()
   const { getRootProps, isDragActive } = useDropzone({ onDrop })
@@ -39,50 +40,65 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
     await client.roms.$post({ form: { 'files[]': files, md5s: JSON.stringify(md5s), platform } })
   }
 
-  const { trigger } = useSWRMutation('/api/v1/roms', async (url: string, { arg: files }: { arg: File[] }) => {
-    let showConfetti = false
-    setStatus('loading')
+  const { trigger } = useSWRMutation(
+    '/api/v1/roms',
+    async (url: string, { arg: files }: { arg: File[] }) => {
+      let showConfetti = false
+      setStatus('loading')
 
-    for (const filesChunk of chunk(files, 10)) {
-      const newUploadedFiles = { ...uploadedFiles }
-      newUploadedFiles.loading = filesChunk
-      setUploadedFiles(newUploadedFiles)
-      setProgress(
-        ((newUploadedFiles.success.length +
-          newUploadedFiles.failure.length +
-          Math.floor(newUploadedFiles.loading.length / 2)) /
-          files.length) *
-          100,
-      )
+      const errors: unknown[] = []
+      for (const filesChunk of chunk(files, 10)) {
+        const newUploadedFiles = { ...uploadedFiles }
+        newUploadedFiles.loading = filesChunk
+        setUploadedFiles(newUploadedFiles)
+        setProgress(
+          ((newUploadedFiles.success.length +
+            newUploadedFiles.failure.length +
+            Math.floor(newUploadedFiles.loading.length / 2)) /
+            files.length) *
+            100,
+        )
 
-      try {
-        await uploadFiles(url, filesChunk)
-        newUploadedFiles.success.push(...filesChunk)
-        showConfetti = true
-      } catch {
-        newUploadedFiles.failure.push(...filesChunk)
+        try {
+          await uploadFiles(url, filesChunk)
+          newUploadedFiles.success.push(...filesChunk)
+          showConfetti = true
+        } catch (error) {
+          newUploadedFiles.failure.push(...filesChunk)
+          errors.push(error)
+        }
+
+        newUploadedFiles.loading = []
+        setUploadedFiles(newUploadedFiles)
+        setProgress(
+          ((newUploadedFiles.success.length + newUploadedFiles.failure.length + newUploadedFiles.loading.length) /
+            files.length) *
+            100,
+        )
       }
 
-      newUploadedFiles.loading = []
-      setUploadedFiles(newUploadedFiles)
-      setProgress(
-        ((newUploadedFiles.success.length + newUploadedFiles.failure.length + newUploadedFiles.loading.length) /
-          files.length) *
-          100,
-      )
-    }
-
-    if (uploadedFiles.success.length === files.length) {
-      toggleOpen()
-      await reloadSilently()
-      await mutate((key) => isPlainObject(key) && isMatch(key, { endpoint: 'roms/search' }), false)
-    } else {
-      setStatus('done')
-    }
-    if (showConfetti) {
-      await confetti({ disableForReducedMotion: true, particleCount: 150, spread: 180 })
-    }
-  })
+      if (uploadedFiles.success.length === files.length) {
+        toggleOpen()
+        await reloadSilently()
+        await mutate((key) => isPlainObject(key) && isMatch(key, { endpoint: 'roms/search' }), false)
+      } else {
+        setStatus('done')
+        throw errors
+      }
+      if (showConfetti) {
+        await confetti({ disableForReducedMotion: true, particleCount: 150, spread: 180 })
+      }
+    },
+    {
+      onError(error) {
+        if (Array.isArray(error)) {
+          alert(error.map((e) => ('message' in e ? e.message : String(e))).join('\n'))
+        } else if ('message' in error) {
+          alert(error.message)
+        }
+      },
+    },
+  )
 
   function validateFiles(files: File[]) {
     let message = ''
@@ -151,7 +167,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
         {
           initial: (
             <>
-              <UploadInstruction maxFiles={maxFiles} platform={platform} />
+              <UploadInstruction maxFiles={maxFiles} maxRomCount={maxRomCount} platform={platform} />
 
               <div
                 {...getRootProps()}

@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router'
 import { useSelectedGames } from '../../atoms.ts'
+import { useIsDemo } from '../../hooks/use-demo.ts'
 import { useRoms } from '../../hooks/use-roms.ts'
 import { DeleteDialog } from './delete-dialog.tsx'
 
@@ -14,6 +15,13 @@ export function GameListActions() {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const { t } = useTranslation()
   const { pathname, search } = useLocation()
+  const isDemo = useIsDemo()
+
+  const isHistory = pathname === '/library/history'
+
+  if (isDemo || isHistory) {
+    return
+  }
 
   const searchParams = new URLSearchParams(search)
   const direction = searchParams.get('direction') || 'asc'

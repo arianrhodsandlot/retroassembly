@@ -15,8 +15,12 @@ export const translation = {
   Add: '添加',
   'Add a slight blur to the image to take the edge off of the hard pixel edges.':
     '为图像添加轻微模糊以柔化像素的硬边缘。',
+  'Adding these ROMs would exceed the maximum allowed ROM count of {{maxRomCount}}.':
+    '添加这些ROM将超过允许的最大ROM数量{{maxRomCount}}。',
   'All rights reserved': '版权所有',
   Always: '总是',
+  'And you can have up to <1>{{maxRomCount}}</1> ROMs in your library.':
+    '您可以在库中拥有最多<1>{{maxRomCount}}</1>个ROM。',
   'An unexpected error occurred.': '发生了意外错误。',
   Arcade: '街机',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.': '您确定要继续吗？\n删除的ROM无法恢复。',

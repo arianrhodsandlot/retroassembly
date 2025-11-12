@@ -16,8 +16,12 @@ export const translation = {
   Add: '추가',
   'Add a slight blur to the image to take the edge off of the hard pixel edges.':
     '이미지에 약간의 블러를 추가하여 픽셀의 날카로운 가장자리를 부드럽게 합니다.',
+  'Adding these ROMs would exceed the maximum allowed ROM count of {{maxRomCount}}.':
+    '이 ROM을 추가하면 최대 허용 ROM 수 {{maxRomCount}}를 초과합니다.',
   'All rights reserved': '저작권 보유',
   Always: '항상',
+  'And you can have up to <1>{{maxRomCount}}</1> ROMs in your library.':
+    '라이브러리에는 최대 <1>{{maxRomCount}}</1>개의 ROM을 보유할 수 있습니다.',
   'An unexpected error occurred.': '예기치 않은 오류가 발생했습니다.',
   Arcade: '아케이드',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.':

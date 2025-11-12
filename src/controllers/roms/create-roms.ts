@@ -2,11 +2,14 @@ import path from 'node:path'
 import { and, eq, inArray, type InferInsertModel } from 'drizzle-orm'
 import { chunk, omit } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
+import { HTTPException } from 'hono/http-exception'
 import { DateTime } from 'luxon'
+import { getRunTimeEnv } from '@/constants/env.ts'
 import { platformMap, type PlatformName } from '@/constants/platform.ts'
 import { romTable } from '@/databases/schema.ts'
 import { getFilePartialDigest } from '@/utils/server/file.ts'
 import { msleuth } from '@/utils/server/msleuth.ts'
+import { countRoms } from './count-roms.ts'
 
 function getGenres({ launchbox, libretro }) {
   return (
@@ -192,10 +195,22 @@ async function performBatchOperations(
 }
 
 export async function createRoms({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: PlatformName }) {
+  const runtimeEnv = getRunTimeEnv()
+  const { t } = getContext().var
+  const maxRomCount = Number.parseInt(runtimeEnv.RETROASSEMBLY_RUN_TIME_MAX_ROM_COUNT, 10) || Infinity
+  const romCount = await countRoms()
+  if (romCount + files.length > maxRomCount) {
+    throw new HTTPException(400, {
+      message: t('Adding these ROMs would exceed the maximum allowed ROM count of {{maxRomCount}}.', { maxRomCount }),
+    })
+  }
+
   for (const file of files) {
     const ext = path.parse(file.name).ext.toLowerCase()
     if (!platformMap[platform].fileExtensions.includes(ext)) {
-      throw new Error(`File extension ${ext} is not supported for platform ${platform}`)
+      throw new HTTPException(400, {
+        message: `File extension ${ext} is not supported for platform ${platform}`,
+      })
     }
   }
   let gameInfoList = []

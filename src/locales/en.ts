@@ -16,8 +16,12 @@ export const translation = {
   Add: 'Add',
   'Add a slight blur to the image to take the edge off of the hard pixel edges.':
     'Add a slight blur to the image to take the edge off of the hard pixel edges.',
+  'Adding these ROMs would exceed the maximum allowed ROM count of {{maxRomCount}}.':
+    'Adding these ROMs would exceed the maximum allowed ROM count of {{maxRomCount}}.',
   'All rights reserved': 'All rights reserved',
   Always: 'Always',
+  'And you can have up to <1>{{maxRomCount}}</1> ROMs in your library.':
+    'And you can have up to <1>{{maxRomCount}}</1> ROMs in your library.',
   'An unexpected error occurred.': 'An unexpected error occurred.',
   Arcade: 'Arcade',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.':

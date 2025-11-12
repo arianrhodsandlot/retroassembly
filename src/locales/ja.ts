@@ -16,8 +16,12 @@ export const translation = {
   Add: '追加',
   'Add a slight blur to the image to take the edge off of the hard pixel edges.':
     '画像に軽いぼかしを追加して、ピクセルの硬いエッジを和らげます。',
-  'All rights reserved': 'All rights reserved',
+  'Adding these ROMs would exceed the maximum allowed ROM count of {{maxRomCount}}.':
+    'これらのROMを追加すると、最大許可ROM数{{maxRomCount}}を超えてしまいます。',
+  'All rights reserved': 'すべての権利を保留します',
   Always: '常に',
+  'And you can have up to <1>{{maxRomCount}}</1> ROMs in your library.':
+    'ライブラリには最大で <1>{{maxRomCount}}</1> 個のROMを持つことができます。',
   'An unexpected error occurred.': '予期しないエラーが発生しました。',
   Arcade: 'アーケードゲーム',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.':

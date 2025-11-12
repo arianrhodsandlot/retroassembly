@@ -3,7 +3,11 @@ import { Trans, useTranslation } from 'react-i18next'
 import { platformMap, type PlatformName } from '@/constants/platform.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
 
-export function UploadInstruction({ maxFiles, platform }: Readonly<{ maxFiles: number; platform: PlatformName }>) {
+export function UploadInstruction({
+  maxFiles,
+  maxRomCount,
+  platform,
+}: Readonly<{ maxFiles: number; maxRomCount: number; platform: PlatformName }>) {
   const { t } = useTranslation()
 
   return (
@@ -69,6 +73,14 @@ export function UploadInstruction({ maxFiles, platform }: Readonly<{ maxFiles: n
             i18nKey='You can upload up to <1>{{maxFiles}}</1> files at a time.'
             values={{ maxFiles }}
           />
+
+          {Number.isFinite(maxRomCount) ? (
+            <Trans
+              components={{ 1: <b /> }}
+              i18nKey='And you can have up to <1>{{maxRomCount}}</1> ROMs in your library.'
+              values={{ maxRomCount }}
+            />
+          ) : null}
         </p>
       </Callout.Text>
     </Callout.Root>

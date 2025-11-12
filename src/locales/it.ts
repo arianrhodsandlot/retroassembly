@@ -22,6 +22,7 @@ export const translation = {
   Arcade: 'Arcade',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.':
     'Sei sicuro di voler procedere?\nI ROM eliminati non possono essere ripristinati.',
+  Ascending: 'Crescente',
   'Atari 2600': 'Atari 2600',
   'Atari 5200': 'Atari 5200',
   'Atari 7800': 'Atari 7800',
@@ -54,6 +55,7 @@ export const translation = {
   'Current Password': 'Password Attuale',
   Dark: 'Scuro',
   Date: 'Data',
+  'Date Added': 'Data di aggiunta',
   'Date Format': 'Formato Data',
   Delete: 'Elimina',
   'Delete from history': 'Elimina dalla cronologia',
@@ -61,6 +63,7 @@ export const translation = {
   'Delete the ROM': 'Elimina la ROM',
   'Demo or visual for': 'Demo o visual per',
   Deny: 'Nega',
+  Descending: 'Decrescente',
   Description: 'Descrizione',
   Developer: 'Sviluppatore',
   disabled: 'disabilitato',
@@ -135,6 +138,7 @@ export const translation = {
   Menu: 'Menu',
   Move: 'Sposta',
   'Multi-Platform Support': 'Supporto Multi-Piattaforma',
+  Name: 'Nome',
   'Navigate seamlessly using a keyboard or a gamepad without needing a mouse.':
     'Naviga senza problemi usando una tastiera o un controller senza bisogno del mouse.',
   'Neo Geo Pocket': 'Neo Geo Pocket',
@@ -272,6 +276,9 @@ export const translation = {
   'Some browsers may not support fullscreen mode.':
     'Alcuni browser potrebbero non supportare la modalità schermo intero.',
   'some ROMs to get started.': 'alcune ROM per iniziare.',
+  Sort: 'Ordina',
+  'Sort By': 'Ordina per',
+  'Sort Direction': 'Direzione ordinamento',
   Start: 'Inizia',
   'Star this project on GitHub to show your appreciation.':
     'Metti una stella a questo progetto su GitHub per mostrare il tuo apprezzamento.',

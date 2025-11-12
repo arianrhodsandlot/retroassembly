@@ -76,16 +76,16 @@ export function GameListActions() {
             <DropdownMenu.Trigger>
               <Button variant='soft'>
                 <span className='icon-[mdi--sort]' />
-                Sort
+                {t('Sort')}
                 <DropdownMenu.TriggerIcon />
               </Button>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
-              <DropdownMenu.Label>By</DropdownMenu.Label>
+              <DropdownMenu.Label>{t('Sort By')}</DropdownMenu.Label>
               {[
-                { icon: 'icon-[mdi--pencil]', label: 'Name', value: 'name' },
-                { icon: 'icon-[mdi--clock]', label: 'Added', value: 'added' },
-                { icon: 'icon-[mdi--calendar]', label: 'Released', value: 'released' },
+                { icon: 'icon-[mdi--pencil]', label: t('Name'), value: 'name' },
+                { icon: 'icon-[mdi--clock]', label: t('Date Added'), value: 'added' },
+                { icon: 'icon-[mdi--calendar]', label: t('Released'), value: 'released' },
               ].map(({ icon, label, value }) => (
                 <DropdownMenu.Item asChild key={value}>
                   <Link to={[pathname, new URLSearchParams({ direction, sort: value })].join('?')}>
@@ -98,10 +98,10 @@ export function GameListActions() {
 
               <DropdownMenu.Separator />
 
-              <DropdownMenu.Label>Direction</DropdownMenu.Label>
+              <DropdownMenu.Label>{t('Sort Direction')}</DropdownMenu.Label>
               {[
-                { icon: 'icon-[mdi--sort-ascending]', label: 'Ascending', value: 'asc' },
-                { icon: 'icon-[mdi--sort-descending]', label: 'Descending', value: 'desc' },
+                { icon: 'icon-[mdi--sort-ascending]', label: t('Ascending'), value: 'asc' },
+                { icon: 'icon-[mdi--sort-descending]', label: t('Descending'), value: 'desc' },
               ].map(({ icon, label, value }) => (
                 <DropdownMenu.Item asChild key={value}>
                   <Link to={[pathname, new URLSearchParams({ direction: value, sort })].join('?')}>

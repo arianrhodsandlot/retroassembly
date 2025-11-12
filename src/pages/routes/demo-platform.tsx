@@ -17,7 +17,6 @@ export function loader({ params }: Route.LoaderArgs) {
 
   return getLoaderData({
     count: 0,
-    page: 1,
     pagination: { current: 1, pages: 1, size: 0, total: 0 },
     platform,
     platformCount: 0,

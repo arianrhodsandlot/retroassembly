@@ -9,12 +9,12 @@ import { UploadSelectButton } from './platform/components/upload-select-button.t
 
 export default function LibraryPage() {
   const { t } = useTranslation()
-  const { page, pagination, platformCount, roms } = useLoaderData<typeof loader>()
+  const { pagination, platformCount, roms } = useLoaderData<typeof loader>()
   const gameLabel = t('game', { count: pagination.total })
   const platformLabel = t('platform', { count: platformCount })
   const isDemo = useIsDemo()
 
-  if (page > 1 && roms.length === 0) {
+  if (pagination.current > 1 && roms.length === 0) {
     return <>404</>
   }
 

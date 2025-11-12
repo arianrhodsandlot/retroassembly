@@ -13,7 +13,7 @@ import { UploadButton } from './components/upload-button.tsx'
 
 export default function PlatformPage() {
   const { t } = useTranslation()
-  const { page, pagination, platform, platformInfo, roms } = useLoaderData<typeof loader>()
+  const { pagination, platform, platformInfo, roms } = useLoaderData<typeof loader>()
   const gameLabel = t('game', { count: pagination.total })
   const isDemo = useIsDemo()
 
@@ -21,7 +21,7 @@ export default function PlatformPage() {
     return <>{t('404')}</>
   }
 
-  if (page > 1 && roms.length === 0) {
+  if (pagination.current > 1 && roms.length === 0) {
     return <>{t('404')}</>
   }
 

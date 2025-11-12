@@ -70,6 +70,7 @@ export const romTable = sqliteTable(
     gamePublisher: text(),
     gameRating: integer(),
     gameReleaseDate: integer({ mode: 'timestamp_ms' }),
+    /** @deprecated use gameReleaseDate instead */
     gameReleaseYear: integer(),
     gameThumbnailFileIds: text(),
     launchboxGameId: integer(),

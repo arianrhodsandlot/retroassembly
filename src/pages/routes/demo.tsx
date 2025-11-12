@@ -10,7 +10,6 @@ export function loader() {
   preference.ui.platforms = ['gba', 'gbc', 'genesis', 'nes', 'snes']
   return getLoaderData({
     count: 0,
-    page: 1,
     pagination: { current: 1, pages: 1, size: 0, total: 0 },
     platformCount: 0,
     preference,

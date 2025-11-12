@@ -1,7 +1,9 @@
-import { Button } from '@radix-ui/themes'
+import { Button, DropdownMenu } from '@radix-ui/themes'
+import { clsx } from 'clsx'
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { Link, useLocation } from 'react-router'
 import { useSelectedGames } from '../../atoms.ts'
 import { useRoms } from '../../hooks/use-roms.ts'
 import { DeleteDialog } from './delete-dialog.tsx'
@@ -11,16 +13,21 @@ export function GameListActions() {
   const [selectedGames, setSelectedGames] = useSelectedGames()
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const { t } = useTranslation()
+  const { pathname, search } = useLocation()
+
+  const searchParams = new URLSearchParams(search)
+  const direction = searchParams.get('direction') || 'asc'
+  const sort = searchParams.get('sort') || 'name'
 
   return (
-    <AnimatePresence>
+    <div
+      className={clsx('flex px-4', {
+        'justify-between': selectedGames.length > 0,
+        'justify-end': selectedGames.length === 0,
+      })}
+    >
       {selectedGames.length > 0 ? (
-        <motion.div
-          animate={{ height: 'auto', opacity: 1 }}
-          className='flex justify-between px-4'
-          exit={{ height: 0, opacity: 0 }}
-          initial={{ height: 0, opacity: 0 }}
-        >
+        <>
           <div className='flex items-center gap-2'>
             <span className='icon-[mdi--order-checkbox-ascending]' />
             <Trans
@@ -61,8 +68,53 @@ export function GameListActions() {
               {t('Cancel')}
             </Button>
           </div>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
+        </>
+      ) : (
+        <div>
+          <div />
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger>
+              <Button variant='soft'>
+                <span className='icon-[mdi--sort]' />
+                Sort
+                <DropdownMenu.TriggerIcon />
+              </Button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content>
+              <DropdownMenu.Label>By</DropdownMenu.Label>
+              {[
+                { icon: 'icon-[mdi--pencil]', label: 'Name', value: 'name' },
+                { icon: 'icon-[mdi--clock]', label: 'Added', value: 'added' },
+                { icon: 'icon-[mdi--calendar]', label: 'Released', value: 'released' },
+              ].map(({ icon, label, value }) => (
+                <DropdownMenu.Item asChild key={value}>
+                  <Link to={[pathname, new URLSearchParams({ direction, sort: value })].join('?')}>
+                    <span className={clsx('icon-[mdi--check]', { 'opacity-0': value !== sort })} />
+                    <span className={icon} />
+                    {label}
+                  </Link>
+                </DropdownMenu.Item>
+              ))}
+
+              <DropdownMenu.Separator />
+
+              <DropdownMenu.Label>Direction</DropdownMenu.Label>
+              {[
+                { icon: 'icon-[mdi--sort-ascending]', label: 'Ascending', value: 'asc' },
+                { icon: 'icon-[mdi--sort-descending]', label: 'Descending', value: 'desc' },
+              ].map(({ icon, label, value }) => (
+                <DropdownMenu.Item asChild key={value}>
+                  <Link to={[pathname, new URLSearchParams({ direction: value, sort })].join('?')}>
+                    <span className={clsx('icon-[mdi--check]', { 'opacity-0': value !== direction })} />
+                    <span className={icon} />
+                    {label}
+                  </Link>
+                </DropdownMenu.Item>
+              ))}
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
+        </div>
+      )}
+    </div>
   )
 }

@@ -52,8 +52,8 @@ export function GameEntryDropdownMenu({ rom }) {
               'opacity-0': !menuOpen,
             })}
           >
-            <IconButton aria-label='Menu' className='!bg-(--gray-1)' size='1' title='Menu' variant='ghost'>
-              <span className='icon-[mdi--more-vert] text-(--red-9) font-bold' />
+            <IconButton aria-label='Menu' className='bg-(--gray-1)!' size='1' title='Menu' variant='ghost'>
+              <span className='icon-[mdi--more-vert] text-(--accent-9) font-bold' />
             </IconButton>
           </div>
         </DropdownMenu.Trigger>

@@ -29,9 +29,9 @@ export function GameList() {
   const gridTemplateColumns = `repeat(auto-fill,minmax(min(calc(var(--spacing)*${size}),var(--min-width)),1fr))`
 
   return (
-    <div className='border-t-(--gray-6) flex flex-col border border-transparent pt-4 [--min-width:150px] lg:[--min-width:100%]'>
+    <div className='border-t-(--gray-6) flex flex-col border border-transparent pt-4'>
       <GameListActions />
-      <div className='mt-4 grid' style={{ gridTemplateColumns }}>
+      <div className='mt-4 grid [--min-width:150px] lg:[--min-width:100%]' style={{ gridTemplateColumns }}>
         {roms.map((rom) => (
           <GameEntry key={rom.id} rom={rom} />
         ))}

@@ -8,6 +8,7 @@ export default [
 
   ...prefix('library', [
     index('routes/library.tsx'),
+    route('home', 'routes/library-home.tsx'),
     route('history', 'routes/library-history.tsx'),
     route('platform/:platform', 'routes/library-platform.tsx'),
     route('platform/:platform/rom/:fileName', 'routes/library-platform-rom.tsx'),

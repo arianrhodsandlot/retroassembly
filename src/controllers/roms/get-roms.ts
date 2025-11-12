@@ -42,7 +42,11 @@ export async function getRoms({
   const where = and(...conditions)
 
   const offset = (page - 1) * pageSize
-  const columnMap = { added: romTable.createdAt, name: romTable.fileName, released: romTable.gameReleaseDate }
+  const columnMap = {
+    added: romTable.createdAt,
+    name: sql`LOWER(${romTable.fileName})`,
+    released: romTable.gameReleaseDate,
+  }
   const column = columnMap[orderBy]
   const columns = [sql`${column} IS NULL`, direction === 'desc' ? desc(column) : column]
   if (orderBy !== 'name') {

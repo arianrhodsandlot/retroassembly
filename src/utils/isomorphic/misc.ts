@@ -18,14 +18,11 @@ export function restoreTitleForSorting(title: string) {
 export function humanizeDate(date: string, dateFormat: string) {
   const dateTime = DateTime.fromJSDate(new Date(date))
   const now = DateTime.now()
-  if (dateTime.hasSame(now, 'day')) {
-    return dateTime.toFormat('HH:mm:ss')
-  }
   if (dateTime.hasSame(now, 'year')) {
     const shortFormat = trim(dateFormat.replace('yyyy', ''), ['-', '/', '.'])
-    return dateTime.toFormat(shortFormat)
+    return dateTime.toFormat(`${shortFormat} hh:mm`)
   }
-  return dateTime.toFormat(dateFormat)
+  return dateTime.toFormat(`${dateFormat} hh:mm`)
 }
 
 export function encodeRFC3986URIComponent(str: string) {

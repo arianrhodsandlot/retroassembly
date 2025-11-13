@@ -1,15 +1,18 @@
 import { Badge } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import type { client, InferResponseType } from '@/api/client.ts'
 import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
+import { dateFormatMap } from '@/utils/isomorphic/i18n.ts'
 import { humanizeDate } from '@/utils/isomorphic/misc.ts'
 import { useEmulator } from '../../hooks/use-emulator.ts'
 import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
 
 export function GameState({ state }: Readonly<{ state: InferResponseType<typeof client.states.$get>[number] }>) {
+  const { i18n } = useTranslation()
   const { preference } = usePreference()
   const { hide, setIsPending } = useGameOverlay()
   const { core, emulator } = useEmulator()
@@ -22,6 +25,7 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
 
   const loadable = core === state.core
   const disabled = !loadable || isMutating
+  const dateFormat = preference.ui.dateFormat === 'auto' ? dateFormatMap[i18n.language] : preference.ui.dateFormat
 
   async function handleClick() {
     setIsPending(true)
@@ -83,7 +87,7 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
           <span className='icon-[svg-spinners--180-ring] text-(--accent-9) block size-3' />
         ) : (
           <>
-            Saved at <Badge>{humanizeDate(state.createdAt, preference.ui.dateFormat)}</Badge>
+            Saved at <Badge>{humanizeDate(state.createdAt, dateFormat)}</Badge>
           </>
         )}
       </div>

@@ -30,6 +30,8 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
       libretroGameId: romTable.libretroGameId,
       platform: romTable.platform,
       stateCount: count(stateTable.id),
+      stateFileId: stateTable.fileId,
+      stateThumbnailFileId: stateTable.thumbnailFileId,
       status: romTable.status,
       updatedAt: romTable.updatedAt,
       userId: romTable.userId,

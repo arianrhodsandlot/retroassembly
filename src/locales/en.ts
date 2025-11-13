@@ -149,6 +149,7 @@ export const translation = {
   'Neo Geo Pocket Color': 'Neo Geo Pocket Color',
   NES: 'NES',
   Never: 'Never',
+  'New added': 'New added',
   'New Password': 'New Password',
   'Nintendo button explanation': '(Use <rightButton></rightButton> as confirm, <downButton></downButton> as cancel)',
   'Nintendo Style': 'Nintendo Style',
@@ -233,6 +234,7 @@ export const translation = {
   'Privacy Policy': 'Privacy Policy',
   Publisher: 'Publisher',
   'Read more on Wikipedia': 'Read more on Wikipedia',
+  Recent: 'Recent',
   'Recommendation: 10+ characters with letters, numbers, and symbols.':
     'Recommendation: 10+ characters with letters, numbers, and symbols.',
   Released: 'Released',

@@ -1,12 +1,14 @@
 import { Checkbox, DropdownMenu, IconButton } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useState } from 'react'
+import { useLocation } from 'react-router'
 import { useSelectedGames } from '../../atoms.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
 import { useGameActions } from '../../hooks/use-game-actions.ts'
 import { DeleteDialog } from './delete-dialog.tsx'
 
 export function GameEntryDropdownMenu({ rom }) {
+  const { pathname } = useLocation()
   const isDemo = useIsDemo()
   const { actions } = useGameActions()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -32,6 +34,10 @@ export function GameEntryDropdownMenu({ rom }) {
   }
 
   if (isDemo) {
+    return
+  }
+
+  if (pathname === '/library/home') {
     return
   }
 

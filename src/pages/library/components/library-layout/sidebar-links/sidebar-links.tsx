@@ -9,7 +9,7 @@ export function SidebarLinks() {
   const isDemo = useIsDemo()
 
   function shouldShowsSearchButton(name: string) {
-    return !isDemo && name === 'library'
+    return !isDemo && name === 'home'
   }
 
   return (

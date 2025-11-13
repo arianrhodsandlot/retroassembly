@@ -30,6 +30,7 @@ export function useNavigationLinks() {
   const groups = [
     {
       links: [
+        { iconClass: 'icon-[mdi--home]', iconUrl: '', name: 'home', text: t('Home'), to: `/${libraryPath}/home` },
         { iconClass: 'icon-[mdi--bookshelf]', iconUrl: '', name: 'library', text: t('Library'), to: `/${libraryPath}` },
       ],
       title: '',

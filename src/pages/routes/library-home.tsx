@@ -9,7 +9,7 @@ export async function loader() {
   const { t } = getContext().var
 
   const [{ roms: recentlySavedRoms }, { roms: newAddedRoms }, { roms: recentlyLaunchedRoms }] = await Promise.all([
-    getRomsWithStates({ pageSize: 20 }),
+    getRomsWithStates({ pageSize: 1 }),
     getRoms({ direction: 'desc', orderBy: 'added', pageSize: 20 }),
     getLaunchRecords({ pageSize: 20 }),
   ])

@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import { type ButtonHTMLAttributes, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { useEmulator } from '../../hooks/use-emulator.ts'
+import { useEmulator } from '../hooks/use-emulator.ts'
 
 interface VirtualGamepadButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonName?: string

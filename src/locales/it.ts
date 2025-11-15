@@ -105,6 +105,7 @@ export const translation = {
   'Game Gear': 'Game Gear',
   Gamepad: 'Controller',
   'Gamepad Tester': 'Tester Controller',
+  Games: 'giochi',
   'Games can be downloaded from': 'I giochi possono essere scaricati da',
   gameStats: '<1>{{gameCount}}</1> {{game}} per <3>{{platformCount}}</3> {{platform}} in totale',
   general: 'Generale',

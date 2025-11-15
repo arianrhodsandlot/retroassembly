@@ -14,14 +14,12 @@ export function LibraryHomePage() {
       <div className='pb-20'>
         <JumpBackInSection />
 
-        <div className='divide-y-solid divide-(--gray-6) flex flex-col divide-y '>
-          {[
-            { icon: 'icon-[mdi--recent]', roms: recentlyLaunchedRoms, title: t('Recent') },
-            { icon: 'icon-[mdi--archive-add]', roms: newAddedRoms, title: t('New added') },
-          ].map(({ icon, roms, title }) => (
-            <GeneralSection className='py-4' icon={icon} key={title} roms={roms} title={title} />
-          ))}
-        </div>
+        {[
+          { icon: 'icon-[mdi--recent]', roms: recentlyLaunchedRoms, title: t('Recent') },
+          { icon: 'icon-[mdi--archive-add]', roms: newAddedRoms, title: t('New added') },
+        ].map(({ icon, roms, title }) => (
+          <GeneralSection className='py-4' icon={icon} key={title} roms={roms} title={title} />
+        ))}
       </div>
     </LibraryLayout>
   )

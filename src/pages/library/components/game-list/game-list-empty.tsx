@@ -45,7 +45,7 @@ export function GameListEmpty() {
                 1: (
                   <Button asChild variant='outline'>
                     <Link to='/library'>
-                      <span className='icon-[mdi--bookshelf] ' /> {t('Library')}
+                      <span className='icon-[mdi--bookshelf] ' /> {t('Home')}
                     </Link>
                   </Button>
                 ),

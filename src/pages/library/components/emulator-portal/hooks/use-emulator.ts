@@ -6,7 +6,7 @@ import useSWRImmutable from 'swr/immutable'
 import { client } from '@/api/client.ts'
 import { coreUrlMap } from '@/constants/core.ts'
 import type { Rom } from '@/controllers/roms/get-roms.ts'
-import { useEmulatorLaunched } from '@/pages/library/atoms.ts'
+import { useEmulatorLaunched, useIsFullscreen, useLaunchButton } from '@/pages/library/atoms.ts'
 import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
@@ -16,7 +16,6 @@ import { focus, offCancel, onCancel } from '@/pages/library/utils/spatial-naviga
 import type { loader } from '@/pages/routes/library-platform-rom.tsx'
 import { getCDNUrl } from '@/utils/isomorphic/cdn.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
-import { useIsFullscreen, useLaunchButton } from '../atoms.ts'
 
 type NostalgistOption = Parameters<typeof Nostalgist.prepare>[0]
 type RetroarchConfig = Partial<NostalgistOption['retroarchConfig']>
@@ -49,9 +48,6 @@ let wakeLock: undefined | WakeLockSentinel
 const originalGetUserMedia = globalThis.navigator?.mediaDevices?.getUserMedia
 export function useEmulator() {
   const rom: Rom = useRom()
-  if (!rom) {
-    throw new Error('this should not happen')
-  }
   const { state } = useLoaderData<typeof loader>()
   const { preference } = usePreference()
   const gamepadMapping = useGamepadMapping()
@@ -157,7 +153,7 @@ export function useEmulator() {
     onCancel(noop)
   }
 
-  async function exit() {
+  async function exit({ reloadAfterExit = false } = {}) {
     const status = emulator?.getStatus() || ''
     if (['paused', 'running'].includes(status)) {
       emulator?.exit()
@@ -177,7 +173,9 @@ export function useEmulator() {
       focus(launchButton)
       offCancel()
       await attemptAsync(prepare)
-      await reloadSilently()
+      if (reloadAfterExit) {
+        await reloadSilently()
+      }
     }
   }
 

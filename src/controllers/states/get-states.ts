@@ -9,7 +9,7 @@ export async function getStates({
   core,
   limit,
   rom,
-  type,
+  type = 'manual',
 }: {
   core?: string
   limit?: number

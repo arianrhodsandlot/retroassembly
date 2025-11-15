@@ -1,4 +1,4 @@
-import { and, count, countDistinct, desc, eq, gte, inArray } from 'drizzle-orm'
+import { and, count, countDistinct, desc, eq, gte, inArray, max } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { romTable, stateTable, statusEnum } from '@/databases/schema.ts'
 import { getRomsMetadata } from '../../utils/server/misc.ts'
@@ -14,27 +14,11 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
       createdAt: romTable.createdAt,
       fileId: romTable.fileId,
       fileName: romTable.fileName,
-      gameBoxartFileIds: romTable.gameBoxartFileIds,
-      gameDescription: romTable.gameDescription,
-      gameDeveloper: romTable.gameDeveloper,
-      gameGenres: romTable.gameGenres,
       gameName: romTable.gameName,
-      gamePlayers: romTable.gamePlayers,
-      gamePublisher: romTable.gamePublisher,
-      gameRating: romTable.gameRating,
-      gameReleaseDate: romTable.gameReleaseDate,
-      gameReleaseYear: romTable.gameReleaseYear,
-      gameThumbnailFileIds: romTable.gameThumbnailFileIds,
       id: romTable.id,
       launchboxGameId: romTable.launchboxGameId,
       libretroGameId: romTable.libretroGameId,
       platform: romTable.platform,
-      stateCount: count(stateTable.id),
-      stateFileId: stateTable.fileId,
-      stateThumbnailFileId: stateTable.thumbnailFileId,
-      status: romTable.status,
-      updatedAt: romTable.updatedAt,
-      userId: romTable.userId,
     })
     .from(romTable)
     .leftJoin(stateTable, and(eq(stateTable.romId, romTable.id), eq(stateTable.status, statusEnum.normal)))
@@ -55,7 +39,7 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
       romTable.platform,
     )
     .having(gte(count(stateTable.id), 1))
-    .orderBy(desc(count(stateTable.id)))
+    .orderBy(desc(max(stateTable.createdAt)))
     .offset(offset)
     .limit(pageSize)
 

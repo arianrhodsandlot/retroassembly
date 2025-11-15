@@ -29,7 +29,9 @@ export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
     <html lang={language} prefix='og: https://ogp.me/ns#' suppressHydrationWarning>
       <I18nextProvider i18n={i18n}>
         <Head />
-        <body>
+      </I18nextProvider>
+      <body>
+        <I18nextProvider i18n={i18n}>
           <RadixTheme>
             <ThemeProvider attribute='class'>
               <Provider>
@@ -40,13 +42,13 @@ export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
               </Provider>
             </ThemeProvider>
           </RadixTheme>
-          <ScrollRestoration />
-          {currentUser ? (
-            <script dangerouslySetInnerHTML={{ __html: `globalThis.CURRENT_USER=${JSON.stringify(currentUser)}` }} />
-          ) : null}
-          <Scripts />
-        </body>
-      </I18nextProvider>
+        </I18nextProvider>
+        {currentUser ? (
+          <script dangerouslySetInnerHTML={{ __html: `globalThis.CURRENT_USER=${JSON.stringify(currentUser)}` }} />
+        ) : null}
+        <ScrollRestoration getKey={({ pathname, search }) => `${pathname}${search}`} />
+        <Scripts />
+      </body>
     </html>
   )
 }

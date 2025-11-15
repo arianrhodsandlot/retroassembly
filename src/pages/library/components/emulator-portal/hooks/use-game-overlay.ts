@@ -1,7 +1,6 @@
 import { delay } from 'es-toolkit'
-import { useShowGameOverlayContent } from '@/pages/library/atoms.ts'
+import { useIsGameOverlayPendingAtom, useShowGameOverlayContent } from '@/pages/library/atoms.ts'
 import { focus } from '@/pages/library/utils/spatial-navigation.ts'
-import { useIsGameOverlayPendingAtom } from '../atoms.ts'
 import { useEmulator } from './use-emulator.ts'
 import { useGameStates } from './use-game-states.ts'
 

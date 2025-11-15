@@ -1,7 +1,6 @@
 import { capitalize, trim } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
 import { Nostalgist } from 'nostalgist'
-import type { Rom } from '@/controllers/roms/get-roms.ts'
 import { platformMap } from '../../constants/platform.ts'
 import { getCDNUrl } from '../isomorphic/cdn.ts'
 
@@ -73,7 +72,12 @@ export function getPlatformBluredBackground(platform: string) {
   return getCDNUrl('arianrhodsandlot/retroassembly-assets', `platforms/blured-backgrounds/${platform}.jpg`)
 }
 
-export function getRomGoodcodes(rom: Rom) {
+export function getRomGoodcodes(rom: {
+  fileName?: string
+  libretroGame?: { name?: string }
+  name?: string
+  platform?: string
+}) {
   let { name } = path.parse(rom?.fileName || '')
 
   if ('name' in rom) {

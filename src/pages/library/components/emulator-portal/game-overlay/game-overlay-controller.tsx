@@ -2,9 +2,9 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
 import { useEmulatorLaunched } from '@/pages/library/atoms.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
-import { useEmulator } from '../../hooks/use-emulator.ts'
-import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
-import { useMouseIdle } from '../../hooks/use-mouse-idle.ts'
+import { useEmulator } from '../hooks/use-emulator.ts'
+import { useGameOverlay } from '../hooks/use-game-overlay.ts'
+import { useMouseIdle } from '../hooks/use-mouse-idle.ts'
 import { ControllerButton } from './controller-button.tsx'
 import { GameInputMessage } from './game-input-message.tsx'
 
@@ -21,7 +21,7 @@ export function GameOverlayController() {
 
   function handleClickExit() {
     hide()
-    exit()
+    exit({ reloadAfterExit: true })
   }
 
   async function handleClickPause() {

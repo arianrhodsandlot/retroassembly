@@ -1,4 +1,6 @@
 import type { MouseEvent } from 'react'
+import { generatePath } from 'react-router'
+import { routes } from '@/pages/routes.ts'
 import { useSelectedGames } from '../../atoms.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
 import { NavigatableLink } from '../navigatable-link.tsx'
@@ -10,11 +12,12 @@ import { GameTitle } from './game-title.tsx'
 export function GameEntry({ rom }) {
   const isDemo = useIsDemo()
 
-  const libraryPath = isDemo ? 'demo' : 'library'
   const [selectedGames, setSelectedGames] = useSelectedGames()
 
-  const segments = [libraryPath, 'platform', rom.platform, 'rom', rom.fileName]
-  const url = `/${segments.map((segment) => encodeURIComponent(segment)).join('/')}`
+  const url = generatePath(isDemo ? routes.demoPlatformRom : routes.libraryPlatformRom, {
+    fileName: rom.fileName,
+    platform: rom.platform,
+  })
   const selecting = selectedGames.length > 0
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
     if (selecting) {

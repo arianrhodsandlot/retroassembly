@@ -1,7 +1,8 @@
+import { delay } from 'es-toolkit'
 import { isMatch } from 'es-toolkit/compat'
 import { AnimatePresence, motion, type TargetAndTransition } from 'motion/react'
-import { useLaunchButton } from '../atoms.ts'
-import { useEmulator } from '../hooks/use-emulator.ts'
+import { useLaunchButton } from '../../atoms.ts'
+import { useEmulator } from './hooks/use-emulator.ts'
 
 export function GameAnimatePresence() {
   const { emulator, launched, start } = useEmulator()
@@ -12,7 +13,11 @@ export function GameAnimatePresence() {
 
   async function handleAnimationComplete(definition: TargetAndTransition) {
     if (isMatch(definition, animateStyle) && emulator) {
+      document.body.classList.add('overflow-hidden')
+      await delay(0)
       await start()
+    } else {
+      document.body.classList.remove('overflow-hidden')
     }
   }
 

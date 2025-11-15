@@ -8,8 +8,8 @@ import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
 import { dateFormatMap } from '@/utils/isomorphic/i18n.ts'
 import { humanizeDate } from '@/utils/isomorphic/misc.ts'
-import { useEmulator } from '../../hooks/use-emulator.ts'
-import { useGameOverlay } from '../../hooks/use-game-overlay.ts'
+import { useEmulator } from '../hooks/use-emulator.ts'
+import { useGameOverlay } from '../hooks/use-game-overlay.ts'
 
 export function GameState({ state }: Readonly<{ state: InferResponseType<typeof client.states.$get>[number] }>) {
   const { i18n } = useTranslation()

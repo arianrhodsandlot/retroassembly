@@ -2,13 +2,16 @@ import { Button, HoverCard } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import type { MouseEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import type { State } from '@/controllers/states/get-states.ts'
+import { useLoaderData } from 'react-router'
+import { platformMap } from '@/constants/platform.ts'
+import { useLaunchButton } from '@/pages/library/atoms.ts'
+import { useEmulator } from '@/pages/library/components/emulator-portal/hooks/use-emulator.ts'
 import { useFocusIndicator } from '@/pages/library/hooks/use-focus-indicator.ts'
+import { usePreference } from '@/pages/library/hooks/use-preference.ts'
 import { getFileUrl } from '@/pages/library/utils/file.ts'
-import { useLaunchButton } from '../atoms.ts'
-import { useEmulator } from '../hooks/use-emulator.ts'
-import { GameSettingsButton } from './game-settings-button.tsx'
-import { LaunchButton } from './launch-button.tsx'
+import { LaunchButton } from '../../platform/rom/components/launch-button.tsx'
+import { EmulatorPortal } from '../emulator-portal/emulator-portal.tsx'
+import { BioseMissingMessage } from './biose-missing-message.tsx'
 
 const isAppleMobile = /iphone|ipad|ipod/i.test(navigator.userAgent)
 const isChromeLike = /chrome/i.test(navigator.userAgent)
@@ -17,11 +20,20 @@ const isAppleMobileDesktopMode =
   !isChromeLike && isMacLike && /safari/i.test(navigator.userAgent) && screen.height <= 1366
 const mayNeedsUserInteraction = isAppleMobile || isAppleMobileDesktopMode
 
-export function GameButtons({ state }: Readonly<{ state?: State }>) {
+export function GameButtons() {
+  const { rom, state } = useLoaderData()
   const { t } = useTranslation()
   const { error, isPreparing, launch, prepare } = useEmulator()
   const [, setLaunchButtonRect] = useLaunchButton()
   const { syncStyle } = useFocusIndicator()
+  const { preference } = usePreference()
+
+  const { bioses } = preference.emulator.platform[rom.platform]
+
+  const expectedBioses = platformMap[rom.platform].bioses
+  const missingBioses = expectedBioses?.filter(
+    (bios) => bios.required && !bioses?.some((b) => b.fileName === bios.name),
+  )
 
   function handleClickCommon(event: MouseEvent<HTMLButtonElement>) {
     const button = event.currentTarget
@@ -59,6 +71,10 @@ export function GameButtons({ state }: Readonly<{ state?: State }>) {
     }
   }
 
+  if (missingBioses?.length) {
+    return <BioseMissingMessage bioses={missingBioses} />
+  }
+
   if (!isPreparing && error) {
     return (
       <div className='bg-(--accent-4) flex h-16 w-full items-center justify-center gap-2 rounded lg:w-80'>
@@ -81,8 +97,8 @@ export function GameButtons({ state }: Readonly<{ state?: State }>) {
           ) : (
             <span
               className={clsx(
-                'motion-preset-pulse-lg motion-duration-1500',
-                mayNeedsUserInteraction ? 'icon-[mdi--gesture-touch]' : 'icon-[mdi--motion-play-outline]',
+                'size-6',
+                mayNeedsUserInteraction ? 'icon-[mdi--gesture-touch]' : 'icon-[mdi--arrow-u-right-top-bold]',
               )}
             />
           )}
@@ -111,16 +127,13 @@ export function GameButtons({ state }: Readonly<{ state?: State }>) {
           <span className='icon-[svg-spinners--180-ring]' />
         ) : (
           <span
-            className={clsx(
-              { 'motion-preset-pulse-lg motion-duration-1500': !state },
-              mayNeedsUserInteraction ? 'icon-[mdi--gesture-touch]' : 'icon-[mdi--play]',
-            )}
+            className={clsx('size-6', mayNeedsUserInteraction ? 'icon-[mdi--gesture-touch]' : 'icon-[mdi--play]')}
           />
         )}
         <span className='w-52 text-2xl font-semibold'>{t('Start')}</span>
       </LaunchButton>
 
-      <GameSettingsButton />
+      <EmulatorPortal />
     </div>
   )
 }

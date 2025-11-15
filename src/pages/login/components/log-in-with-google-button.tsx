@@ -1,7 +1,8 @@
 import { Button } from '@radix-ui/themes'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router'
+import { generatePath, Link } from 'react-router'
+import { routes } from '@/pages/routes.ts'
 
 export function LogInWithGoogleButton({ redirectTo }: Readonly<{ redirectTo: string }>) {
   const { t } = useTranslation()
@@ -18,7 +19,7 @@ export function LogInWithGoogleButton({ redirectTo }: Readonly<{ redirectTo: str
         <Link
           className='flex items-center gap-2'
           to={{
-            pathname: '/login/google',
+            pathname: generatePath(routes.loginGoogle),
             search: `?redirect_to=${encodeURIComponent(redirectTo)}`,
           }}
         >

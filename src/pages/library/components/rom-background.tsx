@@ -1,5 +1,5 @@
-import { MainBackground } from '../../../components/main-background.tsx'
-import { useRomCover } from '../../../hooks/use-rom-cover.ts'
+import { useRomCover } from '../hooks/use-rom-cover.ts'
+import { MainBackground } from './main-background.tsx'
 
 export function RomBackground({ rom }) {
   const { data: cover, isLoading } = useRomCover(rom)

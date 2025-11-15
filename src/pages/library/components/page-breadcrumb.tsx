@@ -2,6 +2,8 @@ import { Button } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
+import { generatePath } from 'react-router'
+import { routes } from '@/pages/routes.ts'
 import { getPlatformGameIcon, getPlatformIcon, getRomGoodcodes } from '@/utils/client/library.ts'
 import { useIsDemo } from '../hooks/use-demo.ts'
 import { usePlatform } from '../hooks/use-platform.ts'
@@ -13,13 +15,12 @@ export function PageBreadcrumb() {
   const rom = useRom()
   const platform = usePlatform()
   const isDemo = useIsDemo()
-  const libraryPath = isDemo ? 'demo' : 'library'
 
   const links = [
     {
       icon: <span className='icon-[mdi--bookshelf] size-5 p-0.5' />,
-      text: t('Library'),
-      url: `/${libraryPath}`,
+      text: t('Games'),
+      url: generatePath(isDemo ? routes.demoHome : routes.libraryHome),
     },
   ]
 
@@ -34,7 +35,7 @@ export function PageBreadcrumb() {
         />
       ),
       text: t(platform.displayName),
-      url: `/${libraryPath}/platform/${platform.name}`,
+      url: generatePath(isDemo ? routes.demoPlatform : routes.libraryPlatform, { platform: platform.name }),
     })
 
     if (rom) {
@@ -48,7 +49,10 @@ export function PageBreadcrumb() {
           />
         ),
         text: getRomGoodcodes(rom).rom,
-        url: `/${libraryPath}/rom/${rom.id}`,
+        url: generatePath(isDemo ? routes.demoPlatformRom : routes.libraryPlatformRom, {
+          fileName: rom.fileName,
+          platform: rom.platform,
+        }),
       })
     }
   }

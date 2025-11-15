@@ -1,7 +1,8 @@
 import { sortBy } from 'es-toolkit'
 import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router'
+import { generatePath, useLocation } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'
+import { routes } from '@/pages/routes.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
 import { useIsDemo } from './use-demo.ts'
 import { usePlatform } from './use-platform.ts'
@@ -15,7 +16,6 @@ export function useNavigationLinks() {
   const location = useLocation()
   const isDemo = useIsDemo()
   const platforms = isDemo ? demoPlatforms : preference.ui.platforms
-  const libraryPath = isDemo ? 'demo' : 'library'
 
   const platformLinks = platforms.map((platform) => ({
     iconClass: '',
@@ -29,24 +29,43 @@ export function useNavigationLinks() {
 
   const groups = [
     {
-      links: [
-        { iconClass: 'icon-[mdi--home]', iconUrl: '', name: 'home', text: t('Home'), to: `/${libraryPath}/home` },
-        { iconClass: 'icon-[mdi--bookshelf]', iconUrl: '', name: 'library', text: t('Library'), to: `/${libraryPath}` },
-      ],
+      links: isDemo
+        ? [
+            {
+              iconClass: 'icon-[mdi--home]',
+              iconUrl: '',
+              name: 'home',
+              text: t('Games'),
+              to: generatePath(routes.demoHome),
+            },
+          ]
+        : [
+            {
+              iconClass: 'icon-[mdi--home]',
+              iconUrl: '',
+              name: 'home',
+              text: t('Home'),
+              to: generatePath(routes.libraryHome),
+            },
+            {
+              iconClass: 'icon-[mdi--bookshelf]',
+              iconUrl: '',
+              name: 'library',
+              text: t('Games'),
+              to: generatePath(routes.libraryRoms),
+            },
+            {
+              iconClass: 'icon-[mdi--history]',
+              iconUrl: '',
+              name: 'history',
+              text: t('History'),
+              to: generatePath(routes.libraryHistory),
+            },
+          ],
       title: '',
     },
     { links: sortedPlatformLinks, title: t('platform_other') },
   ]
-  if (!isDemo) {
-    const historyLink = {
-      iconClass: 'icon-[mdi--history]',
-      iconUrl: '',
-      name: 'history',
-      text: t('History'),
-      to: `/${libraryPath}/history`,
-    }
-    groups[0].links.push(historyLink)
-  }
 
   function isActive(link: string) {
     return location.pathname === link || getPlatformLink(platform?.name) === link
@@ -56,7 +75,7 @@ export function useNavigationLinks() {
     if (!platform) {
       return ''
     }
-    return `/${encodeURIComponent(libraryPath)}/platform/${encodeURIComponent(platform)}`
+    return generatePath(isDemo ? routes.demoPlatform : routes.libraryPlatform, { platform })
   }
 
   return { groups, isActive }

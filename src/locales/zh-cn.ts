@@ -103,6 +103,7 @@ export const translation = {
   'Game Gear': 'Game Gear',
   Gamepad: '手柄',
   'Gamepad Tester': '手柄测试器',
+  Games: '游戏',
   'Games can be downloaded from': '游戏可从以下地址下载：',
   gameStats: '总共有<1>{{gameCount}}</1>个{{game}}，<3>{{platformCount}}</3>个{{platform}}',
   general: '通用',

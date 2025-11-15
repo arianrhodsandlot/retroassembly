@@ -45,3 +45,18 @@ const settingsDialogTabNameAtom = atom('library')
 export function useSettingsDialogTabName() {
   return useAtom(settingsDialogTabNameAtom)
 }
+
+const isGameOverlayPendingAtom = atom(false)
+export function useIsGameOverlayPendingAtom() {
+  return useAtom(isGameOverlayPendingAtom)
+}
+
+const launchButtonAtom = atom<HTMLButtonElement>()
+export function useLaunchButton() {
+  return useAtom(launchButtonAtom)
+}
+
+const isFullscreenAtom = atom(false)
+export function useIsFullscreen() {
+  return useAtom(isFullscreenAtom)
+}

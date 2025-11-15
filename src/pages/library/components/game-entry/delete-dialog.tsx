@@ -2,6 +2,7 @@ import { AlertDialog, Button } from '@radix-ui/themes'
 import { isPlainObject } from 'es-toolkit'
 import { isMatch } from 'es-toolkit/compat'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { mutate } from 'swr'
 import useSWRMutation from 'swr/mutation'
 import { client } from '@/api/client.ts'
@@ -15,6 +16,7 @@ interface DeleteDialogProps extends AlertDialog.RootProps {
 const { ':id': romsEndpoint } = client.roms
 
 export function DeleteDialog({ rom, ...props }: Readonly<DeleteDialogProps>) {
+  const { t } = useTranslation()
   const { reloadSilently } = useRouter()
   const { actions } = useGameActions()
   const action = actions.find(({ name }) => name === 'delete')
@@ -58,7 +60,7 @@ export function DeleteDialog({ rom, ...props }: Readonly<DeleteDialogProps>) {
     <AlertDialog.Root {...props}>
       <AlertDialog.Content maxWidth='450px'>
         <AlertDialog.Title>{action.text}</AlertDialog.Title>
-        <AlertDialog.Description className='whitespace-pre-line !leading-loose' size='2'>
+        <AlertDialog.Description className='leading-loose! whitespace-pre-line' size='2'>
           {action.confirmDescription}
         </AlertDialog.Description>
 
@@ -66,12 +68,12 @@ export function DeleteDialog({ rom, ...props }: Readonly<DeleteDialogProps>) {
           <AlertDialog.Cancel>
             <Button disabled={isLoading}>
               <span className='icon-[mdi--close]' />
-              Cancel
+              {t('Cancel')}
             </Button>
           </AlertDialog.Cancel>
           <Button loading={isLoading} onClick={handleClickConfirmDelete} variant='soft'>
             <span className='icon-[mdi--delete]' />
-            Delete
+            {t('Delete')}
           </Button>
         </div>
       </AlertDialog.Content>

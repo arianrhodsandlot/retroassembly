@@ -19,7 +19,12 @@ export function JumpBackInSection() {
 
   return (
     <section className='translate-z-0 relative'>
-      <div className='bg-linear-to-b from-(--gray-a6)  rounded via-transparent to-transparent p-8 transition-colors duration-500'>
+      <div className='bg-linear-to-b from-(--gray-a4)  rounded via-transparent to-transparent p-4 transition-colors duration-500'>
+        <h2 className='text-(--accent-9) flex items-center gap-2 p-4 text-3xl font-semibold'>
+          <span className='icon-[mdi--play-circle-outline]' />
+          {t('Continue')}
+        </h2>
+
         <div className='flex flex-col gap-4 lg:flex-row'>
           <div className='flex w-96 max-w-full items-center justify-center'>
             <GameEntryImage rom={rom} />

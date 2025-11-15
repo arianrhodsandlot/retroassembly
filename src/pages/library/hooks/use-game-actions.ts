@@ -10,8 +10,9 @@ export function useGameActions() {
     history: [
       {
         color: 'red',
-        confirmDescription:
+        confirmDescription: t(
           'Are you sure to proceed?\nThe deleted history item cannot be restored.\nThe ROM related to this history item will NOT be deleted.',
+        ),
         icon: 'icon-[mdi--delete]',
         name: 'delete',
         text: t('Delete from history'),
@@ -28,7 +29,7 @@ export function useGameActions() {
       },
       {
         color: 'red',
-        confirmDescription: 'Are you sure to proceed?\nThe deleted ROM cannot be restored.',
+        confirmDescription: t('Are you sure to proceed?\nThe deleted ROMs cannot be restored.'),
         icon: 'icon-[mdi--delete]',
         name: 'delete',
         text: t('Delete the ROM'),

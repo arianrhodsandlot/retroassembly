@@ -2,7 +2,7 @@ import type { Page } from '@playwright/test'
 
 export class LibraryPage {
   readonly page: Page
-  readonly url = 'library'
+  readonly url = 'library/roms'
 
   constructor(page: Page) {
     this.page = page
@@ -38,6 +38,7 @@ export class LibraryPage {
 
   async uploadROMs(roms: string[]) {
     const { page } = this
+    await this.goto()
     await page.locator('button').getByText('add').first().click()
     await page.getByRole('menuitem').getByText('NES', { exact: true }).click()
     await page.getByRole('dialog').waitFor({ state: 'visible' })

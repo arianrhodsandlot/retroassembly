@@ -22,6 +22,8 @@ export const translation = {
     '您可以在庫中擁有最多<1>{{maxRomCount}}</1>個ROM。',
   'An unexpected error occurred.': '發生了意外錯誤。',
   Arcade: '街機',
+  'Are you sure to proceed?\nThe deleted history item cannot be restored.\nThe ROM related to this history item will NOT be deleted.':
+    '確定要繼續嗎？\n刪除的歷史項目無法還原。\n與此歷史項目相關的 ROM 不會被刪除。',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.': '您確定要繼續嗎？\n已刪除的ROM無法復原。',
   Ascending: '升序',
   'Atari 2600': 'Atari 2600',
@@ -323,6 +325,7 @@ export const translation = {
   'Virtual Boy': 'Virtual Boy',
   'Visit our GitHub': '造訪我們的 GitHub',
   'We kindly request your assistance in reporting any ideas or bugs on our': '我們懇請您協助在我們的',
+  'Welcome to {{title}}.': '歡迎使用 {{title}}。',
   'Welcome to {{title}}. This is where all ROMs uploaded by you will appear.':
     '歡迎使用 {{title}}。您上傳的所有 ROM 都會顯示在這裡。',
   'We support these file extensions for this platform:': '我們支援此平台的以下檔案副檔名：',

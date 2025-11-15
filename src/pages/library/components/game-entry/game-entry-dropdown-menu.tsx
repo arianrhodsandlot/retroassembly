@@ -2,6 +2,7 @@ import { Checkbox, DropdownMenu, IconButton } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useState } from 'react'
 import { useLocation } from 'react-router'
+import { routes } from '@/pages/routes.ts'
 import { useSelectedGames } from '../../atoms.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
 import { useGameActions } from '../../hooks/use-game-actions.ts'
@@ -37,7 +38,7 @@ export function GameEntryDropdownMenu({ rom }) {
     return
   }
 
-  if (pathname === '/library/home') {
+  if (pathname === routes.libraryHome) {
     return
   }
 

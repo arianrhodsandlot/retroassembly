@@ -24,6 +24,8 @@ export const translation = {
     'ライブラリには最大で <1>{{maxRomCount}}</1> 個のROMを持つことができます。',
   'An unexpected error occurred.': '予期しないエラーが発生しました。',
   Arcade: 'アーケードゲーム',
+  'Are you sure to proceed?\nThe deleted history item cannot be restored.\nThe ROM related to this history item will NOT be deleted.':
+    '続行してもよろしいですか？\n削除した履歴項目は元に戻せません。\nこの履歴項目に関連するROMは削除されません。',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.':
     '本当に続行してもよろしいですか？\n削除されたROMは復元できません。',
   Ascending: '昇順',
@@ -333,6 +335,7 @@ export const translation = {
   'Visit our GitHub': 'GitHubを訪問',
   'We kindly request your assistance in reporting any ideas or bugs on our':
     'アイデアやバグを報告していただけると幸いです。報告先：',
+  'Welcome to {{title}}.': '{{title}}へようこそ。',
   'Welcome to {{title}}. This is where all ROMs uploaded by you will appear.':
     '{{title}}へようこそ。ここにあなたがアップロードしたすべてのROMが表示されます。',
   'We support these file extensions for this platform:': 'このプラットフォームでサポートされているファイル拡張子：',

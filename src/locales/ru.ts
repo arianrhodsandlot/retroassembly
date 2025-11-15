@@ -23,6 +23,8 @@ export const translation = {
     'И вы можете иметь до <1>{{maxRomCount}}</1> ROM в вашей библиотеке.',
   'An unexpected error occurred.': 'Произошла неожиданная ошибка.',
   Arcade: 'Аркада',
+  'Are you sure to proceed?\nThe deleted history item cannot be restored.\nThe ROM related to this history item will NOT be deleted.':
+    'Вы уверены, что хотите продолжить?\nУдаленный элемент истории не может быть восстановлен.\nСвязанная с этим элементом истории ROM НЕ будет удалена.',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.':
     'Вы уверены, что хотите продолжить?\nУдаленные ROM-файлы не могут быть восстановлены.',
   Ascending: 'По возрастанию',
@@ -334,6 +336,7 @@ export const translation = {
   'Visit our GitHub': 'Посетите наш GitHub',
   'We kindly request your assistance in reporting any ideas or bugs on our':
     'Мы любезно просим вашей помощи в сообщении о любых идеях или ошибках в нашем',
+  'Welcome to {{title}}.': 'Добро пожаловать в {{title}}.',
   'Welcome to {{title}}. This is where all ROMs uploaded by you will appear.':
     'Добро пожаловать в {{title}}. Здесь будут отображаться все загруженные вами ROM.',
   'We support these file extensions for this platform:': 'Мы поддерживаем эти расширения файлов для данной платформы:',

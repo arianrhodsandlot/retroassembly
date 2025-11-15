@@ -15,13 +15,28 @@ export async function loader() {
     getLaunchRecords({ pageSize: 20 }),
   ])
 
-  const [rom] = recentlySavedRoms
-  const [state] = await getStates({ core: preference.emulator.platform[rom.platform].core, limit: 1, rom: rom?.id })
-  if (!state) {
-    recentlySavedRoms.pop()
+  const data: {
+    rom: (typeof recentlySavedRoms)[number] | null
+    state: any | null
+  } = { rom: null, state: null }
+
+  const rom = recentlySavedRoms[0] || newAddedRoms[0]
+  if (rom) {
+    const [state] = await getStates({ core: preference.emulator.platform[rom.platform].core, limit: 1, rom: rom?.id })
+    data.rom = rom
+    if (state) {
+      data.state = state
+    }
   }
 
-  return getLoaderData({ newAddedRoms, recentlyLaunchedRoms, recentlySavedRoms, rom, state, title: t('Home') })
+  return getLoaderData({
+    newAddedRoms,
+    recentlyLaunchedRoms,
+    recentlySavedRoms,
+    rom: data.rom,
+    state: data.state,
+    title: t('Home'),
+  })
 }
 
 export default function LibraryRoute() {

@@ -23,6 +23,8 @@ export const translation = {
     '您可以在库中拥有最多<1>{{maxRomCount}}</1>个ROM。',
   'An unexpected error occurred.': '发生了意外错误。',
   Arcade: '街机',
+  'Are you sure to proceed?\nThe deleted history item cannot be restored.\nThe ROM related to this history item will NOT be deleted.':
+    '确定要继续吗？\n删除的历史项目无法恢复。\n与该历史项目相关的 ROM 不会被删除。',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.': '您确定要继续吗？\n删除的ROM无法恢复。',
   Ascending: '升序',
   'Atari 2600': '雅达利2600',
@@ -323,6 +325,7 @@ export const translation = {
   'Virtual Boy': 'Virtual Boy',
   'Visit our GitHub': '访问我们的GitHub',
   'We kindly request your assistance in reporting any ideas or bugs on our': '我们恳请您协助报告想法或bug，请前往：',
+  'Welcome to {{title}}.': '欢迎来到{{title}}。',
   'Welcome to {{title}}. This is where all ROMs uploaded by you will appear.':
     '欢迎来到{{title}}。这里将显示您上传的所有ROM。',
   'We support these file extensions for this platform:': '此平台支持的文件扩展名：',

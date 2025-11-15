@@ -1,7 +1,9 @@
 import { Button } from '@radix-ui/themes'
+import { createElement } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link, useLocation } from 'react-router'
+import { generatePath, Link, useLocation } from 'react-router'
 import { metadata } from '@/constants/metadata.ts'
+import { routes } from '@/pages/routes.ts'
 import { getPlatformIcon } from '@/utils/client/library.ts'
 import { usePlatform } from '../../hooks/use-platform.ts'
 import { UploadButton } from '../../platform/components/upload-button.tsx'
@@ -12,8 +14,8 @@ export function GameListEmpty() {
   const { pathname } = useLocation()
   const platform = usePlatform()
 
-  const isLibrary = pathname === '/library'
-  const isHistory = pathname === '/library/history'
+  const isLibrary = pathname === routes.libraryRoms || pathname === routes.libraryHome
+  const isHistory = pathname === routes.libraryHistory
 
   return (
     <div className='flex flex-col items-center justify-center gap-2 py-16 text-sm lg:text-xl'>
@@ -25,7 +27,7 @@ export function GameListEmpty() {
               title: metadata.title,
             })}
           </div>
-          <div className='text-(--gray-11)'>
+          <div className='text-(--gray-11) inline-flex items-center gap-1'>
             <Trans
               components={{
                 1: <UploadSelectButton variant='soft' />,
@@ -39,16 +41,16 @@ export function GameListEmpty() {
       {isHistory ? (
         <>
           <div className='text-(--gray-11)'>{t("You haven't played any games yet.")}</div>
-          <div className='text-(--gray-11)'>
+          <div className='text-(--gray-11) inline-flex items-center gap-1'>
             <Trans
               components={{
-                1: (
-                  <Button asChild variant='outline'>
-                    <Link to='/library'>
+                1: createElement(() => (
+                  <Button asChild variant='soft'>
+                    <Link to={generatePath(routes.libraryHome)}>
                       <span className='icon-[mdi--bookshelf] ' /> {t('Home')}
                     </Link>
                   </Button>
-                ),
+                )),
               }}
               i18nKey='playSomeGamesFromLibrary'
             />

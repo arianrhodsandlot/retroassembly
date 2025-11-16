@@ -6,7 +6,12 @@ import useSWRImmutable from 'swr/immutable'
 import { client } from '@/api/client.ts'
 import { coreUrlMap } from '@/constants/core.ts'
 import type { Rom } from '@/controllers/roms/get-roms.ts'
-import { useEmulatorLaunched, useIsFullscreen, useLaunchButton } from '@/pages/library/atoms.ts'
+import {
+  useEmulatorLaunched,
+  useIsFullscreen,
+  useLaunchButton,
+  useSpatialNavigationPaused,
+} from '@/pages/library/atoms.ts'
 import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
 import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useRom } from '@/pages/library/hooks/use-rom.ts'
@@ -56,6 +61,7 @@ export function useEmulator() {
   const { reloadSilently } = useRouter()
   const [isFullscreen, setIsFullscreen] = useIsFullscreen()
   const [launchButton] = useLaunchButton()
+  const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
 
   const romUrl = isDemo
     ? getCDNUrl(`retrobrews/${{ genesis: 'md' }[rom.platform] || rom.platform}-games`, rom.fileName)
@@ -167,8 +173,9 @@ export function useEmulator() {
         wakeLock = undefined
       }
       if (promises.length > 0) {
-        await Promise.all(promises)
+        await attemptAsync(() => Promise.all(promises))
       }
+      setSpatialNavigationPaused(false)
       setIsFullscreen(false)
       focus(launchButton)
       offCancel()

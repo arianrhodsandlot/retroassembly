@@ -263,6 +263,8 @@ export const translation = {
   'ROMs uploaded': 'ROMs hochgeladen',
   Save: 'Speichern',
   'Save & Exit': 'Speichern & Beenden',
+  'Saved at': 'Gespeichert um',
+  'Saved States': 'Gespeicherte Zustände',
   'Save State': 'Spielstand speichern',
   'Scroll to top': 'Nach oben scrollen',
   Search: 'Suchen',

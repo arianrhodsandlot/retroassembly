@@ -12,7 +12,7 @@ import { useEmulator } from '../hooks/use-emulator.ts'
 import { useGameOverlay } from '../hooks/use-game-overlay.ts'
 
 export function GameState({ state }: Readonly<{ state: InferResponseType<typeof client.states.$get>[number] }>) {
-  const { i18n } = useTranslation()
+  const { i18n, t } = useTranslation()
   const { preference } = usePreference()
   const { hide, setIsPending } = useGameOverlay()
   const { core, emulator } = useEmulator()
@@ -87,7 +87,7 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
           <span className='icon-[svg-spinners--180-ring] text-(--accent-9) block size-3' />
         ) : (
           <>
-            Saved at <Badge>{humanizeDate(state.createdAt, dateFormat)}</Badge>
+            {t('Saved at')} <Badge>{humanizeDate(state.createdAt, dateFormat)}</Badge>
           </>
         )}
       </div>

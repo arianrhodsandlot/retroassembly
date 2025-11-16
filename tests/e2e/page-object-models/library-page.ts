@@ -1,8 +1,9 @@
 import type { Page } from '@playwright/test'
 
 export class LibraryPage {
+  readonly homeURL = 'library'
   readonly page: Page
-  readonly url = 'library/roms'
+  readonly romsURL = 'library/roms'
 
   constructor(page: Page) {
     this.page = page
@@ -15,7 +16,7 @@ export class LibraryPage {
   }
 
   async goto() {
-    await this.page.goto(this.url, { waitUntil: 'load' })
+    await this.page.goto(this.romsURL, { waitUntil: 'load' })
   }
 
   async gotoSettingsTab(tab: string) {
@@ -50,6 +51,6 @@ export class LibraryPage {
   }
 
   async waitForLoaded() {
-    await this.page.waitForURL(this.url, { waitUntil: 'load' })
+    await this.page.waitForURL(this.romsURL, { waitUntil: 'load' })
   }
 }

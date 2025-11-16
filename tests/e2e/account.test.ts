@@ -9,7 +9,7 @@ test('log in', async ({ page, pages: { library, login }, user }) => {
   await expect(page.getByText('invalid username or password')).toBeAttached()
 
   await login.login(user, false)
-  await expect(page).toHaveURL(library.url)
+  await expect(page).toHaveURL(library.homeURL)
 })
 
 test('log out', async ({ page, pages: { library, login }, user }) => {
@@ -18,7 +18,7 @@ test('log out', async ({ page, pages: { library, login }, user }) => {
   await expect(page).toHaveURL('')
 
   await library.goto()
-  await expect(page).toHaveURL(login.url)
+  await expect(page).toHaveURL(`${login.url}${new URLSearchParams({ redirect_to: library.romsURL }).toString()}`)
 })
 
 test('update password', async ({ page, pages: { library, login }, user }) => {

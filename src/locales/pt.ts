@@ -261,6 +261,8 @@ export const translation = {
   'ROMs uploaded': 'ROMs enviadas',
   Save: 'Salvar',
   'Save & Exit': 'Salvar e Sair',
+  'Saved at': 'Salvo em',
+  'Saved States': 'Estados Salvos',
   'Save State': 'Salvar Estado',
   'Scroll to top': 'Rolar para o topo',
   Search: 'Buscar',

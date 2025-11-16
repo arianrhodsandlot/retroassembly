@@ -20,9 +20,9 @@ export function humanizeDate(date: string, dateFormat: string) {
   const now = DateTime.now()
   if (dateTime.hasSame(now, 'year')) {
     const shortFormat = trim(dateFormat.replace('yyyy', ''), ['-', '/', '.'])
-    return dateTime.toFormat(`${shortFormat} hh:mm`)
+    return dateTime.toFormat(`${shortFormat} HH:mm`)
   }
-  return dateTime.toFormat(`${dateFormat} hh:mm`)
+  return dateTime.toFormat(`${dateFormat} HH:mm`)
 }
 
 export function encodeRFC3986URIComponent(str: string) {

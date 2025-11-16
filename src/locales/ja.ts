@@ -259,6 +259,8 @@ export const translation = {
   'ROMs uploaded': 'ROMアップロード完了',
   Save: '保存',
   'Save & Exit': '保存して終了',
+  'Saved at': '保存時間',
+  'Saved States': '保存状態',
   'Save State': 'ステートを保存',
   'Scroll to top': 'トップへスクロール',
   Search: '検索',

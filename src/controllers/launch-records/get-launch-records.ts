@@ -23,6 +23,7 @@ export async function getLaunchRecords({ page = 1, pageSize = 100 }: { page?: nu
       lastLaunched: max(launchRecordTable.createdAt),
       platform: launchRecordTable.platform,
 
+      fileId: romTable.fileId,
       fileName: romTable.fileName,
       gameBoxartFileIds: romTable.gameBoxartFileIds,
       gameName: romTable.gameName,

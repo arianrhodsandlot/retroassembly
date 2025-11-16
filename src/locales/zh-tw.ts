@@ -255,6 +255,8 @@ export const translation = {
   'ROMs uploaded': 'ROM已上傳',
   Save: '儲存',
   'Save & Exit': '儲存並退出',
+  'Saved at': '儲存於',
+  'Saved States': '已儲存的狀態',
   'Save State': '儲存狀態',
   'Scroll to top': '回到頂端',
   Search: '搜尋',

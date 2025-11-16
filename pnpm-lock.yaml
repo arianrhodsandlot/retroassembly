@@ -225,8 +225,8 @@ importers:
         specifier: 0.4.6
         version: 0.4.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       nostalgist:
-        specifier: 0.17.1
-        version: 0.17.1
+        specifier: 0.18.0
+        version: 0.18.0
       path-to-regexp:
         specifier: 8.3.0
         version: 8.3.0
@@ -2532,8 +2532,8 @@ packages:
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
 
-  '@types/emscripten@1.41.4':
-    resolution: {integrity: sha512-ECf0qTibhAi2Z0K6FIY96CvBTVkVIuVunOfbTUgbaAmGmbwsc33dbK9KZPROWsmzHotddy6C5pIqYqOmsBoJEw==}
+  '@types/emscripten@1.41.5':
+    resolution: {integrity: sha512-cMQm7pxu6BxtHyqJ7mQZ2kXWV5SLmugybFdHCBbJ5eHzOo6VhBckEgAT3//rP5FwPHNPeEiq4SmQ5ucBwsOo4Q==}
 
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
@@ -4752,8 +4752,8 @@ packages:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
 
-  nostalgist@0.17.1:
-    resolution: {integrity: sha512-4oMASlOngZtNLhKjhHPCsKFitMCXh8JFk5213dDhToD1sG+3kU2gcDXZ3dJSJoPxsAeSOtW9CNPOk4IEb2DdJA==}
+  nostalgist@0.18.0:
+    resolution: {integrity: sha512-hLRlTs+4ScVW25AnmyIY8MuWdW+d/Mw4PYARxn3LMHJDgkmO3E/tmlpUmCt3ZgxpL9tzuVI8X+23vSlvTQ4w1Q==}
     engines: {node: '>=24.7.0'}
 
   npm-install-checks@6.3.0:
@@ -8263,7 +8263,7 @@ snapshots:
     dependencies:
       '@types/ms': 2.1.0
 
-  '@types/emscripten@1.41.4': {}
+  '@types/emscripten@1.41.5': {}
 
   '@types/estree@1.0.8': {}
 
@@ -10739,9 +10739,9 @@ snapshots:
 
   normalize-path@3.0.0: {}
 
-  nostalgist@0.17.1:
+  nostalgist@0.18.0:
     dependencies:
-      '@types/emscripten': 1.41.4
+      '@types/emscripten': 1.41.5
       '@types/ini': 4.1.1
       '@types/path-browserify': 1.0.3
 

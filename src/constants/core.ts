@@ -2,7 +2,7 @@ import { cdnHost } from '@/utils/isomorphic/cdn.ts'
 
 const vendorsVersionInfo = {
   name: 'retroassembly-custom-cores',
-  version: '1.21.0-20250731190101',
+  version: '1.22.0-20251116152137',
 }
 
 function getCoreCDNUrl(core: string, ext: string) {
@@ -16,7 +16,6 @@ function getCoreCDNUrl(core: string, ext: string) {
 
 export const coreUrlMap: Partial<Record<CoreName, { js: string; name: string; wasm: string }>> = {
   a5200: { js: getCoreCDNUrl('a5200', 'js'), name: 'a5200', wasm: getCoreCDNUrl('a5200', 'wasm') },
-  fbneo: { js: getCoreCDNUrl('fbneo', 'js'), name: 'fbneo', wasm: getCoreCDNUrl('fbneo', 'wasm') },
   prosystem: { js: getCoreCDNUrl('prosystem', 'js'), name: 'prosystem', wasm: getCoreCDNUrl('prosystem', 'wasm') },
   stella2014: { js: getCoreCDNUrl('stella2014', 'js'), name: 'stella2014', wasm: getCoreCDNUrl('stella2014', 'wasm') },
 }

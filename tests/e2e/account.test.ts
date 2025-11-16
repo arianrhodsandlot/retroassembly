@@ -18,7 +18,7 @@ test('log out', async ({ page, pages: { library, login }, user }) => {
   await expect(page).toHaveURL('')
 
   await library.goto()
-  await expect(page).toHaveURL(`${login.url}${new URLSearchParams({ redirect_to: library.romsURL }).toString()}`)
+  await expect(page).toHaveURL([login.url, new URLSearchParams({ redirect_to: `/${library.romsURL}` })].join('?'))
 })
 
 test('update password', async ({ page, pages: { library, login }, user }) => {

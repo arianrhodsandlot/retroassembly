@@ -13,7 +13,7 @@ export default {
         { entry: 'scripts/serve.ts', outDir: 'dist/scripts' },
       ]
       for (const { entry, outDir } of entries) {
-        await build({ clean: false, entry, logLevel: 'warn', outDir })
+        await build({ clean: false, entry, fixedExtension: false, logLevel: 'warn', outDir })
       }
       await fs.move('dist/scripts', 'dist/server', { overwrite: true })
     }

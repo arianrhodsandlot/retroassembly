@@ -14,7 +14,7 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
 
   return (
     <DialogRoot {...props} onOpenChange={handleOpenChange}>
-      <Dialog.Content aria-describedby={undefined} width='360px'>
+      <Dialog.Content aria-describedby={undefined} width='340px'>
         <VisuallyHidden>
           <Dialog.Title className='flex items-center gap-2'>{t('About')}</Dialog.Title>
         </VisuallyHidden>

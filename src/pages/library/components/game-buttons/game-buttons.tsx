@@ -89,7 +89,7 @@ export function GameButtons() {
   }
 
   return (
-    <div className='flex w-full flex-col items-center gap-4 lg:flex-row'>
+    <div className='flex w-full flex-col gap-4 2xl:flex-row'>
       {state ? (
         <LaunchButton disabled={isPreparing} onClick={handleClickContinue}>
           {isPreparing ? (

@@ -49,7 +49,7 @@ export default function RomPage() {
 
           <div className='flex flex-col gap-6'>
             <GameMedia />
-            <div className='text-(--color-text)/90 prose group max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable] lg:mr-64 lg:pl-4'>
+            <div className='text-(--color-text)/90 prose group max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable] lg:pl-4 2xl:mr-64'>
               {overview}
               <div className='mt-1 flex justify-end'>
                 <GameInfoDialog autoFocusField='gameDescription' />

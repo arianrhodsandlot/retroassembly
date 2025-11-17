@@ -24,7 +24,7 @@ export function LibraryHomePage() {
 
   return (
     <LibraryLayout>
-      <div className='pb-20'>
+      <div>
         <JumpBackInSection />
 
         {[

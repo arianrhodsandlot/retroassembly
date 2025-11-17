@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
 import { generatePath, Link, useLoaderData } from 'react-router'
 import { platformMap } from '@/constants/platform.ts'

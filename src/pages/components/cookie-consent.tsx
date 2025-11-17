@@ -31,7 +31,7 @@ export function CookieConsent() {
   }
 
   return (
-    <div className='pointer-events-none fixed inset-x-4 bottom-4 z-10 text-xs'>
+    <div className='pointer-events-none fixed inset-x-4 bottom-4 z-20 text-xs'>
       <div className='border-(--accent-9) bg-(--color-background) w-2xl pointer-events-auto mx-auto flex max-w-full items-center justify-center gap-2 rounded border px-4 py-2 shadow-xl'>
         <span className='icon-[mdi--cookie] size-6 shrink-0' />
         <div className='text-left'>
@@ -50,7 +50,7 @@ export function CookieConsent() {
           </a>
           .
         </div>
-        <div className='flex flex-col gap-2 lg:flex-row'>
+        <div className='flex shrink-0 flex-col gap-2 lg:flex-row'>
           <Button onClick={handleClickAccept} size='1'>
             <span className='icon-[mdi--check]' />
             {t('Accept')}

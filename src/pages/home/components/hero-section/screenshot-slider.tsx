@@ -23,7 +23,7 @@ export function ScreenshotSlider() {
 
   return (
     <div className='hidden flex-1 shrink-0 flex-col items-center justify-center gap-10 xl:flex'>
-      <div className='border-1 border-(--gray-4) bg-(--color-background) rounded p-2'>
+      <div className='border-(--gray-4) bg-(--color-background) rounded border p-2'>
         {isLoading ? (
           <div className='w-2xl flex aspect-video items-center justify-center overflow-hidden rounded bg-neutral-200'>
             <span className='icon-[svg-spinners--180-ring] block size-12 text-neutral-300' />

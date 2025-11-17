@@ -162,6 +162,7 @@ export const translation = {
   'Passwords do not match': '密碼不符',
   Pause: '暫停',
   'PC Engine': 'PC Engine',
+  'People are saying great things about {{title}}!': '人們對 {{title}} 讚不絕口!',
   'Philips Videopac+': 'Philips Videopac+',
   platform: '平台',
   platform_arcade_note:
@@ -246,6 +247,14 @@ export const translation = {
   Resume: '繼續',
   'retrobrews project': 'retrobrews 專案',
   Retry: '重試',
+  review_dash:
+    'RetroAssembly 不僅僅是另一個模擬器前端或 ROM 管理器:它提醒我們，當障礙被消除時，復古遊戲可以變得多麼簡單和快樂。它的核心是讓這些經典遊戲易於存取、易於遊玩，並且無論您身在何處都易於隨身攜帶。底層技術可能是現代的，但理念是純粹的 8 位元:選擇一個遊戲，按下開始，然後開始遊戲。',
+  review_jim_gray:
+    '當您擁有大量復古遊戲庫供您使用時，這是一回事，但如果您把掌機落在家裡，這對您沒有任何好處。或者也許您想開始玩最新的本月遊戲，卻發現由於某種原因它不在您的掌機上。RetroAssembly 旨在幫助解決這個問題，因為您的整個收藏可以直接從瀏覽器存取。',
+  review_korben:
+    'RetroAssembly 就是我們所說的適合瀏覽器分頁的個人復古遊戲站。無需安裝，無需複雜設定，只需從任何裝置存取您的復古遊戲收藏。您會發現，在測試這個平台後，您會有一種重新發現年輕遊戲玩家房間的感覺…',
+  review_robert_triggs:
+    'RetroAssembly 將管理遊戲庫從一件苦差事變成了一種樂趣。它設定簡單，使用輕鬆，並且可以在我所有的裝置上執行。最後，我可以花更少的時間調試，花更多的時間玩遊戲。',
   Rewind: '倒轉',
   'Rewind Gameplay': '倒轉遊戲進程',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
@@ -346,5 +355,5 @@ export const translation = {
   'Your password has been updated': '您的密碼已更新',
   'Your settings will be saved and take effect immediately once changed.': '您的設定將會儲存並在變更後立即生效。',
   'Your valuable feedback will greatly contribute to enhancing the user experience.':
-    '您的寶貴回饋將大大有助於提升使用者體驗。',
+    '您寶貴的回饋將極大地有助於提升使用者體驗。',
 }

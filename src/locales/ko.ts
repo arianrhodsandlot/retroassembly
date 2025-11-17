@@ -165,6 +165,7 @@ export const translation = {
   'Passwords do not match': '비밀번호가 일치하지 않습니다',
   Pause: '일시정지',
   'PC Engine': 'PC Engine',
+  'People are saying great things about {{title}}!': '사람들이 {{title}}에 대해 훌륭한 이야기를 하고 있습니다!',
   'Philips Videopac+': 'Philips Videopac+',
   platform: '플랫폼',
   platform_arcade_note:
@@ -250,6 +251,14 @@ export const translation = {
   Resume: '계속하기',
   'retrobrews project': 'retrobrews 프로젝트',
   Retry: '재시도',
+  review_dash:
+    'RetroAssembly는 단순히 또 다른 에뮬레이터 프론트엔드나 ROM 관리자가 아닙니다. 장벽이 사라졌을 때 레트로 게이밍이 얼마나 단순하고 즐거울 수 있는지를 상기시켜주는 것입니다. 핵심은 이러한 클래식 타이틀을 쉽게 접근하고, 쉽게 플레이하고, 어디에 있든 쉽게 가지고 다닐 수 있도록 만드는 것입니다. 내부 기술은 현대적일 수 있지만 철학은 순수한 8비트입니다. 게임을 선택하고 시작을 누르면 바로 시작할 수 있습니다.',
+  review_jim_gray:
+    '방대한 레트로 게임 라이브러리를 사용할 수 있다는 것은 좋은 일이지만, 휴대용 게임기를 두고 왔다면 소용이 없습니다. 또는 이달의 게임을 시작하려고 했는데 어떤 이유로든 휴대용 게임기에 없다는 것을 깨달을 수도 있습니다. RetroAssembly는 전체 컬렉션이 브라우저에서 직접 액세스할 수 있으므로 이를 돕는 것을 목표로 합니다.',
+  review_korben:
+    'RetroAssembly는 브라우저 탭에 맞는 개인용 레트로 게임 스테이션이라고 부를 수 있는 것입니다. 설치도 없고 복잡한 구성도 없으며 모든 장치에서 액세스할 수 있는 레트로 게임 컬렉션만 있습니다. 이 플랫폼을 테스트한 후에는 젊은 게이머로서의 방을 재발견한 듯한 인상을 받게 될 것입니다…',
+  review_robert_triggs:
+    'RetroAssembly는 게임 라이브러리 관리를 번거로운 일에서 즐거움으로 바꿔줍니다. 설정이 간단하고 사용이 쉬우며 모든 장치에서 작동합니다. 마침내 조정하는 시간을 줄이고 게임하는 시간을 늘릴 수 있습니다.',
   Rewind: '되감기',
   'Rewind Gameplay': '게임플레이 되감기',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
@@ -355,5 +364,5 @@ export const translation = {
   'Your password has been updated': '비밀번호가 업데이트되었습니다',
   'Your settings will be saved and take effect immediately once changed.': '설정은 변경 시 즉시 저장되고 적용됩니다.',
   'Your valuable feedback will greatly contribute to enhancing the user experience.':
-    '여러분의 소중한 피드백은 사용자 경험 향상에 크게 기여할 것입니다.',
+    '귀하의 소중한 피드백은 사용자 경험 향상에 크게 기여할 것입니다.',
 }

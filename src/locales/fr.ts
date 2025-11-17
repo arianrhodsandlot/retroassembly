@@ -167,6 +167,7 @@ export const translation = {
   'Passwords do not match': 'Les mots de passe ne correspondent pas',
   Pause: 'Pause',
   'PC Engine': 'PC Engine',
+  'People are saying great things about {{title}}!': 'Les gens disent de superbes choses sur {{title}} !',
   'Philips Videopac+': 'Philips Videopac+',
   platform: 'plateforme',
   platform_arcade_note:
@@ -253,6 +254,14 @@ export const translation = {
   Resume: 'Reprendre',
   'retrobrews project': 'projet retrobrews',
   Retry: 'Réessayer',
+  review_dash:
+    "RetroAssembly n'est pas simplement un autre frontend d'émulateur ou gestionnaire de ROM : c'est un rappel de la simplicité et de la joie que peut apporter le rétro gaming lorsque les barrières sont supprimées. Au fond, il s'agit de rendre ces titres classiques faciles à atteindre, faciles à jouer et faciles à emporter avec vous, peu importe où vous êtes. La technologie sous le capot peut être moderne, mais la philosophie est pure 8-bit : choisissez un jeu, appuyez sur start, et c'est parti.",
+  review_jim_gray:
+    "C'est une chose d'avoir une énorme bibliothèque de jeux rétro à votre disposition, mais cela ne vous sert à rien si vous avez laissé votre console portable derrière vous. Ou peut-être voulez-vous commencer le dernier Jeu du Mois, pour réaliser qu'il n'est pas sur votre portable pour une raison ou une autre. RetroAssembly vise à vous aider avec cela, car toute votre collection est accessible directement depuis le navigateur.",
+  review_korben:
+    "RetroAssembly, c'est ce qu'on appelle une station de jeu rétro personnelle qui tient dans un onglet de navigateur. Pas d'installation, pas de configuration compliquée, juste votre collection de jeux rétro accessible depuis n'importe quel appareil. Vous verrez qu'après avoir testé cette plateforme, vous aurez l'impression d'avoir redécouvert votre chambre de jeune joueur…",
+  review_robert_triggs:
+    "RetroAssembly transforme la gestion d'une bibliothèque de jeux d'une corvée en un plaisir. C'est simple à configurer, sans effort à utiliser et fonctionne sur tous mes appareils. Enfin, je peux passer moins de temps à bidouiller et plus de temps à jouer.",
   Rewind: 'Rembobiner',
   'Rewind Gameplay': 'Rembobinage du jeu',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':

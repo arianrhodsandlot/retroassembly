@@ -163,6 +163,7 @@ export const translation = {
   'Passwords do not match': '密码不匹配',
   Pause: '暂停',
   'PC Engine': 'PC Engine',
+  'People are saying great things about {{title}}!': '人们对 {{title}} 赞不绝口!',
   'Philips Videopac+': 'Philips Videopac+',
   platform: '平台',
   platform_arcade_note:
@@ -246,6 +247,14 @@ export const translation = {
   Resume: '继续',
   'retrobrews project': 'retrobrews项目',
   Retry: '重试',
+  review_dash:
+    'RetroAssembly不仅仅是另一个模拟器前端或ROM管理器：它提醒我们,当障碍被消除时，复古游戏可以变得多么简单和快乐。它的核心是让这些经典游戏易于访问、易于玩耍，并且无论您身在何处都易于随身携带。它的底层技术可能是现代的,但是拥有纯粹的8bit理念：选择一个游戏，按下开始键，然后开始游戏。',
+  review_jim_gray:
+    '当你拥有海量的复古游戏库时，这固然很棒，但如果忘了带掌上设备，那就毫无用处。或者也许您想开始玩最新的本月游戏，却发现由于某种原因它不在您的掌机上。RetroAssembly旨在帮助解决这个问题，因为您的整个收藏可以直接从浏览器访问。',
+  review_korben:
+    'RetroAssembly就是我们所说的适合浏览器标签页的个人复古游戏站。无需安装，无需复杂配置，只需从任何设备访问您的复古游戏收藏。您会发现，在测试这个平台后，您会有一种重新发现年轻游戏玩家房间的感觉……',
+  review_robert_triggs:
+    'RetroAssembly将管理游戏库从一件苦差事变成了一种乐趣。它设置简单，使用轻松，并且可以在我所有的设备上运行。最最终，我可以花更少的时间调试，花更多的时间玩游戏。',
   Rewind: '回溯',
   'Rewind Gameplay': '游戏回溯',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':

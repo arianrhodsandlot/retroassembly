@@ -5,7 +5,7 @@ import { getRunTimeEnv } from '@/constants/env.ts'
 import { metadata } from '@/constants/metadata.ts'
 import { cookieConsentStatusKey } from '@/constants/misc.ts'
 
-const { domain, title } = metadata
+const { title } = metadata
 
 export function getLoaderData<T>(data: T = {} as T) {
   const c = getContext()
@@ -19,7 +19,7 @@ export function getLoaderData<T>(data: T = {} as T) {
   const isLikelyDesktop = c.req.header('sec-ch-ua-mobile') !== '?1'
   const runtimeKey = getRuntimeKey()
   const { host } = new URL(c.req.url)
-  const isOfficialHost = host === domain || host.endsWith('-retroassembly.arianrhodsandlot.workers.dev')
+  const isOfficialHost = host === 'retroassembly.com' || host.endsWith('-retroassembly.arianrhodsandlot.workers.dev')
 
   return {
     cookieConsentStatus,

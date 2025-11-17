@@ -166,6 +166,7 @@ export const translation = {
   'Passwords do not match': 'As senhas não coincidem',
   Pause: 'Pausar',
   'PC Engine': 'PC Engine',
+  'People are saying great things about {{title}}!': 'As pessoas estão dizendo coisas ótimas sobre {{title}}!',
   'Philips Videopac+': 'Philips Videopac+',
   platform: 'plataforma',
   platform_arcade_note:
@@ -252,6 +253,14 @@ export const translation = {
   Resume: 'Retomar',
   'retrobrews project': 'projeto retrobrews',
   Retry: 'Tentar novamente',
+  review_dash:
+    'RetroAssembly não é apenas mais um frontend de emulador ou gerenciador de ROM: é um lembrete de como os jogos retrô podem ser simples e alegres quando as barreiras são eliminadas. No seu núcleo, trata-se de tornar esses títulos clássicos fáceis de alcançar, fáceis de jogar e fáceis de carregar com você, não importa onde você esteja. A tecnologia por baixo pode ser moderna, mas a filosofia é pura 8-bit: escolha um jogo, pressione start e pronto.',
+  review_jim_gray:
+    'Uma coisa é quando você tem uma biblioteca enorme de jogos retrô à sua disposição, mas isso não adianta nada se você deixou seu portátil para trás. Ou talvez você queira começar o último Jogo do Mês, apenas para perceber que ele não está no seu portátil por uma razão ou outra. RetroAssembly visa ajudar com isso, pois toda a sua coleção fica acessível diretamente do navegador.',
+  review_korben:
+    'RetroAssembly é o que chamamos de estação de jogos retrô pessoal que cabe em uma aba do navegador. Sem instalação, sem configuração complicada, apenas sua coleção de jogos retrô acessível de qualquer dispositivo. Você verá que depois de testar esta plataforma, terá a impressão de ter redescoberto seu quarto como um jovem jogador…',
+  review_robert_triggs:
+    'RetroAssembly transforma o gerenciamento de uma biblioteca de jogos de uma tarefa árdua em um prazer. É simples de configurar, fácil de usar e funciona em todos os meus dispositivos. Finalmente, posso gastar menos tempo ajustando e mais tempo jogando.',
   Rewind: 'Rebobinar',
   'Rewind Gameplay': 'Rebobinar Jogabilidade',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':

@@ -166,6 +166,7 @@ export const translation = {
   'Passwords do not match': 'パスワードが一致しません',
   Pause: '一時停止',
   'PC Engine': 'PCエンジン',
+  'People are saying great things about {{title}}!': '{{title}}について、素晴らしいことを言っている人がたくさんいます!',
   'Philips Videopac+': 'Philips Videopac+',
   platform: 'プラットフォーム',
   platform_arcade_note:
@@ -250,6 +251,14 @@ export const translation = {
   Resume: '再開',
   'retrobrews project': 'retrobrewsプロジェクト',
   Retry: 'リトライ',
+  review_dash:
+    'RetroAssemblyは単なる別のエミュレーターフロントエンドやROMマネージャーではありません。障壁が取り除かれたときに、レトロゲーミングがいかにシンプルで楽しいものになるかを思い出させてくれるものです。その核心は、これらのクラシックタイトルを簡単に手に入れ、簡単にプレイし、どこにいても簡単に持ち運べるようにすることです。内部の技術は現代的かもしれませんが、哲学は純粋な8ビットです。ゲームを選び、スタートを押せば、準備完了です。',
+  review_jim_gray:
+    '膨大なレトロゲームのライブラリを自由に使えるのは素晴らしいことですが、携帯ゲーム機を置いてきてしまった場合は役に立ちません。あるいは、今月のゲームを始めようとしたら、何らかの理由で携帯ゲーム機に入っていないことに気づくかもしれません。RetroAssemblyは、コレクション全体がブラウザから直接アクセスできるため、これを解決することを目指しています。',
+  review_korben:
+    'RetroAssemblyは、ブラウザのタブに収まる個人用レトロゲームステーションと呼べるものです。インストール不要、複雑な設定不要、レトロゲームのコレクションにどのデバイスからでもアクセスできます。このプラットフォームをテストした後、若いゲーマーとしての部屋を再発見したような印象を受けるでしょう…',
+  review_robert_triggs:
+    'RetroAssemblyは、ゲームライブラリの管理を面倒な作業から楽しみに変えてくれます。セットアップは簡単で、使用も楽で、すべてのデバイスで動作します。ついに、調整に費やす時間を減らし、プレイする時間を増やすことができます。',
   Rewind: '巻き戻し',
   'Rewind Gameplay': 'ゲームプレイの巻き戻し',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':

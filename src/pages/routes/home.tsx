@@ -6,7 +6,7 @@ import { locales } from '@/locales/locales.ts'
 import { defaultLanguage } from '@/utils/isomorphic/i18n.ts'
 import { getHomePath } from '@/utils/isomorphic/misc.ts'
 import { getLoaderData } from '@/utils/server/loader-data.ts'
-import { HomePage } from '../page.tsx'
+import { HomePage } from '../home/page.tsx'
 import type { Route } from './+types/home.ts'
 
 function isValidLanguage(language?: string): language is string {

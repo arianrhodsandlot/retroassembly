@@ -167,6 +167,7 @@ export const translation = {
   'Passwords do not match': 'Le password non corrispondono',
   Pause: 'Pausa',
   'PC Engine': 'PC Engine',
+  'People are saying great things about {{title}}!': 'La gente dice cose fantastiche su {{title}}!',
   'Philips Videopac+': 'Philips Videopac+',
   platform: 'piattaforma',
   platform_arcade_note:
@@ -252,6 +253,14 @@ export const translation = {
   Resume: 'Riprendi',
   'retrobrews project': 'progetto retrobrews',
   Retry: 'Riprova',
+  review_dash:
+    'RetroAssembly non è solo un altro frontend per emulatori o gestore di ROM: è un promemoria di quanto possa essere semplice e gioioso il retro gaming quando le barriere vengono abbattute. Nel suo cuore, si tratta di rendere quei titoli classici facili da raggiungere, facili da giocare e facili da portare con te ovunque tu sia. La tecnologia sotto il cofano può essere moderna, ma la filosofia è puro 8-bit: scegli un gioco, premi start e si parte.',
+  review_jim_gray:
+    "È una cosa avere una massiccia libreria di giochi retro a tua disposizione, ma questo non ti serve a nulla se hai lasciato la tua console portatile a casa. O forse vuoi iniziare l'ultimo Gioco del Mese, solo per scoprire che non è sulla tua portatile per un motivo o per un altro. RetroAssembly mira ad aiutarti con questo, poiché l'intera tua collezione è accessibile direttamente dal browser.",
+  review_korben:
+    "RetroAssembly è quello che chiamiamo una stazione di gioco retro personale che sta in una scheda del browser. Nessuna installazione, nessuna configurazione complicata, solo la tua collezione di giochi retro accessibile da qualsiasi dispositivo. Vedrai che dopo aver testato questa piattaforma, avrai l'impressione di aver riscoperto la tua stanza da giovane giocatore…",
+  review_robert_triggs:
+    'RetroAssembly trasforma la gestione di una libreria di giochi da una fatica in un piacere. È semplice da configurare, senza sforzo da usare e funziona su tutti i miei dispositivi. Finalmente, posso passare meno tempo a trafficare e più tempo a giocare.',
   Rewind: 'Riavvolgi',
   'Rewind Gameplay': 'Riavvolgi Gameplay',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':

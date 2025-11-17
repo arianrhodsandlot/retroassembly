@@ -165,6 +165,7 @@ export const translation = {
   'Passwords do not match': 'Passwords do not match',
   Pause: 'Pause',
   'PC Engine': 'PC Engine',
+  'People are saying great things about {{title}}!': 'People are saying great things about {{title}}!',
   'Philips Videopac+': 'Philips Videopac+',
   platform: 'platform',
   platform_arcade_note:
@@ -250,6 +251,14 @@ export const translation = {
   Resume: 'Resume',
   'retrobrews project': 'retrobrews project',
   Retry: 'Retry',
+  review_dash:
+    "RetroAssembly isn't just another emulator frontend or ROM manager: it's a reminder of how simple and joyful retro gaming can be when the barriers are dropped. At its heart, it's about making those classic titles easy to reach, easy to play, and easy to carry with you no matter where you are. The tech under the hood may be modern, but the philosophy is pure 8-bit: pick a game, press start, and you're off.",
+  review_jim_gray:
+    "It's one thing when you have a massive library of retro games at your disposal, but that doesn't do you any good if you left your handheld behind. Or maybe you want to get started on the latest Game of the Month, only to realize that it's not on your handheld for one reason or another. RetroAssembly aims to help with that, as your entire collection is accessible right from the browser.",
+  review_korben:
+    "RetroAssembly is what we call a personal retro gaming station that fits in a browser tab. No installation, no complicated configuration, just your collection of retro games accessible from any device. You'll see that after testing this platform, you'll have the impression of having rediscovered your room as a young gamer…",
+  review_robert_triggs:
+    'RetroAssembly turns managing a game library from a chore to a pleasure. It is simple to set up, effortless to use, and works on all my devices. Finally, I can spend less time tinkering and more time playing.',
   Rewind: 'Rewind',
   'Rewind Gameplay': 'Rewind Gameplay',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { ButtonLinks } from './button-links.tsx'
+import { ButtonLinks } from '../../components/button-links.tsx'
+import { Paralolas } from '../../components/parabolas.tsx'
 import background from './button-section-background.svg'
-import { Paralolas } from './parabolas.tsx'
 
 export function ButtonSection() {
   const { t } = useTranslation()

@@ -3,6 +3,7 @@ import { accepts } from 'hono/accepts'
 import { getCookie } from 'hono/cookie'
 import { createMiddleware } from 'hono/factory'
 import { match } from 'path-to-regexp'
+import { getRunTimeEnv } from '@/constants/env.ts'
 import type { ResolvedPreference } from '@/constants/preference.ts'
 import { getPreference } from '@/controllers/preference/get-preference.ts'
 import { getCurrentUser } from '@/controllers/users/get-current-user.ts'
@@ -64,7 +65,18 @@ export function globals() {
     const token = c.req.header('Authorization')?.replace('Bearer ', '') || getCookie(c, 'token') || ''
     c.set('token', token)
 
-    const currentUser = await getCurrentUser()
+    let currentUser = await getCurrentUser()
+
+    const runtimeEnv = getRunTimeEnv()
+    const isSuperviser =
+      currentUser?.id && runtimeEnv.RETROASSEMBLY_RUN_TIME_SUPERVISER_USER_IDS.split(',').includes(currentUser?.id)
+    if (isSuperviser) {
+      const tempUserId = getCookie(c, 'temp-user-id') || c.req.query('temp-user-id')
+      if (tempUserId) {
+        currentUser = { id: tempUserId, username: '' }
+      }
+    }
+
     c.set('authorized', Boolean(currentUser))
     c.set('unauthorized', !currentUser)
     if (currentUser) {

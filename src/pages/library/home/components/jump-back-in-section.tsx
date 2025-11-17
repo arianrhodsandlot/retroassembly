@@ -27,7 +27,7 @@ export function JumpBackInSection() {
 
         <div className='flex flex-col gap-4 lg:flex-row'>
           <div className='flex w-96 max-w-full items-center justify-center'>
-            <GameEntryImage rom={rom} />
+            <GameEntryImage centered rom={rom} />
           </div>
           <div className='flex flex-col justify-center gap-4'>
             <Link to={generatePath(routes.libraryPlatformRom, { fileName: rom.fileName, platform: rom.platform })}>

@@ -1,7 +1,7 @@
 import { usePreference } from '../hooks/use-preference.ts'
 import { GameEntry } from './game-entry/game-entry.tsx'
 
-const sizeMap = { 'extra-small': 36, 'extra large': 60, large: 54, medium: 48, small: 42 }
+const sizeMap = { 'extra-large': 60, 'extra-small': 36, large: 54, medium: 48, small: 42 }
 
 export function GameEntryGrid({ roms }: { roms: any[] }) {
   const { preference } = usePreference()

@@ -8,7 +8,7 @@ import { skeletonClassnames } from '../../constants/skeleton-classnames.ts'
 import { useRomCover } from '../../hooks/use-rom-cover.ts'
 import { useViewport } from '../../hooks/use-viewport.ts'
 
-export function GameEntryImage({ rom }) {
+export function GameEntryImage({ centered = false, rom }: { centered?: boolean; rom: any }) {
   const goodcodes = getRomGoodcodes(rom)
   const { data: cover, isLoading } = useRomCover(rom)
   const [loaded, setLoaded] = useState(false)
@@ -22,7 +22,7 @@ export function GameEntryImage({ rom }) {
   const image = (
     <img
       alt={goodcodes.rom}
-      className='max-h-full max-w-full rounded object-contain object-bottom'
+      className={clsx('max-h-full max-w-full rounded object-contain', centered ? 'object-center' : 'object-bottom')}
       loading='lazy'
       onError={handleLoad}
       onLoad={handleLoad}
@@ -35,7 +35,7 @@ export function GameEntryImage({ rom }) {
       activeOffset={0}
       className='size-full'
       highlight={false}
-      innerClassName={clsx('flex! items-end justify-center transition-opacity', {
+      innerClassName={clsx('flex! justify-center transition-opacity', centered ? 'items-center' : 'items-end', {
         'opacity-0': !loaded,
       })}
       shadow={false}
@@ -56,7 +56,7 @@ export function GameEntryImage({ rom }) {
         {shouldShowskeleton ? (
           <motion.div
             animate={{ opacity: 1 }}
-            className='absolute top-0 flex size-full items-end justify-center'
+            className={clsx('absolute top-0 flex size-full justify-center', centered ? 'items-center' : 'items-end')}
             exit={{ opacity: 0 }}
           >
             <Skeleton

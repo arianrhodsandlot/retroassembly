@@ -79,8 +79,10 @@ export const romTable = sqliteTable(
     ...fileSchema,
   },
   (table) => [
-    index('idx_roms').on(table.userId, table.status, table.platform, table.fileName),
-    index('idx_roms_user_id').on(table.userId, table.status),
+    index('idx_roms_user_status_platform').on(table.userId, table.status, table.platform),
+    index('idx_roms_user_status_created').on(table.userId, table.status, table.createdAt),
+    index('idx_roms_user_status_released').on(table.userId, table.status, table.gameReleaseDate),
+    index('idx_roms_user_status_name').on(table.userId, table.status, table.fileName),
   ],
 )
 
@@ -94,7 +96,10 @@ export const stateTable = sqliteTable(
     type: text({ enum: ['auto', 'manual'] }).notNull(),
     ...fileSchema,
   },
-  (table) => [index('idx_states').on(table.userId, table.status, table.romId, table.platform)],
+  (table) => [
+    index('idx_states_rom_status').on(table.romId, table.status, table.createdAt),
+    index('idx_states_user_status').on(table.userId, table.status),
+  ],
 )
 
 export const launchRecordTable = sqliteTable(
@@ -106,7 +111,9 @@ export const launchRecordTable = sqliteTable(
     userId: text().notNull(),
     ...baseSchema,
   },
-  (table) => [index('idx_launch_records').on(table.userId, table.status, table.platform, table.romId, table.createdAt)],
+  (table) => [
+    index('idx_launch_records_user_status_platform').on(table.userId, table.status, table.platform, table.createdAt),
+  ],
 )
 
 export const userPreferenceTable = sqliteTable(

@@ -1,6 +1,7 @@
 import { range } from 'es-toolkit'
 import { useTranslation } from 'react-i18next'
 import { metadata } from '@/constants/metadata.ts'
+import { getCDNUrl } from '@/utils/isomorphic/cdn.ts'
 
 interface Review {
   avatar: string
@@ -16,14 +17,7 @@ export function ReviewsSection() {
 
   const reviews: Review[] = [
     {
-      avatar: 'https://gardinerbryant.com/content/images/2025/10/IMG20230222140721.jpg',
-      contentKey: 'review_dash',
-      name: 'Dash',
-      site: 'The Bryant Review',
-      url: 'https://gardinerbryant.com/inside-retroassembly-a-conversation-with-its-creator/',
-    },
-    {
-      avatar: 'https://rh-handhelds-content.nyc3.cdn.digitaloceanspaces.com/2023/09/jim-gray-onionos-jpg.webp',
+      avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', `home/review-authors/jim-gray.png`),
       contentKey: 'review_jim_gray',
       name: 'Jim Gray',
       role: 'Retro Collector',
@@ -31,19 +25,25 @@ export function ReviewsSection() {
       url: 'https://retrohandhelds.gg/how-to-setup-retroassembly/',
     },
     {
-      avatar:
-        'https://secure.gravatar.com/avatar/721f7446b6872aab6425482bd663168e79efea702cca60530d5e1a15e18f51fc?s=256',
-      contentKey: 'review_robert_triggs',
-      name: 'Robert Triggs',
-      site: 'Android Authority',
-      url: 'https://www.androidauthority.com/retroassembly-nas-3612845/',
+      avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', `home/review-authors/dash.png`),
+      contentKey: 'review_dash',
+      name: 'Dash',
+      site: 'The Bryant Review',
+      url: 'https://gardinerbryant.com/inside-retroassembly-a-conversation-with-its-creator/',
     },
     {
-      avatar: 'https://img.mailinblue.com/1942795/images/rnb/original/60c81d2e8cde7d70953262c6.png',
+      avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', `home/review-authors/korben.png`),
       contentKey: 'review_korben',
       name: 'Korben',
       site: "L'actu tech & geek de Korben",
       url: 'https://korben.info/retroassembly-collection-jeux-retro-navigateur-web.html',
+    },
+    {
+      avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', `home/review-authors/robert-triggs.png`),
+      contentKey: 'review_robert_triggs',
+      name: 'Robert Triggs',
+      site: 'Android Authority',
+      url: 'https://www.androidauthority.com/retroassembly-nas-3612845/',
     },
   ]
 

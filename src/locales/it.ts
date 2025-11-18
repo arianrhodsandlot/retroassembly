@@ -254,13 +254,14 @@ export const translation = {
   'retrobrews project': 'progetto retrobrews',
   Retry: 'Riprova',
   review_dash:
-    'RetroAssembly non è solo un altro frontend per emulatori o gestore di ROM: è un promemoria di quanto possa essere semplice e gioioso il retro gaming quando le barriere vengono abbattute. Nel suo cuore, si tratta di rendere quei titoli classici facili da raggiungere, facili da giocare e facili da portare con te ovunque tu sia. La tecnologia sotto il cofano può essere moderna, ma la filosofia è puro 8-bit: scegli un gioco, premi start e si parte.',
+    'RetroAssembly non è soltanto un’altra interfaccia per emulatori o un semplice gestore di ROM: è un promemoria di quanto il retrogaming possa essere semplice e divertente quando le barriere scompaiono. In fondo, si tratta di rendere quei classici facili da trovare, facili da giocare e facili da portare sempre con te, ovunque tu sia. La tecnologia sotto il cofano è moderna, ma la filosofia è pura essenza a 8 bit: scegli un gioco, premi Start e parti.',
   review_jim_gray:
-    "È una cosa avere una massiccia libreria di giochi retro a tua disposizione, ma questo non ti serve a nulla se hai lasciato la tua console portatile a casa. O forse vuoi iniziare l'ultimo Gioco del Mese, solo per scoprire che non è sulla tua portatile per un motivo o per un altro. RetroAssembly mira ad aiutarti con questo, poiché l'intera tua collezione è accessibile direttamente dal browser.",
+    'Avere a disposizione un’enorme libreria di giochi retrò è una gran cosa, ma non serve a molto se ti sei dimenticato la console portatile a casa. O magari vuoi iniziare l’ultimo Gioco del Mese e ti rendi conto che, per un motivo o per l’altro, non è sulla tua console. RetroAssembly nasce per questo: tutta la tua collezione è accessibile direttamente dal browser.',
   review_korben:
-    "RetroAssembly è quello che chiamiamo una stazione di gioco retro personale che sta in una scheda del browser. Nessuna installazione, nessuna configurazione complicata, solo la tua collezione di giochi retro accessibile da qualsiasi dispositivo. Vedrai che dopo aver testato questa piattaforma, avrai l'impressione di aver riscoperto la tua stanza da giovane giocatore…",
+    'RetroAssembly è, in pratica, una stazione di gioco retrò personale che sta in una scheda del browser. Niente installazione, niente configurazioni complicate: solo la tua collezione di giochi retrò accessibile da qualsiasi dispositivo. Dopo aver provato questa piattaforma, avrai la sensazione di aver riscoperto la tua stanza di giovane videogiocatore…',
   review_robert_triggs:
-    'RetroAssembly trasforma la gestione di una libreria di giochi da una fatica in un piacere. È semplice da configurare, senza sforzo da usare e funziona su tutti i miei dispositivi. Finalmente, posso passare meno tempo a trafficare e più tempo a giocare.',
+    'Con RetroAssembly, gestire la mia libreria di giochi non è più una seccatura, ma un piacere. È semplice da configurare, facilissimo da usare e funziona su tutti i miei dispositivi. Finalmente posso passare meno tempo a smanettare e più tempo a giocare.',
+  Reviews: 'Recensioni',
   Rewind: 'Riavvolgi',
   'Rewind Gameplay': 'Riavvolgi Gameplay',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':

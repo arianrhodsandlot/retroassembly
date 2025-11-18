@@ -259,6 +259,7 @@ export const translation = {
     "RetroAssembly is what we call a personal retro gaming station that fits in a browser tab. No installation, no complicated configuration, just your collection of retro games accessible from any device. You'll see that after testing this platform, you'll have the impression of having rediscovered your room as a young gamer…",
   review_robert_triggs:
     'RetroAssembly turns managing a game library from a chore to a pleasure. It is simple to set up, effortless to use, and works on all my devices. Finally, I can spend less time tinkering and more time playing.',
+  Reviews: 'Reviews',
   Rewind: 'Rewind',
   'Rewind Gameplay': 'Rewind Gameplay',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':

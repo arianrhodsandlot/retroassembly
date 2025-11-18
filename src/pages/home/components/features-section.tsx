@@ -124,11 +124,7 @@ function useFeatures() {
         </div>
       ),
       description: (
-        <>
-          {t('Rewind gameplay using "R" on the keyboard or a controller button combination')} (<kbd>Select</kbd> +{' '}
-          <kbd>L2</kbd>
-          ).
-        </>
+        <>{t('Rewind gameplay using "R" on the keyboard or a controller button combination')} ("Select" + "L2" ).</>
       ),
       icon: 'icon-[mdi--clock-arrow]',
       title: t('Rewind Gameplay'),

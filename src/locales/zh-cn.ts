@@ -163,7 +163,7 @@ export const translation = {
   'Passwords do not match': '密码不匹配',
   Pause: '暂停',
   'PC Engine': 'PC Engine',
-  'People are saying great things about {{title}}!': '人们对 {{title}} 赞不绝口!',
+  'People are saying great things about {{title}}!': '大家对 {{title}} 赞不绝口!',
   'Philips Videopac+': 'Philips Videopac+',
   platform: '平台',
   platform_arcade_note:
@@ -248,13 +248,14 @@ export const translation = {
   'retrobrews project': 'retrobrews项目',
   Retry: '重试',
   review_dash:
-    'RetroAssembly不仅仅是另一个模拟器前端或ROM管理器：它提醒我们,当障碍被消除时，复古游戏可以变得多么简单和快乐。它的核心是让这些经典游戏易于访问、易于玩耍，并且无论您身在何处都易于随身携带。它的底层技术可能是现代的,但是拥有纯粹的8bit理念：选择一个游戏，按下开始键，然后开始游戏。',
+    'RetroAssembly绝非又一款模拟器前端或ROM管理器：它意在提醒大家，当所有阻碍都被扫清时，复古游戏可以变得如此简单而充满乐趣。其核心设计理念在于，让那些经典游戏触手可及、易于游玩，并且无论你身在何处，都能轻松随身携带。它的底层技术或许充满现代感，但所秉持的理念却纯粹如8位机时代那般：选中一款游戏，按下开始键，就能即刻开启游戏之旅。',
   review_jim_gray:
-    '当你拥有海量的复古游戏库时，这固然很棒，但如果忘了带掌上设备，那就毫无用处。或者也许您想开始玩最新的本月游戏，却发现由于某种原因它不在您的掌机上。RetroAssembly旨在帮助解决这个问题，因为您的整个收藏可以直接从浏览器访问。',
+    '当你手边拥有海量复古游戏库时，那种感觉固然不错，但如果忘了带掌上游戏机，这些游戏对你来说也就毫无用处了。又或者，你想开始玩最新的 “月度游戏”，结果却发现不知为何这款游戏并未安装在你的掌上游戏机里。而RetroAssembly就能帮你解决这些问题 —— 因为你的整个游戏收藏都能直接通过浏览器访问。',
   review_korben:
-    'RetroAssembly就是我们所说的适合浏览器标签页的个人复古游戏站。无需安装，无需复杂配置，只需从任何设备访问您的复古游戏收藏。您会发现，在测试这个平台后，您会有一种重新发现年轻游戏玩家房间的感觉……',
+    'RetroAssembly是一款“装进浏览器标签页里的私人复古游戏站”。无需安装，也无需复杂配置，只需通过任意设备，即可访问您的复古游戏收藏库。您会发现，在体验过这个平台后，仿佛重新回到了儿时那间充满游戏回忆的房间……',
   review_robert_triggs:
-    'RetroAssembly将管理游戏库从一件苦差事变成了一种乐趣。它设置简单，使用轻松，并且可以在我所有的设备上运行。最最终，我可以花更少的时间调试，花更多的时间玩游戏。',
+    'RetroAssembly 将游戏库管理从一件繁琐的事务变成了一种享受。它不仅设置简单、使用轻松，还能在我所有的设备上运行。终于，我可以减少花在折腾上的时间，把更多时间用在玩游戏上了。',
+  Reviews: '评论',
   Rewind: '回溯',
   'Rewind Gameplay': '游戏回溯',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':

@@ -1,3 +1,4 @@
+import { translation as cs } from './cs.ts'
 import { translation as de } from './de.ts'
 import { translation as en } from './en.ts'
 import { translation as es } from './es.ts'
@@ -11,6 +12,7 @@ import { translation as zhCN } from './zh-cn.ts'
 import { translation as zhTW } from './zh-tw.ts'
 
 export const locales = [
+  { code: 'cs', name: 'Čeština', translation: cs },
   { code: 'de', name: 'Deutsch', translation: de },
   { code: 'en', name: 'English', translation: en },
   { code: 'es', name: 'Español', translation: es },

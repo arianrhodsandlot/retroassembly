@@ -5,7 +5,7 @@ This is a browser-based retro gaming platform with dual-runtime architecture sup
 
 ### Tech Stack
 #### Frontend
-React, React Router, Radix UI, Tailwind CSS, Iconify
+React, React Router, Radix Themes, Tailwind CSS, Iconify
 
 #### Backend
 Hono, React Router, Drizzle

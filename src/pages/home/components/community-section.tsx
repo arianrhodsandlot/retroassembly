@@ -14,7 +14,7 @@ export function CommunitySection() {
         </h2>
         <ul className='mb-4 inline-flex flex-col gap-2 py-4 text-sm leading-loose *:flex *:items-start *:gap-3'>
           <li>
-            <span className='icon-[mdi--greeting] mt-1.5 shrink-0 text-lg' />
+            <span className='icon-[mdi--idea] mt-1.5 shrink-0 text-lg' />
             <div>
               {t('We kindly request your assistance in reporting any ideas or bugs on our')}{' '}
               <a className='underline' href={linkMap.discord.url} rel='noreferrer noopener' target='_blank'>
@@ -28,7 +28,7 @@ export function CommunitySection() {
             </div>
           </li>
           <li>
-            <span className='icon-[mdi--comment-text-multiple-outline] mt-1.5 shrink-0 text-lg' />
+            <span className='icon-[mdi--flower] mt-1.5 shrink-0 text-lg' />
             {t('Your valuable feedback will greatly contribute to enhancing the user experience.')}
           </li>
         </ul>

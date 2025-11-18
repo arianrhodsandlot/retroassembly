@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 import { random, randomInt } from 'es-toolkit'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { getCDNUrl } from '@/utils/isomorphic/cdn.ts'
+import { getCDNUrl } from '#@/utils/isomorphic/cdn.ts'
 
 // Type definitions for better code organization
 interface Position {

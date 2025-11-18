@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
-import { focus } from '@/pages/library/utils/spatial-navigation.ts'
+import { useIsDemo } from '#@/pages/library/hooks/use-demo.ts'
+import { focus } from '#@/pages/library/utils/spatial-navigation.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 import { useGameOverlay } from '../hooks/use-game-overlay.ts'
 import { useGameStates } from '../hooks/use-game-states.ts'

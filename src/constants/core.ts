@@ -1,4 +1,4 @@
-import { cdnHost } from '@/utils/isomorphic/cdn.ts'
+import { cdnHost } from '#@/utils/isomorphic/cdn.ts'
 
 const vendorsVersionInfo = {
   name: 'retroassembly-custom-cores',

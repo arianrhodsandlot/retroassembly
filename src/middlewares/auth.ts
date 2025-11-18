@@ -1,5 +1,5 @@
 import { createMiddleware } from 'hono/factory'
-import { defaultRedirectTo } from '@/constants/auth.ts'
+import { defaultRedirectTo } from '#@/constants/auth.ts'
 
 export function auth() {
   return createMiddleware(async function middleware(c, next) {

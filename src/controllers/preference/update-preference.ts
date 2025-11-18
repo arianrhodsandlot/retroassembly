@@ -1,9 +1,9 @@
 import { eq, type InferInsertModel } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { platforms } from '@/constants/platform.ts'
-import { type PreferenceSnippet, resolveUserPreference } from '@/constants/preference.ts'
-import { userPreferenceTable } from '@/databases/schema.ts'
-import { mergePreference } from '@/utils/isomorphic/preference.ts'
+import { platforms } from '#@/constants/platform.ts'
+import { type PreferenceSnippet, resolveUserPreference } from '#@/constants/preference.ts'
+import { userPreferenceTable } from '#@/databases/schema.ts'
+import { mergePreference } from '#@/utils/isomorphic/preference.ts'
 
 function normalize(preference: any) {
   // sort platforms and remove invalid platforms

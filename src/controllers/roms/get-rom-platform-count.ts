@@ -1,6 +1,6 @@
 import { and, eq, inArray, sql } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { romTable, statusEnum } from '@/databases/schema.ts'
+import { romTable, statusEnum } from '#@/databases/schema.ts'
 
 export async function getRomPlatformCount() {
   const { currentUser, db, preference } = getContext().var

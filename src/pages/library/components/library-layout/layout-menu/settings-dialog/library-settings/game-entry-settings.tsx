@@ -1,7 +1,7 @@
 import { Card, RadioCards, Select, Switch } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
-import { usePreference } from '@/pages/library/hooks/use-preference.ts'
+import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
 export function GameEntrySettings() {

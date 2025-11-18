@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
-import { client, type InferRequestType } from '@/api/client.ts'
+import { client, type InferRequestType } from '#@/api/client.ts'
 import { LoginFormFields } from './log-in-form-fields.tsx'
 
 const { $post } = client.auth.login

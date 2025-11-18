@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useLoaderData } from 'react-router'
-import { metadata } from '@/constants/metadata.ts'
+import { metadata } from '#@/constants/metadata.ts'
 import type { loader } from '../../routes/login.tsx'
 
 interface PageContainerProps extends PropsWithChildren {

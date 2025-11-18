@@ -3,23 +3,23 @@ import { Nostalgist } from 'nostalgist'
 import { useEffect, useMemo } from 'react'
 import { useLoaderData } from 'react-router'
 import useSWRImmutable from 'swr/immutable'
-import { client } from '@/api/client.ts'
-import { coreUrlMap } from '@/constants/core.ts'
-import type { Rom } from '@/controllers/roms/get-roms.ts'
+import { client } from '#@/api/client.ts'
+import { coreUrlMap } from '#@/constants/core.ts'
+import type { Rom } from '#@/controllers/roms/get-roms.ts'
 import {
   useEmulatorLaunched,
   useIsFullscreen,
   useLaunchButton,
   useSpatialNavigationPaused,
-} from '@/pages/library/atoms.ts'
-import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
-import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
-import { useRom } from '@/pages/library/hooks/use-rom.ts'
-import { useRouter } from '@/pages/library/hooks/use-router.ts'
-import { getFileUrl } from '@/pages/library/utils/file.ts'
-import { focus, offCancel, onCancel } from '@/pages/library/utils/spatial-navigation.ts'
-import type { loader } from '@/pages/routes/library-platform-rom.tsx'
-import { getCDNUrl } from '@/utils/isomorphic/cdn.ts'
+} from '#@/pages/library/atoms.ts'
+import { useIsDemo } from '#@/pages/library/hooks/use-demo.ts'
+import { useGamepadMapping } from '#@/pages/library/hooks/use-gamepad-mapping.ts'
+import { useRom } from '#@/pages/library/hooks/use-rom.ts'
+import { useRouter } from '#@/pages/library/hooks/use-router.ts'
+import { getFileUrl } from '#@/pages/library/utils/file.ts'
+import { focus, offCancel, onCancel } from '#@/pages/library/utils/spatial-navigation.ts'
+import type { loader } from '#@/pages/routes/library-platform-rom.tsx'
+import { getCDNUrl } from '#@/utils/isomorphic/cdn.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
 
 type NostalgistOption = Parameters<typeof Nostalgist.prepare>[0]

@@ -1,7 +1,7 @@
 import { Skeleton } from '@radix-ui/themes'
 import Atropos from 'atropos/react'
 import type { ReactNode } from 'react'
-import { skeletonClassnames } from '@/pages/library/constants/skeleton-classnames.ts'
+import { skeletonClassnames } from '#@/pages/library/constants/skeleton-classnames.ts'
 import { useRomCover } from '../../../hooks/use-rom-cover.ts'
 
 export function GameCover({ className = '', parallax = false, rom }) {

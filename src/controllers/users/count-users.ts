@@ -1,6 +1,6 @@
 import { count, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { userTable } from '@/databases/schema.ts'
+import { userTable } from '#@/databases/schema.ts'
 
 export async function countUsers() {
   const { db } = getContext().var

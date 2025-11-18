@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import type { PlatformInfo } from '@/controllers/roms/get-platform-info.ts'
-import { getPlatformBanner, getPlatformDevicePhoto } from '@/utils/client/library.ts'
+import type { PlatformInfo } from '#@/controllers/roms/get-platform-info.ts'
+import { getPlatformBanner, getPlatformDevicePhoto } from '#@/utils/client/library.ts'
 import { useDate } from '../../hooks/use-date.ts'
 import { CompanyLogo } from '../../platform/components/company-logo.tsx'
 import { DeviceNotes } from './device-notes.tsx'

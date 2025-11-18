@@ -1,6 +1,9 @@
 {
   "private": true,
   "type": "module",
+  "imports": {
+    "#@/*": "./src/*"
+  },
   "scripts": {
     "build": "react-router build",
     "build:node": "node --run=build",
@@ -121,7 +124,6 @@
     "typescript": "5.9.3",
     "vite": "7.2.2",
     "vite-plugin-devtools-json": "1.0.0",
-    "vite-tsconfig-paths": "5.1.4",
     "wrangler": "4.47.0",
     "zod": "4.1.12"
   },

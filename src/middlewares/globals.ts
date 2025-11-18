@@ -3,12 +3,12 @@ import { accepts } from 'hono/accepts'
 import { getCookie } from 'hono/cookie'
 import { createMiddleware } from 'hono/factory'
 import { match } from 'path-to-regexp'
-import { getRunTimeEnv } from '@/constants/env.ts'
-import type { ResolvedPreference } from '@/constants/preference.ts'
-import { getPreference } from '@/controllers/preference/get-preference.ts'
-import { getCurrentUser } from '@/controllers/users/get-current-user.ts'
-import { locales } from '@/locales/locales.ts'
-import { defaultLanguage, i18n } from '@/utils/isomorphic/i18n.ts'
+import { getRunTimeEnv } from '#@/constants/env.ts'
+import type { ResolvedPreference } from '#@/constants/preference.ts'
+import { getPreference } from '#@/controllers/preference/get-preference.ts'
+import { getCurrentUser } from '#@/controllers/users/get-current-user.ts'
+import { locales } from '#@/locales/locales.ts'
+import { defaultLanguage, i18n } from '#@/utils/isomorphic/i18n.ts'
 
 declare module 'hono' {
   interface ContextVariableMap {

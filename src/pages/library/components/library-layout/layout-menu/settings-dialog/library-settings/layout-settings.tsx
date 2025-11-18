@@ -1,5 +1,5 @@
 import { Card, Switch } from '@radix-ui/themes'
-import { usePreference } from '@/pages/library/hooks/use-preference.ts'
+import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
 export function LayoutSettings() {

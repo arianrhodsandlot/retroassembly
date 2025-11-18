@@ -1,7 +1,7 @@
 import { Button, Callout, Tooltip } from '@radix-ui/themes'
 import { Trans, useTranslation } from 'react-i18next'
-import { metadata } from '@/constants/metadata.ts'
-import { useSettingsDialogOpen, useSettingsDialogTabName } from '@/pages/library/atoms.ts'
+import { metadata } from '#@/constants/metadata.ts'
+import { useSettingsDialogOpen, useSettingsDialogTabName } from '#@/pages/library/atoms.ts'
 
 interface BioseMissingMessageProps {
   bioses: {

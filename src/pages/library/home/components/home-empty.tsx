@@ -1,5 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { metadata } from '@/constants/metadata.ts'
+import { metadata } from '#@/constants/metadata.ts'
 import { UploadSelectButton } from '../../platform/components/upload-select-button.tsx'
 
 export function HomeEmpty() {

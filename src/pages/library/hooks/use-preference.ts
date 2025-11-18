@@ -1,8 +1,8 @@
 import { useAtom } from 'jotai'
 import useSWRMutation from 'swr/mutation'
-import { client, type InferRequestType, parseResponse } from '@/api/client.ts'
-import { defaultPreference, type PreferenceSnippet } from '@/constants/preference.ts'
-import { preferenceAtom } from '@/pages/atoms.ts'
+import { client, type InferRequestType, parseResponse } from '#@/api/client.ts'
+import { defaultPreference, type PreferenceSnippet } from '#@/constants/preference.ts'
+import { preferenceAtom } from '#@/pages/atoms.ts'
 
 const { $post } = client.preference
 

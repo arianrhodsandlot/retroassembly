@@ -4,7 +4,7 @@ import { Autoplay, FreeMode, Thumbs } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Swiper as SwiperType } from 'swiper/types'
 import useSWRImmutable from 'swr/immutable'
-import { imageLoaded } from '@/utils/client/image.ts'
+import { imageLoaded } from '#@/utils/client/image.ts'
 
 const images = [
   '/assets/screenshots/library.jpeg',

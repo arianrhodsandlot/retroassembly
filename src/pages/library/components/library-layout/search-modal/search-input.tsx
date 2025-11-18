@@ -1,6 +1,6 @@
 import { debounce } from 'es-toolkit'
 import { type ChangeEvent, useMemo, useState } from 'react'
-import { useSpatialNavigationPaused } from '@/pages/library/atoms.ts'
+import { useSpatialNavigationPaused } from '#@/pages/library/atoms.ts'
 import { useShowSearchModal } from '../atoms.ts'
 import { useQuery } from './atoms.ts'
 

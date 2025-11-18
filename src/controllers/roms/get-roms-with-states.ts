@@ -1,6 +1,6 @@
 import { and, count, countDistinct, desc, eq, gte, inArray, max } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { romTable, stateTable, statusEnum } from '@/databases/schema.ts'
+import { romTable, stateTable, statusEnum } from '#@/databases/schema.ts'
 import { getRomsMetadata } from '../../utils/server/misc.ts'
 
 export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {

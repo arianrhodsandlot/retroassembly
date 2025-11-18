@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { getCDNUrl } from '@/utils/isomorphic/cdn.ts'
+import { getCDNUrl } from '#@/utils/isomorphic/cdn.ts'
 
 const knownCompanyMap = new Map(
   Object.entries({

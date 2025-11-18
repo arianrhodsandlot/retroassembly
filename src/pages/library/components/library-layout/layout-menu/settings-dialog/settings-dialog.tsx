@@ -1,7 +1,7 @@
 import { Button, Dialog, ScrollArea, Tabs } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
-import { useSettingsDialogTabName } from '@/pages/library/atoms.ts'
+import { useSettingsDialogTabName } from '#@/pages/library/atoms.ts'
 import { DialogRoot } from '../../../dialog-root.tsx'
 import { EmulatingSettings } from './emulating-settings/emulating-settings.tsx'
 import { GeneralSettings } from './general-settings/general-settings.tsx'

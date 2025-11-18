@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useNavigation } from 'react-router'
-import { RadixThemePortal } from '@/pages/components/radix-theme-portal.tsx'
+import { RadixThemePortal } from '#@/pages/components/radix-theme-portal.tsx'
 import { useRouter } from '../hooks/use-router.ts'
 
 export function PendingMask() {

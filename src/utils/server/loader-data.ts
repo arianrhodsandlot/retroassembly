@@ -1,9 +1,9 @@
 import { getRuntimeKey } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
 import { getCookie } from 'hono/cookie'
-import { getRunTimeEnv } from '@/constants/env.ts'
-import { metadata } from '@/constants/metadata.ts'
-import { cookieConsentStatusKey } from '@/constants/misc.ts'
+import { getRunTimeEnv } from '#@/constants/env.ts'
+import { metadata } from '#@/constants/metadata.ts'
+import { cookieConsentStatusKey } from '#@/constants/misc.ts'
 
 const { title } = metadata
 

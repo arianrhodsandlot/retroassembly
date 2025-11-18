@@ -1,6 +1,6 @@
 import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
-import { linkMap, links } from '@/constants/links.ts'
+import { linkMap, links } from '#@/constants/links.ts'
 
 export function CommunitySection() {
   const { t } = useTranslation()

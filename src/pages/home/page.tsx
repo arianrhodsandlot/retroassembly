@@ -1,4 +1,4 @@
-import { metadata } from '@/constants/metadata.ts'
+import { metadata } from '#@/constants/metadata.ts'
 import { ButtonSection } from './components/button-section.tsx'
 import { CommunitySection } from './components/community-section.tsx'
 import { FeaturesSection } from './components/features-section.tsx'

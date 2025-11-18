@@ -1,5 +1,5 @@
 import { index, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
-import type { PlatformName } from '@/constants/platform.ts'
+import type { PlatformName } from '#@/constants/platform.ts'
 import type { PreferenceSnippet } from '../constants/preference.ts'
 import { nanoid } from '../utils/server/nanoid.ts'
 

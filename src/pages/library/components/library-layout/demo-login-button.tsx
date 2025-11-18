@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
-import { RadixThemePortal } from '@/pages/components/radix-theme-portal.tsx'
+import { RadixThemePortal } from '#@/pages/components/radix-theme-portal.tsx'
 
 export function DemoLoginButton() {
   const { t } = useTranslation()

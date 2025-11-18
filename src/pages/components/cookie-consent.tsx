@@ -2,8 +2,8 @@ import { Button } from '@radix-ui/themes'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { cookieConsentStatusKey } from '@/constants/misc.ts'
-import { initClarity } from '@/utils/client/clarity.ts'
+import { cookieConsentStatusKey } from '#@/constants/misc.ts'
+import { initClarity } from '#@/utils/client/clarity.ts'
 import { useGlobalLoaderData } from '../hooks/use-global-loader-data.ts'
 
 export function CookieConsent() {

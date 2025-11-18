@@ -1,7 +1,7 @@
 import { Card, HoverCard, RadioCards, Switch } from '@radix-ui/themes'
 import { useTranslation } from 'react-i18next'
-import { usePreference } from '@/pages/library/hooks/use-preference.ts'
-import { getCDNUrl } from '@/utils/isomorphic/cdn.ts'
+import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
+import { getCDNUrl } from '#@/utils/isomorphic/cdn.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
 function getShaderThumbnail(shader: string) {

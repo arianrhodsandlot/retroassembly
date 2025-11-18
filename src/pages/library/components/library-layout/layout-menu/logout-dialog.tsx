@@ -1,6 +1,6 @@
 import { AlertDialog, Button } from '@radix-ui/themes'
 import { useTranslation } from 'react-i18next'
-import { metadata } from '@/constants/metadata.ts'
+import { metadata } from '#@/constants/metadata.ts'
 
 function handleClickLogout() {
   location.assign('/logout')

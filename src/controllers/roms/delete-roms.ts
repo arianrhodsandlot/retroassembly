@@ -1,6 +1,6 @@
 import { and, eq, inArray } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { launchRecordTable, romTable } from '@/databases/schema.ts'
+import { launchRecordTable, romTable } from '#@/databases/schema.ts'
 
 export async function deleteRoms(ids: string[]) {
   const { currentUser, db } = getContext().var

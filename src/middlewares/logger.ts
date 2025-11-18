@@ -1,6 +1,6 @@
 import { createMiddleware } from 'hono/factory'
 import { DateTime } from 'luxon'
-import { getConnInfo } from '@/utils/server/misc.ts'
+import { getConnInfo } from '#@/utils/server/misc.ts'
 
 export function logger() {
   return createMiddleware(async function middleware(c, next) {

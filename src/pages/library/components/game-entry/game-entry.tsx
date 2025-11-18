@@ -1,6 +1,6 @@
 import type { MouseEvent } from 'react'
 import { generatePath } from 'react-router'
-import { routes } from '@/pages/routes.ts'
+import { routes } from '#@/pages/routes.ts'
 import { useSelectedGames } from '../../atoms.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
 import { NavigatableLink } from '../navigatable-link.tsx'

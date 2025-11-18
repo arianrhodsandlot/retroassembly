@@ -1,5 +1,5 @@
 import { BlobReader, BlobWriter, ZipReader } from '@zip.js/zip.js'
-import { getFileMd5 } from '@/utils/isomorphic/misc.ts'
+import { getFileMd5 } from '#@/utils/isomorphic/misc.ts'
 
 function isTinyFile(file: File) {
   if (!file) {

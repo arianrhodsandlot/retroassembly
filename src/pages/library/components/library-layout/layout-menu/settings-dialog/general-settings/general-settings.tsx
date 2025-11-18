@@ -1,4 +1,4 @@
-import { useGlobalLoaderData } from '@/pages/hooks/use-global-loader-data.ts'
+import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 import { AccountSettings } from './account-settings.tsx'
 import { LanguageSettings } from './language-settings.tsx'
 

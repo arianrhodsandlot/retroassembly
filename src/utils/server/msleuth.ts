@@ -1,7 +1,7 @@
 import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
 import QuickLRU from 'quick-lru'
-import { getRunTimeEnv } from '@/constants/env.ts'
+import { getRunTimeEnv } from '#@/constants/env.ts'
 
 function getApiURL(endpoint: string): URL {
   return new URL(`api/v1/${endpoint}`, getRunTimeEnv().RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST)

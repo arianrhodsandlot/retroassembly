@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { getContext } from 'hono/context-storage'
-import type { PlatformName } from '@/constants/platform.ts'
-import { getFilePartialDigest } from '@/utils/server/file.ts'
+import type { PlatformName } from '#@/constants/platform.ts'
+import { getFilePartialDigest } from '#@/utils/server/file.ts'
 import { updatePreference } from './update-preference.ts'
 
 export async function addBIOS(platform: PlatformName, file: File) {

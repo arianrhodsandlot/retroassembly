@@ -1,7 +1,7 @@
 import { Card } from '@radix-ui/themes'
 import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import type { Preference } from '@/constants/preference.ts'
+import type { Preference } from '#@/constants/preference.ts'
 import { UpdateButton } from '../update-button.tsx'
 import { KeyboardInput } from './keyboard-input.tsx'
 

@@ -1,6 +1,6 @@
 import { range } from 'es-toolkit'
 import { useTranslation } from 'react-i18next'
-import { metadata } from '@/constants/metadata.ts'
+import { metadata } from '#@/constants/metadata.ts'
 import { ButtonLinks } from '../../../components/button-links.tsx'
 
 export function HeroMain() {

@@ -1,11 +1,11 @@
 import { Hono } from 'hono'
 import { contextStorage } from 'hono/context-storage'
-import { app as api } from '@/api/app.ts'
-import { getRunTimeEnv } from '@/constants/env.ts'
-import { auth } from '@/middlewares/auth.ts'
-import { globals } from '@/middlewares/globals.ts'
-import { logger } from '@/middlewares/logger.ts'
-import { vendors } from '@/middlewares/vendors.ts'
+import { app as api } from '#@/api/app.ts'
+import { getRunTimeEnv } from '#@/constants/env.ts'
+import { auth } from '#@/middlewares/auth.ts'
+import { globals } from '#@/middlewares/globals.ts'
+import { logger } from '#@/middlewares/logger.ts'
+import { vendors } from '#@/middlewares/vendors.ts'
 
 const app = new Hono()
 app.use(contextStorage())

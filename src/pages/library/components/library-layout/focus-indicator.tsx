@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import { type ReactNode, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router'
-import { RadixThemePortal } from '@/pages/components/radix-theme-portal.tsx'
+import { RadixThemePortal } from '#@/pages/components/radix-theme-portal.tsx'
 import { useFocusIndicator } from '../../hooks/use-focus-indicator.ts'
 import { useGamepads } from '../../hooks/use-gamepads.ts'
 import { usePreference } from '../../hooks/use-preference.ts'

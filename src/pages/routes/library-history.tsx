@@ -1,6 +1,6 @@
 import { getContext } from 'hono/context-storage'
-import { getLaunchRecords } from '@/controllers/launch-records/get-launch-records.ts'
-import { getLoaderData } from '@/utils/server/loader-data.ts'
+import { getLaunchRecords } from '#@/controllers/launch-records/get-launch-records.ts'
+import { getLoaderData } from '#@/utils/server/loader-data.ts'
 import HistoryPage from '../library/history/page.tsx'
 import type { Route } from './+types/library-history.ts'
 

@@ -1,8 +1,8 @@
 import { Button, Dialog, VisuallyHidden } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
-import { linkMap, links } from '@/constants/links.ts'
-import { metadata } from '@/constants/metadata.ts'
+import { linkMap, links } from '#@/constants/links.ts'
+import { metadata } from '#@/constants/metadata.ts'
 import { DialogRoot } from '../../dialog-root.tsx'
 
 export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProps>) {

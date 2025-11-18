@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { mutate } from 'swr'
 import useSWRMutation from 'swr/mutation'
-import { client } from '@/api/client.ts'
+import { client } from '#@/api/client.ts'
 import { useGameActions } from '../../hooks/use-game-actions.ts'
 import { useRouter } from '../../hooks/use-router.ts'
 

@@ -1,6 +1,6 @@
 import Clarity from '@microsoft/clarity'
 import Cookies from 'js-cookie'
-import { cookieConsentStatusKey } from '@/constants/misc.ts'
+import { cookieConsentStatusKey } from '#@/constants/misc.ts'
 
 let done = false
 export function initClarity() {

@@ -1,9 +1,9 @@
 import { Button, TextField } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import type { ChangeEvent, KeyboardEvent, ReactNode } from 'react'
-import { useKeyboardMapping } from '@/pages/library/hooks/use-keyboard-mapping.ts'
-import { usePreference } from '@/pages/library/hooks/use-preference.ts'
-import { getKeyNameFromCode } from '@/pages/library/utils/keyboard.ts'
+import { useKeyboardMapping } from '#@/pages/library/hooks/use-keyboard-mapping.ts'
+import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
+import { getKeyNameFromCode } from '#@/pages/library/utils/keyboard.ts'
 
 function handleChange(event: ChangeEvent<HTMLInputElement>) {
   event.preventDefault()

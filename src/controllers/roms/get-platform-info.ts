@@ -1,5 +1,5 @@
 import { getContext } from 'hono/context-storage'
-import { platformMap } from '@/constants/platform.ts'
+import { platformMap } from '#@/constants/platform.ts'
 
 export type PlatformInfo = Awaited<ReturnType<typeof getPlatformInfo>>
 

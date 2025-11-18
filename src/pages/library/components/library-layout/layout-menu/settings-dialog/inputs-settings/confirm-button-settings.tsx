@@ -1,6 +1,6 @@
 import { RadioCards } from '@radix-ui/themes'
 import { Trans, useTranslation } from 'react-i18next'
-import { usePreference } from '@/pages/library/hooks/use-preference.ts'
+import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
 const rightButtonIcon = <span className='icon-[mdi--gamepad-circle-right] text-lg' />

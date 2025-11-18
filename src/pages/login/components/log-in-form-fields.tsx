@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { AccountFormField } from '@/pages/components/account-form-field.tsx'
+import { AccountFormField } from '#@/pages/components/account-form-field.tsx'
 
 export function LoginFormFields({ register = false }: Readonly<{ register?: boolean }>) {
   const { t } = useTranslation()

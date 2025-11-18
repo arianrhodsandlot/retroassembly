@@ -1,7 +1,7 @@
 import { and, count, desc, eq, inArray, sql } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import type { PlatformName } from '@/constants/platform.ts'
-import { romTable } from '@/databases/schema.ts'
+import type { PlatformName } from '#@/constants/platform.ts'
+import { romTable } from '#@/databases/schema.ts'
 import { getRomsMetadata } from '../../utils/server/misc.ts'
 
 type GetRomsReturning = Awaited<ReturnType<typeof getRoms>>

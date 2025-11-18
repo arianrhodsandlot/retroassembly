@@ -7,9 +7,6 @@
     "importHelpers": false,
     "lib": ["dom", "dom.iterable", "esnext"],
     "noImplicitAny": false,
-    "paths": {
-      "@/*": ["./src/*"]
-    },
     "rootDirs": [".", "./.react-router/types"],
     "skipLibCheck": true
   },

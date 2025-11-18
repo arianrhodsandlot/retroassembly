@@ -1,8 +1,8 @@
 import useSWRImmutable from 'swr/immutable'
 import useSWRMutation from 'swr/mutation'
-import { client, parseResponse } from '@/api/client.ts'
-import { useShowGameOverlayContent } from '@/pages/library/atoms.ts'
-import { useRom } from '@/pages/library/hooks/use-rom.ts'
+import { client, parseResponse } from '#@/api/client.ts'
+import { useShowGameOverlayContent } from '#@/pages/library/atoms.ts'
+import { useRom } from '#@/pages/library/hooks/use-rom.ts'
 import { useEmulator } from './use-emulator.ts'
 
 const { $get, $post } = client.states

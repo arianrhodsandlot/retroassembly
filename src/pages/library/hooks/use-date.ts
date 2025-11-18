@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import { useTranslation } from 'react-i18next'
-import { dateFormatMap } from '@/utils/isomorphic/i18n.ts'
+import { dateFormatMap } from '#@/utils/isomorphic/i18n.ts'
 import { usePreference } from './use-preference.ts'
 
 type DateInput = Date | DateTime | string

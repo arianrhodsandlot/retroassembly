@@ -1,7 +1,7 @@
 import { range } from 'es-toolkit'
 import { useTranslation } from 'react-i18next'
-import { metadata } from '@/constants/metadata.ts'
-import { getCDNUrl } from '@/utils/isomorphic/cdn.ts'
+import { metadata } from '#@/constants/metadata.ts'
+import { getCDNUrl } from '#@/utils/isomorphic/cdn.ts'
 
 interface Review {
   avatar: string

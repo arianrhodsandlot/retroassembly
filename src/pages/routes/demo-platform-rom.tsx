@@ -1,6 +1,6 @@
-import { defaultPreference } from '@/constants/preference.ts'
-import { getDemoRoms } from '@/controllers/roms/get-demo-roms.ts'
-import { getLoaderData } from '@/utils/server/loader-data.ts'
+import { defaultPreference } from '#@/constants/preference.ts'
+import { getDemoRoms } from '#@/controllers/roms/get-demo-roms.ts'
+import { getLoaderData } from '#@/utils/server/loader-data.ts'
 import RomPage from '../library/platform/rom/page.tsx'
 import type { Route } from './+types/library-platform-rom.ts'
 

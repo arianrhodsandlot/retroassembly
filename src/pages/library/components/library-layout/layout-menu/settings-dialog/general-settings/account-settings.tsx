@@ -2,9 +2,9 @@ import { Button, Callout, Card } from '@radix-ui/themes'
 import type { FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
-import { client } from '@/api/client.ts'
-import { AccountFormField } from '@/pages/components/account-form-field.tsx'
-import { useGlobalLoaderData } from '@/pages/hooks/use-global-loader-data.ts'
+import { client } from '#@/api/client.ts'
+import { AccountFormField } from '#@/pages/components/account-form-field.tsx'
+import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
 const { $patch } = client.auth.password

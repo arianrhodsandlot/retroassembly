@@ -1,10 +1,10 @@
 import { Button, TextField } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { type ReactNode, useEffect, useRef } from 'react'
-import { useGamepadMapping } from '@/pages/library/hooks/use-gamepad-mapping.ts'
-import { useGamepads } from '@/pages/library/hooks/use-gamepads.ts'
-import { usePreference } from '@/pages/library/hooks/use-preference.ts'
-import { Gamepad } from '@/utils/client/gamepad.ts'
+import { useGamepadMapping } from '#@/pages/library/hooks/use-gamepad-mapping.ts'
+import { useGamepads } from '#@/pages/library/hooks/use-gamepads.ts'
+import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
+import { Gamepad } from '#@/utils/client/gamepad.ts'
 
 interface GamepadInputProps {
   button: {

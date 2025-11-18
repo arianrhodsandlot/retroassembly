@@ -1,7 +1,7 @@
 import { Callout, Code } from '@radix-ui/themes'
 import { Trans, useTranslation } from 'react-i18next'
-import { platformMap, type PlatformName } from '@/constants/platform.ts'
-import { getPlatformIcon } from '@/utils/client/library.ts'
+import { platformMap, type PlatformName } from '#@/constants/platform.ts'
+import { getPlatformIcon } from '#@/utils/client/library.ts'
 
 export function UploadInstruction({
   maxFiles,

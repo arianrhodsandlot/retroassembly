@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import { useIsDemo } from '@/pages/library/hooks/use-demo.ts'
+import { useIsDemo } from '#@/pages/library/hooks/use-demo.ts'
 import { useNavigationLinks } from '../../../hooks/use-navigation-links.ts'
 import { SearchButton } from './search-button.tsx'
 import { SidebarLink } from './sidebar-link.tsx'

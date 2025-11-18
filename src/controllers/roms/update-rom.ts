@@ -1,6 +1,6 @@
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { romTable } from '@/databases/schema.ts'
+import { romTable } from '#@/databases/schema.ts'
 import { getRom } from './get-rom.ts'
 
 export async function updateRom(rom: {

@@ -1,8 +1,8 @@
 import { capitalize, compact } from 'es-toolkit'
 import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useGamepads } from '@/pages/library/hooks/use-gamepads.ts'
-import { useInputMapping } from '@/pages/library/hooks/use-input-mapping.ts'
+import { useGamepads } from '#@/pages/library/hooks/use-gamepads.ts'
+import { useInputMapping } from '#@/pages/library/hooks/use-input-mapping.ts'
 import { GameInputMessageItem } from './game-input-message-item.tsx'
 
 export function GameInputMessage() {

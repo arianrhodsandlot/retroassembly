@@ -9,7 +9,6 @@ import serverAdapter from 'hono-react-router-adapter/vite'
 import { DateTime } from 'luxon'
 import { defineConfig, type Plugin, type UserConfig } from 'vite'
 import devtoolsJson from 'vite-plugin-devtools-json'
-import tsconfigPaths from 'vite-tsconfig-paths'
 import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './scripts/utils.ts'
 import { getDirectories } from './src/constants/env.ts'
 
@@ -64,7 +63,7 @@ export default defineConfig(async (env) => {
   const port = envPort ? Number.parseInt(envPort, 10) || 8000 : 8000
   const config: UserConfig = {
     envPrefix: 'RETROASSEMBLY_BUILD_TIME_VITE_',
-    plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), devtoolsJson(), serverInfo()],
+    plugins: [tailwindcss(), reactRouter(), devtoolsJson(), serverInfo()],
     server: {
       allowedHosts: true,
       hmr: { overlay: false },

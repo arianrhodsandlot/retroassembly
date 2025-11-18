@@ -2,9 +2,9 @@ import { noop } from 'es-toolkit'
 import { createElement, useSyncExternalStore } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Links, Meta, useLoaderData } from 'react-router'
-import { metadata } from '@/constants/metadata.ts'
-import type { loader } from '@/pages/root.tsx'
-import { cdnHost } from '@/utils/isomorphic/cdn.ts'
+import { metadata } from '#@/constants/metadata.ts'
+import type { loader } from '#@/pages/root.tsx'
+import { cdnHost } from '#@/utils/isomorphic/cdn.ts'
 
 export function Head() {
   const { t } = useTranslation()

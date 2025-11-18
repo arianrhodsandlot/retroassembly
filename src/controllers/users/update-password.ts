@@ -1,7 +1,7 @@
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
-import { sessionTable, statusEnum, userTable } from '@/databases/schema.ts'
+import { sessionTable, statusEnum, userTable } from '#@/databases/schema.ts'
 
 export async function updatePassword(currentPassword: string, newPassword: string) {
   const c = getContext()

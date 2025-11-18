@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react'
-import { useGlobalLoaderData } from '@/pages/hooks/use-global-loader-data.ts'
+import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 
 function subscribe(callback: () => void) {
   const controller = new AbortController()

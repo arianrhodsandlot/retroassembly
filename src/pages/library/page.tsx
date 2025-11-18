@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router'
-import type { loader } from '@/pages/routes/library-roms.tsx'
+import type { loader } from '#@/pages/routes/library-roms.tsx'
 import { GameListMain } from './components/game-list-main.tsx'
 import LibraryLayout from './components/library-layout/library-layout.tsx'
 import { PageStats } from './components/page-stats.tsx'

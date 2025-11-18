@@ -2,9 +2,9 @@ import { DataList, Select, TextArea, TextField } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { range } from 'es-toolkit'
 import { useTranslation } from 'react-i18next'
-import { platformMap } from '@/constants/platform.ts'
-import { useDate } from '@/pages/library/hooks/use-date.ts'
-import { useRom } from '@/pages/library/hooks/use-rom.ts'
+import { platformMap } from '#@/constants/platform.ts'
+import { useDate } from '#@/pages/library/hooks/use-date.ts'
+import { useRom } from '#@/pages/library/hooks/use-rom.ts'
 
 export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?: string }>) {
   const { t } = useTranslation()

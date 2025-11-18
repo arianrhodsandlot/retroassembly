@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import { range } from 'es-toolkit'
 import { useTranslation } from 'react-i18next'
-import { getPlatformDeviceBackground, getRomLibretroThumbnail } from '@/utils/client/library.ts'
+import { getPlatformDeviceBackground, getRomLibretroThumbnail } from '#@/utils/client/library.ts'
 import { DemoFocusIndicator } from '../../components/demo-focus-indicator.tsx'
 import rewindImage from './rewind-image.png'
 

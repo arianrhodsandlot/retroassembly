@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { linkMap } from '@/constants/links.ts'
-import { metadata } from '@/constants/metadata.ts'
+import { linkMap } from '#@/constants/links.ts'
+import { metadata } from '#@/constants/metadata.ts'
 
 export function FooterSection() {
   const { t } = useTranslation()

@@ -2,7 +2,7 @@ import { Button } from '@radix-ui/themes'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, Link } from 'react-router'
-import { routes } from '@/pages/routes.ts'
+import { routes } from '#@/pages/routes.ts'
 
 export function LogInWithGoogleButton({ redirectTo }: Readonly<{ redirectTo: string }>) {
   const { t } = useTranslation()

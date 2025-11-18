@@ -1,8 +1,8 @@
 import { clsx } from 'clsx'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { useEmulatorLaunched } from '@/pages/library/atoms.ts'
-import { useGamepads } from '@/pages/library/hooks/use-gamepads.ts'
+import { useEmulatorLaunched } from '#@/pages/library/atoms.ts'
+import { useGamepads } from '#@/pages/library/hooks/use-gamepads.ts'
 import { useGameOverlay } from '../hooks/use-game-overlay.ts'
 import { VirtualGamepadButton } from './virtual-gamepad-button.tsx'
 

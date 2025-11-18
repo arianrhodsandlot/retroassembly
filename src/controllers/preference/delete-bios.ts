@@ -1,5 +1,5 @@
 import { getContext } from 'hono/context-storage'
-import type { PlatformName } from '@/constants/platform.ts'
+import type { PlatformName } from '#@/constants/platform.ts'
 import { updatePreference } from './update-preference.ts'
 
 export async function deleteBIOS(platform: PlatformName, fileName: string) {

@@ -1,7 +1,7 @@
 import { Button, type ButtonProps, Dialog } from '@radix-ui/themes'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import type { PlatformName } from '@/constants/platform.ts'
+import type { PlatformName } from '#@/constants/platform.ts'
 import { DialogRoot } from '../../components/dialog-root.tsx'
 import { UploadDialog } from './upload-dialog.tsx'
 

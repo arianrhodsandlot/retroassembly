@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { platformMap } from '@/constants/platform.ts'
-import { useDate } from '@/pages/library/hooks/use-date.ts'
+import { platformMap } from '#@/constants/platform.ts'
+import { useDate } from '#@/pages/library/hooks/use-date.ts'
 import { GameInfoDialog } from './game-info-dialog/game-info-dialog.tsx'
 
 export function GameInfo({ rom }) {

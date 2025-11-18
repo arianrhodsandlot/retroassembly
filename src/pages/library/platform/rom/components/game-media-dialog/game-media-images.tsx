@@ -4,9 +4,9 @@ import { clsx } from 'clsx'
 import type { InferRequestType } from 'hono'
 import { useState } from 'react'
 import useSWRMutation from 'swr/mutation'
-import { client, parseResponse } from '@/api/client.ts'
-import { useRom } from '@/pages/library/hooks/use-rom.ts'
-import { getFileUrl } from '@/pages/library/utils/file.ts'
+import { client, parseResponse } from '#@/api/client.ts'
+import { useRom } from '#@/pages/library/hooks/use-rom.ts'
+import { getFileUrl } from '#@/pages/library/utils/file.ts'
 
 const {
   ':thumbnailId{.+}': { $delete },

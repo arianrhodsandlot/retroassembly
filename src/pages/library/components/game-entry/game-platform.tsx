@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
-import { platformMap } from '@/constants/platform.ts'
-import { getPlatformIcon } from '@/utils/client/library.ts'
+import { platformMap } from '#@/constants/platform.ts'
+import { getPlatformIcon } from '#@/utils/client/library.ts'
 import { usePlatform } from '../../hooks/use-platform.ts'
 
 export function GamePlatform({ platform }: Readonly<{ platform: string }>) {

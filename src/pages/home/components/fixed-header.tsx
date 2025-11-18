@@ -2,8 +2,8 @@ import { Button, Tooltip } from '@radix-ui/themes'
 import { Fragment } from 'react/jsx-runtime'
 import { useTranslation } from 'react-i18next'
 import { Link, useLoaderData } from 'react-router'
-import { links } from '@/constants/links.ts'
-import type { loader } from '@/pages/routes/home.tsx'
+import { links } from '#@/constants/links.ts'
+import type { loader } from '#@/pages/routes/home.tsx'
 import { LanguageSelector } from '../../components/language-selector.tsx'
 
 function handleScrollToTop() {

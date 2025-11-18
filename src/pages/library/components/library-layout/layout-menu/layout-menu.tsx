@@ -1,7 +1,7 @@
 import { Button, DropdownMenu } from '@radix-ui/themes'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { links } from '@/constants/links.ts'
+import { links } from '#@/constants/links.ts'
 import { useSettingsDialogOpen, useSpatialNavigationPaused } from '../../../atoms.ts'
 import { useShowSearchModal } from '../atoms.ts'
 import { AboutDialog } from './about-dialog.tsx'

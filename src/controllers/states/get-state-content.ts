@@ -1,7 +1,7 @@
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { stateTable } from '@/databases/schema.ts'
-import { getFileContent } from '@/utils/server/misc.ts'
+import { stateTable } from '#@/databases/schema.ts'
+import { getFileContent } from '#@/utils/server/misc.ts'
 
 export async function getStateContent(id: string, type?: string) {
   const { currentUser, db } = getContext().var

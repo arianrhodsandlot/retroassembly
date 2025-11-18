@@ -1,7 +1,7 @@
 import { getContext } from 'hono/context-storage'
-import { defaultPreference } from '@/constants/preference.ts'
-import { getDemoRoms } from '@/controllers/roms/get-demo-roms.ts'
-import { getLoaderData } from '@/utils/server/loader-data.ts'
+import { defaultPreference } from '#@/constants/preference.ts'
+import { getDemoRoms } from '#@/controllers/roms/get-demo-roms.ts'
+import { getLoaderData } from '#@/utils/server/loader-data.ts'
 import LibraryPage from '../library/page.tsx'
 
 export function loader() {

@@ -1,7 +1,7 @@
 import { Callout, Select } from '@radix-ui/themes'
 import { useTranslation } from 'react-i18next'
-import type { CoreName } from '@/constants/core'
-import { usePreference } from '@/pages/library/hooks/use-preference.ts'
+import type { CoreName } from '#@/constants/core.ts'
+import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
 export function CoreOptions({

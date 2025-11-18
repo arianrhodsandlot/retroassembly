@@ -1,4 +1,4 @@
-import type { PlatformName } from '@/constants/platform'
+import type { PlatformName } from '#@/constants/platform.ts'
 
 export const skeletonClassnames: Partial<Record<PlatformName, string>> = {
   atari2600: '!aspect-[7/10] !h-full !w-auto',

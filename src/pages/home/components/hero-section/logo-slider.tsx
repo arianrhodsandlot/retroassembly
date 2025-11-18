@@ -33,7 +33,7 @@ export function LogoSlider() {
       speed={5000}
     >
       {platforms.map((platform) => (
-        <SwiperSlide className='w-20! flex h-8 items-center' key={platform}>
+        <SwiperSlide className='w-20! mr-10 flex h-8 items-center' key={platform}>
           <img alt={platform} className='h-8 w-full' src={getPlatformBanner(platform)} />
         </SwiperSlide>
       ))}

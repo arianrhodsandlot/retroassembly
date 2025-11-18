@@ -1,6 +1,6 @@
 import { keyBy, mapValues } from 'es-toolkit'
 import i18next from 'i18next'
-import { locales } from '#@/locales/locales.ts'
+import { type LocalCode, locales } from '#@/locales/locales.ts'
 
 export const defaultLanguage = 'en'
 
@@ -27,7 +27,8 @@ const isoDateFormat = 'yyyy-MM-dd'
 const asiaDateFormat = 'yyyy/MM/dd'
 export const dateFormats = [asiaDateFormat, dotDateFormat, euDateFormat, isoDateFormat, usDateFormat]
 
-export const dateFormatMap = {
+export const dateFormatMap: Record<LocalCode, string> = {
+  cs: euDateFormat,
   de: dotDateFormat,
   en: usDateFormat,
   es: euDateFormat,

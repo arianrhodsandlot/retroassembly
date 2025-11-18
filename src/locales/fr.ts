@@ -1,4 +1,6 @@
-export const translation = {
+import type { ResourceLanguage } from 'i18next'
+
+export const translation: ResourceLanguage = {
   '…and more': '…et plus encore',
   '(optional)': '(optionnel)',
   '(required)': '(requis)',

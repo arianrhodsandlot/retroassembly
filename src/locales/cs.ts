@@ -1,4 +1,6 @@
-export const translation = {
+import type { ResourceLanguage } from 'i18next'
+
+export const translation: ResourceLanguage = {
   '…and more': '…a více',
   '(optional)': '(volitelné)',
   '(required)': '(povinné)',
@@ -9,7 +11,7 @@ export const translation = {
     'Soubor BIOS je kopie operačního systému používaného hardwarem, který emulujeme. Některé emulátory potřebují soubory BIOS, aby správně emulovaly hardware a software podle potřeby. {{title}} nesdílí žádné chráněné systémové soubory ani obsah her. Musíte poskytnout vlastní BIOS a obsah v souladu s platnými zákony.',
   About: 'O aplikaci',
   Accept: 'Přijmout',
-  'According to the selected file\'s name, it is not an expected BIOS file.':
+  "According to the selected file's name, it is not an expected BIOS file.":
     'Podle názvu vybraného souboru se nejedná o očekávaný BIOS soubor.',
   account: 'účet',
   Account: 'Účet',
@@ -34,7 +36,7 @@ export const translation = {
   'Atari 7800': 'Atari 7800',
   'Atari Lynx': 'Atari Lynx',
   Auto: 'Automaticky',
-  'Automatically fetch game boxarts to enhance your library\'s visual appeal.':
+  "Automatically fetch game boxarts to enhance your library's visual appeal.":
     'Automaticky stahovat obaly her pro lepší vizuální vzhled vaší knihovny.',
   'Automatic Boxart Retrieval': 'Automatické stahování obalů',
   Back: 'Zpět',
@@ -42,7 +44,7 @@ export const translation = {
   BIOS: 'BIOS',
   'BIOS of {{platform}}': 'BIOS pro {{platform}}',
   'Browser-Based Gameplay': 'Hraní přímo v prohlížeči',
-  'By clicking the button, you agree to our':  'Kliknutím na tlačítko souhlasíte s našimi',
+  'By clicking the button, you agree to our': 'Kliknutím na tlačítko souhlasíte s našimi',
   Cancel: 'Zrušit',
   'Cannot be enabled with shaders.': 'Nelze zapnout současně s filtry (shaders).',
   'Channel F': 'Channel F',
@@ -154,7 +156,8 @@ export const translation = {
   Never: 'Nikdy',
   'New added': 'Nově přidáno',
   'New Password': 'Nové heslo',
-  'Nintendo button explanation': '(Použijte <rightButton></rightButton> pro potvrzení, <downButton></downButton> pro zrušení)',
+  'Nintendo button explanation':
+    '(Použijte <rightButton></rightButton> pro potvrzení, <downButton></downButton> pro zrušení)',
   'Nintendo Style': 'Nintendo styl',
   noGamesForPlatform: 'Ve vaší knihovně nejsou žádné <1></1> hry pro {{platform}}.',
   'Note that <1>PC Engine CD</1> games are NOT supported.': 'Upozornění: hry <1>PC Engine CD</1> nejsou podporovány.',
@@ -224,7 +227,7 @@ export const translation = {
   platform_wonderswancolor_note:
     'Bandai WonderSwan Color, obvykle jen nazývaná WonderSwan Color, je páté generace (1993-2005) přenosná herní konzole vyvinutá a distribuovaná společností Bandai Co., Ltd. Byla vydána 9. prosince 2000 v Japonsku za cenu 6 900 ¥. Konzole nebyla vydána mimo Japonsko. WonderSwan Color byla zpětně kompatibilní s WonderSwan a stále měla dlouhou výdrž baterie. Konzole byla ukončena v polovině až koncem roku 2003.',
   platformGamesStats: '<1>{{gameCount}}</1> {{game}} pro {{platform}}.',
-  'playedGamesStats': 'Hráno <1>{{gameCount}}</1> {{game}}',
+  playedGamesStats: 'Hráno <1>{{gameCount}}</1> {{game}}',
   Players: 'Hráči',
   'Play retro games directly in your browser without additional software.':
     'Hrajte retro hry přímo ve svém prohlížeči bez dalšího softwaru.',
@@ -251,13 +254,13 @@ export const translation = {
   Resume: 'Pokračovat',
   'retrobrews project': 'Projekt retrobrews',
   Retry: 'Zkusit znovu',
-  review_dash: 
+  review_dash:
     'RetroAssembly není jen další frontend pro emulátor nebo správce ROM: je to připomínka toho, jak jednoduché a zábavné může být retro hraní, když se odstraní překážky. Jde o to, aby klasické tituly byly snadno dostupné, snadno hratelné a snadno přenosné kamkoli jdete. Technologie pod kapotou může být moderní, ale filozofie je čistě 8-bitová: vyberte hru, stiskněte start a hrajete.',
-  review_jim_gray: 
+  review_jim_gray:
     'Mít obrovskou knihovnu retro her je jedna věc, ale nic vám to nepomůže, pokud jste nechali handheld doma. Nebo chcete začít s nejnovější Hrou měsíce a zjistíte, že ji na handheldu nemáte z nějakého důvodu. RetroAssembly vám s tím pomáhá, protože celá vaše sbírka je dostupná přímo z prohlížeče.',
-  review_korben: 
+  review_korben:
     'RetroAssembly je to, čemu říkáme osobní retro herní stanice, která se vejde do záložky prohlížeče. Žádná instalace, žádné složité nastavení, jen vaše sbírka retro her dostupná z jakéhokoli zařízení. Po vyzkoušení této platformy budete mít dojem, že jste znovu objevili svůj pokoj jako mladý hráč…',
-  review_robert_triggs: 
+  review_robert_triggs:
     'RetroAssembly proměňuje správu herní knihovny z povinnosti na potěšení. Je snadné nastavit, pohodlné používat a funguje na všech mých zařízeních. Konečně mohu trávit méně času nastavováním a více času hraním.',
   Reviews: 'Recenze',
   Rewind: 'Přetočit zpět',
@@ -312,9 +315,8 @@ export const translation = {
   Theme: 'Téma',
   'the MIT License': 'MIT licence',
   'The new password is the same as the current password': 'Nové heslo je stejné jako aktuální heslo',
-  'The personal retro game collection cabinet in your browser':
-    'Osobní retro herní sbírka přímo ve vašem prohlížeči',
-  'The requested page could not be found.':  'Požadovaná stránka nebyla nalezena.',
+  'The personal retro game collection cabinet in your browser': 'Osobní retro herní sbírka přímo ve vašem prohlížeči',
+  'The requested page could not be found.': 'Požadovaná stránka nebyla nalezena.',
   'These free (legal) games are all picked from': 'Tyto bezplatné (legální) hry jsou vybrány z',
   'These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.':
     'Tyto možnosti nejsou zaručeny, že se projeví, nebo mohou způsobit selhání spuštění. Upravení provádějte s opatrností a na vlastní riziko.',
@@ -352,13 +354,13 @@ export const translation = {
   'We use': 'Používáme',
   WonderSwan: 'WonderSwan',
   'WonderSwan Color': 'WonderSwan Color',
-  'Xbox button explanation': '(Použijte <downButton></downButton> pro potvrzení, <rightButton></rightButton> pro zrušení)',
+  'Xbox button explanation':
+    '(Použijte <downButton></downButton> pro potvrzení, <rightButton></rightButton> pro zrušení)',
   'Xbox Style': 'Xbox styl',
   'You are uploading ROMs for': 'Nahráváte ROM pro',
   'You can always log back in at any time.': 'Můžete se kdykoli znovu přihlásit.',
   'You can only upload up to {{maxFiles}} files at a time.': 'Najednou můžete nahrát maximálně {{maxFiles}} souborů.',
-  'You can upload up to <1>{{maxFiles}}</1> files at a time.':
-    'Najednou můžete nahrát až <1>{{maxFiles}}</1> souborů.',
+  'You can upload up to <1>{{maxFiles}}</1> files at a time.': 'Najednou můžete nahrát až <1>{{maxFiles}}</1> souborů.',
   'You can visit': 'Můžete navštívit',
   "You haven't played any games yet.": 'Ještě jste nehráli žádné hry.',
   'Your feedback matters!': 'Váš názor je důležitý!',
@@ -366,5 +368,5 @@ export const translation = {
   'Your settings will be saved and take effect immediately once changed.':
     'Vaše nastavení bude uloženo a projeví se okamžitě po změně.',
   'Your valuable feedback will greatly contribute to enhancing the user experience.':
-    'Vaše cenná zpětná vazba výrazně přispěje ke zlepšení uživatelského zážitku.'
+    'Vaše cenná zpětná vazba výrazně přispěje ke zlepšení uživatelského zážitku.',
 }

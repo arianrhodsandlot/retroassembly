@@ -1,13 +1,13 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router'
 import type { loader } from '#@/pages/routes/library-roms.tsx'
-import { GameListMain } from './components/game-list-main.tsx'
-import LibraryLayout from './components/library-layout/library-layout.tsx'
-import { PageStats } from './components/page-stats.tsx'
-import { useIsDemo } from './hooks/use-demo.ts'
-import { UploadSelectButton } from './platform/components/upload-select-button.tsx'
+import { GameListMain } from '../components/game-list-main.tsx'
+import LibraryLayout from '../components/library-layout/library-layout.tsx'
+import { PageStats } from '../components/page-stats.tsx'
+import { useIsDemo } from '../hooks/use-demo.ts'
+import { UploadSelectButton } from '../platform/components/upload-select-button.tsx'
 
-export default function LibraryPage() {
+export default function LibraryROMsPage() {
   const { t } = useTranslation()
   const { pagination, platformCount, roms } = useLoaderData<typeof loader>()
   const gameLabel = t('game', { count: pagination.total })

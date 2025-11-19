@@ -1,9 +1,23 @@
-export function MainBackground({ alt, src }: { alt?: string; src?: string }) {
+import type { HTMLAttributes } from 'react'
+import { twMerge } from 'tailwind-merge'
+
+export function MainBackground({
+  alt,
+  src,
+  ...props
+}: { alt?: string; src?: string } & HTMLAttributes<HTMLDivElement>) {
   return src ? (
-    <div className='blur-xs -z-1 fixed right-0 top-0 aspect-square w-full lg:h-full lg:w-auto'>
+    <div
+      className={twMerge(
+        'blur-xs absolute top-0 aspect-square w-full lg:fixed lg:right-0 lg:h-full lg:w-auto',
+        props.className,
+      )}
+    >
       <img alt={alt || ''} className='absolute size-full object-cover object-center' loading='lazy' src={src} />
-      <div className='bg-linear-to-l from-(--color-background)/30 to-(--color-background) absolute top-0 size-full transition-colors duration-500' />
-      <div className='bg-linear-to-b from-(--color-background)/30 to-(--color-background) absolute top-0 size-full transition-colors duration-500' />
+      <div className=' *:from-(--color-background)/30 *:to-(--color-background) *:absolute *:top-0 *:size-full'>
+        <div className='bg-linear-to-l' />
+        <div className='bg-linear-to-b' />
+      </div>
     </div>
   ) : null
 }

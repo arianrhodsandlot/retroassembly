@@ -2,7 +2,7 @@ import { getContext } from 'hono/context-storage'
 import { defaultPreference } from '#@/constants/preference.ts'
 import { getDemoRoms } from '#@/controllers/roms/get-demo-roms.ts'
 import { getLoaderData } from '#@/utils/server/loader-data.ts'
-import LibraryPage from '../library/page.tsx'
+import LibraryROMsPage from '../library/roms/page.tsx'
 
 export function loader() {
   const { t } = getContext().var
@@ -19,5 +19,5 @@ export function loader() {
 }
 
 export default function LibraryRoute() {
-  return <LibraryPage />
+  return <LibraryROMsPage />
 }

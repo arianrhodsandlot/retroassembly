@@ -1,4 +1,5 @@
 import { ScrollArea } from '@radix-ui/themes'
+import { clsx } from 'clsx'
 import type { PropsWithChildren } from 'react'
 import { Link } from 'react-router'
 import { metadata } from '#@/constants/metadata.ts'
@@ -17,6 +18,7 @@ import { SearchModal } from './search-modal/search-modal.tsx'
 import { SidebarContainer } from './sidebar-container.tsx'
 import { SidebarLinks } from './sidebar-links/sidebar-links.tsx'
 import { StatusBar } from './status-bar.tsx'
+import '../../utils/nostalgist.ts'
 
 function getPostfixedTitle(title: string) {
   return title ? `${title} - ${metadata.title}` : metadata.title
@@ -33,16 +35,11 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
     <>
       <title>{getPostfixedTitle(title)}</title>
 
-      <div className='library-layout p-safe flex flex-col'>
+      <div className={clsx('library-layout bg-(--color-background) flex flex-col')}>
         {isDemo ? <DemoLoginButton /> : null}
 
         <LayoutHeader />
 
-        <LayoutMain>{children}</LayoutMain>
-
-        <div className='bg-(--accent-9) z-11 left-72 right-0 top-0 hidden h-4 lg:fixed lg:block' />
-        <div className='bg-(--accent-9) z-11 inset-y-0 right-0 hidden h-full w-4 lg:fixed lg:block' />
-        <StatusBar />
         <SidebarContainer>
           <div className='flex items-center justify-between px-4 pb-4'>
             <Link className='flex items-center gap-2 font-bold' reloadDocument to={getHomePath(language)}>
@@ -57,6 +54,12 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
             <div className='border-t border-t-white/30 py-2 '>{isLargeScreen ? <LayoutMenu /> : null}</div>
           )}
         </SidebarContainer>
+
+        <LayoutMain>{children}</LayoutMain>
+
+        <div className='bg-(--accent-9) z-11 left-72 right-0 top-0 hidden h-4 lg:fixed lg:block' />
+        <div className='bg-(--accent-9) z-11 inset-y-0 right-0 hidden h-full w-4 lg:fixed lg:block' />
+        <StatusBar />
       </div>
 
       <SearchModal />

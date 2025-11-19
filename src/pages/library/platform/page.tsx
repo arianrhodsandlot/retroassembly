@@ -28,32 +28,35 @@ export default function PlatformPage() {
   return (
     <LibraryLayout>
       <PlatformBackground />
-      <GameListMain>
-        <div className={clsx('flex w-full justify-between', { 'flex-col': platformInfo })}>
-          {platformInfo ? (
-            <DeviceInfo key={platform} platform={platform} platformInfo={platformInfo} />
-          ) : (
-            <h1 className='text-5xl font-semibold'>{t(platformMap[platform].displayName)}</h1>
-          )}
 
-          {isDemo ? undefined : (
-            <PageStats suffix={<UploadButton platform={platform} />}>
-              <span className='icon-[mdi--bar-chart] text-(--color-text)' />
-              <Trans
-                components={{
-                  1: <span className='text-(--accent-9) font-semibold' />,
-                }}
-                i18nKey='platformGamesStats'
-                values={{
-                  game: gameLabel,
-                  gameCount: pagination.total,
-                  platform: t(platformMap[platform].displayName),
-                }}
-              />
-            </PageStats>
-          )}
-        </div>
-      </GameListMain>
+      <div className='relative'>
+        <GameListMain>
+          <div className={clsx('flex w-full justify-between', { 'flex-col': platformInfo })}>
+            {platformInfo ? (
+              <DeviceInfo key={platform} platform={platform} platformInfo={platformInfo} />
+            ) : (
+              <h1 className='text-5xl font-semibold'>{t(platformMap[platform].displayName)}</h1>
+            )}
+
+            {isDemo ? undefined : (
+              <PageStats suffix={<UploadButton platform={platform} />}>
+                <span className='icon-[mdi--bar-chart] text-(--color-text)' />
+                <Trans
+                  components={{
+                    1: <span className='text-(--accent-9) font-semibold' />,
+                  }}
+                  i18nKey='platformGamesStats'
+                  values={{
+                    game: gameLabel,
+                    gameCount: pagination.total,
+                    platform: t(platformMap[platform].displayName),
+                  }}
+                />
+              </PageStats>
+            )}
+          </div>
+        </GameListMain>
+      </div>
     </LibraryLayout>
   )
 }

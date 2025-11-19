@@ -27,47 +27,50 @@ export default function RomPage() {
     <LibraryLayout>
       <RomBackground rom={rom} />
 
-      <PageBreadcrumb />
-      <div className='flex min-h-full w-full flex-col gap-4 p-4 lg:flex-row'>
-        <div className='group lg:sticky'>
-          <GameCover className='top-4 block w-full lg:w-64' parallax={isLargeScreen} rom={rom} />
+      <div className='relative'>
+        <PageBreadcrumb />
 
-          <div className='mt-2 flex justify-end px-1'>
-            <GameMediaDialog />
-          </div>
-        </div>
+        <div className='flex min-h-full w-full flex-col gap-4 p-4 lg:flex-row'>
+          <div className='group lg:sticky'>
+            <GameCover className='top-4 block w-full lg:w-64' parallax={isLargeScreen} rom={rom} />
 
-        <div className='flex flex-1 flex-col gap-8'>
-          <h1 className='pt-4 text-3xl font-bold lg:px-8'>{goodcodes.rom}</h1>
-
-          <div className='flex flex-col gap-8 lg:flex-col-reverse'>
-            <div className='lg:px-4'>
-              <GameButtons />
+            <div className='mt-2 flex justify-end px-1'>
+              <GameMediaDialog />
             </div>
-            <GameInfo rom={rom} />
           </div>
 
-          <div className='flex flex-col gap-6'>
-            <GameMedia />
-            <div className='text-(--color-text)/90 prose group max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable] lg:pl-4 2xl:mr-64'>
-              {overview}
-              <div className='mt-1 flex justify-end'>
-                <GameInfoDialog autoFocusField='gameDescription' />
+          <div className='flex flex-1 flex-col gap-8'>
+            <h1 className='pt-4 text-3xl font-bold lg:px-8'>{goodcodes.rom}</h1>
+
+            <div className='flex flex-col gap-8 lg:flex-col-reverse'>
+              <div className='lg:px-4'>
+                <GameButtons />
               </div>
+              <GameInfo rom={rom} />
             </div>
 
-            {launchboxGame?.wikipediaUrl ? (
-              <div>
-                <a
-                  className='text-(--accent-9) inline-flex items-center gap-2 underline'
-                  href={launchboxGame.wikipediaUrl}
-                  rel='noreferrer noopener'
-                  target='_blank'
-                >
-                  <span className='icon-[mdi--wikipedia] size-6' /> {t('Read more on Wikipedia')}
-                </a>
+            <div className='flex flex-col gap-6'>
+              <GameMedia />
+              <div className='text-(--color-text)/90 prose group max-w-none whitespace-pre-line text-justify font-[Roboto_Slab_Variable] lg:pl-4 2xl:mr-64'>
+                {overview}
+                <div className='mt-1 flex justify-end'>
+                  <GameInfoDialog autoFocusField='gameDescription' />
+                </div>
               </div>
-            ) : null}
+
+              {launchboxGame?.wikipediaUrl ? (
+                <div>
+                  <a
+                    className='text-(--accent-9) inline-flex items-center gap-2 underline'
+                    href={launchboxGame.wikipediaUrl}
+                    rel='noreferrer noopener'
+                    target='_blank'
+                  >
+                    <span className='icon-[mdi--wikipedia] size-6' /> {t('Read more on Wikipedia')}
+                  </a>
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

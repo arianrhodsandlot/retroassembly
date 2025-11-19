@@ -3,7 +3,7 @@ import { getRomPlatformCount } from '#@/controllers/roms/get-rom-platform-count.
 import { getRoms } from '#@/controllers/roms/get-roms.ts'
 import { getLoaderData } from '#@/utils/server/loader-data.ts'
 import { getRomsQuery } from '#@/utils/server/misc.ts'
-import LibraryPage from '../library/page.tsx'
+import LibraryROMsPage from '../library/roms/page.tsx'
 
 export async function loader() {
   const { t } = getContext().var
@@ -13,5 +13,5 @@ export async function loader() {
 }
 
 export default function LibraryRoute() {
-  return <LibraryPage />
+  return <LibraryROMsPage />
 }

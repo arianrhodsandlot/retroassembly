@@ -18,8 +18,10 @@ export function JumpBackInSection() {
   }
 
   return (
-    <section className='translate-z-0 relative'>
-      <div className='bg-linear-to-b from-(--gray-a4)  rounded via-transparent to-transparent p-4 transition-colors duration-500'>
+    <section className='relative'>
+      <RomBackground className='lg:absolute' rom={rom} />
+
+      <div className='bg-linear-to-b from-(--gray-a4) relative rounded via-transparent to-transparent p-4'>
         <h2 className='text-(--accent-9) flex items-center gap-2 p-4 text-3xl font-semibold'>
           <span className='icon-[mdi--play-circle-outline]' />
           {t('Continue')}
@@ -48,7 +50,6 @@ export function JumpBackInSection() {
           </div>
         </div>
       </div>
-      <RomBackground rom={rom} />
     </section>
   )
 }

@@ -5,7 +5,7 @@ export function LayoutMain({ children }: PropsWithChildren) {
   return (
     <main
       className={clsx(
-        'border-(--accent-9) relative flex-1 overflow-hidden border-x-8 border-b-8 transition-colors duration-500',
+        'border-(--accent-9) relative flex-1 overflow-hidden border-x-8 border-b-[length:env(safe-area-inset-bottom)]',
         'lg:mb-0 lg:ml-72 lg:mr-4 lg:mt-4 lg:border-none lg:pb-12',
       )}
     >
@@ -24,13 +24,13 @@ export function LayoutMain({ children }: PropsWithChildren) {
           </svg>
         </div>
 
-        <div className='bottom-0 left-0 lg:bottom-12 lg:left-72'>
+        <div className='lg:-translate-y-13 left-0 top-full -translate-y-1 lg:left-72'>
           <svg height='4' viewBox='0 0 4 4' width='4'>
             <path d='M0 0C0 2.20914 1.79086 4 4 4L0 4L0 0Z' fill='currentColor' />
           </svg>
         </div>
 
-        <div className='bottom-0 right-0 lg:bottom-12 lg:right-4'>
+        <div className='lg:-translate-y-13 right-0 top-full -translate-y-1 lg:right-4'>
           <svg height='4' viewBox='0 0 4 4' width='4'>
             <path d='M0 4C2.20914 4 4 2.20914 4 0L4 4L0 4Z' fill='currentColor' />
           </svg>

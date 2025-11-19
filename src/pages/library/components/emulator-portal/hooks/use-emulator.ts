@@ -4,7 +4,6 @@ import { useEffect, useMemo } from 'react'
 import { useLoaderData } from 'react-router'
 import useSWRImmutable from 'swr/immutable'
 import { client } from '#@/api/client.ts'
-import { coreUrlMap } from '#@/constants/core.ts'
 import type { Rom } from '#@/controllers/roms/get-roms.ts'
 import {
   useEmulatorLaunched,
@@ -38,17 +37,6 @@ const defaultRetroarchConfig: RetroarchConfig = {
   rewind_granularity: 4,
 }
 
-const defaultEmulatorStyle: Partial<CSSStyleDeclaration> = {
-  backgroundPosition: ['left center', 'right center'].join(','),
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: 'contain',
-  border: 'none',
-  cursor: 'none',
-  opacity: '0',
-  outline: 'none',
-  transition: 'opacity .1s',
-}
-
 let wakeLock: undefined | WakeLockSentinel
 const originalGetUserMedia = globalThis.navigator?.mediaDevices?.getUserMedia
 export function useEmulator() {
@@ -77,8 +65,7 @@ export function useEmulator() {
   const options: NostalgistOption = useMemo(
     () => ({
       bios,
-      cache: true,
-      core: coreUrlMap[core] || core,
+      core,
       retroarchConfig: {
         ...defaultRetroarchConfig,
         ...preference.input.keyboardMapping,
@@ -89,7 +76,6 @@ export function useEmulator() {
       rom: romObject,
       shader,
       state: state?.fileId ? getFileUrl(state.fileId) : undefined,
-      style: { ...defaultEmulatorStyle },
     }),
     [romObject, bios, core, preference, gamepadMapping, shader, state?.fileId],
   )

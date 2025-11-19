@@ -3,7 +3,7 @@ ARG BASE_IMAGE=node:25.2.1-alpine
 FROM ${BASE_IMAGE} AS base
 WORKDIR /app
 # enable and download pnpm
-RUN corepack enable && pnpm -v
+RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 FROM base AS deps
 COPY package.json pnpm-lock.yaml ./

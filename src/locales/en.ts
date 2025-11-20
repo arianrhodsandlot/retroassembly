@@ -43,6 +43,7 @@ export const translation: ResourceLanguage = {
   'Bilinear filtering': 'Bilinear filtering',
   BIOS: 'BIOS',
   'BIOS of {{platform}}': 'BIOS of {{platform}}',
+  Blog: 'Blog',
   'Browser-Based Gameplay': 'Browser-Based Gameplay',
   'By clicking the button, you agree to our': 'By clicking the button, you agree to our',
   Cancel: 'Cancel',

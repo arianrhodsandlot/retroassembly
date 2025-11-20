@@ -27,6 +27,16 @@ export function FixedHeader() {
 
         <div className='h-5 w-px bg-white/50' />
 
+        <a
+          className='flex items-center '
+          href='https://blog.retroassembly.com/'
+          rel='noreferrer noopener'
+          target='_blank'
+          title={t('Blog')}
+        >
+          <span className='icon-[mdi--blog]' />
+        </a>
+
         {links.map((link) => (
           <Fragment key={link.name}>
             {link.name === 'GitHub' ? (
@@ -45,7 +55,7 @@ export function FixedHeader() {
                   href={link.url}
                   rel='noreferrer noopener'
                   target='_blank'
-                  title={link.text}
+                  title={t(link.text)}
                 >
                   <span className={link.icon} />
                 </a>
@@ -56,7 +66,7 @@ export function FixedHeader() {
                 href={link.url}
                 rel='noreferrer noopener'
                 target='_blank'
-                title={link.text}
+                title={t(link.text)}
               >
                 <span className={link.icon} />
               </a>

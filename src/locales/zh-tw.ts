@@ -40,6 +40,7 @@ export const translation: ResourceLanguage = {
   'Bilinear filtering': '雙線性過濾',
   BIOS: 'BIOS',
   'BIOS of {{platform}}': '{{platform}}的BIOS',
+  Blog: '部落格',
   'Browser-Based Gameplay': '基於瀏覽器的遊戲體驗',
   'By clicking the button, you agree to our': '點擊按鈕即表示您同意我們的',
   Cancel: '取消',

@@ -41,6 +41,7 @@ export const translation: ResourceLanguage = {
   'Bilinear filtering': '双线性过滤',
   BIOS: 'BIOS',
   'BIOS of {{platform}}': '{{platform}}的BIOS',
+  Blog: '博客',
   'Browser-Based Gameplay': '基于浏览器的游戏',
   'By clicking the button, you agree to our': '点击按钮即表示您同意我们的',
   Cancel: '取消',

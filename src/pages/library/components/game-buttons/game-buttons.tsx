@@ -92,22 +92,25 @@ export function GameButtons() {
     <div className='flex w-full flex-col gap-4 2xl:flex-row'>
       {state ? (
         <LaunchButton disabled={isPreparing} onClick={handleClickContinue}>
-          {isPreparing ? (
-            <span className='icon-[svg-spinners--180-ring]' />
-          ) : (
+          {
             <span
               className={clsx(
-                'size-6',
-                mayNeedsUserInteraction ? 'icon-[mdi--gesture-touch]' : 'icon-[mdi--arrow-u-right-top-bold]',
+                'absolute left-10',
+                isPreparing
+                  ? 'icon-[svg-spinners--180-ring]'
+                  : [
+                      'size-6',
+                      mayNeedsUserInteraction ? 'icon-[mdi--gesture-touch]' : 'icon-[mdi--arrow-u-right-top-bold]',
+                    ],
               )}
             />
-          )}
-          <span className='w-52 text-2xl font-semibold'>{t('Continue')}</span>
+          }
+          <span className='flex-1 text-2xl font-semibold'>{t('Continue')}</span>
           <HoverCard.Root>
             <HoverCard.Trigger>
               <img
                 alt={t('state')}
-                className='size-10 rounded-sm border-2 border-white bg-neutral-200 object-cover shadow'
+                className='absolute right-3 size-10 rounded-sm border-2 border-white bg-neutral-200 object-cover shadow'
                 src={getFileUrl(state.thumbnailFileId)}
               />
             </HoverCard.Trigger>
@@ -123,14 +126,17 @@ export function GameButtons() {
       ) : null}
 
       <LaunchButton disabled={isPreparing} onClick={handleClickStart} variant={state ? 'outline' : 'solid'}>
-        {isPreparing ? (
-          <span className='icon-[svg-spinners--180-ring]' />
-        ) : (
+        {
           <span
-            className={clsx('size-6', mayNeedsUserInteraction ? 'icon-[mdi--gesture-touch]' : 'icon-[mdi--play]')}
+            className={clsx(
+              'absolute left-10',
+              isPreparing
+                ? 'icon-[svg-spinners--180-ring]'
+                : ['size-6', mayNeedsUserInteraction ? 'icon-[mdi--gesture-touch]' : 'icon-[mdi--play]'],
+            )}
           />
-        )}
-        <span className='w-52 text-2xl font-semibold'>{t('Start')}</span>
+        }
+        <span className='flex-1 text-2xl font-semibold'>{t('Start')}</span>
       </LaunchButton>
 
       <EmulatorPortal />

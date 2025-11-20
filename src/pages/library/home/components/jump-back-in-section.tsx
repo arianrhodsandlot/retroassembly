@@ -28,7 +28,7 @@ export function JumpBackInSection() {
         </h2>
 
         <div className='flex flex-col gap-4 lg:flex-row'>
-          <div className='flex w-96 max-w-full items-center justify-center'>
+          <div className='mx-auto flex w-96 max-w-full items-center justify-center lg:mx-0'>
             <GameEntryImage centered rom={rom} />
           </div>
           <div className='flex flex-col justify-center gap-4'>

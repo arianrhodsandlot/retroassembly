@@ -26,34 +26,37 @@ export function LayoutHeader() {
   }
 
   return (
-    <header className='bg-(--accent-9) flex items-center px-4 py-2 lg:hidden'>
-      <Link className='flex items-center gap-2 font-bold' reloadDocument to={getHomePath(language)}>
-        <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
-      </Link>
+    <>
+      <header className='bg-(--accent-9) px-safe-offset-2 z-2 fixed inset-x-0 top-0 flex items-center py-2 lg:hidden'>
+        <Link className='flex items-center gap-2 font-bold' reloadDocument to={getHomePath(language)}>
+          <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
+        </Link>
 
-      <div className='flex h-5 flex-1 justify-center'>
-        <Select.Root onValueChange={handleValueChange} size='2' value={currentRouteName}>
-          <Select.Trigger className='text-white!' variant='ghost'>
-            <HeaderLinkItem link={currentLink} />
-          </Select.Trigger>
-          <Select.Content>
-            {groups.map(({ links, title }, i) => (
-              <Fragment key={title}>
-                <Select.Group>
-                  {links.map((link) => (
-                    <Select.Item key={link.name} value={link.name}>
-                      <HeaderLinkItem link={link} />
-                    </Select.Item>
-                  ))}
-                </Select.Group>
-                {i < groups.length - 1 ? <Select.Separator /> : null}
-              </Fragment>
-            ))}
-          </Select.Content>
-        </Select.Root>
-      </div>
+        <div className='flex h-5 flex-1 justify-center'>
+          <Select.Root onValueChange={handleValueChange} size='2' value={currentRouteName}>
+            <Select.Trigger className='text-white!' variant='ghost'>
+              <HeaderLinkItem link={currentLink} />
+            </Select.Trigger>
+            <Select.Content>
+              {groups.map(({ links, title }, i) => (
+                <Fragment key={title}>
+                  <Select.Group>
+                    {links.map((link) => (
+                      <Select.Item key={link.name} value={link.name}>
+                        <HeaderLinkItem link={link} />
+                      </Select.Item>
+                    ))}
+                  </Select.Group>
+                  {i < groups.length - 1 ? <Select.Separator /> : null}
+                </Fragment>
+              ))}
+            </Select.Content>
+          </Select.Root>
+        </div>
 
-      <div className='-mr-3 h-8 w-10'>{isNotLargeScreen ? <LayoutMenu /> : null}</div>
-    </header>
+        <div className='-mr-3 h-8 w-10'>{isNotLargeScreen ? <LayoutMenu /> : null}</div>
+      </header>
+      <div className='bg-(--accent-9) h-12 w-full lg:hidden' />
+    </>
   )
 }

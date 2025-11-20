@@ -9,7 +9,7 @@ export function MainBackground({
   return src ? (
     <div
       className={twMerge(
-        'blur-xs absolute top-0 aspect-square w-full lg:fixed lg:right-0 lg:h-full lg:w-auto',
+        'absolute top-0 aspect-square w-full px-12 lg:fixed lg:right-0 lg:h-full lg:w-auto',
         props.className,
       )}
     >

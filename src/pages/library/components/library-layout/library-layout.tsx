@@ -35,7 +35,7 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
     <>
       <title>{getPostfixedTitle(title)}</title>
 
-      <div className={clsx('library-layout bg-(--color-background) flex flex-col')}>
+      <div className={clsx('library-layout bg-(--color-background) flex min-h-screen flex-col')}>
         {isDemo ? <DemoLoginButton /> : null}
 
         <LayoutHeader />

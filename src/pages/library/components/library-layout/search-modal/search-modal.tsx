@@ -1,6 +1,7 @@
 import { delay } from 'es-toolkit'
 import { AnimatePresence, motion, type TargetAndTransition } from 'motion/react'
 import { useCallback, useEffect } from 'react'
+import { RadixThemePortal } from '#@/pages/components/radix-theme-portal.tsx'
 import { useSpatialNavigationPaused } from '#@/pages/library/atoms.ts'
 import { useIsApple } from '#@/pages/library/hooks/use-is-apple.ts'
 import { focus } from '#@/pages/library/utils/spatial-navigation.ts'
@@ -63,7 +64,7 @@ export function SearchModal() {
   }, [isApple, showSearchModal, close, toggle])
 
   return (
-    <>
+    <RadixThemePortal>
       <AnimatePresence>
         {showSearchModal ? (
           <motion.div
@@ -93,6 +94,6 @@ export function SearchModal() {
           ) : null}
         </AnimatePresence>
       </div>
-    </>
+    </RadixThemePortal>
   )
 }

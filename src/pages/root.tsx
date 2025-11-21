@@ -4,6 +4,7 @@ import { getContext } from 'hono/context-storage'
 import { match } from 'path-to-regexp'
 import type { ReactNode } from 'react'
 import { Outlet } from 'react-router'
+import { localeCodes } from '#@/locales/locales.ts'
 import { getHomePath } from '#@/utils/isomorphic/misc.ts'
 import { getLoaderData } from '#@/utils/server/loader-data.ts'
 import type { Route } from './+types/root.ts'
@@ -22,10 +23,11 @@ export function loader({ request }) {
 
   const path = c.req.path.endsWith('.data') ? c.req.path.slice(0, -5) : c.req.path
   const matched = match('/{:language}')(path)
-  const { resources = {} } = c.var.i18n.options
-  const isHome = matched && (!matched.params.language || `${matched.params.language}` in resources)
-  const homeHeadElements = Object.keys(resources).map((language) => ({
-    props: { href: getHomePath(language), hrefLang: language, key: language, rel: 'alternate' },
+  const isHome =
+    matched &&
+    (!matched.params.language || localeCodes.some((localeCode) => localeCode.toLowerCase() === matched.params.language))
+  const homeHeadElements = localeCodes.map((localeCode) => ({
+    props: { href: getHomePath(localeCode.toLowerCase()), hreflang: localeCode, key: localeCode, rel: 'alternate' },
     type: 'link',
   }))
   const headElements = isHome ? homeHeadElements : []

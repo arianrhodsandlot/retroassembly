@@ -110,7 +110,7 @@ export const translation: ResourceLanguage = {
   'Game Gear': 'Game Gear',
   Gamepad: 'Gamepad',
   'Gamepad Tester': 'Gamepad Tester',
-  Games: 'games',
+  Games: 'Games',
   'Games can be downloaded from': 'Games can be downloaded from',
   gameStats: '<1>{{gameCount}}</1> {{game}} for <3>{{platformCount}}</3> {{platform}} in total',
   general: 'General',

@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.23.0",
-    "@cloudflare/vite-plugin": "1.15.1",
+    "@cloudflare/vite-plugin": "1.15.2",
     "@hono/node-server": "1.19.6",
     "@hono/vite-dev-server": "0.23.0",
     "@hono/zod-validator": "0.7.5",
@@ -94,7 +94,7 @@
     "js-cookie": "3.0.5",
     "lint-staged": "16.2.7",
     "luxon": "3.7.2",
-    "miniflare": "4.20251118.0",
+    "miniflare": "4.20251118.1",
     "motion": "12.23.24",
     "nanoid": "5.1.6",
     "nanoid-dictionary": "5.0.0",
@@ -124,7 +124,7 @@
     "typescript": "5.9.3",
     "vite": "7.2.4",
     "vite-plugin-devtools-json": "1.0.0",
-    "wrangler": "4.49.1",
+    "wrangler": "4.50.0",
     "zod": "4.1.12"
   },
   "packageManager": "pnpm@10.23.0",

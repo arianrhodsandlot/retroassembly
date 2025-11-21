@@ -2,10 +2,7 @@ import { getRuntimeKey } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
 import { getCookie } from 'hono/cookie'
 import { getRunTimeEnv } from '#@/constants/env.ts'
-import { metadata } from '#@/constants/metadata.ts'
 import { cookieConsentStatusKey } from '#@/constants/misc.ts'
-
-const { title } = metadata
 
 export function getLoaderData<T>(data: T = {} as T) {
   const c = getContext()
@@ -31,7 +28,7 @@ export function getLoaderData<T>(data: T = {} as T) {
     language,
     preference,
     runtimeKey,
-    title,
+    title: '',
     ...data,
   }
 }

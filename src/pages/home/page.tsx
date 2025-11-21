@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { metadata } from '#@/constants/metadata.ts'
 import { ButtonSection } from './components/button-section.tsx'
 import { CommunitySection } from './components/community-section.tsx'
@@ -8,9 +9,11 @@ import { HeroSection } from './components/hero-section/hero-section.tsx'
 import { ReviewsSection } from './components/reviews-section.tsx'
 
 export function HomePage() {
+  const { t } = useTranslation()
+
   return (
     <>
-      <title>{metadata.title}</title>
+      <title>{`${metadata.title} - ${t(metadata.description)}`}</title>
       <FixedHeader />
       <HeroSection />
       <FeaturesSection />

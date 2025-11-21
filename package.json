@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "argon2": "0.44.0",
-    "better-sqlite3": "12.4.1",
+    "better-sqlite3": "12.4.5",
     "hono": "4.10.6"
   },
   "devDependencies": {

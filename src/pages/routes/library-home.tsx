@@ -7,7 +7,7 @@ import { getLoaderData } from '#@/utils/server/loader-data.ts'
 import { LibraryHomePage } from '../library/home/page.tsx'
 
 export async function loader() {
-  const { preference, t } = getContext().var
+  const { preference } = getContext().var
 
   const [{ roms: recentlySavedRoms }, { roms: newAddedRoms }, { roms: recentlyLaunchedRoms }] = await Promise.all([
     getRomsWithStates({ pageSize: 1 }),
@@ -35,7 +35,6 @@ export async function loader() {
     recentlySavedRoms,
     rom: data.rom,
     state: data.state,
-    title: t('Home'),
   })
 }
 

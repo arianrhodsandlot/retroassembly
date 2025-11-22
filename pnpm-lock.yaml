@@ -263,9 +263,6 @@ importers:
       spatial-navigation-ts:
         specifier: 1.0.8
         version: 1.0.8(patch_hash=20e67dd661a3c61ae62b2ac903799529fec664c7b46c0d1b1ec966364973cf86)
-      swiper:
-        specifier: 12.0.3
-        version: 12.0.3
       swr:
         specifier: 2.3.6
         version: 2.3.6(react@19.2.0)
@@ -5879,10 +5876,6 @@ packages:
     resolution: {integrity: sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
-
-  swiper@12.0.3:
-    resolution: {integrity: sha512-BHd6U1VPEIksrXlyXjMmRWO0onmdNPaTAFduzqR3pgjvi7KfmUCAm/0cj49u2D7B0zNjMw02TSeXfinC1hDCXg==}
-    engines: {node: '>= 4.7.0'}
 
   swr@2.3.6:
     resolution: {integrity: sha512-wfHRmHWk/isGNMwlLGlZX5Gzz/uTgo0o2IRuTMcf4CPuPFJZlq0rDaKUx+ozB5nBOReNV1kiOyzMfj+MBMikLw==}
@@ -12309,8 +12302,6 @@ snapshots:
       css-what: 6.2.2
       csso: 5.0.5
       picocolors: 1.1.1
-
-  swiper@12.0.3: {}
 
   swr@2.3.6(react@19.2.0):
     dependencies:

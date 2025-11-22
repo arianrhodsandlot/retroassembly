@@ -51,7 +51,7 @@ export function ReviewsSection() {
     <section>
       <div className='mx-auto max-w-6xl'>
         <h2
-          className='text-(--accent-9) border-b-(--gray-4) border-t-(--gray-4) mb-6 flex items-center justify-center gap-2 border border-transparent py-8 text-4xl font-[Roboto_Slab_Variable] font-semibold lg:py-16'
+          className='text-(--accent-9) border-b-(--gray-4) border-t-(--gray-4) mb-6 flex items-center justify-center gap-2 border border-transparent py-8 text-4xl font-[Roboto_Slab_Variable] font-semibold md:py-16'
           style={{
             textShadow: range(1, 5)
               .map((number) => `${number}px ${number}px 1px var(--accent-7)`)
@@ -67,13 +67,13 @@ export function ReviewsSection() {
           {t('People are saying great things about {{title}}!', { title: metadata.title })}
         </div>
 
-        <div className='grid grid-cols-1 gap-8 px-8 pb-8 lg:grid-cols-2 lg:pb-16'>
+        <div className='grid grid-cols-1 gap-8 px-8 pb-8 md:grid-cols-2 md:pb-16'>
           {reviews.map((review) => (
             <div
-              className='border-(--gray-6) relative flex flex-col gap-4 rounded border p-8 lg:px-14'
+              className='border-(--gray-6) relative flex flex-col gap-4 rounded border p-8 md:px-14'
               key={review.name}
             >
-              <span className='icon-[mdi--format-quote-open] text-(--accent-4) absolute left-0 top-0 text-5xl lg:text-6xl' />
+              <span className='icon-[mdi--format-quote-open] text-(--accent-4) absolute left-0 top-0 text-5xl md:text-6xl' />
               <p className='flex-1 text-justify font-[Roboto_Slab_Variable] leading-relaxed opacity-80'>
                 {t(review.contentKey)}
               </p>

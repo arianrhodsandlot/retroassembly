@@ -20,10 +20,15 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
         </VisuallyHidden>
         <div className='flex flex-col items-center gap-2 p-2 text-center'>
           <img alt='logo' height='56' src='/assets/logo/logo-192x192.png' width='56' />
-          <a className='text-xl font-semibold' href={metadata.link} rel='noreferrer noopener' target='_blank'>
+          <a
+            className='text-(--accent-9) text-xl font-[Roboto_Slab_Variable] font-semibold'
+            href={metadata.link}
+            rel='noreferrer noopener'
+            target='_blank'
+          >
             {metadata.title}
           </a>
-          <div className='text-sm'>{t(metadata.description)}</div>
+          <div className='text-sm font-[Roboto_Slab_Variable]'>{t(metadata.description)}</div>
           <div className='flex flex-col gap-2 py-2 text-xs opacity-70'>
             {metadata.version ? (
               <div>

@@ -1,5 +1,7 @@
-import { Autoplay, FreeMode, Thumbs } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { clsx } from 'clsx'
+import { noop, range } from 'es-toolkit'
+import { useSyncExternalStore } from 'react'
+import { platformMap } from '#@/constants/platform.ts'
 import { getPlatformBanner } from '#@/utils/client/library.ts'
 
 const platforms = [
@@ -18,25 +20,32 @@ const platforms = [
   'gamegear',
   'ngp',
   'wonderswan',
-]
+] as const
 
 export function LogoSlider() {
+  const hydrated = useSyncExternalStore(
+    () => noop,
+    () => true,
+    () => false,
+  )
+
   return (
-    <Swiper
-      autoplay={{ delay: 0, disableOnInteraction: false }}
-      className='mx-auto h-8 max-w-full flex-1 overflow-hidden rounded [--swiper-wrapper-transition-timing-function:linear]'
-      freeMode
-      loop
-      modules={[Autoplay, FreeMode, Thumbs]}
-      slidesPerView='auto'
-      spaceBetween={40}
-      speed={5000}
-    >
-      {platforms.map((platform) => (
-        <SwiperSlide className='w-20! mr-10 flex h-8 items-center' key={platform}>
-          <img alt={platform} className='h-8 w-full' src={getPlatformBanner(platform)} />
-        </SwiperSlide>
+    <div className='gap-(--gap) flex overflow-hidden [--gap:2.5rem]'>
+      {range(hydrated ? 2 : 1).map((key) => (
+        <div
+          className={clsx('gap-(--gap) flex shrink-0', { 'animate-[marquee-left_20s_linear_infinite]': hydrated })}
+          key={key}
+        >
+          {platforms.map((platform) => (
+            <img
+              alt={platformMap[platform].displayName}
+              className='h-8 w-20 object-contain'
+              key={platform}
+              src={getPlatformBanner(platform)}
+            />
+          ))}
+        </div>
       ))}
-    </Swiper>
+    </div>
   )
 }

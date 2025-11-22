@@ -41,6 +41,8 @@ interface ParabolaProps {
   baseSize?: number
   /** Alternative icon URLs to use instead of default console icons */
   customIcons?: string[]
+  /** Gravity factor (higher = heavier objects, faster fall) */
+  gravity?: number
   /** Height factor affecting how high objects are thrown (higher = higher throws) */
   heightFactor?: number
   /** Number of objects to animate */
@@ -68,8 +70,8 @@ const DEFAULT_ICONS = [
 // Animation constants with const assertions for better type safety
 const DEFAULT_CONFIG = {
   BASE_SIZE: 100,
-  GRAVITY_BASE: 0.0002,
-  HEIGHT_FACTOR: 1.3,
+  GRAVITY_BASE: 0.001,
+  HEIGHT_FACTOR: 4,
   HORIZONTAL_VELOCITY_BASE: 0.0025,
   OBJECT_COUNT: 3,
   ROTATION_SPEED_RANGE: 3, // degrees per frame (±)
@@ -139,10 +141,10 @@ function getRandomRotation(): number {
 }
 
 /**
- * Calculate gravity based on height factor and container height
+ * Calculate gravity based on container height
  */
-function calculateGravity(containerHeight: number, heightFactor: number): number {
-  return (DEFAULT_CONFIG.GRAVITY_BASE / heightFactor) * containerHeight
+function calculateGravity(containerHeight: number, gravityBase: number): number {
+  return gravityBase * containerHeight
 }
 
 /**
@@ -198,12 +200,13 @@ function generateObjectConfigs(count: number, baseSize: number): ObjectConfig[] 
  */
 function useParabolaAnimation(params: {
   containerRef: React.RefObject<HTMLDivElement | null>
+  gravity: number
   heightFactor: number
   iconsLength: number
   objectConfigs: ObjectConfig[]
   objectCount: number
 }) {
-  const { containerRef, heightFactor, iconsLength, objectConfigs, objectCount } = params
+  const { containerRef, gravity, heightFactor, iconsLength, objectConfigs, objectCount } = params
   const [containerSize, setContainerSize] = useState({ height: 0, width: 0 })
   const objectsRef = useRef<(HTMLDivElement | null)[]>([])
   const animationRef = useRef<number | undefined>(undefined)
@@ -344,8 +347,8 @@ function useParabolaAnimation(params: {
     const containerWidth = containerSize.width
     const containerHeight = containerSize.height
 
-    // Calculate gravity based on container height and height factor
-    const gravity = calculateGravity(containerHeight, heightFactor)
+    // Calculate gravity based on container height
+    const gravityValue = calculateGravity(containerHeight, gravity)
 
     // Animation function
     function animate() {
@@ -364,7 +367,7 @@ function useParabolaAnimation(params: {
         }
 
         // Apply physics updates
-        state.velocity.y += gravity
+        state.velocity.y += gravityValue
         state.position.x += state.velocity.x
         state.position.y += state.velocity.y
         state.rotation += state.rotationSpeed
@@ -426,6 +429,7 @@ function useParabolaAnimation(params: {
     }
   }, [
     isClient,
+    gravity,
     heightFactor,
     containerRef,
     containerSize.width,
@@ -449,6 +453,7 @@ function useParabolaAnimation(params: {
 export function Paralolas({
   baseSize = DEFAULT_CONFIG.BASE_SIZE,
   customIcons,
+  gravity = DEFAULT_CONFIG.GRAVITY_BASE,
   heightFactor = DEFAULT_CONFIG.HEIGHT_FACTOR,
   objectCount = DEFAULT_CONFIG.OBJECT_COUNT,
 }: Readonly<ParabolaProps>) {
@@ -466,6 +471,7 @@ export function Paralolas({
   // Custom animation hook handles the physics and animation loop
   const { activeObjects, isClient, objectsRef } = useParabolaAnimation({
     containerRef,
+    gravity,
     heightFactor,
     iconsLength: icons.length,
     objectConfigs,

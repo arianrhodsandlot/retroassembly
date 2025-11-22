@@ -12,7 +12,7 @@ body {
 }
 
 .font-\[Roboto_Slab_Variable\] {
-  font-family: 'Roboto Slab Variable', serif;
+  font-family: 'Roboto Slab Variable', Georgia, serif;
 }
 
 button {
@@ -74,5 +74,14 @@ a:focus {
   }
   to {
     background-position: right 50% center;
+  }
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
   }
 }

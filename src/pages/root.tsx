@@ -27,12 +27,12 @@ export function loader({ request }) {
     matched &&
     (!matched.params.language || localeCodes.some((localeCode) => localeCode.toLowerCase() === matched.params.language))
   const homeHeadElements = localeCodes.map((localeCode) => ({
-    props: { href: getHomePath(localeCode.toLowerCase()), hreflang: localeCode, key: localeCode, rel: 'alternate' },
+    props: { href: getHomePath(localeCode.toLowerCase()), hrefLang: localeCode, key: localeCode, rel: 'alternate' },
     type: 'link',
   }))
   const headElements = isHome ? homeHeadElements : []
 
-  return getLoaderData({ headElements })
+  return getLoaderData({ headElements, isHome })
 }
 
 export function Layout({ children }: Readonly<{ children: ReactNode }>) {

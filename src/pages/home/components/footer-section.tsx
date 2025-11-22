@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { linkMap } from '#@/constants/links.ts'
+import { links } from '#@/constants/links.ts'
 import { metadata } from '#@/constants/metadata.ts'
 
 export function FooterSection() {
@@ -7,40 +7,53 @@ export function FooterSection() {
 
   return (
     <footer className='border-t-(--gray-4) text-(--gray-11) border border-x-0 border-b-0 p-8 text-center text-sm font-light'>
-      <div className='w-xl pb-safe mx-auto flex max-w-full flex-col items-center justify-center gap-1 sm:flex-row sm:flex-wrap sm:gap-x-2 sm:gap-y-1'>
-        {metadata.version ? (
-          <div className='inline-flex flex-wrap items-center gap-0.5'>
-            <span className='icon-[mdi--git] size-3.5' />
-            {t('Version')}:
+      <div className='w-7xl pb-safe mx-auto flex max-w-full flex-col items-center justify-between gap-4 sm:flex-row'>
+        <div className='flex flex-col items-center gap-4 sm:items-start'>
+          <div className='text-(--accent-9) flex items-center gap-2 font-[Roboto_Slab_Variable] font-bold'>
+            <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
+            <span className='font-[Roboto_Slab_Variable] font-semibold'>{metadata.title}</span>
+          </div>
+
+          <div className='flex gap-4 text-lg'>
             <a
-              className='ml-0.5 underline'
-              href={`${linkMap.github.url}/tree/${metadata.version}`}
+              className='flex items-center '
+              href='https://blog.retroassembly.com/'
+              rel='noreferrer noopener'
+              target='_blank'
+              title={t('Blog')}
+            >
+              <span className='icon-[mdi--blog]' />
+            </a>
+
+            {links.map((link) => (
+              <a
+                className='flex items-center '
+                href={link.url}
+                key={link.name}
+                rel='noreferrer noopener'
+                target='_blank'
+                title={t(link.text)}
+              >
+                <span className={link.icon} />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className='flex flex-col items-center gap-0.5 sm:items-end'>
+          <div className='inline-flex flex-wrap items-center gap-0.5'>
+            <span className='icon-[mdi--copyright] size-3.5' />
+            <span>2025 </span>
+            <a
+              className='underline'
+              href='https://github.com/arianrhodsandlot'
               rel='noreferrer noopener'
               target='_blank'
             >
-              {metadata.version}
+              arianrhodsandlot
             </a>
+            . {t('All rights reserved')}
           </div>
-        ) : null}
-
-        <div className='inline-flex flex-wrap items-center gap-0.5'>
-          <span className='icon-[mdi--clock-check] size-3.5' /> {t('Date')}: {metadata.buildDate}
-        </div>
-
-        <div className='inline-flex flex-wrap items-center gap-0.5 whitespace-pre'>
-          <span className='icon-[mdi--license] size-3.5' />
-          {t('Released under')}{' '}
-          <a className='underline' href='https://opensource.org/license/mit' rel='noreferrer noopener' target='_blank'>
-            {t('the MIT License')}
-          </a>
-        </div>
-        <div className='inline-flex flex-wrap items-center gap-0.5'>
-          <span className='icon-[mdi--copyright] size-3.5' />
-          <span>2025 </span>
-          <a className='underline' href='https://github.com/arianrhodsandlot' rel='noreferrer noopener' target='_blank'>
-            arianrhodsandlot
-          </a>
-          . {t('All rights reserved')}
         </div>
       </div>
     </footer>

@@ -16,7 +16,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className='w-6xl pointer-events-none mx-auto flex max-w-full items-center gap-4 pb-8'>
+      <div className='w-6xl mx-auto max-w-full pb-8'>
         <LogoSlider />
       </div>
     </section>

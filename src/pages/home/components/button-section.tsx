@@ -22,7 +22,7 @@ export function ButtonSection() {
         <Paralolas />
       </div>
 
-      <div className='lg:w-2xl motion-preset-oscillate-sm motion-duration-3000 bg-(--color-background) in-[.dark]:bg-(--gray-2) relative mx-8 rounded-xl p-10 shadow-[0_0_32px_rgba(0,0,0,0.1)] lg:mx-auto'>
+      <div className='lg:w-2xl border-(--accent-9) bg-(--color-background) in-[.dark]:bg-(--gray-2) relative mx-8 rounded-xl border-2 p-10 shadow-[0_0_32px_rgba(0,0,0,0.2)] lg:mx-auto'>
         <h2 className='text-(--accent-9) flex items-center justify-center gap-2 text-center text-xl font-semibold lg:text-3xl'>
           {t('Start to enjoy retro gaming now!')}
         </h2>

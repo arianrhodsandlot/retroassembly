@@ -1,13 +1,14 @@
+import clsx from 'clsx'
 import { isBrowser } from 'es-toolkit'
 import { Provider } from 'jotai'
 import { HydrationBoundary } from 'jotai-ssr'
 import { ThemeProvider } from 'next-themes'
 import { type ReactNode, useEffect } from 'react'
 import { I18nextProvider } from 'react-i18next'
-import { Scripts, ScrollRestoration } from 'react-router'
+import { Scripts, ScrollRestoration, useLoaderData } from 'react-router'
+import type { loader } from '#@/pages/root.tsx'
 import { i18n } from '#@/utils/isomorphic/i18n.ts'
 import { preferenceAtom } from '../atoms.ts'
-import { useGlobalLoaderData } from '../hooks/use-global-loader-data.ts'
 import { CookieConsent } from './cookie-consent.tsx'
 import { Head } from './head.tsx'
 import { RadixTheme } from './radix-theme.tsx'
@@ -17,7 +18,7 @@ if (isBrowser()) {
 }
 
 export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
-  const { currentUser, language, preference } = useGlobalLoaderData() || {}
+  const { currentUser, isHome, language, preference } = useLoaderData<typeof loader>() || {}
   const hydrateAtom = [preferenceAtom, preference] as const
   const hydrateAtoms = [hydrateAtom]
 
@@ -30,7 +31,7 @@ export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
       <I18nextProvider i18n={i18n}>
         <Head />
       </I18nextProvider>
-      <body className='bg-(--red-9)'>
+      <body className={clsx({ 'bg-(--red-9)': !isHome })}>
         <I18nextProvider i18n={i18n}>
           <RadixTheme>
             <ThemeProvider attribute='class'>

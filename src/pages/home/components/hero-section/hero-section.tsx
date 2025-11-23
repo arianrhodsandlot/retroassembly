@@ -4,7 +4,7 @@ import { ScreenshotSlider } from './screenshot-slider.tsx'
 
 export function HeroSection() {
   return (
-    <section className='min-h-180 relative flex h-svh flex-col'>
+    <section className='min-h-200 relative flex h-svh flex-col'>
       <div className='flex-1'>
         <div className='-z-1  absolute inset-0 size-full'>
           <div className='hero-bg absolute inset-0 size-full' />

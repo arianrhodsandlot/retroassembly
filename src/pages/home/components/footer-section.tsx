@@ -5,14 +5,16 @@ import { metadata } from '#@/constants/metadata.ts'
 export function FooterSection() {
   const { t } = useTranslation()
 
+  const year = new Date().getFullYear()
+
   return (
     <footer className='border-t-(--gray-4) text-(--gray-11) border border-x-0 border-b-0 p-8 text-center text-sm font-light'>
       <div className='w-7xl pb-safe mx-auto flex max-w-full flex-col items-center justify-between gap-4 sm:flex-row'>
         <div className='flex flex-col items-center gap-4 sm:items-start'>
-          <div className='text-(--accent-9) flex items-center gap-2 font-[Roboto_Slab_Variable] font-bold'>
+          <a className='text-(--accent-9) flex items-center gap-2 font-[Roboto_Slab_Variable] font-bold' href='/'>
             <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
             <span className='font-[Roboto_Slab_Variable] font-semibold'>{metadata.title}</span>
-          </div>
+          </a>
 
           <div className='flex gap-4 text-lg'>
             <a
@@ -41,19 +43,19 @@ export function FooterSection() {
         </div>
 
         <div className='flex flex-col items-center gap-0.5 sm:items-end'>
-          <div className='inline-flex flex-wrap items-center gap-0.5'>
+          <div className='inline-flex items-center justify-center gap-1'>
             <span className='icon-[mdi--copyright] size-3.5' />
-            <span>2025 </span>
+            {year}
             <a
               className='underline'
               href='https://github.com/arianrhodsandlot'
               rel='noreferrer noopener'
               target='_blank'
             >
-              arianrhodsandlot
+              @arianrhodsandlot
             </a>
-            . {t('All rights reserved')}
           </div>
+          <div>{t('All rights reserved')}</div>
         </div>
       </div>
     </footer>

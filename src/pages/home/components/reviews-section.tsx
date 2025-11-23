@@ -62,7 +62,7 @@ export function ReviewsSection() {
           {t('Reviews')}
         </h2>
 
-        <div className='text-(--color-text)/60 mb-6 flex items-center justify-center gap-1 p-4 text-lg font-light'>
+        <div className='text-(--color-text)/60 mx-8 mb-6 flex items-center justify-center gap-1 p-4 text-lg font-light'>
           <span className='icon-[mdi--applause] shrink-0' />
           {t('People are saying great things about {{title}}!', { title: metadata.title })}
         </div>

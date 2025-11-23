@@ -27,7 +27,7 @@ export function LanguageSelector() {
     <DropdownMenu.Root modal={false}>
       <DropdownMenu.Trigger>
         <Button title={name} type='button' variant='solid'>
-          <span className='icon-[mdi--translate-variant]' />
+          <span className='icon-[mdi--translate-variant] size-5' />
           <DropdownMenu.TriggerIcon />
         </Button>
       </DropdownMenu.Trigger>

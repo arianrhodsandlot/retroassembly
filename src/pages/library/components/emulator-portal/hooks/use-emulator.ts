@@ -182,6 +182,10 @@ export function useEmulator() {
         setIsFullscreen(true)
       }
     } catch {}
+
+    if (emulator) {
+      focus(emulator.getCanvas())
+    }
   }
 
   useEffect(() => {

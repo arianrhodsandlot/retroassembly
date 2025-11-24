@@ -95,7 +95,7 @@ export function useSpatialNavigation() {
       [inputMapping.gamepad.input_player1_up_btn]: 'up',
     } as const
 
-    return Gamepad.onPress(({ button }) => {
+    const offButtonDown = Gamepad.onButtonDown(({ button }) => {
       if (isSpatialNavigationPaused) {
         return
       }
@@ -103,12 +103,24 @@ export function useSpatialNavigation() {
       if (direction) {
         setPristine(showFocusIndicators === 'never')
         move(gamepadDirectionMap[button])
-      } else if (`${button}` === inputMapping.confirmButton) {
+      }
+    })
+
+    const offButtonPress = Gamepad.onPress(({ button }) => {
+      if (isSpatialNavigationPaused) {
+        return
+      }
+      if (`${button}` === inputMapping.confirmButton) {
         click(document.activeElement)
       } else if (`${button}` === inputMapping.cancelButton) {
         cancel()
       }
     })
+
+    return () => {
+      offButtonDown()
+      offButtonPress()
+    }
   }, [
     inputMapping.gamepad,
     inputMapping.confirmButton,

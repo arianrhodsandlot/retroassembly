@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "argon2": "0.44.0",
-    "better-sqlite3": "12.4.5",
+    "better-sqlite3": "12.4.6",
     "hono": "4.10.6"
   },
   "devDependencies": {
@@ -43,7 +43,7 @@
     "@iconify-json/logos": "1.2.10",
     "@iconify-json/mdi": "1.2.3",
     "@iconify-json/noto": "1.2.7",
-    "@iconify-json/simple-icons": "1.2.59",
+    "@iconify-json/simple-icons": "1.2.60",
     "@iconify-json/svg-spinners": "1.2.4",
     "@iconify-json/twemoji": "1.2.4",
     "@iconify/tailwind4": "1.1.0",
@@ -63,7 +63,7 @@
     "@types/luxon": "3.7.1",
     "@types/nanoid-dictionary": "4.2.3",
     "@types/node": "24.10.1",
-    "@types/react": "19.2.6",
+    "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@types/spark-md5": "3.0.5",
     "@zip.js/zip.js": "2.8.11",
@@ -116,7 +116,7 @@
     "tailwind-merge": "3.4.0",
     "tailwindcss": "4.1.17",
     "tailwindcss-motion": "1.1.1",
-    "tailwindcss-safe-area": "1.1.0",
+    "tailwindcss-safe-area": "1.2.0",
     "tempy": "3.1.0",
     "tsdown": "0.16.6",
     "type-fest": "5.2.0",
@@ -124,7 +124,7 @@
     "vite": "7.2.4",
     "vite-plugin-devtools-json": "1.0.0",
     "wrangler": "4.50.0",
-    "zod": "4.1.12"
+    "zod": "4.1.13"
   },
   "packageManager": "pnpm@10.23.0",
   "engines": {

@@ -1,4 +1,4 @@
-import { compact } from 'es-toolkit'
+import { attemptAsync, compact } from 'es-toolkit'
 import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
 import { type msleuth as client, createClient, type IdentifyParameter, type QueryParameter } from 'msleuth/client'
@@ -25,7 +25,7 @@ function createClients() {
 
   const cfServiceFetch = getCFServiceBinding()
   if (cfServiceFetch) {
-    const cfServiceClient = createClient('https://msleuth.retroassembly.com', { fetch: cfServiceFetch })
+    const cfServiceClient = createClient(runTimeEnv.RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST, { fetch: cfServiceFetch })
     clients.unshift(cfServiceClient)
   }
 
@@ -40,7 +40,7 @@ async function query(json: QueryParameter) {
   }
 
   for (const client of createClients()) {
-    const result = await client.query(json)
+    const [, result] = await attemptAsync(() => client.query(json))
     if (result) {
       return result
     }
@@ -49,7 +49,7 @@ async function query(json: QueryParameter) {
 
 async function identify(json: IdentifyParameter) {
   for (const client of createClients()) {
-    const result = await client.identify(json)
+    const [, result] = await attemptAsync(() => client.identify(json))
     if (result) {
       return result
     }

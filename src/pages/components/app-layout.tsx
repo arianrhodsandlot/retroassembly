@@ -31,7 +31,7 @@ export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
       <I18nextProvider i18n={i18n}>
         <Head />
       </I18nextProvider>
-      <body className={clsx({ 'bg-(--red-9)': !isHome })}>
+      <body className={clsx({ 'bg-(--red-9) 2xl:bg-none': !isHome })}>
         <I18nextProvider i18n={i18n}>
           <RadixTheme>
             <ThemeProvider attribute='class'>

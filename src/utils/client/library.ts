@@ -74,7 +74,7 @@ export function getPlatformBluredBackground(platform: string) {
 
 export function getRomGoodcodes(rom: {
   fileName?: string
-  libretroGame?: { name?: string }
+  libretroGame?: { name?: null | string } | null
   name?: string
   platform?: string
 }) {

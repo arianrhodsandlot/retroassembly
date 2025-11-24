@@ -25,13 +25,11 @@ export async function getRomsMetadata<T extends RomMetadataQuery[]>(roms: T) {
     console.warn(error)
   }
 
-  return roms.map<{ launchboxGame?: Record<string, any>; libretroGame?: Record<string, any> } & T[number]>(
-    (romResult, index) => ({
-      ...romResult,
-      launchboxGame: metadataList?.[index]?.launchbox,
-      libretroGame: metadataList?.[index]?.libretro,
-    }),
-  )
+  return roms.map((romResult: T[number], index) => ({
+    ...romResult,
+    launchboxGame: metadataList?.[index]?.launchbox,
+    libretroGame: metadataList?.[index]?.libretro,
+  }))
 }
 
 export function getConnInfo(context?: Context) {

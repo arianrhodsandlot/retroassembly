@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "allowImportingTsExtensions": true,
-    "baseUrl": ".",
     "erasableSyntaxOnly": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": false,

@@ -14,7 +14,7 @@ const SLIDE_DURATION = 3000
 
 export function ScreenshotSlider() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const { isLoading } = useSWRImmutable(images.at(0), (image) => imageLoaded(image))
+  const { isLoading } = useSWRImmutable(images[0], (image) => imageLoaded(image))
 
   useEffect(() => {
     if (isLoading) {

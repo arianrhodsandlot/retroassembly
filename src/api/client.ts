@@ -5,8 +5,8 @@ import type { AppType } from './app'
 const baseUrl = '/'
 
 export const client = hc<AppType>(baseUrl, {
-  async fetch(input, init) {
-    const response = await fetch(input, init)
+  async fetch(...args: Parameters<typeof fetch>) {
+    const response = await fetch(...args)
     if (response.ok) {
       return response
     }

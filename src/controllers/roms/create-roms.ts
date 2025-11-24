@@ -4,6 +4,7 @@ import { chunk, omit } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
 import { DateTime } from 'luxon'
+import type { QueryResponse } from 'msleuth/client'
 import { getRunTimeEnv } from '#@/constants/env.ts'
 import { platformMap, type PlatformName } from '#@/constants/platform.ts'
 import { romTable } from '#@/databases/schema.ts'
@@ -58,7 +59,7 @@ function getReleaseYear({ launchbox, libretro }) {
   }
 }
 
-async function prepareRomData(files: File[], gameInfoList: any[], platform: PlatformName) {
+async function prepareRomData(files: File[], gameInfoList: QueryResponse | undefined, platform: PlatformName) {
   const { currentUser, storage } = getContext().var
 
   return await Promise.all(
@@ -70,7 +71,7 @@ async function prepareRomData(files: File[], gameInfoList: any[], platform: Plat
       if (!fileExists) {
         await storage.put(fileId, file)
       }
-      const gameInfo = gameInfoList[index] || {}
+      const gameInfo = gameInfoList?.[index] || {}
       const { launchbox, libretro } = gameInfo
       const romData: InferInsertModel<typeof romTable> = {
         fileId,
@@ -78,7 +79,7 @@ async function prepareRomData(files: File[], gameInfoList: any[], platform: Plat
         gameDeveloper: launchbox?.developer || libretro?.developer,
         gameGenres: getGenres({ launchbox, libretro }),
         gameName: launchbox?.name || libretro?.name,
-        gamePlayers: launchbox?.players || libretro?.users,
+        gamePlayers: launchbox?.maxPlayers || libretro?.users,
         gamePublisher: launchbox?.publisher || libretro?.publisher,
         gameRating: launchbox?.communityRating,
         gameReleaseDate: getReleaseDate({ launchbox }),
@@ -213,9 +214,8 @@ export async function createRoms({ files, md5s, platform }: { files: File[]; md5
       })
     }
   }
-  let gameInfoList = []
+  let gameInfoList: Awaited<ReturnType<typeof msleuth.identify>> = []
   try {
-    // @ts-expect-error msleuth response is not typed
     gameInfoList = await msleuth.identify({
       files: files.map((file, index) => ({ md5: md5s[index], name: file.name })),
       platform,

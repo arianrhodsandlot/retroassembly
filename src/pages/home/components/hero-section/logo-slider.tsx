@@ -33,13 +33,7 @@ export function LogoSlider() {
   )
 
   return (
-    <div
-      className={clsx(
-        'gap-(--gap) relative flex overflow-hidden [--gap:2.5rem]',
-        'before:bg-linear-to-r before:from-(--gray-1) before:z-1 before:absolute before:left-0 before:h-full before:w-5 before:to-transparent',
-        'after:bg-linear-to-l after:from-(--gray-1) after:z-1 after:absolute after:right-0 after:h-full after:w-5 after:to-transparent',
-      )}
-    >
+    <div className='gap-(--gap) relative flex overflow-hidden [--gap:2.5rem]'>
       {range(hydrated ? 2 : 1).map((key) => (
         <div
           className={clsx('gap-(--gap) flex shrink-0', { 'animate-[marquee-left_50s_linear_infinite]': hydrated })}

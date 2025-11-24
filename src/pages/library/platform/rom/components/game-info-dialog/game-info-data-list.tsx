@@ -52,17 +52,21 @@ export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?:
     },
   ]
 
-  const launchboxGame = rom.launchboxGame || {}
+  const { launchboxGame } = rom
   const gameInfo = {
-    gameDescription: rom.gameDescription ?? launchboxGame.overview,
-    gameDeveloper: rom.gameDeveloper ?? launchboxGame.developer,
-    gameGenres: rom.gameGenres ?? launchboxGame.genres,
-    gamePlayers: rom.gamePlayers ?? launchboxGame.maxPlayers,
-    gamePublisher: rom.gamePublisher ?? launchboxGame.publisher,
-    gameReleaseDate: rom.gameReleaseDate ?? launchboxGame.releaseDate,
+    gameDescription: rom.gameDescription ?? launchboxGame?.overview,
+    gameDeveloper: rom.gameDeveloper ?? launchboxGame?.developer,
+    gameGenres: rom.gameGenres ?? launchboxGame?.genres,
+    gamePlayers: rom.gamePlayers ?? launchboxGame?.maxPlayers ?? '',
+    gamePublisher: rom.gamePublisher ?? launchboxGame?.publisher,
+    gameReleaseDate: rom.gameReleaseDate ?? launchboxGame?.releaseDate,
   }
-  gameInfo.gameReleaseDate = isValidDate(gameInfo.gameReleaseDate) ? formatDate(gameInfo.gameReleaseDate) : ''
-  gameInfo.gamePlayers = Number.parseInt(gameInfo.gamePlayers, 10) ? `${gameInfo.gamePlayers}` : 'unknown'
+  if (gameInfo.gameReleaseDate) {
+    gameInfo.gameReleaseDate = isValidDate(gameInfo.gameReleaseDate) ? formatDate(gameInfo.gameReleaseDate) : ''
+  }
+  if (gameInfo.gamePlayers) {
+    gameInfo.gamePlayers = Number.parseInt(`${gameInfo.gamePlayers}`, 10) ? `${gameInfo.gamePlayers}` : 'unknown'
+  }
 
   return (
     <DataList.Root className='py-4' orientation={{ initial: 'vertical', md: 'horizontal' }} size='3'>

@@ -1,6 +1,7 @@
 import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
 import { z } from 'zod'
+import { deleteStates } from '#@/controllers/states/delete-states.ts'
 import { createState } from '../../../controllers/states/create-state.ts'
 import { getStates } from '../../../controllers/states/get-states.ts'
 
@@ -44,3 +45,9 @@ export const states = new Hono()
       return c.json(state)
     },
   )
+
+  .delete(':id', async (c) => {
+    const { id } = c.req.param()
+    await deleteStates([id])
+    return c.json(null)
+  })

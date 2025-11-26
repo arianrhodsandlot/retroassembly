@@ -41,5 +41,11 @@ export function createStorage() {
       }
       return mockR2Object
     },
+
+    async delete(id: string) {
+      const filePath = path.join(storageDirectory, id)
+      const { default: fs } = await import('fs-extra')
+      await fs.remove(filePath)
+    },
   }
 }

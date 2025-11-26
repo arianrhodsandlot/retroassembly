@@ -10,6 +10,7 @@ import { dateFormatMap } from '#@/utils/isomorphic/i18n.ts'
 import { humanizeDate } from '#@/utils/isomorphic/misc.ts'
 import { useEmulator } from '../hooks/use-emulator.ts'
 import { useGameOverlay } from '../hooks/use-game-overlay.ts'
+import { GameStateDelete } from './game-state-delete.tsx'
 
 export function GameState({ state }: Readonly<{ state: InferResponseType<typeof client.states.$get>[number] }>) {
   const { i18n, t } = useTranslation()
@@ -41,56 +42,58 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
   }
 
   return (
-    <button
-      className={clsx(
-        'border-(--color-background) bg-(--color-background) flex h-36 w-48 shrink-0 flex-col overflow-hidden rounded border-4 shadow',
-        { 'cursor-default': isMutating },
-      )}
-      data-sn-enabled
-      data-sn-focus-style={JSON.stringify({
-        backgroundColor: 'rgba(255, 255, 255, 0.3)',
-      })}
-      disabled={disabled}
-      key={state.id}
-      onClick={handleClick}
-      type='button'
-    >
-      <div
-        className={clsx('relative flex w-full flex-1 items-center justify-center bg-black', {
-          'opacity-50': !loadable,
+    <div className='relative'>
+      <button
+        className={clsx(
+          'border-(--color-background) bg-(--color-background) flex h-36 w-48 shrink-0 flex-col overflow-hidden rounded border-4 shadow',
+          { 'cursor-default': isMutating },
+        )}
+        data-sn-enabled
+        data-sn-focus-style={JSON.stringify({
+          backgroundColor: 'rgba(255, 255, 255, 0.3)',
         })}
+        disabled={disabled}
+        onClick={handleClick}
+        type='button'
       >
-        {loaded ? null : <span className='icon-[svg-spinners--180-ring]' />}
-        <img
-          alt={state.id}
-          className={clsx('absolute inset-0 size-full object-contain transition-opacity', {
-            'opacity-0': !loaded,
-            'opacity-80': isMutating,
+        <div
+          className={clsx('relative flex w-full flex-1 items-center justify-center bg-black', {
+            'opacity-50': !loadable,
           })}
-          loading='lazy'
-          onError={handleLoaded}
-          onLoad={handleLoaded}
-          src={getFileUrl(state.thumbnailFileId)}
-        />
-        {loadable ? null : (
-          <div className='absolute bottom-0 right-0  rounded-tl-lg bg-black px-1 py-0.5 text-xs text-white'>
-            {state.core}
-          </div>
-        )}
-      </div>
-      <div
-        className={clsx('text-(--color-text) mt-1 flex h-6 w-full items-center justify-center gap-1 text-xs', {
-          'opacity-50': !loadable,
-        })}
-      >
-        {isMutating ? (
-          <span className='icon-[svg-spinners--180-ring] text-(--accent-9) block size-3' />
-        ) : (
-          <>
-            {t('Saved at')} <Badge>{humanizeDate(state.createdAt, dateFormat)}</Badge>
-          </>
-        )}
-      </div>
-    </button>
+        >
+          {loaded ? null : <span className='icon-[svg-spinners--180-ring]' />}
+          <img
+            alt={state.id}
+            className={clsx('absolute inset-0 size-full object-contain transition-opacity', {
+              'opacity-0': !loaded,
+              'opacity-80': isMutating,
+            })}
+            loading='lazy'
+            onError={handleLoaded}
+            onLoad={handleLoaded}
+            src={getFileUrl(state.thumbnailFileId)}
+          />
+          {loadable ? null : (
+            <div className='absolute bottom-0 right-0  rounded-tl-lg bg-black px-1 py-0.5 text-xs text-white'>
+              {state.core}
+            </div>
+          )}
+        </div>
+        <div
+          className={clsx('text-(--color-text) mt-1 flex h-6 w-full items-center justify-center gap-1 text-xs', {
+            'opacity-50': !loadable,
+          })}
+        >
+          {isMutating ? (
+            <span className='icon-[svg-spinners--180-ring] text-(--accent-9) block size-3' />
+          ) : (
+            <>
+              {t('Saved at')} <Badge>{humanizeDate(state.createdAt, dateFormat)}</Badge>
+            </>
+          )}
+        </div>
+      </button>
+      <GameStateDelete id={state.id} />
+    </div>
   )
 }

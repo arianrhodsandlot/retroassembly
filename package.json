@@ -35,7 +35,7 @@
     "hono": "4.10.7"
   },
   "devDependencies": {
-    "@arianrhodsandlot/eslint-config": "0.23.0",
+    "@arianrhodsandlot/eslint-config": "0.24.1",
     "@cloudflare/vite-plugin": "1.15.3",
     "@hono/node-server": "1.19.6",
     "@hono/vite-dev-server": "0.23.0",
@@ -47,7 +47,7 @@
     "@iconify-json/svg-spinners": "1.2.4",
     "@iconify-json/twemoji": "1.2.4",
     "@iconify/tailwind4": "1.1.1",
-    "@microsoft/clarity": "1.0.1",
+    "@microsoft/clarity": "1.0.2",
     "@playwright/test": "1.57.0",
     "@radix-ui/themes": "3.2.1",
     "@react-router/dev": "7.9.6",
@@ -126,7 +126,7 @@
     "wrangler": "4.51.0",
     "zod": "4.1.13"
   },
-  "packageManager": "pnpm@10.23.0",
+  "packageManager": "pnpm@10.24.0",
   "engines": {
     "node": ">=24.9.0"
   },

@@ -1,3 +1,4 @@
+import { watch } from 'node:fs/promises'
 import { serve } from '@hono/node-server'
 import { exec, getTargetRuntime, logServerInfo } from './utils.ts'
 
@@ -18,8 +19,29 @@ async function serveNode() {
   })
 }
 
+async function runServeTask() {
+  const targetRuntime = getTargetRuntime()
+  const serve = {
+    node: serveNode,
+    workerd: serveWorkerd,
+  }[targetRuntime]
+  return await serve()
+}
+
+async function runWatchTask() {
+  const targetRuntime = getTargetRuntime()
+  if (targetRuntime === 'node') {
+    const dir = 'data'
+    const events = watch(dir, { recursive: true })
+    for await (const event of events) {
+      console.log(event.eventType)
+    }
+  }
+}
+
 async function main() {
-  await (getTargetRuntime() === 'workerd' ? serveWorkerd() : serveNode())
+  const tasks = [runServeTask(), runWatchTask()]
+  await Promise.all(tasks)
 }
 
 await main()

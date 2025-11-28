@@ -1,5 +1,6 @@
 import { drizzle as drizzleBetterSQLite3 } from 'drizzle-orm/better-sqlite3'
 import { drizzle as drizzleD1 } from 'drizzle-orm/d1'
+import { memoize } from 'es-toolkit'
 import { env, getRuntimeKey } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
 import { getDatabasePath } from '../../constants/env.ts'
@@ -19,10 +20,12 @@ function createDrizzleBetterSQLite3() {
   return { library }
 }
 
+const getDrizzleBetterSQLite3 = memoize(createDrizzleBetterSQLite3)
+
 export function createDrizzle() {
   if (runtimeKey === 'workerd') {
     return (createDrizzleD1 as unknown as typeof createDrizzleBetterSQLite3)()
   }
 
-  return createDrizzleBetterSQLite3()
+  return getDrizzleBetterSQLite3()
 }

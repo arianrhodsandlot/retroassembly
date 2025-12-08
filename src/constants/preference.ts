@@ -122,7 +122,7 @@ export const defaultPreference: ResolvedPreference = {
     platform: mapValues(platformMap, ({ cores: [core] }) => ({
       bioses: [],
       core,
-      shader: 'auto',
+      shader: 'inherit',
     })),
     shader: '',
     videoSmooth: false,

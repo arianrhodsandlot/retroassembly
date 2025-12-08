@@ -226,6 +226,7 @@ export const translation: ResourceLanguage = {
     'Bandai WonderSwan, 일반적으로 WonderSwan으로 불리는 이 게임기는 Bandai Co., Ltd.가 개발하고 배포한 5세대(1993-2005) 휴대용 비디오 게임 콘솔입니다. 1999년 3월 4일 일본에서 소매가 4,800엔으로 출시되었습니다. 이 콘솔은 일본 외 지역에서는 출시되지 않았습니다. WonderSwan 시스템은 낮은 가격대와 긴 배터리 수명을 가지고 있어 일본에서 닌텐도의 강력한 경쟁자가 되었습니다. 이 콘솔은 2003년 중반에서 후반에 단종되었습니다.',
   platform_wonderswancolor_note:
     'Bandai WonderSwan Color, 일반적으로 WonderSwan Color로 불리는 이 게임기는 Bandai Co., Ltd.가 개발하고 배포한 5세대(1993-2005) 휴대용 비디오 게임 콘솔입니다. 2000년 12월 9일 일본에서 소매가 6,900엔으로 출시되었습니다. 이 콘솔은 일본 외 지역에서는 출시되지 않았습니다. WonderSwan Color는 Wonderswan과 하위 호환되며 여전히 오래 지속되는 배터리 수명을 유지했습니다. 이 콘솔은 2003년 중반에서 후반에 단종되었습니다.',
+  'Platform-specific shader': '플랫폼별 셰이더',
   platformGamesStats: '{{platform}}에서 <1>{{gameCount}}</1>개의 {{game}}이 있습니다',
   playedGamesStats: '<1>{{gameCount}}</1>개의 {{game}}을 플레이했습니다',
   Players: '플레이어 수',

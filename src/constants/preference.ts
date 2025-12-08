@@ -10,7 +10,14 @@ export interface Preference {
   emulator: {
     core: Partial<Record<CoreName, Record<string, string>>>
     fullscreen: boolean
-    platform: Record<PlatformName, { bioses: { fileId: string; fileName: string }[]; core: CoreName; shader?: string }>
+    platform: Record<
+      PlatformName,
+      {
+        bioses: { fileId: string; fileName: string }[]
+        core: CoreName
+        shader?: string
+      }
+    >
     shader: string
     videoSmooth: boolean
   }
@@ -112,7 +119,11 @@ export const defaultPreference: ResolvedPreference = {
       },
     },
     fullscreen: false,
-    platform: mapValues(platformMap, ({ cores: [core] }) => ({ bioses: [], core })),
+    platform: mapValues(platformMap, ({ cores: [core] }) => ({
+      bioses: [],
+      core,
+      shader: 'auto',
+    })),
     shader: '',
     videoSmooth: false,
   },

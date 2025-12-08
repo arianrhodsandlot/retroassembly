@@ -228,6 +228,7 @@ export const translation: ResourceLanguage = {
     "La Bandai WonderSwan, généralement appelée simplement WonderSwan, est une console de jeux vidéo portable de cinquième génération (1993-2005) développée et distribuée par Bandai Co., Ltd. Elle est sortie le 4 mars 1999 au Japon au prix de détail de ¥4 800. La console n'est pas sortie en dehors du Japon. Le système WonderSwan avait un prix bas et une longue durée de vie de la batterie, ce qui en faisait un concurrent redoutable pour Nintendo au Japon. La console a été abandonnée de la mi à la fin de 2003.",
   platform_wonderswancolor_note:
     "La Bandai WonderSwan Color, généralement appelée simplement WonderSwan Color, est une console de jeux vidéo portable de cinquième génération (1993-2005) développée et distribuée par Bandai Co., Ltd. Elle est sortie le 9 décembre 2000 au Japon au prix de détail de ¥6 900. La console n'est pas sortie en dehors du Japon. La WonderSwan Color était rétrocompatible avec la Wonderswan et conservait toujours une longue durée de vie de la batterie. La console a été abandonnée de la mi à la fin de 2003.",
+  'Platform-specific shader': 'Shader spécifique à la plateforme',
   platformGamesStats: '<1>{{gameCount}}</1> {{game}} pour {{platform}}.',
   playedGamesStats: 'Joué à <1>{{gameCount}}</1> {{game}}',
   Players: 'Joueurs',

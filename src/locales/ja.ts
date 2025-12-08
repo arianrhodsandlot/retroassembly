@@ -227,6 +227,7 @@ export const translation: ResourceLanguage = {
     'Bandai WonderSwan、通常単にWonderSwanと呼ばれるゲーム機は、Bandai Co., Ltd.が開発・販売した第5世代（1993-2005）の携帯ゲーム機です。1999年3月4日に日本で4,800円の小売価格で発売されました。このゲーム機は日本以外では発売されませんでした。WonderSwanシステムは低価格と長いバッテリー寿命を持ち、日本で任天堂の強力な競争相手となりました。このゲーム機は2003年半ばから後半にかけて生産終了しました。',
   platform_wonderswancolor_note:
     'Bandai WonderSwan Color、通常単にWonderSwan Colorと呼ばれるゲーム機は、Bandai Co., Ltd.が開発・販売した第5世代（1993-2005）の携帯ゲーム機です。2000年12月9日に日本で6,900円の小売価格で発売されました。このゲーム機は日本以外では発売されませんでした。WonderSwan ColorはWonderswanと下位互換性があり、長いバッテリー寿命を維持していました。このゲーム機は2003年半ばから後半にかけて生産終了しました。',
+  'Platform-specific shader': 'プラットフォーム固有のシェーダー',
   platformGamesStats: '{{platform}}で<1>{{gameCount}}</1>{{game}}があります',
   playedGamesStats: '<1>{{gameCount}}</1>{{game}}をプレイしました',
   Players: 'プレイヤー数',

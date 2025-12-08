@@ -227,6 +227,7 @@ export const translation: ResourceLanguage = {
     'Bandai WonderSwan, obvykle jen nazývaná WonderSwan, je páté generace (1993-2005) přenosná herní konzole vyvinutá a distribuovaná společností Bandai Co., Ltd. Byla vydána 4. března 1999 v Japonsku za cenu 4 800 ¥. Konzole nebyla vydána mimo Japonsko. Systém WonderSwan měl nízkou cenu a dlouhou životnost baterie, což z něj činilo silného konkurenta pro Nintendo v Japonsku. Konzole byla ukončena v polovině až koncem roku 2003.',
   platform_wonderswancolor_note:
     'Bandai WonderSwan Color, obvykle jen nazývaná WonderSwan Color, je páté generace (1993-2005) přenosná herní konzole vyvinutá a distribuovaná společností Bandai Co., Ltd. Byla vydána 9. prosince 2000 v Japonsku za cenu 6 900 ¥. Konzole nebyla vydána mimo Japonsko. WonderSwan Color byla zpětně kompatibilní s WonderSwan a stále měla dlouhou výdrž baterie. Konzole byla ukončena v polovině až koncem roku 2003.',
+  'Platform-specific shader': 'Shader specifický pro platformu',
   platformGamesStats: 'Celkem her pro {{platform}}: <1>{{gameCount}}</1>',
   playedGamesStats: 'Hráno her: <1>{{gameCount}}</1>',
   Players: 'Hráči',

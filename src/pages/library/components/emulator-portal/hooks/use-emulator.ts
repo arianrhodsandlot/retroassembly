@@ -55,7 +55,13 @@ export function useEmulator() {
     ? getCDNUrl(`retrobrews/${{ genesis: 'md' }[rom.platform] || rom.platform}-games`, rom.fileName)
     : getFileUrl(rom.fileId) || ''
   const { core } = preference.emulator.platform[rom.platform] || {}
-  const shader = preference.emulator.platform[rom.platform].shader || preference.emulator.shader
+
+  let { shader } = preference.emulator.platform[rom.platform]
+  if (shader === 'inherit') {
+    shader = preference.emulator.shader
+  } else {
+    shader ??= preference.emulator.shader
+  }
 
   const romObject = useMemo(() => ({ fileContent: romUrl, fileName: rom?.fileName }), [rom, romUrl])
   const bios = preference.emulator.platform[rom.platform].bioses.map(({ fileId, fileName }) => ({
@@ -121,12 +127,11 @@ export function useEmulator() {
     }
     try {
       // @ts-expect-error an ad-hoc patch for disabling request for camera access
-      // eslint-disable-next-line react-hooks/immutability
+
       globalThis.navigator.mediaDevices.getUserMedia = null
     } catch {}
     await emulator.start()
     try {
-      // eslint-disable-next-line react-hooks/immutability
       globalThis.navigator.mediaDevices.getUserMedia = originalGetUserMedia
     } catch {}
     const canvas = emulator.getCanvas()
@@ -139,7 +144,6 @@ export function useEmulator() {
       toggleFullscreen()
     }
     try {
-      // eslint-disable-next-line react-hooks/globals
       wakeLock = await navigator.wakeLock.request('screen')
     } catch {}
     onCancel(noop)

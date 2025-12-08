@@ -223,6 +223,7 @@ export const translation: ResourceLanguage = {
     '萬代WonderSwan，通常簡稱為WonderSwan，是由萬代株式會社開發和發行的第五代（1993-2005）掌上遊戲機。它於1999年3月4日在日本發行，零售價為4,800日元。該遊戲機未在日本以外地區發行。WonderSwan系統具有低價格點和長電池壽命，這使其成為日本任天堂的強大競爭對手。該遊戲機於2003年中至下旬停產。',
   platform_wonderswancolor_note:
     '萬代WonderSwan Color，通常簡稱為WonderSwan Color，是由萬代株式會社開發和發行的第五代（1993-2005）掌上遊戲機。它於2000年12月9日在日本發行，零售價為6,900日元。該遊戲機未在日本以外地區發行。WonderSwan Color向後相容WonderSwan，並且仍然具有持久的電池壽命。該遊戲機於2003年中至下旬停產。',
+  'Platform-specific shader': '平台特定著色器',
   platformGamesStats: '{{platform}} 共 <1>{{gameCount}}</1> {{game}}。',
   playedGamesStats: '已遊玩 <1>{{gameCount}}</1> {{game}}',
   Players: '玩家',

@@ -11,6 +11,7 @@ import { SettingsTitle } from '../settings-title.tsx'
 import { UpdateButton } from '../update-button.tsx'
 import { BIOSOptions } from './bios-options.tsx'
 import { CoreOptions } from './core-options.tsx'
+import { PlatformShaderSettings } from './platform-shader-settings.tsx'
 
 export function CoresSettings() {
   const { t } = useTranslation()
@@ -84,6 +85,8 @@ export function CoresSettings() {
 
       <Card>
         <BIOSOptions platform={selectedPlatform} />
+
+        <PlatformShaderSettings platform={selectedPlatform} />
 
         <div className='mt-2'>
           <label className='mt-2 flex items-center gap-2'>

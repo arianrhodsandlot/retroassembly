@@ -32,7 +32,7 @@
   "dependencies": {
     "argon2": "0.44.0",
     "better-sqlite3": "12.5.0",
-    "hono": "4.10.7"
+    "hono": "4.10.8"
   },
   "devDependencies": {
     "@arianrhodsandlot/eslint-config": "0.24.1",
@@ -53,7 +53,7 @@
     "@react-router/dev": "7.10.1",
     "@react-router/node": "7.10.1",
     "@supabase/ssr": "0.8.0",
-    "@supabase/supabase-js": "2.86.2",
+    "@supabase/supabase-js": "2.87.1",
     "@tailwindcss/typography": "0.5.19",
     "@tailwindcss/vite": "4.1.17",
     "@tsconfig/remix": "2.0.6",
@@ -62,7 +62,7 @@
     "@types/js-cookie": "3.0.6",
     "@types/luxon": "3.7.1",
     "@types/nanoid-dictionary": "4.2.3",
-    "@types/node": "24.10.1",
+    "@types/node": "24.10.2",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@types/spark-md5": "3.0.5",
@@ -88,7 +88,7 @@
     "is-docker": "4.0.0",
     "isbot": "5.1.32",
     "jiti": "2.6.1",
-    "jotai": "2.15.2",
+    "jotai": "2.16.0",
     "jotai-ssr": "0.2.0",
     "js-cookie": "3.0.5",
     "lint-staged": "16.2.7",
@@ -118,7 +118,7 @@
     "tailwindcss-motion": "1.1.1",
     "tailwindcss-safe-area": "1.2.0",
     "tempy": "3.1.0",
-    "tsdown": "0.17.1",
+    "tsdown": "0.17.2",
     "type-fest": "5.3.1",
     "typescript": "5.9.3",
     "vite": "7.2.7",
@@ -126,7 +126,7 @@
     "wrangler": "4.53.0",
     "zod": "4.1.13"
   },
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.25.0",
   "engines": {
     "node": ">=24.9.0"
   },

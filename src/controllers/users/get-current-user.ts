@@ -7,8 +7,12 @@ import { createSupabase } from '#@/utils/server/supabase.ts'
 export async function getCurrentUser() {
   const supabase = createSupabase()
   if (supabase) {
-    const { data } = await supabase.auth.getUser()
-    return data?.user
+    try {
+      const { data } = await supabase.auth.getUser()
+      return data?.user
+    } catch {
+      return
+    }
   }
 
   const c = getContext()

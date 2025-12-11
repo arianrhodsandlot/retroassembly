@@ -1,5 +1,5 @@
 import { Skeleton } from '@radix-ui/themes'
-import Atropos from 'atropos/react'
+import { Atropos } from 'atropos/react'
 import { clsx } from 'clsx'
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'

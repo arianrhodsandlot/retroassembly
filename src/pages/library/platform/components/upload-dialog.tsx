@@ -48,8 +48,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
 
       const errors: unknown[] = []
       for (const filesChunk of chunk(files, 10)) {
-        const newUploadedFiles = { ...uploadedFiles }
-        newUploadedFiles.loading = filesChunk
+        const newUploadedFiles = { ...uploadedFiles, loading: filesChunk }
         setUploadedFiles(newUploadedFiles)
         setProgress(
           ((newUploadedFiles.success.length +

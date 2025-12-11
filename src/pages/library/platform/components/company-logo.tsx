@@ -71,5 +71,5 @@ export function CompanyLogo({
       />
     )
   }
-  return <>{fallback}</>
+  return fallback
 }

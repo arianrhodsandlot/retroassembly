@@ -92,19 +92,17 @@ export function GameButtons() {
     <div className='flex w-full flex-col gap-4 2xl:flex-row'>
       {state ? (
         <LaunchButton disabled={isPreparing} onClick={handleClickContinue}>
-          {
-            <span
-              className={clsx(
-                'absolute left-10',
-                isPreparing
-                  ? 'icon-[svg-spinners--180-ring]'
-                  : [
-                      'size-6',
-                      mayNeedsUserInteraction ? 'icon-[mdi--gesture-touch]' : 'icon-[mdi--arrow-u-right-top-bold]',
-                    ],
-              )}
-            />
-          }
+          <span
+            className={clsx(
+              'absolute left-10',
+              isPreparing
+                ? 'icon-[svg-spinners--180-ring]'
+                : [
+                    'size-6',
+                    mayNeedsUserInteraction ? 'icon-[mdi--gesture-touch]' : 'icon-[mdi--arrow-u-right-top-bold]',
+                  ],
+            )}
+          />
           <span className='flex-1 text-2xl font-semibold'>{t('Continue')}</span>
           <HoverCard.Root>
             <HoverCard.Trigger>
@@ -126,16 +124,14 @@ export function GameButtons() {
       ) : null}
 
       <LaunchButton disabled={isPreparing} onClick={handleClickStart} variant={state ? 'outline' : 'solid'}>
-        {
-          <span
-            className={clsx(
-              'absolute left-10',
-              isPreparing
-                ? 'icon-[svg-spinners--180-ring]'
-                : ['size-6', mayNeedsUserInteraction ? 'icon-[mdi--gesture-touch]' : 'icon-[mdi--play]'],
-            )}
-          />
-        }
+        <span
+          className={clsx(
+            'absolute left-10',
+            isPreparing
+              ? 'icon-[svg-spinners--180-ring]'
+              : ['size-6', mayNeedsUserInteraction ? 'icon-[mdi--gesture-touch]' : 'icon-[mdi--play]'],
+          )}
+        />
         <span className='flex-1 text-2xl font-semibold'>{t('Start')}</span>
       </LaunchButton>
 

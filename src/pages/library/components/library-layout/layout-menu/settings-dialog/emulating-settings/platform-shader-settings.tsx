@@ -1,5 +1,5 @@
 import { HoverCard, RadioCards, Switch } from '@radix-ui/themes'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
 import type { PlatformName } from '#@/constants/platform.ts'
 import { usePreference } from '#@/pages/library/hooks/use-preference.ts'

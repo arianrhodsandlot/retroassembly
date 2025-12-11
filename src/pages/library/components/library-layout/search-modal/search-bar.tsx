@@ -87,19 +87,21 @@ export function SearchBar() {
     }
   }, [move])
 
-  useEffect(() => {
-    return Gamepad.onPress(({ button }) => {
-      if (`${button}` === inputMapping.gamepad.input_player1_down_btn) {
-        move('down')
-      }
-      if (`${button}` === inputMapping.gamepad.input_player1_up_btn) {
-        move('up')
-      }
-      if (`${button}` === inputMapping.confirmButton) {
-        select()
-      }
-    })
-  }, [move, inputMapping, select])
+  useEffect(
+    () =>
+      Gamepad.onPress(({ button }) => {
+        if (`${button}` === inputMapping.gamepad.input_player1_down_btn) {
+          move('down')
+        }
+        if (`${button}` === inputMapping.gamepad.input_player1_up_btn) {
+          move('up')
+        }
+        if (`${button}` === inputMapping.confirmButton) {
+          select()
+        }
+      }),
+    [move, inputMapping, select],
+  )
 
   return (
     <div

@@ -1,6 +1,6 @@
 import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
-import z from 'zod'
+import { z } from 'zod'
 import type { PlatformName } from '#@/constants/platform.ts'
 import { addBIOS } from '#@/controllers/preference/add-bios.ts'
 import { deleteBIOS } from '#@/controllers/preference/delete-bios.ts'

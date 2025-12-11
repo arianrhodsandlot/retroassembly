@@ -107,7 +107,7 @@ export function GamepadInputs() {
   ]
   return (
     <>
-      <Callout.Root size={'1'}>
+      <Callout.Root size='1'>
         <Callout.Icon>
           <span className='icon-[mdi--information]' />
         </Callout.Icon>

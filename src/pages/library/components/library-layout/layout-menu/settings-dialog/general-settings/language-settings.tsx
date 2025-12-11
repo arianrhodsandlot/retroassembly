@@ -35,7 +35,7 @@ export function LanguageSettings() {
             >
               <Select.Trigger disabled={isLoading} />
               <Select.Content>
-                <Select.Item value={'auto'}>
+                <Select.Item value='auto'>
                   {t('Auto')} ({locales.find(({ code }) => code === detectedLanguage)?.name})
                 </Select.Item>
                 {locales.map((locale) => (

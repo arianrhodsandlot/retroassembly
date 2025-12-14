@@ -20,7 +20,7 @@ export function PageContainer({ children, description, title }: Readonly<PageCon
         <div className='md:w-3xl bg-(--color-background) mx-auto w-full max-w-full rounded p-10'>
           <div className='flex items-center justify-center gap-4'>
             <Link className='flex items-center justify-center' reloadDocument to='/'>
-              <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
+              <img alt='logo' height='32' src='/assets/logo/logo.svg' width='32' />
             </Link>
             <h1 className='text-3xl font-semibold'>{title}</h1>
           </div>

@@ -29,7 +29,7 @@ export function LayoutHeader() {
     <>
       <header className='bg-(--accent-9) px-safe-offset-2 z-2 fixed inset-x-0 top-0 flex items-center py-2 lg:hidden'>
         <Link className='flex items-center gap-2 font-bold' reloadDocument to={getHomePath(language)}>
-          <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
+          <img alt='logo' height='32' src='/assets/logo/logo.svg' width='32' />
         </Link>
 
         <div className='flex h-5 flex-1 justify-center'>

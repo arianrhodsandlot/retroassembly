@@ -19,7 +19,7 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
           <Dialog.Title className='flex items-center gap-2'>{t('About')}</Dialog.Title>
         </VisuallyHidden>
         <div className='flex flex-col items-center gap-2 p-2 text-center'>
-          <img alt='logo' height='56' src='/assets/logo/logo-192x192.png' width='56' />
+          <img alt='logo' height='56' src='/assets/logo/logo.svg' width='56' />
           <a
             className='text-(--accent-9) text-xl font-[Roboto_Slab_Variable] font-semibold'
             href={metadata.link}

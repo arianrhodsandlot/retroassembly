@@ -36,7 +36,7 @@ function useFeatures() {
                 />
               </div>
             ))}
-            <div className='text-(--accent-9) flex items-center justify-center text-center font-semibold'>
+            <div className='text-(--gray-9) flex items-center justify-center text-center font-semibold'>
               {t('…and more')}
             </div>
           </div>
@@ -71,8 +71,8 @@ function useFeatures() {
       content: (
         <div className='grid h-full grid-cols-3 place-items-center gap-2'>
           {[
-            { name: "Kirby's Adventure (USA)", platform: 'nes' },
-            { name: 'Gunstar Heroes (USA)', platform: 'genesis' },
+            { name: 'Metroid (USA)', platform: 'nes' },
+            { name: 'Sonic & Knuckles (World)', platform: 'genesis' },
             { name: 'Pitfall II - Lost Caverns (USA)', platform: 'atari2600' },
           ].map(({ name, platform }) => (
             <div className='aspect-square overflow-hidden rounded bg-neutral-200' key={name}>

@@ -17,7 +17,7 @@ export function FixedHeader() {
   return (
     <div className='border-b-(--accent-9) bg-(--accent-9) fixed z-10 flex w-full items-stretch justify-between border-b px-8 text-white shadow shadow-black/30'>
       <Link className='pt-safe-offset-4 shrink-0 self-center py-4 font-extrabold' to='/'>
-        <img alt='Logo' className='motion-preset-expand' height={32} src='/assets/logo/logo-512x512.png' width={32} />
+        <img alt='Logo' className='motion-preset-expand' height={32} src='/assets/logo/logo.svg' width={32} />
       </Link>
 
       <button className='flex-1' onClick={handleScrollToTop} title={t('Scroll to top')} type='button' />

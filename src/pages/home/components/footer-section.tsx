@@ -12,7 +12,7 @@ export function FooterSection() {
       <div className='w-7xl pb-safe mx-auto flex max-w-full flex-col items-center justify-between gap-4 sm:flex-row'>
         <div className='flex flex-col items-center gap-4 sm:items-start'>
           <a className='text-(--accent-9) flex items-center gap-2 font-[Roboto_Slab_Variable] font-bold' href='/'>
-            <img alt='logo' height='32' src='/assets/logo/logo-192x192.png' width='32' />
+            <img alt='logo' height='32' src='/assets/logo/logo.svg' width='32' />
             <span className='font-[Roboto_Slab_Variable] font-semibold'>{metadata.title}</span>
           </a>
 

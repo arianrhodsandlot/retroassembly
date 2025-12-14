@@ -28,7 +28,7 @@ export function loader({ request }) {
     (!matched.params.language || localeCodes.some((localeCode) => localeCode.toLowerCase() === matched.params.language))
   const homeHeadElements = localeCodes.map((localeCode) => ({
     props: {
-      href: new URL(getHomePath(localeCode.toLowerCase()), new URL(request.url)),
+      href: new URL(getHomePath(localeCode.toLowerCase()), new URL(request.url)).href,
       hrefLang: localeCode,
       key: localeCode,
       rel: 'alternate',

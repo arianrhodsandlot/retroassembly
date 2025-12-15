@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import type { PropsWithChildren } from 'react'
 
-export function LayoutMain({ children }: PropsWithChildren) {
+export function LayoutMain({ children }: Readonly<PropsWithChildren>) {
   return (
     <main
       className={clsx(

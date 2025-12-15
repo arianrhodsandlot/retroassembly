@@ -6,23 +6,23 @@ import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 import { shaders } from './shaders.ts'
 
-export function PlatformShaderSettings({ platform }: { platform: PlatformName }) {
+export function PlatformShaderSettings({ platform }: Readonly<{ platform: PlatformName }>) {
   const { t } = useTranslation()
 
   const { isLoading, preference, update } = usePreference()
 
   const platformPreference = preference.emulator.platform[platform]
 
-  function updatePlatformShader(shader: string) {
-    update({ emulator: { platform: { [platform]: { shader } } } })
+  async function updatePlatformShader(shader: string) {
+    await update({ emulator: { platform: { [platform]: { shader } } } })
   }
 
-  function handleShaderChange(shader: string) {
-    updatePlatformShader(shader)
+  async function handleShaderChange(shader: string) {
+    await updatePlatformShader(shader)
   }
 
-  function handleInheritChange(checked: boolean) {
-    updatePlatformShader(checked ? '' : 'inherit')
+  async function handleInheritChange(checked: boolean) {
+    await updatePlatformShader(checked ? '' : 'inherit')
   }
 
   return (

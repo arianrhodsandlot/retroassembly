@@ -11,7 +11,7 @@ import { SettingsTitle } from '../settings-title.tsx'
 
 const { $delete, $post } = client.preference.bioses
 
-export function BIOSOptions({ platform }: { platform: PlatformName }) {
+export function BIOSOptions({ platform }: { readonly platform: PlatformName }) {
   const { t } = useTranslation()
   const { isLoading, preference, setPreference } = usePreference()
   const { bioses } = preference.emulator.platform[platform]

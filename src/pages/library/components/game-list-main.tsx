@@ -2,7 +2,7 @@ import type { PropsWithChildren } from 'react'
 import { GameList } from './game-list/game-list.tsx'
 import { PageBreadcrumb } from './page-breadcrumb.tsx'
 
-export function GameListMain({ children }: PropsWithChildren) {
+export function GameListMain({ children }: Readonly<PropsWithChildren>) {
   return (
     <>
       <PageBreadcrumb />

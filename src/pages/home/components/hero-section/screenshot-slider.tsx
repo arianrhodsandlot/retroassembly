@@ -67,7 +67,7 @@ export function ScreenshotSlider() {
   )
 }
 
-function ProgressBar({ duration }: { duration: number }) {
+function ProgressBar({ duration }: { readonly duration: number }) {
   const [width, setWidth] = useState(0)
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import { GameEntry } from './game-entry/game-entry.tsx'
 
 const sizeMap = { 'extra-large': 60, 'extra-small': 36, large: 54, medium: 48, small: 42 }
 
-export function GameEntryGrid({ roms }: { roms: any[] }) {
+export function GameEntryGrid({ roms }: { readonly roms: any[] }) {
   const { preference } = usePreference()
   const size = sizeMap[preference.ui.libraryCoverSize]
 

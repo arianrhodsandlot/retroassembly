@@ -33,21 +33,21 @@ export function SearchBar() {
     ? `/library/platform/${encodeURIComponent(selectedResult.platform)}/rom/${encodeURIComponent(selectedResult.fileName)}`
     : ''
   const select = useCallback(
-    function select() {
+    async function select() {
       if (selectedUrl) {
         setShowSearchModal(false)
         setSpatialNavigationPaused(false)
         if (selectedUrl !== location.pathname) {
-          navigate(selectedUrl)
+          await navigate(selectedUrl)
         }
       }
     },
     [location.pathname, selectedUrl, setShowSearchModal, setSpatialNavigationPaused, navigate],
   )
 
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault()
-    select()
+    await select()
   }
 
   const move = useCallback(

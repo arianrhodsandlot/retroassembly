@@ -141,7 +141,7 @@ async function findExistingRoms(files: File[], platform: PlatformName) {
   return files.map((file) => existingRomsMap.get(file.name) || null)
 }
 
-function separateUpdatesAndInserts(romDataList: InferInsertModel<typeof romTable>[], existingRoms: (any | null)[]) {
+function separateUpdatesAndInserts(romDataList: InferInsertModel<typeof romTable>[], existingRoms: any[]) {
   const updates: { data: InferInsertModel<typeof romTable>; rom: any }[] = []
   const inserts: InferInsertModel<typeof romTable>[] = []
 

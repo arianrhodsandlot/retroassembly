@@ -8,7 +8,7 @@ import { skeletonClassnames } from '../../constants/skeleton-classnames.ts'
 import { useRomCover } from '../../hooks/use-rom-cover.ts'
 import { useViewport } from '../../hooks/use-viewport.ts'
 
-export function GameEntryImage({ centered = false, rom }: { centered?: boolean; rom: any }) {
+export function GameEntryImage({ centered = false, rom }: Readonly<{ centered?: boolean; rom: any }>) {
   const goodcodes = getRomGoodcodes(rom)
   const { data: cover, isLoading } = useRomCover(rom)
   const [loaded, setLoaded] = useState(false)

@@ -9,14 +9,14 @@ export function GeneralSection({
   roms,
   suffix,
   title,
-}: {
+}: Readonly<{
   className?: string
   icon: string
   link: string
   roms: any[]
   suffix?: ReactNode
   title: string
-}) {
+}>) {
   if (roms.length > 0) {
     return (
       <section className={className}>

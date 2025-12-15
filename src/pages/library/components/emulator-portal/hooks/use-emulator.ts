@@ -141,7 +141,7 @@ export function useEmulator() {
     }
 
     if (preference.emulator.fullscreen) {
-      toggleFullscreen()
+      await toggleFullscreen()
     }
     try {
       wakeLock = await navigator.wakeLock.request('screen')

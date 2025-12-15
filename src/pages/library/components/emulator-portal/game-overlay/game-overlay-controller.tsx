@@ -19,9 +19,8 @@ export function GameOverlayController() {
   const { exit, isFullscreen, toggleFullscreen } = useEmulator()
   const [launched] = useEmulatorLaunched()
 
-  function handleClickExit() {
-    hide()
-    exit({ reloadAfterExit: true })
+  async function handleClickExit() {
+    await Promise.all([hide(), exit({ reloadAfterExit: true })])
   }
 
   async function handleClickPause() {

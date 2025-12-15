@@ -5,13 +5,13 @@ import { useSettingsDialogOpen, useSettingsDialogTabName } from '#@/pages/librar
 
 interface BioseMissingMessageProps {
   bioses: {
-    md5?: string | undefined
+    md5?: string
     name: string
     required?: boolean
   }[]
 }
 
-export function BioseMissingMessage({ bioses }: BioseMissingMessageProps) {
+export function BioseMissingMessage({ bioses }: Readonly<BioseMissingMessageProps>) {
   const { t } = useTranslation()
   const [, setSettingsDialogOpen] = useSettingsDialogOpen()
   const [, setSettingsDialogTabName] = useSettingsDialogTabName()

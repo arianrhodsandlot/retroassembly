@@ -34,7 +34,7 @@ export function GameOverlayButtons() {
 
   async function handleClickExit() {
     await hide()
-    exit({ reloadAfterExit: true })
+    await exit({ reloadAfterExit: true })
   }
 
   async function handleClickSaveExit() {
@@ -42,7 +42,7 @@ export function GameOverlayButtons() {
     try {
       await saveState()
       await hide()
-      exit({ reloadAfterExit: true })
+      await exit({ reloadAfterExit: true })
     } finally {
       setIsPending(false)
     }

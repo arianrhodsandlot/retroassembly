@@ -18,10 +18,10 @@ export function LayoutHeader() {
   const currentLink = groupLinks.find(({ to }) => isActive(to))
   const currentRouteName = currentLink?.name
 
-  function handleValueChange(value: string) {
+  async function handleValueChange(value: string) {
     const link = groupLinks.find(({ name }) => name === value)
     if (link?.to) {
-      navitate(link.to)
+      await navitate(link.to)
     }
   }
 

@@ -56,7 +56,7 @@ export function useSpatialNavigation() {
       up: 'up',
     } as const
 
-    function handleKeydown(event: KeyboardEvent) {
+    async function handleKeydown(event: KeyboardEvent) {
       if (isSpatialNavigationPaused) {
         return
       }
@@ -65,7 +65,7 @@ export function useSpatialNavigation() {
       if (direction) {
         event.preventDefault()
         setPristine(showFocusIndicators === 'never')
-        move(direction)
+        await move(direction)
       } else if (keyName === inputMapping.confirmKey || keyName === 'enter' || keyName === 'space') {
         event.preventDefault()
         click(document.activeElement)
@@ -95,14 +95,14 @@ export function useSpatialNavigation() {
       [inputMapping.gamepad.input_player1_up_btn]: 'up',
     } as const
 
-    const offButtonDown = Gamepad.onButtonDown(({ button }) => {
+    const offButtonDown = Gamepad.onButtonDown(async ({ button }) => {
       if (isSpatialNavigationPaused) {
         return
       }
       const direction = gamepadDirectionMap[button]
       if (direction) {
         setPristine(showFocusIndicators === 'never')
-        move(gamepadDirectionMap[button])
+        await move(gamepadDirectionMap[button])
       }
     })
 

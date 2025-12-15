@@ -17,7 +17,7 @@ export async function loader() {
 
   const data: {
     rom: (typeof recentlySavedRoms)[number] | null
-    state: any | null
+    state: any
   } = { rom: null, state: null }
 
   const rom = recentlySavedRoms[0] || recentlyLaunchedRoms[0] || newAddedRoms[0]

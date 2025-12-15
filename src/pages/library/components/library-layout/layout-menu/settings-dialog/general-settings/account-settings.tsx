@@ -21,7 +21,7 @@ export function AccountSettings() {
       throw new Error(t('The new password is the same as the current password'))
     }
     return {
-      new_password: `${formData.get('new_password')}`,
+      new_password: `${formData.get('new_password')?.toString()}`,
       password: `${formData.get('password')}`,
     }
   }

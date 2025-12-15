@@ -17,7 +17,7 @@ export async function imageLoaded(src: string) {
     })
     img.addEventListener('error', (error) => {
       invalidImages.add(src)
-      reject(error)
+      reject(new Error(`Failed to load image: ${src}`, { cause: error }))
     })
   })
 }

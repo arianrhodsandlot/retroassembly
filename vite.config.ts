@@ -2,6 +2,7 @@ import path from 'node:path'
 import { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
+import { omit } from 'es-toolkit'
 import { defaults, noop } from 'es-toolkit/compat'
 import { $ } from 'execa'
 import fs from 'fs-extra'
@@ -62,11 +63,12 @@ export default defineConfig(async (env) => {
   const envPort = process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT
   const port = envPort ? Number.parseInt(envPort, 10) || 8000 : 8000
   const config: UserConfig = {
+    build: { chunkSizeWarningLimit: 1024 },
     envPrefix: 'RETROASSEMBLY_BUILD_TIME_VITE_',
-    plugins: [tailwindcss(), reactRouter(), devtoolsJson(), serverInfo()],
+    plugins: [tailwindcss({ optimize: false }), reactRouter(), devtoolsJson(), serverInfo()],
     server: {
       allowedHosts: true,
-      hmr: { overlay: false },
+      hmr: { overlay: true },
       host: true,
       open: true,
       port,
@@ -88,7 +90,7 @@ export default defineConfig(async (env) => {
       await fs.ensureDir(storageDirectory)
       await import('./src/utils/server/self-test.ts')
     }
-    config.plugins?.push(
+    const serverAdapterPlugin = omit(
       serverAdapter({
         entry: path.resolve('src', 'server', 'app.ts'),
         exclude: [
@@ -101,7 +103,9 @@ export default defineConfig(async (env) => {
           return { extra: 'stuff', url: request.url }
         },
       }),
+      ['handleHotUpdate'],
     )
+    config.plugins?.push(serverAdapterPlugin)
     const serverEntry = path.resolve(
       'node_modules',
       '@react-router',

@@ -19,7 +19,9 @@ export function useMouseIdle(idleTime = 1000) {
       } catch {}
     }
 
-    resetTimer()
+    ;(async () => {
+      await resetTimer()
+    })()
 
     for (const event of events) {
       document.body.addEventListener(event, resetTimer, { signal: eventAbortController.signal })

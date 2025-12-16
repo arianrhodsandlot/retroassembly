@@ -11,6 +11,7 @@ const { path } = Nostalgist.vendors
 export function getDemoRomThumbnail(rom) {
   const platform = { genesis: 'md' }[rom.platform] || rom.platform
   const repo = `retrobrews/${platform}-games`
+  // @ts-expect-error we know this is a valid call
   return getCDNUrl(repo, `${path.parse(rom.fileName).name}.png`)
 }
 
@@ -33,6 +34,7 @@ export function getLibretroThumbnail(name: string, platform: string, type: Libre
   const normalizedFileName = `${name.replaceAll(/[&*/:`<>?\\]|\|"/g, '_')}.png`
   const filePath = path.join(fileDirectory, normalizedFileName)
 
+  // @ts-expect-error we know this is a valid call
   return getCDNUrl(repo, filePath)
 }
 

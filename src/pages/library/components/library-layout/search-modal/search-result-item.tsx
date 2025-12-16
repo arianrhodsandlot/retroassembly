@@ -59,9 +59,11 @@ export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProp
   const ref = useRef<HTMLLIElement>(null)
 
   useEffect(() => {
-    if (selected && ref.current) {
-      scrollIntoView(ref.current, { scrollMode: 'if-needed' })
-    }
+    ;(async () => {
+      if (selected && ref.current) {
+        await scrollIntoView(ref.current, { scrollMode: 'if-needed' })
+      }
+    })()
   }, [selected])
 
   return (

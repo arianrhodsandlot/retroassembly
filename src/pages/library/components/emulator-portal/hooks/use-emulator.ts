@@ -52,7 +52,8 @@ export function useEmulator() {
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
 
   const romUrl = isDemo
-    ? getCDNUrl(`retrobrews/${{ genesis: 'md' }[rom.platform] || rom.platform}-games`, rom.fileName)
+    ? // @ts-expect-error we can guarantee the platform is supported here
+      getCDNUrl(`retrobrews/${{ genesis: 'md' }[rom.platform] || rom.platform}-games`, rom.fileName)
     : getFileUrl(rom.fileId) || ''
   const { core } = preference.emulator.platform[rom.platform] || {}
 

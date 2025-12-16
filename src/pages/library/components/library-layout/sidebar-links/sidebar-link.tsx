@@ -5,8 +5,8 @@ import { type FocusEvent, useLayoutEffect, useRef } from 'react'
 import scrollIntoView from 'smooth-scroll-into-view-if-needed'
 import { NavigatableLink } from '../../navigatable-link.tsx'
 
-function handleFocus(event: FocusEvent<HTMLAnchorElement>) {
-  scrollIntoView(event.currentTarget, {
+async function handleFocus(event: FocusEvent<HTMLAnchorElement>) {
+  await scrollIntoView(event.currentTarget, {
     behavior: 'smooth',
     block: 'nearest',
     scrollMode: 'if-needed',

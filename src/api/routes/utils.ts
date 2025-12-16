@@ -1,4 +1,6 @@
-export function createFileResponse(object: { body: NonSharedBuffer; httpEtag: string; size: number } | R2ObjectBody) {
+export function createFileResponse(
+  object: { body: Buffer<ArrayBuffer>; httpEtag: string; size: number } | R2ObjectBody,
+) {
   const headers = new Headers()
   // this may fail when using miniflare
   if ('writeHttpMetadata' in object) {

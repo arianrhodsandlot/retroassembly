@@ -36,7 +36,7 @@
     "hono": "4.11.1"
   },
   "devDependencies": {
-    "@arianrhodsandlot/eslint-config": "0.25.1",
+    "@arianrhodsandlot/eslint-config": "0.25.3",
     "@cloudflare/vite-plugin": "1.17.1",
     "@hono/node-server": "1.19.7",
     "@hono/vite-dev-server": "0.23.0",
@@ -54,7 +54,7 @@
     "@react-router/dev": "7.10.1",
     "@react-router/node": "7.10.1",
     "@supabase/ssr": "0.8.0",
-    "@supabase/supabase-js": "2.87.1",
+    "@supabase/supabase-js": "2.87.3",
     "@tailwindcss/typography": "0.5.19",
     "@tailwindcss/vite": "4.1.18",
     "@tsconfig/remix": "2.0.6",
@@ -113,21 +113,21 @@
     "smooth-scroll-into-view-if-needed": "2.0.2",
     "spark-md5": "3.0.2",
     "spatial-navigation-ts": "1.0.8",
-    "swr": "2.3.7",
+    "swr": "2.3.8",
     "tailwind-merge": "3.4.0",
     "tailwindcss": "4.1.18",
     "tailwindcss-motion": "1.1.1",
     "tailwindcss-safe-area": "1.2.0",
     "tempy": "3.1.0",
-    "tsdown": "0.17.4",
+    "tsdown": "0.18.0",
     "type-fest": "5.3.1",
     "typescript": "5.9.3",
     "vite": "7.3.0",
     "vite-plugin-devtools-json": "1.0.0",
     "wrangler": "4.54.0",
-    "zod": "4.2.0"
+    "zod": "4.2.1"
   },
-  "packageManager": "pnpm@10.25.0",
+  "packageManager": "pnpm@10.26.0",
   "engines": {
     "node": ">=24.9.0"
   },

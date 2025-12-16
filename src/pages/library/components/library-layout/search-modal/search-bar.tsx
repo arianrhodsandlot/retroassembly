@@ -89,7 +89,7 @@ export function SearchBar() {
 
   useEffect(
     () =>
-      Gamepad.onPress(({ button }) => {
+      Gamepad.onPress(async ({ button }) => {
         if (`${button}` === inputMapping.gamepad.input_player1_down_btn) {
           move('down')
         }
@@ -97,7 +97,7 @@ export function SearchBar() {
           move('up')
         }
         if (`${button}` === inputMapping.confirmButton) {
-          select()
+          await select()
         }
       }),
     [move, inputMapping, select],

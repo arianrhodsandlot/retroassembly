@@ -42,7 +42,7 @@ const repositoryVersions = {
 
 export const cdnHost = 'https://cdn.jsdelivr.net/'
 
-export function getCDNUrl(repo: keyof typeof repositoryVersions | string, filePpath: string) {
+export function getCDNUrl(repo: keyof typeof repositoryVersions, filePpath: string) {
   const [ghUser, ghRepoName] = repo.split('/')
   const version = repositoryVersions[repo]
   const url = new URL('', cdnHost)

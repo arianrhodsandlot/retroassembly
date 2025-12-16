@@ -11,7 +11,9 @@ export function EmulatorPortal() {
 
   useLayoutEffect(() => {
     if (navigation.state === 'loading') {
-      exit()
+      ;(async () => {
+        await exit()
+      })()
     }
     document.body.style.removeProperty('overflow')
   }, [exit, navigation.state])

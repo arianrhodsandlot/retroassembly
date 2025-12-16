@@ -28,7 +28,7 @@ export function LanguageSettings() {
               onValueChange={async (value) => {
                 await update({ ui: { language: value } })
                 const language = value === 'auto' ? detectedLanguage : value
-                i18n.changeLanguage(language)
+                await i18n.changeLanguage(language)
               }}
               size='2'
               value={preference.ui.language}

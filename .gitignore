@@ -7,7 +7,7 @@ dist
 inputs
 node_modules
 playwright-report
+src/types/worker-configuration.d.ts
 test-results
 tests/e2e/fixtures/files
-worker-configuration.d.ts
 wrangler.json

@@ -14,7 +14,9 @@ import { Head } from './head.tsx'
 import { RadixTheme } from './radix-theme.tsx'
 
 if (isBrowser()) {
-  i18n.changeLanguage(document.documentElement.lang)
+  ;(async () => {
+    await i18n.changeLanguage(document.documentElement.lang)
+  })()
 }
 
 export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
@@ -23,7 +25,9 @@ export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
   const hydrateAtoms = [hydrateAtom]
 
   useEffect(() => {
-    i18n.changeLanguage(language)
+    ;(async () => {
+      await i18n.changeLanguage(language)
+    })()
   }, [language])
 
   return (

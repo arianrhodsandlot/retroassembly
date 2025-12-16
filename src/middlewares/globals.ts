@@ -88,7 +88,7 @@ export function globals() {
     c.set('detectedLanguage', getDetectedLanguage(c))
 
     const language = getLanguage(c)
-    i18n.changeLanguage(language)
+    await i18n.changeLanguage(language)
     c.set('language', language)
     c.set('i18n', i18n)
     c.set('t', i18n.t)

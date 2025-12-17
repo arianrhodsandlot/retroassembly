@@ -1,19 +1,20 @@
-import { Card, HoverCard, RadioCards, Switch } from '@radix-ui/themes'
+import { Card, Switch } from '@radix-ui/themes'
 import { useTranslation } from 'react-i18next'
 import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
 import { SettingsTitle } from '../settings-title.tsx'
-import { shaders } from './shaders.ts'
+import { ShaderSelect } from './shader-select.tsx'
 
 export function ShaderSettings() {
   const { t } = useTranslation()
   const { isLoading, preference, update } = usePreference()
 
   async function handleShaderChange(shader: string) {
-    if (shader !== preference.emulator.shader) {
+    const actualShader = shader === 'none' ? '' : shader
+    if (actualShader !== preference.emulator.shader) {
       await update({
         emulator: {
-          shader,
-          videoSmooth: shader ? false : preference.emulator.videoSmooth,
+          shader: actualShader,
+          videoSmooth: actualShader ? false : preference.emulator.videoSmooth,
         },
       })
     }
@@ -32,49 +33,12 @@ export function ShaderSettings() {
             <SettingsTitle className='text-base'>
               <span className='icon-[mdi--monitor-shimmer]' />
               {t('Shader')}
-            </SettingsTitle>
-            <div className='px-6'>
-              <RadioCards.Root
-                columns={{ initial: '1', md: '5' }}
+              <ShaderSelect
                 disabled={isLoading}
                 onValueChange={handleShaderChange}
-                size='1'
-                value={preference.emulator.shader}
-              >
-                {shaders.map((shader) => (
-                  <div className='relative flex flex-col gap-1' key={shader.id}>
-                    <RadioCards.Item value={shader.id}>
-                      <span className={shader.id ? 'icon-[mdi--stars]' : 'icon-[mdi--do-not-disturb-alt]'} />
-                      <span className='font-semibold'>{shader.id ? shader.name : t('disabled')}</span>
-                    </RadioCards.Item>
-                    {shader.thumbnail ? (
-                      <div className='absolute inset-0'>
-                        <HoverCard.Root>
-                          <HoverCard.Trigger>
-                            <button
-                              className='absolute inset-0 opacity-0'
-                              onClick={() => handleShaderChange(shader.id)}
-                              type='button'
-                            >
-                              {t('select {{name}}', { name: shader.name })}
-                            </button>
-                          </HoverCard.Trigger>
-                          <HoverCard.Content align='center' hideWhenDetached side='top' size='1'>
-                            <a href={shader.thumbnail} rel='noreferrer noopener' target='_blank'>
-                              <img
-                                alt={shader.name}
-                                className='size-48 rounded bg-zinc-400 object-contain object-center'
-                                src={shader.thumbnail}
-                              />
-                            </a>
-                          </HoverCard.Content>
-                        </HoverCard.Root>
-                      </div>
-                    ) : null}
-                  </div>
-                ))}
-              </RadioCards.Root>
-            </div>
+                value={preference.emulator.shader || 'none'}
+              />
+            </SettingsTitle>
           </div>
 
           <div>

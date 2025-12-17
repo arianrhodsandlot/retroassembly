@@ -84,6 +84,32 @@ if (isBrowser()) {
       const response = await extractCoreWithCache(core)
       return response.wasm
     },
+    resolveShader(name) {
+      if (!name) {
+        return []
+      }
+      const cdnBaseUrl = 'https://cdn.jsdelivr.net/gh'
+      const shaderRepo = 'libretro/glsl-shaders'
+      const shaderVersion = '468f67b6f6788e2719d1dd28dfb2c9b7c3db3cc7'
+      const prefix = `${cdnBaseUrl}/${shaderRepo}@${shaderVersion}`
+
+      const preset = `${prefix}/${name}.glslp`
+
+      const { path } = Nostalgist.vendors
+      const segments = name.split(path.sep)
+      segments.splice(-1, 0, 'shaders')
+      const glsls = {
+        'crt/crt-hyllian': [`${prefix}/crt/shaders/zfast_crt.glsl`],
+        'crt/zfast-crt': [`${prefix}/crt/shaders/zfast_crt.glsl`],
+        'deblur/sedi': [`${prefix}/deblur/shaders/sedi-v1.0.glsl`],
+        'handheld/gba-color': [`${prefix}/handheld/shaders/color/gba-color.glsl`],
+        'handheld/vba-color': [`${prefix}/handheld/shaders/color/vba-color.glsl`],
+        'handheld/zfast-lcd': [`${prefix}/handheld/shaders/zfast_lcd.glsl`],
+        'sabr/sabr': [`${prefix}/sabr/shaders/sabr-v3.0.glsl`],
+      }[name] || [`${prefix}/${segments.join(path.sep)}.glsl`]
+
+      return [preset, ...glsls]
+    },
     style,
   })
 }

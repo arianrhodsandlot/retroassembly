@@ -65,6 +65,7 @@ export function useEmulator() {
   } else {
     shader ??= preference.emulator.shader
   }
+  shader = 'handheld/lcd-grid'
 
   const romObject = useMemo(() => ({ fileContent: romUrl, fileName: rom?.fileName }), [rom, romUrl])
   const bios = preference.emulator.platform[rom.platform].bioses.map(({ fileId, fileName }) => ({

@@ -68,7 +68,41 @@ const style: Partial<CSSStyleDeclaration> = {
 }
 
 if (isBrowser()) {
+  const { path } = Nostalgist.vendors
   Nostalgist.configure({
+    beforeLaunch(nostalgist) {
+      const FS = nostalgist.getEmscriptenFS()
+      const options = nostalgist.getOptions()
+      const shadersDirectory = '/home/web_user/retroarch/bundle/shaders/shaders_glsl/shaders'
+      switch (options.shader) {
+        case 'crt/crt-easymode-halation':
+          FS.mkdirTree(path.join(shadersDirectory, 'crt-easymode-halation'))
+          for (const name of ['linearize', 'blur_horiz', 'blur_vert', 'threshold', 'crt-easymode-halation']) {
+            FS.rename(
+              path.join(shadersDirectory, `${name}.glsl`),
+              path.join(shadersDirectory, 'crt-easymode-halation', `${name}.glsl`),
+            )
+          }
+
+          break
+
+        case 'crt/crt-interlaced-halation':
+          FS.mkdirTree(path.join(shadersDirectory, 'crt-interlaced-halation'))
+          for (const n of [0, 1, 2]) {
+            FS.rename(
+              path.join(shadersDirectory, `crt-interlaced-halation-pass${n}.glsl`),
+              path.join(shadersDirectory, 'crt-interlaced-halation', `crt-interlaced-halation-pass${n}.glsl`),
+            )
+          }
+          FS.mkdirTree('/home/web_user/retroarch/bundle/shaders/interpolation/shaders')
+          FS.rename(
+            path.join(shadersDirectory, 'quilez.glsl'),
+            path.join('/home/web_user/retroarch/bundle/shaders/interpolation/shaders/quilez.glsl'),
+          )
+
+          break
+      }
+    },
     cache: true,
     async resolveCoreJs(core) {
       if (typeof core !== 'string') {
@@ -99,7 +133,20 @@ if (isBrowser()) {
       const segments = name.split(path.sep)
       segments.splice(-1, 0, 'shaders')
       const glsls = {
+        'crt/crt-easymode-halation': [
+          `${prefix}/crt/shaders/crt-easymode-halation/linearize.glsl`,
+          `${prefix}/crt/shaders/crt-easymode-halation/blur_horiz.glsl`,
+          `${prefix}/crt/shaders/crt-easymode-halation/blur_vert.glsl`,
+          `${prefix}/crt/shaders/crt-easymode-halation/threshold.glsl`,
+          `${prefix}/crt/shaders/crt-easymode-halation/crt-easymode-halation.glsl`,
+        ],
         'crt/crt-hyllian': [`${prefix}/crt/shaders/zfast_crt.glsl`],
+        'crt/crt-interlaced-halation': [
+          `${prefix}/crt/shaders/crt-interlaced-halation/crt-interlaced-halation-pass0.glsl`,
+          `${prefix}/crt/shaders/crt-interlaced-halation/crt-interlaced-halation-pass1.glsl`,
+          `${prefix}/crt/shaders/crt-interlaced-halation/crt-interlaced-halation-pass2.glsl`,
+          `${prefix}/interpolation/shaders/quilez.glsl`,
+        ],
         'crt/zfast-crt': [`${prefix}/crt/shaders/zfast_crt.glsl`],
         'deblur/sedi': [`${prefix}/deblur/shaders/sedi-v1.0.glsl`],
         'handheld/gba-color': [`${prefix}/handheld/shaders/color/gba-color.glsl`],

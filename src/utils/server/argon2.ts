@@ -1,7 +1,5 @@
-import { argon2, randomBytes } from 'node:crypto'
+import crypto from 'node:crypto'
 import { promisify } from 'node:util'
-
-const argon2Async = promisify(argon2)
 
 const DEFAULT_OPTIONS = {
   memory: 65_536, // 64 MiB (argon2 library default)
@@ -43,10 +41,10 @@ function decodeHash(encoded: string) {
 }
 
 export async function hash(password: string) {
-  const salt = new Uint8Array(randomBytes(16))
+  const salt = new Uint8Array(crypto.randomBytes(16))
   const message = new TextEncoder().encode(password)
 
-  const hash = new Uint8Array(await argon2Async('argon2id', { ...DEFAULT_OPTIONS, message, nonce: salt }))
+  const hash = new Uint8Array(await promisify(crypto.argon2)('argon2id', { ...DEFAULT_OPTIONS, message, nonce: salt }))
 
   return encodeHash(salt, hash, DEFAULT_OPTIONS)
 }
@@ -56,7 +54,7 @@ export async function verify(hashedPassword: string, password: string) {
   const message = new TextEncoder().encode(password)
 
   const actualHash = new Uint8Array(
-    await argon2Async('argon2id', {
+    await promisify(crypto.argon2)('argon2id', {
       memory,
       message,
       nonce: salt,

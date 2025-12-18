@@ -2,6 +2,7 @@ import { eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
 import { userTable } from '#@/databases/schema.ts'
+import { hash } from '#@/utils/server/argon2.ts'
 import { getConnInfo } from '#@/utils/server/misc.ts'
 
 export async function createUser({ password, username }: { password: string; username: string }) {
@@ -13,7 +14,6 @@ export async function createUser({ password, username }: { password: string; use
     throw new HTTPException(409, { message: 'Username already exists' })
   }
 
-  const { hash } = await import('argon2')
   const passwordHash = await hash(password)
 
   const [user] = await db.library

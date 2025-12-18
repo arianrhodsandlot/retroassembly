@@ -2,6 +2,7 @@ import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
 import { sessionTable, statusEnum, userTable } from '#@/databases/schema.ts'
+import { hash, verify } from '#@/utils/server/argon2.ts'
 
 export async function updatePassword(currentPassword: string, newPassword: string) {
   const c = getContext()
@@ -13,7 +14,6 @@ export async function updatePassword(currentPassword: string, newPassword: strin
     throw new HTTPException(404, { message: 'User not found' })
   }
 
-  const { hash, verify } = await import('argon2')
   const isValid = await verify(user.passwordHash, currentPassword)
   if (!isValid) {
     throw new HTTPException(401, { message: 'Invalid current password' })

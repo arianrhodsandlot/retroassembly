@@ -31,7 +31,6 @@
     "pnpm-lock.yaml": "node --run=check-lockfile"
   },
   "dependencies": {
-    "argon2": "0.44.0",
     "better-sqlite3": "12.5.0",
     "hono": "4.11.1"
   },
@@ -51,8 +50,8 @@
     "@microsoft/clarity": "1.0.2",
     "@playwright/test": "1.57.0",
     "@radix-ui/themes": "3.2.1",
-    "@react-router/dev": "7.10.1",
-    "@react-router/node": "7.10.1",
+    "@react-router/dev": "7.11.0",
+    "@react-router/node": "7.11.0",
     "@supabase/ssr": "0.8.0",
     "@supabase/supabase-js": "2.88.0",
     "@tailwindcss/typography": "0.5.19",
@@ -107,7 +106,7 @@
     "react-dom": "19.2.3",
     "react-dropzone": "14.3.8",
     "react-i18next": "16.5.0",
-    "react-router": "7.10.1",
+    "react-router": "7.11.0",
     "react-router-templates": "github:remix-run/react-router-templates",
     "simple-git-hooks": "2.13.1",
     "smooth-scroll-into-view-if-needed": "2.0.2",
@@ -119,7 +118,7 @@
     "tailwindcss-motion": "1.1.1",
     "tailwindcss-safe-area": "1.2.0",
     "tempy": "3.1.0",
-    "tsdown": "0.18.0",
+    "tsdown": "0.18.1",
     "type-fest": "5.3.1",
     "typescript": "5.9.3",
     "vite": "7.3.0",
@@ -133,7 +132,6 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "argon2",
       "better-sqlite3",
       "esbuild",
       "sharp",

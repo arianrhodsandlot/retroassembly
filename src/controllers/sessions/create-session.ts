@@ -3,6 +3,7 @@ import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
 import { DateTime } from 'luxon'
 import { sessionTable, statusEnum, userTable } from '#@/databases/schema.ts'
+import { verify } from '#@/utils/server/argon2.ts'
 import { getConnInfo } from '#@/utils/server/misc.ts'
 import { nanoid } from '#@/utils/server/nanoid.ts'
 
@@ -22,7 +23,6 @@ export async function createSession({ password, username }: { password: string; 
     throw invalidException
   }
 
-  const { verify } = await import('argon2')
   const isValidPassword = await verify(user.passwordHash, password)
   if (!isValidPassword) {
     throw invalidException

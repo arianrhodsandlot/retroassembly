@@ -7,7 +7,7 @@
     "not_found_handling": "404-page",
     "run_worker_first": false
   },
-  "compatibility_date": "2025-11-17",
+  "compatibility_date": "2025-12-18",
   "compatibility_flags": [
     "nodejs_compat",
     "no_handle_cross_request_promise_resolution"

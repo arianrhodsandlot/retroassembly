@@ -25,6 +25,8 @@ export function getRunTimeEnv() {
       RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE: { node: '1000', workerd: '100' }[runtimeKey] || '100',
       RETROASSEMBLY_RUN_TIME_MSLEUTH_FALLBACK_HOST: 'https://msleuth.fly.dev/',
       RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST: 'https://msleuth.arianrhodsandlot.workers.dev/',
+      RETROASSEMBLY_RUN_TIME_SKIP_HOME:
+        { node: `${runTimeEnv.NODE_ENV !== 'development'}`, workerd: 'false' }[runtimeKey] || 'false',
       RETROASSEMBLY_RUN_TIME_SKIP_HOME_IF_LOGGED_IN: { node: 'true', workerd: 'false' }[runtimeKey] || 'false',
       RETROASSEMBLY_RUN_TIME_STORAGE_DIRECTORY: path.resolve('data', 'storage'),
       RETROASSEMBLY_RUN_TIME_STORAGE_HOST: '',

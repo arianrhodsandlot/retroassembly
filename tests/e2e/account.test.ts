@@ -15,7 +15,7 @@ test('log in', async ({ page, pages: { library, login }, user }) => {
 test('log out', async ({ page, pages: { library, login }, user }) => {
   await login.login(user)
   await library.logout()
-  await expect(page).toHaveURL('')
+  await expect(page).toHaveURL(login.url)
 
   await library.goto()
   await expect(page).toHaveURL([login.url, new URLSearchParams({ redirect_to: `/${library.romsURL}` })].join('?'))

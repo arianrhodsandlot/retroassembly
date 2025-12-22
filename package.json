@@ -22,14 +22,6 @@
     "tag": "node scripts/tag.ts",
     "test": "playwright test -c tests/e2e"
   },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged && pnpm tsc"
-  },
-  "lint-staged": {
-    "*.?(m|c)@(j|t)s?(x)": "eslint --fix",
-    "package.json": "pnpx sort-package-json",
-    "pnpm-lock.yaml": "node --run=check-lockfile"
-  },
   "dependencies": {
     "better-sqlite3": "12.5.0",
     "hono": "4.11.1"
@@ -126,10 +118,18 @@
     "wrangler": "4.56.0",
     "zod": "4.2.1"
   },
-  "packageManager": "pnpm@10.26.1",
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged && pnpm tsc"
+  },
+  "lint-staged": {
+    "*.?(m|c)@(j|t)s?(x)": "eslint --fix",
+    "package.json": "pnpm dlx oxfmt package.json",
+    "pnpm-lock.yaml": "node --run=check-lockfile"
+  },
   "engines": {
     "node": ">=24.9.0"
   },
+  "packageManager": "pnpm@10.26.1",
   "pnpm": {
     "onlyBuiltDependencies": [
       "better-sqlite3",

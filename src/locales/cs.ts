@@ -15,17 +15,21 @@ export const translation: ResourceLanguage = {
     'Podle názvu vybraného souboru se nejedná o očekávaný BIOS soubor.',
   account: 'účet',
   Account: 'Účet',
+  // Account Management
+  Accounts: 'Účty',
   Add: 'Přidat',
   'Add a slight blur to the image to take the edge off of the hard pixel edges.':
     'Přidejte lehké rozostření obrazu, aby se zjemnily ostré pixely.',
   'Adding these ROMs would exceed the maximum allowed ROM count of {{maxRomCount}}.':
     'Přidáním těchto ROM by byl překročen maximální povolený počet {{maxRomCount}} ROM.',
+  'Add User': 'Přidat Uživatele',
   'All rights reserved': 'Všechna práva vyhrazena',
   Always: 'Vždy',
   'And you can have up to <1>{{maxRomCount}}</1> ROMs in your library.':
     'A ve své knihovně můžete mít až <1>{{maxRomCount}}</1> ROM.',
   'An unexpected error occurred.': 'Došlo k neočekávané chybě.',
   Arcade: 'Arcade',
+  'Are you sure? This action cannot be undone.': 'Jste si jisti? Tato akce nemůže být vrácena zpět.',
   'Are you sure to proceed?\nThe deleted history item cannot be restored.\nThe ROM related to this history item will NOT be deleted.':
     'Opravdu chcete pokračovat?\nSmazanou položku historie nelze obnovit.\nROM související s touto položkou historie nebude smazána.',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.':
@@ -48,6 +52,9 @@ export const translation: ResourceLanguage = {
   'By clicking the button, you agree to our': 'Kliknutím na tlačítko souhlasíte s našimi',
   Cancel: 'Zrušit',
   'Cannot be enabled with shaders.': 'Nelze zapnout současně s filtry (shaders).',
+  'Cannot delete yourself': 'Nemůžete smazat sebe sama',
+  'Change Password': 'Změnit Heslo',
+  'Change Your Password': 'Změnit Svá Hesla',
   'Channel F': 'Channel F',
   Close: 'Zavřít',
   'Cloud Sync': 'Synchronizace v cloudu',
@@ -60,7 +67,11 @@ export const translation: ResourceLanguage = {
   Continue: 'Pokračovat',
   cookies: 'cookies',
   'Create an account to get started': 'Vytvořte si účet a začněte',
+  Created: 'Vytvořeno',
+  'Create New User': 'Vytvořit Nového Uživatele',
+  'Create User': 'Vytvořit Uživatele',
   'Create your account': 'Vytvořte si účet',
+  Current: 'Aktuální',
   'Current Password': 'Aktuální heslo',
   Dark: 'Tmavé',
   Date: 'Datum',
@@ -70,6 +81,7 @@ export const translation: ResourceLanguage = {
   'Delete from history': 'Smazat z historie',
   'Delete selected {{count}} {{items}}': 'Smazat vybrané položky: {{count}}',
   'Delete the ROM': 'Smazat ROM',
+  'Delete User': 'Smazat Uživatele',
   'Demo or visual for': 'Demo nebo ukázka pro',
   Deny: 'Odmítnout',
   Descending: 'Sestupně',
@@ -129,6 +141,7 @@ export const translation: ResourceLanguage = {
   'Keyboard/Gamepad-Friendly Navigation': 'Navigace vhodná pro klávesnici a gamepad',
   Language: 'Jazyk',
   large: 'velké',
+  'Last Activity': 'Poslední Aktivita',
   library: 'knihovna',
   Library: 'Knihovna',
   Light: 'Světlé',
@@ -246,6 +259,7 @@ export const translation: ResourceLanguage = {
   Recent: 'Nedávné',
   'Recommendation: 10+ characters with letters, numbers, and symbols.':
     'Doporučení: 10+ znaků s písmeny, číslicemi a symboly.',
+  'Regular User': 'Běžný Uživatel',
   Released: 'Vydáno',
   'Released under': 'Vydáno pod',
   'Repeat New Password': 'Opakujte nové heslo',
@@ -269,6 +283,7 @@ export const translation: ResourceLanguage = {
   'Rewind Gameplay': 'Přetočit hru zpět',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
     'Přetočte hru zpět pomocí "R" na klávesnici nebo kombinace tlačítek na ovladači',
+  Role: 'Role',
   ROM: 'ROM',
   ROM_other: 'ROMs',
   'ROMs uploaded': 'ROMs nahrány',
@@ -306,8 +321,10 @@ export const translation: ResourceLanguage = {
   'Star this project on GitHub to show your appreciation.': 'Ohodnoťte tento projekt na GitHubu, pokud se vám líbí.',
   'Start to enjoy retro gaming now!': 'Začněte si užívat retro hraní nyní!',
   state: 'stav',
+  Super: 'Super',
   'Super Famicom': 'Super Famicom',
   'Super NES': 'Super NES',
+  'Super User': 'Super Uživatel',
   'Supports a wide range of retro gaming systems.': 'Podporuje širokou škálu retro herních systémů.',
   'Sync your games and states then access them from anywhere.':
     'Synchronizujte své hry a stavy a přistupujte k nim odkudkoli.',

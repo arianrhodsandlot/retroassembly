@@ -9,6 +9,7 @@ const resources = mapValues(
   ({ translation }) => ({ translation }),
 )
 
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 i18next.init({
   debug: false,
   fallbackLng: defaultLanguage,

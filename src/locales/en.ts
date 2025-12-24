@@ -15,17 +15,21 @@ export const translation: ResourceLanguage = {
     "According to the selected file's name, it is not an expected BIOS file.",
   account: 'account',
   Account: 'Account',
+  // Account Management
+  Accounts: 'Accounts',
   Add: 'Add',
   'Add a slight blur to the image to take the edge off of the hard pixel edges.':
     'Add a slight blur to the image to take the edge off of the hard pixel edges.',
   'Adding these ROMs would exceed the maximum allowed ROM count of {{maxRomCount}}.':
     'Adding these ROMs would exceed the maximum allowed ROM count of {{maxRomCount}}.',
+  'Add User': 'Add User',
   'All rights reserved': 'All rights reserved',
   Always: 'Always',
   'And you can have up to <1>{{maxRomCount}}</1> ROMs in your library.':
     'And you can have up to <1>{{maxRomCount}}</1> ROMs in your library.',
   'An unexpected error occurred.': 'An unexpected error occurred.',
   Arcade: 'Arcade',
+  'Are you sure? This action cannot be undone.': 'Are you sure? This action cannot be undone.',
   'Are you sure to proceed?\nThe deleted history item cannot be restored.\nThe ROM related to this history item will NOT be deleted.':
     'Are you sure to proceed?\nThe deleted history item cannot be restored.\nThe ROM related to this history item will NOT be deleted.',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.':
@@ -48,6 +52,9 @@ export const translation: ResourceLanguage = {
   'By clicking the button, you agree to our': 'By clicking the button, you agree to our',
   Cancel: 'Cancel',
   'Cannot be enabled with shaders.': 'Cannot be enabled with shaders.',
+  'Cannot delete yourself': 'Cannot delete yourself',
+  'Change Password': 'Change Password',
+  'Change Your Password': 'Change Your Password',
   'Channel F': 'Channel F',
   Close: 'Close',
   'Cloud Sync': 'Cloud Sync',
@@ -60,7 +67,11 @@ export const translation: ResourceLanguage = {
   Continue: 'Continue',
   cookies: 'cookies',
   'Create an account to get started': 'Create an account to get started',
+  Created: 'Created',
+  'Create New User': 'Create New User',
+  'Create User': 'Create User',
   'Create your account': 'Create your account',
+  Current: 'Current',
   'Current Password': 'Current Password',
   Dark: 'Dark',
   Date: 'Date',
@@ -70,6 +81,7 @@ export const translation: ResourceLanguage = {
   'Delete from history': 'Delete from history',
   'Delete selected {{count}} {{items}}': 'Delete selected {{count}} {{items}}',
   'Delete the ROM': 'Delete the ROM',
+  'Delete User': 'Delete User',
   'Demo or visual for': 'Demo or visual for',
   Deny: 'Deny',
   Descending: 'Descending',
@@ -129,6 +141,7 @@ export const translation: ResourceLanguage = {
   'Keyboard/Gamepad-Friendly Navigation': 'Keyboard/Gamepad-Friendly Navigation',
   Language: 'Language',
   large: 'large',
+  'Last Activity': 'Last Activity',
   library: 'library',
   Library: 'Library',
   Light: 'Light',
@@ -245,6 +258,7 @@ export const translation: ResourceLanguage = {
   Recent: 'Recent',
   'Recommendation: 10+ characters with letters, numbers, and symbols.':
     'Recommendation: 10+ characters with letters, numbers, and symbols.',
+  'Regular User': 'Regular User',
   Released: 'Released',
   'Released under': 'Released under',
   'Repeat New Password': 'Repeat New Password',
@@ -268,6 +282,7 @@ export const translation: ResourceLanguage = {
   'Rewind Gameplay': 'Rewind Gameplay',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
     'Rewind gameplay using "R" on the keyboard or a controller button combination',
+  Role: 'Role',
   ROM: 'ROM',
   ROM_other: 'ROMs',
   'ROMs uploaded': 'ROMs uploaded',
@@ -305,8 +320,10 @@ export const translation: ResourceLanguage = {
   'Star this project on GitHub to show your appreciation.': 'Star this project on GitHub to show your appreciation.',
   'Start to enjoy retro gaming now!': 'Start to enjoy retro gaming now!',
   state: 'state',
+  Super: 'Super',
   'Super Famicom': 'Super Famicom',
   'Super NES': 'Super NES',
+  'Super User': 'Super User',
   'Supports a wide range of retro gaming systems.': 'Supports a wide range of retro gaming systems.',
   'Sync your games and states then access them from anywhere.':
     'Sync your games and states then access them from anywhere.',

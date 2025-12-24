@@ -1,5 +1,5 @@
 import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
-import { AccountSettings } from './account-settings.tsx'
+import { AccountsSettings } from './accounts-settings.tsx'
 import { LanguageSettings } from './language-settings.tsx'
 
 export function GeneralSettings() {
@@ -7,7 +7,7 @@ export function GeneralSettings() {
   return (
     <div className='flex flex-col gap-4'>
       <LanguageSettings />
-      {runtimeKey === 'workerd' ? null : <AccountSettings />}
+      {runtimeKey === 'workerd' ? null : <AccountsSettings />}
     </div>
   )
 }

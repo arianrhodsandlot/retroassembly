@@ -15,17 +15,21 @@ export const translation: ResourceLanguage = {
     'De acordo com o nome do arquivo selecionado, não é um arquivo BIOS esperado.',
   account: 'conta',
   Account: 'Conta',
+  // Account Management
+  Accounts: 'Contas',
   Add: 'Adicionar',
   'Add a slight blur to the image to take the edge off of the hard pixel edges.':
     'Adiciona um leve desfoque à imagem para suavizar as bordas duras dos pixels.',
   'Adding these ROMs would exceed the maximum allowed ROM count of {{maxRomCount}}.':
     'Adicionar esses ROMs excederia o número máximo permitido de ROMs de {{maxRomCount}}.',
+  'Add User': 'Adicionar Usuário',
   'All rights reserved': 'Todos os direitos reservados',
   Always: 'Sempre',
   'And you can have up to <1>{{maxRomCount}}</1> ROMs in your library.':
     'E você pode ter até <1>{{maxRomCount}}</1> ROMs na sua biblioteca.',
   'An unexpected error occurred.': 'Ocorreu um erro inesperado.',
   Arcade: 'Arcade',
+  'Are you sure? This action cannot be undone.': 'Tem certeza? Esta ação não pode ser desfeita.',
   'Are you sure to proceed?\nThe deleted history item cannot be restored.\nThe ROM related to this history item will NOT be deleted.':
     'Tem certeza de que deseja prosseguir?\nO item de histórico excluído não pode ser restaurado.\nA ROM relacionada a este item de histórico NÃO será excluída.',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.':
@@ -48,6 +52,9 @@ export const translation: ResourceLanguage = {
   'By clicking the button, you agree to our': 'Ao clicar no botão, você concorda com nossa',
   Cancel: 'Cancelar',
   'Cannot be enabled with shaders.': 'Não pode ser habilitado com shaders.',
+  'Cannot delete yourself': 'Não pode se excluir',
+  'Change Password': 'Alterar Senha',
+  'Change Your Password': 'Alterar Sua Senha',
   'Channel F': 'Channel F',
   Close: 'Fechar',
   'Cloud Sync': 'Sincronização na Nuvem',
@@ -60,7 +67,11 @@ export const translation: ResourceLanguage = {
   Continue: 'Continuar',
   cookies: 'cookies',
   'Create an account to get started': 'Crie uma conta para começar',
+  Created: 'Criado',
+  'Create New User': 'Criar Novo Usuário',
+  'Create User': 'Criar Usuário',
   'Create your account': 'Crie sua conta',
+  Current: 'Atual',
   'Current Password': 'Senha Atual',
   Dark: 'Escuro',
   Date: 'Data',
@@ -70,6 +81,7 @@ export const translation: ResourceLanguage = {
   'Delete from history': 'Excluir do histórico',
   'Delete selected {{count}} {{items}}': 'Excluir {{count}} {{items}} selecionados',
   'Delete the ROM': 'Excluir a ROM',
+  'Delete User': 'Excluir Usuário',
   'Demo or visual for': 'Demo ou visual para',
   Deny: 'Negar',
   Descending: 'Descendente',
@@ -129,6 +141,7 @@ export const translation: ResourceLanguage = {
   'Keyboard/Gamepad-Friendly Navigation': 'Navegação Amigável com Teclado/Controle',
   Language: 'Idioma',
   large: 'grande',
+  'Last Activity': 'Última Atividade',
   library: 'biblioteca',
   Library: 'Biblioteca',
   Light: 'Claro',
@@ -247,6 +260,7 @@ export const translation: ResourceLanguage = {
   Recent: 'Recentes',
   'Recommendation: 10+ characters with letters, numbers, and symbols.':
     'Recomendação: 10+ caracteres com letras, números e símbolos.',
+  'Regular User': 'Usuário Regular',
   Released: 'Lançado',
   'Released under': 'Lançado sob',
   'Repeat New Password': 'Repetir Nova Senha',
@@ -270,6 +284,7 @@ export const translation: ResourceLanguage = {
   'Rewind Gameplay': 'Rebobinar Jogabilidade',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
     'Rebobine o jogo usando "R" no teclado ou uma combinação de botões do controle',
+  Role: 'Função',
   ROM: 'ROM',
   ROM_other: 'ROMs',
   'ROMs uploaded': 'ROMs enviadas',
@@ -308,8 +323,10 @@ export const translation: ResourceLanguage = {
     'Dê uma estrela neste projeto no GitHub para mostrar sua apreciação.',
   'Start to enjoy retro gaming now!': 'Comece a aproveitar os jogos retro agora!',
   state: 'estado',
+  Super: 'Super',
   'Super Famicom': 'Super Famicom',
   'Super NES': 'Super NES',
+  'Super User': 'Super Usuário',
   'Supports a wide range of retro gaming systems.': 'Suporta uma ampla gama de sistemas de jogos retro.',
   'Sync your games and states then access them from anywhere.':
     'Sincronize seus jogos e estados e acesse-os de qualquer lugar.',

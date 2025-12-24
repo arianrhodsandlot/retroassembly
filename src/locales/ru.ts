@@ -14,17 +14,21 @@ export const translation: ResourceLanguage = {
     'Согласно имени выбранного файла, это не ожидаемый файл BIOS.',
   account: 'аккаунт',
   Account: 'Аккаунт',
+  // Account Management
+  Accounts: 'Аккаунты',
   Add: 'Добавить',
   'Add a slight blur to the image to take the edge off of the hard pixel edges.':
     'Добавляет лёгкое размытие к изображению для смягчения резких краёв пикселей.',
   'Adding these ROMs would exceed the maximum allowed ROM count of {{maxRomCount}}.':
     'Добавление этих ROMов превысит максимально допустимое количество ROMов {{maxRomCount}}.',
+  'Add User': 'Добавить Пользователя',
   'All rights reserved': 'Все права защищены',
   Always: 'Всегда',
   'And you can have up to <1>{{maxRomCount}}</1> ROMs in your library.':
     'И вы можете иметь до <1>{{maxRomCount}}</1> ROM в вашей библиотеке.',
   'An unexpected error occurred.': 'Произошла неожиданная ошибка.',
   Arcade: 'Аркада',
+  'Are you sure? This action cannot be undone.': 'Вы уверены? Это действие нельзя отменить.',
   'Are you sure to proceed?\nThe deleted history item cannot be restored.\nThe ROM related to this history item will NOT be deleted.':
     'Вы уверены, что хотите продолжить?\nУдаленный элемент истории не может быть восстановлен.\nСвязанная с этим элементом истории ROM НЕ будет удалена.',
   'Are you sure to proceed?\nThe deleted ROMs cannot be restored.':
@@ -47,6 +51,9 @@ export const translation: ResourceLanguage = {
   'By clicking the button, you agree to our': 'Нажимая кнопку, вы соглашаетесь с нашей',
   Cancel: 'Отмена',
   'Cannot be enabled with shaders.': 'Нельзя включить с шейдерами.',
+  'Cannot delete yourself': 'Нельзя удалить себя',
+  'Change Password': 'Изменить Пароль',
+  'Change Your Password': 'Изменить Свой Пароль',
   'Channel F': 'Channel F',
   Close: 'Закрыть',
   'Cloud Sync': 'Синхронизация с облаком',
@@ -59,7 +66,11 @@ export const translation: ResourceLanguage = {
   Continue: 'Продолжить',
   cookies: 'куки',
   'Create an account to get started': 'Создайте аккаунт для начала',
+  Created: 'Создан',
+  'Create New User': 'Создать Нового Пользователя',
+  'Create User': 'Создать Пользователя',
   'Create your account': 'Создайте свой аккаунт',
+  Current: 'Текущий',
   'Current Password': 'Текущий пароль',
   Dark: 'Тёмная',
   Date: 'Дата',
@@ -69,6 +80,7 @@ export const translation: ResourceLanguage = {
   'Delete from history': 'Удалить из истории',
   'Delete selected {{count}} {{items}}': 'Удалить выбранные {{count}} {{items}}',
   'Delete the ROM': 'Удалить ROM',
+  'Delete User': 'Удалить Пользователя',
   'Demo or visual for': 'Демонстрация или визуальное представление:',
   Deny: 'Отклонить',
   Descending: 'По убыванию',
@@ -128,6 +140,7 @@ export const translation: ResourceLanguage = {
   'Keyboard/Gamepad-Friendly Navigation': 'Навигация для клавиатуры/геймпада',
   Language: 'Язык',
   large: 'большой',
+  'Last Activity': 'Последняя Активность',
   library: 'библиотека',
   Library: 'Библиотека',
   Light: 'Светлая',
@@ -247,6 +260,7 @@ export const translation: ResourceLanguage = {
   Recent: 'Недавние',
   'Recommendation: 10+ characters with letters, numbers, and symbols.':
     'Рекомендация: 10+ символов с буквами, цифрами и символами.',
+  'Regular User': 'Обычный Пользователь',
   Released: 'Выпущено',
   'Released under': 'Выпущено под',
   'Repeat New Password': 'Повторите новый пароль',
@@ -270,6 +284,7 @@ export const translation: ResourceLanguage = {
   'Rewind Gameplay': 'Перемотка игрового процесса',
   'Rewind gameplay using "R" on the keyboard or a controller button combination':
     'Перематывайте игровой процесс, используя "R" на клавиатуре или комбинацию кнопок контроллера',
+  Role: 'Роль',
   ROM: 'ROM',
   ROM_other: 'ROM',
   'ROMs uploaded': 'ROM загружено',
@@ -308,8 +323,10 @@ export const translation: ResourceLanguage = {
     'Поставьте звезду этому проекту на GitHub, чтобы показать свою признательность.',
   'Start to enjoy retro gaming now!': 'Начните наслаждаться ретро-играми прямо сейчас!',
   state: 'состояние',
+  Super: 'Супер',
   'Super Famicom': 'Super Famicom',
   'Super NES': 'Super NES',
+  'Super User': 'Супер Пользователь',
   'Supports a wide range of retro gaming systems.': 'Поддерживает широкий спектр ретро-игровых систем.',
   'Sync your games and states then access them from anywhere.':
     'Синхронизируйте игры и состояния, затем получайте к ним доступ отовсюду.',

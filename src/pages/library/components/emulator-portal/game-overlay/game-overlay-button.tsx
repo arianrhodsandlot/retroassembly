@@ -25,6 +25,7 @@ export function GameOverlayButton({
     }
 
     setIsLoading(true)
+    // eslint-disable-next-line @typescript-eslint/await-thenable
     await onClick?.(event)
     setIsLoading(false)
   }

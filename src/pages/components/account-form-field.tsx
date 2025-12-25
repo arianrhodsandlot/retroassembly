@@ -8,6 +8,7 @@ function handleFocus(event: FocusEvent<HTMLInputElement>) {
 }
 
 interface LoginFormFieldProps extends RootProps {
+  autocomplete?: string
   description?: string
   iconClass?: string
   label: string

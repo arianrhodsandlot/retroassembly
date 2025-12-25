@@ -92,6 +92,7 @@ export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabCo
           <form className='lg:w-xl flex flex-col gap-2' onSubmit={handleSubmit}>
             <div className='grid-cols-2 grid-rows-2 gap-4 lg:grid'>
               <AccountFormField
+                autoComplete='current-password'
                 iconClass='icon-[mdi--password]'
                 label={t('Current Password')}
                 name='password'

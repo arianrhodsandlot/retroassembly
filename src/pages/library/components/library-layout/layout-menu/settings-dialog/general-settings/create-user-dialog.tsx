@@ -66,7 +66,7 @@ export function CreateUserDialog({ onOpenChange, onSuccess, open }: Readonly<Cre
             {t('Create New User')}
           </div>
         </Dialog.Title>
-        <form autoComplete='off' onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className='my-4 flex flex-col gap-4'>
             <AccountFormField
               iconClass='icon-[mdi--user-card-details]'
@@ -75,6 +75,7 @@ export function CreateUserDialog({ onOpenChange, onSuccess, open }: Readonly<Cre
               required
             />
             <AccountFormField
+              autocomplete='new-password'
               description={t('Recommendation: 10+ characters with letters, numbers, and symbols.')}
               iconClass='icon-[mdi--password]'
               label={t('Password')}
@@ -83,6 +84,7 @@ export function CreateUserDialog({ onOpenChange, onSuccess, open }: Readonly<Cre
               type='password'
             />
             <AccountFormField
+              autocomplete='new-password'
               iconClass='icon-[mdi--password-check]'
               label={t('Repeat password')}
               name='repeat_password'

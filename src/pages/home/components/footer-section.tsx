@@ -11,9 +11,9 @@ export function FooterSection() {
     <footer className='border-t-(--gray-4) text-(--gray-11) border border-x-0 border-b-0 p-8 text-center text-sm font-light'>
       <div className='w-7xl pb-safe mx-auto flex max-w-full flex-col items-center justify-between gap-4 sm:flex-row'>
         <div className='flex flex-col items-center gap-4 sm:items-start'>
-          <a className='text-(--accent-9) flex items-center gap-2 font-[Roboto_Slab_Variable] font-bold' href='/'>
+          <a className='text-(--accent-9) flex items-center gap-2 font-serif font-bold' href='/'>
             <img alt='logo' height='32' src='/assets/logo/logo.svg' width='32' />
-            <span className='font-[Roboto_Slab_Variable] font-semibold'>{metadata.title}</span>
+            <span className='font-serif font-semibold'>{metadata.title}</span>
           </a>
 
           <div className='flex gap-4 text-lg'>

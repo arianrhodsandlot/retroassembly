@@ -112,7 +112,7 @@ export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?:
                   <TextArea
                     aria-label={label}
                     autoFocus={autoFocusField === name}
-                    className='font-[Roboto_Slab_Variable]! w-full text-justify'
+                    className='font-serif! w-full text-justify'
                     defaultValue={gameInfo[name]}
                     name={name}
                     resize='vertical'

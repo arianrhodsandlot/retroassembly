@@ -13,7 +13,7 @@ export function HeroMain() {
     <div className='flex flex-col items-center justify-center'>
       <img alt='logo' className='size-40' src='/assets/logo/logo.svg' />
       <h1
-        className='text-(--accent-9) lg:w-120 m-4 w-80 bg-clip-text text-center text-4xl font-[Roboto_Slab_Variable] font-semibold lg:text-6xl'
+        className='text-(--accent-9) lg:w-120 m-4 w-80 bg-clip-text text-center font-serif text-4xl font-semibold lg:text-6xl'
         style={{
           textShadow: range(1, 13)
             .map((number) => `${number}px ${number}px 1px var(--accent-7)`)
@@ -23,9 +23,7 @@ export function HeroMain() {
         {metadata.title}
       </h1>
       <div className='relative mt-4 px-10 text-center'>
-        <div className='text-(--gray-10) overflow-hidden rounded p-2 text-xl font-[Roboto_Slab_Variable]'>
-          {t(metadata.description)}
-        </div>
+        <div className='text-(--gray-10) overflow-hidden rounded p-2 font-serif text-xl'>{t(metadata.description)}</div>
       </div>
       <ButtonLinks />
       <button

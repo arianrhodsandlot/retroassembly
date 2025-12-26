@@ -139,7 +139,7 @@ export function FeaturesSection() {
   return (
     <section className='relative'>
       <h2
-        className='text-(--accent-9) border-b-(--gray-4) border-t-(--gray-4) mb-6 flex items-center justify-center gap-2 border border-transparent py-8 text-4xl font-[Roboto_Slab_Variable] font-semibold lg:py-16'
+        className='text-(--accent-9) border-b-(--gray-4) border-t-(--gray-4) mb-6 flex items-center justify-center gap-2 border border-transparent py-8 font-serif text-4xl font-semibold lg:py-16'
         style={{
           textShadow: range(1, 5)
             .map((number) => `${number}px ${number}px 1px var(--accent-7)`)

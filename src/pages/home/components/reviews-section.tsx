@@ -51,7 +51,7 @@ export function ReviewsSection() {
     <section>
       <div className='mx-auto max-w-6xl'>
         <h2
-          className='text-(--accent-9) border-b-(--gray-4) border-t-(--gray-4) mb-6 flex items-center justify-center gap-2 border border-transparent py-8 text-4xl font-[Roboto_Slab_Variable] font-semibold md:py-16'
+          className='text-(--accent-9) border-b-(--gray-4) border-t-(--gray-4) mb-6 flex items-center justify-center gap-2 border border-transparent py-8 font-serif text-4xl font-semibold md:py-16'
           style={{
             textShadow: range(1, 5)
               .map((number) => `${number}px ${number}px 1px var(--accent-7)`)
@@ -74,9 +74,7 @@ export function ReviewsSection() {
               key={review.name}
             >
               <span className='icon-[mdi--format-quote-open] text-(--accent-4) absolute left-0 top-0 text-5xl md:text-6xl' />
-              <p className='flex-1 text-justify font-[Roboto_Slab_Variable] leading-relaxed opacity-80'>
-                {t(review.contentKey)}
-              </p>
+              <p className='flex-1 text-justify font-serif leading-relaxed opacity-80'>{t(review.contentKey)}</p>
 
               <a
                 className='flex items-center justify-end gap-3 text-xs underline'

@@ -8,7 +8,7 @@ export function CommunitySection() {
   return (
     <section className='bg-(--accent-9) px-8 py-16 text-white'>
       <div className='mx-auto max-w-6xl lg:text-center'>
-        <h2 className='mb-6 flex items-center justify-center gap-2 text-4xl font-[Roboto_Slab_Variable] font-semibold'>
+        <h2 className='mb-6 flex items-center justify-center gap-2 font-serif text-4xl font-semibold'>
           <span className='icon-[mdi--people-group]' />
           {t('Community')}
         </h2>

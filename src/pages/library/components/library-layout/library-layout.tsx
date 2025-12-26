@@ -44,7 +44,7 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
           <div className='flex items-center justify-between px-4 pb-4'>
             <Link className='flex items-center gap-2 font-bold' reloadDocument to={getHomePath(language)}>
               <img alt='logo' height='32' src='/assets/logo/logo.svg' width='32' />
-              <span className='font-[Roboto_Slab_Variable] font-semibold'>{metadata.title}</span>
+              <span className='font-serif font-semibold'>{metadata.title}</span>
             </Link>
           </div>
           <ScrollArea className='flex-1' size='2'>

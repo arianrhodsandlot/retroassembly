@@ -11,6 +11,7 @@ export const translation: ResourceLanguage = {
     'BIOS ファイルは、私たちがエミュレートしているハードウェアで使用されているオペレーティングシステムのコピーです。コンテンツの要件に応じて、ハードウェアやソフトウェアを正しくエミュレートするために BIOS ファイルが必要なエミュレーターもあります。{{title}} は著作権で保護されたシステムファイルやゲームコンテンツを共有しません。適用される現地法に従って、ご自身で BIOS とコンテンツを用意してください。',
   About: 'について',
   Accept: '同意する',
+  'Access the application': 'アプリケーションにアクセス',
   "According to the selected file's name, it is not an expected BIOS file.":
     '選択されたファイル名によると、これは期待されるBIOSファイルではありません。',
   account: 'アカウント',
@@ -90,6 +91,8 @@ export const translation: ResourceLanguage = {
   disabled: '無効',
   'Discord server': 'Discordサーバー',
   Display: '表示',
+  'Docker CLI': 'Docker CLI',
+  'Docker Compose': 'Docker Compose',
   Done: '完了',
   'Drag files here or': 'ファイルをここにドラッグするか',
   'Drop files here': 'ファイルをここにドロップ',
@@ -175,6 +178,8 @@ export const translation: ResourceLanguage = {
   noGamesForPlatform: 'あなたのライブラリには<1></1>{{platform}}ゲームがありません。',
   'Note that <1>PC Engine CD</1> games are NOT supported.':
     '<1>PC Engine CD</1>ゲームはサポートされていないことにご注意ください。',
+  'Once the container is running, open http://localhost:8000 in your browser.':
+    'コンテナが起動したら、ブラウザーで http://localhost:8000 を開いてください。',
   'Oops!': 'おっと！',
   Options: 'オプション',
   or: 'または',
@@ -286,6 +291,7 @@ export const translation: ResourceLanguage = {
   ROM: 'ROM',
   ROM_other: 'ROM',
   'ROMs uploaded': 'ROMアップロード完了',
+  'Run with Docker CLI': 'Docker CLI で実行',
   Save: '保存',
   'Save & Exit': '保存して終了',
   'Saved at': '保存時間',
@@ -322,6 +328,8 @@ export const translation: ResourceLanguage = {
     'このプロジェクトに感謝を示すために、GitHubでスターを付けてください。',
   'Start to enjoy retro gaming now!': '今すぐレトロゲームを楽しもう！',
   state: '状態',
+  'Step 1: Create compose.yaml': 'ステップ 1: compose.yaml を作成',
+  'Step 2: Start the container': 'ステップ 2: コンテナを起動',
   Super: 'スーパー',
   'Super Famicom': 'スーパーファミコン',
   'Super NES': 'Super NES',
@@ -364,6 +372,7 @@ export const translation: ResourceLanguage = {
   'Various companies': '複数の企業',
   Version: 'バージョン',
   Video: 'ビデオ',
+  'View on Docker Hub': 'Docker Hub で見る',
   'Virtual Boy': 'バーチャルボーイ',
   'Visit our GitHub': 'GitHubを訪問',
   'We kindly request your assistance in reporting any ideas or bugs on our':

@@ -1,10 +1,13 @@
 import { range } from 'es-toolkit'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { metadata } from '#@/constants/metadata.ts'
 import { ButtonLinks } from '../../../components/button-links.tsx'
+import { DockerDialog } from './docker-dialog.tsx'
 
 export function HeroMain() {
   const { t } = useTranslation()
+  const [dockerDialogOpen, setDockerDialogOpen] = useState(false)
 
   return (
     <div className='flex flex-col items-center justify-center'>
@@ -25,13 +28,15 @@ export function HeroMain() {
         </div>
       </div>
       <ButtonLinks />
-      <a
+      <button
         className='mt-4 flex items-center gap-2 text-xs underline opacity-80'
-        href='https://github.com/arianrhodsandlot/retroassembly#option-2-self-host-with-docker'
+        onClick={() => setDockerDialogOpen(true)}
+        type='button'
       >
         <span className='icon-[mdi--docker] motion-preset-oscillate motion-duration-2000 relative -top-0.5 text-2xl text-[#1d63ed]' />
         {t('Self-Hosting with Docker')}
-      </a>
+      </button>
+      <DockerDialog onOpenChange={setDockerDialogOpen} open={dockerDialogOpen} />
     </div>
   )
 }

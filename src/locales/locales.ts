@@ -31,7 +31,7 @@ export const locales = [
   { code: 'zh-TW', name: '繁體中文', translation: zhTW },
 ]
 
-if (import.meta.env?.DEV) {
+if (import.meta.env?.DEV || import.meta.main) {
   for (let i = 1; i < locales.length; i += 1) {
     if (!isEqual(Object.keys(locales[i].translation), Object.keys(locales[i - 1].translation))) {
       throw new Error(`Locale ${locales[i].code} does not have the same keys as locale ${locales[i - 1].code}`)

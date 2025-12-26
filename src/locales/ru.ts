@@ -10,6 +10,7 @@ export const translation: ResourceLanguage = {
     'Файл BIOS — это копия операционной системы оборудования, которое мы эмулируем. Некоторым эмуляторам нужны файлы BIOS, чтобы корректно эмулировать оборудование и/или программное обеспечение, необходимое для контента. {{title}} не распространяет системные файлы или игровые материалы, защищённые авторским правом. Вы должны предоставить собственные BIOS и контент в соответствии с применимым местным законодательством.',
   About: 'О программе',
   Accept: 'Принять',
+  'Access the application': 'Открыть приложение',
   "According to the selected file's name, it is not an expected BIOS file.":
     'Согласно имени выбранного файла, это не ожидаемый файл BIOS.',
   account: 'аккаунт',
@@ -89,6 +90,8 @@ export const translation: ResourceLanguage = {
   disabled: 'отключено',
   'Discord server': 'сервер Discord',
   Display: 'Отображение',
+  'Docker CLI': 'Docker CLI',
+  'Docker Compose': 'Docker Compose',
   Done: 'Готово',
   'Drag files here or': 'Перетащите файлы сюда или',
   'Drop files here': 'Поместите файлы сюда',
@@ -175,6 +178,8 @@ export const translation: ResourceLanguage = {
   noGamesForPlatform: 'В вашей библиотеке нет игр <1></1> {{platform}}.',
   'Note that <1>PC Engine CD</1> games are NOT supported.':
     'Обратите внимание, что игры <1>PC Engine CD</1> НЕ поддерживаются.',
+  'Once the container is running, open http://localhost:8000 in your browser.':
+    'Когда контейнер запустится, откройте http://localhost:8000 в браузере.',
   'Oops!': 'Упс!',
   Options: 'Настройки',
   or: 'или',
@@ -288,6 +293,7 @@ export const translation: ResourceLanguage = {
   ROM: 'ROM',
   ROM_other: 'ROM',
   'ROMs uploaded': 'ROM загружено',
+  'Run with Docker CLI': 'Запустить через Docker CLI',
   Save: 'Сохранить',
   'Save & Exit': 'Сохранить и выйти',
   'Saved at': 'Сохранено в',
@@ -323,6 +329,8 @@ export const translation: ResourceLanguage = {
     'Поставьте звезду этому проекту на GitHub, чтобы показать свою признательность.',
   'Start to enjoy retro gaming now!': 'Начните наслаждаться ретро-играми прямо сейчас!',
   state: 'состояние',
+  'Step 1: Create compose.yaml': 'Шаг 1: Создайте compose.yaml',
+  'Step 2: Start the container': 'Шаг 2: Запустите контейнер',
   Super: 'Супер',
   'Super Famicom': 'Super Famicom',
   'Super NES': 'Super NES',
@@ -365,6 +373,7 @@ export const translation: ResourceLanguage = {
   'Various companies': 'Различные компании',
   Version: 'Версия',
   Video: 'Видео',
+  'View on Docker Hub': 'Смотреть на Docker Hub',
   'Virtual Boy': 'Virtual Boy',
   'Visit our GitHub': 'Посетите наш GitHub',
   'We kindly request your assistance in reporting any ideas or bugs on our':

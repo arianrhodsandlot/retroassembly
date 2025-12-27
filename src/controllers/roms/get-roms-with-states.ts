@@ -48,7 +48,7 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
     libretroGameId,
   }))
   const metadata = await getRomsMetadata(metaQueries)
-  const roms = results.map((r, i) => ({ ...r, ...metadata[i] }))
+  const roms = results.map((r, i) => Object.assign(r, metadata[i]))
 
   const where = and(
     eq(romTable.userId, currentUser.id),

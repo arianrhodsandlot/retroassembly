@@ -382,7 +382,7 @@ const roms = [
     name: 'uCity',
     platform: 'gbc',
   },
-].map((rom) => ({ ...rom, id: uniqueId() }))
+].map((rom) => Object.assign(rom, { id: uniqueId() }))
 
 export function getDemoRoms({ platform }: { platform?: string } = {}) {
   if (platform) {

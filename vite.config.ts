@@ -20,7 +20,7 @@ defaults(process.env, {
 })
 
 async function getVersion() {
-  return getEnvVersion() || (await getGitDescription()) || ''
+  return getEnvVersion() ?? (await getGitDescription()) ?? ''
 }
 
 function getEnvVersion() {
@@ -82,8 +82,17 @@ export default defineConfig(async (env) => {
     await prepareWranglerConfig()
     const { cloudflare } = await import('@cloudflare/vite-plugin')
     config.plugins?.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
-    const serverEntry = path.resolve('node_modules', 'react-router-templates', 'cloudflare', 'app', 'entry.server.tsx')
-    config.resolve = { alias: { '@entry.server.tsx': serverEntry } }
+    config.resolve = {
+      alias: {
+        '@entry.server.tsx': path.resolve(
+          'node_modules',
+          'react-router-templates',
+          'cloudflare',
+          'app',
+          'entry.server.tsx',
+        ),
+      },
+    }
   } else {
     if (env.command === 'serve') {
       const { storageDirectory } = getDirectories()
@@ -106,16 +115,19 @@ export default defineConfig(async (env) => {
       ['handleHotUpdate'],
     )
     config.plugins?.push(serverAdapterPlugin)
-    const serverEntry = path.resolve(
-      'node_modules',
-      '@react-router',
-      'dev',
-      'dist',
-      'config',
-      'defaults',
-      'entry.server.node.tsx',
-    )
-    config.resolve = { alias: { '@entry.server.tsx': serverEntry } }
+    config.resolve = {
+      alias: {
+        '@entry.server.tsx': path.resolve(
+          'node_modules',
+          '@react-router',
+          'dev',
+          'dist',
+          'config',
+          'defaults',
+          'entry.server.node.tsx',
+        ),
+      },
+    }
   }
 
   return config

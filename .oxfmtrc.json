@@ -1,0 +1,23 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/oxfmt@0.20.0/configuration_schema.json",
+  "experimentalSortImports": {
+    "groups": [
+      [
+        "builtin",
+        "external",
+        "internal",
+        "parent",
+        "sibling",
+        "index",
+        "object"
+      ]
+    ],
+    "newlines-between": "never"
+  },
+  "htmlWhitespaceSensitivity": "ignore",
+  "jsSingleQuote": true,
+  "jsxSingleQuote": true,
+  "printWidth": 120,
+  "semi": false,
+  "singleQuote": true
+}

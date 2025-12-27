@@ -27,7 +27,7 @@
     "hono": "4.11.3"
   },
   "devDependencies": {
-    "@arianrhodsandlot/eslint-config": "0.25.3",
+    "@arianrhodsandlot/eslint-config": "0.25.4",
     "@cloudflare/vite-plugin": "1.19.0",
     "@hono/node-server": "1.19.7",
     "@hono/vite-dev-server": "0.23.0",
@@ -92,6 +92,8 @@
     "nanoid-dictionary": "5.0.0",
     "next-themes": "0.4.6",
     "nostalgist": "0.19.2",
+    "oxfmt": "0.20.0",
+    "oxlint": "1.35.0",
     "path-to-regexp": "8.3.0",
     "quick-lru": "7.3.0",
     "react": "19.2.3",
@@ -122,8 +124,8 @@
     "pre-commit": "pnpm lint-staged && pnpm tsc"
   },
   "lint-staged": {
-    "*.?(m|c)@(j|t)s?(x)": "eslint --fix",
-    "package.json": "pnpm dlx oxfmt package.json",
+    "*.?(m|c)@(j|t)s?(x)": "oxlint --fix",
+    "package.json": "oxfmt package.json",
     "pnpm-lock.yaml": "node --run=check-lockfile"
   },
   "engines": {

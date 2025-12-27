@@ -16,15 +16,15 @@ export function getDemoRomThumbnail(rom) {
 }
 
 export function getLibretroThumbnail({
+  host = 'jsdelivr',
   name,
   platform,
   type = 'boxart',
-  host = 'jsdelivr',
 }: {
+  host?: 'jsdelivr' | 'libretro'
   name: string
   platform: string
   type?: LibretroThumbnailType
-  host?: 'jsdelivr' | 'libretro'
 }) {
   if (!name || !platform) {
     return ''
@@ -49,7 +49,7 @@ export function getLibretroThumbnail({
     return getCDNUrl(repo, filePath)
   }
 
-  const result = new URL([platformFullName, fileDirectory, name].join('/') + '.png', 'https://thumbnails.libretro.com')
+  const result = new URL(`${[platformFullName, fileDirectory, name].join('/')}.png`, 'https://thumbnails.libretro.com')
     .href
   return result
 }
@@ -67,7 +67,7 @@ export function getRomLibretroThumbnail(
     return ''
   }
   const platform = rom.libretroGame?.platform || platformMap[rom.platform].libretroName || rom.platform
-  return getLibretroThumbnail({ name, platform, type, host })
+  return getLibretroThumbnail({ host, name, platform, type })
 }
 
 export function getPlatformIcon(platform: string) {

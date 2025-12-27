@@ -1,5 +1,5 @@
 import { keyBy, mapValues } from 'es-toolkit'
-import i18next from 'i18next'
+import i18next, { init } from 'i18next'
 import { type LocalCode, locales } from '#@/locales/locales.ts'
 
 export const defaultLanguage = 'en'
@@ -10,7 +10,7 @@ const resources = mapValues(
 )
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
-i18next.init({
+init({
   debug: false,
   fallbackLng: defaultLanguage,
   initImmediate: true,

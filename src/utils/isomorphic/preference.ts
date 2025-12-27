@@ -2,6 +2,10 @@ export function mergePreference(target: any, source: any) {
   const result = { ...target }
 
   for (const key in source) {
+    if (!Object.hasOwn(source, key)) {
+      continue
+    }
+
     if (source[key] === null) {
       delete result[key]
       continue

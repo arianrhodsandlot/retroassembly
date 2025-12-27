@@ -6,7 +6,7 @@ import { GameInfoDialog } from './game-info-dialog/game-info-dialog.tsx'
 export function GameInfo({ rom }) {
   const { t } = useTranslation()
   const { formatDate, formatDateRelative, isValidDate } = useDate()
-  const launchboxGame = rom.launchboxGame || {}
+  const launchboxGame = rom.rawGameMetadata?.launchbox || {}
 
   const unknown = <span className='opacity-40'>{t('Unknown')}</span>
 

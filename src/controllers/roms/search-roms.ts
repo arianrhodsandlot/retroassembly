@@ -3,7 +3,6 @@ import Fuse from 'fuse.js'
 import { getContext } from 'hono/context-storage'
 import type { PlatformName } from '#@/constants/platform.ts'
 import { romTable } from '#@/databases/schema.ts'
-import { getRomsMetadata } from '../../utils/server/misc.ts'
 
 type SearchRomsReturning = Awaited<ReturnType<typeof searchRoms>>
 export type SearchRoms = SearchRomsReturning['roms']
@@ -81,11 +80,9 @@ export async function searchRoms(
   const sortedRoms = fuseResults.map((result) => result.item)
 
   const offset = (page - 1) * pageSize
-  const romResults = sortedRoms.slice(offset, offset + pageSize)
+  const roms = sortedRoms.slice(offset, offset + pageSize)
 
   const total = sortedRoms.length
-
-  const results = await getRomsMetadata(romResults)
 
   return {
     pagination: {
@@ -96,7 +93,7 @@ export async function searchRoms(
     },
     platform,
     query,
-    roms: results,
+    roms,
     trimmedQuery,
   }
 }

@@ -1,7 +1,6 @@
 import { and, count, countDistinct, desc, eq, gte, inArray, max } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { romTable, stateTable, statusEnum } from '#@/databases/schema.ts'
-import { getRomsMetadata } from '../../utils/server/misc.ts'
 
 export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
   const { currentUser, db, preference } = getContext().var
@@ -9,7 +8,7 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
 
   const offset = (page - 1) * pageSize
 
-  const results = await library
+  const roms = await library
     .select({
       createdAt: romTable.createdAt,
       fileId: romTable.fileId,
@@ -19,6 +18,7 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
       launchboxGameId: romTable.launchboxGameId,
       libretroGameId: romTable.libretroGameId,
       platform: romTable.platform,
+      rawGameMetadata: romTable.rawGameMetadata,
     })
     .from(romTable)
     .leftJoin(stateTable, and(eq(stateTable.romId, romTable.id), eq(stateTable.status, statusEnum.normal)))
@@ -42,13 +42,6 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
     .orderBy(desc(max(stateTable.createdAt)))
     .offset(offset)
     .limit(pageSize)
-
-  const metaQueries = results.map(({ launchboxGameId, libretroGameId }) => ({
-    launchboxGameId,
-    libretroGameId,
-  }))
-  const metadata = await getRomsMetadata(metaQueries)
-  const roms = results.map((r, i) => Object.assign(r, metadata[i]))
 
   const where = and(
     eq(romTable.userId, currentUser.id),

@@ -15,6 +15,13 @@
       "when": 1763347854118,
       "tag": "0001_aromatic_runaways",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1766861022234,
+      "tag": "0002_good_skin",
+      "breakpoints": true
     }
   ]
 }

@@ -76,6 +76,10 @@ export const romTable = sqliteTable(
     launchboxGameId: integer(),
     libretroGameId: text(),
     platform: text().notNull().$type<PlatformName>(),
+    rawGameMetadata: text({ mode: 'json' }).$type<{
+      launchbox?: any
+      libretro?: any
+    }>(),
     ...fileSchema,
   },
   (table) => [

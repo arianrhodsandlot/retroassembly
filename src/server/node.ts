@@ -1,4 +1,5 @@
-import '../utils/server/self-test.ts'
+import '../utils/server/migration/initalization.ts'
+import '../utils/server/migration/raw-metadata.ts'
 import { serveStatic } from '@hono/node-server/serve-static'
 import { handler } from 'hono-react-router-adapter/node'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

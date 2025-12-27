@@ -2,8 +2,8 @@ import { migrate } from 'drizzle-orm/better-sqlite3/migrator'
 import fs from 'fs-extra'
 import { getRuntimeKey } from 'hono/adapter'
 import isDocker from 'is-docker'
-import { getDirectories } from '../../constants/env.ts'
-import { createDrizzle } from './drizzle.ts'
+import { getDirectories } from '../../../constants/env.ts'
+import { createDrizzle } from '../drizzle.ts'
 
 async function testDataDirectory() {
   const { dataDirectory } = getDirectories()
@@ -26,16 +26,18 @@ async function testDataDirectory() {
 }
 
 function migrateDatabase() {
-  if (getRuntimeKey() === 'node') {
-    const db = createDrizzle().library
-    migrate(db, {
-      migrationsFolder: 'src/databases/migrations',
-      migrationsSchema: 'src/databases/schema.ts',
-    })
-  }
+  const db = createDrizzle().library
+  migrate(db, {
+    migrationsFolder: 'src/databases/migrations',
+    migrationsSchema: 'src/databases/schema.ts',
+  })
 }
 
 async function main() {
+  if (getRuntimeKey() !== 'node') {
+    return
+  }
+
   await testDataDirectory()
   migrateDatabase()
 }

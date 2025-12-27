@@ -19,7 +19,7 @@ export default function RomPage() {
   const { rom } = useLoaderData<typeof loader>()
 
   const goodcodes = getRomGoodcodes(rom)
-  const { launchboxGame } = rom
+  const launchboxGame = rom.rawGameMetadata?.launchbox
 
   const overview = rom.gameDescription || launchboxGame?.overview
 

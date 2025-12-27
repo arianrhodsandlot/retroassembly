@@ -80,7 +80,7 @@ function useFeatures() {
                 alt={name}
                 className='size-full object-contain'
                 loading='lazy'
-                src={getRomLibretroThumbnail({ libretroGame: { name }, platform })}
+                src={getRomLibretroThumbnail({ platform, rawGameMetadata: { libretro: { name } } })}
               />
             </div>
           ))}

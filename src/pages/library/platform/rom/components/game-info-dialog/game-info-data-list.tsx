@@ -52,7 +52,7 @@ export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?:
     },
   ]
 
-  const { launchboxGame } = rom
+  const launchboxGame = rom.rawGameMetadata?.launchbox
   const gameInfo = {
     gameDescription: rom.gameDescription ?? launchboxGame?.overview,
     gameDeveloper: rom.gameDeveloper ?? launchboxGame?.developer,

@@ -81,12 +81,12 @@ async function prepareRomData(files: File[], gameInfoList: QueryResponse | undef
         gameName: launchbox?.name || libretro?.name,
         gamePlayers: launchbox?.maxPlayers || libretro?.users,
         gamePublisher: launchbox?.publisher || libretro?.publisher,
-        gameRating: launchbox?.communityRating,
         gameReleaseDate: getReleaseDate({ launchbox }),
         gameReleaseYear: getReleaseYear({ launchbox, libretro }),
         launchboxGameId: launchbox?.databaseId,
         libretroGameId: libretro?.id,
         platform,
+        rawGameMetadata: launchbox || libretro ? { launchbox, libretro } : undefined,
         userId: currentUser.id,
       }
 

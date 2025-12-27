@@ -56,17 +56,20 @@ export function getLibretroThumbnail({
 
 export function getRomLibretroThumbnail(
   rom: {
-    libretroGame?: { name?: null | string; platform?: null | string } | null
     platform?: string
+    rawGameMetadata?: {
+      libretro?: { name?: null | string; platform?: null | string } | null
+    } | null
   },
   type: LibretroThumbnailType = 'boxart',
   host: 'jsdelivr' | 'libretro' = 'jsdelivr',
 ) {
-  const name = rom.libretroGame?.name
+  const libretroGame = rom.rawGameMetadata?.libretro
+  const name = libretroGame?.name
   if (!name || !rom.platform) {
     return ''
   }
-  const platform = rom.libretroGame?.platform || platformMap[rom.platform].libretroName || rom.platform
+  const platform = libretroGame?.platform || platformMap[rom.platform].libretroName || rom.platform
   return getLibretroThumbnail({ host, name, platform, type })
 }
 

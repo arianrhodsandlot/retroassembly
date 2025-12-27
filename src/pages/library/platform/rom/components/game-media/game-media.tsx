@@ -11,9 +11,9 @@ import { YouTubeEmbed } from './youtube-embed.tsx'
 export function GameMedia() {
   const rom = useRom()
 
-  const video = rom?.launchboxGame?.videoUrl
-  const title = rom?.libretroGame ? getRomLibretroThumbnail(rom, 'title', 'libretro') : ''
-  const snap = rom?.libretroGame ? getRomLibretroThumbnail(rom, 'snap', 'libretro') : ''
+  const video = rom?.rawGameMetadata?.launchbox?.videoUrl
+  const title = rom?.rawGameMetadata?.libretro ? getRomLibretroThumbnail(rom, 'title', 'libretro') : ''
+  const snap = rom?.rawGameMetadata?.libretro ? getRomLibretroThumbnail(rom, 'snap', 'libretro') : ''
 
   const images = [title, snap]
   if (rom.gameThumbnailFileIds) {

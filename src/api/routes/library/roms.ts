@@ -58,7 +58,6 @@ export const roms = new Hono()
         gameName: z.string().optional(),
         gamePlayers: z.string().optional(),
         gamePublisher: z.string().optional(),
-        gameRating: z.string().optional(),
         gameReleaseDate: z.string().optional(),
         gameThumbnailFileIds: z.string().optional(),
       }),

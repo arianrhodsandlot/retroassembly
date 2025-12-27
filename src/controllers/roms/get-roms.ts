@@ -2,7 +2,6 @@ import { and, count, desc, eq, inArray, sql } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import type { PlatformName } from '#@/constants/platform.ts'
 import { romTable } from '#@/databases/schema.ts'
-import { getRomsMetadata } from '../../utils/server/misc.ts'
 
 type GetRomsReturning = Awaited<ReturnType<typeof getRoms>>
 export type Roms = GetRomsReturning['roms']
@@ -52,7 +51,7 @@ export async function getRoms({
   if (orderBy !== 'name') {
     columns.push(columnMap.name)
   }
-  const romResults = await library
+  const roms = await library
     .select()
     .from(romTable)
     .orderBy(...columns)
@@ -62,7 +61,5 @@ export async function getRoms({
 
   const [{ total }] = await library.select({ total: count() }).from(romTable).where(where)
 
-  const results = await getRomsMetadata(romResults)
-
-  return { pagination: { current: page, pages: Math.ceil(total / pageSize), size: pageSize, total }, roms: results }
+  return { pagination: { current: page, pages: Math.ceil(total / pageSize), size: pageSize, total }, roms }
 }

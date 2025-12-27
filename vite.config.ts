@@ -4,7 +4,7 @@ import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
 import { omit } from 'es-toolkit'
 import { defaults, noop } from 'es-toolkit/compat'
-import { $ } from 'execa'
+import { $, execaNode } from 'execa'
 import fs from 'fs-extra'
 import serverAdapter from 'hono-react-router-adapter/vite'
 import { DateTime } from 'luxon'
@@ -97,7 +97,7 @@ export default defineConfig(async (env) => {
     if (env.command === 'serve') {
       const { storageDirectory } = getDirectories()
       await fs.ensureDir(storageDirectory)
-      await import('./src/utils/server/self-test.ts')
+      await execaNode`./src/utils/server/migration/initalization.ts`
     }
     const serverAdapterPlugin = omit(
       serverAdapter({

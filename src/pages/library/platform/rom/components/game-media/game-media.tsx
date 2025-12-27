@@ -12,8 +12,8 @@ export function GameMedia() {
   const rom = useRom()
 
   const video = rom?.launchboxGame?.videoUrl
-  const title = rom?.libretroGame ? getRomLibretroThumbnail(rom, 'title') : ''
-  const snap = rom?.libretroGame ? getRomLibretroThumbnail(rom, 'snap') : ''
+  const title = rom?.libretroGame ? getRomLibretroThumbnail(rom, 'title', 'libretro') : ''
+  const snap = rom?.libretroGame ? getRomLibretroThumbnail(rom, 'snap', 'libretro') : ''
 
   const images = [title, snap]
   if (rom.gameThumbnailFileIds) {

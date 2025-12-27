@@ -2,8 +2,10 @@
 
 :root {
   --global-font-family: 'Inter Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-serif: 'Roboto Slab Variable', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: 'Ubuntu Sans Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --font-serif: 'Roboto Slab Variable', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-mono:
+    'Ubuntu Sans Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
 }
 
 body {
@@ -40,7 +42,7 @@ a:focus {
   --cursor-slider-thumb: grab;
   --cursor-slider-thumb-active: grabbing;
   --cursor-switch: pointer;
-  --default-font-family: var(--global-font-family)
+  --default-font-family: var(--global-font-family);
 }
 
 .hero-bg {
@@ -49,13 +51,15 @@ a:focus {
   opacity: 0.1;
 }
 
-.light, .light-theme {
+.light,
+.light-theme {
   .hero-bg {
     background-image: linear-gradient(#666 1px, transparent 1px), linear-gradient(to right, #666 1px, #fff 1px);
   }
 }
 
-.dark, .dark-theme {
+.dark,
+.dark-theme {
   .hero-bg {
     background-image: linear-gradient(#ddd 1px, transparent 1px), linear-gradient(to right, #ddd 1px, #fff 1px);
   }

@@ -17,8 +17,11 @@ export function useRomCover(rom: Rom) {
   const romCovers = isDemo
     ? [getDemoRomThumbnail(rom)]
     : [
+        ...libretroThumbnailTypes.map((type) => getRomLibretroThumbnail(rom, type, 'libretro')),
         ...libretroThumbnailTypes.map((type) => getRomLibretroThumbnail(rom, type)),
-        ...libretroThumbnailTypes.map((type) => getLibretroThumbnail(rom.fileName.split('.')[0], rom.platform, type)),
+        ...libretroThumbnailTypes.map((type) =>
+          getLibretroThumbnail({ name: rom.fileName.split('.')[0], platform: rom.platform, type }),
+        ),
       ]
   if (rom.gameBoxartFileIds) {
     romCovers.unshift(...rom.gameBoxartFileIds.split(',').map((fileId) => getFileUrl(fileId)))

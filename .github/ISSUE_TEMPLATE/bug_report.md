@@ -22,23 +22,29 @@ For feature requests or suggestions, its recommended to create a discussion inst
 -->
 
 ## Description
+
 <!-- Describe the bug here, What is expected, and What is the actual behaviour. Whether the issue happens consistently or intermittently. -->
+
 Expected behavior: ...
 
 Actual behavior: ...
 
 ## Steps to reproduce the bug
+
 1. Go to '...'
 2. Click on '...'
 3. Scroll down to '...'
 4. See error
 
 ## Screenshot or screencast
+
 <!-- Ideally, include the browser's address bar and the open browser developer tools when taking screenshots or screen recordings. -->
 
 ## Environment information (If you think they are relevant to the issue)
+
 - Operating system: [e.g. Windows 11]
 - Browser: [e.g. Chrome 139.0.7258.139]
 
 ## Additional context
+
 Add any other context about the problem here.

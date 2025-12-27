@@ -9,11 +9,11 @@ export function GameCover({ className = '', parallax = false, rom }) {
 
   let content: ReactNode
   if (isLoading) {
-    content = <Skeleton className={skeletonClassnames[rom.platform] || '!aspect-square !size-full'} loading />
+    content = <Skeleton className={skeletonClassnames[rom.platform] || 'aspect-square! size-full!'} loading />
   } else if (cover) {
     const img = <img alt={rom.name} className='block h-auto w-full' loading='lazy' src={cover.src} />
     content = parallax ? (
-      <Atropos activeOffset={0} className='!size-full' highlight={false} shadow={false}>
+      <Atropos activeOffset={0} className='size-full!' highlight={false} shadow={false}>
         {img}
       </Atropos>
     ) : (

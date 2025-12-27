@@ -20,7 +20,7 @@ RetroAssembly is the personal retro game collection cabinet in your browser.
 - [x] Save and synchronize your game at any point and resume later.
 - [x] Made a mistake? Some emulators allow you to rewind gameplay.
 - [x] Browse through platforms and your game library with an intuitive interface with [spatial navigation
-](https://en.wikipedia.org/wiki/Spatial_navigation), which means you can just use a keyboard or a gamepad to navigate between games.
+      ](https://en.wikipedia.org/wiki/Spatial_navigation), which means you can just use a keyboard or a gamepad to navigate between games.
 - [x] Enhance your gaming experience with beautiful visual effects with retro-style shaders.
 - [x] Play on the go, even without a physical gamepad, using our on-screen virtual controller.
 
@@ -39,18 +39,21 @@ Share your ideas to our community and they may appear here later!
 ## Getting Started
 
 ### Choose Your Setup
+
 You have two options to get started with RetroAssembly:
 
 #### Option 1: Use the Official Hosted Version
+
 > <small>Recommended for most users. Perfect if you want to get started quickly without any setup.</small>
 
 1. Visit [retroassembly.com](https://retroassembly.com/) in your web browser.
-2. *(Optional)* If you're new here, explore the library and try out the available [demo games](https://retroassembly.com/demo) to see how it works.
+2. _(Optional)_ If you're new here, explore the library and try out the available [demo games](https://retroassembly.com/demo) to see how it works.
 3. [Login](https://retroassembly.com/login) and create your personal game library by uploading your own ROM files.
 4. Once your ROMs are uploaded, select any game from your library to launch it directly in your browser and start playing.
 5. Don't forget to use the in-game menu to save your progress, which will be synchronized for you.
 
 #### Option 2: Self-Host with Docker
+
 > <small>For advanced users who want full control. Perfect if you prefer to host your own instance, have privacy concerns, or want to customize the deployment.</small>
 
 See [RetroAssembly's homepage on Docker Hub](https://hub.docker.com/r/arianrhodsandlot/retroassembly#quick-start).
@@ -62,40 +65,42 @@ RetroAssembly aims to support a wide range of vintage gaming systems. Emulation 
 <details>
   <summary>Click here to view the full list.</summary>
 
-  | Console | Available Emulators |
-  | - | - |
-  | Arcade | `fbneo`, `mame2003_plus` |
-  | Atari 2600 | `stella2014` |
-  | Atari 5200 | `a5200` |
-  | Atari 7800 | `prosystem` |
-  | Atari Lynx | `mednafen_lynx` |
-  | Channel F | `freechaf` |
-  | ColecoVision | `gearcoleco` |
-  | Famicom Disk System | `fceumm`, `nestopia` |
-  | Game & Watch | `gw` |
-  | Game Boy | `mgba`, `gearboy`, `gambatte`, `tgbdual` |
-  | Game Boy Advance | `mgba`, `vba_next` |
-  | Game Boy Color | `mgba`, `gearboy`, `gambatte`, `tgbdual` |
-  | Game Gear | `genesis_plus_gx`, `gearsystem` |
-  | Genesis / Megadrive | `genesis_plus_gx` |
-  | Magnavox - Odyssey2 / Philips Videopac+ | `o2em` |
-  | Master System | `genesis_plus_gx`, `picodrive`, `gearsystem` |
-  | Neo Geo Pocket | `mednafen_ngp` |
-  | Neo Geo Pocket Color | `mednafen_ngp` |
-  | NES / Family Computer | `fceumm`, `nestopia`, `quicknes` |
-  | PC Engine (TurboGrafx 16) | `mednafen_pce_fast` |
-  | Sega SG-1000 | `gearsystem` |
-  | Super NES / Super Famicom | `snes9x`, `snes9x2002`, `snes9x2005`, `snes9x2010` |
-  | Virtual Boy | `mednafen_vb` |
-  | WonderSwan | `mednafen_wswan` |
-  | WonderSwan Color | `mednafen_wswan` |
+| Console                                 | Available Emulators                                |
+| --------------------------------------- | -------------------------------------------------- |
+| Arcade                                  | `fbneo`, `mame2003_plus`                           |
+| Atari 2600                              | `stella2014`                                       |
+| Atari 5200                              | `a5200`                                            |
+| Atari 7800                              | `prosystem`                                        |
+| Atari Lynx                              | `mednafen_lynx`                                    |
+| Channel F                               | `freechaf`                                         |
+| ColecoVision                            | `gearcoleco`                                       |
+| Famicom Disk System                     | `fceumm`, `nestopia`                               |
+| Game & Watch                            | `gw`                                               |
+| Game Boy                                | `mgba`, `gearboy`, `gambatte`, `tgbdual`           |
+| Game Boy Advance                        | `mgba`, `vba_next`                                 |
+| Game Boy Color                          | `mgba`, `gearboy`, `gambatte`, `tgbdual`           |
+| Game Gear                               | `genesis_plus_gx`, `gearsystem`                    |
+| Genesis / Megadrive                     | `genesis_plus_gx`                                  |
+| Magnavox - Odyssey2 / Philips Videopac+ | `o2em`                                             |
+| Master System                           | `genesis_plus_gx`, `picodrive`, `gearsystem`       |
+| Neo Geo Pocket                          | `mednafen_ngp`                                     |
+| Neo Geo Pocket Color                    | `mednafen_ngp`                                     |
+| NES / Family Computer                   | `fceumm`, `nestopia`, `quicknes`                   |
+| PC Engine (TurboGrafx 16)               | `mednafen_pce_fast`                                |
+| Sega SG-1000                            | `gearsystem`                                       |
+| Super NES / Super Famicom               | `snes9x`, `snes9x2002`, `snes9x2005`, `snes9x2010` |
+| Virtual Boy                             | `mednafen_vb`                                      |
+| WonderSwan                              | `mednafen_wswan`                                   |
+| WonderSwan Color                        | `mednafen_wswan`                                   |
 
 </details>
 
 ## Contributing
+
 See [Contributing](docs/contributing.md).
 
 ## Open-source Alternatives
+
 We hope you have a fantastic time revisiting your favorite retro games... Even with applications other than RetroAssembly.
 
 - [EmulatorJS](https://emulatorjs.org) [:octocat:](https://github.com/EmulatorJS/EmulatorJS)
@@ -108,4 +113,5 @@ We hope you have a fantastic time revisiting your favorite retro games... Even w
 - [webretro](https://binbashbanana.github.io/webretro/) [:octocat:](https://github.com/BinBashBanana/webretro)
 
 ## License
+
 [MIT](license)

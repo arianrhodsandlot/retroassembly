@@ -15,7 +15,17 @@ export function getDemoRomThumbnail(rom) {
   return getCDNUrl(repo, `${path.parse(rom.fileName).name}.png`)
 }
 
-export function getLibretroThumbnail(name: string, platform: string, type: LibretroThumbnailType = 'boxart') {
+export function getLibretroThumbnail({
+  name,
+  platform,
+  type = 'boxart',
+  host = 'jsdelivr',
+}: {
+  name: string
+  platform: string
+  type?: LibretroThumbnailType
+  host?: 'jsdelivr' | 'libretro'
+}) {
   if (!name || !platform) {
     return ''
   }
@@ -34,20 +44,30 @@ export function getLibretroThumbnail(name: string, platform: string, type: Libre
   const normalizedFileName = `${name.replaceAll(/[&*/:`<>?\\]|\|"/g, '_')}.png`
   const filePath = path.join(fileDirectory, normalizedFileName)
 
-  // @ts-expect-error we know this is a valid call
-  return getCDNUrl(repo, filePath)
+  if (host === 'jsdelivr') {
+    // @ts-expect-error we know this is a valid call
+    return getCDNUrl(repo, filePath)
+  }
+
+  const result = new URL([platformFullName, fileDirectory, name].join('/') + '.png', 'https://thumbnails.libretro.com')
+    .href
+  return result
 }
 
 export function getRomLibretroThumbnail(
-  rom: { libretroGame?: { name?: null | string; platform?: null | string } | null; platform?: string },
+  rom: {
+    libretroGame?: { name?: null | string; platform?: null | string } | null
+    platform?: string
+  },
   type: LibretroThumbnailType = 'boxart',
+  host: 'jsdelivr' | 'libretro' = 'jsdelivr',
 ) {
   const name = rom.libretroGame?.name
   if (!name || !rom.platform) {
     return ''
   }
   const platform = rom.libretroGame?.platform || platformMap[rom.platform].libretroName || rom.platform
-  return getLibretroThumbnail(name, platform, type)
+  return getLibretroThumbnail({ name, platform, type, host })
 }
 
 export function getPlatformIcon(platform: string) {

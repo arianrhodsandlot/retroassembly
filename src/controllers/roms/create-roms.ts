@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { and, eq, inArray, type InferInsertModel } from 'drizzle-orm'
-import { chunk, omit } from 'es-toolkit'
+import { chunk, isNotNil, omit, pickBy } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
 import { DateTime } from 'luxon'
@@ -72,6 +72,12 @@ async function prepareRomData(files: File[], gameInfoList: QueryResponse | undef
         await storage.put(fileId, file)
       }
       const gameInfo = gameInfoList?.[index] || {}
+      for (const key of Object.keys(gameInfo)) {
+        const item = gameInfo[key]
+        if (item && typeof item === 'object') {
+          gameInfo[key] = pickBy(item, (value) => isNotNil(value))
+        }
+      }
       const { launchbox, libretro } = gameInfo
       const romData: InferInsertModel<typeof romTable> = {
         fileId,

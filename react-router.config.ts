@@ -1,3 +1,4 @@
+import path from 'node:path'
 import type { Config } from '@react-router/dev/config'
 import fs from 'fs-extra'
 import { build } from 'tsdown'
@@ -13,7 +14,14 @@ export default {
         { entry: 'scripts/serve.ts', outDir: 'dist/scripts' },
       ]
       for (const { entry, outDir } of entries) {
-        await build({ clean: false, entry, fixedExtension: false, logLevel: 'warn', outDir })
+        await build({
+          alias: { '#@': path.resolve('src') },
+          clean: false,
+          entry,
+          fixedExtension: false,
+          logLevel: 'warn',
+          outDir,
+        })
       }
       await fs.move('dist/scripts', 'dist/server', { overwrite: true })
     }

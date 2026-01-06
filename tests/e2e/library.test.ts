@@ -62,7 +62,7 @@ test('update metadata', async ({ page, pages: { library, login }, roms, user }) 
   for (const { label, value } of testMetadata) {
     if (label === 'players') {
       await page.getByLabel(label).click()
-      await page.getByRole('option', { name: '8' }).click()
+      await page.getByRole('option', { name: value }).click()
     } else {
       await page.getByLabel(label).fill(value)
     }

@@ -4,12 +4,18 @@ import { z } from 'zod'
 import { createUser } from '#@/controllers/users/create-user.ts'
 import { deleteUser } from '#@/controllers/users/delete-user.ts'
 import { getAllUsers } from '#@/controllers/users/get-all-users.ts'
+import { getCurrentUser } from '#@/controllers/users/get-current-user.ts'
 
 export const users = new Hono()
 
   .get('', async (c) => {
     const users = await getAllUsers()
     return c.json(users)
+  })
+
+  .get('current', async (c) => {
+    const user = await getCurrentUser()
+    return c.json(user)
   })
 
   .post(

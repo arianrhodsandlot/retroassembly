@@ -4,6 +4,7 @@ import confetti from 'canvas-confetti'
 import { clsx } from 'clsx'
 import { chunk, isPlainObject } from 'es-toolkit'
 import { isMatch } from 'es-toolkit/compat'
+import { DateTime } from 'luxon'
 import { useDeferredValue, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
@@ -18,9 +19,16 @@ import { UploadInstruction } from './upload-instruction.tsx'
 
 export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: PlatformName; toggleOpen: () => void }>) {
   const { t } = useTranslation()
-  const { env, isOfficialHost } = useGlobalLoaderData()
+  const { currentUser, env, isOfficialHost } = useGlobalLoaderData()
   const maxFiles = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE, 10) || 1000
-  const maxRomCount = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_ROM_COUNT, 10) || Infinity
+  const cutoffDate = DateTime.fromISO('2026-01-01')
+  let maxRomCount = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_ROM_COUNT, 10) || Infinity
+  if (currentUser && 'created_at' in currentUser && typeof currentUser.created_at === 'string') {
+    const createdAt = DateTime.fromISO(currentUser.created_at)
+    if (createdAt.isValid && createdAt >= cutoffDate) {
+      maxRomCount = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_ROM_COUNT_2026, 10) || maxRomCount
+    }
+  }
 
   const { reloadSilently } = useRouter()
   const { getRootProps, isDragActive } = useDropzone({ onDrop })

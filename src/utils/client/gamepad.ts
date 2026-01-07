@@ -52,7 +52,7 @@ export const Gamepad = {
     const listener = new GamepadListener({ button: { analog: false } })
     listener.start()
     Gamepad.initialized = true
-    listener.on('gamepad:button', Gamepad.handleButton)
+    listener.on('gamepad:button', Gamepad.handleButton.bind(Gamepad))
   },
 
   onButtonDown(callback: (event: GamepadButtonEvent) => void) {

@@ -106,7 +106,7 @@ export function getRomGoodcodes(rom: {
   let { name } = path.parse(rom?.fileName || '')
 
   if ('name' in rom) {
-    name = rom.name as string
+    name = rom.name ?? ''
   }
 
   if (rom.platform === 'arcade' && rom.libretroGame?.name) {

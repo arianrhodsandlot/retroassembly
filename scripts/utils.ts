@@ -21,7 +21,7 @@ export function getTargetRuntime() {
 export async function prepareWranglerConfig({ force = false } = {}) {
   if (getTargetRuntime() === 'workerd' || force) {
     const wranglerTemplate = await fs.readFile('wrangler.template.json', 'utf8')
-    const compiled = template(`${wranglerTemplate}`)
+    const compiled = template(wranglerTemplate)
     const wranglerConfig = compiled(env)
     await fs.writeFile('wrangler.json', wranglerConfig, 'utf8')
   }
@@ -52,5 +52,5 @@ export function logServerInfo(hostname: string, port: number | string, isDev = f
   for (const link of links) {
     console.info('•', link.text, styleText(['blue', 'underline'], link.url))
   }
-  console.info('\n', `${messages.join(' ')}`, '\n')
+  console.info('\n', messages.join(' '), '\n')
 }

@@ -68,12 +68,7 @@
       "indexes": {
         "idx_launch_records_user_status_platform": {
           "name": "idx_launch_records_user_status_platform",
-          "columns": [
-            "user_id",
-            "status",
-            "platform",
-            "created_at"
-          ],
+          "columns": ["user_id", "status", "platform", "created_at"],
           "isUnique": false
         }
       },
@@ -244,38 +239,22 @@
       "indexes": {
         "idx_roms_user_status_platform": {
           "name": "idx_roms_user_status_platform",
-          "columns": [
-            "user_id",
-            "status",
-            "platform"
-          ],
+          "columns": ["user_id", "status", "platform"],
           "isUnique": false
         },
         "idx_roms_user_status_created": {
           "name": "idx_roms_user_status_created",
-          "columns": [
-            "user_id",
-            "status",
-            "created_at"
-          ],
+          "columns": ["user_id", "status", "created_at"],
           "isUnique": false
         },
         "idx_roms_user_status_released": {
           "name": "idx_roms_user_status_released",
-          "columns": [
-            "user_id",
-            "status",
-            "game_release_date"
-          ],
+          "columns": ["user_id", "status", "game_release_date"],
           "isUnique": false
         },
         "idx_roms_user_status_name": {
           "name": "idx_roms_user_status_name",
-          "columns": [
-            "user_id",
-            "status",
-            "file_name"
-          ],
+          "columns": ["user_id", "status", "file_name"],
           "isUnique": false
         }
       },
@@ -362,38 +341,27 @@
       "indexes": {
         "sessions_token_unique": {
           "name": "sessions_token_unique",
-          "columns": [
-            "token"
-          ],
+          "columns": ["token"],
           "isUnique": true
         },
         "idx_sessions_token": {
           "name": "idx_sessions_token",
-          "columns": [
-            "token"
-          ],
+          "columns": ["token"],
           "isUnique": false
         },
         "idx_sessions_user": {
           "name": "idx_sessions_user",
-          "columns": [
-            "user_id",
-            "status"
-          ],
+          "columns": ["user_id", "status"],
           "isUnique": false
         },
         "idx_sessions_expires": {
           "name": "idx_sessions_expires",
-          "columns": [
-            "expires_at"
-          ],
+          "columns": ["expires_at"],
           "isUnique": false
         },
         "idx_sessions_activity": {
           "name": "idx_sessions_activity",
-          "columns": [
-            "last_activity_at"
-          ],
+          "columns": ["last_activity_at"],
           "isUnique": false
         }
       },
@@ -487,19 +455,12 @@
       "indexes": {
         "idx_states_rom_status": {
           "name": "idx_states_rom_status",
-          "columns": [
-            "rom_id",
-            "status",
-            "created_at"
-          ],
+          "columns": ["rom_id", "status", "created_at"],
           "isUnique": false
         },
         "idx_states_user_status": {
           "name": "idx_states_user_status",
-          "columns": [
-            "user_id",
-            "status"
-          ],
+          "columns": ["user_id", "status"],
           "isUnique": false
         }
       },
@@ -579,9 +540,7 @@
       "indexes": {
         "idx_user_preferences": {
           "name": "idx_user_preferences",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         }
       },
@@ -654,23 +613,17 @@
       "indexes": {
         "users_username_unique": {
           "name": "users_username_unique",
-          "columns": [
-            "username"
-          ],
+          "columns": ["username"],
           "isUnique": true
         },
         "idx_users_username": {
           "name": "idx_users_username",
-          "columns": [
-            "username"
-          ],
+          "columns": ["username"],
           "isUnique": false
         },
         "idx_users_status": {
           "name": "idx_users_status",
-          "columns": [
-            "status"
-          ],
+          "columns": ["status"],
           "isUnique": false
         }
       },

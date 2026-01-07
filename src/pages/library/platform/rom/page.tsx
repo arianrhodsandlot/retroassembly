@@ -10,8 +10,8 @@ import { useViewport } from '../../hooks/use-viewport.ts'
 import { GameCover } from './components/game-cover.tsx'
 import { GameInfoDialog } from './components/game-info-dialog/game-info-dialog.tsx'
 import { GameInfo } from './components/game-info.tsx'
-import { GameMedia } from './components/game-media/game-media.tsx'
 import { GameMediaDialog } from './components/game-media-dialog/game-media-dialog.tsx'
+import { GameMedia } from './components/game-media/game-media.tsx'
 
 export default function RomPage() {
   const { t } = useTranslation()

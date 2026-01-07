@@ -73,7 +73,7 @@ export function globals() {
     if (isSuperviser) {
       const tempUserId = getCookie(c, 'temp-user-id') || c.req.query('temp-user-id')
       if (tempUserId) {
-        currentUser = { id: tempUserId, username: '', created_at: new Date().toISOString() }
+        currentUser = { created_at: new Date().toISOString(), id: tempUserId, username: '' }
       }
     }
 

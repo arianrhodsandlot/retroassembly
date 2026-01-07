@@ -47,7 +47,8 @@ export function GameMediaImages() {
     if (isDeletingThumbnail) {
       return
     }
-    if (confirm('Are you sure you want to delete this thumbnail?') === false) {
+    const confirmed = confirm('Are you sure you want to delete this thumbnail?')
+    if (!confirmed) {
       return
     }
     const thumbnailIds = await deleteThumbnail({ id: rom.id, thumbnailId })

@@ -24,17 +24,17 @@ Their versions should be the same as specified in the "engines" and "packageMana
 Simply run following commands in a terminal then a development server will be launched.
 
 1. Install Node.js packages
-    ```sh
-    pnpm i
-    ```
+   ```sh
+   pnpm i
+   ```
 2. Setup development environment
-    ```sh
-    node --run=setup
-    ```
+   ```sh
+   node --run=setup
+   ```
 3. Run development server
-    ```sh
-    node --run=dev
-    ```
+   ```sh
+   node --run=dev
+   ```
 
 ### Tech Stack
 

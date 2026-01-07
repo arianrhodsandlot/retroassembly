@@ -68,13 +68,7 @@
       "indexes": {
         "idx_launch_records": {
           "name": "idx_launch_records",
-          "columns": [
-            "user_id",
-            "status",
-            "platform",
-            "rom_id",
-            "created_at"
-          ],
+          "columns": ["user_id", "status", "platform", "rom_id", "created_at"],
           "isUnique": false
         }
       },
@@ -238,20 +232,12 @@
       "indexes": {
         "idx_roms": {
           "name": "idx_roms",
-          "columns": [
-            "user_id",
-            "status",
-            "platform",
-            "file_name"
-          ],
+          "columns": ["user_id", "status", "platform", "file_name"],
           "isUnique": false
         },
         "idx_roms_user_id": {
           "name": "idx_roms_user_id",
-          "columns": [
-            "user_id",
-            "status"
-          ],
+          "columns": ["user_id", "status"],
           "isUnique": false
         }
       },
@@ -338,38 +324,27 @@
       "indexes": {
         "sessions_token_unique": {
           "name": "sessions_token_unique",
-          "columns": [
-            "token"
-          ],
+          "columns": ["token"],
           "isUnique": true
         },
         "idx_sessions_token": {
           "name": "idx_sessions_token",
-          "columns": [
-            "token"
-          ],
+          "columns": ["token"],
           "isUnique": false
         },
         "idx_sessions_user": {
           "name": "idx_sessions_user",
-          "columns": [
-            "user_id",
-            "status"
-          ],
+          "columns": ["user_id", "status"],
           "isUnique": false
         },
         "idx_sessions_expires": {
           "name": "idx_sessions_expires",
-          "columns": [
-            "expires_at"
-          ],
+          "columns": ["expires_at"],
           "isUnique": false
         },
         "idx_sessions_activity": {
           "name": "idx_sessions_activity",
-          "columns": [
-            "last_activity_at"
-          ],
+          "columns": ["last_activity_at"],
           "isUnique": false
         }
       },
@@ -463,12 +438,7 @@
       "indexes": {
         "idx_states": {
           "name": "idx_states",
-          "columns": [
-            "user_id",
-            "status",
-            "rom_id",
-            "platform"
-          ],
+          "columns": ["user_id", "status", "rom_id", "platform"],
           "isUnique": false
         }
       },
@@ -548,9 +518,7 @@
       "indexes": {
         "idx_user_preferences": {
           "name": "idx_user_preferences",
-          "columns": [
-            "user_id"
-          ],
+          "columns": ["user_id"],
           "isUnique": false
         }
       },
@@ -623,23 +591,17 @@
       "indexes": {
         "users_username_unique": {
           "name": "users_username_unique",
-          "columns": [
-            "username"
-          ],
+          "columns": ["username"],
           "isUnique": true
         },
         "idx_users_username": {
           "name": "idx_users_username",
-          "columns": [
-            "username"
-          ],
+          "columns": ["username"],
           "isUnique": false
         },
         "idx_users_status": {
           "name": "idx_users_status",
-          "columns": [
-            "status"
-          ],
+          "columns": ["status"],
           "isUnique": false
         }
       },

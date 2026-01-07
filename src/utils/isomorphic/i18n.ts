@@ -9,14 +9,16 @@ const resources = mapValues(
   ({ translation }) => ({ translation }),
 )
 
-init({
-  debug: false,
-  fallbackLng: defaultLanguage,
-  initImmediate: true,
-  lng: defaultLanguage,
-  resources,
-  supportedLngs: locales.map(({ code }) => code),
-})
+;(async () => {
+  await init({
+    debug: false,
+    fallbackLng: defaultLanguage,
+    initImmediate: true,
+    lng: defaultLanguage,
+    resources,
+    supportedLngs: locales.map(({ code }) => code),
+  })
+})()
 
 export { i18next as i18n }
 

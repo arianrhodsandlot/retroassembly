@@ -12,7 +12,7 @@ function getCFServiceBinding() {
   }
   const c = getContext()
   const { MSLEUTH } = env<Env>(c)
-  return MSLEUTH.fetch
+  return MSLEUTH.fetch.bind(MSLEUTH)
 }
 
 function createClients() {

@@ -40,7 +40,7 @@ const defaultRetroarchConfig: RetroarchConfig = {
 }
 
 let wakeLock: undefined | WakeLockSentinel
-const originalGetUserMedia = globalThis.navigator?.mediaDevices?.getUserMedia
+const originalGetUserMedia = globalThis.navigator?.mediaDevices?.getUserMedia?.bind(globalThis.navigator.mediaDevices)
 export function useEmulator() {
   const rom: Rom = useRom()
   const { state } = useLoaderData<typeof loader>()

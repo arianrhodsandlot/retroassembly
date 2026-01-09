@@ -19,7 +19,7 @@ Browser-based retro gaming platform with dual-runtime architecture (Node.js + Cl
 
 **Development**: `pnpm dev` (port 8000)
 **Build**: `pnpm build`
-**Type check**: `pnpm tsc`
+**Type check**: `pnpm tsgo`
 **Lint**: `oxlint --fix` (or `pnpm lint-staged` for pre-commit)
 
 **Testing** (Playwright):
@@ -46,6 +46,7 @@ Browser-based retro gaming platform with dual-runtime architecture (Node.js + Cl
 - Complex transforms: `es-toolkit` helpers. Simple cases: `for of`, `.map`, `.flatMap`
 - **Never use** `.reduce`, `.then`, `.catch`. Use `async/await` + `attemptAsync` from `es-toolkit`
 - Error handling: Throw `HTTPException` from `hono/http-exception` for API errors
+- Use luxon for date/time parsing/formatting
 
 **React**:
 
@@ -105,4 +106,3 @@ Add key to all locale files in `src/locales/`, use `t('key')` in components.
 - `src/api/app.ts` - Main API app, route registration
 - `src/middlewares/globals.ts` - Request context setup
 - `vite.config.ts` - Dual-runtime build configuration
-- `src/locales/en.ts` - Translation keys reference

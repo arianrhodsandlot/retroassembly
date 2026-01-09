@@ -4,7 +4,7 @@ import { imageLoaded } from '#@/utils/client/image.ts'
 import { getRomLibretroThumbnail } from '#@/utils/client/library.ts'
 
 async function getRomLogo(rom) {
-  const url = getRomLibretroThumbnail(rom, 'logo')
+  const url = getRomLibretroThumbnail(rom, 'logo', 'libretro')
   const [error] = await attemptAsync(() => imageLoaded(url))
   if (!error) {
     return url
@@ -24,7 +24,7 @@ async function getRomLogo(rom) {
 }
 
 export function GameLogo({ goodcodes, rom, ...props }) {
-  const { data } = useSWRImmutable(getRomLibretroThumbnail(rom, 'logo'), () => getRomLogo(rom))
+  const { data } = useSWRImmutable(getRomLibretroThumbnail(rom, 'logo', 'libretro'), () => getRomLogo(rom))
 
   if (data) {
     return <img alt={`${goodcodes.rom}`} loading='lazy' src={data} {...props} />

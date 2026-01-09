@@ -312,7 +312,6 @@ function useParabolaAnimation(params: {
     // Function to activate a delayed object
     function activateDelayedObject(objId: number) {
       setActiveObjects((prevObjects) => {
-        // eslint-disable-next-line sonarjs/no-nested-functions
         const updatedObjects = prevObjects.map((o) => (o.id === objId ? { ...o, active: true } : o))
         activeObjectsRef.current = updatedObjects
         return updatedObjects
@@ -324,7 +323,6 @@ function useParabolaAnimation(params: {
     for (const obj of initialObjects.filter((o) => !o.active)) {
       const config = objectConfigs.find((c) => c.id === obj.id)
       if (config) {
-        // eslint-disable-next-line @eslint-react/web-api/no-leaked-timeout
         const timeoutId = setTimeout(() => activateDelayedObject(obj.id), config.delay)
         timeoutIds.push(timeoutId)
       }

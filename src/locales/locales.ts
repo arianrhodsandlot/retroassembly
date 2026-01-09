@@ -1,16 +1,16 @@
 import { isEqual } from 'es-toolkit'
-import cs from './cs.json'
-import de from './de.json'
-import en from './en.json'
-import es from './es.json'
-import fr from './fr.json'
-import it from './it.json'
-import ja from './ja.json'
-import ko from './ko.json'
-import pt from './pt.json'
-import ru from './ru.json'
-import zhCN from './zh-CN.json'
-import zhTW from './zh-TW.json'
+import cs from './cs.json' with { type: 'json' }
+import de from './de.json' with { type: 'json' }
+import en from './en.json' with { type: 'json' }
+import es from './es.json' with { type: 'json' }
+import fr from './fr.json' with { type: 'json' }
+import it from './it.json' with { type: 'json' }
+import ja from './ja.json' with { type: 'json' }
+import ko from './ko.json' with { type: 'json' }
+import pt from './pt.json' with { type: 'json' }
+import ru from './ru.json' with { type: 'json' }
+import zhCN from './zh-CN.json' with { type: 'json' }
+import zhTW from './zh-TW.json' with { type: 'json' }
 
 export const localeCodes = ['cs', 'de', 'en', 'es', 'fr', 'it', 'ja', 'ko', 'pt', 'ru', 'zh-CN', 'zh-TW'] as const
 

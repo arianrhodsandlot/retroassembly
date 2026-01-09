@@ -62,7 +62,7 @@ export function getRomLibretroThumbnail(
     } | null
   },
   type: LibretroThumbnailType = 'boxart',
-  host: 'jsdelivr' | 'libretro' = 'jsdelivr',
+  host: 'jsdelivr' | 'libretro' = 'libretro',
 ) {
   const libretroGame = rom.rawGameMetadata?.libretro
   const name = libretroGame?.name

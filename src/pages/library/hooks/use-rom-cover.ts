@@ -18,12 +18,12 @@ export function useRomCover(rom: Rom) {
     ? [getDemoRomThumbnail(rom)]
     : [
         ...libretroThumbnailTypes.map((type) => getRomLibretroThumbnail(rom, type, 'libretro')),
-        ...libretroThumbnailTypes.map((type) => getRomLibretroThumbnail(rom, type)),
+        ...libretroThumbnailTypes.map((type) => getRomLibretroThumbnail(rom, type, 'jsdelivr')),
         ...libretroThumbnailTypes.map((type) =>
           getLibretroThumbnail({ host: 'libretro', name: rom.fileName.split('.')[0], platform: rom.platform, type }),
         ),
         ...libretroThumbnailTypes.map((type) =>
-          getLibretroThumbnail({ name: rom.fileName.split('.')[0], platform: rom.platform, type }),
+          getLibretroThumbnail({ host: 'jsdelivr', name: rom.fileName.split('.')[0], platform: rom.platform, type }),
         ),
       ]
   if (rom.gameBoxartFileIds) {

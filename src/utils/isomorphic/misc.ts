@@ -5,7 +5,6 @@ import { defaultLanguage } from './i18n.ts'
 
 export function restoreTitleForSorting(title: string) {
   // Match titles ending with ", A", ", An", or ", The" followed by optional additional info
-  // eslint-disable-next-line security/detect-unsafe-regex
   const match = /^(.*),\s*(A|An|The)(\s*(?:\S.*)?)$/.exec(title)
   if (match) {
     // Reconstruct: article + space + main title + additional info

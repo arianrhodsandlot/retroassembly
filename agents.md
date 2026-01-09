@@ -20,7 +20,8 @@ Browser-based retro gaming platform with dual-runtime architecture (Node.js + Cl
 **Development**: `pnpm dev` (port 8000)
 **Build**: `pnpm build`
 **Type check**: `pnpm tsgo`
-**Lint**: `oxlint --fix` (or `pnpm lint-staged` for pre-commit)
+**Lint**: `pnpm oxlint --fix` (or `pnpm lint-staged` for pre-commit)
+**type check**: `pnpm tsgo`
 
 **Testing** (Playwright):
 

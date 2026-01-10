@@ -35,7 +35,6 @@ export const shaders = [
   { id: 'handheld/dot', name: 'dot', thumbnail: getShaderThumbnail('handheld/dot') },
   { id: 'handheld/gba-color', name: 'gba-color', thumbnail: getShaderThumbnail('handheld/gba-color') },
   { id: 'handheld/lcd1x', name: 'lcd1x', thumbnail: '' },
-  { id: 'handheld/lcd3x', name: 'lcd3x', thumbnail: '' },
   { id: 'handheld/lcd3x', name: 'lcd3x', thumbnail: getShaderThumbnail('handheld/lcd-3x') },
   { id: 'handheld/vba-color', name: 'vba-color', thumbnail: getShaderThumbnail('handheld/vba-color') },
   { id: 'handheld/zfast-lcd', name: 'zfast-lcd', thumbnail: '' },

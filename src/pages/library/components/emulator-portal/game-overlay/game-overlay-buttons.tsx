@@ -9,7 +9,7 @@ import { GameOverlayButton } from './game-overlay-button.tsx'
 export function GameOverlayButtons() {
   const { t } = useTranslation()
   const { emulator, exit } = useEmulator()
-  const { saveState } = useGameStates()
+  const { saveManualState } = useGameStates()
   const { hide, setIsPending } = useGameOverlay()
   const isDemo = useIsDemo()
 
@@ -25,7 +25,7 @@ export function GameOverlayButtons() {
   async function handleClickSaveState() {
     setIsPending(true)
     try {
-      await saveState()
+      await saveManualState()
       focus('.game-overlay button')
     } finally {
       setIsPending(false)
@@ -40,7 +40,7 @@ export function GameOverlayButtons() {
   async function handleClickSaveExit() {
     setIsPending(true)
     try {
-      await saveState()
+      await saveManualState()
       await hide()
       await exit({ reloadAfterExit: true })
     } finally {

@@ -40,7 +40,7 @@ export function CoresSettings() {
   }
 
   return (
-    <div className='mt-4'>
+    <div>
       <SettingsTitle>
         <span className='icon-[mdi--computer-classic]' />
         {t('Emulation for')}

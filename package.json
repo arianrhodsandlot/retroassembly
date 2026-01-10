@@ -24,13 +24,13 @@
     "test": "playwright test -c tests/e2e --tsconfig=tests/e2e/tsconfig.playwright.json"
   },
   "dependencies": {
-    "better-sqlite3": "12.5.0",
+    "better-sqlite3": "12.6.0",
     "hono": "4.11.3"
   },
   "devDependencies": {
     "@arianrhodsandlot/oxc-config": "1.0.1",
     "@cloudflare/vite-plugin": "1.20.1",
-    "@hono/node-server": "1.19.7",
+    "@hono/node-server": "1.19.8",
     "@hono/vite-dev-server": "0.24.0",
     "@hono/zod-validator": "0.7.6",
     "@iconify-json/logos": "1.2.10",
@@ -55,11 +55,11 @@
     "@types/js-cookie": "3.0.6",
     "@types/luxon": "3.7.1",
     "@types/nanoid-dictionary": "4.2.3",
-    "@types/node": "25.0.3",
-    "@types/react": "19.2.7",
+    "@types/node": "25.0.5",
+    "@types/react": "19.2.8",
     "@types/react-dom": "19.2.3",
     "@types/spark-md5": "3.0.5",
-    "@typescript/native-preview": "7.0.0-dev.20260108.1",
+    "@typescript/native-preview": "7.0.0-dev.20260109.1",
     "@zip.js/zip.js": "2.8.14",
     "atropos": "2.0.2",
     "browser-fs-access": "0.38.0",
@@ -87,7 +87,7 @@
     "lint-staged": "16.2.7",
     "luxon": "3.7.2",
     "miniflare": "4.20260107.0",
-    "motion": "12.24.12",
+    "motion": "12.25.0",
     "msleuth": "github:arianrhodsandlot/msleuth",
     "nanoid": "5.1.6",
     "nanoid-dictionary": "5.0.0",
@@ -95,7 +95,7 @@
     "nostalgist": "0.19.2",
     "oxfmt": "0.23.0",
     "oxlint": "1.38.0",
-    "oxlint-tsgolint": "0.10.1",
+    "oxlint-tsgolint": "0.11.0",
     "path-to-regexp": "8.3.0",
     "quick-lru": "7.3.0",
     "react": "19.2.3",
@@ -114,7 +114,7 @@
     "tailwindcss-motion": "1.1.1",
     "tailwindcss-safe-area": "1.3.0",
     "tempy": "3.1.0",
-    "tsdown": "0.18.4",
+    "tsdown": "0.19.0",
     "type-fest": "5.3.1",
     "typescript": "5.9.3",
     "vite": "7.3.1",
@@ -135,7 +135,7 @@
   "engines": {
     "node": ">=24.9.0"
   },
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.28.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "better-sqlite3",

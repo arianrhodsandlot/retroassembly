@@ -2,6 +2,7 @@ import { delay } from 'es-toolkit'
 import { isMatch } from 'es-toolkit/compat'
 import { AnimatePresence, motion, type TargetAndTransition } from 'motion/react'
 import { useLaunchButton } from '../../atoms.ts'
+import { useAutosave } from './hooks/use-autosave.ts'
 import { useEmulator } from './hooks/use-emulator.ts'
 
 export function GameAnimatePresence() {
@@ -10,6 +11,8 @@ export function GameAnimatePresence() {
   const [launchButton] = useLaunchButton()
   const rect = launchButton?.getBoundingClientRect()
   const initialStyle = rect ? { height: rect.height, left: rect.left, top: rect.top, width: rect.width } : {}
+
+  useAutosave()
 
   async function handleAnimationComplete(definition: TargetAndTransition) {
     if (isMatch(definition, animateStyle) && emulator) {

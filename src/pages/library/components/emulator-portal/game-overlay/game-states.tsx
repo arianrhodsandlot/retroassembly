@@ -16,27 +16,37 @@ export function GameStates() {
 
   return (
     <>
-      <h3 className='flex items-center gap-2 text-2xl font-semibold text-white'>
-        <span className='icon-[mdi--database] size-7' />
-        {t('Saved States')}
-      </h3>
+      {manual && manual.length > 0 ? (
+        <>
+          <h3 className='flex items-center gap-2 text-2xl font-semibold text-white'>
+            <span className='icon-[mdi--database] size-7' />
+            {t('Saved States')}
+          </h3>
+          <ScrollArea className='overflow-visible! lg:overflow-hidden! lg:h-44!' size='2'>
+            <div className='flex flex-col flex-nowrap items-center gap-8 pb-4 lg:flex-row'>
+              {manual.map((state) => (
+                <GameState key={state.id} state={state} />
+              ))}
+            </div>
+          </ScrollArea>
+        </>
+      ) : null}
 
-      {[
-        { states: manual, type: 'manual' },
-        { states: auto, type: 'auto' },
-      ]
-        .filter(({ states }) => states)
-        .map(({ states, type }) => (
-          <div key={type}>
-            <ScrollArea className='overflow-visible! lg:overflow-hidden!' size='2'>
-              <div className='flex flex-col flex-nowrap items-center gap-8 pb-4 lg:flex-row'>
-                {states.map((state) => (
-                  <GameState key={state.id} state={state} />
-                ))}
-              </div>
-            </ScrollArea>
-          </div>
-        ))}
+      {auto && auto.length > 0 ? (
+        <>
+          <h3 className='mt-2 flex items-center gap-2 text-2xl font-semibold text-white'>
+            <span className='icon-[mdi--timer] size-7' />
+            {t('Auto Saved States')}
+          </h3>
+          <ScrollArea className='overflow-visible! lg:overflow-hidden! lg:h-44!' size='2'>
+            <div className='flex flex-col flex-nowrap items-center gap-8 pb-4 lg:flex-row'>
+              {auto.map((state) => (
+                <GameState key={state.id} state={state} />
+              ))}
+            </div>
+          </ScrollArea>
+        </>
+      ) : null}
     </>
   )
 }

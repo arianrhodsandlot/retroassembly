@@ -8,6 +8,7 @@ export type PlatformSortOrder = 'ascending' | 'descending'
 
 export interface Preference {
   emulator: {
+    autoSaveInterval: number
     core: Partial<Record<CoreName, Record<string, string>>>
     fullscreen: boolean
     platform: Record<
@@ -106,6 +107,7 @@ export type PreferenceSnippet = PartialDeepNullable<Preference>
 
 export const defaultPreference: ResolvedPreference = {
   emulator: {
+    autoSaveInterval: 0,
     core: {
       fceumm: {
         fceumm_turbo_enable: 'Both',

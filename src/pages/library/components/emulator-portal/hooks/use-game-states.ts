@@ -12,16 +12,28 @@ export function useGameStates() {
   const { core, emulator } = useEmulator()
   const [showGameOverlay] = useShowGameOverlayContent()
 
-  const query = { rom: rom.id, type: 'manual' } as const
   const {
-    data: states,
+    data: manualStates,
     isLoading: isStatesLoading,
     mutate: reloadStates,
-  } = useSWRImmutable(rom && showGameOverlay ? { endpoint: '/api/v1/roms/:id/states', query } : false, ({ query }) =>
-    parseResponse($get({ query })),
+  } = useSWRImmutable(
+    rom && showGameOverlay
+      ? { endpoint: '/api/v1/roms/:id/states', query: { rom: rom.id, type: 'manual' } as const }
+      : false,
+    ({ query }) => parseResponse($get({ query })),
   )
 
-  const { isMutating: isSavingState, trigger: saveState } = useSWRMutation('/api/v1/states', async () => {
+  const { data: autoStates, mutate: reloadAutoStates } = useSWRImmutable(
+    rom && showGameOverlay
+      ? { endpoint: '/api/v1/roms/:id/states', query: { rom: rom.id, type: 'auto' } as const }
+      : false,
+    ({ query }) => parseResponse($get({ query })),
+    { dedupingInterval: 0, revalidateOnMount: true },
+  )
+
+  const states = [...(manualStates || []), ...(autoStates || [])]
+
+  const { isMutating: isSavingManualState, trigger: saveManualState } = useSWRMutation('/api/v1/states', async () => {
     if (!emulator || !core || !rom) {
       throw new Error('invalid emulator or core or rom')
     }
@@ -31,7 +43,30 @@ export function useGameStates() {
       form: { core, rom: rom.id, state, thumbnail, type: 'manual' },
     })
     await reloadStates()
+    await reloadAutoStates()
   })
 
-  return { isSavingState, isStatesLoading, reloadStates, saveState, states }
+  const { isMutating: isSavingAutoState, trigger: saveAutoState } = useSWRMutation('/api/v1/states', async () => {
+    if (!emulator || !core || !rom) {
+      throw new Error('invalid emulator or core or rom')
+    }
+    const { state, thumbnail } = await emulator.saveState()
+    await $post({
+      // @ts-expect-error actually we can use Blob here thought it says only File is accepted
+      form: { core, rom: rom.id, state, thumbnail, type: 'auto' },
+    })
+    await reloadAutoStates()
+  })
+
+  return {
+    isSavingAutoState,
+    isSavingManualState,
+    isStatesLoading,
+    reloadAutoStates,
+    reloadStates,
+    saveAutoState,
+    saveManualState,
+    showGameOverlay,
+    states,
+  }
 }

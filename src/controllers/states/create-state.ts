@@ -1,8 +1,9 @@
 import path from 'node:path'
-import { and, eq } from 'drizzle-orm'
+import { and, desc, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { romTable, stateTable } from '#@/databases/schema.ts'
 import { nanoid } from '#@/utils/server/nanoid.ts'
+import { deleteStates } from './delete-states.ts'
 
 interface CreateStateParams {
   core: string
@@ -42,5 +43,25 @@ export async function createState({ core, rom, state, thumbnail, type }: CreateS
       userId: currentUser.id,
     })
     .returning()
+
+  if (type === 'auto') {
+    const existingAutoStates = await db.library
+      .select()
+      .from(stateTable)
+      .where(
+        and(
+          eq(stateTable.userId, currentUser.id),
+          eq(stateTable.romId, romResult.id),
+          eq(stateTable.status, 1),
+          eq(stateTable.type, 'auto'),
+        ),
+      )
+      .orderBy(desc(stateTable.createdAt))
+    if (existingAutoStates.length > 10) {
+      const idsToDelete = existingAutoStates.slice(10).map((s) => s.id)
+      await deleteStates(idsToDelete)
+    }
+  }
+
   return stateResult
 }

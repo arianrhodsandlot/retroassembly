@@ -1,7 +1,7 @@
-import { and, eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
-import { statusEnum, userTable } from '#@/databases/schema.ts'
+import { userTable } from '#@/databases/schema.ts'
 import { hash } from '#@/utils/server/argon2.ts'
 import { getConnInfo } from '#@/utils/server/misc.ts'
 
@@ -9,11 +9,7 @@ export async function createUser({ password, username }: { password: string; use
   const c = getContext()
   const { db } = c.var
 
-  const [existing] = await db.library
-    .select()
-    .from(userTable)
-    .where(and(eq(userTable.username, username.trim()), eq(userTable.status, statusEnum.normal)))
-    .limit(1)
+  const [existing] = await db.library.select().from(userTable).where(eq(userTable.username, username.trim())).limit(1)
   if (existing) {
     throw new HTTPException(409, { message: 'Username already exists' })
   }

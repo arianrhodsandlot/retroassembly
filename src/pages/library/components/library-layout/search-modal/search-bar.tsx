@@ -3,6 +3,7 @@ import { type FormEvent, useCallback, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import useSWR from 'swr'
 import { client, parseResponse } from '#@/api/client.ts'
+import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 import { useSpatialNavigationPaused } from '#@/pages/library/atoms.ts'
 import { useInputMapping } from '#@/pages/library/hooks/use-input-mapping.ts'
 import { Gamepad } from '#@/utils/client/gamepad.ts'
@@ -20,6 +21,7 @@ export function SearchBar() {
   const [, setShowSearchModal] = useShowSearchModal()
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
 
+  const { recentlyLaunchedRoms } = useGlobalLoaderData()
   const [query] = useQuery()
   const [selectedResult, setSelectedResult] = useSelectedResult()
 
@@ -28,6 +30,8 @@ export function SearchBar() {
     ({ query }) => parseResponse($get({ query })),
     { dedupingInterval: 5 * 60 * 1000, keepPreviousData: true, revalidateOnFocus: false, revalidateOnReconnect: false },
   )
+
+  const displayResults = query ? data?.roms : recentlyLaunchedRoms
 
   const selectedUrl = selectedResult
     ? `/library/platform/${encodeURIComponent(selectedResult.platform)}/rom/${encodeURIComponent(selectedResult.fileName)}`
@@ -52,18 +56,18 @@ export function SearchBar() {
 
   const move = useCallback(
     function move(direction: 'down' | 'up') {
-      if (data?.roms?.length) {
-        const index = data.roms.indexOf(selectedResult)
-        const newIndex = ({ down: index + 1, up: index - 1 }[direction] + data.roms.length) % data.roms.length
-        setSelectedResult(data.roms[newIndex])
+      if (displayResults?.length) {
+        const index = displayResults.indexOf(selectedResult)
+        const newIndex = ({ down: index + 1, up: index - 1 }[direction] + displayResults.length) % displayResults.length
+        setSelectedResult(displayResults[newIndex])
       }
     },
-    [data, selectedResult, setSelectedResult],
+    [displayResults, selectedResult, setSelectedResult],
   )
 
   useEffect(() => {
-    setSelectedResult(data?.roms?.[0])
-  }, [data?.roms, setSelectedResult])
+    setSelectedResult(displayResults?.[0])
+  }, [displayResults, setSelectedResult])
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -107,7 +111,7 @@ export function SearchBar() {
     <div
       className={clsx(
         'z-1 w-2xl pointer-events-none fixed left-1/2 flex max-w-full -translate-x-1/2 flex-col overflow-hidden px-2 text-xl',
-        query && data?.roms?.length ? 'inset-y-14' : 'top-14',
+        query && displayResults?.length ? 'inset-y-14' : 'top-14',
       )}
     >
       <form
@@ -123,10 +127,10 @@ export function SearchBar() {
       <div
         className={clsx(
           'border-(--accent-9) bg-(--color-background) w-full overflow-auto rounded-b border-x-2 border-b-2 transition-opacity *:pointer-events-auto empty:hidden',
-          { '*:opacity-50': data?.query !== query },
+          { '*:opacity-50': query && data?.query !== query },
         )}
       >
-        <SearchResults keyword={data?.query ?? ''} loading={isMutating} results={data?.roms} />
+        <SearchResults keyword={query} loading={isMutating} results={displayResults} />
       </div>
     </div>
   )

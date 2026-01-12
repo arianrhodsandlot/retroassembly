@@ -4,14 +4,14 @@ import { getLoaderData } from '#@/utils/server/loader-data.ts'
 import RomPage from '../library/platform/rom/page.tsx'
 import type { Route } from './+types/library-platform-rom.ts'
 
-export function loader({ params }: Route.LoaderArgs) {
+export async function loader({ params }: Route.LoaderArgs) {
   const { platform } = params
 
   const preference = structuredClone(defaultPreference)
   preference.ui.platforms = ['gba', 'gbc', 'genesis', 'nes', 'snes']
   const roms = getDemoRoms({ platform })
   const rom = roms.find((rom) => rom.fileName === params.fileName)
-  return getLoaderData({ preference, rom, title: `${rom?.fileName} (Demo)` })
+  return await getLoaderData({ preference, rom, title: `${rom?.fileName} (Demo)` })
 }
 
 export default function LibraryPlatformRomRoute() {

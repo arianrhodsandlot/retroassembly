@@ -1,5 +1,4 @@
 import { getContext } from 'hono/context-storage'
-import { getLaunchRecords } from '#@/controllers/launch-records/get-launch-records.ts'
 import { getRomsWithStates } from '#@/controllers/roms/get-roms-with-states.ts'
 import { getRoms } from '#@/controllers/roms/get-roms.ts'
 import { getStates } from '#@/controllers/states/get-states.ts'
@@ -9,10 +8,10 @@ import { LibraryHomePage } from '../library/home/page.tsx'
 export async function loader() {
   const { preference } = getContext().var
 
-  const [{ roms: recentlySavedRoms }, { roms: newAddedRoms }, { roms: recentlyLaunchedRoms }] = await Promise.all([
+  const [{ roms: recentlySavedRoms }, { roms: newAddedRoms }, { recentlyLaunchedRoms }] = await Promise.all([
     getRomsWithStates({ pageSize: 1 }),
     getRoms({ direction: 'desc', orderBy: 'added', pageSize: 20 }),
-    getLaunchRecords({ pageSize: 20 }),
+    getLoaderData(),
   ])
 
   const data: {
@@ -29,7 +28,7 @@ export async function loader() {
     }
   }
 
-  return getLoaderData({
+  return await getLoaderData({
     newAddedRoms,
     recentlyLaunchedRoms,
     recentlySavedRoms,

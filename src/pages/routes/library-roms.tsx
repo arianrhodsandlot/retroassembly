@@ -9,7 +9,7 @@ export async function loader() {
   const { t } = getContext().var
   const romsQuery = getRomsQuery()
   const [{ pagination, roms }, platformCount] = await Promise.all([getRoms(romsQuery), getRomPlatformCount()])
-  return getLoaderData({ pagination, platformCount, roms, title: t('Games') })
+  return await getLoaderData({ pagination, platformCount, roms, title: t('Games') })
 }
 
 export default function LibraryRoute() {

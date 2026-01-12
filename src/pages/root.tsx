@@ -14,7 +14,7 @@ import { ErrorPage } from './components/error-page.tsx'
 const disabledHost = 'next.retroassembly.com'
 const targetUrl = 'https://retroassembly.com/'
 
-export function loader({ request }) {
+export async function loader({ request }) {
   const c = getContext()
 
   if (new URL(request.url).hostname === disabledHost) {
@@ -37,7 +37,7 @@ export function loader({ request }) {
   }))
   const headElements = isHome ? homeHeadElements : []
 
-  return getLoaderData({ headElements, isHome })
+  return await getLoaderData({ headElements, isHome })
 }
 
 export function Layout({ children }: Readonly<{ children: ReactNode }>) {

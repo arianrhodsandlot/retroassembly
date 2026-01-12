@@ -3,8 +3,9 @@ import { getContext } from 'hono/context-storage'
 import { getCookie } from 'hono/cookie'
 import { getRunTimeEnv } from '#@/constants/env.ts'
 import { cookieConsentStatusKey } from '#@/constants/misc.ts'
+import { getLaunchRecords } from '#@/controllers/launch-records/get-launch-records.ts'
 
-export function getLoaderData<T>(data: T = {} as T) {
+export async function getLoaderData<T>(data: T = {} as T) {
   const c = getContext()
   const { currentUser, detectedLanguage, language, preference } = c.var
   const cookieConsentStatus = getCookie(c, cookieConsentStatusKey)
@@ -19,6 +20,8 @@ export function getLoaderData<T>(data: T = {} as T) {
   const { host } = new URL(c.req.url)
   const isOfficialHost = host === 'retroassembly.com' || host.endsWith('-retroassembly.arianrhodsandlot.workers.dev')
 
+  const { roms: recentlyLaunchedRoms } = await getLaunchRecords({ pageSize: 10 })
+
   return {
     cookieConsentStatus,
     currentUser,
@@ -28,6 +31,7 @@ export function getLoaderData<T>(data: T = {} as T) {
     isOfficialHost,
     language,
     preference,
+    recentlyLaunchedRoms,
     runtimeKey,
     title: '',
     ...data,

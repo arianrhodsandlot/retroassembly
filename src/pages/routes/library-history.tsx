@@ -10,7 +10,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const query = url.searchParams
   const page = Number.parseInt(new URLSearchParams(query).get('page') || '', 10) || 1
   const { pagination, roms } = await getLaunchRecords({ page })
-  return getLoaderData({ page, pagination, roms, title: t('History') })
+  return await getLoaderData({ page, pagination, roms, title: t('History') })
 }
 
 export default function LibraryHistoryRoute() {

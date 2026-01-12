@@ -1,4 +1,3 @@
-import { useQuery } from './atoms.ts'
 import { SearchResultItem } from './search-result-item.tsx'
 
 interface SearchResultsProps {
@@ -8,11 +7,6 @@ interface SearchResultsProps {
 }
 
 export function SearchResults({ keyword, loading, results }: Readonly<SearchResultsProps>) {
-  const [query] = useQuery()
-  if (!query) {
-    return
-  }
-
   if (results?.length) {
     return (
       <ul>
@@ -23,7 +17,7 @@ export function SearchResults({ keyword, loading, results }: Readonly<SearchResu
     )
   }
 
-  if (!loading && query) {
+  if (!loading && !results?.length) {
     return (
       <div className='flex w-full items-center justify-center gap-2 py-4 text-lg opacity-60'>
         <span className='icon-[mdi--magnify-remove-outline] text-xl' />

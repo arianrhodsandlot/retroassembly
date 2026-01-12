@@ -19,7 +19,7 @@ export async function loader({ params }: Route.LoaderArgs) {
   const { preference } = getContext().var
   const core = preference.emulator.platform[rom.platform]?.core
   const [state] = await getStates({ core, limit: 1, rom: rom?.id, type: 'manual' })
-  return getLoaderData({ rom, state, title: getRomGoodcodes(rom).rom })
+  return await getLoaderData({ rom, state, title: getRomGoodcodes(rom).rom })
 }
 
 export default function LibraryPlatformRomRoute() {

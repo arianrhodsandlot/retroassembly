@@ -13,8 +13,8 @@ function isValidLanguage(language?: string): language is string {
   return locales.some(({ code }) => language?.toLowerCase() === code.toLowerCase())
 }
 
-export function loader({ params }: Route.LoaderArgs) {
-  const loaderData = getLoaderData({ title: metadata.title })
+export async function loader({ params }: Route.LoaderArgs) {
+  const loaderData = await getLoaderData({ title: metadata.title })
   const { detectedLanguage, language } = loaderData
   const c = getContext()
 

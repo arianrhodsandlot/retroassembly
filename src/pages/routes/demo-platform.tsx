@@ -7,7 +7,7 @@ import { getLoaderData } from '#@/utils/server/loader-data.ts'
 import PlatformPage from '../library/platform/page.tsx'
 import type { Route } from './+types/library-platform.ts'
 
-export function loader({ params }: Route.LoaderArgs) {
+export async function loader({ params }: Route.LoaderArgs) {
   const { t } = getContext().var
   const { platform = '' } = params
 
@@ -15,7 +15,7 @@ export function loader({ params }: Route.LoaderArgs) {
   preference.ui.platforms = ['gba', 'gbc', 'genesis', 'nes', 'snes']
   const platformInfo = getPlatformInfo(platform)
 
-  return getLoaderData({
+  return await getLoaderData({
     count: 0,
     pagination: { current: 1, pages: 1, size: 0, total: 0 },
     platform,

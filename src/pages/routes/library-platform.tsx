@@ -13,7 +13,7 @@ export async function loader({ params }: Route.LoaderArgs) {
   const romsQuery = getRomsQuery()
   const { pagination, roms } = await getRoms({ ...romsQuery, platform })
   const platformInfo = getPlatformInfo(platform)
-  return getLoaderData({ pagination, platform, platformInfo, roms, title: t(platformMap[platform].displayName) })
+  return await getLoaderData({ pagination, platform, platformInfo, roms, title: t(platformMap[platform].displayName) })
 }
 
 export default function LibraryPlatformRoute() {

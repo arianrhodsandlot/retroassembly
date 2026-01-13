@@ -1,4 +1,4 @@
 import { useLoaderData } from 'react-router'
-import type { getLoaderData } from '#@/utils/server/loader-data.ts'
+import type { getCommonLoaderData } from '#@/utils/server/loader-data.ts'
 
-export const useGlobalLoaderData = useLoaderData<typeof getLoaderData>
+export const useGlobalLoaderData = useLoaderData<typeof getCommonLoaderData>

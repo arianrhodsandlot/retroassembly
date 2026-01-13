@@ -5,7 +5,8 @@ import { getRunTimeEnv } from '#@/constants/env.ts'
 import { cookieConsentStatusKey } from '#@/constants/misc.ts'
 import { getLaunchRecords } from '#@/controllers/launch-records/get-launch-records.ts'
 
-export async function getLoaderData<T>(data: T = {} as T) {
+/* Used for non-library routes */
+export function getCommonLoaderData<T>(data: T = {} as T) {
   const c = getContext()
   const { currentUser, detectedLanguage, language, preference } = c.var
   const cookieConsentStatus = getCookie(c, cookieConsentStatusKey)
@@ -20,8 +21,6 @@ export async function getLoaderData<T>(data: T = {} as T) {
   const { host } = new URL(c.req.url)
   const isOfficialHost = host === 'retroassembly.com' || host.endsWith('-retroassembly.arianrhodsandlot.workers.dev')
 
-  const { roms: recentlyLaunchedRoms } = await getLaunchRecords({ pageSize: 10 })
-
   return {
     cookieConsentStatus,
     currentUser,
@@ -31,9 +30,14 @@ export async function getLoaderData<T>(data: T = {} as T) {
     isOfficialHost,
     language,
     preference,
-    recentlyLaunchedRoms,
     runtimeKey,
     title: '',
     ...data,
   }
+}
+
+/* Used for routes under /library and needing recently launched ROMs */
+export async function getLibraryLoaderData<T>(data: T = {} as T) {
+  const { roms: recentlyLaunchedRoms } = await getLaunchRecords({ pageSize: 10 })
+  return getCommonLoaderData({ ...data, recentlyLaunchedRoms })
 }

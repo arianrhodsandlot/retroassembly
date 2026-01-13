@@ -6,7 +6,7 @@ import type { ReactNode } from 'react'
 import { Outlet } from 'react-router'
 import { localeCodes } from '#@/locales/locales.ts'
 import { getHomePath } from '#@/utils/isomorphic/misc.ts'
-import { getLoaderData } from '#@/utils/server/loader-data.ts'
+import { getCommonLoaderData } from '#@/utils/server/loader-data.ts'
 import type { Route } from './+types/root.ts'
 import { AppLayout } from './components/app-layout.tsx'
 import { ErrorPage } from './components/error-page.tsx'
@@ -14,7 +14,7 @@ import { ErrorPage } from './components/error-page.tsx'
 const disabledHost = 'next.retroassembly.com'
 const targetUrl = 'https://retroassembly.com/'
 
-export async function loader({ request }) {
+export function loader({ request }) {
   const c = getContext()
 
   if (new URL(request.url).hostname === disabledHost) {
@@ -37,7 +37,7 @@ export async function loader({ request }) {
   }))
   const headElements = isHome ? homeHeadElements : []
 
-  return await getLoaderData({ headElements, isHome })
+  return getCommonLoaderData({ headElements, isHome })
 }
 
 export function Layout({ children }: Readonly<{ children: ReactNode }>) {

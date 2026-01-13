@@ -3,7 +3,8 @@ import { getContext } from 'hono/context-storage'
 import { launchRecordTable, romTable } from '#@/databases/schema.ts'
 
 export async function getLaunchRecords({ page = 1, pageSize = 100 }: { page?: number; pageSize?: number }) {
-  const { currentUser, db, preference } = getContext().var
+  const c = getContext()
+  const { currentUser, db, preference } = c.var
   const { library } = db
 
   const offset = (page - 1) * pageSize

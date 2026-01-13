@@ -1,12 +1,12 @@
 import { clsx } from 'clsx'
 import { type FormEvent, useCallback, useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router'
+import { useLoaderData, useLocation, useNavigate } from 'react-router'
 import useSWR from 'swr'
 import { client, parseResponse } from '#@/api/client.ts'
-import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 import { useSpatialNavigationPaused } from '#@/pages/library/atoms.ts'
 import { useInputMapping } from '#@/pages/library/hooks/use-input-mapping.ts'
 import { Gamepad } from '#@/utils/client/gamepad.ts'
+import type { getLibraryLoaderData } from '#@/utils/server/loader-data.ts'
 import { useShowSearchModal } from '../atoms.ts'
 import { useQuery, useSelectedResult } from './atoms.ts'
 import { SearchInput } from './search-input.tsx'
@@ -21,7 +21,7 @@ export function SearchBar() {
   const [, setShowSearchModal] = useShowSearchModal()
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
 
-  const { recentlyLaunchedRoms } = useGlobalLoaderData()
+  const { recentlyLaunchedRoms } = useLoaderData<typeof getLibraryLoaderData>()
   const [query] = useQuery()
   const [selectedResult, setSelectedResult] = useSelectedResult()
 

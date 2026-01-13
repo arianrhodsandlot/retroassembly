@@ -5,7 +5,7 @@ import { metadata } from '#@/constants/metadata.ts'
 import { locales } from '#@/locales/locales.ts'
 import { defaultLanguage } from '#@/utils/isomorphic/i18n.ts'
 import { getHomePath } from '#@/utils/isomorphic/misc.ts'
-import { getLoaderData } from '#@/utils/server/loader-data.ts'
+import { getCommonLoaderData } from '#@/utils/server/loader-data.ts'
 import { HomePage } from '../home/page.tsx'
 import type { Route } from './+types/home.ts'
 
@@ -13,8 +13,8 @@ function isValidLanguage(language?: string): language is string {
   return locales.some(({ code }) => language?.toLowerCase() === code.toLowerCase())
 }
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const loaderData = await getLoaderData({ title: metadata.title })
+export function loader({ params }: Route.LoaderArgs) {
+  const loaderData = getCommonLoaderData({ title: metadata.title })
   const { detectedLanguage, language } = loaderData
   const c = getContext()
 

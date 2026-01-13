@@ -41,13 +41,13 @@ export function DockerDialog({ onOpenChange, ...props }: Readonly<Dialog.RootPro
               <div className='flex flex-col gap-4'>
                 <div>
                   <h3 className='mb-2 font-semibold'>{t('Step 1: Create compose.yaml')}</h3>
-                  <CodeBlock className='bg-(--gray-3) overflow-x-auto rounded p-4 text-sm' code={composeYaml} />
+                  <CodeBlock className='overflow-x-auto rounded bg-(--gray-3) p-4 text-sm' code={composeYaml} />
                 </div>
 
                 <div>
                   <h3 className='mb-2 font-semibold'>{t('Step 2: Start the container')}</h3>
                   <CodeBlock
-                    className='bg-(--gray-3) overflow-x-auto rounded p-4 text-sm'
+                    className='overflow-x-auto rounded bg-(--gray-3) p-4 text-sm'
                     code='docker compose up -d'
                   />
                 </div>
@@ -58,12 +58,12 @@ export function DockerDialog({ onOpenChange, ...props }: Readonly<Dialog.RootPro
               <div className='flex flex-col gap-4'>
                 <div>
                   <h3 className='mb-2 font-semibold'>{t('Run with Docker CLI')}</h3>
-                  <CodeBlock className='bg-(--gray-3) overflow-x-auto rounded p-4 text-sm' code={dockerCommand} />
+                  <CodeBlock className='overflow-x-auto rounded bg-(--gray-3) p-4 text-sm' code={dockerCommand} />
                 </div>
 
                 <div>
                   <h3 className='mb-2 font-semibold'>{t('Access the application')}</h3>
-                  <p className='text-(--gray-11) text-sm'>
+                  <p className='text-sm text-(--gray-11)'>
                     {t('Once the container is running, open http://localhost:8000 in your browser.')}
                   </p>
                 </div>
@@ -72,11 +72,11 @@ export function DockerDialog({ onOpenChange, ...props }: Readonly<Dialog.RootPro
           </Tabs.Root>
         </div>
 
-        <hr className='border-(--gray-3) my-4' />
+        <hr className='my-4 border-(--gray-3)' />
 
         <div>
           <a
-            className='text-(--accent-9) inline-flex items-center gap-1 text-sm'
+            className='inline-flex items-center gap-1 text-sm text-(--accent-9)'
             href='https://hub.docker.com/r/arianrhodsandlot/retroassembly'
             rel='noreferrer noopener'
             target='_blank'
@@ -86,7 +86,7 @@ export function DockerDialog({ onOpenChange, ...props }: Readonly<Dialog.RootPro
           </a>
         </div>
 
-        <div className='absolute right-6 top-6'>
+        <div className='absolute top-6 right-6'>
           <Dialog.Close>
             <Button variant='ghost'>
               <span className='icon-[mdi--close] size-5' />

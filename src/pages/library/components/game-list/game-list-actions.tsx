@@ -40,7 +40,7 @@ export function GameListActions() {
             <span className='icon-[mdi--order-checkbox-ascending]' />
             <Trans
               components={{
-                1: <span className='text-(--accent-9) font-semibold' />,
+                1: <span className='font-semibold text-(--accent-9)' />,
               }}
               i18nKey='Selected <1>{{count}}</1> {{items}}'
               values={{

@@ -46,7 +46,7 @@ export function FocusIndicator({ children }: { readonly children?: ReactNode }) 
     <RadixThemePortal>
       <div
         className={clsx(
-          'motion-scale-loop motion-duration-1200 motion-ease-in-out-quad bg-(--accent-a3) pointer-events-none fixed z-10 rounded',
+          'motion-scale-loop motion-duration-1200 motion-ease-in-out-quad pointer-events-none fixed z-10 rounded bg-(--accent-a3)',
           { 'hidden lg:block': !connected },
         )}
         style={mergedStyle}

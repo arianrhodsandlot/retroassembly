@@ -53,9 +53,9 @@ export function GameOverlayContent() {
           onAnimationComplete={handleAnimationComplete}
           transition={{ duration: 0.2 }}
         >
-          <div className='bg-linear-to-b to-text-transparent h-4 w-full from-black lg:h-32' />
+          <div className='to-text-transparent h-4 w-full bg-linear-to-b from-black lg:h-32' />
 
-          <div className='lg:w-6xl flex w-full flex-1 flex-col gap-8 overflow-auto px-4 lg:mx-auto lg:px-0'>
+          <div className='flex w-full flex-1 flex-col gap-8 overflow-auto px-4 lg:mx-auto lg:w-6xl lg:px-0'>
             <div className='hidden items-center gap-4 lg:flex'>
               <div className='size-30 shrink-0'>
                 {cover ? (
@@ -70,7 +70,7 @@ export function GameOverlayContent() {
             <GameStates />
           </div>
 
-          <div className='bg-linear-to-b h-4 w-full from-transparent to-black text-transparent lg:h-32' />
+          <div className='h-4 w-full bg-linear-to-b from-transparent to-black text-transparent lg:h-32' />
 
           <div className='absolute bottom-0 hidden h-20 w-full flex-1 items-center justify-end gap-4 px-4 lg:flex'>
             <div className='hidden flex-1 items-center justify-center gap-4 lg:flex'>

@@ -16,8 +16,8 @@ export function PageContainer({ children, description, title }: Readonly<PageCon
   return (
     <>
       <title>{t('Log in to {{title}}', { title: metadata.title })}</title>
-      <div className='bg-(--accent-9) min-h-dvh px-4 py-20'>
-        <div className='md:w-3xl bg-(--color-background) mx-auto w-full max-w-full rounded p-10'>
+      <div className='min-h-dvh bg-(--accent-9) px-4 py-20'>
+        <div className='mx-auto w-full max-w-full rounded bg-(--color-background) p-10 md:w-3xl'>
           <div className='flex items-center justify-center gap-4'>
             <Link className='flex items-center justify-center' reloadDocument to='/'>
               <img alt='logo' height='32' src='/assets/logo/logo.svg' width='32' />
@@ -25,12 +25,12 @@ export function PageContainer({ children, description, title }: Readonly<PageCon
             <h1 className='text-3xl font-semibold'>{title}</h1>
           </div>
 
-          {description ? <div className='text-(--color-text)/40 mt-4 text-center'>{description}</div> : null}
+          {description ? <div className='mt-4 text-center text-(--color-text)/40'>{description}</div> : null}
 
-          <div className='border-t-(--gray-6) mt-4 border-t py-8'>{children}</div>
+          <div className='mt-4 border-t border-t-(--gray-6) py-8'>{children}</div>
 
           {formType === 'oauth' ? (
-            <div className='text-(--color-text)/40 text-center text-xs'>
+            <div className='text-center text-xs text-(--color-text)/40'>
               {t('By clicking the button, you agree to our')}{' '}
               <a className='underline' href='/privacy-policy.md' rel='noopener noreferrer' target='_blank'>
                 {t('Privacy Policy')}

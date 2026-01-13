@@ -21,8 +21,8 @@ export function JumpBackInSection() {
     <section className='relative'>
       <RomBackground className='lg:absolute' rom={rom} />
 
-      <div className='bg-linear-to-b from-(--gray-a4) relative rounded via-transparent to-transparent p-4'>
-        <h2 className='text-(--accent-9) flex items-center gap-2 p-4 text-3xl font-semibold'>
+      <div className='relative rounded bg-linear-to-b from-(--gray-a4) via-transparent to-transparent p-4'>
+        <h2 className='flex items-center gap-2 p-4 text-3xl font-semibold text-(--accent-9)'>
           <span className='icon-[mdi--play-circle-outline]' />
           {t('Continue')}
         </h2>
@@ -36,7 +36,7 @@ export function JumpBackInSection() {
               <h3 className='text-4xl font-semibold'>{getRomGoodcodes(rom).rom}</h3>
             </Link>
 
-            <div className='text-(--color-text)/40 flex items-center gap-1'>
+            <div className='flex items-center gap-1 text-(--color-text)/40'>
               <img
                 alt={t(platformMap[rom.platform].displayName)}
                 className={clsx('size-6', { invert: ['ngp', 'wonderswan'].includes(platformMap[rom.platform].name) })}

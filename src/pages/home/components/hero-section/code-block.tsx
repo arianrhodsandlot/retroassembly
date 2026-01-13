@@ -21,13 +21,13 @@ export function CodeBlock({ className, code }: CodeBlockProps) {
         <code className='font-mono'>{code}</code>
       </pre>
       <Button
-        className='absolute! right-4! top-3! opacity-0 transition-opacity group-hover:opacity-100'
+        className='absolute! top-3! right-4! opacity-0 transition-opacity group-hover:opacity-100'
         onClick={handleCopy}
         size='1'
         variant='ghost'
       >
         {copied ? (
-          <span className='icon-[mdi--check] text-(--green-11) text-lg' />
+          <span className='icon-[mdi--check] text-lg text-(--green-11)' />
         ) : (
           <span className='icon-[mdi--content-copy] text-lg' />
         )}

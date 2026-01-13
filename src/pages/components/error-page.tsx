@@ -26,8 +26,8 @@ export function ErrorPage({ error }: Readonly<Route.ErrorBoundaryProps>) {
   return (
     <>
       <title>{`${status} - ${metadata.title}`}</title>
-      <div className='bg-(--accent-9) min-h-dvh py-20'>
-        <main className='md:w-3xl bg-(--color-background) mx-8 flex max-w-full flex-col rounded p-10 md:mx-auto'>
+      <div className='min-h-dvh bg-(--accent-9) py-20'>
+        <main className='mx-8 flex max-w-full flex-col rounded bg-(--color-background) p-10 md:mx-auto md:w-3xl'>
           <h1 className='mt-4 flex items-center gap-2 text-4xl font-semibold'>
             <span className='icon-[mdi--robot-confused]' /> {message}
           </h1>
@@ -47,7 +47,7 @@ export function ErrorPage({ error }: Readonly<Route.ErrorBoundaryProps>) {
 
             <Button asChild radius='small' size='2' type='button' variant='outline'>
               <Link
-                className='bg-(--color-background)! in-[.dark]:border-(--gray-4)! border-2! shadow-none!'
+                className='border-2! bg-(--color-background)! shadow-none! in-[.dark]:border-(--gray-4)!'
                 reloadDocument
                 to='/library'
               >

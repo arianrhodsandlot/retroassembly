@@ -70,7 +70,7 @@ export function SearchModal() {
           <motion.div
             animate={{ opacity: 1 }}
             aria-hidden
-            className='bg-(--color-overlay) z-1 cursor-default! absolute inset-0'
+            className='absolute inset-0 z-1 cursor-default! bg-(--color-overlay)'
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
             onClick={close}
@@ -78,7 +78,7 @@ export function SearchModal() {
         ) : null}
       </AnimatePresence>
 
-      <div className='z-1 pointer-events-none absolute inset-0 *:pointer-events-auto'>
+      <div className='pointer-events-none absolute inset-0 z-1 *:pointer-events-auto'>
         <AnimatePresence>
           {showSearchModal ? (
             <motion.div

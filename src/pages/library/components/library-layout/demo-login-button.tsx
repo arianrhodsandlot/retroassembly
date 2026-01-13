@@ -9,7 +9,7 @@ export function DemoLoginButton() {
     <RadixThemePortal>
       <div className='pointer-events-none fixed inset-x-4 bottom-8 flex justify-center lg:bottom-20'>
         <Link
-          className='bg-(--accent-9) motion-duration-3000 motion-preset-oscillate pointer-events-auto flex items-center gap-3 rounded-lg border-2 border-white px-4 py-2 text-sm font-semibold text-white shadow-xl lg:text-base'
+          className='motion-duration-3000 motion-preset-oscillate pointer-events-auto flex items-center gap-3 rounded-lg border-2 border-white bg-(--accent-9) px-4 py-2 text-sm font-semibold text-white shadow-xl lg:text-base'
           reloadDocument
           to='/login'
         >

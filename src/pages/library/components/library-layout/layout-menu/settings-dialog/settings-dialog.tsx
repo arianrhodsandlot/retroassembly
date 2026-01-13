@@ -32,7 +32,7 @@ export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootP
     <DialogRoot {...props} onOpenChange={handleOpenChange}>
       <Dialog.Content aria-describedby={undefined} className='lg:w-5xl!' maxWidth='calc(100vw - var(--space-8))'>
         <Dialog.Title className='flex items-center gap-2'>
-          <span className='icon-[mdi--cog] ' />
+          <span className='icon-[mdi--cog]' />
           {t('Settings')}
         </Dialog.Title>
 
@@ -60,13 +60,13 @@ export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootP
         </div>
 
         <div className='mt-4 flex justify-between'>
-          <div className='text-(--accent-9) flex items-center gap-2 text-xs'>
+          <div className='flex items-center gap-2 text-xs text-(--accent-9)'>
             <span className='icon-[mdi--info]' />
             {t('Your settings will be saved and take effect immediately once changed.')}
           </div>
         </div>
 
-        <div className='absolute right-6 top-6'>
+        <div className='absolute top-6 right-6'>
           <Dialog.Close>
             <Button title={t('Close')} variant='ghost'>
               <span className='icon-[mdi--close] size-5' />

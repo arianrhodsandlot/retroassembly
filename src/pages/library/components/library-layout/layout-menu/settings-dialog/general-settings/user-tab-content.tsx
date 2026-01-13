@@ -64,7 +64,7 @@ export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabCo
   return (
     <Flex className={isCurrentUser ? '' : 'py-4'} direction='column' gap='4'>
       {canDelete ? (
-        <div className='lg:w-xl mt-2!'>
+        <div className='mt-2! lg:w-xl'>
           <Button
             className='w-full!'
             color='red'
@@ -89,7 +89,7 @@ export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabCo
             </Text>
           </Flex>
 
-          <form className='lg:w-xl flex flex-col gap-2' onSubmit={handleSubmit}>
+          <form className='flex flex-col gap-2 lg:w-xl' onSubmit={handleSubmit}>
             <div className='grid-cols-2 grid-rows-2 gap-4 lg:grid'>
               <AccountFormField
                 autoComplete='current-password'

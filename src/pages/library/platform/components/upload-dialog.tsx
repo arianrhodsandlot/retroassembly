@@ -179,15 +179,15 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
               <div
                 {...getRootProps()}
                 className={clsx(
-                  'border-(--accent-8) mt-4 flex h-48 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed outline-none',
+                  'mt-4 flex h-48 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-(--accent-8) outline-none',
                   { 'bg-(--accent-3)': isDragActive },
                 )}
               >
                 {isDragActive ? (
-                  <span className='text-(--accent-11) text-sm'>{t('Drop files here')}</span>
+                  <span className='text-sm text-(--accent-11)'>{t('Drop files here')}</span>
                 ) : (
                   <>
-                    <span className='text-(--accent-11) text-sm'>{t('Drag files here or')}</span>
+                    <span className='text-sm text-(--accent-11)'>{t('Drag files here or')}</span>
                     <Button onClick={handleClickSelect} size='2'>
                       <span className='icon-[mdi--folder-open]' />
                       {t('Select files')}
@@ -197,7 +197,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
               </div>
 
               {isOfficialHost ? (
-                <div className='text-(--accent-9) mt-4 flex flex-col gap-1 text-xs'>
+                <div className='mt-4 flex flex-col gap-1 text-xs text-(--accent-9)'>
                   <p>
                     {t(
                       'Please upload only ROMs you legally own, such as personal backups of games you purchased or homebrew titles. By uploading, you confirm compliance with all applicable laws.',
@@ -241,7 +241,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
                 size='3'
                 value={deferedProgress}
               />
-              <div className='text-(--gray-11) mt-4 flex items-center gap-2 text-sm'>
+              <div className='mt-4 flex items-center gap-2 text-sm text-(--gray-11)'>
                 <span className='icon-[svg-spinners--180-ring] text-zinc' />
                 {uploadedFiles.success.length + uploadedFiles.failure.length + uploadedFiles.loading.length}/
                 {files.length},

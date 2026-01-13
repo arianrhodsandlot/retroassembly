@@ -26,7 +26,7 @@ export function GameStateDelete({ id }: Readonly<{ id: string }>) {
 
   return (
     <button
-      className='text-(--accent-9) hover:bg-(--accent-3) absolute bottom-0 right-0 size-8 rounded'
+      className='absolute right-0 bottom-0 size-8 rounded text-(--accent-9) hover:bg-(--accent-3)'
       onClick={handleClick}
       title={t('Delete')}
       type='button'

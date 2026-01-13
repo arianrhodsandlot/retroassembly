@@ -44,7 +44,7 @@ export function GameEntryDropdownMenu({ rom }) {
 
   if (selectedGames.length > 0) {
     return (
-      <div className='absolute right-1 top-1 z-10'>
+      <div className='absolute top-1 right-1 z-10'>
         <Checkbox checked={selectedGames.includes(rom.id)} onCheckedChange={handleCheckedChange} value={rom.id} />
       </div>
     )
@@ -55,12 +55,12 @@ export function GameEntryDropdownMenu({ rom }) {
       <DropdownMenu.Root onOpenChange={setMenuOpen} open={menuOpen}>
         <DropdownMenu.Trigger>
           <div
-            className={clsx('absolute right-1 top-1 z-10 transition-opacity group-hover:opacity-100', {
+            className={clsx('absolute top-1 right-1 z-10 transition-opacity group-hover:opacity-100', {
               'opacity-0': !menuOpen,
             })}
           >
             <IconButton aria-label='Menu' className='bg-(--gray-1)!' size='1' title='Menu' variant='ghost'>
-              <span className='icon-[mdi--more-vert] text-(--accent-9) font-bold' />
+              <span className='icon-[mdi--more-vert] font-bold text-(--accent-9)' />
             </IconButton>
           </div>
         </DropdownMenu.Trigger>

@@ -11,8 +11,8 @@ function useFeatures() {
   return [
     {
       content: (
-        <div className='*:motion-preset-pulse *:motion-duration-1000 bg-(--gray-4) flex size-full items-center justify-evenly bg-cover bg-center'>
-          <span className='icon-[logos--chrome] size-14 ' />
+        <div className='*:motion-preset-pulse *:motion-duration-1000 flex size-full items-center justify-evenly bg-(--gray-4) bg-cover bg-center'>
+          <span className='icon-[logos--chrome] size-14' />
           <span className='icon-[logos--microsoft-edge] motion-delay-100 size-14' />
           <span className='icon-[logos--safari] motion-delay-200 size-14' />
           <span className='icon-[logos--firefox] motion-delay-300 size-14' />
@@ -36,7 +36,7 @@ function useFeatures() {
                 />
               </div>
             ))}
-            <div className='text-(--gray-9) flex items-center justify-center text-center font-semibold'>
+            <div className='flex items-center justify-center text-center font-semibold text-(--gray-9)'>
               {t('…and more')}
             </div>
           </div>
@@ -103,7 +103,7 @@ function useFeatures() {
           <div className='grid size-full grid-cols-3 grid-rows-2'>
             {range(6).map((i) => (
               <div className='rounded p-1' key={i}>
-                <div className='bg-(--gray-4) flex size-full items-center justify-center rounded'>
+                <div className='flex size-full items-center justify-center rounded bg-(--gray-4)'>
                   <span className='icon-[twemoji--star] size-12' />
                 </div>
               </div>
@@ -125,8 +125,8 @@ function useFeatures() {
               backgroundImage: `url("${rewindImage}")`,
             }}
           />
-          <div className='absolute left-0 top-0 flex size-full items-center justify-center'>
-            <span className='icon-[svg-spinners--clock] rotate-x-180 size-32 opacity-50' />
+          <div className='absolute top-0 left-0 flex size-full items-center justify-center'>
+            <span className='icon-[svg-spinners--clock] size-32 rotate-x-180 opacity-50' />
           </div>
         </div>
       ),
@@ -146,7 +146,7 @@ export function FeaturesSection() {
   return (
     <section className='relative'>
       <h2
-        className='text-(--accent-9) border-b-(--gray-4) border-t-(--gray-4) mb-6 flex items-center justify-center gap-2 border border-transparent py-8 font-serif text-4xl font-semibold lg:py-16'
+        className='mb-6 flex items-center justify-center gap-2 border border-transparent border-t-(--gray-4) border-b-(--gray-4) py-8 font-serif text-4xl font-semibold text-(--accent-9) lg:py-16'
         style={{
           textShadow: range(1, 5)
             .map((number) => `${number}px ${number}px 1px var(--accent-7)`)
@@ -162,7 +162,7 @@ export function FeaturesSection() {
           <li className={clsx('py-8 lg:py-12', { 'bg-(--gray-3)': index % 2 })} key={feature.title}>
             <article
               className={clsx(
-                'lg:w-5xl mx-auto flex w-full flex-col gap-6 px-8 lg:flex lg:flex-row lg:justify-center lg:gap-10',
+                'mx-auto flex w-full flex-col gap-6 px-8 lg:flex lg:w-5xl lg:flex-row lg:justify-center lg:gap-10',
                 {
                   'lg:flex-row-reverse': index % 2,
                 },
@@ -171,18 +171,18 @@ export function FeaturesSection() {
               <div className='flex flex-1 items-center'>
                 <div>
                   <header>
-                    <h3 className='text-(--accent-9) mb-2 flex items-center gap-2 text-xl font-semibold lg:text-2xl'>
+                    <h3 className='mb-2 flex items-center gap-2 text-xl font-semibold text-(--accent-9) lg:text-2xl'>
                       <span className={clsx(feature.icon, 'shrink-0 text-3xl lg:text-6xl')} />
                       <span>{feature.title}</span>
                     </h3>
                   </header>
-                  <p className='lg:pl-17 text-(--color-text)/60 pl-10 text-lg font-light'>{feature.description}</p>
+                  <p className='pl-10 text-lg font-light text-(--color-text)/60 lg:pl-17'>{feature.description}</p>
                 </div>
               </div>
 
               <div className='lg:flex lg:items-center lg:justify-center'>
-                <figure className='bg-(--color-background) ring-(--color-text)/10 rounded p-2 ring-1'>
-                  <div className='lg:w-100 aspect-5/3 lg:h-60'>{feature.content}</div>
+                <figure className='rounded bg-(--color-background) p-2 ring-1 ring-(--color-text)/10'>
+                  <div className='aspect-5/3 lg:h-60 lg:w-100'>{feature.content}</div>
                   <figcaption className='sr-only'>
                     {t('Demo or visual for')} {feature.title}
                   </figcaption>

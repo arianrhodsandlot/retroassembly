@@ -110,13 +110,13 @@ export function SearchBar() {
   return (
     <div
       className={clsx(
-        'z-1 w-2xl pointer-events-none fixed left-1/2 flex max-w-full -translate-x-1/2 flex-col overflow-hidden px-2 text-xl',
+        'pointer-events-none fixed left-1/2 z-1 flex w-2xl max-w-full -translate-x-1/2 flex-col overflow-hidden px-2 text-xl',
         query && displayResults?.length ? 'inset-y-14' : 'top-14',
       )}
     >
       <form
         className={clsx(
-          'border-(--accent-9) bg-(--color-background) pointer-events-auto w-full shrink-0 overflow-hidden rounded-t border-2',
+          'pointer-events-auto w-full shrink-0 overflow-hidden rounded-t border-2 border-(--accent-9) bg-(--color-background)',
           { 'rounded-b': !query },
         )}
         onSubmit={handleSubmit}
@@ -126,7 +126,7 @@ export function SearchBar() {
 
       <div
         className={clsx(
-          'border-(--accent-9) bg-(--color-background) w-full overflow-auto rounded-b border-x-2 border-b-2 transition-opacity *:pointer-events-auto empty:hidden',
+          'w-full overflow-auto rounded-b border-x-2 border-b-2 border-(--accent-9) bg-(--color-background) transition-opacity *:pointer-events-auto empty:hidden',
           { '*:opacity-50': query && data?.query !== query },
         )}
       >

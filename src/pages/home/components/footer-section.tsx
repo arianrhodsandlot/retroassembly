@@ -8,17 +8,17 @@ export function FooterSection() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className='border-t-(--gray-4) text-(--gray-11) border border-x-0 border-b-0 p-8 text-center text-sm font-light'>
-      <div className='w-7xl pb-safe mx-auto flex max-w-full flex-col items-center justify-between gap-4 sm:flex-row'>
+    <footer className='border border-x-0 border-b-0 border-t-(--gray-4) p-8 text-center text-sm font-light text-(--gray-11)'>
+      <div className='pb-safe mx-auto flex w-7xl max-w-full flex-col items-center justify-between gap-4 sm:flex-row'>
         <div className='flex flex-col items-center gap-4 sm:items-start'>
-          <a className='text-(--accent-9) flex items-center gap-2 font-serif font-bold' href='/'>
+          <a className='flex items-center gap-2 font-serif font-bold text-(--accent-9)' href='/'>
             <img alt='logo' height='32' src='/assets/logo/logo.svg' width='32' />
             <span className='font-serif font-semibold'>{metadata.title}</span>
           </a>
 
           <div className='flex gap-4 text-lg'>
             <a
-              className='flex items-center '
+              className='flex items-center'
               href='https://blog.retroassembly.com/'
               rel='noreferrer noopener'
               target='_blank'
@@ -29,7 +29,7 @@ export function FooterSection() {
 
             {links.map((link) => (
               <a
-                className='flex items-center '
+                className='flex items-center'
                 href={link.url}
                 key={link.name}
                 rel='noreferrer noopener'

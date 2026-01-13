@@ -8,7 +8,7 @@ export function SectionTitle({
   suffix,
 }: PropsWithChildren<{ icon: string; link: string; suffix?: ReactNode }>) {
   return (
-    <h2 className='bg-(--accent-4) text-(--accent-9) mx-4 flex items-center justify-between rounded p-4 text-2xl font-semibold'>
+    <h2 className='mx-4 flex items-center justify-between rounded bg-(--accent-4) p-4 text-2xl font-semibold text-(--accent-9)'>
       <Link className='flex items-center gap-2' to={link}>
         <span className={icon} />
         {children}

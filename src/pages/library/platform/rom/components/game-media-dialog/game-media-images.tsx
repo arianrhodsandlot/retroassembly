@@ -60,7 +60,7 @@ export function GameMediaImages() {
       {thumbnailFileIds.map((thumbnailFileId) => (
         <div className='relative size-20 bg-neutral-200' key={thumbnailFileId}>
           <button
-            className='absolute right-0 top-0 flex size-4 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-black text-white'
+            className='absolute top-0 right-0 flex size-4 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black text-white'
             disabled={isDeletingThumbnail || isUploadingThumbnail}
             onClick={() => handleClickDeleteThumbnail(thumbnailFileId)}
             title='Delete'

@@ -35,7 +35,7 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
     <>
       <title>{getPostfixedTitle(title)}</title>
 
-      <div className={clsx('library-layout bg-(--color-background) flex min-h-screen flex-col')}>
+      <div className={clsx('library-layout flex min-h-screen flex-col bg-(--color-background)')}>
         {isDemo ? <DemoLoginButton /> : null}
 
         <LayoutHeader />
@@ -51,14 +51,14 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
             <SidebarLinks />
           </ScrollArea>
           {isDemo ? null : (
-            <div className='border-t border-t-white/30 py-2 '>{isLargeScreen ? <LayoutMenu /> : null}</div>
+            <div className='border-t border-t-white/30 py-2'>{isLargeScreen ? <LayoutMenu /> : null}</div>
           )}
         </SidebarContainer>
 
         <LayoutMain>{children}</LayoutMain>
 
-        <div className='bg-(--accent-9) z-11 left-72 right-0 top-0 hidden h-4 lg:fixed lg:block' />
-        <div className='bg-(--accent-9) z-11 inset-y-0 right-0 hidden h-full w-4 lg:fixed lg:block' />
+        <div className='top-0 right-0 left-72 z-11 hidden h-4 bg-(--accent-9) lg:fixed lg:block' />
+        <div className='inset-y-0 right-0 z-11 hidden h-full w-4 bg-(--accent-9) lg:fixed lg:block' />
         <StatusBar />
       </div>
 

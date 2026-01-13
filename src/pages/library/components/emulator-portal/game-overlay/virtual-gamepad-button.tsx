@@ -42,8 +42,8 @@ export function VirtualGamepadButton({
     <button
       className={twMerge(
         clsx(
-          'inline-flex select-none items-center justify-center gap-1',
-          touching ? 'text-(--color-text) bg-white' : 'bg-black/20 text-white/50',
+          'inline-flex items-center justify-center gap-1 select-none',
+          touching ? 'bg-white text-(--color-text)' : 'bg-black/20 text-white/50',
         ),
         className,
       )}

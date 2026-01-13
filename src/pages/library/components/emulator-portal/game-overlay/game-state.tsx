@@ -45,7 +45,7 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
     <div className='relative'>
       <button
         className={clsx(
-          'border-(--color-background) bg-(--color-background) flex h-36 w-48 shrink-0 flex-col overflow-hidden rounded border-4 shadow',
+          'flex h-36 w-48 shrink-0 flex-col overflow-hidden rounded border-4 border-(--color-background) bg-(--color-background) shadow',
           { 'cursor-default': isMutating },
         )}
         data-sn-enabled
@@ -74,18 +74,18 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
             src={getFileUrl(state.thumbnailFileId)}
           />
           {loadable ? null : (
-            <div className='absolute bottom-0 right-0  rounded-tl-lg bg-black px-1 py-0.5 text-xs text-white'>
+            <div className='absolute right-0 bottom-0 rounded-tl-lg bg-black px-1 py-0.5 text-xs text-white'>
               {state.core}
             </div>
           )}
         </div>
         <div
-          className={clsx('text-(--color-text) mt-1 flex h-6 w-full items-center justify-center gap-1 text-xs', {
+          className={clsx('mt-1 flex h-6 w-full items-center justify-center gap-1 text-xs text-(--color-text)', {
             'opacity-50': !loadable,
           })}
         >
           {isMutating ? (
-            <span className='icon-[svg-spinners--180-ring] text-(--accent-9) block size-3' />
+            <span className='icon-[svg-spinners--180-ring] block size-3 text-(--accent-9)' />
           ) : (
             <>
               {t('Saved at')} <Badge>{humanizeDate(state.createdAt, dateFormat)}</Badge>

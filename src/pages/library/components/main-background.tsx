@@ -14,7 +14,7 @@ export function MainBackground({
       )}
     >
       <img alt={alt || ''} className='absolute size-full object-cover object-center' loading='lazy' src={src} />
-      <div className=' *:from-(--color-background)/30 *:to-(--color-background) *:absolute *:top-0 *:size-full'>
+      <div className='*:absolute *:top-0 *:size-full *:from-(--color-background)/30 *:to-(--color-background)'>
         <div className='bg-linear-to-l' />
         <div className='bg-linear-to-b' />
       </div>

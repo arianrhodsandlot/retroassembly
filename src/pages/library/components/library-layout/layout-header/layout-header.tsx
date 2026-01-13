@@ -27,7 +27,7 @@ export function LayoutHeader() {
 
   return (
     <>
-      <header className='bg-(--accent-9) px-safe-offset-2 z-2 fixed inset-x-0 top-0 flex items-center py-2 lg:hidden'>
+      <header className='px-safe-offset-2 fixed inset-x-0 top-0 z-2 flex items-center bg-(--accent-9) py-2 lg:hidden'>
         <Link className='flex items-center gap-2 font-bold' reloadDocument to={getHomePath(language)}>
           <img alt='logo' height='32' src='/assets/logo/logo.svg' width='32' />
         </Link>
@@ -56,7 +56,7 @@ export function LayoutHeader() {
 
         <div className='-mr-3 h-8 w-10'>{isNotLargeScreen ? <LayoutMenu /> : null}</div>
       </header>
-      <div className='bg-(--accent-9) h-12 w-full lg:hidden' />
+      <div className='h-12 w-full bg-(--accent-9) lg:hidden' />
     </>
   )
 }

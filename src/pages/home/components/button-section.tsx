@@ -22,8 +22,8 @@ export function ButtonSection() {
         <Paralolas />
       </div>
 
-      <div className='lg:w-2xl border-(--accent-9) bg-(--color-background) in-[.dark]:bg-(--gray-2) relative mx-5 rounded-xl border-2 p-5 shadow-[0_0_4px_rgba(0,0,0,0.1)] lg:mx-auto'>
-        <h2 className='text-(--accent-9) flex items-center justify-center gap-2 text-center text-xl font-semibold lg:text-3xl'>
+      <div className='relative mx-5 rounded-xl border-2 border-(--accent-9) bg-(--color-background) p-5 shadow-[0_0_4px_rgba(0,0,0,0.1)] in-[.dark]:bg-(--gray-2) lg:mx-auto lg:w-2xl'>
+        <h2 className='flex items-center justify-center gap-2 text-center text-xl font-semibold text-(--accent-9) lg:text-3xl'>
           {t('Start to enjoy retro gaming now!')}
         </h2>
 

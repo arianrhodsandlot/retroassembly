@@ -63,7 +63,7 @@ export function GamepadInput({ button }: Readonly<GamepadInputProps>) {
 
   return (
     <label className='flex items-center gap-2'>
-      <div className='text-(--color-text)/70 flex w-14 justify-end text-xs font-semibold'>
+      <div className='flex w-14 justify-end text-xs font-semibold text-(--color-text)/70'>
         {button.iconClass ? <span className={clsx('size-7', button.iconClass)} /> : button.iconNode}
       </div>
       <div>
@@ -89,7 +89,7 @@ export function GamepadInput({ button }: Readonly<GamepadInputProps>) {
             ) : null}
           </TextField.Slot>
         </TextField.Root>
-        {button.text ? <span className='absolute ml-2 mt-0.5 text-xs opacity-50'>{button.text}</span> : null}
+        {button.text ? <span className='absolute mt-0.5 ml-2 text-xs opacity-50'>{button.text}</span> : null}
       </div>
     </label>
   )

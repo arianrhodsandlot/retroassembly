@@ -26,7 +26,7 @@ export function SidebarLink({ active, children, title, to }) {
     <motion.div className='max-w-full flex-1' layout ref={ref}>
       <Button asChild size='2' variant='ghost'>
         <NavigatableLink
-          className={clsx('sidebar-link', 'm-0! flex! h-auto! py-2.5! group', {
+          className={clsx('sidebar-link', 'group m-0! flex! h-auto! py-2.5!', {
             active,
             'bg-(--accent-12)! [.dark_.sidebar-link]:bg-(--accent-5)! font-semibold! text-white!': active,
             'text-white! hover:bg-inherit!': !active,

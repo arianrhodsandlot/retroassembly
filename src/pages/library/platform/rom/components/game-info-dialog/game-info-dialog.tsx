@@ -80,7 +80,7 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
           </div>
         </form>
 
-        <div className='absolute right-6 top-6'>
+        <div className='absolute top-6 right-6'>
           <Dialog.Close>
             <Button variant='ghost'>
               <span className='icon-[mdi--close] size-5' />

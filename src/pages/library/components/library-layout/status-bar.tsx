@@ -24,7 +24,7 @@ export function StatusBar() {
   ]
 
   return (
-    <div className='bg-(--accent-9) z-11 fixed bottom-0 left-72 right-0 hidden h-12 items-center justify-end gap-4 pr-8 text-sm font-medium text-white/80 lg:flex'>
+    <div className='fixed right-0 bottom-0 left-72 z-11 hidden h-12 items-center justify-end gap-4 bg-(--accent-9) pr-8 text-sm font-medium text-white/80 lg:flex'>
       {connected ? (
         <>
           <span className='flex items-center gap-2'>

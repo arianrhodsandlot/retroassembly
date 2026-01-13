@@ -18,13 +18,13 @@ export function PendingMask() {
         {isNavigating ? (
           <motion.div
             animate={{ backdropFilter: 'blur(0)', opacity: 1 }}
-            className='bg-(--color-overlay) fixed inset-0 z-10 flex items-center justify-center'
+            className='fixed inset-0 z-10 flex items-center justify-center bg-(--color-overlay)'
             exit={{ backdropFilter: 'blur(0)', opacity: 0 }}
             initial={{ backdropFilter: 'blur(0)', opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <div className='bg-(--color-background) ring-(--gray-4) rounded-full p-2 ring-1'>
-              <span className='icon-[svg-spinners--180-ring] text-(--accent-9) block size-12' />
+            <div className='rounded-full bg-(--color-background) p-2 ring-1 ring-(--gray-4)'>
+              <span className='icon-[svg-spinners--180-ring] block size-12 text-(--accent-9)' />
             </div>
           </motion.div>
         ) : null}

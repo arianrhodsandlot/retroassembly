@@ -88,7 +88,7 @@ export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProp
           />
         )}
         <div className='flex min-w-0 flex-1 flex-col justify-center gap-1'>
-          <div className='text-(--color-text) truncate text-base'>
+          <div className='truncate text-base text-(--color-text)'>
             {preference.ui.showDistrictOnTitle
               ? [...districts].map((district) => <DistrictIcon district={district} key={district} />)
               : null}

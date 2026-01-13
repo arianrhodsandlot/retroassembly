@@ -59,7 +59,7 @@ export function GameInfo({ rom }) {
   ]
 
   return (
-    <div className='bg-(--gray-a3) rounded p-4 lg:px-8'>
+    <div className='rounded bg-(--gray-a3) p-4 lg:px-8'>
       <div className='flex flex-col gap-8 lg:flex-row lg:flex-wrap lg:*:min-w-36'>
         {items.map((item) => (
           <div className='group' key={item.title}>

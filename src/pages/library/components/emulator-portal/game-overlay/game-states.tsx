@@ -22,7 +22,7 @@ export function GameStates() {
             <span className='icon-[mdi--database] size-7' />
             {t('Saved States')}
           </h3>
-          <ScrollArea className='overflow-visible! lg:overflow-hidden! lg:h-44!' size='2'>
+          <ScrollArea className='overflow-visible! lg:h-44! lg:overflow-hidden!' size='2'>
             <div className='flex flex-col flex-nowrap items-center gap-8 pb-4 lg:flex-row'>
               {manual.map((state) => (
                 <GameState key={state.id} state={state} />
@@ -38,7 +38,7 @@ export function GameStates() {
             <span className='icon-[mdi--timer] size-7' />
             {t('Auto Saved States')}
           </h3>
-          <ScrollArea className='overflow-visible! lg:overflow-hidden! lg:h-44!' size='2'>
+          <ScrollArea className='overflow-visible! lg:h-44! lg:overflow-hidden!' size='2'>
             <div className='flex flex-col flex-nowrap items-center gap-8 pb-4 lg:flex-row'>
               {auto.map((state) => (
                 <GameState key={state.id} state={state} />

@@ -24,7 +24,7 @@ export function ConfirmButtonSettings() {
         <span className='icon-[mdi--gamepad-circle]' />
         {t('Confirm and Cancel Buttons')}
       </SettingsTitle>
-      <div className='lg:w-sm px-6'>
+      <div className='px-6 lg:w-sm'>
         <RadioCards.Root
           columns='1'
           defaultValue='1'

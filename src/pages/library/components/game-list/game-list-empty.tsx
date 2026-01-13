@@ -27,7 +27,7 @@ export function GameListEmpty() {
               title: metadata.title,
             })}
           </div>
-          <div className='text-(--gray-11) inline-flex items-center gap-1'>
+          <div className='inline-flex items-center gap-1 text-(--gray-11)'>
             <Trans
               components={{
                 1: <UploadSelectButton variant='soft' />,
@@ -41,13 +41,13 @@ export function GameListEmpty() {
       {isHistory ? (
         <>
           <div className='text-(--gray-11)'>{t("You haven't played any games yet.")}</div>
-          <div className='text-(--gray-11) inline-flex items-center gap-1'>
+          <div className='inline-flex items-center gap-1 text-(--gray-11)'>
             <Trans
               components={{
                 1: createElement(() => (
                   <Button asChild variant='soft'>
                     <Link to={generatePath(routes.libraryHome)}>
-                      <span className='icon-[mdi--bookshelf] ' /> {t('Home')}
+                      <span className='icon-[mdi--bookshelf]' /> {t('Home')}
                     </Link>
                   </Button>
                 )),
@@ -60,7 +60,7 @@ export function GameListEmpty() {
 
       {platform ? (
         <>
-          <div className='text-(--gray-11) flex items-center gap-1'>
+          <div className='flex items-center gap-1 text-(--gray-11)'>
             <Trans
               components={{
                 1: (
@@ -78,7 +78,7 @@ export function GameListEmpty() {
               }}
             />
           </div>
-          <div className='text-(--gray-11) flex items-center gap-1'>
+          <div className='flex items-center gap-1 text-(--gray-11)'>
             <Trans
               components={{
                 1: <UploadButton platform={platform?.name} variant='soft' />,

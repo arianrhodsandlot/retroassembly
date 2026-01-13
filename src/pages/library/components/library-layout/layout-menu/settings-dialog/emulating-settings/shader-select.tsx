@@ -13,7 +13,7 @@ export function ShaderSelect(props: Readonly<Select.RootProps>) {
           <Tooltip
             content={
               shader.thumbnail ? (
-                <img alt={shader.name} className='size-120 my-1' src={shader.thumbnail} />
+                <img alt={shader.name} className='my-1 size-120' src={shader.thumbnail} />
               ) : (
                 <span className='icon-[mdi--file-question] size-5' />
               )

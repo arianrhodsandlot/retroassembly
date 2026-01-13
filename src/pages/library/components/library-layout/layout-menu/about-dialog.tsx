@@ -21,7 +21,7 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
         <div className='flex flex-col items-center gap-2 p-2 text-center'>
           <img alt='logo' height='56' src='/assets/logo/logo.svg' width='56' />
           <a
-            className='text-(--accent-9) font-serif text-xl font-semibold'
+            className='font-serif text-xl font-semibold text-(--accent-9)'
             href={metadata.link}
             rel='noreferrer noopener'
             target='_blank'
@@ -47,7 +47,7 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
               {t('Date')}: <span className='ml-0.5'>{metadata.buildDate}</span>
             </div>
           </div>
-          <div className='mb-4 mt-1 flex items-center justify-center gap-2 text-xs'>
+          <div className='mt-1 mb-4 flex items-center justify-center gap-2 text-xs'>
             <span>&copy; 2025</span>
             <a
               className='underline'
@@ -73,7 +73,7 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
           </div>
         </div>
 
-        <div className='absolute right-6 top-6'>
+        <div className='absolute top-6 right-6'>
           <Dialog.Close>
             <Button variant='ghost'>
               <span className='icon-[mdi--close] size-5' />

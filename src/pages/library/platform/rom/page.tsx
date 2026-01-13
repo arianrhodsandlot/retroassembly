@@ -51,7 +51,7 @@ export default function RomPage() {
 
             <div className='flex flex-col gap-6'>
               <GameMedia />
-              <div className='text-(--color-text)/90 prose group max-w-none whitespace-pre-line text-justify font-serif lg:pl-4 2xl:mr-64'>
+              <div className='prose group max-w-none text-justify font-serif whitespace-pre-line text-(--color-text)/90 lg:pl-4 2xl:mr-64'>
                 {overview}
                 <div className='mt-1 flex justify-end'>
                   <GameInfoDialog autoFocusField='gameDescription' />
@@ -61,7 +61,7 @@ export default function RomPage() {
               {launchboxGame?.wikipediaUrl ? (
                 <div>
                   <a
-                    className='text-(--accent-9) inline-flex items-center gap-2 underline'
+                    className='inline-flex items-center gap-2 text-(--accent-9) underline'
                     href={launchboxGame.wikipediaUrl}
                     rel='noreferrer noopener'
                     target='_blank'

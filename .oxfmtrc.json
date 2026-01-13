@@ -4,6 +4,10 @@
     "groups": [["builtin"], ["external"], ["internal"], ["subpath"], ["parent"], ["sibling"], ["index"], ["unknown"]],
     "newlinesBetween": false
   },
+  "experimentalTailwindcss": {
+    "attributes": ["class", "className"],
+    "functions": ["clsx", "twMerge"]
+  },
   "jsxSingleQuote": true,
   "printWidth": 120,
   "semi": false,

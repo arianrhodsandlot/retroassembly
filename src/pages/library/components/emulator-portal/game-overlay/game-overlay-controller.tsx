@@ -41,17 +41,17 @@ export function GameOverlayController() {
           transition={{ duration: 0.2 }}
         >
           <div>
-            <div className='bg-linear-to-b flex h-20 w-full items-center justify-end from-black/70 to-black/40 px-4'>
+            <div className='flex h-20 w-full items-center justify-end bg-linear-to-b from-black/70 to-black/40 px-4'>
               <ControllerButton onClick={handleClickExit} title={t('Exit')}>
                 <span className='icon-[mdi--close]' />
               </ControllerButton>
             </div>
-            <div className='bg-linear-to-b h-20 from-black/40 to-transparent' />
+            <div className='h-20 bg-linear-to-b from-black/40 to-transparent' />
           </div>
 
           <div>
-            <div className='bg-linear-to-b h-20 from-transparent to-black/40' />
-            <div className='bg-linear-to-b flex h-20 w-full items-center from-black/40 to-black/70 px-4'>
+            <div className='h-20 bg-linear-to-b from-transparent to-black/40' />
+            <div className='flex h-20 w-full items-center bg-linear-to-b from-black/40 to-black/70 px-4'>
               <ControllerButton onClick={handleClickPause} title={t('Pause')}>
                 <span className='icon-[mdi--pause]' />
               </ControllerButton>

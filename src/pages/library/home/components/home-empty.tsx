@@ -12,7 +12,7 @@ export function HomeEmpty() {
           title: metadata.title,
         })}
       </div>
-      <div className='text-(--gray-11) inline-flex items-center gap-1'>
+      <div className='inline-flex items-center gap-1 text-(--gray-11)'>
         <Trans
           components={{
             1: <UploadSelectButton variant='soft' />,

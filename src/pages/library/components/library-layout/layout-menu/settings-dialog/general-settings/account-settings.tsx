@@ -65,7 +65,7 @@ export function AccountSettings() {
         {t('Account')}
       </SettingsTitle>
       <Card>
-        <form className='lg:w-xl flex flex-col gap-2' onSubmit={handleSubmit}>
+        <form className='flex flex-col gap-2 lg:w-xl' onSubmit={handleSubmit}>
           <div className='grid-cols-2 grid-rows-2 gap-4 lg:grid'>
             {accountFormFields.map((field) => (
               <AccountFormField key={field.name} size='2' {...field} />

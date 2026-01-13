@@ -15,7 +15,7 @@ export function FixedHeader() {
   const { currentUser } = useLoaderData<typeof loader>()
 
   return (
-    <div className='border-b-(--accent-9) bg-(--accent-9) fixed z-10 flex w-full items-stretch justify-between border-b px-8 text-white shadow shadow-black/30'>
+    <div className='fixed z-10 flex w-full items-stretch justify-between border-b border-b-(--accent-9) bg-(--accent-9) px-8 text-white shadow shadow-black/30'>
       <Link className='pt-safe-offset-4 shrink-0 self-center py-4 font-extrabold' to='/'>
         <img alt='Logo' className='motion-preset-expand' height={32} src='/assets/logo/logo.svg' width={32} />
       </Link>
@@ -28,7 +28,7 @@ export function FixedHeader() {
         <div className='h-5 w-px bg-white/50' />
 
         <a
-          className='flex items-center '
+          className='flex items-center'
           href='https://blog.retroassembly.com/'
           rel='noreferrer noopener'
           target='_blank'
@@ -51,7 +51,7 @@ export function FixedHeader() {
                 defaultOpen
               >
                 <a
-                  className='flex items-center '
+                  className='flex items-center'
                   href={link.url}
                   rel='noreferrer noopener'
                   target='_blank'
@@ -62,7 +62,7 @@ export function FixedHeader() {
               </Tooltip>
             ) : (
               <a
-                className='flex items-center '
+                className='flex items-center'
                 href={link.url}
                 rel='noreferrer noopener'
                 target='_blank'
@@ -77,7 +77,7 @@ export function FixedHeader() {
         <div className='h-5 w-px bg-white/50' />
 
         {currentUser ? (
-          <div className='flex items-center '>
+          <div className='flex items-center'>
             <Button asChild size='2' type='button' variant='outline'>
               <Link className='rounded-full! border-2! bg-white! shadow-none!' reloadDocument to='/library'>
                 <span className='icon-[mdi--bookshelf]' />

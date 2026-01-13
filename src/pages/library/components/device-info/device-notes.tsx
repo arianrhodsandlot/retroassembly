@@ -38,7 +38,7 @@ export function DeviceNotes({ notes }: Readonly<{ notes: string }>) {
     <div>
       <div
         className={clsx(
-          'text-(--color-text)/70 prose max-w-none whitespace-pre-line text-justify font-serif text-sm leading-relaxed lg:px-8',
+          'prose max-w-none text-justify font-serif text-sm leading-relaxed whitespace-pre-line text-(--color-text)/70 lg:px-8',
           { 'line-clamp-5': !expanded },
         )}
         ref={ref}

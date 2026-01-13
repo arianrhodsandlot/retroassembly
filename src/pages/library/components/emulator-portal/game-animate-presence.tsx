@@ -29,7 +29,7 @@ export function GameAnimatePresence() {
       {launched ? (
         <motion.div
           animate={{ ...animateStyle, backgroundColor: 'oklch(0 0 0)', opacity: 1 }}
-          className='z-1 fixed bg-black'
+          className='fixed z-1 bg-black'
           exit={{ ...initialStyle, backgroundColor: 'oklch(0.514 0.222 16.935)', opacity: 0.5 }}
           initial={{ ...initialStyle, backgroundColor: 'oklch(0.514 0.222 16.935)', opacity: 1 }}
           onAnimationComplete={handleAnimationComplete}

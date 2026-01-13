@@ -43,7 +43,7 @@ export default function PlatformPage() {
                 <span className='icon-[mdi--bar-chart] text-(--color-text)' />
                 <Trans
                   components={{
-                    1: <span className='text-(--accent-9) font-semibold' />,
+                    1: <span className='font-semibold text-(--accent-9)' />,
                   }}
                   i18nKey='platformGamesStats'
                   values={{

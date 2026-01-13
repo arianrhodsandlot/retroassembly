@@ -51,7 +51,7 @@ export function GameEntryImage({ centered = false, rom }: Readonly<{ centered?: 
   )
 
   return (
-    <div className='w-9/10! relative aspect-square overflow-hidden'>
+    <div className='relative aspect-square w-9/10! overflow-hidden'>
       <AnimatePresence>
         {shouldShowskeleton ? (
           <motion.div

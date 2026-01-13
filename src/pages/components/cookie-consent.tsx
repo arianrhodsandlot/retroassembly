@@ -32,7 +32,7 @@ export function CookieConsent() {
 
   return (
     <div className='pointer-events-none fixed inset-x-4 bottom-4 z-20 text-xs'>
-      <div className='border-(--accent-9) bg-(--color-background) w-2xl pointer-events-auto mx-auto flex max-w-full items-center justify-center gap-2 rounded border px-4 py-2 shadow-xl'>
+      <div className='pointer-events-auto mx-auto flex w-2xl max-w-full items-center justify-center gap-2 rounded border border-(--accent-9) bg-(--color-background) px-4 py-2 shadow-xl'>
         <span className='icon-[mdi--cookie] size-6 shrink-0' />
         <div className='text-left'>
           {t('We use')}{' '}

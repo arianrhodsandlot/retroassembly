@@ -18,7 +18,7 @@ export function GameList() {
 
   if (!roms?.length) {
     return (
-      <div className='border-t-(--gray-6) border border-transparent'>
+      <div className='border border-transparent border-t-(--gray-6)'>
         <GameListEmpty />
       </div>
     )
@@ -29,7 +29,7 @@ export function GameList() {
   const gridTemplateColumns = `repeat(auto-fill,minmax(min(calc(var(--spacing)*${size}),var(--min-width)),1fr))`
 
   return (
-    <div className='border-t-(--gray-6) flex flex-col border border-transparent pt-4'>
+    <div className='flex flex-col border border-transparent border-t-(--gray-6) pt-4'>
       <GameListActions />
       <div className='mt-4 grid [--min-width:150px] lg:[--min-width:100%]' style={{ gridTemplateColumns }}>
         {roms.map((rom) => (

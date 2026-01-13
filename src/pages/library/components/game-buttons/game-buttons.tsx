@@ -77,7 +77,7 @@ export function GameButtons() {
 
   if (!isPreparing && error) {
     return (
-      <div className='bg-(--accent-4) flex h-16 w-full items-center justify-center gap-2 rounded lg:w-80'>
+      <div className='flex h-16 w-full items-center justify-center gap-2 rounded bg-(--accent-4) lg:w-80'>
         <span className='icon-[mdi--warning-decagram]' />
         <span className='text-sm opacity-60'>{t('Failed to load the emulator.')}</span>
         <Button onClick={handleClickRetry} size='1' type='button'>

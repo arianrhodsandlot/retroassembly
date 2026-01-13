@@ -17,7 +17,7 @@ export function ReviewsSection() {
 
   const reviews: Review[] = [
     {
-      avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', `home/review-authors/jim-gray.png`),
+      avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', 'home/review-authors/jim-gray.png'),
       contentKey: 'review_jim_gray',
       name: 'Jim Gray',
       role: 'Retro Collector',
@@ -25,21 +25,21 @@ export function ReviewsSection() {
       url: 'https://retrohandhelds.gg/how-to-setup-retroassembly/',
     },
     {
-      avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', `home/review-authors/dash.png`),
+      avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', 'home/review-authors/dash.png'),
       contentKey: 'review_dash',
       name: 'Dash',
       site: 'The Bryant Review',
       url: 'https://gardinerbryant.com/inside-retroassembly-a-conversation-with-its-creator/',
     },
     {
-      avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', `home/review-authors/korben.png`),
+      avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', 'home/review-authors/korben.png'),
       contentKey: 'review_korben',
       name: 'Korben',
       site: "L'actu tech & geek de Korben",
       url: 'https://korben.info/retroassembly-collection-jeux-retro-navigateur-web.html',
     },
     {
-      avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', `home/review-authors/robert-triggs.png`),
+      avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', 'home/review-authors/robert-triggs.png'),
       contentKey: 'review_robert_triggs',
       name: 'Robert Triggs',
       site: 'Android Authority',

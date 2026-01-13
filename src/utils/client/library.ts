@@ -49,8 +49,11 @@ export function getLibretroThumbnail({
     return getCDNUrl(repo, filePath)
   }
 
-  const result = new URL(`${[platformFullName, fileDirectory, name].join('/')}.png`, 'https://thumbnails.libretro.com')
-    .href
+  const result = new URL(
+    [platformFullName, fileDirectory, normalizedFileName].join('/'),
+    'https://thumbnails.libretro.com',
+  ).href
+
   return result
 }
 

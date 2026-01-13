@@ -9,9 +9,19 @@
   <a href="https://hub.docker.com/r/arianrhodsandlot/retroassembly"><img src="https://img.shields.io/docker/pulls/arianrhodsandlot/retroassembly" alt="Docker Hub"></a>
 </p>
 
-RetroAssembly is the personal retro game collection cabinet in your browser.
+<p align="center">
+  <a href="https://discord.gg/gwaKRAYG6t">
+    <picture>
+      <source media="(prefers-color-scheme: light)" srcset="https://invidget.switchblade.xyz/gwaKRAYG6t?theme=light">
+      <source media="(prefers-color-scheme: dark)" srcset="https://invidget.switchblade.xyz/gwaKRAYG6t">
+      <img alt="Join our Discord server" src="https://invidget.switchblade.xyz/gwaKRAYG6t?theme=light">
+    </picture>
+  </a>
+</p>
 
-![library](public/assets/screenshots/library.jpeg)
+---
+
+RetroAssembly is the personal retro game collection cabinet in your browser.
 
 ## Features
 
@@ -24,17 +34,29 @@ RetroAssembly is the personal retro game collection cabinet in your browser.
 - [x] Enhance your gaming experience with beautiful visual effects with retro-style shaders.
 - [x] Play on the go, even without a physical gamepad, using our on-screen virtual controller.
 
----
 
-Share your ideas to our community and they may appear here later!
 
-<a href="https://discord.gg/gwaKRAYG6t">
-  <picture>
-    <source media="(prefers-color-scheme: light)" srcset="https://invidget.switchblade.xyz/gwaKRAYG6t?theme=light">
-    <source media="(prefers-color-scheme: dark)" srcset="https://invidget.switchblade.xyz/gwaKRAYG6t">
-    <img alt="Join our Discord server" src="https://invidget.switchblade.xyz/gwaKRAYG6t?theme=light">
-  </picture>
-</a>
+## Screenshots
+
+| | Desktop | Mobile |
+| - | - | - |
+| Library | ![library-desktop] | ![library-mobile] |
+| Games | ![games-desktop] | ![games-mobile] |
+| Platform | ![platform-desktop] | ![platform-mobile] |
+| ROM | ![rom-desktop] | ![rom-mobile] |
+| Menu | ![menu-desktop] | ![menu-mobile] |
+
+[library-desktop]: https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/library.jpg
+[games-desktop]: https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/games.jpg
+[platform-desktop]: https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/platform.jpg
+[rom-desktop]: https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/rom.jpg
+[menu-desktop]: https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/menu.jpg
+
+[library-mobile]: https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/library.jpg
+[games-mobile]: https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/games.jpg
+[platform-mobile]: https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/platform.jpg
+[rom-mobile]: https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/rom.jpg
+[menu-mobile]: https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/menu.jpg
 
 ## Getting Started
 

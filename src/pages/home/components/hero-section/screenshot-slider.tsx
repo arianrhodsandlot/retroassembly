@@ -2,12 +2,14 @@ import { clsx } from 'clsx'
 import { useEffect, useState } from 'react'
 import useSWRImmutable from 'swr/immutable'
 import { imageLoaded } from '#@/utils/client/image.ts'
+import { getCDNUrl } from '#@/utils/isomorphic/cdn.ts'
 
 const images = [
-  '/assets/screenshots/library.jpeg',
-  '/assets/screenshots/platform.jpeg',
-  '/assets/screenshots/rom.jpeg',
-  '/assets/screenshots/menu.jpeg',
+  getCDNUrl('arianrhodsandlot/retroassembly-assets', 'screenshots/desktop/library.jpg'),
+  getCDNUrl('arianrhodsandlot/retroassembly-assets', 'screenshots/desktop/games.jpg'),
+  getCDNUrl('arianrhodsandlot/retroassembly-assets', 'screenshots/desktop/platform.jpg'),
+  getCDNUrl('arianrhodsandlot/retroassembly-assets', 'screenshots/desktop/rom.jpg'),
+  getCDNUrl('arianrhodsandlot/retroassembly-assets', 'screenshots/desktop/menu.jpg'),
 ]
 
 const SLIDE_DURATION = 3000

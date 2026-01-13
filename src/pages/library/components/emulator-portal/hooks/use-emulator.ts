@@ -35,6 +35,7 @@ const defaultRetroarchConfig: RetroarchConfig = {
   input_rewind_btn: 6, // L2
   rewind_enable: true,
   rewind_granularity: 4,
+  rgui_menu_color_theme: 1,
   run_ahead_enabled: true,
   run_ahead_frames: 1,
 }

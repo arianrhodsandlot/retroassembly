@@ -29,6 +29,7 @@ export async function getLaunchRecords({ page = 1, pageSize = 100 }: { page?: nu
       gameName: romTable.gameName,
       launchboxGameId: romTable.launchboxGameId,
       libretroGameId: romTable.libretroGameId,
+      rawGameMetadata: romTable.rawGameMetadata,
     })
     .from(launchRecordTable)
     .where(where)

@@ -97,20 +97,15 @@ export function getPlatformBluredBackground(platform: string) {
   return getCDNUrl('arianrhodsandlot/retroassembly-assets', `platforms/blured-backgrounds/${platform}.jpg`)
 }
 
-export function getRomGoodcodes(rom: {
-  fileName?: string
-  libretroGame?: { name?: null | string } | null
-  name?: string
-  platform?: string
-}) {
+export function getRomGoodcodes(rom: { fileName?: string; rawGameMetadata?: any; name?: string; platform?: string }) {
   let { name } = path.parse(rom?.fileName || '')
 
   if ('name' in rom) {
     name = rom.name ?? ''
   }
 
-  if (rom.platform === 'arcade' && rom.libretroGame?.name) {
-    name = rom.libretroGame.name
+  if (rom.platform === 'arcade' && rom.rawGameMetadata?.libretro?.name) {
+    name = rom.rawGameMetadata.libretro.name
   }
   return parse(`0 - ${name}`)
 }

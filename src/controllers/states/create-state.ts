@@ -1,6 +1,7 @@
 import path from 'node:path'
 import { and, desc, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
+import { getRunTimeEnv } from '#@/constants/env.ts'
 import { romTable, stateTable } from '#@/databases/schema.ts'
 import { nanoid } from '#@/utils/server/nanoid.ts'
 import { deleteStates } from './delete-states.ts'
@@ -57,8 +58,9 @@ export async function createState({ core, rom, state, thumbnail, type }: CreateS
         ),
       )
       .orderBy(desc(stateTable.createdAt))
-    if (existingAutoStates.length > 10) {
-      const idsToDelete = existingAutoStates.slice(10).map((s) => s.id)
+    const maxAutoStates = Number.parseInt(getRunTimeEnv().RETROASSEMBLY_RUN_TIME_MAX_AUTO_STATES_PER_ROM, 10) || 10
+    if (existingAutoStates.length > maxAutoStates) {
+      const idsToDelete = existingAutoStates.slice(maxAutoStates).map((s) => s.id)
       await deleteStates(idsToDelete)
     }
   }

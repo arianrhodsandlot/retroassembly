@@ -19,8 +19,6 @@
   </a>
 </p>
 
----
-
 RetroAssembly is the personal retro game collection cabinet in your browser.
 
 ## Features
@@ -33,15 +31,18 @@ RetroAssembly is the personal retro game collection cabinet in your browser.
 - [x] Enhance your gaming experience with beautiful visual effects with retro-style shaders.
 - [x] Play on the go, even without a physical gamepad, using our on-screen virtual controller.
 
+> [!tip]
+> Sponsor me on [GitHub Sponsors](https://github.com/sponsors/arianrhodsandlot) or [other](https://buymeacoffee.com/arianrhodsandlot) [platforms](https://ko-fi.com/arianrhodsandlot) to show your appreciation! This keeps the project sustainable and ensures continuous improvements and new features.
+
 ## Screenshots
 
-| | Desktop | Mobile |
-| - | - | - |
-| Library | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/library.jpg" alt="library-desktop" width="240" height="135"> | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/library.jpg" alt="library-mobile" width="62" height="135"> |
-| Games | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/games.jpg" alt="games-desktop" width="240" height="135"> | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/games.jpg" alt="games-mobile" width="62" height="135"> |
+|          | Desktop                                                                                                                                                                                                 | Mobile                                                                                                                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Library  | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/library.jpg" alt="library-desktop" width="240" height="135">   | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/library.jpg" alt="library-mobile" width="62" height="135">   |
+| Games    | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/games.jpg" alt="games-desktop" width="240" height="135">       | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/games.jpg" alt="games-mobile" width="62" height="135">       |
 | Platform | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/platform.jpg" alt="platform-desktop" width="240" height="135"> | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/platform.jpg" alt="platform-mobile" width="62" height="135"> |
-| ROM | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/rom.jpg" alt="rom-desktop" width="240" height="135"> | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/rom.jpg" alt="rom-mobile" width="62" height="135"> |
-| Menu | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/menu.jpg" alt="menu-desktop" width="240" height="135"> | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/menu.jpg" alt="menu-mobile" width="62" height="135"> |
+| ROM      | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/rom.jpg" alt="rom-desktop" width="240" height="135">           | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/rom.jpg" alt="rom-mobile" width="62" height="135">           |
+| Menu     | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/desktop/menu.jpg" alt="menu-desktop" width="240" height="135">         | <img src="https://cdn.jsdelivr.net/gh/arianrhodsandlot/retroassembly-assets@657978eba57dd4920d57436feaa5dbb7a775e5eb/screenshots/mobile/menu.jpg" alt="menu-mobile" width="62" height="135">         |
 
 ## Getting Started
 

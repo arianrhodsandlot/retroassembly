@@ -36,8 +36,8 @@ importers:
         specifier: 1.20.3
         version: 1.20.3(vite@7.3.1(@types/node@25.0.8)(jiti@2.6.1)(lightningcss@1.30.2)(stylus@0.57.0)(yaml@2.8.2))(workerd@1.20260111.0)(wrangler@4.59.1)
       '@hono/node-server':
-        specifier: 1.19.8
-        version: 1.19.8(hono@4.11.4)
+        specifier: 1.19.9
+        version: 1.19.9(hono@4.11.4)
       '@hono/vite-dev-server':
         specifier: 0.24.0
         version: 0.24.0(hono@4.11.4)(miniflare@4.20260111.0)(wrangler@4.59.1)
@@ -126,8 +126,8 @@ importers:
         specifier: 7.0.0-dev.20260113.1
         version: 7.0.0-dev.20260113.1
       '@zip.js/zip.js':
-        specifier: 2.8.14
-        version: 2.8.14
+        specifier: 2.8.15
+        version: 2.8.15
       atropos:
         specifier: 2.0.2
         version: 2.0.2
@@ -211,7 +211,7 @@ importers:
         version: 12.26.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       msleuth:
         specifier: github:arianrhodsandlot/msleuth
-        version: https://codeload.github.com/arianrhodsandlot/msleuth/tar.gz/fe076047272ae14304702c80412658148a83dab0(better-sqlite3@12.6.0)(zod@4.3.5)
+        version: https://codeload.github.com/arianrhodsandlot/msleuth/tar.gz/19956355754629351b662d047dc2c0982542bedc(better-sqlite3@12.6.0)(zod@4.3.5)
       nanoid:
         specifier: 5.1.6
         version: 5.1.6
@@ -249,8 +249,8 @@ importers:
         specifier: 14.3.8
         version: 14.3.8(react@19.2.3)
       react-i18next:
-        specifier: 16.5.2
-        version: 16.5.2(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
+        specifier: 16.5.3
+        version: 16.5.3(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
       react-router:
         specifier: 7.12.0
         version: 7.12.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -1149,8 +1149,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@hono/node-server@1.19.8':
-    resolution: {integrity: sha512-0/g2lIOPzX8f3vzW1ggQgvG5mjtFBDBHFAzI5SFAi2DzSqS9luJwqg9T6O/gKYLi+inS7eNxBeIFkkghIPvrMA==}
+  '@hono/node-server@1.19.9':
+    resolution: {integrity: sha512-vHL6w3ecZsky+8P5MD+eFfaGTyCeOHUIFYMGpQGbrBTSmNNoxv0if69rEZ5giu36weC5saFuznL411gRX7bJDw==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
@@ -2506,22 +2506,22 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@scalar/core@0.3.28':
-    resolution: {integrity: sha512-Ka+g5P3Fe4f9lsJcBxfI+XAgwMYeZRgzIBWw1/HBrDoRmH3rV/N//410MBKEYXUw7pWpS+dZPJANZRvU5jtxhw==}
+  '@scalar/core@0.3.30':
+    resolution: {integrity: sha512-eBp1phI8u/GZR+yy9SwRTr07n3+Va+xoZJVT6tczG799eynpXiQJuUQ4S2S1cb0cmOV0ZkwHRNG3ldMQHdJgWQ==}
     engines: {node: '>=20'}
 
-  '@scalar/helpers@0.2.4':
-    resolution: {integrity: sha512-G7oGybO2QXM+MIxa4OZLXaYsS9mxKygFgOcY4UOXO6xpVoY5+8rahdak9cPk7HNj8RZSt4m/BveoT8g5BtnXxg==}
+  '@scalar/helpers@0.2.6':
+    resolution: {integrity: sha512-A471YFBCj7ZOlGIkAYnU8oYgeyts82ZNX+4UicrlmKv3eAQ+kwboN3Dy0R6u1lcA/+I/zzeXi/fBObsT7P9qTA==}
     engines: {node: '>=20'}
 
-  '@scalar/hono-api-reference@0.9.30':
-    resolution: {integrity: sha512-a9cPluqfi1bgX2p7PJl/2O4jgPcoAl/ecSAe74TbPYIi27A0O0bkUBscO7WNRJhWJ1GVVxX8NvJTNlDxUNBlpg==}
+  '@scalar/hono-api-reference@0.9.32':
+    resolution: {integrity: sha512-5WC3W/3VKRXBxHP/bTwM9tRx5ZEBRSnEe4CFcLK8u7DQPvP6J6iSZCsqfZPeNvPSnrgITBQuEuBXIYsinigKYg==}
     engines: {node: '>=20'}
     peerDependencies:
       hono: ^4.10.3
 
-  '@scalar/types@0.5.4':
-    resolution: {integrity: sha512-5FNQH/zx3tnERzxfpErscPHfRxLCuhncmhFYiaSz196Xi2iG1YI08BtxTV2slfT6of52epJ/MrKerarplKf9eg==}
+  '@scalar/types@0.5.6':
+    resolution: {integrity: sha512-yvTXYdSQPq8qmJ1zZPBRRB3RkkE2c0J3gIIMirX997yyVixrhtb0jmfM+9EZ2ZWXGx2JGLquGP10zY0nmnu75w==}
     engines: {node: '>=20'}
 
   '@sec-ant/readable-stream@0.4.1':
@@ -2796,8 +2796,8 @@ packages:
     resolution: {integrity: sha512-oz6EQSlmlGAcAEnwh1Tid0JOfJWHJNQNA2foBis1pAvXES+jsWRLuHPDu0wbzeVHLJm4qxSsejTCrMFYn2Yhbg==}
     hasBin: true
 
-  '@zip.js/zip.js@2.8.14':
-    resolution: {integrity: sha512-BZ7OyJLA5cjYwf2jVjvZCK10swzIc6sDOLpkPjJXfXgx/IHF5y61PyL3Ko5/q3bUU5GvIhk6tzKDUcDJ7rhzbg==}
+  '@zip.js/zip.js@2.8.15':
+    resolution: {integrity: sha512-HZKJLFe4eGVgCe9J87PnijY7T1Zn638bEHS+Fm/ygHZozRpefzWcOYfPaP52S8pqk9g4xN3+LzMDl3Lv9dLglA==}
     engines: {bun: '>=0.7.0', deno: '>=1.0.0', node: '>=18.0.0'}
 
   acorn-walk@8.3.2:
@@ -2854,8 +2854,8 @@ packages:
     resolution: {integrity: sha512-0bDNnY/u6pPwHDMoF0FieU354oBi0a8rD9FcsLwzcGWbc8KS8KPIi7y+s13OlVY+gMWc/9xEMUgNE6Qm8ZllYQ==}
     engines: {node: '>=4'}
 
-  babel-dead-code-elimination@1.0.11:
-    resolution: {integrity: sha512-mwq3W3e/pKSI6TG8lXMiDWvEi1VXYlSBlJlB3l+I0bAb5u1RNUl88udos85eOPNK3m5EXK9uO7d2g08pesTySQ==}
+  babel-dead-code-elimination@1.0.12:
+    resolution: {integrity: sha512-GERT7L2TiYcYDtYk1IpD+ASAYXjKbLTDPhBtYj7X1NuRMDTMtAx9kyBenub1Ev41lo91OHCKdmP+egTDmfQ7Ig==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -3379,10 +3379,6 @@ packages:
     peerDependencies:
       hono: '*'
 
-  hono@4.11.1:
-    resolution: {integrity: sha512-KsFcH0xxHes0J4zaQgWbYwmz3UPOOskdqZmItstUG93+Wk1ePBLkLGwbP9zlmh1BFUiL8Qp+Xfu9P7feJWpGNg==}
-    engines: {node: '>=16.9.0'}
-
   hono@4.11.4:
     resolution: {integrity: sha512-U7tt8JsyrxSRKspfhtLET79pU8K+tInj5QZXs1jSugO1Vq5dFj3kmZsRldo29mTBfcjDRVRXrEZ6LS63Cog9ZA==}
     engines: {node: '>=16.9.0'}
@@ -3685,8 +3681,8 @@ packages:
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
-  msleuth@https://codeload.github.com/arianrhodsandlot/msleuth/tar.gz/fe076047272ae14304702c80412658148a83dab0:
-    resolution: {tarball: https://codeload.github.com/arianrhodsandlot/msleuth/tar.gz/fe076047272ae14304702c80412658148a83dab0}
+  msleuth@https://codeload.github.com/arianrhodsandlot/msleuth/tar.gz/19956355754629351b662d047dc2c0982542bedc:
+    resolution: {tarball: https://codeload.github.com/arianrhodsandlot/msleuth/tar.gz/19956355754629351b662d047dc2c0982542bedc}
     version: 1.0.0
     engines: {bun: '>=1.3.5'}
 
@@ -3912,8 +3908,8 @@ packages:
     peerDependencies:
       react: '>= 16.8 || 18.0.0'
 
-  react-i18next@16.5.2:
-    resolution: {integrity: sha512-GG/SBVxx9dvrO1uCs8VYdKfOP8NEBUhNP+2VDQLCifRJ8DL1qPq296k2ACNGyZMDe7iyIlz/LMJTQOs8HXSRvw==}
+  react-i18next@16.5.3:
+    resolution: {integrity: sha512-fo+/NNch37zqxOzlBYrWMx0uy/yInPkRfjSuy4lqKdaecR17nvCHnEUt3QyzA8XjQ2B/0iW/5BhaHR3ZmukpGw==}
     peerDependencies:
       i18next: '>= 25.6.2'
       react: '>= 16.8.0'
@@ -5107,13 +5103,13 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@hono/node-server@1.19.8(hono@4.11.4)':
+  '@hono/node-server@1.19.9(hono@4.11.4)':
     dependencies:
       hono: 4.11.4
 
   '@hono/vite-dev-server@0.18.3(hono@4.11.4)(miniflare@4.20260111.0)(wrangler@4.59.1)':
     dependencies:
-      '@hono/node-server': 1.19.8(hono@4.11.4)
+      '@hono/node-server': 1.19.9(hono@4.11.4)
       hono: 4.11.4
       minimatch: 9.0.5
     optionalDependencies:
@@ -5122,24 +5118,19 @@ snapshots:
 
   '@hono/vite-dev-server@0.24.0(hono@4.11.4)(miniflare@4.20260111.0)(wrangler@4.59.1)':
     dependencies:
-      '@hono/node-server': 1.19.8(hono@4.11.4)
+      '@hono/node-server': 1.19.9(hono@4.11.4)
       hono: 4.11.4
       minimatch: 9.0.5
     optionalDependencies:
       miniflare: 4.20260111.0
       wrangler: 4.59.1
 
-  '@hono/zod-openapi@1.2.0(hono@4.11.1)(zod@4.3.5)':
+  '@hono/zod-openapi@1.2.0(hono@4.11.4)(zod@4.3.5)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 8.4.0(zod@4.3.5)
-      '@hono/zod-validator': 0.7.6(hono@4.11.1)(zod@4.3.5)
-      hono: 4.11.1
+      '@hono/zod-validator': 0.7.6(hono@4.11.4)(zod@4.3.5)
+      hono: 4.11.4
       openapi3-ts: 4.5.0
-      zod: 4.3.5
-
-  '@hono/zod-validator@0.7.6(hono@4.11.1)(zod@4.3.5)':
-    dependencies:
-      hono: 4.11.1
       zod: 4.3.5
 
   '@hono/zod-validator@0.7.6(hono@4.11.4)(zod@4.3.5)':
@@ -6209,7 +6200,7 @@ snapshots:
       '@react-router/node': 7.12.0(react-router@7.12.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(typescript@5.9.3)
       '@remix-run/node-fetch-server': 0.9.0
       arg: 5.0.2
-      babel-dead-code-elimination: 1.0.11
+      babel-dead-code-elimination: 1.0.12
       chokidar: 4.0.3
       dedent: 1.7.1
       es-module-lexer: 1.7.0
@@ -6376,20 +6367,20 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.55.1':
     optional: true
 
-  '@scalar/core@0.3.28':
+  '@scalar/core@0.3.30':
     dependencies:
-      '@scalar/types': 0.5.4
+      '@scalar/types': 0.5.6
 
-  '@scalar/helpers@0.2.4': {}
+  '@scalar/helpers@0.2.6': {}
 
-  '@scalar/hono-api-reference@0.9.30(hono@4.11.1)':
+  '@scalar/hono-api-reference@0.9.32(hono@4.11.4)':
     dependencies:
-      '@scalar/core': 0.3.28
-      hono: 4.11.1
+      '@scalar/core': 0.3.30
+      hono: 4.11.4
 
-  '@scalar/types@0.5.4':
+  '@scalar/types@0.5.6':
     dependencies:
-      '@scalar/helpers': 0.2.4
+      '@scalar/helpers': 0.2.6
       nanoid: 5.1.5
       type-fest: 5.0.0
       zod: 4.3.5
@@ -6633,7 +6624,7 @@ snapshots:
       '@typescript/native-preview-win32-arm64': 7.0.0-dev.20260113.1
       '@typescript/native-preview-win32-x64': 7.0.0-dev.20260113.1
 
-  '@zip.js/zip.js@2.8.14': {}
+  '@zip.js/zip.js@2.8.15': {}
 
   acorn-walk@8.3.2: {}
 
@@ -6669,7 +6660,7 @@ snapshots:
 
   attr-accept@2.2.5: {}
 
-  babel-dead-code-elimination@1.0.11:
+  babel-dead-code-elimination@1.0.12:
     dependencies:
       '@babel/core': 7.28.6
       '@babel/parser': 7.28.6
@@ -7155,7 +7146,7 @@ snapshots:
       hono: 4.11.4
       react-router: 7.12.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
     optionalDependencies:
-      '@hono/node-server': 1.19.8(hono@4.11.4)
+      '@hono/node-server': 1.19.9(hono@4.11.4)
       '@react-router/node': 7.12.0(react-router@7.12.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(typescript@5.9.3)
     transitivePeerDependencies:
       - miniflare
@@ -7163,8 +7154,6 @@ snapshots:
       - react-dom
       - typescript
       - wrangler
-
-  hono@4.11.1: {}
 
   hono@4.11.4: {}
 
@@ -7411,15 +7400,15 @@ snapshots:
 
   ms@2.1.3: {}
 
-  msleuth@https://codeload.github.com/arianrhodsandlot/msleuth/tar.gz/fe076047272ae14304702c80412658148a83dab0(better-sqlite3@12.6.0)(zod@4.3.5):
+  msleuth@https://codeload.github.com/arianrhodsandlot/msleuth/tar.gz/19956355754629351b662d047dc2c0982542bedc(better-sqlite3@12.6.0)(zod@4.3.5):
     dependencies:
-      '@hono/zod-openapi': 1.2.0(hono@4.11.1)(zod@4.3.5)
-      '@hono/zod-validator': 0.7.6(hono@4.11.1)(zod@4.3.5)
-      '@scalar/hono-api-reference': 0.9.30(hono@4.11.1)
+      '@hono/zod-openapi': 1.2.0(hono@4.11.4)(zod@4.3.5)
+      '@hono/zod-validator': 0.7.6(hono@4.11.4)(zod@4.3.5)
+      '@scalar/hono-api-reference': 0.9.32(hono@4.11.4)
       drizzle-orm: 0.45.1(better-sqlite3@12.6.0)
       drizzle-zod: 0.8.3(drizzle-orm@0.45.1(better-sqlite3@12.6.0))(zod@4.3.5)
       goodcodes-parser: 2.5.0(patch_hash=0d6b63ddf0231e5a7643df8e6fce96b8eb7f167de7fe13b28159cf77c2a13873)
-      hono: 4.11.1
+      hono: 4.11.4
       json5: 2.2.3
       nanoid: 5.1.6
       nanoid-dictionary: 5.0.0
@@ -7733,7 +7722,7 @@ snapshots:
       prop-types: 15.8.1
       react: 19.2.3
 
-  react-i18next@16.5.2(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3):
+  react-i18next@16.5.3(i18next@25.7.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3):
     dependencies:
       '@babel/runtime': 7.28.6
       html-parse-stringify: 3.0.1

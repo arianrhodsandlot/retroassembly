@@ -12,7 +12,6 @@ interface MigrateRomMetadataOptions {
 
 async function migrateRomMetadata({ library, roms }: MigrateRomMetadataOptions) {
   if (roms.length === 0) {
-    console.info('No ROMs need metadata migration')
     return
   }
 
@@ -75,7 +74,7 @@ async function migrateRomMetadata({ library, roms }: MigrateRomMetadataOptions) 
     totalSkipped += batch.length - updates.length
   }
 
-  console.info('\n=== Metadata Migration Complete ===')
+  console.info('Metadata Migration Completed')
   console.info(`Successfully cached: ${totalSuccess} ROMs`)
   console.info(`Skipped (no metadata available): ${totalSkipped} ROMs`)
   console.info(`Failed: ${totalFailed} ROMs`)

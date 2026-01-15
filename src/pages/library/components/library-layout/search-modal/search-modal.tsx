@@ -3,8 +3,10 @@ import { AnimatePresence, motion, type TargetAndTransition } from 'motion/react'
 import { useCallback, useEffect } from 'react'
 import { RadixThemePortal } from '#@/pages/components/radix-theme-portal.tsx'
 import { useSpatialNavigationPaused } from '#@/pages/library/atoms.ts'
+import { useInputMapping } from '#@/pages/library/hooks/use-input-mapping.ts'
 import { useIsApple } from '#@/pages/library/hooks/use-is-apple.ts'
 import { focus } from '#@/pages/library/utils/spatial-navigation.ts'
+import { Gamepad } from '#@/utils/client/gamepad.ts'
 import { useShowSearchModal } from '../atoms.ts'
 import { useSelectedResult } from './atoms.ts'
 import { SearchBar } from './search-bar.tsx'
@@ -24,6 +26,7 @@ export function SearchModal() {
   const [showSearchModal, setShowSearchModal] = useShowSearchModal()
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
   const [, setSelectedResult] = useSelectedResult()
+  const { gamepad, cancelButton } = useInputMapping()
   const isApple = useIsApple()
 
   const close = useCallback(() => {
@@ -58,10 +61,19 @@ export function SearchModal() {
       { signal: abortController.signal },
     )
 
+    const offPress = Gamepad.onPress(({ button }) => {
+      if (`${button}` === gamepad.input_player1_select_btn) {
+        toggle()
+      } else if (`${button}` === cancelButton) {
+        close()
+      }
+    })
+
     return () => {
       abortController.abort()
+      offPress()
     }
-  }, [isApple, showSearchModal, close, toggle])
+  }, [isApple, showSearchModal, close, toggle, gamepad.input_player1_select_btn, cancelButton])
 
   return (
     <RadixThemePortal>

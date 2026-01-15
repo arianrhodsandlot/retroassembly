@@ -43,6 +43,10 @@ export function StatusBar() {
             {{ nintendo: downButtonIcon, xbox: rightButtonIcon }[confirmButtonStyle]}
             {t('Back')}
           </span>
+          <span className='flex items-center gap-2'>
+            <div className='scale-80 rounded border-2 border-current px-1 text-xs'>Select</div>
+            {t('Search')}
+          </span>
         </>
       ) : (
         <>

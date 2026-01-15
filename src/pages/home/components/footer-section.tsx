@@ -17,16 +17,6 @@ export function FooterSection() {
           </a>
 
           <div className='flex gap-4 text-lg'>
-            <a
-              className='flex items-center'
-              href='https://blog.retroassembly.com/'
-              rel='noreferrer noopener'
-              target='_blank'
-              title={t('Blog')}
-            >
-              <span className='icon-[mdi--blog]' />
-            </a>
-
             {links.map((link) => (
               <a
                 className='flex items-center'

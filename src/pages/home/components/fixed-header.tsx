@@ -1,7 +1,6 @@
 import { Button, Tooltip } from '@radix-ui/themes'
 import { useTranslation } from 'react-i18next'
 import { Link, useLoaderData } from 'react-router'
-import { Fragment } from 'react/jsx-runtime'
 import { links } from '#@/constants/links.ts'
 import type { loader } from '#@/pages/routes/home.tsx'
 import { LanguageSelector } from '../../components/language-selector.tsx'
@@ -27,41 +26,21 @@ export function FixedHeader() {
 
         <div className='h-5 w-px bg-white/50' />
 
-        <a
-          className='flex items-center'
-          href='https://blog.retroassembly.com/'
-          rel='noreferrer noopener'
-          target='_blank'
-          title={t('Blog')}
+        <Tooltip
+          content={
+            <span>
+              {t('Your feedback matters!')}
+              <br />
+              {t('Star this project on GitHub or sponsor this project on Ko-fi to show your appreciation.')}
+            </span>
+          }
+          width='280px'
+          defaultOpen
         >
-          <span className='icon-[mdi--blog]' />
-        </a>
-
-        {links.map((link) => (
-          <Fragment key={link.name}>
-            {link.name === 'GitHub' ? (
-              <Tooltip
-                content={
-                  <span>
-                    {t('Your feedback matters!')}
-                    <br />
-                    {t('Star this project on GitHub to show your appreciation.')}
-                  </span>
-                }
-                defaultOpen
-              >
-                <a
-                  className='flex items-center'
-                  href={link.url}
-                  rel='noreferrer noopener'
-                  target='_blank'
-                  title={t(link.text)}
-                >
-                  <span className={link.icon} />
-                </a>
-              </Tooltip>
-            ) : (
+          <div className='flex items-center gap-4'>
+            {links.map((link) => (
               <a
+                key={link.name}
                 className='flex items-center'
                 href={link.url}
                 rel='noreferrer noopener'
@@ -70,9 +49,9 @@ export function FixedHeader() {
               >
                 <span className={link.icon} />
               </a>
-            )}
-          </Fragment>
-        ))}
+            ))}
+          </div>
+        </Tooltip>
 
         <div className='h-5 w-px bg-white/50' />
 

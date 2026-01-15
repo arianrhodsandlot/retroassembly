@@ -11,11 +11,17 @@
 
 <p align="center">
   <a href="https://discord.gg/gwaKRAYG6t">
-    <picture>
+    <picture width="320">
       <source media="(prefers-color-scheme: light)" srcset="https://invidget.switchblade.xyz/gwaKRAYG6t?theme=light">
       <source media="(prefers-color-scheme: dark)" srcset="https://invidget.switchblade.xyz/gwaKRAYG6t">
-      <img alt="Join our Discord server" src="https://invidget.switchblade.xyz/gwaKRAYG6t?theme=light">
+      <img width="320" alt="Join our Discord server" src="https://invidget.switchblade.xyz/gwaKRAYG6t?theme=light">
     </picture>
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://ko-fi.com/arianrhodsandlot">
+    <img width="320" src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a0171bfb928b21a7e00_support_me_on_kofi_beige.png" alt="Support me on Ko-fi">
   </a>
 </p>
 
@@ -30,9 +36,6 @@ RetroAssembly is the personal retro game collection cabinet in your browser.
 - [x] Browse through platforms and your game library with an intuitive interface with [spatial navigation](https://en.wikipedia.org/wiki/Spatial_navigation), which means you can just use a keyboard or a gamepad to navigate between games.
 - [x] Enhance your gaming experience with beautiful visual effects with retro-style shaders.
 - [x] Play on the go, even without a physical gamepad, using our on-screen virtual controller.
-
-> [!tip]
-> Sponsor me on [GitHub Sponsors](https://github.com/sponsors/arianrhodsandlot) or [other](https://buymeacoffee.com/arianrhodsandlot) [platforms](https://ko-fi.com/arianrhodsandlot) to show your appreciation! This keeps the project sustainable and ensures continuous improvements and new features.
 
 ## Screenshots
 
@@ -106,6 +109,12 @@ RetroAssembly aims to support a wide range of vintage gaming systems. Emulation 
 ## Contributing
 
 See [Contributing](docs/contributing.md).
+
+## Sponsorship
+
+Sponsor this project on [Ko-fi](https://ko-fi.com/arianrhodsandlot) (or alternatively on [GitHub Sponsors](https://github.com/sponsors/arianrhodsandlot) / [Buy Me a Coffee](https://buymeacoffee.com/arianrhodsandlot)) to show your appreciation!
+
+This keeps the project sustainable and ensures continuous improvements and new features.
 
 ## Open-source Alternatives
 

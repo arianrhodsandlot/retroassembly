@@ -58,7 +58,7 @@ export async function createState({ core, rom, state, thumbnail, type }: CreateS
         ),
       )
       .orderBy(desc(stateTable.createdAt))
-    const maxAutoStates = Number.parseInt(getRunTimeEnv().RETROASSEMBLY_RUN_TIME_MAX_AUTO_STATES_PER_ROM, 10) || 10
+    const maxAutoStates = Number.parseInt(getRunTimeEnv().RETROASSEMBLY_RUN_TIME_MAX_AUTO_STATES_PER_ROM, 10) || 20
     if (existingAutoStates.length > maxAutoStates) {
       const idsToDelete = existingAutoStates.slice(maxAutoStates).map((s) => s.id)
       await deleteStates(idsToDelete)

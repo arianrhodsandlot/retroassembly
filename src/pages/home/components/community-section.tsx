@@ -1,6 +1,6 @@
 import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
-import { linkMap, links } from '#@/constants/links.ts'
+import { linkMap } from '#@/constants/links.ts'
 
 export function CommunitySection() {
   const { t } = useTranslation()
@@ -33,7 +33,7 @@ export function CommunitySection() {
           </li>
         </ul>
         <div className='flex flex-col justify-center gap-4 space-x-8 px-8 font-semibold sm:flex-row sm:px-0'>
-          {links.map((link) => (
+          {[linkMap.discord, linkMap.github].map((link) => (
             <a
               className='inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-black sm:w-auto sm:min-w-64'
               href={link.url}

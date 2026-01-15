@@ -1,4 +1,12 @@
 export const linkMap = {
+  blog: {
+    icon: 'icon-[mdi--blog]',
+    logo: 'icon-[mdi--blog]',
+    name: 'Blog',
+    text: 'Visit our Blog',
+    url: 'https://blog.retroassembly.com/',
+  },
+
   discord: {
     icon: 'icon-[simple-icons--discord]',
     logo: 'icon-[logos--discord-icon]',
@@ -14,6 +22,14 @@ export const linkMap = {
     text: 'Visit our GitHub',
     url: 'https://github.com/arianrhodsandlot/retroassembly',
   },
+
+  kofi: {
+    icon: 'icon-[simple-icons--kofi]',
+    logo: 'icon-[logos--kofi-icon]',
+    name: 'Ko-fi',
+    text: 'Support us on Ko-fi',
+    url: 'https://ko-fi.com/arianrhodsandlot',
+  },
 }
 
-export const links = [linkMap.discord, linkMap.github]
+export const links = [linkMap.blog, linkMap.discord, linkMap.github, linkMap.kofi]

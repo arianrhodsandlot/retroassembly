@@ -60,23 +60,36 @@ function getLanguage(c: Context) {
   return language
 }
 
+async function getTempUserOrCurrentUser(c: Context) {
+  const runtimeEnv = getRunTimeEnv()
+
+  let currentUser = await getCurrentUser()
+
+  const isSuperviser =
+    currentUser?.id && runtimeEnv.RETROASSEMBLY_RUN_TIME_SUPERVISER_USER_IDS.split(',').includes(currentUser?.id)
+
+  if (isSuperviser) {
+    const tempUserId = getCookie(c, 'temp-user-id') || c.req.query('temp-user-id')
+    if (tempUserId) {
+      if (c.var.supabase) {
+        const { data } = await c.var.supabase.auth.admin.getUserById(tempUserId)
+        if (data.user) {
+          currentUser = data.user
+        }
+      } else {
+        currentUser = { created_at: new Date().toISOString(), id: tempUserId, username: '' }
+      }
+    }
+  }
+  return currentUser
+}
+
 export function globals() {
   return createMiddleware(async function middleware(c, next) {
     const token = c.req.header('Authorization')?.replace('Bearer ', '') || getCookie(c, 'token') || ''
     c.set('token', token)
 
-    let currentUser = await getCurrentUser()
-
-    const runtimeEnv = getRunTimeEnv()
-    const isSuperviser =
-      currentUser?.id && runtimeEnv.RETROASSEMBLY_RUN_TIME_SUPERVISER_USER_IDS.split(',').includes(currentUser?.id)
-    if (isSuperviser) {
-      const tempUserId = getCookie(c, 'temp-user-id') || c.req.query('temp-user-id')
-      if (tempUserId) {
-        currentUser = { created_at: new Date().toISOString(), id: tempUserId, username: '' }
-      }
-    }
-
+    let currentUser = await getTempUserOrCurrentUser(c)
     c.set('authorized', Boolean(currentUser))
     c.set('unauthorized', !currentUser)
     if (currentUser) {

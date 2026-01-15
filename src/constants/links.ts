@@ -25,7 +25,7 @@ export const linkMap = {
 
   kofi: {
     icon: 'icon-[simple-icons--kofi]',
-    logo: 'icon-[logos--kofi-icon]',
+    logo: 'icon-[simple-icons--kofi]',
     name: 'Ko-fi',
     text: 'Support us on Ko-fi',
     url: 'https://ko-fi.com/arianrhodsandlot',

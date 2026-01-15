@@ -1,1 +1,1 @@
-export const cookieConsentStatusKey = 'cookie_consent_status'
+export const cookieConsentStatusKey = 'cookie-consent-status'

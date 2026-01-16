@@ -1,14 +1,8 @@
-import ciInfo from 'ci-info'
 import fs from 'fs-extra'
-import isDocker from 'is-docker'
 import { getDirectories } from '../src/constants/env.ts'
 import { exec, prepareWranglerConfig } from './utils.ts'
 
 async function main() {
-  if (ciInfo.isCI || isDocker()) {
-    return
-  }
-
   const { dataDirectory } = getDirectories()
   await Promise.all([
     exec`simple-git-hooks`,

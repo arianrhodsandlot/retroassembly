@@ -45,7 +45,7 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
     <div className='relative'>
       <button
         className={clsx(
-          'flex h-40 w-52 shrink-0 flex-col overflow-hidden rounded border-4 border-(--color-background) bg-(--color-background) shadow',
+          'flex h-36 w-48 shrink-0 flex-col overflow-hidden rounded border-4 border-(--color-background) bg-(--color-background) shadow',
           { 'cursor-default': isMutating },
         )}
         data-sn-enabled
@@ -80,7 +80,7 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
           )}
         </div>
         <div
-          className={clsx('mt-1 flex h-6 w-full items-center justify-center gap-1 text-xs text-(--color-text)', {
+          className={clsx('mt-1 ml-1 flex h-6 w-full items-center justify-start gap-1 text-xs text-(--color-text)', {
             'opacity-50': !loadable,
           })}
         >
@@ -88,7 +88,8 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
             <span className='icon-[svg-spinners--180-ring] block size-3 text-(--accent-9)' />
           ) : (
             <>
-              {t('Saved at')} <Badge>{humanizeDate(state.createdAt, dateFormat)}</Badge>
+              {t('Saved at')}{' '}
+              <Badge className='origin-left scale-90'>{humanizeDate(state.createdAt, dateFormat)}</Badge>
             </>
           )}
         </div>

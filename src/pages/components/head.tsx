@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Links, Meta, useLoaderData } from 'react-router'
 import { metadata } from '#@/constants/metadata.ts'
 import type { loader } from '#@/pages/root.tsx'
-import { cdnHost } from '#@/utils/isomorphic/cdn.ts'
+import { cdnHost, libretroThumbnailsHost } from '#@/utils/isomorphic/cdn.ts'
 
 export function Head() {
   const { t } = useTranslation()
@@ -50,8 +50,9 @@ export function Head() {
       <meta content={new URL('/assets/screenshots/library.jpeg', metadata.link).href} name='twitter:image' />
 
       {/* perfermance */}
-      <link href={cdnHost} rel='dns-prefetch' />
-      <link crossOrigin='anonymous' href={cdnHost} rel='preconnect' />
+      {[cdnHost, libretroThumbnailsHost].map((host) => (
+        <link key={host} href={host} rel='dns-prefetch' />
+      ))}
 
       {headElements?.map(({ props, type }) => createElement(type, props))}
 

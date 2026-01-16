@@ -41,6 +41,7 @@ const repositoryVersions = {
 } as const
 
 export const cdnHost = 'https://cdn.jsdelivr.net/'
+export const libretroThumbnailsHost = 'https://thumbnails.libretro.com/'
 
 export function getCDNUrl(repo: keyof typeof repositoryVersions, filePpath: string) {
   const [ghUser, ghRepoName] = repo.split('/')

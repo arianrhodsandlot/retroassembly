@@ -1,6 +1,5 @@
 import { Button } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import { motion } from 'motion/react'
 import { type FocusEvent, useLayoutEffect, useRef } from 'react'
 import scrollIntoView from 'smooth-scroll-into-view-if-needed'
 import { NavigatableLink } from '../../navigatable-link.tsx'
@@ -23,7 +22,7 @@ export function SidebarLink({ active, children, title, to }) {
   }, [active])
 
   return (
-    <motion.div className='max-w-full flex-1' layout ref={ref}>
+    <div className='max-w-full flex-1' ref={ref}>
       <Button asChild size='2' variant='ghost'>
         <NavigatableLink
           className={clsx('sidebar-link', 'group m-0! flex! h-auto! py-2.5!', {
@@ -41,6 +40,6 @@ export function SidebarLink({ active, children, title, to }) {
           <div className='flex h-auto w-full items-center justify-start gap-2'>{children}</div>
         </NavigatableLink>
       </Button>
-    </motion.div>
+    </div>
   )
 }

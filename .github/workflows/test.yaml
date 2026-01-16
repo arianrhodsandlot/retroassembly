@@ -20,9 +20,9 @@ jobs:
           cache: pnpm
 
       - run: pnpm install
-      - run: node --run=lint
-      - run: pnpm oxfmt --check
       - run: node --run=setup
+      - run: pnpm oxfmt --check
+      - run: node --run=lint
       - run: node --run=build
       - run: node --run=test
 

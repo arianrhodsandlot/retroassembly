@@ -298,6 +298,7 @@
   "The requested page could not be found.": "Požadovaná stránka nebyla nalezena.",
   "The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: {{expected}}\nActual MD5: {{actual}}": "Nahraný soubor je poškozený (neshoda MD5).\n\nOčekávané MD5: {{expected}}\nSkutečné MD5: {{actual}}",
   "Theme": "Téma",
+  "There are up to {{count}} auto save slots per game.": "Pro každou hru je k dispozici až {{count}} slotů automatického ukládání.",
   "These free (legal) games are all picked from": "Tyto bezplatné (legální) hry jsou vybrány z",
   "These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.": "Tyto možnosti nejsou zaručeny, že se projeví, nebo mohou způsobit selhání spuštění. Upravení provádějte s opatrností a na vlastní riziko.",
   "This only affects navigation in the library and does not change inputs in games.": "Toto ovlivňuje pouze navigaci v knihovně a nemění ovládání ve hrách.",

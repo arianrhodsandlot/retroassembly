@@ -298,6 +298,7 @@
   "The requested page could not be found.": "找不到所請求的頁面。",
   "The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: {{expected}}\nActual MD5: {{actual}}": "上傳的檔案已損壞（MD5 不符）。\n\n預期 MD5：{{expected}}\n實際 MD5：{{actual}}",
   "Theme": "主題",
+  "There are up to {{count}} auto save slots per game.": "每個遊戲最多有 {{count}} 個自動保存欄位。",
   "These free (legal) games are all picked from": "這些免費（合法）遊戲都來自",
   "These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.": "這些選項不保證生效，或可能導致啟動失敗。請謹慎調整，風險自負。",
   "This only affects navigation in the library and does not change inputs in games.": "這只影響遊戲庫中的導航，不會改變遊戲中的輸入。",

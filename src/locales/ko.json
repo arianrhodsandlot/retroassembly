@@ -298,6 +298,7 @@
   "The requested page could not be found.": "요청한 페이지를 찾을 수 없습니다.",
   "The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: {{expected}}\nActual MD5: {{actual}}": "업로드된 파일이 손상되었습니다 (MD5 불일치).\n\n예상 MD5: {{expected}}\n실제 MD5: {{actual}}",
   "Theme": "테마",
+  "There are up to {{count}} auto save slots per game.": "게임당 최대 {{count}}개의 자동 저장 슬롯이 있습니다.",
   "These free (legal) games are all picked from": "이 무료 (합법적) 게임들은 모두",
   "These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.": "이러한 옵션들은 효과가 보장되지 않으며 실행 실패의 원인이 될 수 있습니다. 신중하게 조정하고 자신의 책임하에 사용하세요.",
   "This only affects navigation in the library and does not change inputs in games.": "이는 라이브러리 탐색에만 영향을 미치며 게임 내 입력은 변경하지 않습니다.",

@@ -298,6 +298,7 @@
   "The requested page could not be found.": "要求されたページが見つかりませんでした。",
   "The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: {{expected}}\nActual MD5: {{actual}}": "アップロードされたファイルが破損しています（MD5不一致）。\n\n期待されるMD5: {{expected}}\n実際のMD5: {{actual}}",
   "Theme": "テーマ",
+  "There are up to {{count}} auto save slots per game.": "ゲームごとに最大{{count}}個の自動セーブスロットがあります。",
   "These free (legal) games are all picked from": "これらの無料（合法）ゲームはすべて",
   "These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.": "これらのオプションは効果が保証されておらず、起動失敗の原因となる可能性があります。慎重に調整し、自己責任でお使いください。",
   "This only affects navigation in the library and does not change inputs in games.": "これはライブラリのナビゲーションにのみ影響し、ゲーム内の入力は変更されません。",

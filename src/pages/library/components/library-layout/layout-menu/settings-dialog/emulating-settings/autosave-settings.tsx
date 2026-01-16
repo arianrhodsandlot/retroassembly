@@ -1,5 +1,6 @@
 import { Card, Select } from '@radix-ui/themes'
 import { useTranslation } from 'react-i18next'
+import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
@@ -14,6 +15,7 @@ const INTERVAL_OPTIONS = [
 ] as const
 
 export function AutosaveSettings() {
+  const { env } = useGlobalLoaderData()
   const { t } = useTranslation()
   const { isLoading, preference, update } = usePreference()
   const interval = preference.emulator.autoSaveInterval
@@ -52,6 +54,11 @@ export function AutosaveSettings() {
                 </Select.Content>
               </Select.Root>
             </SettingsTitle>
+            <div className='px-6 text-xs opacity-80'>
+              {t('There are up to {{count}} auto save slots per game.', {
+                count: Number(env.RETROASSEMBLY_RUN_TIME_MAX_AUTO_STATES_PER_ROM),
+              })}
+            </div>
           </div>
         </div>
       </Card>

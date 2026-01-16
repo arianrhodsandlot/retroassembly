@@ -298,6 +298,7 @@
   "The requested page could not be found.": "Запрашиваемая страница не найдена.",
   "The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: {{expected}}\nActual MD5: {{actual}}": "Загруженный файл повреждён (несоответствие MD5).\n\nОжидаемый MD5: {{expected}}\nФактический MD5: {{actual}}",
   "Theme": "Тема",
+  "There are up to {{count}} auto save slots per game.": "Для каждой игры доступно до {{count}} слотов автоматического сохранения.",
   "These free (legal) games are all picked from": "Эти бесплатные (легальные) игры все выбраны из",
   "These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.": "Эти настройки не гарантированно вступят в силу или могут привести к сбою запуска. Изменяйте их осторожно и на свой страх и риск.",
   "This only affects navigation in the library and does not change inputs in games.": "Это влияет только на навигацию в библиотеке и не изменяет ввод в играх.",

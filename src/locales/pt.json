@@ -298,6 +298,7 @@
   "The requested page could not be found.": "A página solicitada não pôde ser encontrada.",
   "The uploaded file is corrupted (MD5 mismatch).\n\nExpected MD5: {{expected}}\nActual MD5: {{actual}}": "O arquivo enviado está corrompido (MD5 não coincide).\n\nMD5 esperado: {{expected}}\nMD5 atual: {{actual}}",
   "Theme": "Tema",
+  "There are up to {{count}} auto save slots per game.": "Há até {{count}} slots de salvamento automático por jogo.",
   "These free (legal) games are all picked from": "Estes jogos gratuitos (legais) são todos selecionados de",
   "These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.": "Essas opções não têm garantia de efeito ou podem causar falha na inicialização. Ajuste-as com cuidado e por sua própria conta e risco.",
   "This only affects navigation in the library and does not change inputs in games.": "Isso afeta apenas a navegação na biblioteca e não altera as entradas nos jogos.",

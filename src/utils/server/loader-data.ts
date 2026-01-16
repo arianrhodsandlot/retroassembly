@@ -2,8 +2,11 @@ import { getRuntimeKey } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
 import { getCookie } from 'hono/cookie'
 import { getRunTimeEnv } from '#@/constants/env.ts'
+import { metadata } from '#@/constants/metadata.ts'
 import { cookieConsentStatusKey } from '#@/constants/misc.ts'
 import { getLaunchRecords } from '#@/controllers/launch-records/get-launch-records.ts'
+
+const { host: officialHost } = new URL(metadata.link)
 
 /* Used for non-library routes */
 export function getCommonLoaderData<T>(data: T = {} as T) {
@@ -19,7 +22,7 @@ export function getCommonLoaderData<T>(data: T = {} as T) {
   const isLikelyDesktop = c.req.header('sec-ch-ua-mobile') !== '?1'
   const runtimeKey = getRuntimeKey()
   const { host } = new URL(c.req.url)
-  const isOfficialHost = host === 'retroassembly.com' || host.endsWith('-retroassembly.arianrhodsandlot.workers.dev')
+  const isOfficialHost = host === officialHost || host.endsWith('-retroassembly.arianrhodsandlot.workers.dev')
 
   return {
     cookieConsentStatus,

@@ -1,5 +1,6 @@
 import { Button, Dialog, Tabs, VisuallyHidden } from '@radix-ui/themes'
 import { useTranslation } from 'react-i18next'
+import { metadata } from '#@/constants/metadata.ts'
 import { DialogRoot } from '#@/pages/library/components/dialog-root.tsx'
 import { CodeBlock } from './code-block.tsx'
 
@@ -7,7 +8,7 @@ const composeYaml = `services:
   retroassembly:
     image: arianrhodsandlot/retroassembly
     ports: [8000:8000]
-    volumes: [/path/to/your/data:/app/data]
+    volumes: [./data:/app/data]
     restart: unless-stopped`
 
 const dockerCommand = String.raw`docker run -d \
@@ -42,6 +43,11 @@ export function DockerDialog({ onOpenChange, ...props }: Readonly<Dialog.RootPro
                 <div>
                   <h3 className='mb-2 font-semibold'>{t('Step 1: Create compose.yaml')}</h3>
                   <CodeBlock className='overflow-x-auto rounded bg-(--gray-3) p-4 text-sm' code={composeYaml} />
+                  {t('You can also download it by running:')}
+                  <CodeBlock
+                    className='overflow-x-auto rounded bg-(--gray-3) p-4 text-sm'
+                    code={`curl -O ${new URL('/compose.yaml', metadata.link).href}`}
+                  />
                 </div>
 
                 <div>

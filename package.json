@@ -24,7 +24,7 @@
     "test": "playwright test -c tests/e2e --tsconfig=tests/e2e/tsconfig.playwright.json"
   },
   "dependencies": {
-    "better-sqlite3": "12.6.0",
+    "better-sqlite3": "12.6.2",
     "hono": "4.11.4"
   },
   "devDependencies": {

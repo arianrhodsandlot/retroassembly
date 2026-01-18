@@ -130,6 +130,7 @@
       "pnpm oxfmt",
       "pnpm lint --fix"
     ],
+    "*.json": "pnpm oxfmt",
     "pnpm-lock.yaml": "node --run=check-lockfile"
   },
   "engines": {

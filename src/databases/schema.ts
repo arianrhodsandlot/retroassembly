@@ -31,7 +31,7 @@ export const userTable = sqliteTable(
     passwordHash: text().notNull(),
     registrationIp: text(),
     registrationUserAgent: text(),
-    username: text().notNull().unique(),
+    username: text().notNull(),
     ...baseSchema,
   },
   (table) => [index('idx_users_username').on(table.username), index('idx_users_status').on(table.status)],

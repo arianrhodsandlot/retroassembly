@@ -2,7 +2,7 @@ import { delay } from 'es-toolkit'
 import { AnimatePresence, motion, type TargetAndTransition } from 'motion/react'
 import { useCallback, useEffect } from 'react'
 import { RadixThemePortal } from '#@/pages/components/radix-theme-portal.tsx'
-import { useSpatialNavigationPaused } from '#@/pages/library/atoms.ts'
+import { useEmulatorLaunched, useSpatialNavigationPaused } from '#@/pages/library/atoms.ts'
 import { useInputMapping } from '#@/pages/library/hooks/use-input-mapping.ts'
 import { useIsApple } from '#@/pages/library/hooks/use-is-apple.ts'
 import { focus } from '#@/pages/library/utils/spatial-navigation.ts'
@@ -28,6 +28,7 @@ export function SearchModal() {
   const [, setSelectedResult] = useSelectedResult()
   const { gamepad, cancelButton } = useInputMapping()
   const isApple = useIsApple()
+  const [launched] = useEmulatorLaunched()
 
   const close = useCallback(() => {
     setSpatialNavigationPaused(false)
@@ -35,12 +36,16 @@ export function SearchModal() {
   }, [setSpatialNavigationPaused, setShowSearchModal])
 
   const toggle = useCallback(() => {
+    if (launched) {
+      return
+    }
+
     if (!showSearchModal) {
       setSelectedResult(null)
     }
     setSpatialNavigationPaused((paused) => !paused)
     setShowSearchModal(!showSearchModal)
-  }, [showSearchModal, setSelectedResult, setSpatialNavigationPaused, setShowSearchModal])
+  }, [launched, showSearchModal, setSelectedResult, setSpatialNavigationPaused, setShowSearchModal])
 
   useEffect(() => {
     const abortController = new AbortController()

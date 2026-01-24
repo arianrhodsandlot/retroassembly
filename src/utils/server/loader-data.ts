@@ -42,6 +42,6 @@ export function getCommonLoaderData<T>(data: T = {} as T) {
 
 /* Used for routes under /library and needing recently launched ROMs */
 export async function getLibraryLoaderData<T>(data: T = {} as T) {
-  const { roms: recentlyLaunchedRoms } = await getLaunchRecords({ pageSize: 10 })
+  const { roms: recentlyLaunchedRoms } = await getLaunchRecords({ pageSize: 20 })
   return getCommonLoaderData({ ...data, recentlyLaunchedRoms })
 }

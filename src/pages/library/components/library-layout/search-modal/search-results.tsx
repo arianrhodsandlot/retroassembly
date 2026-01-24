@@ -10,7 +10,7 @@ export function SearchResults({ keyword, loading, results }: Readonly<SearchResu
   if (results?.length) {
     return (
       <ul>
-        {results?.map((rom) => (
+        {results?.slice(0, 10).map((rom) => (
           <SearchResultItem key={rom.id} keyword={keyword} rom={rom} />
         ))}
       </ul>

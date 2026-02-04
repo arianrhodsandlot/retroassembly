@@ -19,6 +19,7 @@ export default {
           clean: false,
           entry,
           fixedExtension: false,
+          inlineOnly: false,
           logLevel: 'warn',
           outDir,
         })

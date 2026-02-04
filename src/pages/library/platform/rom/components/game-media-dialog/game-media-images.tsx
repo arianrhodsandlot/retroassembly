@@ -56,7 +56,7 @@ export function GameMediaImages() {
   }
 
   return (
-    <div className={clsx('flex flex-wrap items-center gap-2', { 'opacity-60 pointer-events-none': isLoading })}>
+    <div className={clsx('flex flex-wrap items-center gap-2', { 'pointer-events-none opacity-60': isLoading })}>
       {thumbnailFileIds.map((thumbnailFileId) => (
         <div className='relative size-20 bg-neutral-200' key={thumbnailFileId}>
           <button

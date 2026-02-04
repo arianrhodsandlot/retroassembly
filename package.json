@@ -28,7 +28,7 @@
     "hono": "4.11.7"
   },
   "devDependencies": {
-    "@arianrhodsandlot/oxc-config": "1.1.0",
+    "@arianrhodsandlot/oxc-config": "1.1.1",
     "@cloudflare/vite-plugin": "1.23.0",
     "@hono/node-server": "1.19.9",
     "@hono/vite-dev-server": "0.24.1",
@@ -92,7 +92,7 @@
     "nanoid": "5.1.6",
     "nanoid-dictionary": "5.0.0",
     "next-themes": "0.4.6",
-    "nostalgist": "0.20.0",
+    "nostalgist": "0.20.2",
     "oxfmt": "0.28.0",
     "oxlint": "1.43.0",
     "oxlint-tsgolint": "0.11.4",

@@ -89,7 +89,7 @@ export function globals() {
     const token = c.req.header('Authorization')?.replace('Bearer ', '') || getCookie(c, 'token') || ''
     c.set('token', token)
 
-    let currentUser = await getTempUserOrCurrentUser(c)
+    const currentUser = await getTempUserOrCurrentUser(c)
     c.set('authorized', Boolean(currentUser))
     c.set('unauthorized', !currentUser)
     if (currentUser) {

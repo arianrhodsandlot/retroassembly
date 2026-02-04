@@ -18,7 +18,7 @@ export function LaunchButton({ children, disabled, variant = 'solid', ...props }
       <Button asChild radius='small' size='4' variant={variant}>
         <div
           className={clsx('relative h-16! w-full!', {
-            'bg-(--color-background)! border-2! shadow-none!': variant === 'outline',
+            'border-2! bg-(--color-background)! shadow-none!': variant === 'outline',
           })}
         >
           {children}

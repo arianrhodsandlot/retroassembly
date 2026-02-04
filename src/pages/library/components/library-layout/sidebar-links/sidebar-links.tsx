@@ -37,7 +37,7 @@ export function SidebarLinks() {
                     />
                   ) : null}
 
-                  <span className={clsx('truncate', { 'group-hover:opacity-100 opacity-90': !isActive(to) })}>
+                  <span className={clsx('truncate', { 'opacity-90 group-hover:opacity-100': !isActive(to) })}>
                     {text}
                   </span>
                 </SidebarLink>

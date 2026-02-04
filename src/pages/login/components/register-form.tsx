@@ -47,7 +47,7 @@ export function RegisterForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
       <div className='flex flex-col gap-4'>
         <LoginFormFields register />
         <Button
-          className={clsx('transition-opacity', { 'opacity-50! cursor-default!': isMutating || isRedirecting })}
+          className={clsx('transition-opacity', { 'cursor-default! opacity-50!': isMutating || isRedirecting })}
           type='submit'
         >
           <span className='icon-[mdi--register]' />

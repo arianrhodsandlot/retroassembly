@@ -49,7 +49,7 @@ export function LoginForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
         <LoginFormFields />
 
         <Button
-          className={clsx('transition-opacity', { 'opacity-50! cursor-default!': isMutating || isRedirecting })}
+          className={clsx('transition-opacity', { 'cursor-default! opacity-50!': isMutating || isRedirecting })}
           type='submit'
         >
           <span className='icon-[mdi--account-check] text-xl' />

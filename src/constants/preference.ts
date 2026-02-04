@@ -2,6 +2,7 @@ import { mapValues } from 'es-toolkit'
 import { mergePreference } from '../utils/isomorphic/preference.ts'
 import type { CoreName } from './core'
 import { platformMap, type PlatformName } from './platform.ts'
+import type { AccentColor, AppearanceMode } from './theme.ts'
 
 export type PlatformSortBy = 'alphabet' | 'popularity' | 'release_date'
 export type PlatformSortOrder = 'ascending' | 'descending'
@@ -71,6 +72,8 @@ export interface Preference {
     }
   }
   ui: {
+    accentColor: AccentColor
+    appearanceMode: AppearanceMode
     dateFormat: string
     language: string
     libraryCoverSize: string
@@ -155,6 +158,8 @@ export const defaultPreference: ResolvedPreference = {
     },
   },
   ui: {
+    accentColor: 'red',
+    appearanceMode: 'system',
     dateFormat: 'auto',
     language: 'auto',
     libraryCoverSize: 'medium',

@@ -341,5 +341,20 @@
   "Your feedback matters!": "Your feedback matters!",
   "Your password has been updated": "Your password has been updated",
   "Your settings will be saved and take effect immediately once changed.": "Your settings will be saved and take effect immediately once changed.",
-  "Your valuable feedback will greatly contribute to enhancing the user experience.": "Your valuable feedback will greatly contribute to enhancing the user experience."
+  "Your valuable feedback will greatly contribute to enhancing the user experience.": "Your valuable feedback will greatly contribute to enhancing the user experience.",
+
+  "Appearance": "Appearance",
+  "Accent Color": "Accent Color",
+  "Accessibility": "Accessibility",
+
+  "theme_accent_red": "Red",
+  "theme_accent_blue": "Blue",
+  "theme_accent_green": "Green",
+  "theme_accent_orange": "Orange",
+  "theme_accent_purple": "Purple",
+  "theme_accent_pink": "Pink",
+  "theme_accent_cyan": "Cyan",
+  "theme_accent_teal": "Teal",
+  "theme_accent_amber": "Amber",
+  "theme_accent_indigo": "Indigo"
 }

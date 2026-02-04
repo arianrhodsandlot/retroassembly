@@ -341,5 +341,20 @@
   "Your feedback matters!": "您的回饋很重要！",
   "Your password has been updated": "您的密碼已更新",
   "Your settings will be saved and take effect immediately once changed.": "您的設定將會儲存並在變更後立即生效。",
-  "Your valuable feedback will greatly contribute to enhancing the user experience.": "您寶貴的回饋將極大地有助於提升使用者體驗。"
+  "Your valuable feedback will greatly contribute to enhancing the user experience.": "您寶貴的回饋將極大地有助於提升使用者體驗。",
+
+  "Appearance": "外觀",
+  "Accent Color": "主題色",
+  "Accessibility": "無障礙",
+
+  "theme_accent_red": "紅色",
+  "theme_accent_blue": "藍色",
+  "theme_accent_green": "綠色",
+  "theme_accent_orange": "橙色",
+  "theme_accent_purple": "紫色",
+  "theme_accent_pink": "粉色",
+  "theme_accent_cyan": "青色",
+  "theme_accent_teal": "藍綠色",
+  "theme_accent_amber": "琥珀色",
+  "theme_accent_indigo": "靛藍色"
 }

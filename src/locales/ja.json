@@ -341,5 +341,20 @@
   "Your feedback matters!": "あなたのフィードバックが大切です！",
   "Your password has been updated": "パスワードが更新されました",
   "Your settings will be saved and take effect immediately once changed.": "設定は変更後すぐに保存され、即座に有効になります。",
-  "Your valuable feedback will greatly contribute to enhancing the user experience.": "あなたの貴重なフィードバックは、ユーザー体験の向上に大きく貢献します。"
+  "Your valuable feedback will greatly contribute to enhancing the user experience.": "あなたの貴重なフィードバックは、ユーザー体験の向上に大きく貢献します。",
+
+  "Appearance": "外観",
+  "Accent Color": "アクセントカラー",
+  "Accessibility": "アクセシビリティ",
+
+  "theme_accent_red": "赤",
+  "theme_accent_blue": "青",
+  "theme_accent_green": "緑",
+  "theme_accent_orange": "オレンジ",
+  "theme_accent_purple": "紫",
+  "theme_accent_pink": "ピンク",
+  "theme_accent_cyan": "シアン",
+  "theme_accent_teal": "ティール",
+  "theme_accent_amber": "琥珀",
+  "theme_accent_indigo": "インディゴ"
 }

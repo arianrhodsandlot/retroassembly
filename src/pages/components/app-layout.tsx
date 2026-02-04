@@ -38,16 +38,16 @@ export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
       </I18nextProvider>
       <body className={clsx({ 'bg-(--red-9) 2xl:bg-none': !isHome })}>
         <I18nextProvider i18n={i18n}>
-          <RadixTheme>
-            <ThemeProvider attribute='class'>
-              <Provider>
-                <HydrationBoundary hydrateAtoms={hydrateAtoms}>
+          <ThemeProvider attribute='class'>
+            <Provider>
+              <HydrationBoundary hydrateAtoms={hydrateAtoms}>
+                <RadixTheme>
                   {children}
                   {error ? null : <CookieConsent />}
-                </HydrationBoundary>
-              </Provider>
-            </ThemeProvider>
-          </RadixTheme>
+                </RadixTheme>
+              </HydrationBoundary>
+            </Provider>
+          </ThemeProvider>
         </I18nextProvider>
         {currentUser ? (
           <script dangerouslySetInnerHTML={{ __html: `globalThis.CURRENT_USER=${JSON.stringify(currentUser)}` }} />

@@ -341,5 +341,20 @@
   "Your feedback matters!": "여러분의 피드백이 중요합니다!",
   "Your password has been updated": "비밀번호가 업데이트되었습니다",
   "Your settings will be saved and take effect immediately once changed.": "설정은 변경 시 즉시 저장되고 적용됩니다.",
-  "Your valuable feedback will greatly contribute to enhancing the user experience.": "귀하의 소중한 피드백은 사용자 경험 향상에 크게 기여할 것입니다."
+  "Your valuable feedback will greatly contribute to enhancing the user experience.": "귀하의 소중한 피드백은 사용자 경험 향상에 크게 기여할 것입니다.",
+
+  "Appearance": "외관",
+  "Accent Color": "강조 색상",
+  "Accessibility": "접근성",
+
+  "theme_accent_red": "빨강",
+  "theme_accent_blue": "파랑",
+  "theme_accent_green": "초록",
+  "theme_accent_orange": "주황",
+  "theme_accent_purple": "보라",
+  "theme_accent_pink": "분홍",
+  "theme_accent_cyan": "시안",
+  "theme_accent_teal": "청록",
+  "theme_accent_amber": "호박색",
+  "theme_accent_indigo": "인디고"
 }

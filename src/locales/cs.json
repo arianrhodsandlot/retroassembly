@@ -341,5 +341,20 @@
   "Your feedback matters!": "Váš názor je důležitý!",
   "Your password has been updated": "Vaše heslo bylo aktualizováno",
   "Your settings will be saved and take effect immediately once changed.": "Vaše nastavení bude uloženo a projeví se okamžitě po změně.",
-  "Your valuable feedback will greatly contribute to enhancing the user experience.": "Vaše cenná zpětná vazba výrazně přispěje ke zlepšení uživatelského zážitku."
+  "Your valuable feedback will greatly contribute to enhancing the user experience.": "Vaše cenná zpětná vazba výrazně přispěje ke zlepšení uživatelského zážitku.",
+
+  "Appearance": "Vzhled",
+  "Accent Color": "Barva zvýraznění",
+  "Accessibility": "Přístupnost",
+
+  "theme_accent_red": "Červená",
+  "theme_accent_blue": "Modrá",
+  "theme_accent_green": "Zelená",
+  "theme_accent_orange": "Oranžová",
+  "theme_accent_purple": "Fialová",
+  "theme_accent_pink": "Růžová",
+  "theme_accent_cyan": "Azurová",
+  "theme_accent_teal": "Tyrkysová",
+  "theme_accent_amber": "Jantarová",
+  "theme_accent_indigo": "Indigo"
 }

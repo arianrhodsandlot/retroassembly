@@ -341,5 +341,20 @@
   "Your feedback matters!": "Ваш отзыв важен!",
   "Your password has been updated": "Ваш пароль был обновлён",
   "Your settings will be saved and take effect immediately once changed.": "Ваши настройки будут сохранены и вступят в силу немедленно после изменения.",
-  "Your valuable feedback will greatly contribute to enhancing the user experience.": "Ваш ценный отзыв значительно поможет улучшить пользовательский опыт."
+  "Your valuable feedback will greatly contribute to enhancing the user experience.": "Ваш ценный отзыв значительно поможет улучшить пользовательский опыт.",
+
+  "Appearance": "Внешний вид",
+  "Accent Color": "Акцентный цвет",
+  "Accessibility": "Доступность",
+
+  "theme_accent_red": "Красный",
+  "theme_accent_blue": "Синий",
+  "theme_accent_green": "Зелёный",
+  "theme_accent_orange": "Оранжевый",
+  "theme_accent_purple": "Фиолетовый",
+  "theme_accent_pink": "Розовый",
+  "theme_accent_cyan": "Голубой",
+  "theme_accent_teal": "Бирюзовый",
+  "theme_accent_amber": "Янтарный",
+  "theme_accent_indigo": "Индиго"
 }

@@ -1,6 +1,16 @@
 @import '@radix-ui/themes/components.css';
 @import '@radix-ui/themes/tokens/base.css';
 @import '@radix-ui/themes/tokens/colors/mauve.css';
+@import '@radix-ui/themes/tokens/colors/red.css';
+@import '@radix-ui/themes/tokens/colors/blue.css';
+@import '@radix-ui/themes/tokens/colors/green.css';
+@import '@radix-ui/themes/tokens/colors/orange.css';
+@import '@radix-ui/themes/tokens/colors/purple.css';
+@import '@radix-ui/themes/tokens/colors/pink.css';
+@import '@radix-ui/themes/tokens/colors/cyan.css';
+@import '@radix-ui/themes/tokens/colors/teal.css';
+@import '@radix-ui/themes/tokens/colors/amber.css';
+@import '@radix-ui/themes/tokens/colors/indigo.css';
 @import '@radix-ui/themes/utilities.css';
 @import './light.css';
 @import './dark.css';

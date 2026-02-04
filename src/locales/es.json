@@ -341,5 +341,20 @@
   "Your feedback matters!": "¡Tu retroalimentación importa!",
   "Your password has been updated": "Tu contraseña ha sido actualizada",
   "Your settings will be saved and take effect immediately once changed.": "Tu configuración se guardará y tendrá efecto inmediatamente una vez cambiada.",
-  "Your valuable feedback will greatly contribute to enhancing the user experience.": "Tu valiosa retroalimentación contribuirá enormemente a mejorar la experiencia del usuario."
+  "Your valuable feedback will greatly contribute to enhancing the user experience.": "Tu valiosa retroalimentación contribuirá enormemente a mejorar la experiencia del usuario.",
+
+  "Appearance": "Apariencia",
+  "Accent Color": "Color de acento",
+  "Accessibility": "Accesibilidad",
+
+  "theme_accent_red": "Rojo",
+  "theme_accent_blue": "Azul",
+  "theme_accent_green": "Verde",
+  "theme_accent_orange": "Naranja",
+  "theme_accent_purple": "Púrpura",
+  "theme_accent_pink": "Rosa",
+  "theme_accent_cyan": "Cian",
+  "theme_accent_teal": "Verde azulado",
+  "theme_accent_amber": "Ámbar",
+  "theme_accent_indigo": "Índigo"
 }

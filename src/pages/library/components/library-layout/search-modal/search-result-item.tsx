@@ -26,7 +26,7 @@ interface SearchResultItemProps {
 export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProps>) {
   const { t } = useTranslation()
   const { preference } = usePreference()
-  const { data: cover, isLoading } = useRomCover(rom)
+  const { data: cover, isLoading } = useRomCover({ ...rom, isFavorite: false })
   const [, setShowSearchModal] = useShowSearchModal()
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
   const [selectedResult, setSelectedResult] = useSelectedResult()

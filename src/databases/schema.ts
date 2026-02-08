@@ -1,4 +1,4 @@
-import { index, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { index, integer, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core'
 import type { PlatformName } from '#@/constants/platform.ts'
 import type { PreferenceSnippet } from '../constants/preference.ts'
 import { nanoid } from '../utils/server/nanoid.ts'
@@ -131,4 +131,18 @@ export const userPreferenceTable = sqliteTable(
     ...baseSchema,
   },
   (table) => [index('idx_user_preferences').on(table.userId)],
+)
+
+export const favoriteTable = sqliteTable(
+  'favorites',
+  {
+    romId: text().notNull(),
+    userId: text().notNull(),
+    ...baseSchema,
+  },
+  (table) => [
+    uniqueIndex('idx_favorites_user_rom').on(table.userId, table.romId),
+    index('idx_favorites_user_status').on(table.userId, table.status),
+    index('idx_favorites_user_status_created').on(table.userId, table.status, table.createdAt),
+  ],
 )

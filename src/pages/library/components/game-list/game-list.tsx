@@ -16,14 +16,6 @@ export function GameList() {
     setSelectedGames([])
   }, [setSelectedGames])
 
-  if (!roms?.length) {
-    return (
-      <div className='border border-transparent border-t-(--gray-6)'>
-        <GameListEmpty />
-      </div>
-    )
-  }
-
   const sizeMap = { 'extra-large': 60, 'extra-small': 36, large: 54, medium: 48, small: 42 }
   const size = sizeMap[preference.ui.libraryCoverSize]
   const gridTemplateColumns = `repeat(auto-fill,minmax(min(calc(var(--spacing)*${size}),var(--min-width)),1fr))`
@@ -31,11 +23,15 @@ export function GameList() {
   return (
     <div className='flex flex-col border border-transparent border-t-(--gray-6) pt-4'>
       <GameListActions />
-      <div className='mt-4 grid [--min-width:150px] lg:[--min-width:100%]' style={{ gridTemplateColumns }}>
-        {roms.map((rom) => (
-          <GameEntry key={rom.id} rom={rom} />
-        ))}
-      </div>
+      {roms?.length ? (
+        <div className='mt-4 grid [--min-width:150px] lg:[--min-width:100%]' style={{ gridTemplateColumns }}>
+          {roms.map((rom) => (
+            <GameEntry key={rom.id} rom={rom} />
+          ))}
+        </div>
+      ) : (
+        <GameListEmpty />
+      )}
       <GameListPagination />
     </div>
   )

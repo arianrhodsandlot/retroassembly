@@ -4,6 +4,7 @@ import { routes } from '#@/pages/routes.ts'
 import { useSelectedGames } from '../../atoms.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
 import { NavigatableLink } from '../navigatable-link.tsx'
+import { FavoriteButton } from './favorite-button.tsx'
 import { GameEntryDropdownMenu } from './game-entry-dropdown-menu.tsx'
 import { GameEntryImage } from './game-entry-image.tsx'
 import { GamePlatform } from './game-platform.tsx'
@@ -40,6 +41,7 @@ export function GameEntry({ rom }) {
         <GamePlatform platform={rom.platform} />
         <GameTitle rom={rom} />
       </NavigatableLink>
+      {isDemo ? null : <FavoriteButton rom={rom} />}
       <GameEntryDropdownMenu rom={rom} />
     </div>
   )

@@ -18,6 +18,8 @@ export function GameListActions() {
   const isDemo = useIsDemo()
 
   const isHistory = pathname === '/library/history'
+  const isFavorites = pathname === '/library/favorites'
+  const isLibraryRoms = pathname === '/library/roms'
 
   if (isDemo || isHistory) {
     return
@@ -25,7 +27,27 @@ export function GameListActions() {
 
   const searchParams = new URLSearchParams(search)
   const direction = searchParams.get('direction') || 'asc'
+  const favorite = searchParams.get('favorite') === '1'
   const sort = searchParams.get('sort') || 'name'
+
+  function buildSortLink(params: Record<string, string>) {
+    const newParams = new URLSearchParams(params)
+    if (favorite) {
+      newParams.set('favorite', '1')
+    }
+    return [pathname, newParams].join('?')
+  }
+
+  function getFavoriteToggleLink() {
+    const params = new URLSearchParams(search)
+    if (favorite) {
+      params.delete('favorite')
+    } else {
+      params.set('favorite', '1')
+    }
+    const query = params.toString()
+    return query ? [pathname, query].join('?') : pathname
+  }
 
   return (
     <div
@@ -80,47 +102,57 @@ export function GameListActions() {
       ) : (
         <div>
           <div />
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger>
-              <Button variant='soft'>
-                <span className='icon-[mdi--sort]' />
-                {t('Sort')}
-                <DropdownMenu.TriggerIcon />
+          <div className='flex gap-2'>
+            {isFavorites || isLibraryRoms ? null : (
+              <Button asChild variant={favorite ? 'solid' : 'soft'}>
+                <Link to={getFavoriteToggleLink()}>
+                  <span className={favorite ? 'icon-[mdi--star]' : 'icon-[mdi--star-outline]'} />
+                  {t('Favorites')}
+                </Link>
               </Button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content>
-              <DropdownMenu.Label>{t('Sort By')}</DropdownMenu.Label>
-              {[
-                { icon: 'icon-[mdi--pencil]', label: t('Name'), value: 'name' },
-                { icon: 'icon-[mdi--clock]', label: t('Date Added'), value: 'added' },
-                { icon: 'icon-[mdi--calendar]', label: t('Released'), value: 'released' },
-              ].map(({ icon, label, value }) => (
-                <DropdownMenu.Item asChild key={value}>
-                  <Link to={[pathname, new URLSearchParams({ direction, sort: value })].join('?')}>
-                    <span className={clsx('icon-[mdi--check]', { 'opacity-0': value !== sort })} />
-                    <span className={icon} />
-                    {label}
-                  </Link>
-                </DropdownMenu.Item>
-              ))}
+            )}
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger>
+                <Button variant='soft'>
+                  <span className='icon-[mdi--sort]' />
+                  {t('Sort')}
+                  <DropdownMenu.TriggerIcon />
+                </Button>
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content>
+                <DropdownMenu.Label>{t('Sort By')}</DropdownMenu.Label>
+                {[
+                  { icon: 'icon-[mdi--pencil]', label: t('Name'), value: 'name' },
+                  { icon: 'icon-[mdi--clock]', label: t('Date Added'), value: 'added' },
+                  { icon: 'icon-[mdi--calendar]', label: t('Released'), value: 'released' },
+                ].map(({ icon, label, value }) => (
+                  <DropdownMenu.Item asChild key={value}>
+                    <Link to={buildSortLink({ direction, sort: value })}>
+                      <span className={clsx('icon-[mdi--check]', { 'opacity-0': value !== sort })} />
+                      <span className={icon} />
+                      {label}
+                    </Link>
+                  </DropdownMenu.Item>
+                ))}
 
-              <DropdownMenu.Separator />
+                <DropdownMenu.Separator />
 
-              <DropdownMenu.Label>{t('Sort Direction')}</DropdownMenu.Label>
-              {[
-                { icon: 'icon-[mdi--sort-ascending]', label: t('Ascending'), value: 'asc' },
-                { icon: 'icon-[mdi--sort-descending]', label: t('Descending'), value: 'desc' },
-              ].map(({ icon, label, value }) => (
-                <DropdownMenu.Item asChild key={value}>
-                  <Link to={[pathname, new URLSearchParams({ direction: value, sort })].join('?')}>
-                    <span className={clsx('icon-[mdi--check]', { 'opacity-0': value !== direction })} />
-                    <span className={icon} />
-                    {label}
-                  </Link>
-                </DropdownMenu.Item>
-              ))}
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
+                <DropdownMenu.Label>{t('Sort Direction')}</DropdownMenu.Label>
+                {[
+                  { icon: 'icon-[mdi--sort-ascending]', label: t('Ascending'), value: 'asc' },
+                  { icon: 'icon-[mdi--sort-descending]', label: t('Descending'), value: 'desc' },
+                ].map(({ icon, label, value }) => (
+                  <DropdownMenu.Item asChild key={value}>
+                    <Link to={buildSortLink({ direction: value, sort })}>
+                      <span className={clsx('icon-[mdi--check]', { 'opacity-0': value !== direction })} />
+                      <span className={icon} />
+                      {label}
+                    </Link>
+                  </DropdownMenu.Item>
+                ))}
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
+          </div>
         </div>
       )}
     </div>

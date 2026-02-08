@@ -1,6 +1,6 @@
 import { and, count, countDistinct, desc, eq, inArray, max } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { launchRecordTable, romTable } from '#@/databases/schema.ts'
+import { favoriteTable, launchRecordTable, romTable, statusEnum } from '#@/databases/schema.ts'
 
 export async function getLaunchRecords({ page = 1, pageSize = 100 }: { page?: number; pageSize?: number }) {
   const c = getContext()
@@ -15,11 +15,12 @@ export async function getLaunchRecords({ page = 1, pageSize = 100 }: { page?: nu
     inArray(launchRecordTable.platform, preference.ui.platforms),
   )
 
-  const roms = await library
+  const romsRaw = await library
     .select({
       core: launchRecordTable.core,
       count: count(launchRecordTable.id),
       id: launchRecordTable.romId,
+      isFavorite: favoriteTable.id,
       lastLaunched: max(launchRecordTable.createdAt),
       platform: launchRecordTable.platform,
 
@@ -34,10 +35,20 @@ export async function getLaunchRecords({ page = 1, pageSize = 100 }: { page?: nu
     .from(launchRecordTable)
     .where(where)
     .leftJoin(romTable, eq(launchRecordTable.romId, romTable.id))
+    .leftJoin(
+      favoriteTable,
+      and(
+        eq(favoriteTable.romId, romTable.id),
+        eq(favoriteTable.userId, currentUser.id),
+        eq(favoriteTable.status, statusEnum.normal),
+      ),
+    )
     .groupBy(launchRecordTable.romId, romTable.fileName, romTable.launchboxGameId, romTable.libretroGameId)
     .orderBy(desc(max(launchRecordTable.createdAt)))
     .offset(offset)
     .limit(pageSize)
+
+  const roms = romsRaw.map(({ isFavorite, ...rom }) => Object.assign(rom, { isFavorite: Boolean(isFavorite) }))
 
   const [{ total }] = await library
     .select({ total: countDistinct(launchRecordTable.romId) })

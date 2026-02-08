@@ -11,11 +11,13 @@ import { UploadSelectButton } from '../../platform/components/upload-select-butt
 
 export function GameListEmpty() {
   const { t } = useTranslation()
-  const { pathname } = useLocation()
+  const { pathname, search } = useLocation()
   const platform = usePlatform()
 
   const isLibrary = pathname === routes.libraryRoms || pathname === routes.libraryHome
   const isHistory = pathname === routes.libraryHistory
+  const isFavorites = pathname === routes.libraryFavorites
+  const favorite = new URLSearchParams(search).get('favorite') === '1'
 
   return (
     <div className='flex flex-col items-center justify-center gap-2 py-16 text-sm lg:text-xl'>
@@ -58,6 +60,8 @@ export function GameListEmpty() {
         </>
       ) : null}
 
+      {isFavorites ? <div className='text-(--gray-11)'>{t('favoriteEmptyState')}</div> : null}
+
       {platform ? (
         <>
           <div className='flex items-center gap-1 text-(--gray-11)'>
@@ -72,20 +76,22 @@ export function GameListEmpty() {
                   />
                 ),
               }}
-              i18nKey='noGamesForPlatform'
+              i18nKey={favorite ? 'noFavoriteGamesForPlatform' : 'noGamesForPlatform'}
               values={{
                 platform: t(platform.displayName),
               }}
             />
           </div>
-          <div className='flex items-center gap-1 text-(--gray-11)'>
-            <Trans
-              components={{
-                1: <UploadButton platform={platform?.name} variant='soft' />,
-              }}
-              i18nKey='uploadRomsToGetStarted'
-            />
-          </div>
+          {favorite ? null : (
+            <div className='flex items-center gap-1 text-(--gray-11)'>
+              <Trans
+                components={{
+                  1: <UploadButton platform={platform?.name} variant='soft' />,
+                }}
+                i18nKey='uploadRomsToGetStarted'
+              />
+            </div>
+          )}
         </>
       ) : null}
     </div>

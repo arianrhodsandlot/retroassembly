@@ -1,7 +1,7 @@
-import { and, count, desc, eq, inArray, sql } from 'drizzle-orm'
+import { and, count, desc, eq, inArray, isNotNull, sql } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import type { PlatformName } from '#@/constants/platform.ts'
-import { romTable } from '#@/databases/schema.ts'
+import { favoriteTable, romTable, statusEnum } from '#@/databases/schema.ts'
 
 type GetRomsReturning = Awaited<ReturnType<typeof getRoms>>
 export type Roms = GetRomsReturning['roms']
@@ -10,6 +10,7 @@ export type RomsPagination = GetRomsReturning['pagination']
 
 interface GetRomsParams {
   direction?: 'asc' | 'desc'
+  favorite?: boolean
   id?: string
   orderBy?: 'added' | 'name' | 'released'
   page?: number
@@ -19,6 +20,7 @@ interface GetRomsParams {
 
 export async function getRoms({
   direction = 'asc',
+  favorite = false,
   id,
   orderBy = 'name',
   page = 1,
@@ -51,15 +53,35 @@ export async function getRoms({
   if (orderBy !== 'name') {
     columns.push(columnMap.name)
   }
-  const roms = await library
-    .select()
+  const favoriteJoinCondition = and(
+    eq(favoriteTable.romId, romTable.id),
+    eq(favoriteTable.userId, currentUser.id),
+    eq(favoriteTable.status, statusEnum.normal),
+  )
+
+  const baseQuery = library
+    .select({
+      isFavorite: sql<boolean>`CASE WHEN ${favoriteTable.id} IS NOT NULL THEN 1 ELSE 0 END`,
+      rom: romTable,
+    })
     .from(romTable)
+    .leftJoin(favoriteTable, favoriteJoinCondition)
+
+  const favoriteWhere = favorite ? and(where, isNotNull(favoriteTable.id)) : where
+
+  const romsRaw = await baseQuery
     .orderBy(...columns)
-    .where(where)
+    .where(favoriteWhere)
     .offset(offset)
     .limit(pageSize)
 
-  const [{ total }] = await library.select({ total: count() }).from(romTable).where(where)
+  const roms = romsRaw.map(({ isFavorite, rom }) => Object.assign(rom, { isFavorite: Boolean(isFavorite) }))
+
+  const [{ total }] = await library
+    .select({ total: count() })
+    .from(romTable)
+    .leftJoin(favoriteTable, favoriteJoinCondition)
+    .where(favoriteWhere)
 
   return { pagination: { current: page, pages: Math.ceil(total / pageSize), size: pageSize, total }, roms }
 }

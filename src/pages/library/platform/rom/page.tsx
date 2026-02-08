@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router'
 import type { loader } from '#@/pages/routes/library-platform-rom.tsx'
 import { getRomGoodcodes } from '#@/utils/client/library.ts'
 import { GameButtons } from '../../components/game-buttons/game-buttons.tsx'
+import { FavoriteButton } from '../../components/game-entry/favorite-button.tsx'
 import LibraryLayout from '../../components/library-layout/library-layout.tsx'
 import { PageBreadcrumb } from '../../components/page-breadcrumb.tsx'
 import { RomBackground } from '../../components/rom-background.tsx'
@@ -40,7 +41,10 @@ export default function RomPage() {
           </div>
 
           <div className='flex flex-1 flex-col gap-8'>
-            <h1 className='pt-4 text-3xl font-bold lg:px-8'>{goodcodes.rom}</h1>
+            <div className='flex items-center gap-3 pt-4 lg:px-8'>
+              <h1 className='text-3xl font-bold'>{goodcodes.rom}</h1>
+              <FavoriteButton rom={rom} variant='inline' />
+            </div>
 
             <div className='flex flex-col gap-8 lg:flex-col-reverse'>
               <div className='lg:px-4'>

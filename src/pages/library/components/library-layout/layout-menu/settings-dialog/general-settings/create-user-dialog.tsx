@@ -1,5 +1,5 @@
 import { Button, Callout, Dialog } from '@radix-ui/themes'
-import { useState } from 'react'
+import { useState, type SubmitEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client, parseResponse } from '#@/api/client.ts'
@@ -36,7 +36,7 @@ export function CreateUserDialog({ onOpenChange, onSuccess, open }: Readonly<Cre
     },
   )
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     const username = formData.get('username')?.toString() || ''

@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import { type FormEvent, useCallback, useEffect } from 'react'
+import { useCallback, useEffect, type SubmitEvent } from 'react'
 import { useLoaderData, useLocation, useNavigate } from 'react-router'
 import useSWR from 'swr'
 import { client, parseResponse } from '#@/api/client.ts'
@@ -49,7 +49,7 @@ export function SearchBar() {
     [location.pathname, selectedUrl, setShowSearchModal, setSpatialNavigationPaused, navigate],
   )
 
-  async function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     await select()
   }

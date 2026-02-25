@@ -1,6 +1,6 @@
 import { Button, Callout } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import { useState } from 'react'
+import { useState, type SubmitEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client, type InferRequestType } from '#@/api/client.ts'
@@ -33,7 +33,7 @@ export function RegisterForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
     },
   )
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     try {

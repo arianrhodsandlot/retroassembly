@@ -1,5 +1,5 @@
 import { Button, Callout, Card } from '@radix-ui/themes'
-import type { FormEvent } from 'react'
+import type { SubmitEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client } from '#@/api/client.ts'
@@ -50,7 +50,7 @@ export function AccountSettings() {
     trigger: handleSubmit,
   } = useSWRMutation(
     { endpoint: 'auth/password', method: 'patch' },
-    async (_key, { arg: event }: { arg: FormEvent<HTMLFormElement> }) => {
+    async (_key, { arg: event }: { arg: SubmitEvent<HTMLFormElement> }) => {
       event.preventDefault()
       const formData = new FormData(event.currentTarget)
       const form = validateFormData(formData)

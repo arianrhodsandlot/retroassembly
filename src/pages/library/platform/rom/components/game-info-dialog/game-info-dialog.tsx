@@ -1,6 +1,6 @@
 import { Button, Dialog, IconButton } from '@radix-ui/themes'
 import type { InferRequestType } from 'hono'
-import { type PropsWithChildren, useState } from 'react'
+import { type PropsWithChildren, useState, type SubmitEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client } from '#@/api/client.ts'
@@ -41,7 +41,7 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
       client.roms[':id'].$patch({ form, param }),
   )
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.target as HTMLFormElement)
     await trigger(Object.fromEntries(formData))

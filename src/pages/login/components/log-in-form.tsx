@@ -1,7 +1,7 @@
 import { Button, Callout } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { AnimatePresence, motion } from 'motion/react'
-import { useState } from 'react'
+import { useState, type SubmitEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client, type InferRequestType } from '#@/api/client.ts'
@@ -26,7 +26,7 @@ export function LoginForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
 
   const showError = !isMutating && error
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     if (isMutating) {
       return

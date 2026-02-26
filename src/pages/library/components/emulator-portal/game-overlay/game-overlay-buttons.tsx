@@ -1,4 +1,4 @@
-import { type ChangeEvent, useRef } from 'react'
+import { fileOpen } from 'browser-fs-access'
 import { useTranslation } from 'react-i18next'
 import { useIsDemo } from '#@/pages/library/hooks/use-demo.ts'
 import { focus } from '#@/pages/library/utils/spatial-navigation.ts'
@@ -13,8 +13,6 @@ export function GameOverlayButtons() {
   const { importSave, isImportingSave, saveManualState } = useGameStates()
   const { hide, setIsPending } = useGameOverlay()
   const isDemo = useIsDemo()
-  // ref for the hidden file input used to import an existing save file
-  const fileInputRef = useRef<HTMLInputElement>(null)
 
   async function handleClickResume() {
     await hide()
@@ -51,18 +49,14 @@ export function GameOverlayButtons() {
     }
   }
 
-  async function handleImportFileChange(e: ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]
-    if (!file || !file.name.endsWith('.state')) {
-      return
-    }
+  async function handleClickImport() {
+    const file = await fileOpen({ extensions: ['.state'] })
     setIsPending(true)
     try {
       await importSave(file)
       focus('.game-overlay button')
     } finally {
       setIsPending(false)
-      e.target.value = ''
     }
   }
 
@@ -78,17 +72,7 @@ export function GameOverlayButtons() {
         {t('Save State')}
       </GameOverlayButton>
 
-      {/* hidden input; clicking the button below triggers it */}
-      <input
-        accept='.state'
-        aria-hidden='true'
-        className='sr-only'
-        onChange={handleImportFileChange}
-        ref={fileInputRef}
-        tabIndex={-1}
-        type='file'
-      />
-      <GameOverlayButton disabled={isDemo || isImportingSave} onClick={() => fileInputRef.current?.click()}>
+      <GameOverlayButton disabled={isDemo || isImportingSave} onClick={handleClickImport}>
         <span className='icon-[mdi--upload] size-5' />
         {t('Import Save')}
       </GameOverlayButton>

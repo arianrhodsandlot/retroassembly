@@ -18,6 +18,7 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
   const { hide, setIsPending } = useGameOverlay()
   const { core, emulator } = useEmulator()
   const [loaded, setLoaded] = useState(false)
+  const [errored, setErrored] = useState(false)
   const { isMutating, trigger: loadState } = useSWRMutation(
     getFileUrl(state.fileId),
     (url) => emulator?.loadState(url),
@@ -41,6 +42,11 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
     setLoaded(true)
   }
 
+  function handleError() {
+    setLoaded(true)
+    setErrored(true)
+  }
+
   return (
     <div className='relative'>
       <button
@@ -62,17 +68,21 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
           })}
         >
           {loaded ? null : <span className='icon-[svg-spinners--180-ring]' />}
-          <img
-            alt={state.id}
-            className={clsx('absolute inset-0 size-full object-contain transition-opacity', {
-              'opacity-0': !loaded,
-              'opacity-80': isMutating,
-            })}
-            loading='lazy'
-            onError={handleLoaded}
-            onLoad={handleLoaded}
-            src={getFileUrl(state.thumbnailFileId)}
-          />
+          {errored ? (
+            <span className='icon-[mdi--upload] size-10 text-white/40' />
+          ) : (
+            <img
+              alt={state.id}
+              className={clsx('absolute inset-0 size-full object-contain transition-opacity', {
+                'opacity-0': !loaded,
+                'opacity-80': isMutating,
+              })}
+              loading='lazy'
+              onError={handleError}
+              onLoad={handleLoaded}
+              src={getFileUrl(state.thumbnailFileId)}
+            />
+          )}
           {loadable ? null : (
             <div className='absolute right-0 bottom-0 rounded-tl-lg bg-black px-1 py-0.5 text-xs text-white'>
               {state.core}

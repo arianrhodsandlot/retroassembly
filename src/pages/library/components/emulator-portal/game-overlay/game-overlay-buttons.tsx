@@ -62,7 +62,6 @@ export function GameOverlayButtons() {
       focus('.game-overlay button')
     } finally {
       setIsPending(false)
-      // reset so the same file can be re-imported if needed
       e.target.value = ''
     }
   }

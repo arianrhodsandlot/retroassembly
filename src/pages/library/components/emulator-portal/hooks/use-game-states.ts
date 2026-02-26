@@ -58,30 +58,19 @@ export function useGameStates() {
     await reloadAutoStates()
   })
 
-  // import an existing .state file (RetroArch format) from disk as a manual save state
+  // import an existing .state file (RetroArch format) from disk as a manual save state.
+  // thumbnail is left blank since we can't extract a screenshot from the file without
+  // visibly disrupting the running game.
   const { isMutating: isImportingSave, trigger: importSave } = useSWRMutation(
     '/api/v1/states',
     async (_key: string, { arg: file }: { arg: File }) => {
       if (!core || !rom) {
         throw new Error('invalid core or rom')
       }
-      // capture the current game frame as the thumbnail using the emulator canvas
-      const canvas = emulator?.getCanvas()
-      if (!canvas) {
-        throw new Error('emulator canvas not available')
-      }
-      const thumbnail = await new Promise<Blob>((resolve, reject) => {
-        canvas.toBlob((blob) => {
-          if (blob) {
-            resolve(blob)
-          } else {
-            reject(new Error('canvas.toBlob returned null'))
-          }
-        }, 'image/png')
-      })
+      const blankThumbnail = new Blob([], { type: 'image/png' })
       await $post({
         // @ts-expect-error actually we can use Blob here though it says only File is accepted
-        form: { core, rom: rom.id, state: file, thumbnail, type: 'manual' },
+        form: { core, rom: rom.id, state: file, thumbnail: blankThumbnail, type: 'manual' },
       })
       await reloadStates()
     },

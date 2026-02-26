@@ -58,7 +58,27 @@ export function useGameStates() {
     await reloadAutoStates()
   })
 
+  // import an existing .state file (RetroArch format) from disk as a manual save state.
+  // thumbnail is left blank since we can't extract a screenshot from the file without
+  // visibly disrupting the running game.
+  const { isMutating: isImportingSave, trigger: importSave } = useSWRMutation(
+    '/api/v1/states',
+    async (_key: string, { arg: file }: { arg: File }) => {
+      if (!core || !rom) {
+        throw new Error('invalid core or rom')
+      }
+      const blankThumbnail = new Blob([], { type: 'image/png' })
+      await $post({
+        // @ts-expect-error actually we can use Blob here though it says only File is accepted
+        form: { core, rom: rom.id, state: file, thumbnail: blankThumbnail, type: 'manual' },
+      })
+      await reloadStates()
+    },
+  )
+
   return {
+    importSave,
+    isImportingSave,
     isSavingAutoState,
     isSavingManualState,
     isStatesLoading,

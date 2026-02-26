@@ -1,3 +1,4 @@
+import { fileOpen } from 'browser-fs-access'
 import { useTranslation } from 'react-i18next'
 import { useIsDemo } from '#@/pages/library/hooks/use-demo.ts'
 import { focus } from '#@/pages/library/utils/spatial-navigation.ts'
@@ -9,7 +10,7 @@ import { GameOverlayButton } from './game-overlay-button.tsx'
 export function GameOverlayButtons() {
   const { t } = useTranslation()
   const { emulator, exit } = useEmulator()
-  const { saveManualState } = useGameStates()
+  const { importSave, isImportingSave, saveManualState } = useGameStates()
   const { hide, setIsPending } = useGameOverlay()
   const isDemo = useIsDemo()
 
@@ -48,6 +49,17 @@ export function GameOverlayButtons() {
     }
   }
 
+  async function handleClickImport() {
+    const file = await fileOpen({ extensions: ['.state'] })
+    setIsPending(true)
+    try {
+      await importSave(file)
+      focus('.game-overlay button')
+    } finally {
+      setIsPending(false)
+    }
+  }
+
   return (
     <>
       <GameOverlayButton dataSnLeft='.game-overlay-buttons button:last-child' onClick={handleClickResume}>
@@ -58,6 +70,11 @@ export function GameOverlayButtons() {
       <GameOverlayButton disabled={isDemo} onClick={handleClickSaveState}>
         <span className='icon-[mdi--content-save] size-5' />
         {t('Save State')}
+      </GameOverlayButton>
+
+      <GameOverlayButton disabled={isDemo || isImportingSave} onClick={handleClickImport}>
+        <span className='icon-[mdi--upload] size-5' />
+        {t('Import Save')}
       </GameOverlayButton>
 
       <div className='hidden lg:block lg:flex-1' />

@@ -5,10 +5,10 @@ import { useRouter } from '../hooks/use-router.ts'
 
 export function PendingMask() {
   const { state } = useNavigation()
-  const { isReloading } = useRouter()
+  const { loadingMaskVisible } = useRouter()
   const isNavigating = state === 'loading'
 
-  if (isReloading) {
+  if (!loadingMaskVisible) {
     return
   }
 

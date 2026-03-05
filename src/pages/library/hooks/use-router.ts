@@ -9,7 +9,7 @@ export function useRouter() {
   const [suppressLoadingMaskAtom, setSuppressLoadingMaskAtom] = useShouldSuppressLoadingMaskAtom()
 
   const isNavigating = state === 'loading'
-  const isReloading = isNavigating && suppressLoadingMaskAtom
+  const loadingMaskVisible = isNavigating && !suppressLoadingMaskAtom
 
   async function reload({ suppressLoadingMask }: { suppressLoadingMask?: boolean } = {}) {
     if (suppressLoadingMask) {
@@ -26,5 +26,5 @@ export function useRouter() {
     await reload({ suppressLoadingMask: true })
   }
 
-  return { isReloading, reload, reloadSilently }
+  return { loadingMaskVisible, reload, reloadSilently }
 }

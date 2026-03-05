@@ -22,13 +22,15 @@ export function GameList() {
 
   return (
     <div className='flex flex-col border border-transparent border-t-(--gray-6) pt-4'>
-      <GameListActions />
       {roms?.length ? (
-        <div className='mt-4 grid [--min-width:150px] lg:[--min-width:100%]' style={{ gridTemplateColumns }}>
-          {roms.map((rom) => (
-            <GameEntry key={rom.id} rom={rom} />
-          ))}
-        </div>
+        <>
+          <GameListActions />
+          <div className='mt-4 grid [--min-width:150px] lg:[--min-width:100%]' style={{ gridTemplateColumns }}>
+            {roms.map((rom) => (
+              <GameEntry key={rom.id} rom={rom} />
+            ))}
+          </div>
+        </>
       ) : (
         <GameListEmpty />
       )}

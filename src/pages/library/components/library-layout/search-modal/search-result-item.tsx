@@ -26,7 +26,7 @@ interface SearchResultItemProps {
 export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProps>) {
   const { t } = useTranslation()
   const { preference } = usePreference()
-  const { data: cover, isLoading } = useRomCover({ ...rom, isFavorite: false })
+  const { data: cover, isLoading } = useRomCover(rom)
   const [, setShowSearchModal] = useShowSearchModal()
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
   const [selectedResult, setSelectedResult] = useSelectedResult()
@@ -114,6 +114,7 @@ export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProp
             {t(platformMap[rom.platform].displayName)}
           </div>
         </div>
+        {rom.isFavorite ? <span className='icon-[mdi--star] shrink-0 text-(--accent-9)' /> : null}
       </Link>
     </li>
   )

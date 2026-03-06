@@ -1,8 +1,8 @@
-import { and, eq, inArray, like, or } from 'drizzle-orm'
+import { and, eq, inArray, like, or, sql } from 'drizzle-orm'
 import Fuse from 'fuse.js'
 import { getContext } from 'hono/context-storage'
 import type { PlatformName } from '#@/constants/platform.ts'
-import { romTable } from '#@/databases/schema.ts'
+import { favoriteTable, romTable, statusEnum } from '#@/databases/schema.ts'
 
 type SearchRomsReturning = Awaited<ReturnType<typeof searchRoms>>
 export type SearchRoms = SearchRomsReturning['roms']
@@ -73,7 +73,24 @@ export async function searchRoms(
   }
   const where = and(...conditions)
 
-  const allRomResults = await library.select().from(romTable).where(where)
+  const favoriteJoinCondition = and(
+    eq(favoriteTable.romId, romTable.id),
+    eq(favoriteTable.userId, currentUser.id),
+    eq(favoriteTable.status, statusEnum.normal),
+  )
+
+  const allRomResultsRaw = await library
+    .select({
+      isFavorite: sql<boolean>`CASE WHEN ${favoriteTable.id} IS NOT NULL THEN 1 ELSE 0 END`,
+      rom: romTable,
+    })
+    .from(romTable)
+    .leftJoin(favoriteTable, favoriteJoinCondition)
+    .where(where)
+
+  const allRomResults = allRomResultsRaw.map(({ isFavorite, rom }) =>
+    Object.assign(rom, { isFavorite: Boolean(isFavorite) }),
+  )
 
   const fuse = new Fuse(allRomResults, fuseOptions)
   const fuseResults = fuse.search(trimmedQuery)

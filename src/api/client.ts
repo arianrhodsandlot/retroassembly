@@ -1,8 +1,8 @@
-import { attemptAsync } from 'es-toolkit'
+import { attemptAsync, isBrowser } from 'es-toolkit'
 import { hc, parseResponse } from 'hono/client'
 import type { AppType } from './app'
 
-const baseUrl = '/'
+const baseUrl = isBrowser() ? location.origin : 'http://localhost'
 
 export const client = hc<AppType>(baseUrl, {
   async fetch(...args: Parameters<typeof fetch>) {

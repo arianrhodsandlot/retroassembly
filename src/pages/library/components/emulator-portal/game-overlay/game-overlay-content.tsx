@@ -2,6 +2,7 @@ import { noop } from 'es-toolkit'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useIsDemo } from '#@/pages/library/hooks/use-demo.ts'
 import { useRomCover } from '#@/pages/library/hooks/use-rom-cover.ts'
 import { useRom } from '#@/pages/library/hooks/use-rom.ts'
 import { focus, offCancel, onCancel } from '#@/pages/library/utils/spatial-navigation.ts'
@@ -28,6 +29,7 @@ export function GameOverlayContent() {
   const { hide, visible } = useGameOverlay()
   const goodcodes = getRomGoodcodes(rom)
   const { data: cover } = useRomCover(rom)
+  const isDemo = useIsDemo()
   const { emulator, isFullscreen, toggleFullscreen } = useEmulator()
 
   useEffect(() => {
@@ -67,7 +69,7 @@ export function GameOverlayContent() {
             <div className='game-overlay-buttons flex flex-col gap-5 lg:flex-row'>
               <GameOverlayButtons />
             </div>
-            <GameStates />
+            {isDemo ? null : <GameStates />}
           </div>
 
           <div className='h-4 w-full bg-linear-to-b from-transparent to-black text-transparent lg:h-32' />

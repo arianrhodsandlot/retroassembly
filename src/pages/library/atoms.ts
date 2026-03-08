@@ -16,11 +16,6 @@ export function useEmulatorLaunched() {
   return useAtom(emulatorLaunchedAtom)
 }
 
-const suppressLoadingMaskAtom = atom(false)
-export function useShouldSuppressLoadingMaskAtom() {
-  return useAtom(suppressLoadingMaskAtom)
-}
-
 const spatialNavigationPaused = atom(false)
 export function useSpatialNavigationPaused() {
   return useAtom(spatialNavigationPaused)

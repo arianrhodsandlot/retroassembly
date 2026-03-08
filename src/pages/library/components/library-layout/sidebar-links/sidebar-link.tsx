@@ -37,7 +37,12 @@ export function SidebarLink({ active, children, title, to }) {
           title={title}
           to={to}
         >
-          <div className='flex h-auto w-full items-center justify-start gap-2'>{children}</div>
+          {({ isPending }) => (
+            <div className='flex h-auto w-full items-center justify-start gap-2'>
+              {children}
+              {isPending ? <span className='icon-[svg-spinners--180-ring] ml-1 hidden group-focus:inline' /> : null}
+            </div>
+          )}
         </NavigatableLink>
       </Button>
     </div>

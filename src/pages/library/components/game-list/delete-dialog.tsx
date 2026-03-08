@@ -13,7 +13,7 @@ const { $delete } = client.roms
 
 export function DeleteDialog(props: Readonly<AlertDialog.RootProps>) {
   const { onOpenChange } = props
-  const { reloadSilently } = useRouter()
+  const { reload } = useRouter()
   const [selectedGames, setSelectedGames] = useSelectedGames()
   const [clicked, setClicked] = useState(false)
   const { t } = useTranslation()
@@ -44,7 +44,7 @@ export function DeleteDialog(props: Readonly<AlertDialog.RootProps>) {
   async function handleClickConfirmDelete() {
     setClicked(true)
     await trigger()
-    await reloadSilently()
+    await reload()
     await mutate((key) => isPlainObject(key) && isMatch(key, { endpoint: 'roms/search' }), false)
   }
 

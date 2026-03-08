@@ -1,6 +1,6 @@
-import { IconButton } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useOptimistic, useTransition } from 'react'
+import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client, parseResponse } from '#@/api/client.ts'
 import type { Rom } from '#@/controllers/roms/get-roms.ts'
@@ -8,11 +8,12 @@ import { useRouter } from '../../hooks/use-router.ts'
 
 interface FavoriteButtonProps {
   rom: Rom
-  variant?: 'inline' | 'overlay'
+  variant: 'inline' | 'overlay'
 }
 
-export function FavoriteButton({ rom, variant = 'overlay' }: Readonly<FavoriteButtonProps>) {
-  const { reloadSilently } = useRouter()
+export function FavoriteButton({ rom, variant }: Readonly<FavoriteButtonProps>) {
+  const { t } = useTranslation()
+  const { reload } = useRouter()
   const isOverlay = variant === 'overlay'
   const [isPending, startTransition] = useTransition()
   const [optimisticIsFavorite, setOptimisticIsFavorite] = useOptimistic(
@@ -39,33 +40,35 @@ export function FavoriteButton({ rom, variant = 'overlay' }: Readonly<FavoriteBu
       setOptimisticIsFavorite(nextFavorite)
       const prommise = rom.isFavorite ? triggerRemove() : triggerAdd()
       await prommise
-      await reloadSilently()
+      await reload()
     })
   }
 
   return (
     <div
-      className={clsx(isOverlay ? 'absolute top-1 left-1 z-10 transition-opacity' : 'inline-flex', {
-        'group-hover:opacity-100': isOverlay && !optimisticIsFavorite,
-        'opacity-0': isOverlay && !optimisticIsFavorite,
+      className={clsx({
+        'group-hover:opacity-100 lg:opacity-0': isOverlay && !optimisticIsFavorite,
+        'pointer-events-none absolute inset-0 transition-opacity': isOverlay,
       })}
     >
-      <IconButton
-        aria-label={optimisticIsFavorite ? 'Remove from favorites' : 'Add to favorites'}
-        className={clsx({ 'bg-(--gray-1)!': isOverlay })}
-        loading={isPending}
-        onClick={handleClick}
-        size={isOverlay ? '1' : '2'}
-        title={optimisticIsFavorite ? 'Remove from favorites' : 'Add to favorites'}
-        variant='ghost'
-      >
-        <span
-          className={clsx('text-(--accent-9)', {
-            'icon-[mdi--star-outline]': !optimisticIsFavorite,
-            'icon-[mdi--star]': optimisticIsFavorite,
-          })}
-        />
-      </IconButton>
+      <div className={isOverlay ? 'absolute aspect-square w-full' : ''}>
+        <div className={isOverlay ? 'absolute right-1 bottom-6' : ''}>
+          <button
+            type='button'
+            className='pointer-events-auto relative z-1 flex rounded-full bg-(--color-background) p-1.5 ring-1 ring-(--gray-4) hover:bg-(--accent-5) hover:ring-(--accent-5)'
+            aria-label={optimisticIsFavorite ? t('Remove from favorites') : t('Add to favorites')}
+            onClick={handleClick}
+            title={optimisticIsFavorite ? t('Remove from favorites') : t('Add to favorites')}
+          >
+            <span
+              className={clsx('text-lg text-(--accent-9)', {
+                'icon-[mdi--heart-outline]': !optimisticIsFavorite,
+                'icon-[mdi--heart]': optimisticIsFavorite,
+              })}
+            />
+          </button>
+        </div>
+      </div>
     </div>
   )
 }

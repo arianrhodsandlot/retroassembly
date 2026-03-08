@@ -17,7 +17,7 @@ const { ':id': romsEndpoint } = client.roms
 
 export function DeleteDialog({ rom, ...props }: Readonly<DeleteDialogProps>) {
   const { t } = useTranslation()
-  const { reloadSilently } = useRouter()
+  const { reload } = useRouter()
   const { actions } = useGameActions()
   const action = actions.find(({ name }) => name === 'delete')
   const type = action?.type as 'launch_records' | 'roms'
@@ -48,7 +48,7 @@ export function DeleteDialog({ rom, ...props }: Readonly<DeleteDialogProps>) {
   async function handleClickConfirmDelete() {
     await trigger()
     closeDeleteDialog()
-    await reloadSilently()
+    await reload()
     await mutate((key) => isPlainObject(key) && isMatch(key, { endpoint: 'roms/search' }), false)
   }
 

@@ -1,6 +1,6 @@
 import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
-import { generatePath, Link, useLoaderData } from 'react-router'
+import { generatePath, NavLink, useLoaderData } from 'react-router'
 import { platformMap } from '#@/constants/platform.ts'
 import { routes } from '#@/pages/routes.ts'
 import type { loader } from '#@/pages/routes/library-home.tsx'
@@ -32,9 +32,21 @@ export function JumpBackInSection() {
             <GameEntryImage centered rom={rom} />
           </div>
           <div className='flex flex-col justify-center gap-4'>
-            <Link to={generatePath(routes.libraryPlatformRom, { fileName: rom.fileName, platform: rom.platform })}>
-              <h3 className='text-4xl font-semibold'>{getRomGoodcodes(rom).rom}</h3>
-            </Link>
+            <NavLink
+              className='group flex items-center gap-2'
+              to={generatePath(routes.libraryPlatformRom, { fileName: rom.fileName, platform: rom.platform })}
+            >
+              {({ isPending }) => (
+                <>
+                  <h3 className='text-4xl font-semibold'>{getRomGoodcodes(rom).rom}</h3>
+                  <span
+                    className={clsx('icon-[svg-spinners--180-ring] shrink-0 opacity-0', {
+                      'group-focus:opacity-50': isPending,
+                    })}
+                  />
+                </>
+              )}
+            </NavLink>
 
             <div className='flex items-center gap-1 text-(--color-text)/40'>
               <img

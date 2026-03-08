@@ -105,6 +105,8 @@
   "Family Computer": "红白机",
   "Fast forward": "快进",
   "Favorites": "收藏",
+  "Remove from favorites": "从收藏中移除",
+  "Add to favorites": "添加到收藏",
   "favoriteEmptyState": "收藏游戏后会显示在这里。",
   "favoriteGamesStats": "<1>{{gameCount}}</1>个{{game}}已收藏",
   "Features": "功能",

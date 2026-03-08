@@ -30,7 +30,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
     }
   }
 
-  const { reloadSilently } = useRouter()
+  const { reload } = useRouter()
   const { getRootProps, isDragActive } = useDropzone({ onDrop })
 
   const [files, setFiles] = useState<File[]>([])
@@ -86,7 +86,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
 
       if (uploadedFiles.success.length === files.length) {
         toggleOpen()
-        await reloadSilently()
+        await reload()
         await mutate((key) => isPlainObject(key) && isMatch(key, { endpoint: 'roms/search' }), false)
       } else {
         setStatus('done')
@@ -150,7 +150,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
 
   async function handleClickDone() {
     toggleOpen()
-    await reloadSilently()
+    await reload()
     await mutate((key) => isPlainObject(key) && isMatch(key, { endpoint: 'roms/search' }), false)
   }
 

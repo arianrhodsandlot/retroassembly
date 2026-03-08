@@ -19,7 +19,7 @@ export default function FavoritesPage() {
       <GameListMain>
         <h1 className='text-5xl font-semibold'>{t('Favorites')}</h1>
         <PageStats>
-          <span className='icon-[mdi--star] text-(--color-text)' />
+          <span className='icon-[mdi--heart] text-(--color-text)' />
           <Trans
             components={{
               1: <span className='font-semibold text-(--accent-9)' />,

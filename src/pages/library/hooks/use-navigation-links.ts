@@ -55,7 +55,7 @@ export function useNavigationLinks() {
               to: generatePath(routes.libraryRoms),
             },
             {
-              iconClass: 'icon-[mdi--star]',
+              iconClass: 'icon-[mdi--heart]',
               iconUrl: '',
               name: 'favorites',
               text: t('Favorites'),

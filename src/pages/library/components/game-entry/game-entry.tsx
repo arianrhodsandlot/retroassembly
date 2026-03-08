@@ -32,16 +32,29 @@ export function GameEntry({ rom }) {
   return (
     <div className='group relative'>
       <NavigatableLink
-        className='game-entry flex flex-col items-center justify-center gap-1 lg:p-1'
+        className='game-entry group flex flex-col items-center justify-center gap-1 lg:p-1'
         onClick={handleClick}
         title={selecting ? `Select ${rom.fileName}` : rom.fileName}
         to={url}
       >
-        <GameEntryImage rom={rom} />
-        <GamePlatform platform={rom.platform} />
-        <GameTitle rom={rom} />
+        {({ isPending }) => (
+          <>
+            <GameEntryImage rom={rom} />
+            <GamePlatform platform={rom.platform} />
+            <GameTitle rom={rom} />
+            {isPending ? (
+              <div className='absolute inset-0 z-10 hidden bg-(--color-background)/50 group-focus:block'>
+                <div className='flex aspect-square w-full items-center justify-center'>
+                  <div className='flex rounded-full bg-(--color-background) p-2 ring-1 ring-(--gray-4)'>
+                    <span className='icon-[svg-spinners--180-ring] text-(--accent-9)' />
+                  </div>
+                </div>
+              </div>
+            ) : null}
+          </>
+        )}
       </NavigatableLink>
-      {isDemo ? null : <FavoriteButton rom={rom} />}
+      {isDemo ? null : <FavoriteButton rom={rom} variant='overlay' />}
       <GameEntryDropdownMenu rom={rom} />
     </div>
   )

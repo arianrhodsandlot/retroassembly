@@ -105,6 +105,8 @@
   "Family Computer": "Family Computer",
   "Fast forward": "빨리감기",
   "Favorites": "즐겨찾기",
+  "Remove from favorites": "즐겨찾기에서 삭제",
+  "Add to favorites": "즐겨찾기에 추가",
   "favoriteEmptyState": "즐겨찾기한 게임이 여기에 표시됩니다.",
   "favoriteGamesStats": "<1>{{gameCount}}</1> {{game}} 즐겨찾기",
   "Features": "기능",

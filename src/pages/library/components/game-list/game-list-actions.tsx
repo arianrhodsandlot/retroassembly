@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link, useLocation } from 'react-router'
+import { NavLink, Link, useLocation } from 'react-router'
 import { useSelectedGames } from '../../atoms.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
 import { useRoms } from '../../hooks/use-roms.ts'
@@ -105,10 +105,19 @@ export function GameListActions() {
           <div className='flex gap-2'>
             {isFavorites || isLibraryRoms ? null : (
               <Button asChild variant={favorite ? 'solid' : 'soft'}>
-                <Link to={getFavoriteToggleLink()}>
-                  <span className={favorite ? 'icon-[mdi--star]' : 'icon-[mdi--star-outline]'} />
-                  {t('Favorites')}
-                </Link>
+                <NavLink end to={getFavoriteToggleLink()} className='group'>
+                  {({ isPending }) => (
+                    <>
+                      <span
+                        className={clsx({ 'icon-[mdi--heart-outline]': !favorite, 'icon-[mdi--heart]': favorite })}
+                      />
+                      {t('Favorites')}
+                      {isPending ? (
+                        <span className='icon-[svg-spinners--180-ring] hidden animate-spin group-focus:inline' />
+                      ) : null}
+                    </>
+                  )}
+                </NavLink>
               </Button>
             )}
             <DropdownMenu.Root>

@@ -49,7 +49,7 @@ export function useEmulator() {
   const gamepadMapping = useGamepadMapping()
   const [launched, setLaunched] = useEmulatorLaunched()
   const isDemo = useIsDemo()
-  const { reloadSilently } = useRouter()
+  const { reload } = useRouter()
   const [isFullscreen, setIsFullscreen] = useIsFullscreen()
   const [launchButton] = useLaunchButton()
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
@@ -175,7 +175,7 @@ export function useEmulator() {
       offCancel()
       await attemptAsync(prepare)
       if (reloadAfterExit) {
-        await reloadSilently()
+        await reload()
       }
     }
   }

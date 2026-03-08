@@ -105,6 +105,8 @@
   "Family Computer": "Family Computer",
   "Fast forward": "Schneller Vorlauf",
   "Favorites": "Favoriten",
+  "Remove from favorites": "Aus Favoriten entfernen",
+  "Add to favorites": "Zu Favoriten hinzufügen",
   "favoriteEmptyState": "Markiere Spiele, um sie hier zu sehen.",
   "favoriteGamesStats": "<1>{{gameCount}}</1> {{game}} favorisiert",
   "Features": "Funktionen",

@@ -73,10 +73,21 @@ export function PageBreadcrumb() {
           </Button>
         ) : (
           <Fragment key={url}>
-            <Button asChild className='bg-transparent! font-semibold! text-(--accent-9)!' variant='ghost'>
+            <Button asChild className='group bg-transparent! font-semibold! text-(--accent-9)!' variant='ghost'>
               <NavigatableLink to={url}>
-                {icon}
-                {text}
+                {({ isPending }) => (
+                  <>
+                    <span className='relative size-6'>
+                      {isPending ? (
+                        <span className='absolute inset-0 z-1 hidden items-center justify-center bg-(--color-background) group-focus:flex'>
+                          <span className='icon-[svg-spinners--180-ring]' />
+                        </span>
+                      ) : null}
+                      {icon}
+                    </span>
+                    {text}
+                  </>
+                )}
               </NavigatableLink>
             </Button>
             <span className='icon-[mdi--menu-right] text-(--gray-11)' />

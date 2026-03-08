@@ -30,7 +30,7 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
   const rom = useRom()
   const { t } = useTranslation()
 
-  const { reloadSilently } = useRouter()
+  const { reload } = useRouter()
   const isDemo = useIsDemo()
 
   const [open, setOpen] = useState(false)
@@ -46,7 +46,7 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
     const formData = new FormData(event.target as HTMLFormElement)
     await trigger(Object.fromEntries(formData))
     setOpen(false)
-    await reloadSilently()
+    await reload()
   }
 
   if (isDemo) {

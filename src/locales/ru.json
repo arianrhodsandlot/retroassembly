@@ -105,6 +105,8 @@
   "Family Computer": "Family Computer",
   "Fast forward": "Быстрая перемотка",
   "Favorites": "Избранное",
+  "Remove from favorites": "Удалить из избранного",
+  "Add to favorites": "Добавить в избранное",
   "favoriteEmptyState": "Отмечайте игры, чтобы видеть их здесь.",
   "favoriteGamesStats": "<1>{{gameCount}}</1> {{game}} в избранном",
   "Features": "Функции",

@@ -104,7 +104,7 @@ function useFeatures() {
             {range(6).map((i) => (
               <div className='rounded p-1' key={i}>
                 <div className='flex size-full items-center justify-center rounded bg-(--gray-4)'>
-                  <span className='icon-[twemoji--star] size-12' />
+                  <span className='icon-[twemoji--heart] size-12' />
                 </div>
               </div>
             ))}

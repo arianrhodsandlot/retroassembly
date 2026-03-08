@@ -1,93 +1,97 @@
 @import './fonts.css';
 
 :root {
-  --global-font-family: 'Inter Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-serif: 'Roboto Slab Variable', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-  --font-mono:
-    'Ubuntu Sans Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-    'Courier New', monospace;
+    --global-font-family: 'Inter Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-serif: 'Roboto Slab Variable', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+    --font-mono:
+        'Ubuntu Sans Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+        'Courier New', monospace;
 }
 
 body {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-family: var(--global-font-family);
-  text-autospace: normal;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: var(--global-font-family);
+    text-autospace: normal;
 }
 
 .font-\[Roboto_Slab_Variable\] {
-  font-family: 'Roboto Slab Variable', Georgia, serif;
+    font-family: 'Roboto Slab Variable', Georgia, serif;
 }
 
 button {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 button[disabled] {
-  cursor: default;
+    cursor: default;
 }
 
 button:focus,
 a:focus {
-  outline: none;
+    outline: none;
 }
 
 .radix-themes {
-  --cursor-button: pointer;
-  --cursor-checkbox: pointer;
-  --cursor-disabled: default;
-  --cursor-link: pointer;
-  --cursor-menu-item: pointer;
-  --cursor-radio: pointer;
-  --cursor-slider-thumb: grab;
-  --cursor-slider-thumb-active: grabbing;
-  --cursor-switch: pointer;
-  --default-font-family: var(--global-font-family);
+    --cursor-button: pointer;
+    --cursor-checkbox: pointer;
+    --cursor-disabled: default;
+    --cursor-link: pointer;
+    --cursor-menu-item: pointer;
+    --cursor-radio: pointer;
+    --cursor-slider-thumb: grab;
+    --cursor-slider-thumb-active: grabbing;
+    --cursor-switch: pointer;
+    --default-font-family: var(--global-font-family);
 }
 
 .hero-bg {
-  background-size: 10px 10px;
-  animation: move 1s linear infinite;
-  opacity: 0.1;
+    background-size: 10px 10px;
+    animation: move 1s linear infinite;
+    opacity: 0.1;
 }
 
 .light,
 .light-theme {
-  .hero-bg {
-    background-image: linear-gradient(#666 1px, transparent 1px), linear-gradient(to right, #666 1px, #fff 1px);
-  }
+    .hero-bg {
+        background-image: linear-gradient(#666 1px, transparent 1px), linear-gradient(to right, #666 1px, #fff 1px);
+    }
 }
 
 .dark,
 .dark-theme {
-  .hero-bg {
-    background-image: linear-gradient(#ddd 1px, transparent 1px), linear-gradient(to right, #ddd 1px, #fff 1px);
-  }
+    .hero-bg {
+        background-image: linear-gradient(#ddd 1px, transparent 1px), linear-gradient(to right, #ddd 1px, #fff 1px);
+    }
+}
+
+a.pending:focus {
+    cursor: default;
 }
 
 @keyframes move {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 0 10px;
-  }
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 10px;
+    }
 }
 
 @keyframes rewind-demo-background-move {
-  from {
-    background-position: right -50% center;
-  }
-  to {
-    background-position: right 50% center;
-  }
+    from {
+        background-position: right -50% center;
+    }
+    to {
+        background-position: right 50% center;
+    }
 }
 
 @keyframes marquee-left {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-  }
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(-100% - var(--gap)));
+    }
 }

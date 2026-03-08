@@ -8,11 +8,13 @@ import { LibraryHomePage } from '../library/home/page.tsx'
 export async function loader() {
   const { preference } = getContext().var
 
-  const [{ roms: recentlySavedRoms }, { roms: newAddedRoms }, libraryLoaderData] = await Promise.all([
-    getRomsWithStates({ pageSize: 1 }),
-    getRoms({ direction: 'desc', orderBy: 'added', pageSize: 20 }),
-    getLibraryLoaderData(),
-  ])
+  const [{ roms: recentlySavedRoms }, { roms: newAddedRoms }, { roms: favoriteRoms }, libraryLoaderData] =
+    await Promise.all([
+      getRomsWithStates({ pageSize: 1 }),
+      getRoms({ direction: 'desc', orderBy: 'added', pageSize: 20 }),
+      getRoms({ favorite: true, pageSize: 20 }),
+      getLibraryLoaderData(),
+    ])
 
   const data: {
     rom: (typeof recentlySavedRoms)[number] | null
@@ -29,7 +31,7 @@ export async function loader() {
     }
   }
 
-  return { ...libraryLoaderData, newAddedRoms, recentlySavedRoms, rom: data.rom, state: data.state }
+  return { ...libraryLoaderData, favoriteRoms, newAddedRoms, recentlySavedRoms, rom: data.rom, state: data.state }
 }
 
 export default function LibraryRoute() {

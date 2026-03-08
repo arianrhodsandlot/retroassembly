@@ -10,7 +10,7 @@ import { JumpBackInSection } from './components/jump-back-in-section.tsx'
 
 export function LibraryHomePage() {
   const { t } = useTranslation()
-  const { newAddedRoms, recentlyLaunchedRoms } = useLoaderData<typeof loader>()
+  const { favoriteRoms, newAddedRoms, recentlyLaunchedRoms } = useLoaderData<typeof loader>()
 
   const isEmpty = newAddedRoms.length === 0
 
@@ -33,6 +33,12 @@ export function LibraryHomePage() {
             link: generatePath(routes.libraryHistory),
             roms: recentlyLaunchedRoms,
             title: t('Recent'),
+          },
+          {
+            icon: 'icon-[mdi--heart]',
+            link: generatePath(routes.libraryFavorites),
+            roms: favoriteRoms,
+            title: t('Favorites'),
           },
           {
             icon: 'icon-[mdi--archive-add]',

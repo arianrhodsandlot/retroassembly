@@ -16,7 +16,10 @@ export function HeroMain() {
         className='m-4 w-80 bg-clip-text text-center font-serif text-4xl font-semibold text-(--accent-9) lg:w-120 lg:text-6xl'
         style={{
           textShadow: range(1, 13)
-            .map((number) => `${number}px ${number}px 1px var(--accent-7)`)
+            .map(
+              (number) =>
+                `${number}px ${number}px 1px color-mix(in oklab, var(--accent-9) 50%, var(--color-background))`,
+            )
             .join(','),
         }}
       >

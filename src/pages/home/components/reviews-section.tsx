@@ -54,7 +54,10 @@ export function ReviewsSection() {
           className='mb-6 flex items-center justify-center gap-2 border border-transparent border-t-(--gray-4) border-b-(--gray-4) py-8 font-serif text-4xl font-semibold text-(--accent-9) md:py-16'
           style={{
             textShadow: range(1, 5)
-              .map((number) => `${number}px ${number}px 1px var(--accent-7)`)
+              .map(
+                (number) =>
+                  `${number}px ${number}px 1px color-mix(in oklab, var(--accent-9) 50%, var(--color-background))`,
+              )
               .join(','),
           }}
         >
@@ -73,7 +76,7 @@ export function ReviewsSection() {
               className='relative flex flex-col gap-4 rounded border border-(--gray-6) p-8 md:px-14'
               key={review.name}
             >
-              <span className='icon-[mdi--format-quote-open] absolute top-0 left-0 text-5xl text-(--accent-4) md:text-6xl' />
+              <span className='icon-[mdi--format-quote-open] absolute top-0 left-0 text-5xl text-(--accent-3) md:text-6xl' />
               <p className='flex-1 text-justify font-serif leading-relaxed opacity-80'>{t(review.contentKey)}</p>
 
               <a

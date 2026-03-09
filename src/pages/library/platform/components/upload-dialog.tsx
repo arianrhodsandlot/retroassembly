@@ -179,15 +179,15 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
               <div
                 {...getRootProps()}
                 className={clsx(
-                  'mt-4 flex h-48 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-(--accent-8) outline-none',
+                  'mt-4 flex h-48 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-(--accent-9) outline-none',
                   { 'bg-(--accent-3)': isDragActive },
                 )}
               >
                 {isDragActive ? (
-                  <span className='text-sm text-(--accent-11)'>{t('Drop files here')}</span>
+                  <span className='text-sm text-(--accent-9)'>{t('Drop files here')}</span>
                 ) : (
                   <>
-                    <span className='text-sm text-(--accent-11)'>{t('Drag files here or')}</span>
+                    <span className='text-sm text-(--accent-9)'>{t('Drag files here or')}</span>
                     <Button onClick={handleClickSelect} size='2'>
                       <span className='icon-[mdi--folder-open]' />
                       {t('Select files')}

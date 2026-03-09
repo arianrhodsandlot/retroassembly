@@ -70,7 +70,7 @@ export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProp
     <li className='p-1' onMouseMove={handleMouseMove} ref={ref}>
       <Link
         className={clsx('flex items-center gap-2 rounded-sm p-1', {
-          'bg-(--accent-4)': selected,
+          'bg-(--accent-3)': selected,
         })}
         onClick={handleClick}
         title={rom.fileName}

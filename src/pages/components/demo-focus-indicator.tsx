@@ -22,5 +22,10 @@ export function DemoFocusIndicator() {
     return () => clearInterval(timer)
   }, [])
 
-  return <div className='absolute h-1/2 w-1/3 rounded bg-(--accent-a4) transition-[top,left]' style={position} />
+  return (
+    <div
+      className='absolute h-1/2 w-1/3 rounded bg-(--accent-9)/10 transition-[top,left] in-[.dark]:bg-black/30'
+      style={position}
+    />
+  )
 }

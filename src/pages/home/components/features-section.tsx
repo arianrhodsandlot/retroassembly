@@ -104,7 +104,19 @@ function useFeatures() {
             {range(6).map((i) => (
               <div className='rounded p-1' key={i}>
                 <div className='flex size-full items-center justify-center rounded bg-(--gray-4)'>
-                  <span className='icon-[twemoji--heart] size-12' />
+                  <span
+                    className={clsx(
+                      'size-12',
+                      [
+                        'icon-[twemoji--mushroom]',
+                        'icon-[twemoji--star]',
+                        'icon-[twemoji--dragon]',
+                        'icon-[twemoji--coin]',
+                        'icon-[twemoji--racing-car]',
+                        'icon-[twemoji--oncoming-fist]',
+                      ][i],
+                    )}
+                  />
                 </div>
               </div>
             ))}
@@ -149,7 +161,10 @@ export function FeaturesSection() {
         className='mb-6 flex items-center justify-center gap-2 border border-transparent border-t-(--gray-4) border-b-(--gray-4) py-8 font-serif text-4xl font-semibold text-(--accent-9) lg:py-16'
         style={{
           textShadow: range(1, 5)
-            .map((number) => `${number}px ${number}px 1px var(--accent-7)`)
+            .map(
+              (number) =>
+                `${number}px ${number}px 1px color-mix(in oklab, var(--accent-9) 50%, var(--color-background))`,
+            )
             .join(','),
         }}
       >

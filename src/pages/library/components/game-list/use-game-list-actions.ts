@@ -23,7 +23,7 @@ export function useGameListActions() {
   const hasSelectedGames = selectedGames.length > 0
   const canSelectAll = selectedGames.length < roms.length
 
-  const showFavoriteButton = !isFavoritesPage && hasRoms
+  const showFavoriteButton = (!isFavoritesPage && hasRoms) || isViewingFavorites
   const showSortDropdown = hasRoms
 
   function buildSortLink(params: Record<string, string>) {

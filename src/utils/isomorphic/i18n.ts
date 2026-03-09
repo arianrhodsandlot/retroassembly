@@ -16,6 +16,7 @@ const resources = mapValues(
     initImmediate: true,
     lng: defaultLanguage,
     resources,
+    showSupportNotice: false,
     supportedLngs: locales.map(({ code }) => code),
   })
 })()

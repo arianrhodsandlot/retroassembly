@@ -13,7 +13,7 @@ export function GameListActions() {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
 
   if (shouldHideActions) {
-    return null
+    return
   }
 
   return (

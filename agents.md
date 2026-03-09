@@ -17,12 +17,12 @@ Browser-based retro gaming platform with dual-runtime architecture (Node.js + Cl
 
 ## Commands
 
-**Development**: `pnpm dev` (port 8000)
+**Development**: `pnpm dev` (port 8000). Typically the server should be running, so you don't need to run this. If you are not sure, check whether the 8000 port is in use, which indicates the server is already running.
 **Build**: `pnpm build`
-**Type check**: Prefer `pnpm tsgo` over `pnpm tsc` for better performance
+**Type check**: Prefer `pnpm tsgo` over `pnpm tsc` or `npx tsc` for better performance
 **Lint**: `pnpm oxlint --fix` (or `pnpm lint-staged` for pre-commit)
 
-**Testing** (Playwright):
+**E2E Testing** (Playwright):
 
 - Run all: `pnpm test`
 - Run single file: `pnpm test tests/e2e/account.test.ts`

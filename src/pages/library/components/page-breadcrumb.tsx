@@ -2,7 +2,7 @@ import { Button } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
-import { generatePath } from 'react-router'
+import { generatePath, useLocation } from 'react-router'
 import { routes } from '#@/pages/routes.ts'
 import { getPlatformGameIcon, getPlatformIcon, getRomGoodcodes } from '#@/utils/client/library.ts'
 import { useIsDemo } from '../hooks/use-demo.ts'
@@ -15,14 +15,42 @@ export function PageBreadcrumb() {
   const rom = useRom()
   const platform = usePlatform()
   const isDemo = useIsDemo()
+  const location = useLocation()
 
   const links = [
     {
-      icon: <span className='icon-[mdi--bookshelf] size-5 p-0.5' />,
-      text: t('Games'),
+      icon: <span className='icon-[mdi--home] size-5 p-0.5' />,
+      text: '',
       url: generatePath(isDemo ? routes.demoHome : routes.libraryHome),
     },
   ]
+
+  if (!isDemo) {
+    switch (location.pathname) {
+      case routes.libraryRoms:
+        links.push({
+          icon: <span className='icon-[mdi--bookshelf] size-5 p-0.5' />,
+          text: t('Games'),
+          url: generatePath(routes.libraryRoms),
+        })
+        break
+      case routes.libraryFavorites:
+        links.push({
+          icon: <span className='icon-[mdi--heart] size-5 p-0.5' />,
+          text: t('Favorites'),
+          url: generatePath(routes.libraryFavorites),
+        })
+        break
+      case routes.libraryHistory:
+        links.push({
+          icon: <span className='icon-[mdi--history] size-5 p-0.5' />,
+          text: t('History'),
+          url: generatePath(routes.libraryHistory),
+        })
+        break
+      default:
+    }
+  }
 
   if (platform) {
     links.push({

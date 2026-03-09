@@ -2,9 +2,9 @@ import { clsx } from 'clsx'
 import { useOptimistic, useTransition } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
-import { client, parseResponse } from '#@/api/client.ts'
+import { client } from '#@/api/client.ts'
 import type { Rom } from '#@/controllers/roms/get-roms.ts'
-import { useRouter } from '../../hooks/use-router.ts'
+import { useRouter } from '../hooks/use-router.ts'
 
 interface FavoriteButtonProps {
   rom: Rom
@@ -21,11 +21,12 @@ export function FavoriteButton({ rom, variant }: Readonly<FavoriteButtonProps>) 
     (_, nextState: boolean) => nextState,
   )
 
-  const { trigger: triggerAdd } = useSWRMutation({ endpoint: 'favorites', method: 'post', romId: rom.id }, () =>
-    parseResponse(client.favorites.$post({ json: { romId: rom.id } })),
+  const endpoint = client.favorites.$url({ param: { romId: rom.id } })
+  const { trigger: add } = useSWRMutation({ endpoint, method: 'post' }, () =>
+    client.favorites.$post({ json: { romId: rom.id } }),
   )
 
-  const { trigger: triggerRemove } = useSWRMutation({ endpoint: 'favorites', method: 'delete', romId: rom.id }, () =>
+  const { trigger: remove } = useSWRMutation({ endpoint, method: 'delete' }, () =>
     client.favorites[':romId'].$delete({ param: { romId: rom.id } }),
   )
 
@@ -38,7 +39,7 @@ export function FavoriteButton({ rom, variant }: Readonly<FavoriteButtonProps>) 
 
     startTransition(async () => {
       setOptimisticIsFavorite(nextFavorite)
-      const prommise = rom.isFavorite ? triggerRemove() : triggerAdd()
+      const prommise = rom.isFavorite ? remove() : add()
       await prommise
       await reload()
     })

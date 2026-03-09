@@ -1,6 +1,7 @@
 @import './fonts.css';
 
 :root {
+  --brand: #be123c;
   --global-font-family: 'Inter Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-serif: 'Roboto Slab Variable', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
   --font-mono:

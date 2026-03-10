@@ -1,6 +1,9 @@
 import { trim } from 'es-toolkit'
 import { DateTime } from 'luxon'
+import type { CSSProperties } from 'react'
 import sparkMd5 from 'spark-md5'
+import { metadata } from '#@/constants/metadata.ts'
+import type { Preference } from '#@/constants/preference.ts'
 import { defaultLanguage } from './i18n.ts'
 
 export function restoreTitleForSorting(title: string) {
@@ -35,4 +38,13 @@ export async function getFileMd5(file: Blob) {
 
 export function getHomePath(language: string) {
   return `/${language === defaultLanguage ? '' : language.toLowerCase()}`
+}
+
+export function getGlobalCSSVars(preference: Preference) {
+  return {
+    '--brand': metadata.themeColor,
+    '--game-saturate': preference.ui.saturationApplyToGame ? `${preference.ui.saturation}%` : '100%',
+    '--img-saturate': preference.ui.saturationApplyToImages ? `${preference.ui.saturation}%` : '100%',
+    '--saturate': `${preference.ui.saturation}%`,
+  } as CSSProperties
 }

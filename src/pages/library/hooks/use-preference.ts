@@ -18,7 +18,9 @@ export function usePreference() {
     if (value) {
       const newPreference = await parseResponse(trigger(value))
       setPreference(newPreference)
+      return newPreference
     }
+    return preference
   }
 
   return { isLoading, preference: preference || defaultPreference, setPreference, update }

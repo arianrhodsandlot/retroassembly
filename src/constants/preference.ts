@@ -76,6 +76,9 @@ export interface Preference {
     libraryCoverSize: string
     libraryCoverType: 'boxart'
     platforms: PlatformName[]
+    saturation: number
+    saturationApplyToGame: boolean
+    saturationApplyToImages: boolean
     showDistrictOnTitle: boolean
     showFocusIndicators: string
     showSidebar: boolean
@@ -160,6 +163,9 @@ export const defaultPreference: ResolvedPreference = {
     libraryCoverSize: 'medium',
     libraryCoverType: 'boxart',
     platforms: ['arcade', 'atari2600', 'gb', 'gba', 'gbc', 'genesis', 'nes', 'snes'],
+    saturation: 100,
+    saturationApplyToGame: true,
+    saturationApplyToImages: true,
     showDistrictOnTitle: false,
     showFocusIndicators: 'auto',
     showSidebar: true,

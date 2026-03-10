@@ -24,7 +24,7 @@ export function GameButtons() {
   const { rom, state } = useLoaderData()
   const { t } = useTranslation()
   const { error, isPreparing, launch, prepare } = useEmulator()
-  const [, setLaunchButtonRect] = useLaunchButton()
+  const [, setLaunchButton] = useLaunchButton()
   const { syncStyle } = useFocusIndicator()
   const { preference } = usePreference()
 
@@ -38,7 +38,7 @@ export function GameButtons() {
   function handleClickCommon(event: MouseEvent<HTMLButtonElement>) {
     const button = event.currentTarget
     if (button) {
-      setLaunchButtonRect(button)
+      setLaunchButton(button)
       button.blur()
       syncStyle()
     }

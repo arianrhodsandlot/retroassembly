@@ -28,12 +28,12 @@ export function GameAnimatePresence() {
     <AnimatePresence>
       {launched ? (
         <motion.div
-          animate={{ ...animateStyle, backgroundColor: 'oklch(0 0 0)', opacity: 1 }}
+          animate={{ ...animateStyle, backgroundColor: 'black', opacity: 1 }}
           className='fixed z-1 bg-black'
-          exit={{ ...initialStyle, backgroundColor: 'oklch(0.514 0.222 16.935)', opacity: 0.5 }}
-          initial={{ ...initialStyle, backgroundColor: 'oklch(0.514 0.222 16.935)', opacity: 1 }}
+          exit={{ ...initialStyle, backgroundColor: 'var(--accent-9)', opacity: 0.5 }}
+          initial={{ ...initialStyle, backgroundColor: 'var(--accent-9)', opacity: 1 }}
           onAnimationComplete={handleAnimationComplete}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.3 }}
         />
       ) : null}
     </AnimatePresence>

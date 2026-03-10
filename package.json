@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "better-sqlite3": "12.6.2",
-    "hono": "4.12.6"
+    "hono": "4.12.7"
   },
   "devDependencies": {
     "@arianrhodsandlot/oxc-config": "1.1.3",

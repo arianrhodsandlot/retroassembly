@@ -2,6 +2,7 @@ import { range } from 'es-toolkit'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { metadata } from '#@/constants/metadata.ts'
+import { Logo } from '#@/pages/components/logo.tsx'
 import { ButtonLinks } from '../../../components/button-links.tsx'
 import { DockerDialog } from './docker-dialog.tsx'
 
@@ -11,7 +12,7 @@ export function HeroMain() {
 
   return (
     <div className='flex flex-col items-center justify-center'>
-      <img alt='logo' className='size-40' src='/assets/logo/logo.svg' />
+      <Logo className='size-40' />
       <h1
         className='m-4 w-80 bg-clip-text text-center font-serif text-4xl font-semibold text-(--accent-9) lg:w-120 lg:text-6xl'
         style={{

@@ -3,9 +3,10 @@ import { isBrowser } from 'es-toolkit'
 import { Provider } from 'jotai'
 import { HydrationBoundary } from 'jotai-ssr'
 import { ThemeProvider } from 'next-themes'
-import { type ReactNode, useEffect } from 'react'
+import { type CSSProperties, type ReactNode, useEffect } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Scripts, ScrollRestoration, useLoaderData, useRouteError } from 'react-router'
+import { metadata } from '#@/constants/metadata.ts'
 import type { loader } from '#@/pages/root.tsx'
 import { i18n } from '#@/utils/isomorphic/i18n.ts'
 import { preferenceAtom } from '../atoms.ts'
@@ -31,12 +32,19 @@ export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
     })()
   }, [language])
 
+  const cssVars = {
+    '--brand': metadata.themeColor,
+    '--game-saturate': '100%',
+    '--img-saturate': '100%',
+    '--saturate': '100%',
+  } as CSSProperties
+
   return (
     <html lang={language} prefix='og: https://ogp.me/ns#' suppressHydrationWarning>
       <I18nextProvider i18n={i18n}>
         <Head />
       </I18nextProvider>
-      <body className={clsx({ 'bg-(--accent-9) 2xl:bg-none': !isHome })}>
+      <body className={clsx({ 'bg-(--accent-9) 2xl:bg-none': !isHome })} style={cssVars}>
         <I18nextProvider i18n={i18n}>
           <RadixTheme>
             <ThemeProvider attribute='class'>

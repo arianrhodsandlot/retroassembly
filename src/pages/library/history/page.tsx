@@ -17,7 +17,7 @@ export default function HistoryPage() {
   return (
     <LibraryLayout>
       <GameListMain>
-        <h1 className='text-5xl font-semibold'>{title}</h1>
+        <h1 className='text-5xl font-semibold text-rose-800/10'>{title}</h1>
         <PageStats>
           <span className='icon-[mdi--bar-chart] text-(--color-text)' />
           <Trans

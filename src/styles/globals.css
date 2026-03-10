@@ -1,19 +1,25 @@
 @import './fonts.css';
 
-:root {
-  --brand: #be123c;
-  --global-font-family: 'Inter Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-serif: 'Roboto Slab Variable', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+body {
   --font-mono:
     'Ubuntu Sans Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
     'Courier New', monospace;
-}
+  --font-serif: 'Roboto Slab Variable', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --global-font-family: 'Inter Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --primary: hsl(from var(--brand) h calc(s * (var(--saturate) / 100)) l / alpha);
 
-body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: var(--global-font-family);
   text-autospace: normal;
+}
+
+img {
+  filter: saturate(var(--img-saturate, 100%));
+}
+
+#canvas {
+  filter: saturate(var(--game-saturate, 100%));
 }
 
 .font-\[Roboto_Slab_Variable\] {

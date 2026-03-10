@@ -3,6 +3,7 @@ import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
 import { linkMap, links } from '#@/constants/links.ts'
 import { metadata } from '#@/constants/metadata.ts'
+import { Logo } from '#@/pages/components/logo.tsx'
 import { DialogRoot } from '../../dialog-root.tsx'
 
 export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProps>) {
@@ -19,7 +20,7 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
           <Dialog.Title className='flex items-center gap-2'>{t('About')}</Dialog.Title>
         </VisuallyHidden>
         <div className='flex flex-col items-center gap-2 p-2 text-center'>
-          <img alt='logo' height='56' src='/assets/logo/logo.svg' width='56' />
+          <Logo height='56' width='56' />
           <a
             className='font-serif text-xl font-semibold text-(--accent-9)'
             href={metadata.link}

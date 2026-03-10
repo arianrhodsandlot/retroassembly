@@ -1,6 +1,7 @@
 import { Select } from '@radix-ui/themes'
 import { Fragment } from 'react'
 import { Link, useNavigate } from 'react-router'
+import { Logo } from '#@/pages/components/logo.tsx'
 import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 import { useViewport } from '#@/pages/library/hooks/use-viewport.ts'
 import { getHomePath } from '#@/utils/isomorphic/misc.ts'
@@ -29,7 +30,7 @@ export function LayoutHeader() {
     <>
       <header className='px-safe-offset-2 fixed inset-x-0 top-0 z-2 flex items-center bg-(--accent-9) py-2 lg:hidden'>
         <Link className='flex items-center gap-2 font-bold' reloadDocument to={getHomePath(language)}>
-          <img alt='logo' height='32' src='/assets/logo/logo.svg' width='32' />
+          <Logo height='32' width='32' />
         </Link>
 
         <div className='flex h-5 flex-1 justify-center'>

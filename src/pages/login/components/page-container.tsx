@@ -2,6 +2,7 @@ import type { PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useLoaderData } from 'react-router'
 import { metadata } from '#@/constants/metadata.ts'
+import { Logo } from '#@/pages/components/logo.tsx'
 import type { loader } from '../../routes/login.tsx'
 
 interface PageContainerProps extends PropsWithChildren {
@@ -20,7 +21,7 @@ export function PageContainer({ children, description, title }: Readonly<PageCon
         <div className='mx-auto w-full max-w-full rounded bg-(--color-background) p-10 md:w-3xl'>
           <div className='flex items-center justify-center gap-4'>
             <Link className='flex items-center justify-center' reloadDocument to='/'>
-              <img alt='logo' height='32' src='/assets/logo/logo.svg' width='32' />
+              <Logo height='32' width='32' />
             </Link>
             <h1 className='text-3xl font-semibold'>{title}</h1>
           </div>

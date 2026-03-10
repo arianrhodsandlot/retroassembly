@@ -5,3 +5,37 @@
 @import './light.css';
 @import './dark.css';
 @import './custom.css';
+
+body {
+  --red: var(--primary);
+  --red-1: var(--color-background);
+  --red-2: color-mix(in oklab, var(--red) 5%, var(--color-background));
+  --red-3: color-mix(in oklab, var(--red) 10%, var(--color-background));
+  --red-4: color-mix(in oklab, var(--red) 20%, var(--color-background));
+  --red-5: color-mix(in oklab, var(--red) 30%, var(--color-background));
+  --red-6: color-mix(in oklab, var(--red) 40%, var(--color-background));
+  --red-7: color-mix(in oklab, var(--red) 50%, var(--color-background));
+  --red-8: color-mix(in oklab, var(--red) 60%, var(--color-background));
+  --red-9: var(--red);
+  --red-10: var(--red);
+  --red-11: var(--red);
+  --red-12: var(--red);
+
+  --red-a1: var(--red-1);
+  --red-a2: var(--red-2);
+  --red-a3: var(--red-3);
+  --red-a4: var(--red-4);
+  --red-a5: var(--red-5);
+  --red-a6: var(--red-6);
+  --red-a7: var(--red-7);
+  --red-a8: var(--red-8);
+  --red-a9: var(--red-9);
+  --red-a10: var(--red-10);
+  --red-a11: var(--red-11);
+  --red-a12: var(--red-12);
+
+  --red-contrast: #fff;
+  --red-surface: var(--red-2);
+  --red-indicator: var(--red-9);
+  --red-track: var(--red-9);
+}

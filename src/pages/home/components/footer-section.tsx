@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { links } from '#@/constants/links.ts'
 import { metadata } from '#@/constants/metadata.ts'
+import { Logo } from '#@/pages/components/logo.tsx'
 
 export function FooterSection() {
   const { t } = useTranslation()
@@ -12,7 +13,7 @@ export function FooterSection() {
       <div className='pb-safe mx-auto flex w-7xl max-w-full flex-col items-center justify-between gap-4 sm:flex-row'>
         <div className='flex flex-col items-center gap-4 sm:items-start'>
           <a className='flex items-center gap-2 font-serif font-bold text-(--accent-9)' href='/'>
-            <img alt='logo' height='32' src='/assets/logo/logo.svg' width='32' />
+            <Logo height='32' width='32' />
             <span className='font-serif font-semibold'>{metadata.title}</span>
           </a>
 

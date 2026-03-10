@@ -3,6 +3,7 @@ import { clsx } from 'clsx'
 import type { PropsWithChildren } from 'react'
 import { Link } from 'react-router'
 import { metadata } from '#@/constants/metadata.ts'
+import { Logo } from '#@/pages/components/logo.tsx'
 import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 import { getHomePath } from '#@/utils/isomorphic/misc.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
@@ -17,8 +18,8 @@ import { LayoutMenu } from './layout-menu/layout-menu.tsx'
 import { SearchModal } from './search-modal/search-modal.tsx'
 import { SidebarContainer } from './sidebar-container.tsx'
 import { SidebarLinks } from './sidebar-links/sidebar-links.tsx'
-import { StatusBar } from './status-bar.tsx'
 import '../../utils/nostalgist.ts'
+import { StatusBar } from './status-bar.tsx'
 
 function getPostfixedTitle(title: string) {
   return title ? `${title} - ${metadata.title}` : metadata.title
@@ -43,7 +44,7 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
         <SidebarContainer>
           <div className='flex items-center justify-between px-4 pb-4'>
             <Link className='flex items-center gap-2 font-bold' reloadDocument to={getHomePath(language)}>
-              <img alt='logo' height='32' src='/assets/logo/logo.svg' width='32' />
+              <Logo height='32' width='32' />
               <span className='font-serif font-semibold'>{metadata.title}</span>
             </Link>
           </div>

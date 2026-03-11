@@ -114,7 +114,7 @@ export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProp
             {t(platformMap[rom.platform].displayName)}
           </div>
         </div>
-        {rom.isFavorite ? <span className='icon-[mdi--heart] shrink-0 text-(--accent-9)' /> : null}
+        {rom.isFavorite ? <span className='icon-[mdi--heart] mr-1 shrink-0 text-(--accent-9)' /> : null}
       </Link>
     </li>
   )

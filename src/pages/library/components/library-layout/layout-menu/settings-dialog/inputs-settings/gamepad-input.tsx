@@ -83,7 +83,7 @@ export function GamepadInput({ button }: Readonly<GamepadInputProps>) {
           <TextField.Slot />
           <TextField.Slot>
             {clearable ? (
-              <Button className='!-translate-x-1' onClick={handleClickClear} size='1' title='Clear' variant='ghost'>
+              <Button className='-translate-x-1!' onClick={handleClickClear} size='1' title='Clear' variant='ghost'>
                 <span className='icon-[mdi--close]' />
               </Button>
             ) : null}

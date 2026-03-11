@@ -1,4 +1,3 @@
-// @ts-expect-error no types for atropos css
 import 'atropos/css'
 import './radix/index.css'
 import './tailwind.css'

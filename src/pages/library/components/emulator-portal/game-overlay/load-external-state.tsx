@@ -39,7 +39,12 @@ export function LoadExternalState() {
   })
 
   return (
-    <Button variant='ghost' loading={isImporting} onClick={() => handleClickLoadExternal()} className='text-white!'>
+    <Button
+      variant='ghost'
+      loading={isImporting}
+      onClick={() => handleClickLoadExternal()}
+      className='bg-transparent! text-white!'
+    >
       <span className='icon-[mdi--database-plus] size-5' />
       {t('Load an external state')}
     </Button>

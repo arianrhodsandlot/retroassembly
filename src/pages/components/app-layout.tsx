@@ -37,7 +37,7 @@ export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
       <I18nextProvider i18n={i18n}>
         <Head />
       </I18nextProvider>
-      <body className={clsx({ 'bg-(--accent-9) 2xl:bg-none': !isHome })} style={getGlobalCSSVars(preference)}>
+      <body className={clsx({ 'bg-(--primary) 2xl:bg-none': !isHome })} style={getGlobalCSSVars(preference)}>
         <I18nextProvider i18n={i18n}>
           <RadixTheme>
             <ThemeProvider attribute='class'>

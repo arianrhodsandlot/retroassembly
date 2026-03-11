@@ -19,6 +19,7 @@ import { getFileUrl } from '#@/pages/library/utils/file.ts'
 import { focus, offCancel, onCancel } from '#@/pages/library/utils/spatial-navigation.ts'
 import type { loader } from '#@/pages/routes/library-platform-rom.tsx'
 import { getCDNUrl } from '#@/utils/isomorphic/cdn.ts'
+import { getGlobalCSSVars } from '#@/utils/isomorphic/misc.ts'
 import { usePreference } from '../../../hooks/use-preference.ts'
 
 type NostalgistOption = Parameters<typeof Nostalgist.prepare>[0]
@@ -141,6 +142,10 @@ export function useEmulator() {
     const canvas = emulator.getCanvas()
     if (canvas) {
       canvas.style.opacity = '1'
+      const cssVars = getGlobalCSSVars(preference)
+      if (cssVars['--game-saturate'] !== '100%') {
+        canvas.style.filter = `saturate(var(--game-saturate))`
+      }
       focus('canvas')
     }
 

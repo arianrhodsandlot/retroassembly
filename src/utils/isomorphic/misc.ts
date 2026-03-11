@@ -1,4 +1,4 @@
-import { trim } from 'es-toolkit'
+import { isNil, trim } from 'es-toolkit'
 import { DateTime } from 'luxon'
 import type { CSSProperties } from 'react'
 import sparkMd5 from 'spark-md5'
@@ -44,8 +44,8 @@ export function getGlobalCSSVars(preference?: ResolvedPreference) {
   const uiPreference = preference?.ui
   return {
     '--brand': metadata.themeColor,
-    '--game-saturate': uiPreference?.saturationApplyToGame ? `${uiPreference?.saturation}%` : '100%',
-    '--img-saturate': uiPreference?.saturationApplyToImages ? `${uiPreference?.saturation}%` : '100%',
-    '--saturate': uiPreference?.saturation ? `${uiPreference?.saturation}%` : '100%',
+    '--game-saturate': uiPreference?.saturationApplyToGame === true ? `${uiPreference.saturation}%` : '100%',
+    '--img-saturate': uiPreference?.saturationApplyToImages === true ? `${uiPreference.saturation}%` : '100%',
+    '--saturate': isNil(uiPreference?.saturation) ? '100%' : `${uiPreference.saturation}%`,
   } as CSSProperties
 }

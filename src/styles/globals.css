@@ -18,10 +18,6 @@ img {
   filter: saturate(var(--img-saturate, 100%));
 }
 
-#canvas {
-  filter: saturate(var(--game-saturate, 100%));
-}
-
 .font-\[Roboto_Slab_Variable\] {
   font-family: 'Roboto Slab Variable', Georgia, serif;
 }

@@ -6,7 +6,7 @@ import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
 import { getGlobalCSSVars } from '#@/utils/isomorphic/misc.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
-const saturationOptions = range(100, -1, -20)
+const saturationOptions = range(100, -1, -10)
 
 export function AccessibilitySettings() {
   const { t } = useTranslation()

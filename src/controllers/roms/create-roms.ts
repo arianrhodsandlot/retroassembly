@@ -230,7 +230,7 @@ export async function createRoms({ files, md5s, platform }: { files: File[]; md5
   let gameInfoList: Awaited<ReturnType<typeof msleuth.identify>> = []
   try {
     gameInfoList = await msleuth.identify({
-      files: files.map((file, index) => ({ md5: md5s[index], name: file.name })),
+      files: files.map((file, index) => ({ md5: md5s[index] || '', name: file.name })),
       platform,
     })
   } catch (error) {

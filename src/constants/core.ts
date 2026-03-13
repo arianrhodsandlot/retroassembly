@@ -21,6 +21,7 @@ export const cores = {
   mgba: { displayName: 'mGBA' },
   nestopia: { displayName: 'Nestopia' },
   o2em: { displayName: 'O2EM' },
+  pcsx_rearmed: { displayName: 'PCSX ReARMed' },
   picodrive: { displayName: 'PicoDrive' },
   prosystem: { displayName: 'ProSystem' },
   quicknes: { displayName: 'QuickNES' },

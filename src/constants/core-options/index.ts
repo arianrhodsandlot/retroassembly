@@ -12,13 +12,13 @@ import { mednafenVbOptions } from './mednafen-vb.ts'
 import { mednafenWswanOptions } from './mednafen-wswan.ts'
 import { mgbaOptions } from './mgba.ts'
 import { nestopiaOptions } from './nestopia.ts'
+import { pcsxRearmedOptions } from './pcsx-rearmed.ts'
 import { picodriveOptions } from './picodrive.ts'
 import { prosystemOptions } from './prosystem.ts'
 import { quicknesOptions } from './quicknes.ts'
 import { snes9xOptions } from './snes9x.ts'
 import { stella2014Options } from './stella2014.ts'
 import { vbaNextOptions } from './vba-next.ts'
-
 export const coreOptionsMap = {
   a5200: a5200Options,
   fbneo: fbneoOptions,
@@ -34,6 +34,7 @@ export const coreOptionsMap = {
   mednafen_wswan: mednafenWswanOptions,
   mgba: mgbaOptions,
   nestopia: nestopiaOptions,
+  pcsx_rearmed: pcsxRearmedOptions,
   picodrive: picodriveOptions,
   prosystem: prosystemOptions,
   quicknes: quicknesOptions,

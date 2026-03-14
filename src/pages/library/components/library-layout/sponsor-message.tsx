@@ -24,16 +24,8 @@ export function SponsorMessage() {
 
         <div className='prose-sm'>
           <p>{t('sponsor.intro')}</p>
-          <p>
-            {t(
-              'RetroAssembly is a labor of love by a retro gaming enthusiast for you. I feel encouraged that my work has received widespread recognition. The number of registered users on the website and the downloads of the Docker images continue to grow steadily.',
-            )}
-          </p>
-          <p>
-            {t(
-              "As the project grows, so do the costs associated with it. Hosting, maintaining, and improving RetroAssembly requires resources, and that's where your support comes in. By sponsoring me, you can help cover the costs of all the expenses involved in keeping the project running smoothly.",
-            )}
-          </p>
+          <p>{t('sponsor.bodyGrowth')}</p>
+          <p>{t('sponsor.bodySupport')}</p>
           <div className='mt-4 flex items-center justify-center'>
             <Button radius='large' asChild>
               <a href={linkMap.kofi.url} target='_blank' rel='noopener noreferrer'>

@@ -13,7 +13,7 @@ export function GameStates() {
 
   return (
     <>
-      <h3 className='flex items-center gap-2 text-2xl font-semibold text-white'>
+      <h3 className='flex items-center gap-2 px-2 text-2xl font-semibold text-white'>
         <span className='icon-[mdi--database] size-7' />
         {t('Saved States')}
         <span className='flex-1' />

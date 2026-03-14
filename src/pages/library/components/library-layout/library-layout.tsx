@@ -1,11 +1,11 @@
 import { ScrollArea } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import type { PropsWithChildren } from 'react'
-import { Link } from 'react-router'
+import { useEffect, useState, type PropsWithChildren } from 'react'
+import { Link, useLoaderData } from 'react-router'
 import { metadata } from '#@/constants/metadata.ts'
 import { Logo } from '#@/pages/components/logo.tsx'
-import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 import { getHomePath } from '#@/utils/isomorphic/misc.ts'
+import type { getLibraryLoaderData } from '#@/utils/server/loader-data.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
 import { useFocusRestoration } from '../../hooks/use-focus-restoration.ts'
 import { useViewport } from '../../hooks/use-viewport.ts'
@@ -17,8 +17,9 @@ import { LayoutMain } from './layout-main.tsx'
 import { LayoutMenu } from './layout-menu/layout-menu.tsx'
 import { SearchModal } from './search-modal/search-modal.tsx'
 import { SidebarContainer } from './sidebar-container.tsx'
-import { SidebarLinks } from './sidebar-links/sidebar-links.tsx'
 import '../../utils/nostalgist.ts'
+import { SidebarLinks } from './sidebar-links/sidebar-links.tsx'
+import { SponsorMessage } from './sponsor-message.tsx'
 import { StatusBar } from './status-bar.tsx'
 
 function getPostfixedTitle(title: string) {
@@ -26,9 +27,28 @@ function getPostfixedTitle(title: string) {
 }
 
 export default function LibraryLayout({ children }: Readonly<PropsWithChildren>) {
-  const { language, title } = useGlobalLoaderData()
+  const { language, title, recentlyLaunchedRoms } = useLoaderData<typeof getLibraryLoaderData>()
   const isDemo = useIsDemo()
   const { isLargeScreen } = useViewport()
+
+  const [isSponsorMessageVisible, setIsSponsorMessageVisible] = useState(false)
+
+  useEffect(() => {
+    const controller = new AbortController()
+    if (recentlyLaunchedRoms.length > 5 && !localStorage.getItem('supress-sponsor-message')) {
+      setIsSponsorMessageVisible(true)
+    }
+    globalThis.addEventListener(
+      'supress-sponsor-message',
+      () => {
+        setIsSponsorMessageVisible(false)
+      },
+      { signal: controller.signal },
+    )
+    return () => {
+      controller.abort()
+    }
+  }, [recentlyLaunchedRoms])
 
   useFocusRestoration()
 
@@ -52,7 +72,10 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
             <SidebarLinks />
           </ScrollArea>
           {isDemo ? null : (
-            <div className='border-t border-t-white/30 py-2'>{isLargeScreen ? <LayoutMenu /> : null}</div>
+            <div className='flex items-center justify-between border-t border-t-white/30 py-2'>
+              {isLargeScreen ? <LayoutMenu /> : null}
+              {isSponsorMessageVisible ? <SponsorMessage /> : null}
+            </div>
           )}
         </SidebarContainer>
 

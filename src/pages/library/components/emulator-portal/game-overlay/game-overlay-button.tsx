@@ -37,6 +37,7 @@ export function GameOverlayButton({
       className={clsx(
         'border! border-solid border-white bg-black/30! text-white! shadow-none! transition-all! duration-300!',
         'focus:bg-white/80! focus:text-(--accent-9)!',
+        'disabled:opacity-40!',
         { 'opacity-40!': isLoading },
       )}
       data-sn-enabled

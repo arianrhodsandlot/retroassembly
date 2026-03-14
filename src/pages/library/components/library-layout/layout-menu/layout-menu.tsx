@@ -1,7 +1,6 @@
 import { Button, DropdownMenu } from '@radix-ui/themes'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { links } from '#@/constants/links.ts'
 import { useSettingsDialogOpen, useSpatialNavigationPaused } from '../../../atoms.ts'
 import { useShowSearchModal } from '../atoms.ts'
 import { AboutDialog } from './about-dialog.tsx'
@@ -56,18 +55,6 @@ export function LayoutMenu() {
             <span className='icon-[mdi--information]' />
             {t('About')}
           </DropdownMenu.Item>
-
-          {links.map((link) => (
-            <DropdownMenu.Item asChild key={link.name}>
-              <a href={link.url} rel='noopener noreferrer' target='_blank'>
-                <span className={link.icon} />
-                <span className='flex items-start gap-1'>
-                  {link.name}
-                  <sub className='icon-[mdi--open-in-new]' />
-                </span>
-              </a>
-            </DropdownMenu.Item>
-          ))}
 
           <DropdownMenu.Separator />
 

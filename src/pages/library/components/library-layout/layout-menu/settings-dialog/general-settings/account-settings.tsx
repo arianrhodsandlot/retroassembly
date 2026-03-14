@@ -15,10 +15,10 @@ export function AccountSettings() {
 
   function validateFormData(formData: FormData) {
     if (formData.get('new_password') !== formData.get('repeat_new_password')) {
-      throw new Error(t('Passwords do not match'))
+      throw new Error(t('auth.passwordsDoNotMatch'))
     }
     if (formData.get('new_password') === formData.get('password')) {
-      throw new Error(t('The new password is the same as the current password'))
+      throw new Error(t('auth.samePasswordError'))
     }
     return {
       new_password: `${formData.get('new_password')?.toString()}`,
@@ -29,15 +29,15 @@ export function AccountSettings() {
     {
       defaultValue: 'username' in currentUser ? currentUser.username : '',
       iconClass: 'icon-[mdi--user-card-details]',
-      label: t('Username'),
+      label: t('auth.username'),
       name: 'username',
       readOnly: true,
     },
-    { iconClass: 'icon-[mdi--password]', label: t('Current Password'), name: 'password', type: 'password' },
-    { iconClass: 'icon-[mdi--password-add]', label: t('New Password'), name: 'new_password', type: 'password' },
+    { iconClass: 'icon-[mdi--password]', label: t('auth.currentPassword'), name: 'password', type: 'password' },
+    { iconClass: 'icon-[mdi--password-add]', label: t('auth.newPassword'), name: 'new_password', type: 'password' },
     {
       iconClass: 'icon-[mdi--password-check]',
-      label: t('Repeat New Password'),
+      label: t('auth.repeatNewPassword'),
       name: 'repeat_new_password',
       type: 'password',
     },
@@ -62,7 +62,7 @@ export function AccountSettings() {
     <div>
       <SettingsTitle>
         <span className='icon-[mdi--account]' />
-        {t('Account')}
+        {t('common.account')}
       </SettingsTitle>
       <Card>
         <form className='flex flex-col gap-2 lg:w-xl' onSubmit={handleSubmit}>
@@ -71,12 +71,10 @@ export function AccountSettings() {
               <AccountFormField key={field.name} size='2' {...field} />
             ))}
           </div>
-          <div className='pl-2 text-xs opacity-50'>
-            {t('Recommendation: 10+ characters with letters, numbers, and symbols.')}
-          </div>
+          <div className='pl-2 text-xs opacity-50'>{t('auth.passwordRecommendation')}</div>
           <Button className='mt-2!' loading={isMutating} type='submit'>
             <span className='icon-[mdi--password-check]' />
-            {t('Update Password')}
+            {t('auth.updatePassword')}
           </Button>
 
           {data ? (
@@ -84,7 +82,7 @@ export function AccountSettings() {
               <Callout.Icon>
                 <span className='icon-[mdi--check]' />
               </Callout.Icon>
-              <Callout.Text>{t('Your password has been updated')}</Callout.Text>
+              <Callout.Text>{t('auth.passwordUpdated')}</Callout.Text>
             </Callout.Root>
           ) : null}
 
@@ -93,7 +91,7 @@ export function AccountSettings() {
               <Callout.Icon>
                 <span className='icon-[mdi--information]' />
               </Callout.Icon>
-              <Callout.Text>{error.message || t('Unknown error')}</Callout.Text>
+              <Callout.Text>{error.message || t('error.unknown')}</Callout.Text>
             </Callout.Root>
           ) : null}
         </form>

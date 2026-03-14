@@ -24,7 +24,7 @@ export function ShaderSettings() {
     <div>
       <SettingsTitle>
         <span className='icon-[mdi--video]' />
-        {t('Video')}
+        {t('settings.video')}
       </SettingsTitle>
 
       <Card>
@@ -32,7 +32,7 @@ export function ShaderSettings() {
           <div>
             <SettingsTitle className='text-base'>
               <span className='icon-[mdi--monitor-shimmer]' />
-              {t('Shader')}
+              {t('settings.shader')}
               <ShaderSelect
                 disabled={isLoading}
                 onValueChange={handleShaderChange}
@@ -45,7 +45,7 @@ export function ShaderSettings() {
             <label className='flex items-center gap-2'>
               <SettingsTitle className='mb-0 text-base'>
                 <span className='icon-[mdi--blur]' />
-                {t('Bilinear filtering')}
+                {t('settings.bilinearFiltering')}
               </SettingsTitle>
               <Switch
                 checked={preference.emulator.videoSmooth}
@@ -61,9 +61,9 @@ export function ShaderSettings() {
               />
             </label>
             <div className='px-6 text-xs opacity-80'>
-              {t('Add a slight blur to the image to take the edge off of the hard pixel edges.')}
+              {t('settings.blurDescription')}
               <br />
-              {t('Cannot be enabled with shaders.')}
+              {t('settings.cannotEnableWithShaders')}
             </div>
           </div>
 
@@ -71,7 +71,7 @@ export function ShaderSettings() {
             <label className='flex items-center gap-2'>
               <SettingsTitle className='mb-0 text-base'>
                 <span className='icon-[mdi--fullscreen]' />
-                {t('Go fullscreen on launch')}
+                {t('settings.goFullscreenOnLaunch')}
               </SettingsTitle>
               <Switch
                 checked={preference.emulator.fullscreen}
@@ -85,7 +85,7 @@ export function ShaderSettings() {
                 }
               />
             </label>
-            <div className='px-6 text-xs opacity-80'>{t('Some browsers may not support fullscreen mode.')}</div>
+            <div className='px-6 text-xs opacity-80'>{t('emulator.fullscreenNotSupported')}</div>
           </div>
         </div>
       </Card>

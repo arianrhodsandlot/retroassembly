@@ -31,7 +31,7 @@ export function CoreOptions({
   return (
     <div className='flex flex-col items-start'>
       <SettingsTitle>
-        <span className='icon-[mdi--wrench]' /> {t('Options')}
+        <span className='icon-[mdi--wrench]' /> {t('common.options')}
       </SettingsTitle>
 
       <div className='mt-3 flex flex-1 flex-col gap-2 px-6'>
@@ -39,11 +39,7 @@ export function CoreOptions({
           <Callout.Icon>
             <span className='icon-[mdi--warning]' />
           </Callout.Icon>
-          <Callout.Text>
-            {t(
-              'These options are not guaranteed to take effect or may cause launching failure. Tweak them with caution and at your own risk.',
-            )}
-          </Callout.Text>
+          <Callout.Text>{t('settings.advancedOptionsWarning')}</Callout.Text>
         </Callout.Root>
 
         <div className='mb-2 flex grid-cols-3 flex-col gap-2 lg:grid'>

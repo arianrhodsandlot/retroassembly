@@ -26,12 +26,12 @@ export function InputsSettings() {
         <SegmentedControl.Root onValueChange={handleTabChange} value={current}>
           <SegmentedControl.Item value='keyboard'>
             <div className='flex items-center gap-2'>
-              <span className='icon-[mdi--keyboard]' /> {t('Keyboard')}
+              <span className='icon-[mdi--keyboard]' /> {t('common.keyboard')}
             </div>
           </SegmentedControl.Item>
           <SegmentedControl.Item value='gamepad'>
             <div className='flex items-center gap-2'>
-              <span className='icon-[mdi--gamepad]' /> {t('Gamepad')}
+              <span className='icon-[mdi--gamepad]' /> {t('common.gamepad')}
             </div>
           </SegmentedControl.Item>
         </SegmentedControl.Root>

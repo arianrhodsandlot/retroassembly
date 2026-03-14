@@ -10,12 +10,10 @@ export function useGameActions() {
     history: [
       {
         color: 'red',
-        confirmDescription: t(
-          'Are you sure to proceed?\nThe deleted history item cannot be restored.\nThe ROM related to this history item will NOT be deleted.',
-        ),
+        confirmDescription: t('dialog.confirmDeleteHistoryMessage'),
         icon: 'icon-[mdi--delete]',
         name: 'delete',
-        text: t('Delete from history'),
+        text: t('game.deleteFromHistory'),
         type: 'launch_records',
       },
     ],
@@ -24,15 +22,15 @@ export function useGameActions() {
         confirmDescription: '',
         icon: 'icon-[mdi--checkbox-multiple-marked]',
         name: 'select',
-        text: t('Select'),
+        text: t('common.select'),
         type: '',
       },
       {
         color: 'red',
-        confirmDescription: t('Are you sure to proceed?\nThe deleted ROMs cannot be restored.'),
+        confirmDescription: t('dialog.confirmDeleteRomsMessage'),
         icon: 'icon-[mdi--delete]',
         name: 'delete',
-        text: t('Delete the ROM'),
+        text: t('game.deleteRom'),
         type: 'roms',
       },
     ],

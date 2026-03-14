@@ -14,7 +14,7 @@ export function loader() {
     platformCount: 0,
     preference,
     roms: getDemoRoms(),
-    title: t('Live demo'),
+    title: t('home.liveDemo'),
   })
 }
 

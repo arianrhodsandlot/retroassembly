@@ -27,7 +27,7 @@ export function CreateUserDialog({ onOpenChange, onSuccess, open }: Readonly<Cre
     },
     {
       onError: (err) => {
-        setError(err.message || t('Unknown error'))
+        setError(err.message || t('error.unknown'))
       },
       onSuccess: (result) => {
         onSuccess(result?.id)
@@ -43,7 +43,7 @@ export function CreateUserDialog({ onOpenChange, onSuccess, open }: Readonly<Cre
     const password = formData.get('password')?.toString() || ''
 
     if (formData.get('password') !== formData.get('repeat_password')) {
-      setError(t('Passwords do not match'))
+      setError(t('auth.passwordsDoNotMatch'))
       return
     }
 
@@ -63,22 +63,22 @@ export function CreateUserDialog({ onOpenChange, onSuccess, open }: Readonly<Cre
         <Dialog.Title>
           <div className='flex items-center'>
             <span className='icon-[mdi--account-plus] mr-2' />
-            {t('Create New User')}
+            {t('auth.createNewUser')}
           </div>
         </Dialog.Title>
         <form onSubmit={handleSubmit}>
           <div className='my-4 flex flex-col gap-4'>
             <AccountFormField
               iconClass='icon-[mdi--user-card-details]'
-              label={t('Username')}
+              label={t('auth.username')}
               name='username'
               required
             />
             <AccountFormField
               autocomplete='new-password'
-              description={t('Recommendation: 10+ characters with letters, numbers, and symbols.')}
+              description={t('auth.passwordRecommendation')}
               iconClass='icon-[mdi--password]'
-              label={t('Password')}
+              label={t('auth.password')}
               name='password'
               required
               type='password'
@@ -86,7 +86,7 @@ export function CreateUserDialog({ onOpenChange, onSuccess, open }: Readonly<Cre
             <AccountFormField
               autocomplete='new-password'
               iconClass='icon-[mdi--password-check]'
-              label={t('Repeat password')}
+              label={t('auth.repeatPassword')}
               name='repeat_password'
               required
               type='password'
@@ -104,12 +104,12 @@ export function CreateUserDialog({ onOpenChange, onSuccess, open }: Readonly<Cre
             <Dialog.Close>
               <Button disabled={isMutating} variant='soft'>
                 <span className='icon-[mdi--close]' />
-                {t('Cancel')}
+                {t('common.cancel')}
               </Button>
             </Dialog.Close>
             <Button loading={isMutating} type='submit'>
               <span className='icon-[mdi--account-plus]' />
-              {t('Create User')}
+              {t('auth.createUser')}
             </Button>
           </div>
         </form>

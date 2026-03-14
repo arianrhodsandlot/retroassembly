@@ -20,7 +20,7 @@ export function FixedHeader() {
         <Logo className='motion-preset-expand' height={32} width={32} />
       </Link>
 
-      <button className='flex-1' onClick={handleScrollToTop} title={t('Scroll to top')} type='button' />
+      <button className='flex-1' onClick={handleScrollToTop} title={t('common.scrollToTop')} type='button' />
 
       <div className='pt-safe-offset-4 flex items-center gap-4 py-4 text-xl'>
         <LanguageSelector />
@@ -30,9 +30,9 @@ export function FixedHeader() {
         <Tooltip
           content={
             <span>
-              {t('Your feedback matters!')}
+              {t('home.feedbackMatters')}
               <br />
-              {t('Star this project on GitHub or sponsor this project on Ko-fi to show your appreciation.')}
+              {t('sponsor.callToAction')}
             </span>
           }
           width='280px'
@@ -61,7 +61,7 @@ export function FixedHeader() {
             <Button asChild size='2' type='button' variant='outline'>
               <Link className='rounded-full! border-2! bg-white! shadow-none!' reloadDocument to='/library'>
                 <span className='icon-[mdi--bookshelf]' />
-                {t('Library')}
+                {t('nav.library')}
               </Link>
             </Button>
           </div>
@@ -69,7 +69,7 @@ export function FixedHeader() {
           <Button asChild radius='full' size='2' type='button' variant='outline'>
             <Link className='border-2! bg-white! shadow-none!' reloadDocument to='/login'>
               <span className='icon-[mdi--user-box]' />
-              {t('Log in')}
+              {t('auth.login')}
             </Link>
           </Button>
         )}

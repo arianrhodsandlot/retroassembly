@@ -27,7 +27,7 @@ export function HeroMain() {
         {metadata.title}
       </h1>
       <div className='relative mt-4 px-10 text-center'>
-        <div className='overflow-hidden rounded p-2 font-serif text-xl text-(--gray-10)'>{t(metadata.description)}</div>
+        <div className='overflow-hidden rounded p-2 font-serif text-xl text-(--gray-10)'>{t('home.tagline')}</div>
       </div>
       <ButtonLinks />
       <button
@@ -36,7 +36,7 @@ export function HeroMain() {
         type='button'
       >
         <span className='icon-[mdi--docker] motion-preset-oscillate motion-duration-2000 relative -top-0.5 text-2xl text-[#1d63ed]' />
-        {t('Self-Hosting with Docker')}
+        {t('home.selfHostingTitle')}
       </button>
       <DockerDialog onOpenChange={setDockerDialogOpen} open={dockerDialogOpen} />
     </div>

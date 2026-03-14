@@ -7,15 +7,15 @@ import type { Route } from '../+types/root.ts'
 export function ErrorPage({ error }: Readonly<Route.ErrorBoundaryProps>) {
   const { t } = useTranslation()
 
-  let message = t('Oops!')
-  let details = t('An unexpected error occurred.')
+  let message = t('common.oops')
+  let details = t('error.unexpected')
   let stack = ''
-  let status = t('Unexpected error')
+  let status = t('error.unexpectedTitle')
 
   if (isRouteErrorResponse(error)) {
     status = `${error.status}`
-    message = error.status === 404 ? t('404') : t('Error')
-    details = error.status === 404 ? t('The requested page could not be found.') : error.statusText || details
+    message = error.status === 404 ? t('error.notFoundCode') : t('common.error')
+    details = error.status === 404 ? t('error.pageNotFoundDescription') : error.statusText || details
   } else if (error instanceof Error) {
     details = error.message
     if (error.stack) {
@@ -41,7 +41,7 @@ export function ErrorPage({ error }: Readonly<Route.ErrorBoundaryProps>) {
             <Button asChild radius='small' size='2' type='button'>
               <Link reloadDocument to='/'>
                 <span className='icon-[mdi--home]' />
-                {t('Home')}
+                {t('nav.home')}
               </Link>
             </Button>
 
@@ -52,7 +52,7 @@ export function ErrorPage({ error }: Readonly<Route.ErrorBoundaryProps>) {
                 to='/library'
               >
                 <span className='icon-[mdi--bookshelf]' />
-                {t('Library')}
+                {t('nav.library')}
               </Link>
             </Button>
           </div>

@@ -13,14 +13,14 @@ export function SortDropdown({ currentSort, currentDirection, buildSortLink }: S
   const { t } = useTranslation()
 
   const sortOptions = [
-    { icon: 'icon-[mdi--pencil]', label: t('Name'), value: 'name' },
-    { icon: 'icon-[mdi--clock]', label: t('Date Added'), value: 'added' },
-    { icon: 'icon-[mdi--calendar]', label: t('Released'), value: 'released' },
+    { icon: 'icon-[mdi--pencil]', label: t('common.name'), value: 'name' },
+    { icon: 'icon-[mdi--clock]', label: t('common.dateAdded'), value: 'added' },
+    { icon: 'icon-[mdi--calendar]', label: t('common.released'), value: 'released' },
   ]
 
   const directionOptions = [
-    { icon: 'icon-[mdi--sort-ascending]', label: t('Ascending'), value: 'asc' },
-    { icon: 'icon-[mdi--sort-descending]', label: t('Descending'), value: 'desc' },
+    { icon: 'icon-[mdi--sort-ascending]', label: t('common.ascending'), value: 'asc' },
+    { icon: 'icon-[mdi--sort-descending]', label: t('common.descending'), value: 'desc' },
   ]
 
   return (
@@ -28,12 +28,12 @@ export function SortDropdown({ currentSort, currentDirection, buildSortLink }: S
       <DropdownMenu.Trigger>
         <Button variant='soft'>
           <span className='icon-[mdi--sort]' />
-          {t('Sort')}
+          {t('common.sort')}
           <DropdownMenu.TriggerIcon />
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
-        <DropdownMenu.Label>{t('Sort By')}</DropdownMenu.Label>
+        <DropdownMenu.Label>{t('common.sortBy')}</DropdownMenu.Label>
         {sortOptions.map(({ icon, label, value }) => (
           <DropdownMenu.Item asChild key={value}>
             <Link to={buildSortLink({ direction: currentDirection, sort: value })}>
@@ -46,7 +46,7 @@ export function SortDropdown({ currentSort, currentDirection, buildSortLink }: S
 
         <DropdownMenu.Separator />
 
-        <DropdownMenu.Label>{t('Sort Direction')}</DropdownMenu.Label>
+        <DropdownMenu.Label>{t('common.sortDirection')}</DropdownMenu.Label>
         {directionOptions.map(({ icon, label, value }) => (
           <DropdownMenu.Item asChild key={value}>
             <Link to={buildSortLink({ direction: value, sort: currentSort })}>

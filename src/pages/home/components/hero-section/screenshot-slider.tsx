@@ -52,9 +52,7 @@ export function ScreenshotSlider() {
       <div className='flex gap-2'>
         {images.map((image, index) => (
           <button
-            className={clsx('relative h-1.5 w-20 overflow-hidden rounded-xs transition-colors', 'bg-(--accent-9)/20', {
-              'bg-(--accent-9)/20': index === currentIndex && !isLoading,
-            })}
+            className={clsx('relative h-1.5 w-20 overflow-hidden rounded-xs transition-colors', 'bg-(--accent-4)')}
             disabled={isLoading}
             key={image}
             onClick={() => setCurrentIndex(index)}

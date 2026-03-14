@@ -14,7 +14,7 @@ export function DemoLoginButton() {
           to='/login'
         >
           <span className='icon-[mdi--user-box] shrink-0' />
-          <span>{t('Log in to build a library uniquely yours!')}</span>
+          <span>{t('auth.loginToBuildLibrary')}</span>
         </Link>
       </div>
     </RadixThemePortal>

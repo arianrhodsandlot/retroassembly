@@ -32,13 +32,13 @@ export function LibraryHomePage() {
             icon: 'icon-[mdi--recent]',
             link: generatePath(routes.libraryHistory),
             roms: recentlyLaunchedRoms,
-            title: t('Recent'),
+            title: t('common.recent'),
           },
           {
             icon: 'icon-[mdi--heart]',
             link: generatePath(routes.libraryFavorites),
             roms: favoriteRoms,
-            title: t('Favorites'),
+            title: t('nav.favorites'),
           },
           {
             icon: 'icon-[mdi--archive-add]',
@@ -47,7 +47,7 @@ export function LibraryHomePage() {
             ),
             roms: newAddedRoms,
             suffix: <UploadSelectButton />,
-            title: t('New added'),
+            title: t('common.newAdded'),
           },
         ].map((props) => (
           <GeneralSection className='py-4' key={props.title} {...props} />

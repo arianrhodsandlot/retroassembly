@@ -10,7 +10,7 @@ export function ButtonLinks() {
       <Button asChild radius='small' size='4' type='button'>
         <Link reloadDocument to='/demo'>
           <span className='icon-[mdi--presentation-play]' />
-          {t('Live demo')}
+          {t('home.liveDemo')}
         </Link>
       </Button>
 
@@ -21,7 +21,7 @@ export function ButtonLinks() {
           to='/library'
         >
           <span className='icon-[mdi--bookshelf]' />
-          {t('Library')}
+          {t('nav.library')}
         </Link>
       </Button>
     </div>

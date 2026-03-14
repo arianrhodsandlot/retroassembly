@@ -43,7 +43,7 @@ export function AccountFormField({
               onClick={handleClickIconButton}
               size='1'
               tabIndex={-1}
-              title={textFieldType === 'password' ? t('Show password') : t('Hide password')}
+              title={textFieldType === 'password' ? t('auth.showPassword') : t('auth.hidePassword')}
               type='button'
               variant='ghost'
             >

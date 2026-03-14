@@ -8,16 +8,16 @@ export function LoginFormFields({ register = false }: Readonly<{ register?: bool
     <>
       <AccountFormField
         autoFocus
-        description={register ? t('Username examples') : ''}
+        description={register ? t('auth.usernameExamples') : ''}
         iconClass='icon-[mdi--user-card-details]'
-        label={t('Username')}
+        label={t('auth.username')}
         name='username'
       />
 
       <AccountFormField
-        description={register ? t('Recommendation: 10+ characters with letters, numbers, and symbols.') : ''}
+        description={register ? t('auth.passwordRecommendation') : ''}
         iconClass='icon-[mdi--password]'
-        label={t('Password')}
+        label={t('auth.password')}
         name='password'
         type='password'
       />
@@ -25,7 +25,7 @@ export function LoginFormFields({ register = false }: Readonly<{ register?: bool
       {register ? (
         <AccountFormField
           iconClass='icon-[mdi--password-check]'
-          label={t('Repeat password')}
+          label={t('auth.repeatPassword')}
           name='repeat_password'
           type='password'
         />

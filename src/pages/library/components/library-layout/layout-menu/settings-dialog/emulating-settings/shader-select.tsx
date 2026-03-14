@@ -27,7 +27,7 @@ export function ShaderSelect(props: Readonly<Select.RootProps>) {
             <Select.Item value={shader.id || 'none'}>
               <div className='flex items-center gap-2'>
                 <span className={shader.id ? 'icon-[mdi--stars]' : 'icon-[mdi--do-not-disturb-alt]'} />
-                <span>{shader.id ? shader.name : t('disabled')}</span>
+                <span>{shader.id ? shader.name : t('common.disabledLower')}</span>
               </div>
             </Select.Item>
           </Tooltip>

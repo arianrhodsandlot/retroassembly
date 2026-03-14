@@ -24,7 +24,7 @@ export function LogInWithGoogleButton({ redirectTo }: Readonly<{ redirectTo: str
           }}
         >
           <span className='icon-[logos--google-icon]' />
-          {t('Log in with Google')}
+          {t('auth.loginWithGoogle')}
         </Link>
       </Button>
     </div>

@@ -25,7 +25,7 @@ export function GameListEmpty() {
       {isLibrary ? (
         <>
           <div className='text-(--gray-11)'>
-            {t('Welcome to {{title}}. This is where all ROMs uploaded by you will appear.', {
+            {t('home.welcomeWithDescription', {
               title: metadata.title,
             })}
           </div>
@@ -34,7 +34,7 @@ export function GameListEmpty() {
               components={{
                 1: <UploadSelectButton variant='soft' />,
               }}
-              i18nKey='uploadRomsToGetStarted'
+              i18nKey='empty.uploadRomsToGetStarted'
             />
           </div>
         </>
@@ -42,25 +42,25 @@ export function GameListEmpty() {
 
       {isHistory ? (
         <>
-          <div className='text-(--gray-11)'>{t("You haven't played any games yet.")}</div>
+          <div className='text-(--gray-11)'>{t('empty.noGamesPlayed')}</div>
           <div className='inline-flex items-center gap-1 text-(--gray-11)'>
             <Trans
               components={{
                 1: createElement(() => (
                   <Button asChild variant='soft'>
                     <Link to={generatePath(routes.libraryHome)}>
-                      <span className='icon-[mdi--bookshelf]' /> {t('Home')}
+                      <span className='icon-[mdi--bookshelf]' /> {t('nav.home')}
                     </Link>
                   </Button>
                 )),
               }}
-              i18nKey='playSomeGamesFromLibrary'
+              i18nKey='library.playSomeGamesFromLibrary'
             />
           </div>
         </>
       ) : null}
 
-      {isFavorites ? <div className='text-(--gray-11)'>{t('favoriteEmptyState')}</div> : null}
+      {isFavorites ? <div className='text-(--gray-11)'>{t('empty.favoritesDescription')}</div> : null}
 
       {platform ? (
         <>
@@ -76,7 +76,7 @@ export function GameListEmpty() {
                   />
                 ),
               }}
-              i18nKey={favorite ? 'noFavoriteGamesForPlatform' : 'noGamesForPlatform'}
+              i18nKey={favorite ? 'empty.noFavoriteGamesForPlatform' : 'empty.noGamesForPlatform'}
               values={{
                 platform: t(platform.displayName),
               }}
@@ -88,7 +88,7 @@ export function GameListEmpty() {
                 components={{
                   1: <UploadButton platform={platform?.name} variant='soft' />,
                 }}
-                i18nKey='uploadRomsToGetStarted'
+                i18nKey='empty.uploadRomsToGetStarted'
               />
             </div>
           )}

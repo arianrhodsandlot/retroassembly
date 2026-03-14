@@ -23,25 +23,25 @@ export function ThemeMenuItem() {
     <DropdownMenu.Sub>
       <DropdownMenu.SubTrigger>
         <span className='icon-[mdi--theme-light-dark]' />
-        {t('Theme')}
+        {t('settings.theme')}
       </DropdownMenu.SubTrigger>
       <DropdownMenu.SubContent>
         <DropdownMenu.Item onClick={() => updateTheme('')}>
           <span className={clsx('icon-[mdi--check]', { 'opacity-0': theme !== 'system' })} />
           {systemTheme === 'light' ? <span className='icon-[mdi--weather-sunny]' /> : null}
           {systemTheme === 'dark' ? <span className='icon-[mdi--moon-and-stars]' /> : null}
-          {t('System')}
+          {t('common.system')}
         </DropdownMenu.Item>
         <DropdownMenu.Separator />
         <DropdownMenu.Item onClick={() => updateTheme('light')}>
           <span className={clsx('icon-[mdi--check]', { 'opacity-0': theme !== 'light' })} />
           <span className='icon-[mdi--weather-sunny]' />
-          {t('Light')}
+          {t('theme.light')}
         </DropdownMenu.Item>
         <DropdownMenu.Item onClick={() => updateTheme('dark')}>
           <span className={clsx('icon-[mdi--check]', { 'opacity-0': theme !== 'dark' })} />
           <span className='icon-[mdi--moon-and-stars]' />
-          {t('Dark')}
+          {t('theme.dark')}
         </DropdownMenu.Item>
       </DropdownMenu.SubContent>
     </DropdownMenu.Sub>

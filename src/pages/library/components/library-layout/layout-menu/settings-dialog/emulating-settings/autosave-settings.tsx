@@ -35,27 +35,27 @@ export function AutosaveSettings() {
     <div>
       <SettingsTitle>
         <span className='icon-[mdi--content-save]' />
-        {t('Save State')}
+        {t('emulator.saveState')}
       </SettingsTitle>
       <Card>
         <div className='flex flex-col gap-2 py-2'>
           <div>
             <SettingsTitle className='text-base'>
               <span className='icon-[mdi--clock]' />
-              {t('Auto save interval')}
+              {t('settings.autoSaveInterval')}
               <Select.Root onValueChange={handleIntervalChange} value={String(interval)}>
                 <Select.Trigger disabled={isLoading} />
                 <Select.Content>
                   {INTERVAL_OPTIONS.map(({ label: _label, value }) => (
                     <Select.Item key={value} value={String(value)}>
-                      {value === 0 ? t('Disabled') : `${value} ${t('seconds')}`}
+                      {value === 0 ? t('common.disabled') : `${value} ${t('common.seconds')}`}
                     </Select.Item>
                   ))}
                 </Select.Content>
               </Select.Root>
             </SettingsTitle>
             <div className='px-6 text-xs opacity-80'>
-              {t('There are up to {{count}} auto save slots per game.', {
+              {t('emulator.autoSaveSlotsDescription', {
                 count: Number(env.RETROASSEMBLY_RUN_TIME_MAX_AUTO_STATES_PER_ROM),
               })}
             </div>

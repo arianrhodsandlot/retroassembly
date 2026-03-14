@@ -54,7 +54,7 @@ const basePlatformMap = {
     displayName: 'Arcade',
     fileExtensions: ['.zip'],
     info: {
-      notesI18nKey: 'platform_arcade_note',
+      notesI18nKey: 'platform.arcadeNote',
       releaseDate: '1971-10-15T00:00:00-07:00',
     },
     libretroName: 'MAME',
@@ -66,7 +66,7 @@ const basePlatformMap = {
     info: {
       developer: 'Atari, Inc.',
       manufacturer: 'Atari, Inc.',
-      notesI18nKey: 'platform_atari2600_note',
+      notesI18nKey: 'platform.atari2600Note',
       releaseDate: '1977-09-11T00:00:00-07:00',
     },
     libretroName: 'Atari - 2600',
@@ -79,7 +79,7 @@ const basePlatformMap = {
     info: {
       developer: 'Atari, Inc.',
       manufacturer: 'Atari, Inc.',
-      notesI18nKey: 'platform_atari5200_note',
+      notesI18nKey: 'platform.atari5200Note',
       releaseDate: '1982-11-01T00:00:00-08:00',
     },
     libretroName: 'Atari - 5200',
@@ -95,7 +95,7 @@ const basePlatformMap = {
     info: {
       developer: 'Atari Corporation',
       manufacturer: 'Atari Corporation',
-      notesI18nKey: 'platform_atari7800_note',
+      notesI18nKey: 'platform.atari7800Note',
       releaseDate: '1986-05-01T00:00:00-07:00',
     },
     libretroName: 'Atari - 7800',
@@ -108,7 +108,7 @@ const basePlatformMap = {
     info: {
       developer: 'Atari Corporation, Epyx, Inc.',
       manufacturer: 'Atari Corporation',
-      notesI18nKey: 'platform_atarilynx_note',
+      notesI18nKey: 'platform.atariLynxNote',
       releaseDate: '1989-09-01T00:00:00-07:00',
     },
     libretroName: 'Atari - Lynx',
@@ -125,7 +125,7 @@ const basePlatformMap = {
     info: {
       developer: 'Fairchild Semiconductor',
       manufacturer: 'Fairchild Semiconductor',
-      notesI18nKey: 'platform_channelf_note',
+      notesI18nKey: 'platform.channelFNote',
       releaseDate: '1976-11-01T00:00:00-08:00',
     },
     libretroName: 'Fairchild - Channel F',
@@ -138,7 +138,7 @@ const basePlatformMap = {
     info: {
       developer: 'Coleco Industries, Inc.',
       manufacturer: 'Coleco Industries, Inc.',
-      notesI18nKey: 'platform_colecovision_note',
+      notesI18nKey: 'platform.colecovisionNote',
       releaseDate: '1982-08-01T00:00:00-07:00',
     },
     libretroName: 'Coleco - ColecoVision',
@@ -151,7 +151,7 @@ const basePlatformMap = {
     info: {
       developer: 'Nintendo R&D2',
       manufacturer: 'Nintendo Co., Ltd.',
-      notesI18nKey: 'platform_nes_note',
+      notesI18nKey: 'platform.nesNote',
       releaseDate: '1983-07-15T00:00:00-07:00',
     },
     libretroName: 'Nintendo - Nintendo Entertainment System',
@@ -168,7 +168,7 @@ const basePlatformMap = {
     info: {
       developer: 'Nintendo',
       manufacturer: 'Mitsumi',
-      notesI18nKey: 'platform_fds_note',
+      notesI18nKey: 'platform.famicomDiskSystemNote',
       releaseDate: '1986-02-21T00:00:00-08:00',
     },
     libretroName: 'Nintendo - Family Computer Disk System',
@@ -180,7 +180,7 @@ const basePlatformMap = {
     info: {
       developer: 'Nintendo',
       manufacturer: 'Nintendo',
-      notesI18nKey: 'platform_gameandwatch_note',
+      notesI18nKey: 'platform.gameAndWatchNote',
       releaseDate: '1980-04-28T00:00:00-07:00',
     },
     libretroName: 'Handheld Electronic Game',
@@ -193,7 +193,7 @@ const basePlatformMap = {
     info: {
       developer: 'Nintendo',
       manufacturer: 'Nintendo',
-      notesI18nKey: 'platform_gamegear_note',
+      notesI18nKey: 'platform.gameGearNote',
       releaseDate: '1990-10-06T00:00:00-07:00',
     },
     libretroName: 'Sega - Game Gear',
@@ -206,7 +206,7 @@ const basePlatformMap = {
     info: {
       developer: 'Nintendo',
       manufacturer: 'Nintendo',
-      notesI18nKey: 'platform_gb_note',
+      notesI18nKey: 'platform.gameBoyNote',
       releaseDate: '1989-04-21T00:00:00-07:00',
     },
     libretroName: 'Nintendo - Game Boy',
@@ -219,7 +219,7 @@ const basePlatformMap = {
     info: {
       developer: 'Nintendo',
       manufacturer: 'Nintendo',
-      notesI18nKey: 'platform_gba_note',
+      notesI18nKey: 'platform.gameBoyAdvanceNote',
       releaseDate: '2001-06-11T00:00:00-07:00',
     },
     libretroName: 'Nintendo - Game Boy Advance',
@@ -232,7 +232,7 @@ const basePlatformMap = {
     info: {
       developer: 'Nintendo',
       manufacturer: 'Nintendo',
-      notesI18nKey: 'platform_gbc_note',
+      notesI18nKey: 'platform.gameBoyColorNote',
       releaseDate: '1998-10-21T00:00:00-07:00',
     },
     libretroName: 'Nintendo - Game Boy Color',
@@ -245,7 +245,7 @@ const basePlatformMap = {
     info: {
       developer: 'Sega Enterprises',
       manufacturer: 'Sega Enterprises',
-      notesI18nKey: 'platform_megadrive_note',
+      notesI18nKey: 'platform.megadriveNote',
       releaseDate: '1989-08-14T00:00:00-07:00',
     },
     libretroName: 'Sega - Mega Drive - Genesis',
@@ -258,7 +258,7 @@ const basePlatformMap = {
     info: {
       developer: 'Sega Enterprises',
       manufacturer: 'Sega Enterprises',
-      notesI18nKey: 'platform_megadrive_note',
+      notesI18nKey: 'platform.megadriveNote',
       releaseDate: '1989-08-14T00:00:00-07:00',
     },
     libretroName: 'Sega - Mega Drive - Genesis',
@@ -270,7 +270,7 @@ const basePlatformMap = {
     info: {
       developer: 'Nintendo R&D2',
       manufacturer: 'Nintendo Co., Ltd.',
-      notesI18nKey: 'platform_nes_note',
+      notesI18nKey: 'platform.nesNote',
       releaseDate: '1983-07-15T00:00:00-07:00',
     },
     libretroName: 'Nintendo - Nintendo Entertainment System',
@@ -282,7 +282,7 @@ const basePlatformMap = {
     info: {
       developer: 'SNK',
       manufacturer: 'SNK',
-      notesI18nKey: 'platform_ngp_note',
+      notesI18nKey: 'platform.neoGeoPocketNote',
       releaseDate: '1998-12-31T00:00:00-08:00',
     },
     libretroName: 'SNK - Neo Geo Pocket',
@@ -294,7 +294,7 @@ const basePlatformMap = {
     info: {
       developer: 'SNK',
       manufacturer: 'SNK',
-      notesI18nKey: 'platform_ngpc_note',
+      notesI18nKey: 'platform.neoGeoPocketColorNote',
       releaseDate: '1999-03-16T00:00:00-08:00',
     },
     libretroName: 'SNK - Neo Geo Pocket Color',
@@ -307,7 +307,7 @@ const basePlatformMap = {
     info: {
       developer: 'Magnavox / Philips',
       manufacturer: 'Magnavox / Philips',
-      notesI18nKey: 'platform_odyssey2_note',
+      notesI18nKey: 'platform.magnavoxOdyssey2Note',
       releaseDate: '1978-12-01T00:00:00-08:00',
     },
     libretroName: 'Magnavox - Odyssey2',
@@ -325,7 +325,7 @@ const basePlatformMap = {
     info: {
       developer: 'NEC Corporation, Hudson Soft',
       manufacturer: 'NEC Corporation, Hudson Soft',
-      notesI18nKey: 'platform_pcengine_note',
+      notesI18nKey: 'platform.pcengineNote',
       releaseDate: '1989-08-29T00:00:00-07:00',
     },
     libretroName: 'NEC - PC Engine - TurboGrafx 16',
@@ -343,7 +343,7 @@ const basePlatformMap = {
     info: {
       developer: 'Sony Computer Entertainment',
       manufacturer: 'Sony Computer Entertainment',
-      notesI18nKey: 'platform_psx_note',
+      notesI18nKey: 'platform.psxNote',
       releaseDate: '1994-12-03T00:00:00-08:00',
     },
     libretroName: 'Sony - PlayStation',
@@ -355,7 +355,7 @@ const basePlatformMap = {
     info: {
       developer: 'Nintendo',
       manufacturer: 'Nintendo',
-      notesI18nKey: 'platform_sega32x_note',
+      notesI18nKey: 'platform.sega32xNote',
       releaseDate: '1994-06-01T00:00:00-07:00',
     },
     libretroName: 'Sega - 32X',
@@ -367,7 +367,7 @@ const basePlatformMap = {
     info: {
       developer: 'Nintendo',
       manufacturer: 'Nintendo',
-      notesI18nKey: 'platform_snes_note',
+      notesI18nKey: 'platform.snesNote',
       releaseDate: '1994-06-01T00:00:00-07:00',
     },
     libretroName: 'Nintendo - Super Nintendo Entertainment System',
@@ -379,7 +379,7 @@ const basePlatformMap = {
     info: {
       developer: 'Sega',
       manufacturer: 'Sega',
-      notesI18nKey: 'platform_sg1000_note',
+      notesI18nKey: 'platform.segaSg1000Note',
       releaseDate: '1983-07-15T00:00:00-07:00',
     },
     libretroName: 'Sega - SG-1000',
@@ -396,7 +396,7 @@ const basePlatformMap = {
     info: {
       developer: 'SEGA Enterprises Ltd.',
       manufacturer: 'SEGA Enterprises Ltd.',
-      notesI18nKey: 'platform_sms_note',
+      notesI18nKey: 'platform.masterSystemNote',
       releaseDate: '1986-09-01T00:00:00-07:00',
     },
     libretroName: 'Sega - Master System - Mark III',
@@ -408,7 +408,7 @@ const basePlatformMap = {
     info: {
       developer: 'Nintendo',
       manufacturer: 'Nintendo',
-      notesI18nKey: 'platform_snes_note',
+      notesI18nKey: 'platform.snesNote',
       releaseDate: '1990-11-21T00:00:00-08:00',
     },
     libretroName: 'Nintendo - Super Nintendo Entertainment System',
@@ -420,7 +420,7 @@ const basePlatformMap = {
     info: {
       developer: 'Nintendo',
       manufacturer: 'Nintendo',
-      notesI18nKey: 'platform_vb_note',
+      notesI18nKey: 'platform.virtualBoyNote',
       releaseDate: '1995-07-21T00:00:00-07:00',
     },
     libretroName: 'Nintendo - Virtual Boy',
@@ -433,7 +433,7 @@ const basePlatformMap = {
     info: {
       developer: 'Philips',
       manufacturer: 'Philips',
-      notesI18nKey: 'platform_videopac_note',
+      notesI18nKey: 'platform.philipsVideopacNote',
       releaseDate: '1983-08-01T00:00:00-07:00',
     },
     libretroName: 'Philips - Videopac+',
@@ -445,7 +445,7 @@ const basePlatformMap = {
     info: {
       developer: 'Bandai Co., Ltd.',
       manufacturer: 'Bandai Co., Ltd.',
-      notesI18nKey: 'platform_wonderswan_note',
+      notesI18nKey: 'platform.wonderswanNote',
       releaseDate: '1999-03-04T00:00:00-08:00',
     },
     libretroName: 'Bandai - WonderSwan',
@@ -457,7 +457,7 @@ const basePlatformMap = {
     info: {
       developer: 'Bandai Co., Ltd.',
       manufacturer: 'Bandai Co., Ltd.',
-      notesI18nKey: 'platform_wonderswancolor_note',
+      notesI18nKey: 'platform.wonderswanColorNote',
       releaseDate: '2000-12-09T00:00:00-08:00',
     },
     libretroName: 'Bandai - WonderSwan Color',

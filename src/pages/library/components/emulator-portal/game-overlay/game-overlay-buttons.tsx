@@ -52,24 +52,24 @@ export function GameOverlayButtons() {
     <>
       <GameOverlayButton dataSnLeft='.game-overlay-buttons button:last-child' onClick={handleClickResume}>
         <span className='icon-[mdi--play] size-5' />
-        {t('Resume')}
+        {t('game.resume')}
       </GameOverlayButton>
 
       <GameOverlayButton disabled={isDemo} onClick={handleClickSaveState}>
         <span className='icon-[mdi--content-save] size-5' />
-        {t('Save State')}
+        {t('emulator.saveState')}
       </GameOverlayButton>
 
       <div className='hidden lg:block lg:flex-1' />
 
       <GameOverlayButton onClick={handleClickRestart}>
         <span className='icon-[mdi--restart] size-5' />
-        {t('Restart')}
+        {t('emulator.restart')}
       </GameOverlayButton>
 
       <GameOverlayButton onClick={handleClickExit}>
         <span className='icon-[mdi--exit-to-app] size-5' />
-        {t('Exit')}
+        {t('common.exit')}
       </GameOverlayButton>
 
       <GameOverlayButton
@@ -78,7 +78,7 @@ export function GameOverlayButtons() {
         onClick={handleClickSaveExit}
       >
         <span className='icon-[mdi--location-exit] size-5' />
-        {t('Save & Exit')}
+        {t('emulator.saveAndExit')}
       </GameOverlayButton>
     </>
   )

@@ -14,15 +14,15 @@ import { UploadButton } from './components/upload-button.tsx'
 export default function PlatformPage() {
   const { t } = useTranslation()
   const { pagination, platform, platformInfo, roms } = useLoaderData<typeof loader>()
-  const gameLabel = t('game', { count: pagination.total })
+  const gameLabel = t('common.game', { count: pagination.total })
   const isDemo = useIsDemo()
 
   if (!platformMap[platform]) {
-    return <>{t('404')}</>
+    return <>{t('error.notFoundCode')}</>
   }
 
   if (pagination.current > 1 && roms.length === 0) {
-    return <>{t('404')}</>
+    return <>{t('error.notFoundCode')}</>
   }
 
   return (
@@ -45,7 +45,7 @@ export default function PlatformPage() {
                   components={{
                     1: <span className='font-semibold text-(--accent-9)' />,
                   }}
-                  i18nKey='platformGamesStats'
+                  i18nKey='stats.platformGames'
                   values={{
                     game: gameLabel,
                     gameCount: pagination.total,

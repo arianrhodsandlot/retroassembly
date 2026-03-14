@@ -18,10 +18,10 @@ export function SelectionInfo({ selectedCount, canSelectAll, onSelectAll }: Sele
         components={{
           1: <span className='font-semibold text-(--accent-9)' />,
         }}
-        i18nKey='Selected <1>{{count}}</1> {{items}}'
+        i18nKey='game.selectedItems'
         values={{
           count: selectedCount,
-          items: t('ROM', { count: selectedCount }),
+          items: t('game.rom', { count: selectedCount }),
         }}
       />
 
@@ -30,7 +30,7 @@ export function SelectionInfo({ selectedCount, canSelectAll, onSelectAll }: Sele
           <motion.div animate={{ opacity: 1 }} exit={{ opacity: 0 }} initial={{ opacity: 0 }} layout>
             <Button onClick={onSelectAll} type='button' variant='soft'>
               <span className='icon-[mdi--check-all]' />
-              {t('Select all')}
+              {t('common.selectAll')}
             </Button>
           </motion.div>
         ) : null}

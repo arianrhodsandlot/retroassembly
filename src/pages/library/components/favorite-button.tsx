@@ -57,9 +57,9 @@ export function FavoriteButton({ rom, variant }: Readonly<FavoriteButtonProps>) 
           <button
             type='button'
             className='pointer-events-auto relative z-1 flex rounded-full bg-(--color-background) p-1.5 ring-1 ring-(--gray-4) hover:bg-(--accent-3) hover:ring-(--accent-3)'
-            aria-label={optimisticIsFavorite ? t('Remove from favorites') : t('Add to favorites')}
+            aria-label={optimisticIsFavorite ? t('game.removeFromFavorites') : t('game.addToFavorites')}
             onClick={handleClick}
-            title={optimisticIsFavorite ? t('Remove from favorites') : t('Add to favorites')}
+            title={optimisticIsFavorite ? t('game.removeFromFavorites') : t('game.addToFavorites')}
           >
             <span
               className={clsx('text-lg text-(--accent-9)', {

@@ -70,7 +70,7 @@ export default function RomPage() {
                     rel='noreferrer noopener'
                     target='_blank'
                   >
-                    <span className='icon-[mdi--wikipedia] size-6' /> {t('Read more on Wikipedia')}
+                    <span className='icon-[mdi--wikipedia] size-6' /> {t('common.readMoreWikipedia')}
                   </a>
                 </div>
               ) : null}

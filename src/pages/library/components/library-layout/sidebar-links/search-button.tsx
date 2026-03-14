@@ -23,9 +23,9 @@ export function SearchButton() {
   }
 
   return (
-    <Tooltip content={isApple ? t('Search (⌘ + K)') : t('Search (Ctrl + K)')}>
+    <Tooltip content={isApple ? t('common.searchCmdK') : t('common.searchCtrlK')}>
       <button
-        aria-label={t('Search')}
+        aria-label={t('common.search')}
         className='absolute right-1 rounded p-2 leading-0 opacity-90 hover:bg-black/10 hover:opacity-100'
         onClick={showSearch}
         type='button'

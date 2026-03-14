@@ -215,7 +215,7 @@ export async function createRoms({ files, md5s, platform }: { files: File[]; md5
   const romCount = await countRoms()
   if (romCount + files.length > maxRomCount) {
     throw new HTTPException(400, {
-      message: t('Adding these ROMs would exceed the maximum allowed ROM count of {{maxRomCount}}.', { maxRomCount }),
+      message: t('error.exceedMaxRomCount', { maxRomCount }),
     })
   }
 

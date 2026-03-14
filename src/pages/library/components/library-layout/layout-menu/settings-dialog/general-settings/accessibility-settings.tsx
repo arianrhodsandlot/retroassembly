@@ -22,14 +22,14 @@ export function AccessibilitySettings() {
     <div>
       <SettingsTitle>
         <span className='icon-[mdi--accessibility]' />
-        {t('Accessibility')}
+        {t('settings.accessibility')}
       </SettingsTitle>
       <Card>
         <div className='flex flex-col gap-4 py-2 lg:flex-row'>
           <label className='flex items-center gap-2'>
             <SettingsTitle className='mb-0 text-base'>
               <span className='icon-[mdi--water-opacity]' />
-              {t('Saturation')}
+              {t('settings.saturation')}
             </SettingsTitle>
             <Select.Root
               onValueChange={async (value) => {
@@ -56,7 +56,7 @@ export function AccessibilitySettings() {
           <label className='flex items-center gap-2'>
             <SettingsTitle className='mb-0 text-base'>
               <span className='icon-[mdi--image]' />
-              {t('Apply to images')}
+              {t('settings.applyToImages')}
             </SettingsTitle>
             <Switch
               checked={preference.ui.saturationApplyToImages}
@@ -73,7 +73,7 @@ export function AccessibilitySettings() {
           <label className='flex items-center gap-2'>
             <SettingsTitle className='mb-0 text-base'>
               <span className='icon-[mdi--monitor-eye]' />
-              {t('Apply to game')}
+              {t('settings.applyToGame')}
             </SettingsTitle>
             <Switch
               checked={preference.ui.saturationApplyToGame}
@@ -87,9 +87,7 @@ export function AccessibilitySettings() {
             />
           </label>
         </div>
-        <div className='text-xs opacity-50 lg:pl-6'>
-          {t('Reduce the saturation of colors within the application, for those with color sensitivities.')}
-        </div>
+        <div className='text-xs opacity-50 lg:pl-6'>{t('settings.saturationDescription')}</div>
       </Card>
     </div>
   )

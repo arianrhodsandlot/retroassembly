@@ -70,12 +70,12 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
             <Dialog.Close>
               <Button disabled={isMutating} variant='soft'>
                 <span className='icon-[mdi--close]' />
-                {t('Cancel')}
+                {t('common.cancel')}
               </Button>
             </Dialog.Close>
             <Button loading={isMutating} type='submit'>
               <span className='icon-[mdi--content-save]' />
-              {t('Save')}
+              {t('common.save')}
             </Button>
           </div>
         </form>

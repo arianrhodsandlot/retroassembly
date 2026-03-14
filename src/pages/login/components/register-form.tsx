@@ -14,7 +14,7 @@ export function RegisterForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
 
   function validateFormData(formData: FormData) {
     if (formData.get('password') !== formData.get('repeat_password')) {
-      throw new Error(t('Passwords do not match'))
+      throw new Error(t('auth.passwordsDoNotMatch'))
     }
     return {
       password: formData.get('password')?.toString() || '',
@@ -51,7 +51,7 @@ export function RegisterForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
           type='submit'
         >
           <span className='icon-[mdi--register]' />
-          {t('Create your account')}
+          {t('auth.createYourAccount')}
         </Button>
       </div>
 
@@ -60,7 +60,7 @@ export function RegisterForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
           <Callout.Icon>
             <span className='icon-[mdi--information]' />
           </Callout.Icon>
-          <Callout.Text>{error.message || t('Unknown error')}</Callout.Text>
+          <Callout.Text>{error.message || t('error.unknown')}</Callout.Text>
         </Callout.Root>
       ) : null}
     </form>

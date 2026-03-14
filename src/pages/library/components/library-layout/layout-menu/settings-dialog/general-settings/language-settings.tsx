@@ -15,14 +15,14 @@ export function LanguageSettings() {
     <div>
       <SettingsTitle>
         <span className='icon-[mdi--translate-variant]' />
-        {t('Language')}
+        {t('settings.language')}
       </SettingsTitle>
       <Card>
         <div className='flex flex-col gap-2 py-2'>
           <label className='flex items-center gap-2'>
             <SettingsTitle className='mb-0 text-base'>
               <span className='icon-[mdi--web]' />
-              {t('Interface Language')}
+              {t('settings.interfaceLanguage')}
             </SettingsTitle>
             <Select.Root
               onValueChange={async (value) => {
@@ -36,7 +36,7 @@ export function LanguageSettings() {
               <Select.Trigger disabled={isLoading} />
               <Select.Content>
                 <Select.Item value='auto'>
-                  {t('Auto')} ({locales.find(({ code }) => code === detectedLanguage)?.name})
+                  {t('common.auto')} ({locales.find(({ code }) => code === detectedLanguage)?.name})
                 </Select.Item>
                 {locales.map((locale) => (
                   <Select.Item key={locale.code} value={locale.code}>
@@ -50,7 +50,7 @@ export function LanguageSettings() {
           <label className='flex items-center gap-2'>
             <SettingsTitle className='mb-0 text-base'>
               <span className='icon-[mdi--calendar-clock]' />
-              {t('Date Format')}
+              {t('settings.dateFormat')}
             </SettingsTitle>
             <Select.Root
               onValueChange={async (value) => {
@@ -62,7 +62,7 @@ export function LanguageSettings() {
               <Select.Trigger disabled={isLoading} />
               <Select.Content>
                 <Select.Item value='auto'>
-                  {t('Auto')} ({dateFormatMap[i18n.language]})
+                  {t('common.auto')} ({dateFormatMap[i18n.language]})
                 </Select.Item>
                 {dateFormats.map((format) => (
                   <Select.Item key={format} value={format}>

@@ -28,22 +28,22 @@ export function DockerDialog({ onOpenChange, ...props }: Readonly<Dialog.RootPro
     <DialogRoot {...props} onOpenChange={handleOpenChange}>
       <Dialog.Content aria-describedby={undefined} width='600px'>
         <VisuallyHidden>
-          <Dialog.Title>{t('Self-Hosting with Docker')}</Dialog.Title>
+          <Dialog.Title>{t('home.selfHostingTitle')}</Dialog.Title>
         </VisuallyHidden>
 
         <div>
           <Tabs.Root defaultValue='compose'>
             <Tabs.List>
-              <Tabs.Trigger value='compose'>{t('Docker Compose')}</Tabs.Trigger>
-              <Tabs.Trigger value='cli'>{t('Docker CLI')}</Tabs.Trigger>
+              <Tabs.Trigger value='compose'>{t('home.dockerComposeTitle')}</Tabs.Trigger>
+              <Tabs.Trigger value='cli'>{t('home.dockerCliTitle')}</Tabs.Trigger>
             </Tabs.List>
 
             <Tabs.Content className='mt-4' value='compose'>
               <div className='flex flex-col gap-4'>
                 <div>
-                  <h3 className='mb-2 font-semibold'>{t('Step 1: Create compose.yaml')}</h3>
+                  <h3 className='mb-2 font-semibold'>{t('home.dockerStep1')}</h3>
                   <CodeBlock className='overflow-x-auto rounded bg-(--gray-3) p-4 text-sm' code={composeYaml} />
-                  {t('You can also download it by running:')}
+                  {t('home.dockerDownloadCommand')}
                   <CodeBlock
                     className='overflow-x-auto rounded bg-(--gray-3) p-4 text-sm'
                     code={`curl -O ${new URL('/compose.yaml', metadata.link).href}`}
@@ -51,7 +51,7 @@ export function DockerDialog({ onOpenChange, ...props }: Readonly<Dialog.RootPro
                 </div>
 
                 <div>
-                  <h3 className='mb-2 font-semibold'>{t('Step 2: Start the container')}</h3>
+                  <h3 className='mb-2 font-semibold'>{t('home.dockerStep2')}</h3>
                   <CodeBlock
                     className='overflow-x-auto rounded bg-(--gray-3) p-4 text-sm'
                     code='docker compose up -d'
@@ -63,15 +63,13 @@ export function DockerDialog({ onOpenChange, ...props }: Readonly<Dialog.RootPro
             <Tabs.Content className='mt-4' value='cli'>
               <div className='flex flex-col gap-4'>
                 <div>
-                  <h3 className='mb-2 font-semibold'>{t('Run with Docker CLI')}</h3>
+                  <h3 className='mb-2 font-semibold'>{t('home.runWithDockerCli')}</h3>
                   <CodeBlock className='overflow-x-auto rounded bg-(--gray-3) p-4 text-sm' code={dockerCommand} />
                 </div>
 
                 <div>
-                  <h3 className='mb-2 font-semibold'>{t('Access the application')}</h3>
-                  <p className='text-sm text-(--gray-11)'>
-                    {t('Once the container is running, open http://localhost:8000 in your browser.')}
-                  </p>
+                  <h3 className='mb-2 font-semibold'>{t('auth.accessApplication')}</h3>
+                  <p className='text-sm text-(--gray-11)'>{t('home.dockerInstructionsOpenBrowser')}</p>
                 </div>
               </div>
             </Tabs.Content>
@@ -88,7 +86,7 @@ export function DockerDialog({ onOpenChange, ...props }: Readonly<Dialog.RootPro
             target='_blank'
           >
             <span className='icon-[mdi--docker] text-lg' />
-            {t('View on Docker Hub')}
+            {t('home.viewOnDockerHub')}
           </a>
         </div>
 

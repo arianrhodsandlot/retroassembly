@@ -12,13 +12,13 @@ export function LoginPage() {
   const { error, formType, redirectTo } = useLoaderData<typeof loader>()
 
   if (error) {
-    return <PageContainer title={t('Log in')}>{error.message}</PageContainer>
+    return <PageContainer title={t('auth.login')}>{error.message}</PageContainer>
   }
 
-  const title = formType === 'register' ? metadata.title : t('Log in to {{title}}', { title: metadata.title })
+  const title = formType === 'register' ? metadata.title : t('auth.loginToTitle', { title: metadata.title })
   const description = {
-    oauth: t('Log in to build your own retro game collection'),
-    register: t('Create an account to get started'),
+    oauth: t('auth.loginToBuildCollection'),
+    register: t('auth.createAccountToGetStarted'),
   }[formType]
   return (
     <PageContainer description={description} title={title}>

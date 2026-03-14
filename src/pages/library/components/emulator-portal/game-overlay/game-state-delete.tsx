@@ -19,7 +19,7 @@ export function GameStateDelete({ id }: Readonly<{ id: string }>) {
   )
 
   async function handleClick() {
-    if (confirm(`${t('Confirm delete')}?`)) {
+    if (confirm(`${t('dialog.confirmDeleteTitle')}?`)) {
       await trigger()
     }
   }
@@ -28,7 +28,7 @@ export function GameStateDelete({ id }: Readonly<{ id: string }>) {
     <button
       className='absolute right-0 bottom-0 flex size-8 items-center justify-center rounded text-(--accent-9) hover:bg-(--accent-3)'
       onClick={handleClick}
-      title={t('Delete')}
+      title={t('common.delete')}
       type='button'
     >
       <span className={isMutating ? 'icon-[svg-spinners--180-ring]' : 'icon-[mdi--delete]'} />

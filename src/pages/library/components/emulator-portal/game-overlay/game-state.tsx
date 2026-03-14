@@ -98,7 +98,7 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
             <span className='icon-[svg-spinners--180-ring] block size-3 text-(--accent-9)' />
           ) : (
             <>
-              {t('Saved at')}{' '}
+              {t('common.savedAt')}{' '}
               <Badge className='origin-left scale-90'>{humanizeDate(state.createdAt, dateFormat)}</Badge>
             </>
           )}

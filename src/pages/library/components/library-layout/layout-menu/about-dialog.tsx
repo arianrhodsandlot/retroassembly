@@ -17,7 +17,7 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
     <DialogRoot {...props} onOpenChange={handleOpenChange}>
       <Dialog.Content aria-describedby={undefined} width='340px'>
         <VisuallyHidden>
-          <Dialog.Title className='flex items-center gap-2'>{t('About')}</Dialog.Title>
+          <Dialog.Title className='flex items-center gap-2'>{t('common.about')}</Dialog.Title>
         </VisuallyHidden>
         <div className='flex flex-col items-center gap-2 p-2 text-center'>
           <Logo height='56' width='56' />
@@ -33,7 +33,7 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
           <div className='flex flex-col gap-2 py-2 text-xs opacity-70'>
             {metadata.version ? (
               <div>
-                {t('Version')}:
+                {t('common.version')}:
                 <a
                   className='ml-0.5 underline'
                   href={`${linkMap.github.url}/tree/${metadata.version}`}
@@ -45,7 +45,7 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
               </div>
             ) : null}
             <div>
-              {t('Date')}: <span className='ml-0.5'>{metadata.buildDate}</span>
+              {t('common.date')}: <span className='ml-0.5'>{metadata.buildDate}</span>
             </div>
           </div>
           <div className='mt-1 mb-4 flex items-center justify-center gap-2 text-xs'>

@@ -14,39 +14,39 @@ export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?:
   const dataListFields = [
     {
       icon: 'icon-[mdi--calendar]',
-      label: t('Released'),
+      label: t('common.released'),
       name: 'gameReleaseDate',
       placeholder: `e.g. ${formatDate('1990-03-15')}`,
       type: 'input' as const,
     },
     {
       icon: 'icon-[mdi--tag-multiple]',
-      label: t('Genres'),
+      label: t('common.genres'),
       name: 'gameGenres',
       type: 'input' as const,
     },
     {
       icon: 'icon-[mdi--person-multiple]',
-      label: t('Players'),
+      label: t('common.players'),
       name: 'gamePlayers',
       options: [...range(1, 11).map((v) => `${v}`), 'unknown'],
       type: 'select' as const,
     },
     {
       icon: 'icon-[mdi--chip]',
-      label: t('Developer'),
+      label: t('common.developer'),
       name: 'gameDeveloper',
       type: 'input' as const,
     },
     {
       icon: 'icon-[mdi--earth]',
-      label: t('Publisher'),
+      label: t('common.publisher'),
       name: 'gamePublisher',
       type: 'input' as const,
     },
     {
       icon: 'icon-[mdi--note]',
-      label: t('Description'),
+      label: t('common.description'),
       name: 'gameDescription',
       type: 'textarea' as const,
     },
@@ -73,7 +73,7 @@ export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?:
       <DataList.Item>
         <DataList.Label className='-ml-2 flex items-center gap-2 text-sm capitalize lg:ml-0' minWidth='32px'>
           <span className='icon-[mdi--computer-classic]' />
-          {t('platform')}
+          {t('common.platform')}
         </DataList.Label>
         <DataList.Value>{t(platformMap[rom.platform].displayName)}</DataList.Value>
       </DataList.Item>

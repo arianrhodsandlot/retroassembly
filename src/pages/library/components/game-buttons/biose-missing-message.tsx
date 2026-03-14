@@ -23,7 +23,7 @@ export function BioseMissingMessage({ bioses }: Readonly<BioseMissingMessageProp
   const tooltipTrigger = (
     <Tooltip content={tooltipContent}>
       <span className='inline-flex cursor-help items-center gap-0.5 underline decoration-dashed'>
-        {t('BIOS')} <span className='icon-[mdi--question-mark-circle-outline]' />
+        {t('common.bios')} <span className='icon-[mdi--question-mark-circle-outline]' />
       </span>
     </Tooltip>
   )
@@ -44,11 +44,11 @@ export function BioseMissingMessage({ bioses }: Readonly<BioseMissingMessageProp
             strong: <b />,
             tooltip: tooltipTrigger,
           }}
-          i18nKey='The game can not be launched without the required <tooltip/>: <strong>{{biosList}}</strong>.'
+          i18nKey='bios.requiredForLaunch'
           values={{ biosList }}
         />{' '}
         <Button className='-mt-1!' onClick={handleClickUpload} size='1' type='button'>
-          <span className='icon-[mdi--cog]' /> {t('Upload…')}
+          <span className='icon-[mdi--cog]' /> {t('upload.uploadEllipsis')}
         </Button>
       </Callout.Text>
     </Callout.Root>

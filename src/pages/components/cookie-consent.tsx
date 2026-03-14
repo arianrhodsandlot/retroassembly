@@ -35,29 +35,29 @@ export function CookieConsent() {
       <div className='pointer-events-auto mx-auto flex w-2xl max-w-full items-center justify-center gap-2 rounded border border-(--accent-9) bg-(--color-background) px-4 py-2 shadow-xl'>
         <span className='icon-[mdi--cookie] size-6 shrink-0' />
         <div className='text-left'>
-          {t('We use')}{' '}
+          {t('common.weUse')}{' '}
           <a
             className='underline'
             href='https://en.wikipedia.org/wiki/HTTP_cookie'
             rel='noopener noreferrer'
             target='_blank'
           >
-            {t('cookies')}
+            {t('common.cookies')}
           </a>{' '}
-          {t("to improve users' experience. By using the site, you agree to our")}{' '}
+          {t('home.cookiesAgreement')}{' '}
           <a className='underline' href='/privacy-policy.md' rel='noopener noreferrer' target='_blank'>
-            {t('Privacy Policy')}
+            {t('common.privacyPolicy')}
           </a>
           .
         </div>
         <div className='flex shrink-0 flex-col gap-2 lg:flex-row'>
           <Button onClick={handleClickAccept} size='1'>
             <span className='icon-[mdi--check]' />
-            {t('Accept')}
+            {t('common.accept')}
           </Button>
           <Button onClick={handleClickDeny} size='1' variant='soft'>
             <span className='icon-[mdi--close]' />
-            {t('Deny')}
+            {t('common.deny')}
           </Button>
         </div>
       </div>

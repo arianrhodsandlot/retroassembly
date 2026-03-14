@@ -46,7 +46,7 @@ export function FooterSection() {
               @arianrhodsandlot
             </a>
           </div>
-          <div>{t('All rights reserved')}</div>
+          <div>{t('common.allRightsReserved')}</div>
         </div>
       </div>
     </footer>

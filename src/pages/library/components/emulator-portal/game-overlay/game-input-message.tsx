@@ -12,9 +12,9 @@ export function GameInputMessage() {
 
   const messages: { keyNames: string[]; message: ReactNode }[] = connected
     ? [
-        { keyNames: ['L1', 'R1'], message: t('Pause') },
-        { keyNames: ['Select', 'L2'], message: t('Rewind') },
-        { keyNames: ['Select', 'R2'], message: t('Fast forward') },
+        { keyNames: ['L1', 'R1'], message: t('emulator.pause') },
+        { keyNames: ['Select', 'L2'], message: t('emulator.rewind') },
+        { keyNames: ['Select', 'R2'], message: t('emulator.fastForward') },
       ]
     : [
         {
@@ -46,9 +46,9 @@ export function GameInputMessage() {
           keyNames: compact([keyboardMapping.input_player1_b]),
           message: <span className='icon-[mdi--gamepad-circle-down]' />,
         },
-        { keyNames: compact([keyboardMapping.$pause]), message: t('Pause') },
-        { keyNames: compact([keyboardMapping.input_rewind]), message: t('Rewind') },
-        { keyNames: compact([keyboardMapping.input_hold_fast_forward]), message: t('Fast forward') },
+        { keyNames: compact([keyboardMapping.$pause]), message: t('emulator.pause') },
+        { keyNames: compact([keyboardMapping.input_rewind]), message: t('emulator.rewind') },
+        { keyNames: compact([keyboardMapping.input_hold_fast_forward]), message: t('emulator.fastForward') },
       ]
 
   return messages

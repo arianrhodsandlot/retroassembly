@@ -10,26 +10,26 @@ export function CommunitySection() {
       <div className='mx-auto max-w-6xl lg:text-center'>
         <h2 className='mb-6 flex items-center justify-center gap-2 font-serif text-4xl font-semibold'>
           <span className='icon-[mdi--people-group]' />
-          {t('Community')}
+          {t('common.community')}
         </h2>
         <ul className='mb-4 inline-flex flex-col gap-2 py-4 text-sm leading-loose *:flex *:items-start *:gap-3'>
           <li>
             <span className='icon-[mdi--idea] mt-1.5 shrink-0 text-lg' />
             <div>
-              {t('We kindly request your assistance in reporting any ideas or bugs on our')}{' '}
+              {t('home.reportIssuesPrefix')}{' '}
               <a className='underline' href={linkMap.discord.url} rel='noreferrer noopener' target='_blank'>
-                {t('Discord server')}
+                {t('common.discordServer')}
               </a>{' '}
-              {t('or')}{' '}
+              {t('common.or')}{' '}
               <a className='underline' href={linkMap.github.url} rel='noreferrer noopener' target='_blank'>
-                {t('GitHub issues/discussions')}
+                {t('common.githubIssues')}
               </a>
               .
             </div>
           </li>
           <li>
             <span className='icon-[mdi--flower] mt-1.5 shrink-0 text-lg' />
-            {t('Your valuable feedback will greatly contribute to enhancing the user experience.')}
+            {t('home.feedbackContribute')}
           </li>
         </ul>
         <div className='flex flex-col justify-center gap-4 space-x-8 px-8 font-semibold sm:flex-row sm:px-0'>

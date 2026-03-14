@@ -42,7 +42,7 @@ export function GameOverlayController() {
         >
           <div>
             <div className='flex h-20 w-full items-center justify-end bg-linear-to-b from-black/70 to-black/40 px-4'>
-              <ControllerButton onClick={handleClickExit} title={t('Exit')}>
+              <ControllerButton onClick={handleClickExit} title={t('common.exit')}>
                 <span className='icon-[mdi--close]' />
               </ControllerButton>
             </div>
@@ -52,18 +52,18 @@ export function GameOverlayController() {
           <div>
             <div className='h-20 bg-linear-to-b from-transparent to-black/40' />
             <div className='flex h-20 w-full items-center bg-linear-to-b from-black/40 to-black/70 px-4'>
-              <ControllerButton onClick={handleClickPause} title={t('Pause')}>
+              <ControllerButton onClick={handleClickPause} title={t('emulator.pause')}>
                 <span className='icon-[mdi--pause]' />
               </ControllerButton>
               <div className='hidden flex-1 items-center justify-center gap-4 lg:flex'>
                 <GameInputMessage />
               </div>
               {isFullscreen ? (
-                <ControllerButton onClick={toggleFullscreen} title={t('Exit fullscreen')}>
+                <ControllerButton onClick={toggleFullscreen} title={t('emulator.exitFullscreen')}>
                   <span className='icon-[mdi--fullscreen-exit]' />
                 </ControllerButton>
               ) : (
-                <ControllerButton onClick={toggleFullscreen} title={t('Fullscreen')}>
+                <ControllerButton onClick={toggleFullscreen} title={t('emulator.fullscreen')}>
                   <span className='icon-[mdi--fullscreen]' />
                 </ControllerButton>
               )}

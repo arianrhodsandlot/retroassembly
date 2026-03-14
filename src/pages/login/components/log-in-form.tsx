@@ -53,7 +53,7 @@ export function LoginForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
           type='submit'
         >
           <span className='icon-[mdi--account-check] text-xl' />
-          {t('Log in')}
+          {t('auth.login')}
         </Button>
 
         <AnimatePresence>
@@ -63,7 +63,7 @@ export function LoginForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
                 <Callout.Icon>
                   <span className='icon-[mdi--information]' />
                 </Callout.Icon>
-                <Callout.Text>{error.message || t('Unknown error')}</Callout.Text>
+                <Callout.Text>{error.message || t('error.unknown')}</Callout.Text>
               </Callout.Root>
             </motion.div>
           ) : null}

@@ -14,15 +14,15 @@ export function SelectionActions({ selectedCount, onDelete, onCancel }: Selectio
     <div className='flex gap-2'>
       <Button onClick={onDelete} type='button' variant='soft'>
         <span className='icon-[mdi--delete]' />
-        {t('Delete selected {{count}} {{items}}', {
+        {t('game.deleteSelectedItems', {
           count: selectedCount,
-          items: t('ROM', { count: selectedCount }),
+          items: t('game.rom', { count: selectedCount }),
         })}
       </Button>
 
       <Button onClick={onCancel} type='button' variant='soft'>
         <span className='icon-[mdi--close]' />
-        {t('Cancel')}
+        {t('common.cancel')}
       </Button>
     </div>
   )

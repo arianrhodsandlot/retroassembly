@@ -52,25 +52,25 @@ export function DeleteDialog(props: Readonly<AlertDialog.RootProps>) {
     <AlertDialog.Root {...props}>
       <AlertDialog.Content maxWidth='450px'>
         <AlertDialog.Title>
-          {t('Delete selected {{count}} {{items}}', {
+          {t('game.deleteSelectedItems', {
             count: selectedGames.length,
-            items: t('ROM', { count: selectedGames.length }),
+            items: t('game.rom', { count: selectedGames.length }),
           })}
         </AlertDialog.Title>
         <AlertDialog.Description className='leading-loose! whitespace-pre-line' size='2'>
-          {t('Are you sure to proceed?\nThe deleted ROMs cannot be restored.')}
+          {t('dialog.confirmDeleteRomsMessage')}
         </AlertDialog.Description>
 
         <div className='mt-4 flex justify-end gap-3'>
           <AlertDialog.Cancel>
             <Button disabled={isLoading}>
               <span className='icon-[mdi--close]' />
-              {t('Cancel')}
+              {t('common.cancel')}
             </Button>
           </AlertDialog.Cancel>
           <Button loading={isLoading} onClick={handleClickConfirmDelete} variant='soft'>
             <span className='icon-[mdi--delete]' />
-            {t('Delete')}
+            {t('common.delete')}
           </Button>
         </div>
       </AlertDialog.Content>

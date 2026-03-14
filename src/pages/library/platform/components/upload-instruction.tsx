@@ -18,13 +18,13 @@ export function UploadInstruction({
       {/* @ts-expect-error the 'as' prop is valid here as it will be passed to a Text internally */}
       <Callout.Text as='div' className='flex flex-col gap-1 text-xs'>
         <p>
-          {t('You are uploading ROMs for')}
+          {t('upload.uploadingForPlatform')}
           <img
             alt={t(platformMap[platform].displayName)}
             className='inline-block size-7 align-middle'
             src={getPlatformIcon(platform)}
           />
-          <b>{t(platformMap[platform].displayName)}</b>. {t('We support these file extensions for this platform:')}
+          <b>{t(platformMap[platform].displayName)}</b>. {t('upload.supportedPlatformExtensions')}
           <br />
           <span className='inline-flex gap-1 py-2'>
             {platformMap[platform].fileExtensions.map((extention) => (
@@ -37,16 +37,13 @@ export function UploadInstruction({
           {
             arcade: (
               <p>
-                <Trans
-                  components={{ 1: <b /> }}
-                  i18nKey='Using <1>Full Non-Merged ROMsets</1> can lead to simpler setups and better compatibility.'
-                />
+                <Trans components={{ 1: <b /> }} i18nKey='home.fullNonMergedRomsetsTip' />
               </p>
             ),
             gameandwatch: (
               <p>
                 <span>
-                  {t('Games can be downloaded from')}{' '}
+                  {t('home.gamesDownloadSource')}{' '}
                   <a
                     className='underline'
                     href='https://buildbot.libretro.com/assets/cores/Handheld%20Electronic%20Game/'
@@ -61,25 +58,17 @@ export function UploadInstruction({
             ),
             pcengine: (
               <p>
-                <Trans components={{ 1: <b /> }} i18nKey='Note that <1>PC Engine CD</1> games are NOT supported.' />
+                <Trans components={{ 1: <b /> }} i18nKey='platform.pcengineNoteExtra' />
               </p>
             ),
           }[platform]
         }
 
         <p>
-          <Trans
-            components={{ 1: <b /> }}
-            i18nKey='You can upload up to <1>{{maxFiles}}</1> files at a time.'
-            values={{ maxFiles }}
-          />
+          <Trans components={{ 1: <b /> }} i18nKey='upload.maxFilesDescription' values={{ maxFiles }} />
 
           {Number.isFinite(maxRomCount) ? (
-            <Trans
-              components={{ 1: <b /> }}
-              i18nKey='And you can have up to <1>{{maxRomCount}}</1> ROMs in your library.'
-              values={{ maxRomCount }}
-            />
+            <Trans components={{ 1: <b /> }} i18nKey='sponsor.romLimitDescription' values={{ maxRomCount }} />
           ) : null}
         </p>
       </Callout.Text>

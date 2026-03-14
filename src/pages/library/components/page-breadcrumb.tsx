@@ -30,21 +30,21 @@ export function PageBreadcrumb() {
       case routes.libraryRoms:
         links.push({
           icon: <span className='icon-[mdi--bookshelf] size-5 p-0.5' />,
-          text: t('Games'),
+          text: t('common.games'),
           url: generatePath(routes.libraryRoms),
         })
         break
       case routes.libraryFavorites:
         links.push({
           icon: <span className='icon-[mdi--heart] size-5 p-0.5' />,
-          text: t('Favorites'),
+          text: t('nav.favorites'),
           url: generatePath(routes.libraryFavorites),
         })
         break
       case routes.libraryHistory:
         links.push({
           icon: <span className='icon-[mdi--history] size-5 p-0.5' />,
-          text: t('History'),
+          text: t('nav.history'),
           url: generatePath(routes.libraryHistory),
         })
         break

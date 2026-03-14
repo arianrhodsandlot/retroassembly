@@ -79,10 +79,10 @@ export function GameButtons() {
     return (
       <div className='flex h-16 w-full items-center justify-center gap-2 rounded bg-(--accent-3) lg:w-80'>
         <span className='icon-[mdi--warning-decagram]' />
-        <span className='text-sm opacity-60'>{t('Failed to load the emulator.')}</span>
+        <span className='text-sm opacity-60'>{t('error.failedToLoadEmulator')}</span>
         <Button onClick={handleClickRetry} size='1' type='button'>
           <span className='icon-[mdi--reload]' />
-          {t('Retry')}
+          {t('common.retry')}
         </Button>
       </div>
     )
@@ -103,18 +103,18 @@ export function GameButtons() {
                   ],
             )}
           />
-          <span className='flex-1 text-2xl font-semibold'>{t('Continue')}</span>
+          <span className='flex-1 text-2xl font-semibold'>{t('common.continue')}</span>
           <HoverCard.Root>
             <HoverCard.Trigger>
               <img
-                alt={t('state')}
+                alt={t('common.state')}
                 className='absolute right-3 size-10 rounded-sm border-2 border-white bg-neutral-200 object-cover shadow'
                 src={getFileUrl(state.thumbnailFileId)}
               />
             </HoverCard.Trigger>
             <HoverCard.Content align='center' hideWhenDetached side='top' size='1'>
               <img
-                alt={t('state')}
+                alt={t('common.state')}
                 className='size-48 cursor-pointer rounded-sm border-2 border-white bg-neutral-200 object-cover shadow'
                 src={getFileUrl(state.thumbnailFileId)}
               />
@@ -132,7 +132,7 @@ export function GameButtons() {
               : ['size-6', mayNeedsUserInteraction ? 'icon-[mdi--gesture-touch]' : 'icon-[mdi--play]'],
           )}
         />
-        <span className='flex-1 text-2xl font-semibold'>{t('Start')}</span>
+        <span className='flex-1 text-2xl font-semibold'>{t('emulator.start')}</span>
       </LaunchButton>
 
       <EmulatorPortal />

@@ -33,7 +33,7 @@ export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootP
       <Dialog.Content aria-describedby={undefined} className='lg:w-5xl!' maxWidth='calc(100vw - var(--space-8))'>
         <Dialog.Title className='flex items-center gap-2'>
           <span className='icon-[mdi--cog]' />
-          {t('Settings')}
+          {t('nav.settings')}
         </Dialog.Title>
 
         <div>
@@ -43,7 +43,7 @@ export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootP
                 {settingsTabs.map(({ iconClass, name }) => (
                   <Tabs.Trigger key={name} value={name}>
                     <span className={clsx('mr-2 size-5', iconClass)} />
-                    <span className='text-lg capitalize'>{t(name)}</span>
+                    <span className='text-lg capitalize'>{t(`settings.${name}`)}</span>
                   </Tabs.Trigger>
                 ))}
               </Tabs.List>
@@ -62,13 +62,13 @@ export function SettingsDialog({ onOpenChange, ...props }: Readonly<Dialog.RootP
         <div className='mt-4 flex justify-between'>
           <div className='flex items-center gap-2 text-xs text-(--accent-9)'>
             <span className='icon-[mdi--info]' />
-            {t('Your settings will be saved and take effect immediately once changed.')}
+            {t('settings.immediateEffect')}
           </div>
         </div>
 
         <div className='absolute top-6 right-6'>
           <Dialog.Close>
-            <Button title={t('Close')} variant='ghost'>
+            <Button title={t('common.close')} variant='ghost'>
               <span className='icon-[mdi--close] size-5' />
             </Button>
           </Dialog.Close>

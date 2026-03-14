@@ -29,23 +29,23 @@ export function StatusBar() {
         <>
           <span className='flex items-center gap-2'>
             <span className='icon-[mdi--microsoft-xbox-gamepad] text-white' />
-            {t('Connected')}
+            {t('common.connected')}
           </span>
           <span className='flex items-center gap-2'>
             <span className='icon-[mdi--gamepad] text-white' />
-            {t('Move')}
+            {t('common.move')}
           </span>
           <span className='flex items-center gap-2'>
             {{ nintendo: rightButtonIcon, xbox: downButtonIcon }[confirmButtonStyle]}
-            {t('Confirm')}
+            {t('common.confirm')}
           </span>
           <span className='flex items-center gap-2'>
             {{ nintendo: downButtonIcon, xbox: rightButtonIcon }[confirmButtonStyle]}
-            {t('Back')}
+            {t('common.back')}
           </span>
           <span className='flex items-center gap-2'>
             <div className='scale-80 rounded border-2 border-current px-1 text-xs'>Select</div>
-            {t('Search')}
+            {t('common.search')}
           </span>
         </>
       ) : (
@@ -62,7 +62,7 @@ export function StatusBar() {
                 .map((key) => ({ down: '↓', left: '←', right: '→', up: '↑' })[key] || capitalize(key))
                 .join(' ')}
             </Kbd>
-            {t('Move')}
+            {t('common.move')}
           </span>
 
           {keyboarMappingConfirm ? (
@@ -70,7 +70,7 @@ export function StatusBar() {
               <Kbd className='text-(--accent-9)!' size='1'>
                 {uniq(['Enter', capitalize(keyboarMappingConfirm)]).join(' / ')}
               </Kbd>
-              {t('Confirm')}
+              {t('common.confirm')}
             </span>
           ) : null}
 
@@ -79,7 +79,7 @@ export function StatusBar() {
               <Kbd className='text-(--accent-9)!' size='1'>
                 {capitalize(keyboarMappingCancel)}
               </Kbd>
-              {t('Back')}
+              {t('common.back')}
             </span>
           ) : null}
         </>

@@ -22,7 +22,7 @@ export function ConfirmButtonSettings() {
     <div>
       <SettingsTitle>
         <span className='icon-[mdi--gamepad-circle]' />
-        {t('Confirm and Cancel Buttons')}
+        {t('settings.confirmCancelButtons')}
       </SettingsTitle>
       <div className='px-6 lg:w-sm'>
         <RadioCards.Root
@@ -33,7 +33,7 @@ export function ConfirmButtonSettings() {
           value={preference.input.confirmButtonStyle}
         >
           <RadioCards.Item value='nintendo'>
-            {switchIcon} {t('Nintendo Style')}
+            {switchIcon} {t('settings.nintendoStyle')}
           </RadioCards.Item>
           <span className='-mt-2 flex flex-wrap items-center gap-1 text-sm'>
             <Trans
@@ -41,12 +41,12 @@ export function ConfirmButtonSettings() {
                 downButton: downButtonIcon,
                 rightButton: rightButtonIcon,
               }}
-              i18nKey='Nintendo button explanation'
+              i18nKey='settings.nintendoButtonExplanation'
             />
           </span>
 
           <RadioCards.Item value='xbox'>
-            {xboxIcon} {t('Xbox Style')}
+            {xboxIcon} {t('settings.xboxStyle')}
           </RadioCards.Item>
           <span className='-mt-2 flex flex-wrap items-center gap-1 text-sm'>
             <Trans
@@ -54,13 +54,11 @@ export function ConfirmButtonSettings() {
                 downButton: downButtonIcon,
                 rightButton: rightButtonIcon,
               }}
-              i18nKey='Xbox button explanation'
+              i18nKey='settings.xboxButtonExplanation'
             />
           </span>
         </RadioCards.Root>
-        <div className='mt-3 text-xs opacity-80'>
-          {t('This only affects navigation in the library and does not change inputs in games.')}
-        </div>
+        <div className='mt-3 text-xs opacity-80'>{t('settings.navigationAffectsLibraryOnly')}</div>
       </div>
     </div>
   )

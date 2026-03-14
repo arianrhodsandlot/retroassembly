@@ -44,7 +44,7 @@ export function BIOSOptions({ platform }: { readonly platform: PlatformName }) {
     const file = await fileOpen({ extensions })
     const expectedBios = expectedBioses?.find((bios) => bios.name === file.name)
     if (!expectedBios) {
-      alert(t("According to the selected file's name, it is not an expected BIOS file."))
+      alert(t('bios.fileNameNotExpected'))
       return
     }
     const md5 = await getFileMd5(file)
@@ -68,9 +68,9 @@ export function BIOSOptions({ platform }: { readonly platform: PlatformName }) {
       return ''
     }
     if (bios.required) {
-      return t('(required)')
+      return t('common.required')
     }
-    return t('(optional)')
+    return t('common.optional')
   }
 
   function getBiosClassName(bios: { name: string; required?: boolean }) {
@@ -92,7 +92,7 @@ export function BIOSOptions({ platform }: { readonly platform: PlatformName }) {
     <div>
       <SettingsTitle as='h4'>
         <span className='icon-[mdi--chip]' />{' '}
-        {t('BIOS of {{platform}}', { platform: t(platformMap[platform].displayName) })}
+        {t('bios.titleWithPlatform', { platform: t(platformMap[platform].displayName) })}
       </SettingsTitle>
       <div className='flex flex-col gap-2 px-6'>
         <div className='flex flex-wrap items-center gap-2'>
@@ -102,7 +102,7 @@ export function BIOSOptions({ platform }: { readonly platform: PlatformName }) {
               {fileName}
               <Popover.Root>
                 <Popover.Trigger>
-                  <IconButton disabled={disabled} size='1' title={t('Delete')} type='button' variant='ghost'>
+                  <IconButton disabled={disabled} size='1' title={t('common.delete')} type='button' variant='ghost'>
                     <span className='icon-[mdi--close]' />
                   </IconButton>
                 </Popover.Trigger>
@@ -115,7 +115,7 @@ export function BIOSOptions({ platform }: { readonly platform: PlatformName }) {
                     variant='soft'
                   >
                     <span className='icon-[mdi--delete]' />
-                    {t('Confirm Delete')}
+                    {t('dialog.confirmDeleteTitle')}
                   </Button>
                 </Popover.Content>
               </Popover.Root>
@@ -133,11 +133,11 @@ export function BIOSOptions({ platform }: { readonly platform: PlatformName }) {
               variant='soft'
             >
               <span className='icon-[mdi--upload]' />
-              {t('Upload')}
+              {t('common.upload')}
             </Button>
           </div>
           <div className='gap-1 text-xs'>
-            <span className='opacity-80'>{t('Expected BIOS file', { count: expectedBioses.length })}</span>
+            <span className='opacity-80'>{t('bios.expectedFile', { count: expectedBioses.length })}</span>
             {expectedBioses.map((bios, index) => (
               <span className='mr-1' key={bios.name}>
                 <span className={getBiosClassName(bios)}>

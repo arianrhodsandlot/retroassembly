@@ -22,7 +22,7 @@ export function FavoriteButton({ isViewingFavorites, getToggleLink }: FavoriteBu
                 'icon-[mdi--heart]': isViewingFavorites,
               })}
             />
-            {t('Favorites')}
+            {t('nav.favorites')}
             {isPending ? (
               <span className='icon-[svg-spinners--180-ring] hidden animate-spin group-focus:inline' />
             ) : null}

@@ -35,7 +35,7 @@ export function useNavigationLinks() {
               iconClass: 'icon-[mdi--home]',
               iconUrl: '',
               name: 'home',
-              text: t('Games'),
+              text: t('common.games'),
               to: generatePath(routes.demoHome),
             },
           ]
@@ -44,34 +44,34 @@ export function useNavigationLinks() {
               iconClass: 'icon-[mdi--home]',
               iconUrl: '',
               name: 'home',
-              text: t('Home'),
+              text: t('nav.home'),
               to: generatePath(routes.libraryHome),
             },
             {
               iconClass: 'icon-[mdi--bookshelf]',
               iconUrl: '',
               name: 'library',
-              text: t('Games'),
+              text: t('common.games'),
               to: generatePath(routes.libraryRoms),
             },
             {
               iconClass: 'icon-[mdi--heart]',
               iconUrl: '',
               name: 'favorites',
-              text: t('Favorites'),
+              text: t('nav.favorites'),
               to: generatePath(routes.libraryFavorites),
             },
             {
               iconClass: 'icon-[mdi--history]',
               iconUrl: '',
               name: 'history',
-              text: t('History'),
+              text: t('nav.history'),
               to: generatePath(routes.libraryHistory),
             },
           ],
       title: '',
     },
-    { links: sortedPlatformLinks, title: t('platform_other') },
+    { links: sortedPlatformLinks, title: t('common.platform_other') },
   ]
 
   function isActive(link: string) {

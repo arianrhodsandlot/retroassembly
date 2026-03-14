@@ -31,7 +31,7 @@ export function LayoutMenu() {
     <>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
-          <Button aria-label={t('Menu')} type='button'>
+          <Button aria-label={t('common.menu')} type='button'>
             <span className='icon-[mdi--menu]' />
           </Button>
         </DropdownMenu.Trigger>
@@ -39,12 +39,12 @@ export function LayoutMenu() {
         <DropdownMenu.Content variant='solid'>
           <DropdownMenu.Item className='lg:hidden!' onClick={handleClickSearch}>
             <span className='icon-[mdi--search]' />
-            {t('Search')}
+            {t('common.search')}
           </DropdownMenu.Item>
 
           <DropdownMenu.Item onClick={handleClickSettings}>
             <span className='icon-[mdi--cog]' />
-            {t('Settings')}
+            {t('nav.settings')}
           </DropdownMenu.Item>
 
           <ThemeMenuItem />
@@ -53,14 +53,14 @@ export function LayoutMenu() {
 
           <DropdownMenu.Item onClick={() => setAboutDialogOpen(true)}>
             <span className='icon-[mdi--information]' />
-            {t('About')}
+            {t('common.about')}
           </DropdownMenu.Item>
 
           <DropdownMenu.Separator />
 
           <DropdownMenu.Item color='red' onClick={() => setLogoutDialogOpen(true)}>
             <span className='icon-[mdi--logout]' />
-            {t('Log out')}
+            {t('auth.logout')}
           </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Root>

@@ -15,7 +15,7 @@ export function GameStates() {
     <>
       <h3 className='flex items-center gap-2 px-2 text-2xl font-semibold text-white'>
         <span className='icon-[mdi--database] size-7' />
-        {t('Saved States')}
+        {t('emulator.savedStates')}
         <span className='flex-1' />
         <LoadExternalState />
       </h3>
@@ -29,7 +29,7 @@ export function GameStates() {
         ) : (
           <div className='flex items-center justify-center gap-2 py-10 text-lg text-neutral-400'>
             <span className='icon-[mdi--database-outline] text-2xl' />
-            {t("You haven't saved any states yet")}
+            {t('empty.noSavedStates')}
           </div>
         )}
       </ScrollArea>
@@ -38,7 +38,7 @@ export function GameStates() {
         <>
           <h3 className='mt-2 flex items-center gap-2 text-2xl font-semibold text-white'>
             <span className='icon-[mdi--timer] size-7' />
-            {t('Auto Saved States')}
+            {t('emulator.autoSavedStates')}
           </h3>
           <ScrollArea className='overflow-visible! lg:h-44! lg:overflow-hidden!' size='2'>
             <div className='flex flex-col flex-nowrap items-center gap-8 pb-4 lg:flex-row'>

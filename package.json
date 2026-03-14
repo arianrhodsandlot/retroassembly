@@ -24,8 +24,8 @@
     "test": "playwright test -c tests/e2e --tsconfig=tests/e2e/tsconfig.playwright.json"
   },
   "dependencies": {
-    "better-sqlite3": "12.6.2",
-    "hono": "4.12.7"
+    "better-sqlite3": "12.8.0",
+    "hono": "4.12.8"
   },
   "devDependencies": {
     "@arianrhodsandlot/oxc-config": "1.1.6",
@@ -59,7 +59,7 @@
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/spark-md5": "3.0.5",
-    "@typescript/native-preview": "7.0.0-dev.20260313.1",
+    "@typescript/native-preview": "7.0.0-dev.20260314.1",
     "@zip.js/zip.js": "2.8.23",
     "atropos": "2.0.2",
     "browser-fs-access": "0.38.0",
@@ -84,7 +84,7 @@
     "jotai": "2.18.1",
     "jotai-ssr": "0.2.0",
     "js-cookie": "3.0.5",
-    "lint-staged": "16.3.3",
+    "lint-staged": "16.4.0",
     "luxon": "3.7.2",
     "miniflare": "4.20260312.0",
     "motion": "12.36.0",

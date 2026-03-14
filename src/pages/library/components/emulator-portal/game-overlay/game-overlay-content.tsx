@@ -79,11 +79,11 @@ export function GameOverlayContent() {
               <GameInputMessage />
             </div>
             {isFullscreen ? (
-              <ControllerButton onClick={toggleFullscreen} title={t('Exit fullscreen')}>
+              <ControllerButton onClick={toggleFullscreen} title={t('emulator.exitFullscreen')}>
                 <span className='icon-[mdi--fullscreen-exit]' />
               </ControllerButton>
             ) : (
-              <ControllerButton onClick={toggleFullscreen} title={t('Fullscreen')}>
+              <ControllerButton onClick={toggleFullscreen} title={t('emulator.fullscreen')}>
                 <span className='icon-[mdi--fullscreen]' />
               </ControllerButton>
             )}

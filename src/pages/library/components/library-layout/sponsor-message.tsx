@@ -18,12 +18,12 @@ export function SponsorMessage() {
         <Dialog.Title>
           <div className='flex items-center'>
             <span className='icon-[mdi--donation] mr-1' />
-            {t('Support the future of RetroAssembly')}
+            {t('sponsor.title')}
           </div>
         </Dialog.Title>
 
         <div className='prose-sm'>
-          <p>{t("Hi! I'm @arianrhodsandlot, the designer and developer behind RetroAssembly.")}</p>
+          <p>{t('sponsor.intro')}</p>
           <p>
             {t(
               'RetroAssembly is a labor of love by a retro gaming enthusiast for you. I feel encouraged that my work has received widespread recognition. The number of registered users on the website and the downloads of the Docker images continue to grow steadily.',
@@ -45,9 +45,7 @@ export function SponsorMessage() {
               </a>
             </Button>
           </div>
-          <p>
-            {t('Your support will help keep RetroAssembly sustainable. Thank you for considering becoming a sponsor!')}
-          </p>
+          <p>{t('sponsor.footer')}</p>
         </div>
 
         <div className='mt-4 flex items-center justify-end gap-4'>
@@ -61,14 +59,14 @@ export function SponsorMessage() {
                 }}
               >
                 <span className='icon-[mdi--ban]' />
-                {t('Do not show again')}
+                {t('common.doNotShowAgain')}
               </Button>
             </Dialog.Close>
           )}
           <Dialog.Close>
             <Button variant='soft'>
               <span className='icon-[mdi--close]' />
-              {t('Close')}
+              {t('common.close')}
             </Button>
           </Dialog.Close>
         </div>

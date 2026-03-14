@@ -18,7 +18,7 @@ export function ReviewsSection() {
   const reviews: Review[] = [
     {
       avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', 'home/review-authors/jim-gray.png'),
-      contentKey: 'review_jim_gray',
+      contentKey: 'review.jimGray',
       name: 'Jim Gray',
       role: 'Retro Collector',
       site: 'Retro Handhelds',
@@ -26,21 +26,21 @@ export function ReviewsSection() {
     },
     {
       avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', 'home/review-authors/dash.png'),
-      contentKey: 'review_dash',
+      contentKey: 'review.dash',
       name: 'Dash',
       site: 'The Bryant Review',
       url: 'https://gardinerbryant.com/inside-retroassembly-a-conversation-with-its-creator/',
     },
     {
       avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', 'home/review-authors/korben.png'),
-      contentKey: 'review_korben',
+      contentKey: 'review.korben',
       name: 'Korben',
       site: "L'actu tech & geek de Korben",
       url: 'https://korben.info/retroassembly-collection-jeux-retro-navigateur-web.html',
     },
     {
       avatar: getCDNUrl('arianrhodsandlot/retroassembly-assets', 'home/review-authors/robert-triggs.png'),
-      contentKey: 'review_robert_triggs',
+      contentKey: 'review.robertTriggs',
       name: 'Robert Triggs',
       site: 'Android Authority',
       url: 'https://www.androidauthority.com/retroassembly-nas-3612845/',
@@ -62,12 +62,12 @@ export function ReviewsSection() {
           }}
         >
           <span className='icon-[mdi--comment-text-multiple]' />
-          {t('Reviews')}
+          {t('home.reviewsTitle')}
         </h2>
 
         <div className='mx-8 mb-6 flex items-center justify-center gap-1 p-4 text-lg font-light text-(--color-text)/60'>
           <span className='icon-[mdi--applause] shrink-0' />
-          {t('People are saying great things about {{title}}!', { title: metadata.title })}
+          {t('home.reviewsSubtitle', { title: metadata.title })}
         </div>
 
         <div className='grid grid-cols-1 gap-8 px-8 pb-8 md:grid-cols-2 md:pb-16'>

@@ -8,7 +8,7 @@ export function GameInfo({ rom }) {
   const { formatDate, formatDateRelative, isValidDate } = useDate()
   const launchboxGame = rom.rawGameMetadata?.launchbox || {}
 
-  const unknown = <span className='opacity-40'>{t('Unknown')}</span>
+  const unknown = <span className='opacity-40'>{t('common.unknown')}</span>
 
   const releaseDate = rom.gameReleaseDate ?? launchboxGame.releaseDate
 
@@ -16,13 +16,13 @@ export function GameInfo({ rom }) {
     {
       icon: 'icon-[mdi--computer-classic]',
       name: '',
-      title: t('platform'),
+      title: t('common.platform'),
       value: t(platformMap[rom.platform].displayName),
     },
     {
       icon: 'icon-[mdi--calendar]',
       name: 'gameReleaseDate',
-      title: t('Released'),
+      title: t('common.released'),
       value: isValidDate(releaseDate) ? (
         <>
           {formatDate(releaseDate)}
@@ -35,25 +35,25 @@ export function GameInfo({ rom }) {
     {
       icon: 'icon-[mdi--tag-multiple]',
       name: 'gameGenres',
-      title: t('Genres'),
+      title: t('common.genres'),
       value: (rom.gameGenres ?? launchboxGame.genres)?.trim() || unknown,
     },
     {
       icon: 'icon-[mdi--person-multiple]',
       name: 'gamePlayers',
-      title: t('Players'),
+      title: t('common.players'),
       value: rom.gamePlayers ?? launchboxGame.maxPlayers ?? unknown,
     },
     {
       icon: 'icon-[mdi--chip]',
       name: 'gameDeveloper',
-      title: t('Developer'),
+      title: t('common.developer'),
       value: (rom.gameDeveloper ?? launchboxGame.developer)?.trim() || unknown,
     },
     {
       icon: 'icon-[mdi--earth]',
       name: 'gamePublisher',
-      title: t('Publisher'),
+      title: t('common.publisher'),
       value: (rom.gamePublisher ?? launchboxGame.publisher)?.trim() || unknown,
     },
   ]

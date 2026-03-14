@@ -34,7 +34,7 @@ export function LanguageSelector() {
       <DropdownMenu.Content>
         <DropdownMenu.Item asChild>
           <Link onClick={handleClickAuto} replace to={getHomePath(detectedLanguage)}>
-            {t('Auto')} ({locales.find(({ code }) => code === detectedLanguage)?.name})
+            {t('common.auto')} ({locales.find(({ code }) => code === detectedLanguage)?.name})
             {selectedLanguage ? null : <span className='icon-[mdi--check]' />}
           </Link>
         </DropdownMenu.Item>

@@ -30,7 +30,7 @@ export function AccountsSettings() {
       <div>
         <SettingsTitle>
           <span className='icon-[mdi--account-multiple]' />
-          {t('Accounts')}
+          {t('common.accounts')}
         </SettingsTitle>
         <Card>
           <UserTabContent canDelete={false} user={currentUser} />
@@ -43,7 +43,7 @@ export function AccountsSettings() {
     <div>
       <SettingsTitle>
         <span className='icon-[mdi--account-multiple]' />
-        {t('Accounts')}
+        {t('common.accounts')}
       </SettingsTitle>
 
       {usersError ? (
@@ -51,7 +51,7 @@ export function AccountsSettings() {
           <Callout.Icon>
             <span className='icon-[mdi--information]' />
           </Callout.Icon>
-          <Callout.Text>{usersError.message || t('Unknown error')}</Callout.Text>
+          <Callout.Text>{usersError.message || t('error.unknown')}</Callout.Text>
         </Callout.Root>
       ) : null}
 
@@ -65,7 +65,7 @@ export function AccountsSettings() {
                 {user.username}
                 {user.id === currentUser.id ? (
                   <Badge color='grass' ml='2' size='1'>
-                    {t('Current')}
+                    {t('common.current')}
                   </Badge>
                 ) : null}
               </Tabs.Trigger>
@@ -80,7 +80,7 @@ export function AccountsSettings() {
               value='+'
             >
               <span className='icon-[mdi--plus]' />
-              <span className='ml-1'>{t('Add User')}</span>
+              <span className='ml-1'>{t('auth.addUser')}</span>
             </Tabs.Trigger>
           </Tabs.List>
 

@@ -8,23 +8,23 @@ import { PageStats } from '../components/page-stats.tsx'
 export default function FavoritesPage() {
   const { t } = useTranslation()
   const { pagination, roms } = useLoaderData<typeof loader>()
-  const gameLabel = t('game', { count: pagination.total })
+  const gameLabel = t('common.game', { count: pagination.total })
 
   if (pagination.current > 1 && roms.length === 0) {
-    return <>{t('404')}</>
+    return <>{t('error.notFoundCode')}</>
   }
 
   return (
     <LibraryLayout>
       <GameListMain>
-        <h1 className='text-5xl font-semibold'>{t('Favorites')}</h1>
+        <h1 className='text-5xl font-semibold'>{t('nav.favorites')}</h1>
         <PageStats>
           <span className='icon-[mdi--heart] text-(--color-text)' />
           <Trans
             components={{
               1: <span className='font-semibold text-(--accent-9)' />,
             }}
-            i18nKey='favoriteGamesStats'
+            i18nKey='stats.favoriteGames'
             values={{
               game: gameLabel,
               gameCount: pagination.total,

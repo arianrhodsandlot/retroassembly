@@ -8,7 +8,7 @@ export async function loader() {
   const { t } = getContext().var
   const romsQuery = getRomsQuery()
   const { pagination, roms } = await getRoms({ ...romsQuery, favorite: true })
-  return await getLibraryLoaderData({ pagination, roms, title: t('Favorites') })
+  return await getLibraryLoaderData({ pagination, roms, title: t('nav.favorites') })
 }
 
 export default function LibraryFavoritesRoute() {

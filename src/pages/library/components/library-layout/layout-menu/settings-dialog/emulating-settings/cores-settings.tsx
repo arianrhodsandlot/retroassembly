@@ -43,7 +43,7 @@ export function CoresSettings() {
     <div>
       <SettingsTitle>
         <span className='icon-[mdi--computer-classic]' />
-        {t('Emulation for')}
+        {t('common.emulationFor')}
         <div className='ml-2 flex flex-col gap-2'>
           <Select.Root
             onValueChange={(value: typeof selectedPlatform) => setSelectedPlatform(value)}
@@ -91,7 +91,7 @@ export function CoresSettings() {
         <div className='mt-2'>
           <label className='mt-2 flex items-center gap-2'>
             <SettingsTitle as='h4'>
-              <span className='icon-[mdi--monitor-screenshot]' /> {t('Emulator')}
+              <span className='icon-[mdi--monitor-screenshot]' /> {t('common.emulator')}
             </SettingsTitle>
 
             <Select.Root onValueChange={handleValueChange} size='2' value={core}>
@@ -124,7 +124,7 @@ export function CoresSettings() {
                 }}
               >
                 <span className='icon-[mdi--undo]' />
-                {t("Reset the emulator and it's option to defaults")}
+                {t('emulator.resetToDefaultsDescription')}
               </UpdateButton>
             </div>
           ) : null}

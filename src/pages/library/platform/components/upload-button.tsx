@@ -22,7 +22,7 @@ export function UploadButton({
       <Dialog.Trigger>
         <Button onClick={handleClick} variant={variant}>
           <span className='icon-[mdi--upload]' />
-          {t('Add')}
+          {t('common.add')}
         </Button>
       </Dialog.Trigger>
       <UploadDialog key={key} platform={platform} toggleOpen={() => setOpen(false)} />

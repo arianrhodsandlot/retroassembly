@@ -33,20 +33,20 @@ export function DeleteUserDialog({ onOpenChange, onSuccess, open, userId }: Read
         <AlertDialog.Title>
           <div className='flex items-center'>
             <span className='icon-[mdi--delete] mr-2' />
-            {t('Delete User')}
+            {t('auth.deleteUser')}
           </div>
         </AlertDialog.Title>
-        <AlertDialog.Description>{t('Are you sure? This action cannot be undone.')}</AlertDialog.Description>
+        <AlertDialog.Description>{t('dialog.confirmActionMessage')}</AlertDialog.Description>
         <div className='mt-4 flex justify-end gap-3'>
           <AlertDialog.Cancel>
             <Button disabled={isMutating} variant='soft'>
               <span className='icon-[mdi--close]' />
-              {t('Cancel')}
+              {t('common.cancel')}
             </Button>
           </AlertDialog.Cancel>
           <Button color='red' loading={isMutating} onClick={() => trigger()} variant='soft'>
             <span className='icon-[mdi--delete]' />
-            {t('Delete')}
+            {t('common.delete')}
           </Button>
         </div>
       </AlertDialog.Content>

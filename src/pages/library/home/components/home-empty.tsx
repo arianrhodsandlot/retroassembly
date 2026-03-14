@@ -8,7 +8,7 @@ export function HomeEmpty() {
     <div className='mt-20 flex flex-col items-center justify-center gap-2 py-16 text-sm lg:text-xl'>
       <span className='icon-[mdi--package-variant] size-32 text-zinc-300' />
       <div className='text-(--gray-11)'>
-        {t('Welcome to {{title}}.', {
+        {t('home.welcomeTitle', {
           title: metadata.title,
         })}
       </div>
@@ -17,7 +17,7 @@ export function HomeEmpty() {
           components={{
             1: <UploadSelectButton variant='soft' />,
           }}
-          i18nKey='uploadRomsToGetStarted'
+          i18nKey='empty.uploadRomsToGetStarted'
         />
       </div>
     </div>

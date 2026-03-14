@@ -31,7 +31,7 @@ export function PlatformShaderSettings({ platform }: Readonly<{ platform: Platfo
         <label className='flex items-center gap-2'>
           <SettingsTitle className='mb-0 text-base'>
             <span className='icon-[mdi--monitor-shimmer]' />
-            {t('Platform-specific shader')}
+            {t('settings.platformShader')}
           </SettingsTitle>
           <Switch
             checked={platformPreference.shader !== 'inherit'}

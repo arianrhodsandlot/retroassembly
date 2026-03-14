@@ -98,9 +98,9 @@ export function GamepadInputs() {
     },
     {
       buttons: [
-        { iconClass: 'icon-[mdi--pause]', name: '$pause', text: t('Pause') },
-        { iconClass: 'icon-[mdi--rewind]', name: '$rewind', text: t('Rewind') },
-        { iconClass: 'icon-[mdi--fast-forward]', name: '$fast_forward', text: t('Fast forward') },
+        { iconClass: 'icon-[mdi--pause]', name: '$pause', text: t('emulator.pause') },
+        { iconClass: 'icon-[mdi--rewind]', name: '$rewind', text: t('emulator.rewind') },
+        { iconClass: 'icon-[mdi--fast-forward]', name: '$fast_forward', text: t('emulator.fastForward') },
       ],
       type: 'time',
     },
@@ -112,17 +112,17 @@ export function GamepadInputs() {
           <span className='icon-[mdi--information]' />
         </Callout.Icon>
         <Callout.Text>
-          {t('You can visit')}{' '}
+          {t('home.youCanVisit')}{' '}
           <a
             className='inline-flex items-center gap-1 underline'
             href='https://hardwaretester.com/gamepad'
             rel='noreferrer noopener'
             target='_blank'
           >
-            {t('Gamepad Tester')}
+            {t('common.gamepadTester')}
             <span className='icon-[mdi--open-in-new]' />
           </a>{' '}
-          {t('to test your gamepad and see the button names.')}
+          {t('home.gamepadTestDescription')}
         </Callout.Text>
       </Callout.Root>
 
@@ -149,14 +149,14 @@ export function GamepadInputs() {
             <div className='flex justify-end'>
               <UpdateButton preference={{ input: { gamepadMappings: null } }}>
                 <span className='icon-[mdi--undo]' />
-                {t('Reset to defaults')}
+                {t('emulator.resetToDefaults')}
               </UpdateButton>
             </div>
           </div>
         ) : (
           <div className='flex flex-col items-center justify-center gap-2 py-10 text-center opacity-50 lg:flex-row'>
             <span className='icon-[svg-spinners--180-ring] shrink-0 text-2xl' />
-            <span className='lg:text-2xl'>{t('Press any key on your gamepad')}</span>
+            <span className='lg:text-2xl'>{t('gamepad.pressAnyKey')}</span>
           </div>
         )}
       </Card>

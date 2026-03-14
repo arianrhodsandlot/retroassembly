@@ -16,7 +16,7 @@ export function PlatformSettings() {
     <div>
       <SettingsTitle>
         <span className='icon-[mdi--order-checkbox-ascending]' />
-        {t('Enabled Platforms')}
+        {t('settings.enabledPlatforms')}
       </SettingsTitle>
       <Card>
         <CheckboxCards.Root columns={{ initial: '1', md: '4' }} size='1' value={preference.ui.platforms}>
@@ -33,13 +33,13 @@ export function PlatformSettings() {
           {platforms.length > preference.ui.platforms.length ? (
             <UpdateButton preference={{ ui: { platforms: platforms.map(({ name }) => name) } }}>
               <span className='icon-[mdi--checkbox-multiple-marked]' />
-              {t('Select all')}
+              {t('common.selectAll')}
             </UpdateButton>
           ) : null}
 
           <UpdateButton preference={{ ui: { platforms: null } }}>
             <span className='icon-[mdi--undo]' />
-            {t('Reset to defaults')}
+            {t('emulator.resetToDefaults')}
           </UpdateButton>
         </div>
       </Card>

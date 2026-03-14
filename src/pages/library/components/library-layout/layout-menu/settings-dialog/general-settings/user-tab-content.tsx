@@ -34,12 +34,12 @@ export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabCo
       const formData = new FormData(event.currentTarget)
 
       if (formData.get('new_password') !== formData.get('repeat_new_password')) {
-        setPasswordError(t('Passwords do not match'))
+        setPasswordError(t('auth.passwordsDoNotMatch'))
         return
       }
 
       if (formData.get('new_password') === formData.get('password')) {
-        setPasswordError(t('The new password is the same as the current password'))
+        setPasswordError(t('auth.samePasswordError'))
         return
       }
 
@@ -56,7 +56,7 @@ export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabCo
     },
     {
       onError: (err) => {
-        setPasswordError(err.message || t('Unknown error'))
+        setPasswordError(err.message || t('error.unknown'))
       },
     },
   )
@@ -74,7 +74,7 @@ export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabCo
             variant='soft'
           >
             <span className='icon-[mdi--delete]' />
-            {t('Delete User')}
+            {t('auth.deleteUser')}
           </Button>
         </div>
       ) : null}
@@ -85,7 +85,7 @@ export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabCo
           <Flex align='center' className='pt-4' gap='2'>
             <span className='icon-[mdi--lock-reset]' />
             <Text size='3' weight='bold'>
-              {t('Change Password')}
+              {t('auth.changePassword')}
             </Text>
           </Flex>
 
@@ -94,7 +94,7 @@ export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabCo
               <AccountFormField
                 autoComplete='current-password'
                 iconClass='icon-[mdi--password]'
-                label={t('Current Password')}
+                label={t('auth.currentPassword')}
                 name='password'
                 required
                 size='2'
@@ -102,7 +102,7 @@ export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabCo
               />
               <AccountFormField
                 iconClass='icon-[mdi--password-add]'
-                label={t('New Password')}
+                label={t('auth.newPassword')}
                 name='new_password'
                 required
                 size='2'
@@ -110,19 +110,17 @@ export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabCo
               />
               <AccountFormField
                 iconClass='icon-[mdi--password-check]'
-                label={t('Repeat New Password')}
+                label={t('auth.repeatNewPassword')}
                 name='repeat_new_password'
                 required
                 size='2'
                 type='password'
               />
             </div>
-            <div className='pl-2 text-xs opacity-50'>
-              {t('Recommendation: 10+ characters with letters, numbers, and symbols.')}
-            </div>
+            <div className='pl-2 text-xs opacity-50'>{t('auth.passwordRecommendation')}</div>
             <Button className='mt-2!' loading={isUpdatingPassword} type='submit'>
               <span className='icon-[mdi--password-check]' />
-              {t('Update Password')}
+              {t('auth.updatePassword')}
             </Button>
 
             {passwordSuccess ? (
@@ -130,7 +128,7 @@ export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabCo
                 <Callout.Icon>
                   <span className='icon-[mdi--check]' />
                 </Callout.Icon>
-                <Callout.Text>{t('Your password has been updated')}</Callout.Text>
+                <Callout.Text>{t('auth.passwordUpdated')}</Callout.Text>
               </Callout.Root>
             ) : null}
 

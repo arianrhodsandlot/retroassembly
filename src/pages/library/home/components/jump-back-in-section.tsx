@@ -24,7 +24,7 @@ export function JumpBackInSection() {
       <div className='relative rounded bg-linear-to-b from-(--gray-a4) via-transparent to-transparent p-4'>
         <h2 className='flex items-center gap-2 p-4 text-3xl font-semibold text-(--accent-9)'>
           <span className='icon-[mdi--play-circle-outline]' />
-          {t('Continue')}
+          {t('common.continue')}
         </h2>
 
         <div className='flex flex-col gap-4 lg:flex-row'>

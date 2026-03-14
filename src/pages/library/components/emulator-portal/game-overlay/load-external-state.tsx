@@ -17,14 +17,14 @@ export function LoadExternalState() {
     if (!emulator) {
       return
     }
-    const confirmed = confirm(t('Do you want to save the loaded external state?'))
+    const confirmed = confirm(t('dialog.saveExternalStateQuestion'))
     if (!confirmed) {
       return
     }
     try {
       await saveManualState({ state })
     } catch {
-      alert(t('Failed to import state. Please try again.'))
+      alert(t('error.failedToImportState'))
     }
   }
 
@@ -46,7 +46,7 @@ export function LoadExternalState() {
       className='bg-transparent! text-white!'
     >
       <span className='icon-[mdi--database-plus] size-5' />
-      {t('Load an external state')}
+      {t('emulator.loadExternalState')}
     </Button>
   )
 }

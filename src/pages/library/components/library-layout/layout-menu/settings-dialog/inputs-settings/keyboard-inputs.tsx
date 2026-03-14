@@ -91,9 +91,9 @@ export function KeyboardInputs() {
     },
     {
       buttons: [
-        { iconClass: 'icon-[mdi--pause]', name: '$pause', text: t('Pause') },
-        { iconClass: 'icon-[mdi--rewind]', name: 'input_rewind', text: t('Rewind') },
-        { iconClass: 'icon-[mdi--fast-forward]', name: 'input_hold_fast_forward', text: t('Fast forward') },
+        { iconClass: 'icon-[mdi--pause]', name: '$pause', text: t('emulator.pause') },
+        { iconClass: 'icon-[mdi--rewind]', name: 'input_rewind', text: t('emulator.rewind') },
+        { iconClass: 'icon-[mdi--fast-forward]', name: 'input_hold_fast_forward', text: t('emulator.fastForward') },
       ],
       type: 'time',
     },
@@ -112,7 +112,7 @@ export function KeyboardInputs() {
         <div className='flex justify-end'>
           <UpdateButton preference={{ input: { keyboardMapping: null } }}>
             <span className='icon-[mdi--undo]' />
-            {t('Reset to defaults')}
+            {t('emulator.resetToDefaults')}
           </UpdateButton>
         </div>
       </div>

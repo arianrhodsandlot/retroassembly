@@ -18,9 +18,9 @@ function useFeatures() {
           <span className='icon-[logos--firefox] motion-delay-300 size-14' />
         </div>
       ),
-      description: t('Play retro games directly in your browser without additional software.'),
+      description: t('home.browserGameplayDescription'),
       icon: 'icon-[mdi--web-box]',
-      title: t('Browser-Based Gameplay'),
+      title: t('home.browserGameplayTitle'),
     },
     {
       content: (
@@ -37,14 +37,14 @@ function useFeatures() {
               </div>
             ))}
             <div className='flex items-center justify-center text-center font-semibold text-(--gray-9)'>
-              {t('…and more')}
+              {t('common.andMore')}
             </div>
           </div>
         </div>
       ),
-      description: t('Supports a wide range of retro gaming systems.'),
+      description: t('home.multiPlatformDescription'),
       icon: 'icon-[mdi--dice-multiple]',
-      title: t('Multi-Platform Support'),
+      title: t('home.multiPlatformTitle'),
     },
     {
       content: (
@@ -63,9 +63,9 @@ function useFeatures() {
           <span className='icon-[noto--desktop-computer] size-16' />
         </div>
       ),
-      description: t('Sync your games and states then access them from anywhere.'),
+      description: t('home.cloudSyncDescription'),
       icon: 'icon-[mdi--cloud]',
-      title: t('Cloud Sync'),
+      title: t('home.cloudSyncTitle'),
     },
     {
       content: (
@@ -93,9 +93,9 @@ function useFeatures() {
           ))}
         </div>
       ),
-      description: t("Automatically fetch game boxarts to enhance your library's visual appeal."),
+      description: t('settings.automaticBoxartDescription'),
       icon: 'icon-[mdi--drawing-box]',
-      title: t('Automatic Boxart Retrieval'),
+      title: t('settings.automaticBoxart'),
     },
     {
       content: (
@@ -124,9 +124,9 @@ function useFeatures() {
           <DemoFocusIndicator />
         </div>
       ),
-      description: t('Navigate seamlessly using a keyboard or a gamepad without needing a mouse.'),
+      description: t('home.keyboardNavigationDescription'),
       icon: 'icon-[mdi--controller-round]',
-      title: t('Keyboard/Gamepad-Friendly Navigation'),
+      title: t('home.keyboardNavigationTitle'),
     },
     {
       content: (
@@ -142,11 +142,9 @@ function useFeatures() {
           </div>
         </div>
       ),
-      description: (
-        <>{t('Rewind gameplay using "R" on the keyboard or a controller button combination')} ("Select" + "L2" ).</>
-      ),
+      description: <>{t('home.rewindGameplayDescription')} ("Select" + "L2" ).</>,
       icon: 'icon-[mdi--clock-arrow]',
-      title: t('Rewind Gameplay'),
+      title: t('home.rewindGameplayTitle'),
     },
   ]
 }
@@ -169,7 +167,7 @@ export function FeaturesSection() {
         }}
       >
         <span className='icon-[mdi--gift]' />
-        {t('Features')}
+        {t('home.featuresTitle')}
       </h2>
 
       <ul className='flex flex-col'>
@@ -199,7 +197,7 @@ export function FeaturesSection() {
                 <figure className='rounded bg-(--color-background) p-2 ring-1 ring-(--color-text)/10'>
                   <div className='aspect-5/3 lg:h-60 lg:w-100'>{feature.content}</div>
                   <figcaption className='sr-only'>
-                    {t('Demo or visual for')} {feature.title}
+                    {t('common.demoFor')} {feature.title}
                   </figcaption>
                 </figure>
               </div>

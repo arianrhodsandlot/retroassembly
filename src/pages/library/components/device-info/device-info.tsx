@@ -18,8 +18,8 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
 
   let { developer, manufacturer } = platformInfo
   if (platform === 'arcade') {
-    developer = 'Various companies'
-    manufacturer = 'Various companies'
+    developer = t('common.variousCompanies')
+    manufacturer = t('common.variousCompanies')
   }
 
   if (developer?.toLowerCase().includes('nintendo')) {
@@ -48,7 +48,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
             <div>
               <div className='flex h-6 items-center gap-2 font-semibold'>
                 <span className='icon-[mdi--calendar]' />
-                <span>{t('Released')}</span>
+                <span>{t('common.released')}</span>
               </div>
               <div className='mt-1 pl-6'>
                 {isValidDate(platformInfo.releaseDate) ? (
@@ -57,7 +57,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
                     <span className='ml-1.5 text-xs opacity-50'>{formatDateRelative(platformInfo.releaseDate)}</span>
                   </>
                 ) : (
-                  <span className='opacity-40'>{t('Unknown')}</span>
+                  <span className='opacity-40'>{t('common.unknown')}</span>
                 )}
               </div>
             </div>
@@ -67,11 +67,11 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
                 <div className='flex h-6 items-center gap-2 font-semibold'>
                   <span className='icon-[mdi--factory]' />
                   <span>
-                    {t('Developer')} & {t('Manufacturer')}
+                    {t('common.developer')} & {t('common.manufacturer')}
                   </span>
                 </div>
                 <div className='mt-1 pl-6'>
-                  <CompanyLogo className='h-5' company={manufacturer || ''} fallback={t(manufacturer)} />
+                  <CompanyLogo className='h-5' company={manufacturer || ''} fallback={manufacturer} />
                 </div>
               </div>
             ) : (
@@ -79,19 +79,19 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
                 <div>
                   <div className='flex h-6 items-center gap-2 font-semibold'>
                     <span className='icon-[mdi--factory]' />
-                    <span>{t('Developer')}</span>
+                    <span>{t('common.developer')}</span>
                   </div>
                   <div className='mt-1 pl-6'>
-                    <CompanyLogo className='h-5' company={developer || ''} fallback={t(developer)} />
+                    <CompanyLogo className='h-5' company={developer || ''} fallback={developer} />
                   </div>
                 </div>
                 <div>
                   <div className='flex h-6 items-center gap-2 font-semibold'>
                     <span className='icon-[mdi--factory]' />
-                    <span>{t('Manufacturer')}</span>
+                    <span>{t('common.manufacturer')}</span>
                   </div>
                   <div className='mt-1 pl-6'>
-                    <CompanyLogo className='h-5' company={manufacturer || ''} fallback={t(manufacturer)} />
+                    <CompanyLogo className='h-5' company={manufacturer || ''} fallback={manufacturer} />
                   </div>
                 </div>
               </>

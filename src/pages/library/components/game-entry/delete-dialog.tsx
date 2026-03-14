@@ -68,12 +68,12 @@ export function DeleteDialog({ rom, ...props }: Readonly<DeleteDialogProps>) {
           <AlertDialog.Cancel>
             <Button disabled={isLoading}>
               <span className='icon-[mdi--close]' />
-              {t('Cancel')}
+              {t('common.cancel')}
             </Button>
           </AlertDialog.Cancel>
           <Button loading={isLoading} onClick={handleClickConfirmDelete} variant='soft'>
             <span className='icon-[mdi--delete]' />
-            {t('Delete')}
+            {t('common.delete')}
           </Button>
         </div>
       </AlertDialog.Content>

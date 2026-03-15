@@ -1,4 +1,6 @@
 import path from 'node:path'
+import fmt from '@arianrhodsandlot/oxc-config/oxfmtrc.json' with { type: 'json' }
+import lint from '@arianrhodsandlot/oxc-config/oxlintrc.json' with { type: 'json' }
 import { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
@@ -8,8 +10,8 @@ import { $, execaNode } from 'execa'
 import fs from 'fs-extra'
 import serverAdapter from 'hono-react-router-adapter/vite'
 import { DateTime } from 'luxon'
-import { defineConfig, type Plugin, type UserConfig } from 'vite'
 import devtoolsJson from 'vite-plugin-devtools-json'
+import { defineConfig, type Plugin, type UserConfig } from 'vite-plus'
 import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './scripts/utils.ts'
 import { getDirectories } from './src/constants/env.ts'
 
@@ -59,10 +61,10 @@ function serverInfo() {
   return plugin
 }
 
-export default defineConfig(async (env) => {
+const viteConfigForReactRouter = defineConfig(async (env) => {
   const envPort = process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT
   const port = envPort ? Number.parseInt(envPort, 10) || 8000 : 8000
-  const config: UserConfig = {
+  const config = {
     build: { chunkSizeWarningLimit: 1024 },
     envPrefix: 'RETROASSEMBLY_BUILD_TIME_VITE_',
     plugins: [tailwindcss({ optimize: false }), reactRouter(), devtoolsJson(), serverInfo()],
@@ -73,7 +75,7 @@ export default defineConfig(async (env) => {
       open: true,
       port,
     },
-  }
+  } as UserConfig
 
   if (getTargetRuntime() === 'workerd') {
     if (env.command === 'serve') {
@@ -81,6 +83,7 @@ export default defineConfig(async (env) => {
     }
     await prepareWranglerConfig()
     const { cloudflare } = await import('@cloudflare/vite-plugin')
+    // @ts-expect-error - plugins' types are not compatible
     config.plugins?.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
     config.resolve = {
       alias: {
@@ -132,3 +135,20 @@ export default defineConfig(async (env) => {
 
   return config
 })
+
+const viteConfigForVP = defineConfig({
+  fmt,
+  // @ts-expect-error lint's type is not compatible
+  lint: { ...lint, options: { typeAware: true, typeCheck: true } },
+  staged: {
+    '*.?(m|c)@(j|t)s?(x)': 'vp check --fix',
+    '*.json': 'vp fmt',
+    'pnpm-lock.yaml': 'node --run=check-lockfile',
+  },
+})
+
+const [_bin, script, arg] = process.argv
+const viteConfig =
+  script.includes('react-router') || ['dev', 'build'].includes(arg) ? viteConfigForReactRouter : viteConfigForVP
+
+export default viteConfig

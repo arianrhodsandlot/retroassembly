@@ -1,6 +1,7 @@
 .dev.vars
 .env
 .react-router
+.vite-hooks
 .wrangler
 data
 dist

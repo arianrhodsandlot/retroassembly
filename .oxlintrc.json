@@ -1,5 +1,0 @@
-{
-  "$schema": "https://cdn.jsdelivr.net/npm/oxlint@latest/configuration_schema.json",
-  "env": { "browser": true, "builtin": true, "es2026": true, "node": true },
-  "extends": ["node_modules/@arianrhodsandlot/oxc-config/oxlintrc.json"]
-}

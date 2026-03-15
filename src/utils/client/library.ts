@@ -17,8 +17,8 @@ export function getDemoRomThumbnail(rom) {
 
 export function getLibretroThumbnail({
   host = 'jsdelivr',
-  name,
   platform,
+  name,
   type = 'boxart',
 }: {
   host?: 'jsdelivr' | 'libretro'

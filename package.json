@@ -6,11 +6,11 @@
     "#@/*": "./src/*"
   },
   "scripts": {
-    "build": "react-router build",
+    "build": "vp build",
     "build:node": "node --run=build",
     "build:workerd": "node --run=build",
     "check-lockfile": "node scripts/check-lockfile.ts",
-    "dev": "react-router",
+    "dev": "vp dev",
     "dev:node": "node --run=dev",
     "dev:test": "node --run=test -- --headed --ui",
     "dev:workerd": "node --run=dev",
@@ -84,7 +84,6 @@
     "jotai": "2.18.1",
     "jotai-ssr": "0.2.0",
     "js-cookie": "3.0.5",
-    "lint-staged": "16.4.0",
     "luxon": "3.7.2",
     "miniflare": "4.20260312.0",
     "motion": "12.36.0",
@@ -95,7 +94,7 @@
     "nostalgist": "0.21.0",
     "oxfmt": "0.40.0",
     "oxlint": "1.55.0",
-    "oxlint-tsgolint": "0.16.0",
+    "oxlint-tsgolint": "0.17.0",
     "path-to-regexp": "8.3.0",
     "quick-lru": "7.3.0",
     "react": "19.2.4",
@@ -117,21 +116,13 @@
     "tsdown": "0.21.3",
     "type-fest": "5.4.4",
     "typescript": "5.9.3",
-    "vite": "8.0.0",
     "vite-plugin-devtools-json": "1.0.0",
+    "vite-plus": "0.1.11",
     "wrangler": "4.73.0",
     "zod": "4.3.6"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged && pnpm tsgo"
-  },
-  "lint-staged": {
-    "*.?(m|c)@(j|t)s?(x)": [
-      "pnpm oxfmt",
-      "pnpm lint --fix"
-    ],
-    "*.json": "pnpm oxfmt",
-    "pnpm-lock.yaml": "node --run=check-lockfile"
+    "pre-commit": "pnpm vp staged"
   },
   "prettier": {
     "htmlWhitespaceSensitivity": "ignore",

@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=node:25.3.0-alpine
+ARG BASE_IMAGE=node:25.8.1-alpine
 
 FROM ${BASE_IMAGE} AS base
 WORKDIR /app

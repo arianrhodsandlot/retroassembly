@@ -14,7 +14,7 @@ export function SponsorMessage() {
           <span className='icon-[mdi--donation]' />
         </Button>
       </Dialog.Trigger>
-      <Dialog.Content maxWidth='500px'>
+      <Dialog.Content maxWidth='500px' aria-describedby={undefined}>
         <Dialog.Title>
           <div className='flex items-center'>
             <span className='icon-[mdi--donation] mr-1' />

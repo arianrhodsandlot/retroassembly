@@ -198,11 +198,7 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
 
               {isOfficialHost ? (
                 <div className='mt-4 flex flex-col gap-1 text-xs text-(--accent-9)'>
-                  <p>
-                    {t(
-                      'Please upload only ROMs you legally own, such as personal backups of games you purchased or homebrew titles. By uploading, you confirm compliance with all applicable laws.',
-                    )}
-                  </p>
+                  <p>{t('upload.legalDisclaimer')}</p>
                   <p>
                     {t('home.dumpingRomsLinks')}{' '}
                     <a className='underline' href='https://dumping.guide/' rel='noreferrer noopener' target='_blank'>

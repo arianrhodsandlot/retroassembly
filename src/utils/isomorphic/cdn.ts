@@ -1,11 +1,11 @@
 import { encodeRFC3986URIComponent } from './misc.ts'
 
 const repositoryVersions = {
-  'arianrhodsandlot/retroassembly-assets': 'd7374e652215b55e7a306116696e96563a313ea1', // https://github.com/arianrhodsandlot/retroassembly-assets/commits
+  'arianrhodsandlot/retroassembly-assets': '84642408cd6916552438728d93e57e5ecd23bc43', // https://github.com/arianrhodsandlot/retroassembly-assets/commits
   'libretro-thumbnails/Atari_-_2600': '13f3b4c2393c79f8f03850609067fe9db5da40a1', // https://github.com/libretro-thumbnails/Atari_-_2600/commits
   'libretro-thumbnails/Atari_-_5200': '30b60c8a3bf2eff5c977ca09e909b9ef06a8c5c0', // https://github.com/libretro-thumbnails/Atari_-_5200/commits
   'libretro-thumbnails/Atari_-_7800': 'c8190373b1d1c1fb7a82c351fbca880fab9d1993', // https://github.com/libretro-thumbnails/Atari_-_7800/commits
-  'libretro-thumbnails/Atari_-_Lynx': '2ac8b3a787035ce5924a88d88ad346e171fbe18a', // https://github.com/libretro-thumbnails/Atari_-_Lynx/commits
+  'libretro-thumbnails/Atari_-_Lynx': '1f80ecfa4bf824af5be14af736e61c8f41fd21f5', // https://github.com/libretro-thumbnails/Atari_-_Lynx/commits
   'libretro-thumbnails/Bandai_-_WonderSwan': 'aa3cfe8a087b33ae0864f22745f3f49827a3583e', // https://github.com/libretro-thumbnails/Bandai_-_WonderSwan/commits
   'libretro-thumbnails/Bandai_-_WonderSwan_Color': '4937a9a5c69a9fde504fe6593916ab606784af9c', // https://github.com/libretro-thumbnails/Bandai_-_WonderSwan_Color/commits
   'libretro-thumbnails/Coleco_-_ColecoVision': '17a09fab3eef20022e5f19022c7aa4dab5cef163', // https://github.com/libretro-thumbnails/Coleco_-_ColecoVision/commits
@@ -13,13 +13,13 @@ const repositoryVersions = {
   'libretro-thumbnails/FBNeo_-_Arcade_Games': '7a4f51c8c1bb5cc469aa32acf7511f76a75f62ac', // https://github.com/libretro-thumbnails/FBNeo_-_Arcade_Games/commits
   'libretro-thumbnails/Handheld_Electronic_Game': 'a717495b41498c469ff4579797a6bf4e76fb766a', // https://github.com/libretro-thumbnails/Handheld_Electronic_Game/commits
   'libretro-thumbnails/Magnavox_-_Odyssey2': '63e9a9e0359c0bc24174b9eaba03e590bae3ab58', // https://github.com/libretro-thumbnails/Magnavox_-_Odyssey2/commits
-  'libretro-thumbnails/MAME': '4cac1368aa80bb3a60a1e0549d82c5b778f82b58', // https://github.com/libretro-thumbnails/MAME/commits
+  'libretro-thumbnails/MAME': '209fb75fc1cf2ed4ba6f398d18cfb0faab4ae935', // https://github.com/libretro-thumbnails/MAME/commits
   'libretro-thumbnails/NEC_-_PC_Engine_-_TurboGrafx_16': '488bcadd66ba83c473ba55f29ce1e0f6b3bf823e', // https://github.com/libretro-thumbnails/NEC_-_PC_Engine_-_TurboGrafx_16/commits
   'libretro-thumbnails/Nintendo_-_Family_Computer_Disk_System': '09337470d081504faee7b0b6bcee0bdf8182c292', // https://github.com/libretro-thumbnails/Nintendo_-_Family_Computer_Disk_System/commits
   'libretro-thumbnails/Nintendo_-_Game_Boy': 'd963e89e95c1fe48df9fdb88ccb60f7d1ffc68d3', // https://github.com/libretro-thumbnails/Nintendo_-_Game_Boy/commits
   'libretro-thumbnails/Nintendo_-_Game_Boy_Advance': '1d180fd504e63eff98cb94653eff2ddcd5d03647', // https://github.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/commits
   'libretro-thumbnails/Nintendo_-_Game_Boy_Color': '2c54e12ed7d9acd3124497bf5a9b107ab69d0d41', // https://github.com/libretro-thumbnails/Nintendo_-_Game_Boy_Color/commits
-  'libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System': '3a643f8f02de91356b34d21b95d2c2b68d859915', // https://github.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/commits
+  'libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System': '8cc31d11631684ea26e5e2c0d4d77d5f30651a1d', // https://github.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/commits
   'libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System': '8ab381469ab76eb65d6db494fc6195a84c3ef4de', // https://github.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/commits
   'libretro-thumbnails/Nintendo_-_Virtual_Boy': '75693093d5c9bce8fc61ec073877384c47c82cb6', // https://github.com/libretro-thumbnails/Nintendo_-_Virtual_Boy/commits
   'libretro-thumbnails/Philips_-_Videopac': '2a43c1d80347b2f2d8122e49adb8f7366eb15551', // https://github.com/libretro-thumbnails/Philips_-_Videopac/commits

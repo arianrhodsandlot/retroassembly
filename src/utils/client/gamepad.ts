@@ -1,5 +1,5 @@
 import { pull } from 'es-toolkit'
-import * as gamepadjs from 'gamepad.js'
+import { GamepadListener } from 'gamepad.js'
 
 interface GamepadButtonEvent {
   button: number
@@ -48,7 +48,6 @@ export const Gamepad = {
     if (Gamepad.initialized) {
       return
     }
-    const GamepadListener = gamepadjs.GamepadListener || gamepadjs.default.GamepadListener
     const listener = new GamepadListener({ button: { analog: false } })
     listener.start()
     Gamepad.initialized = true

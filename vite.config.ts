@@ -49,6 +49,7 @@ function serverInfo() {
       const { httpServer } = server
       server.printUrls = noop
       server.bindCLIShortcuts = noop
+      server.config.logger.info = noop
       httpServer?.on('listening', () => {
         const address = httpServer?.address()
         if (address && typeof address === 'object') {
@@ -66,6 +67,7 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
   const port = envPort ? Number.parseInt(envPort, 10) || 8000 : 8000
   const config = {
     build: { chunkSizeWarningLimit: 1024 },
+    clearScreen: false,
     envPrefix: 'RETROASSEMBLY_BUILD_TIME_VITE_',
     plugins: [tailwindcss({ optimize: false }), reactRouter(), devtoolsJson(), serverInfo()],
     server: {

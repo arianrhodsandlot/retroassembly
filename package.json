@@ -6,11 +6,11 @@
     "#@/*": "./src/*"
   },
   "scripts": {
-    "build": "vp build",
+    "build": "react-router build",
     "build:node": "node --run=build",
     "build:workerd": "node --run=build",
     "check-lockfile": "node scripts/check-lockfile.ts",
-    "dev": "vp dev",
+    "dev": "react-router dev",
     "dev:node": "node --run=dev",
     "dev:test": "node --run=test -- --headed --ui",
     "dev:workerd": "node --run=dev",

@@ -143,8 +143,7 @@ const viteConfigForVP = defineConfig({
   // @ts-expect-error lint's type is not compatible
   lint: { ...lint, options: { typeAware: true, typeCheck: true } },
   staged: {
-    '*.?(m|c)@(j|t)s?(x)': 'vp check --fix',
-    '*.json': 'vp fmt',
+    '*.{?(m|c)@(j|t)s?(x),json}': 'vp check --fix',
     'pnpm-lock.yaml': 'node --run=check-lockfile',
   },
 })

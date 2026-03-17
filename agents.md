@@ -37,7 +37,7 @@ Browser-based retro gaming platform with dual-runtime architecture (Node.js + Cl
 
 ## Code Style
 
-**General**: Single quotes, no semicolons, 2-space indentation. File names: lower-snake-case (except `Dockerfile`).
+**General**: Single quotes, no semicolons, 2-space indentation. File names: lower-snake-case (except `Dockerfile`). Redundant comments are forbidden.
 
 **JavaScript/TypeScript**:
 

@@ -16,16 +16,17 @@ export function FavoriteButton({ isViewingFavorites, getToggleLink }: FavoriteBu
       <NavLink end to={getToggleLink()} className='group'>
         {({ isPending }) => (
           <>
-            <span
-              className={clsx({
-                'icon-[mdi--heart-outline]': !isViewingFavorites,
-                'icon-[mdi--heart]': isViewingFavorites,
-              })}
-            />
-            {t('nav.favorites')}
             {isPending ? (
-              <span className='icon-[svg-spinners--180-ring] hidden animate-spin group-focus:inline' />
-            ) : null}
+              <span className='icon-[svg-spinners--180-ring] animate-spin' />
+            ) : (
+              <span
+                className={clsx({
+                  'icon-[mdi--heart-outline]': !isViewingFavorites,
+                  'icon-[mdi--heart]': isViewingFavorites,
+                })}
+              />
+            )}
+            {t('nav.favorites')}
           </>
         )}
       </NavLink>

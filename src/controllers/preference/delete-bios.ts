@@ -5,7 +5,7 @@ import { updatePreference } from './update-preference.ts'
 export async function deleteBIOS(platform: PlatformName, fileName: string) {
   const { preference } = getContext().var
 
-  const { bioses = [] } = preference.emulator.platform[platform]
+  const { bioses } = preference.emulator.platform[platform]
 
   return await updatePreference({
     emulator: {

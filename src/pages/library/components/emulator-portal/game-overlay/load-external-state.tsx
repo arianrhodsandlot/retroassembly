@@ -30,6 +30,9 @@ export function LoadExternalState() {
 
   const { isMutating: isImporting, trigger: handleClickLoadExternal } = useSWRMutation('importState', async () => {
     const state = await fileOpen({ extensions: ['.state', ...range(1, 10).map((i) => `.state${i}`)] })
+    if (!state.size) {
+      return
+    }
     await emulator?.loadState(state)
     await hide()
     await delay(500)

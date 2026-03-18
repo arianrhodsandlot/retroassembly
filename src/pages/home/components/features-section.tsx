@@ -11,7 +11,7 @@ function useFeatures() {
   return [
     {
       content: (
-        <div className='*:motion-preset-pulse *:motion-duration-1000 flex size-full items-center justify-evenly bg-(--gray-4) bg-cover bg-center'>
+        <div className='*:motion-preset-pulse *:motion-duration-1000 img-saturate flex size-full items-center justify-evenly bg-(--gray-4) bg-cover bg-center'>
           <span className='icon-[logos--chrome] size-14' />
           <span className='icon-[logos--microsoft-edge] motion-delay-100 size-14' />
           <span className='icon-[logos--safari] motion-delay-200 size-14' />
@@ -49,7 +49,7 @@ function useFeatures() {
     {
       content: (
         <div
-          className='flex size-full items-center justify-center gap-2'
+          className='img-saturate flex size-full items-center justify-center gap-2'
           style={{
             background:
               'radial-gradient(circle, transparent 20%, var(--color-background) 20%, var(--color-background) 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, var(--color-background) 20%, var(--color-background) 80%, transparent 80%, transparent) 25px 25px, linear-gradient(var(--gray-5) 2px, transparent 2px) 0 -1px, linear-gradient(90deg, var(--gray-5) 2px, var(--color-background) 2px) -1px 0',
@@ -103,7 +103,7 @@ function useFeatures() {
           <div className='grid size-full grid-cols-3 grid-rows-2'>
             {range(6).map((i) => (
               <div className='rounded p-1' key={i}>
-                <div className='flex size-full items-center justify-center rounded bg-(--gray-4)'>
+                <div className='img-saturate flex size-full items-center justify-center rounded bg-(--gray-4)'>
                   <span
                     className={clsx(
                       'size-12',
@@ -132,7 +132,7 @@ function useFeatures() {
       content: (
         <div className='relative size-full'>
           <div
-            className='rewind-demo size-full animate-[rewind-demo-background-move_30s_linear_infinite] bg-cover'
+            className='rewind-demo img-saturate size-full animate-[rewind-demo-background-move_30s_linear_infinite] bg-cover'
             style={{
               backgroundImage: `url("${rewindImage}")`,
             }}

@@ -41,7 +41,7 @@ export function CommunitySection() {
               rel='noreferrer noopener'
               target='_blank'
             >
-              <span className={clsx('size-4 shrink-0', link.logo)} />
+              <span className={clsx('img-saturate size-4 shrink-0', link.logo)} />
               {t(link.text)}
             </a>
           ))}

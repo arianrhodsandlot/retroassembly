@@ -29,7 +29,7 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
           >
             {metadata.title}
           </a>
-          <div className='font-serif text-sm'>{t(metadata.description)}</div>
+          <div className='font-serif text-sm'>{t(metadata.descriptionI18nKey)}</div>
           <div className='flex flex-col gap-2 py-2 text-xs opacity-70'>
             {metadata.version ? (
               <div>

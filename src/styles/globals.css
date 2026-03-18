@@ -14,7 +14,12 @@ body {
   text-autospace: normal;
 }
 
-img {
+.saturate {
+  filter: saturate(var(--saturate, 100%));
+}
+
+img,
+.img-saturate {
   filter: saturate(var(--img-saturate, 100%));
 }
 

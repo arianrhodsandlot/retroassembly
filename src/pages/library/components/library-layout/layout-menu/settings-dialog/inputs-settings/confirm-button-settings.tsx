@@ -5,8 +5,8 @@ import { SettingsTitle } from '../settings-title.tsx'
 
 const rightButtonIcon = <span className='icon-[mdi--gamepad-circle-right] text-lg' />
 const downButtonIcon = <span className='icon-[mdi--gamepad-circle-down] text-lg' />
-const switchIcon = <span className='icon-[mdi--nintendo-switch] text-lg text-[#e60012]' />
-const xboxIcon = <span className='icon-[mdi--microsoft-xbox] text-lg text-[#107c10]' />
+const switchIcon = <span className='icon-[mdi--nintendo-switch] img-saturate text-lg text-[#e60012]' />
+const xboxIcon = <span className='icon-[mdi--microsoft-xbox] img-saturate text-lg text-[#107c10]' />
 
 export function ConfirmButtonSettings() {
   const { t } = useTranslation()

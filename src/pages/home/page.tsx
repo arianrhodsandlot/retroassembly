@@ -13,7 +13,7 @@ export function HomePage() {
 
   return (
     <>
-      <title>{`${metadata.title} - ${t(metadata.description)}`}</title>
+      <title>{`${metadata.title} - ${t(metadata.descriptionI18nKey)}`}</title>
       <FixedHeader />
       <HeroSection />
       <FeaturesSection />

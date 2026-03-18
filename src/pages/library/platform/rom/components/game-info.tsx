@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { platformMap } from '#@/constants/platform.ts'
+import type { Rom } from '#@/controllers/roms/get-roms.ts'
 import { useDate } from '#@/pages/library/hooks/use-date.ts'
 import { GameInfoDialog } from './game-info-dialog/game-info-dialog.tsx'
 
-export function GameInfo({ rom }) {
+export function GameInfo({ rom }: Readonly<{ rom: Rom }>) {
   const { t } = useTranslation()
   const { formatDate, formatDateRelative, isValidDate } = useDate()
   const launchboxGame = rom.rawGameMetadata?.launchbox || {}
@@ -17,7 +18,7 @@ export function GameInfo({ rom }) {
       icon: 'icon-[mdi--computer-classic]',
       name: '',
       title: t('common.platform'),
-      value: t(platformMap[rom.platform].displayName),
+      value: t(platformMap[rom.platform].displayNameI18nKey),
     },
     {
       icon: 'icon-[mdi--calendar]',

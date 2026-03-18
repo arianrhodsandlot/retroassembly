@@ -1,4 +1,3 @@
-import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
 import { platformMap } from '#@/constants/platform.ts'
 import { getPlatformIcon } from '#@/utils/client/library.ts'
@@ -16,7 +15,7 @@ export function GamePlatform({ platform }: Readonly<{ platform: string }>) {
     <div className='mt-1 flex items-center justify-center gap-2 text-xs text-(--color-text)/40'>
       <img
         alt={t(platformMap[platform].displayName)}
-        className={clsx('size-4', { invert: ['ngp', 'wonderswan'].includes(platformMap[platform].name) })}
+        className='size-4'
         loading='lazy'
         src={getPlatformIcon(platformMap[platform].name)}
       />

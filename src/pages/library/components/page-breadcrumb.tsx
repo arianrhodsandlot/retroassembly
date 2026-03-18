@@ -1,5 +1,4 @@
 import { Button } from '@radix-ui/themes'
-import { clsx } from 'clsx'
 import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, useLocation } from 'react-router'
@@ -55,12 +54,7 @@ export function PageBreadcrumb() {
   if (platform) {
     links.push({
       icon: (
-        <img
-          alt={t(platform.displayName)}
-          className={clsx('size-6', { invert: ['ngp', 'wonderswan'].includes(platform.name) })}
-          loading='lazy'
-          src={getPlatformIcon(platform.name)}
-        />
+        <img alt={t(platform.displayName)} className='size-6' loading='lazy' src={getPlatformIcon(platform.name)} />
       ),
       text: t(platform.displayName),
       url: generatePath(isDemo ? routes.demoPlatform : routes.libraryPlatform, { platform: platform.name }),

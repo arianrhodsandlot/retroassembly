@@ -21,8 +21,7 @@ jobs:
 
       - run: pnpm install
       - run: node --run=setup
-      - run: pnpm oxfmt --check
-      - run: node --run=lint
+      - run: pnpm vp check
       - run: node --run=build
       - run: node --run=test
 

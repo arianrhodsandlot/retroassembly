@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@arianrhodsandlot/oxc-config": "1.2.0",
-    "@cloudflare/vite-plugin": "1.29.0",
+    "@cloudflare/vite-plugin": "1.29.1",
     "@hono/node-server": "1.19.11",
     "@hono/vite-dev-server": "0.25.1",
     "@hono/zod-validator": "0.7.6",
@@ -85,7 +85,7 @@
     "jotai-ssr": "0.2.0",
     "js-cookie": "3.0.5",
     "luxon": "3.7.2",
-    "miniflare": "4.20260312.1",
+    "miniflare": "4.20260317.0",
     "motion": "12.38.0",
     "msleuth": "github:arianrhodsandlot/msleuth",
     "nanoid": "5.1.7",
@@ -115,10 +115,9 @@
     "tempy": "3.2.0",
     "tsdown": "0.21.4",
     "type-fest": "5.4.4",
-    "typescript": "5.9.3",
     "vite-plugin-devtools-json": "1.0.0",
     "vite-plus": "0.1.12",
-    "wrangler": "4.74.0",
+    "wrangler": "4.75.0",
     "zod": "4.3.6"
   },
   "simple-git-hooks": {

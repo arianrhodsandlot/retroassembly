@@ -1,5 +1,4 @@
 import { Card, Select } from '@radix-ui/themes'
-import { clsx } from 'clsx'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { coreDisplayNameMap, type CoreName, coreOptionsMap } from '#@/constants/core.ts'
@@ -54,9 +53,7 @@ export function CoresSettings() {
               <div className='flex items-center gap-2'>
                 <img
                   alt={platformMap[selectedPlatform].displayName}
-                  className={clsx('size-5 object-contain object-center', {
-                    invert: ['ngp', 'wonderswan'].includes(selectedPlatform),
-                  })}
+                  className='size-5 object-contain object-center'
                   loading='lazy'
                   src={getPlatformIcon(platformMap[selectedPlatform].name)}
                 />
@@ -69,9 +66,7 @@ export function CoresSettings() {
                   <div className='flex items-center gap-2'>
                     <img
                       alt={t(platformMap[platform].displayName)}
-                      className={clsx('size-5 object-contain object-center', {
-                        invert: ['ngp', 'wonderswan'].includes(platform),
-                      })}
+                      className='size-5 object-contain object-center'
                       src={getPlatformIcon(platformMap[platform].name)}
                     />
                     {t(platformMap[platform].displayName)}

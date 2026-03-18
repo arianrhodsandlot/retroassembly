@@ -15,23 +15,26 @@ interface FavoriteButtonProps {
 
 const heartPath =
   'm12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53z'
-async function showConfetti(element: HTMLElement, isTop: boolean) {
+function showConfetti(element: HTMLElement, isTop: boolean) {
   const rect = element.getBoundingClientRect()
   const x = (rect.left + rect.width / 2) / globalThis.innerWidth
   const y = (rect.top + rect.height / 2) / globalThis.innerHeight
   const origin = { x, y }
-  await confetti({
-    colors: [metadata.themeColor],
-    disableForReducedMotion: true,
-    gravity: isTop ? -0.5 : 0.5,
-    origin,
-    particleCount: 1,
-    scalar: 1.5,
-    shapes: [confetti.shapeFromPath(heartPath)],
-    spread: 0,
-    startVelocity: 0,
-    ticks: 40,
-  })
+
+  ;(async () => {
+    await confetti({
+      colors: [metadata.themeColor],
+      disableForReducedMotion: true,
+      gravity: isTop ? -0.5 : 0.5,
+      origin,
+      particleCount: 1,
+      scalar: 1.5,
+      shapes: [confetti.shapeFromPath(heartPath)],
+      spread: 0,
+      startVelocity: 0,
+      ticks: 40,
+    })
+  })()
 }
 export function FavoriteButton({ rom, variant }: Readonly<FavoriteButtonProps>) {
   const { t } = useTranslation()
@@ -59,7 +62,6 @@ export function FavoriteButton({ rom, variant }: Readonly<FavoriteButtonProps>) 
 
     const nextFavorite = !optimisticIsFavorite
 
-    // oxlint-disable-next-line typescript/no-floating-promises
     showConfetti(event.currentTarget, nextFavorite)
 
     startTransition(async () => {

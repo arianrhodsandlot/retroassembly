@@ -29,13 +29,7 @@ export function SidebarLinks() {
                 <SidebarLink active={isActive(to)} title={text} to={to}>
                   {iconClass ? <span className={clsx('size-5 p-0.5', iconClass)} /> : null}
 
-                  {iconUrl ? (
-                    <img
-                      alt={text}
-                      className={clsx('block size-6', { invert: isActive(to) && ['ngp', 'wonderswan'].includes(name) })}
-                      src={iconUrl}
-                    />
-                  ) : null}
+                  {iconUrl ? <img alt={text} className='block size-6' src={iconUrl} /> : null}
 
                   <span className={clsx('truncate', { 'opacity-90 group-hover:opacity-100': !isActive(to) })}>
                     {text}

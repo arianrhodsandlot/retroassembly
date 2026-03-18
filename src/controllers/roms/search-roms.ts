@@ -88,9 +88,7 @@ export async function searchRoms(
     .leftJoin(favoriteTable, favoriteJoinCondition)
     .where(where)
 
-  const allRomResults = allRomResultsRaw.map(({ isFavorite, rom }) =>
-    Object.assign(rom, { isFavorite: Boolean(isFavorite) }),
-  )
+  const allRomResults = allRomResultsRaw.map(({ isFavorite, rom }) => Object.assign(rom, { isFavorite: isFavorite }))
 
   const fuse = new Fuse(allRomResults, fuseOptions)
   const fuseResults = fuse.search(trimmedQuery)

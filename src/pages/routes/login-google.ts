@@ -13,7 +13,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const { searchParams } = new URL(request.url)
   const redirectTo = searchParams.get('redirect_to')
   if (redirectTo) {
-    oauthRedirectToURL.searchParams.set('redirect_to', redirectTo.toString())
+    oauthRedirectToURL.searchParams.set('redirect_to', redirectTo)
   }
 
   const provider = 'google' as const

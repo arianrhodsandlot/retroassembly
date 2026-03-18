@@ -1,5 +1,6 @@
 import { Card, RadioCards, Select, Switch } from '@radix-ui/themes'
 import { clsx } from 'clsx'
+import { camelCase } from 'es-toolkit'
 import { useTranslation } from 'react-i18next'
 import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
 import { SettingsTitle } from '../settings-title.tsx'
@@ -43,7 +44,7 @@ export function GameEntrySettings() {
                           }[size],
                         )}
                       />
-                      <span className='capitalize'>{t(size.replace('-', ' '))}</span>
+                      <span className='capitalize'>{t(['common', camelCase(['size', size].join('-'))].join('.'))}</span>
                     </div>
                   </RadioCards.Item>
                 ))}

@@ -1,6 +1,5 @@
 import path from 'node:path'
-import fmt from '@arianrhodsandlot/oxc-config/oxfmtrc.json' with { type: 'json' }
-import lint from '@arianrhodsandlot/oxc-config/oxlintrc.json' with { type: 'json' }
+import { oxfmtrc, oxlintrc } from '@arianrhodsandlot/oxc-config'
 import { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
@@ -65,11 +64,12 @@ function serverInfo() {
 const viteConfigForReactRouter = defineConfig(async (env) => {
   const envPort = process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT
   const port = envPort ? Number.parseInt(envPort, 10) || 8000 : 8000
-  const config = {
+  const plugins = [tailwindcss({ optimize: false }), reactRouter(), [devtoolsJson()], serverInfo()]
+  const config: UserConfig = {
     build: { chunkSizeWarningLimit: 1024 },
     clearScreen: false,
     envPrefix: 'RETROASSEMBLY_BUILD_TIME_VITE_',
-    plugins: [tailwindcss({ optimize: false }), reactRouter(), devtoolsJson(), serverInfo()],
+    plugins: plugins as UserConfig['plugins'],
     server: {
       allowedHosts: true,
       hmr: { overlay: true },
@@ -77,7 +77,7 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
       open: true,
       port,
     },
-  } as UserConfig
+  }
 
   if (getTargetRuntime() === 'workerd') {
     if (env.command === 'serve') {
@@ -85,8 +85,7 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
     }
     await prepareWranglerConfig()
     const { cloudflare } = await import('@cloudflare/vite-plugin')
-    // @ts-expect-error - plugins' types are not compatible
-    config.plugins?.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
+    plugins.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
     config.resolve = {
       alias: {
         '@entry.server.tsx': path.resolve(
@@ -119,7 +118,7 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
       }),
       ['handleHotUpdate'],
     )
-    config.plugins?.push(serverAdapterPlugin)
+    plugins.push([serverAdapterPlugin])
     config.resolve = {
       alias: {
         '@entry.server.tsx': path.resolve(
@@ -139,9 +138,8 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
 })
 
 const viteConfigForVP = defineConfig({
-  fmt,
-  // @ts-expect-error lint's type is not compatible
-  lint: { ...lint, options: { typeAware: true, typeCheck: true } },
+  fmt: oxfmtrc,
+  lint: { ...oxlintrc, options: { typeAware: true, typeCheck: true } },
   staged: {
     '*.{?(m|c)@(j|t)s?(x),json}': 'vp check --fix',
     'pnpm-lock.yaml': 'node --run=check-lockfile',

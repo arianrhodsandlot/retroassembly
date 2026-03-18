@@ -51,7 +51,7 @@ export function JumpBackInSection() {
             <div className='flex items-center gap-1 text-(--color-text)/40'>
               <img
                 alt={t(platformMap[rom.platform].displayName)}
-                className={clsx('size-6', { invert: ['ngp', 'wonderswan'].includes(platformMap[rom.platform].name) })}
+                className='size-6'
                 loading='lazy'
                 src={getPlatformIcon(platformMap[rom.platform].name)}
               />

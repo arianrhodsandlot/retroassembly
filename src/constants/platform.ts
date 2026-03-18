@@ -146,7 +146,7 @@ const basePlatformMap = {
   famicom: {
     bioses: [{ name: 'nes.pal' }, { name: 'gamegenie.nes' }],
     cores: ['fceumm', 'nestopia', 'quicknes'],
-    displayNameI18nKey: 'platform.nes',
+    displayNameI18nKey: 'platform.famicom',
     fileExtensions: ['.nes', '.unif', '.unf', '.zip'],
     info: {
       developer: 'Nintendo R&D2',

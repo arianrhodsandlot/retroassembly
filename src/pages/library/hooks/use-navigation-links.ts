@@ -21,7 +21,7 @@ export function useNavigationLinks() {
     iconClass: '',
     iconUrl: getPlatformIcon(platform),
     name: platform,
-    text: t(platformMap[platform].displayName),
+    text: t(platformMap[platform].displayNameI18nKey),
     to: getPlatformLink(platform),
   }))
 

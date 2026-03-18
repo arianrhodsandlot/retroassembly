@@ -75,7 +75,7 @@ export function GameInfoDataList({ autoFocusField }: Readonly<{ autoFocusField?:
           <span className='icon-[mdi--computer-classic]' />
           {t('common.platform')}
         </DataList.Label>
-        <DataList.Value>{t(platformMap[rom.platform].displayName)}</DataList.Value>
+        <DataList.Value>{t(platformMap[rom.platform].displayNameI18nKey)}</DataList.Value>
       </DataList.Item>
       {dataListFields.map(({ icon, label, name, options, type, ...valueProps }) => (
         <DataList.Item key={name}>

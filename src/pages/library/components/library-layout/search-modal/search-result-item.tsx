@@ -107,11 +107,11 @@ export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProp
           </div>
           <div className='flex items-center gap-1 text-xs'>
             <img
-              alt={t(platformMap[rom.platform].displayName)}
+              alt={t(platformMap[rom.platform].displayNameI18nKey)}
               className='block size-4 object-contain'
               src={getPlatformIcon(rom.platform)}
             />
-            {t(platformMap[rom.platform].displayName)}
+            {t(platformMap[rom.platform].displayNameI18nKey)}
           </div>
         </div>
         {rom.isFavorite ? <span className='icon-[mdi--heart] mr-1 shrink-0 text-(--accent-9)' /> : null}

@@ -1,5 +1,5 @@
 import path from 'node:path'
-import { oxfmtrc, oxlintrc } from '@arianrhodsandlot/oxc-config'
+import { createConfig } from '@arianrhodsandlot/vite-plus-config'
 import { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
@@ -137,11 +137,8 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
   return config
 })
 
-const viteConfigForVP = defineConfig({
-  fmt: oxfmtrc,
-  lint: { ...oxlintrc, options: { typeAware: true, typeCheck: true } },
+const viteConfigForVP = createConfig({
   staged: {
-    '*.{?(m|c)@(j|t)s?(x),json}': 'vp check --fix',
     'pnpm-lock.yaml': 'node --run=check-lockfile',
   },
 })

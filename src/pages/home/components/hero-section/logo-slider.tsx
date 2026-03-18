@@ -41,11 +41,11 @@ export function LogoSlider() {
         >
           {platforms.map((platform) => (
             <img
-              alt={t(platformMap[platform].displayName)}
+              alt={t(platformMap[platform].displayNameI18nKey)}
               className='h-8 w-20 object-contain'
               key={platform}
               src={getPlatformBanner(platform)}
-              title={t(platformMap[platform].displayName)}
+              title={t(platformMap[platform].displayNameI18nKey)}
             />
           ))}
         </div>

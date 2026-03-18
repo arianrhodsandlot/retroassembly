@@ -42,9 +42,9 @@ export function CoreOptions({
           <Callout.Text>{t('settings.advancedOptionsWarning')}</Callout.Text>
         </Callout.Root>
 
-        <div className='mb-2 flex grid-cols-3 flex-col gap-2 lg:grid'>
+        <div className='mb-2 flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:gap-6'>
           {coreOptions.map(({ defaultOption, name, options, title }) => (
-            <label className='flex w-fit items-center gap-4' key={name}>
+            <label className='flex w-fit flex-col gap-1 lg:flex-row' key={name}>
               <span className='text-sm'>{title || name}</span>
 
               <div>

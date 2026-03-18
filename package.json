@@ -15,6 +15,7 @@
     "dev:test": "node --run=test -- --headed --ui",
     "dev:workerd": "node --run=dev",
     "lint": "oxlint --type-aware",
+    "prepare": "simple-git-hooks",
     "serve": "node dist/server/serve.js",
     "serve:node": "node --run=serve",
     "serve:workerd": "wrangler dev --port=8000",
@@ -28,7 +29,7 @@
     "hono": "4.12.8"
   },
   "devDependencies": {
-    "@arianrhodsandlot/oxc-config": "1.2.0",
+    "@arianrhodsandlot/vite-plus-config": "1.0.2",
     "@cloudflare/vite-plugin": "1.29.1",
     "@hono/node-server": "1.19.11",
     "@hono/vite-dev-server": "0.25.1",
@@ -121,7 +122,7 @@
     "zod": "4.3.6"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm vp staged"
+    "pre-commit": "pnpm vp staged && pnpm vp check"
   },
   "prettier": {
     "htmlWhitespaceSensitivity": "ignore",

@@ -54,9 +54,14 @@ export function PageBreadcrumb() {
   if (platform) {
     links.push({
       icon: (
-        <img alt={t(platform.displayName)} className='size-6' loading='lazy' src={getPlatformIcon(platform.name)} />
+        <img
+          alt={t(platform.displayNameI18nKey)}
+          className='size-6'
+          loading='lazy'
+          src={getPlatformIcon(platform.name)}
+        />
       ),
-      text: t(platform.displayName),
+      text: t(platform.displayNameI18nKey),
       url: generatePath(isDemo ? routes.demoPlatform : routes.libraryPlatform, { platform: platform.name }),
     })
 
@@ -64,7 +69,7 @@ export function PageBreadcrumb() {
       links.push({
         icon: (
           <img
-            alt={t(platform.displayName)}
+            alt={t(platform.displayNameI18nKey)}
             className='size-5 p-0.5'
             loading='lazy'
             src={getPlatformGameIcon(rom.platform)}

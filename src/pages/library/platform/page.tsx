@@ -35,7 +35,7 @@ export default function PlatformPage() {
             {platformInfo ? (
               <DeviceInfo key={platform} platform={platform} platformInfo={platformInfo} />
             ) : (
-              <h1 className='text-5xl font-semibold'>{t(platformMap[platform].displayName)}</h1>
+              <h1 className='text-5xl font-semibold'>{t(platformMap[platform].displayNameI18nKey)}</h1>
             )}
 
             {isDemo ? undefined : (
@@ -49,7 +49,7 @@ export default function PlatformPage() {
                   values={{
                     game: gameLabel,
                     gameCount: pagination.total,
-                    platform: t(platformMap[platform].displayName),
+                    platform: t(platformMap[platform].displayNameI18nKey),
                   }}
                 />
               </PageStats>

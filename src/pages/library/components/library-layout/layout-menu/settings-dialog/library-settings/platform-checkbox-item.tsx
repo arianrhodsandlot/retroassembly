@@ -31,12 +31,12 @@ export function PlatformCheckboxItem({ disabled, platform }: Readonly<{ disabled
     >
       <div className='flex items-center gap-2 text-xs'>
         <img
-          alt={t(platform.displayName)}
+          alt={t(platform.displayNameI18nKey)}
           className='size-6 rounded object-contain object-center'
           loading='lazy'
           src={getPlatformIcon(platform.name)}
         />
-        {t(platform.displayName)}
+        {t(platform.displayNameI18nKey)}
       </div>
     </CheckboxCards.Item>
   )

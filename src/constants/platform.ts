@@ -10,7 +10,7 @@ interface Bios {
 interface BasePlatform {
   bioses?: Bios[]
   cores: CoreName[]
-  displayName: string
+  displayNameI18nKey: string
   fileExtensions: string[]
   info: {
     developer?: string
@@ -51,7 +51,7 @@ const basePlatformMap = {
       { name: 'ym2608.zip' },
     ],
     cores: ['fbneo', 'mame2003_plus'],
-    displayName: 'Arcade',
+    displayNameI18nKey: 'platform.arcade',
     fileExtensions: ['.zip'],
     info: {
       notesI18nKey: 'platform.arcadeNote',
@@ -61,7 +61,7 @@ const basePlatformMap = {
   },
   atari2600: {
     cores: ['stella2014'],
-    displayName: 'Atari 2600',
+    displayNameI18nKey: 'platform.atari2600',
     fileExtensions: ['.a26', '.zip'],
     info: {
       developer: 'Atari, Inc.',
@@ -74,7 +74,7 @@ const basePlatformMap = {
   atari5200: {
     bioses: [{ md5: '281f20ea4320404ec820fb7ec0693b38', name: '5200.rom' }],
     cores: ['a5200'],
-    displayName: 'Atari 5200',
+    displayNameI18nKey: 'platform.atari5200',
     fileExtensions: ['.a52', '.xfd', '.atr', '.atx', '.cdm', '.cas', '.xex', '.zip'],
     info: {
       developer: 'Atari, Inc.',
@@ -90,7 +90,7 @@ const basePlatformMap = {
       { md5: '397bb566584be7b9764e7a68974c4263', name: '7800 BIOS (E).rom' },
     ],
     cores: ['prosystem'],
-    displayName: 'Atari 7800',
+    displayNameI18nKey: 'platform.atari7800',
     fileExtensions: ['.a78', '.zip'],
     info: {
       developer: 'Atari Corporation',
@@ -103,7 +103,7 @@ const basePlatformMap = {
   atarilynx: {
     bioses: [{ md5: 'fcd403db69f54290b51035d82f835e7b', name: 'lynxboot.img', required: true }],
     cores: ['mednafen_lynx'],
-    displayName: 'Atari Lynx',
+    displayNameI18nKey: 'platform.atariLynx',
     fileExtensions: ['.lnx', '.lyx', '.bll', '.o', '.zip'],
     info: {
       developer: 'Atari Corporation, Epyx, Inc.',
@@ -120,7 +120,7 @@ const basePlatformMap = {
       { md5: 'ac9804d4c0e9d07e33472e3726ed15c3', name: 'sl31253.bin', required: true },
     ],
     cores: ['freechaf'],
-    displayName: 'Channel F',
+    displayNameI18nKey: 'platform.channelF',
     fileExtensions: ['.bin', '.rom', '.zip'],
     info: {
       developer: 'Fairchild Semiconductor',
@@ -133,7 +133,7 @@ const basePlatformMap = {
   colecovision: {
     bioses: [{ md5: '2c66f5911e5b42b8ebe113403548eee7', name: 'colecovision.rom', required: true }],
     cores: ['gearcoleco'],
-    displayName: 'ColecoVision',
+    displayNameI18nKey: 'platform.colecovision',
     fileExtensions: ['.col', '.cv', '.bin', '.rom', '.zip'],
     info: {
       developer: 'Coleco Industries, Inc.',
@@ -146,7 +146,7 @@ const basePlatformMap = {
   famicom: {
     bioses: [{ name: 'nes.pal' }, { name: 'gamegenie.nes' }],
     cores: ['fceumm', 'nestopia', 'quicknes'],
-    displayName: 'Family Computer',
+    displayNameI18nKey: 'platform.nes',
     fileExtensions: ['.nes', '.unif', '.unf', '.zip'],
     info: {
       developer: 'Nintendo R&D2',
@@ -163,7 +163,7 @@ const basePlatformMap = {
       { md5: '7f98d77d7a094ad7d069b74bd553ec98', name: 'gamegenie.nes' },
     ],
     cores: ['fceumm', 'nestopia'],
-    displayName: 'Famicom Disk System',
+    displayNameI18nKey: 'platform.famicomDiskSystem',
     fileExtensions: ['.fds', '.zip'],
     info: {
       developer: 'Nintendo',
@@ -175,7 +175,7 @@ const basePlatformMap = {
   },
   gameandwatch: {
     cores: ['gw'],
-    displayName: 'Game & Watch',
+    displayNameI18nKey: 'platform.gameAndWatch',
     fileExtensions: ['.zip', '.mgw'],
     info: {
       developer: 'Nintendo',
@@ -188,7 +188,7 @@ const basePlatformMap = {
   gamegear: {
     bioses: [{ md5: '672e104c3be3a238301aceffc3b23fd6', name: 'bios.gg' }],
     cores: ['genesis_plus_gx', 'gearsystem'],
-    displayName: 'Game Gear',
+    displayNameI18nKey: 'platform.gameGear',
     fileExtensions: ['.gg', '.zip'],
     info: {
       developer: 'Nintendo',
@@ -201,7 +201,7 @@ const basePlatformMap = {
   gb: {
     bioses: [{ md5: '32fbbd84168d3482956eb3c5051637f5', name: 'gb_bios.bin' }],
     cores: ['mgba', 'gearboy', 'gambatte', 'tgbdual'],
-    displayName: 'Game Boy',
+    displayNameI18nKey: 'platform.gameBoy',
     fileExtensions: ['.gb', '.zip'],
     info: {
       developer: 'Nintendo',
@@ -214,7 +214,7 @@ const basePlatformMap = {
   gba: {
     bioses: [{ md5: 'a860e8c0b6d573d191e4ec7db1b1e4f6', name: 'gba_bios.bin' }],
     cores: ['mgba', 'vba_next'],
-    displayName: 'Game Boy Advance',
+    displayNameI18nKey: 'platform.gameBoyAdvance',
     fileExtensions: ['.gba', '.zip'],
     info: {
       developer: 'Nintendo',
@@ -227,7 +227,7 @@ const basePlatformMap = {
   gbc: {
     bioses: [{ md5: 'dbfce9db9deaa2567f6a84fde55f9680', name: 'gbc_bios.bin' }],
     cores: ['mgba', 'gearboy', 'gambatte', 'tgbdual'],
-    displayName: 'Game Boy Color',
+    displayNameI18nKey: 'platform.gameBoyColor',
     fileExtensions: ['.gb', '.gbc', '.cgb', '.sgb', '.zip'],
     info: {
       developer: 'Nintendo',
@@ -240,7 +240,7 @@ const basePlatformMap = {
   genesis: {
     bioses: [{ md5: '45e298905a08f9cfb38fd504cd6dbc84', name: 'bios_MD.bin' }, { name: 'ggenie.bin' }],
     cores: ['genesis_plus_gx'],
-    displayName: 'Genesis',
+    displayNameI18nKey: 'platform.megadrive',
     fileExtensions: ['.md', '.gen', '.zip'],
     info: {
       developer: 'Sega Enterprises',
@@ -253,7 +253,7 @@ const basePlatformMap = {
   megadrive: {
     bioses: [{ md5: '45e298905a08f9cfb38fd504cd6dbc84', name: 'bios_MD.bin' }, { name: 'ggenie.bin' }],
     cores: ['genesis_plus_gx'],
-    displayName: 'Megadrive',
+    displayNameI18nKey: 'platform.megadrive',
     fileExtensions: ['.md', '.gen', '.zip'],
     info: {
       developer: 'Sega Enterprises',
@@ -265,7 +265,7 @@ const basePlatformMap = {
   },
   nes: {
     cores: ['fceumm', 'nestopia', 'quicknes'],
-    displayName: 'NES',
+    displayNameI18nKey: 'platform.nes',
     fileExtensions: ['.nes', '.unif', '.unf', '.zip'],
     info: {
       developer: 'Nintendo R&D2',
@@ -277,7 +277,7 @@ const basePlatformMap = {
   },
   ngp: {
     cores: ['mednafen_ngp'],
-    displayName: 'Neo Geo Pocket',
+    displayNameI18nKey: 'platform.neoGeoPocket',
     fileExtensions: ['.ngp', '.zip'],
     info: {
       developer: 'SNK',
@@ -289,7 +289,7 @@ const basePlatformMap = {
   },
   ngpc: {
     cores: ['mednafen_ngp'],
-    displayName: 'Neo Geo Pocket Color',
+    displayNameI18nKey: 'platform.neoGeoPocketColor',
     fileExtensions: ['.ngc', '.zip'],
     info: {
       developer: 'SNK',
@@ -302,7 +302,7 @@ const basePlatformMap = {
   odyssey2: {
     bioses: [{ name: 'o2rom.bin', required: true }],
     cores: ['o2em'],
-    displayName: 'Magnavox Odyssey 2',
+    displayNameI18nKey: 'platform.magnavoxOdyssey2',
     fileExtensions: ['.bin', '.zip'],
     info: {
       developer: 'Magnavox / Philips',
@@ -320,7 +320,7 @@ const basePlatformMap = {
       { name: 'gexpress.pce' },
     ],
     cores: ['mednafen_pce_fast'],
-    displayName: 'PC Engine',
+    displayNameI18nKey: 'platform.pcengine',
     fileExtensions: ['.pce', '.bin', '.zip'],
     info: {
       developer: 'NEC Corporation, Hudson Soft',
@@ -338,7 +338,7 @@ const basePlatformMap = {
       { md5: '490f666e1afb15b7362b406ed1cea246', name: 'scph5501.bin' },
     ],
     cores: ['pcsx_rearmed'],
-    displayName: 'PlayStation',
+    displayNameI18nKey: 'platform.psx',
     fileExtensions: ['.chd'],
     info: {
       developer: 'Sony Computer Entertainment',
@@ -350,7 +350,7 @@ const basePlatformMap = {
   },
   sega32x: {
     cores: ['picodrive'],
-    displayName: 'Sega 32X',
+    displayNameI18nKey: 'platform.sega32x',
     fileExtensions: ['.32X', '.zip'],
     info: {
       developer: 'Nintendo',
@@ -362,7 +362,7 @@ const basePlatformMap = {
   },
   sfc: {
     cores: ['snes9x', 'snes9x2002', 'snes9x2005', 'snes9x2010'],
-    displayName: 'Super Famicom',
+    displayNameI18nKey: 'platform.sfc',
     fileExtensions: ['.smc', '.sfc', '.zip'],
     info: {
       developer: 'Nintendo',
@@ -374,7 +374,7 @@ const basePlatformMap = {
   },
   'sg-1000': {
     cores: ['gearsystem'],
-    displayName: 'Sega SG-1000',
+    displayNameI18nKey: 'platform.segaSg1000',
     fileExtensions: ['.sg', '.zip'],
     info: {
       developer: 'Sega',
@@ -391,7 +391,7 @@ const basePlatformMap = {
       { md5: '24a519c53f67b00640d0048ef7089105', name: 'bios_J.sms' },
     ],
     cores: ['genesis_plus_gx', 'picodrive', 'gearsystem'],
-    displayName: 'Master System',
+    displayNameI18nKey: 'platform.masterSystem',
     fileExtensions: ['.sms', '.zip'],
     info: {
       developer: 'SEGA Enterprises Ltd.',
@@ -403,7 +403,7 @@ const basePlatformMap = {
   },
   snes: {
     cores: ['snes9x', 'snes9x2002', 'snes9x2005', 'snes9x2010'],
-    displayName: 'Super NES',
+    displayNameI18nKey: 'platform.snes',
     fileExtensions: ['.smc', '.sfc', '.zip'],
     info: {
       developer: 'Nintendo',
@@ -415,7 +415,7 @@ const basePlatformMap = {
   },
   vb: {
     cores: ['mednafen_vb'],
-    displayName: 'Virtual Boy',
+    displayNameI18nKey: 'platform.virtualBoy',
     fileExtensions: ['.vb', '.vboy', '.zip'],
     info: {
       developer: 'Nintendo',
@@ -428,7 +428,7 @@ const basePlatformMap = {
   videopac: {
     bioses: [{ name: 'o2rom.bin', required: true }],
     cores: ['o2em'],
-    displayName: 'Philips Videopac+',
+    displayNameI18nKey: 'platform.philipsVideopac',
     fileExtensions: ['.bin', '.zip'],
     info: {
       developer: 'Philips',
@@ -440,7 +440,7 @@ const basePlatformMap = {
   },
   wonderswan: {
     cores: ['mednafen_wswan'],
-    displayName: 'WonderSwan',
+    displayNameI18nKey: 'platform.wonderswan',
     fileExtensions: ['.ws', '.zip'],
     info: {
       developer: 'Bandai Co., Ltd.',
@@ -452,7 +452,7 @@ const basePlatformMap = {
   },
   wonderswancolor: {
     cores: ['mednafen_wswan'],
-    displayName: 'WonderSwan Color',
+    displayNameI18nKey: 'platform.wonderswanColor',
     fileExtensions: ['.wsc', '.zip'],
     info: {
       developer: 'Bandai Co., Ltd.',
@@ -475,4 +475,4 @@ export const platformMap: Record<PlatformName, Platform> = mapValues(
   (platform: BasePlatform, name: PlatformName) => ({ name, ...platform }),
 )
 
-export const platforms = sortBy(Object.values(platformMap), ['displayName'])
+export const platforms = sortBy(Object.values(platformMap), ['displayNameI18nKey'])

@@ -18,7 +18,7 @@ export async function loader({ params }: Route.LoaderArgs) {
     platform,
     platformInfo,
     roms,
-    title: t(platformMap[platform].displayName),
+    title: t(platformMap[platform].displayNameI18nKey),
   })
 }
 

@@ -23,7 +23,7 @@ export function loader({ params }: Route.LoaderArgs) {
     platformInfo,
     preference,
     roms: getDemoRoms({ platform }),
-    title: `${t(platformMap[platform].displayName)} (Demo)`,
+    title: `${t(platformMap[platform].displayNameI18nKey)} (Demo)`,
   })
 }
 

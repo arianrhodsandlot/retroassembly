@@ -50,12 +50,12 @@ export function JumpBackInSection() {
 
             <div className='flex items-center gap-1 text-(--color-text)/40'>
               <img
-                alt={t(platformMap[rom.platform].displayName)}
+                alt={t(platformMap[rom.platform].displayNameI18nKey)}
                 className='size-6'
                 loading='lazy'
                 src={getPlatformIcon(platformMap[rom.platform].name)}
               />
-              {t(platformMap[rom.platform].displayName)}
+              {t(platformMap[rom.platform].displayNameI18nKey)}
             </div>
 
             <GameButtons />

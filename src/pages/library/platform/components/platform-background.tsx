@@ -11,7 +11,7 @@ export function PlatformBackground() {
   const platformBackgroundUrl = getPlatformBluredBackground(platform)
   return (
     <MainBackground
-      alt={t(platformMap[platform].displayName)}
+      alt={t(platformMap[platform].displayNameI18nKey)}
       key={platformBackgroundUrl}
       src={platformBackgroundUrl}
     />

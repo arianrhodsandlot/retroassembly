@@ -20,11 +20,11 @@ export function UploadInstruction({
         <p>
           {t('upload.uploadingForPlatform')}
           <img
-            alt={t(platformMap[platform].displayName)}
+            alt={t(platformMap[platform].displayNameI18nKey)}
             className='inline-block size-7 align-middle'
             src={getPlatformIcon(platform)}
           />
-          <b>{t(platformMap[platform].displayName)}</b>. {t('upload.supportedPlatformExtensions')}
+          <b>{t(platformMap[platform].displayNameI18nKey)}</b>. {t('upload.supportedPlatformExtensions')}
           <br />
           <span className='inline-flex gap-1 py-2'>
             {platformMap[platform].fileExtensions.map((extention) => (

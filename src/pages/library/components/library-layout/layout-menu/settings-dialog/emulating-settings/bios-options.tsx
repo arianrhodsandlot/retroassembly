@@ -92,7 +92,7 @@ export function BIOSOptions({ platform }: { readonly platform: PlatformName }) {
     <div>
       <SettingsTitle as='h4'>
         <span className='icon-[mdi--chip]' />{' '}
-        {t('bios.titleWithPlatform', { platform: t(platformMap[platform].displayName) })}
+        {t('bios.titleWithPlatform', { platform: t(platformMap[platform].displayNameI18nKey) })}
       </SettingsTitle>
       <div className='flex flex-col gap-2 px-6'>
         <div className='flex flex-wrap items-center gap-2'>

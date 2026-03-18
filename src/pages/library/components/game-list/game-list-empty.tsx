@@ -69,7 +69,7 @@ export function GameListEmpty() {
               components={{
                 1: (
                   <img
-                    alt={t(platform.displayName)}
+                    alt={t(platform.displayNameI18nKey)}
                     className='hidden size-7 lg:inline-block'
                     loading='lazy'
                     src={getPlatformIcon(platform.name)}
@@ -78,7 +78,7 @@ export function GameListEmpty() {
               }}
               i18nKey={favorite ? 'empty.noFavoriteGamesForPlatform' : 'empty.noGamesForPlatform'}
               values={{
-                platform: t(platform.displayName),
+                platform: t(platform.displayNameI18nKey),
               }}
             />
           </div>

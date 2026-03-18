@@ -52,12 +52,12 @@ export function CoresSettings() {
             <Select.Trigger disabled={isLoading} variant='ghost'>
               <div className='flex items-center gap-2'>
                 <img
-                  alt={platformMap[selectedPlatform].displayName}
+                  alt={platformMap[selectedPlatform].displayNameI18nKey}
                   className='size-5 object-contain object-center'
                   loading='lazy'
                   src={getPlatformIcon(platformMap[selectedPlatform].name)}
                 />
-                {platformMap[selectedPlatform].displayName}
+                {platformMap[selectedPlatform].displayNameI18nKey}
               </div>
             </Select.Trigger>
             <Select.Content>
@@ -65,11 +65,11 @@ export function CoresSettings() {
                 <Select.Item key={platformMap[platform].name} value={platformMap[platform].name}>
                   <div className='flex items-center gap-2'>
                     <img
-                      alt={t(platformMap[platform].displayName)}
+                      alt={t(platformMap[platform].displayNameI18nKey)}
                       className='size-5 object-contain object-center'
                       src={getPlatformIcon(platformMap[platform].name)}
                     />
-                    {t(platformMap[platform].displayName)}
+                    {t(platformMap[platform].displayNameI18nKey)}
                   </div>
                 </Select.Item>
               ))}

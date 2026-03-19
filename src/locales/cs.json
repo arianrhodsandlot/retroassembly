@@ -351,6 +351,7 @@
   "sponsor.romLimitDescription": "A ve své knihovně můžete mít až <1>{{maxRomCount}}</1> ROM.",
   "sponsor.title": "Podpořte budoucnost RetroAssembly",
   "stats.favoriteGames": "<1>{{gameCount}}</1> {{game}} v oblíbených",
+  "stats.platformFavoriteGames": "Celkem oblíbených her pro {{platform}}: <1>{{gameCount}}</1>",
   "stats.platformGames": "Celkem her pro {{platform}}: <1>{{gameCount}}</1>",
   "stats.playedGames": "Hráno her: <1>{{gameCount}}</1>",
   "stats.totalGames": "Celkem her: <1>{{gameCount}}</1> Počet platforem: <3>{{platformCount}}</3>",

@@ -35,7 +35,7 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
 
   useEffect(() => {
     const controller = new AbortController()
-    if (recentlyLaunchedRoms.length > 5 && !localStorage.getItem('supress-sponsor-message')) {
+    if (recentlyLaunchedRoms?.length > 5 && !localStorage.getItem('supress-sponsor-message')) {
       setIsSponsorMessageVisible(true)
     }
     globalThis.addEventListener(

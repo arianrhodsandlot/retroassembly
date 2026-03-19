@@ -351,6 +351,7 @@
   "sponsor.romLimitDescription": "E puoi avere fino a <1>{{maxRomCount}}</1> ROM nella tua libreria.",
   "sponsor.title": "Supporta il futuro di RetroAssembly",
   "stats.favoriteGames": "<1>{{gameCount}}</1> {{game}} nei preferiti",
+  "stats.platformFavoriteGames": "<1>{{gameCount}}</1> {{game}} preferito per {{platform}}.",
   "stats.platformGames": "<1>{{gameCount}}</1> {{game}} per {{platform}}.",
   "stats.playedGames": "Giocato <1>{{gameCount}}</1> {{game}}",
   "stats.totalGames": "<1>{{gameCount}}</1> {{game}} per <3>{{platformCount}}</3> {{platform}} in totale",

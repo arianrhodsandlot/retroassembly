@@ -13,7 +13,7 @@ import { UploadButton } from './components/upload-button.tsx'
 
 export default function PlatformPage() {
   const { t } = useTranslation()
-  const { pagination, platform, platformInfo, roms } = useLoaderData<typeof loader>()
+  const { favorite, pagination, platform, roms } = useLoaderData<typeof loader>()
   const gameLabel = t('common.game', { count: pagination.total })
   const isDemo = useIsDemo()
 
@@ -31,12 +31,8 @@ export default function PlatformPage() {
 
       <div className='relative'>
         <GameListMain>
-          <div className={clsx('flex w-full justify-between', { 'flex-col': platformInfo })}>
-            {platformInfo ? (
-              <DeviceInfo key={platform} platform={platform} platformInfo={platformInfo} />
-            ) : (
-              <h1 className='text-5xl font-semibold'>{t(platformMap[platform].displayNameI18nKey)}</h1>
-            )}
+          <div className={clsx('flex w-full justify-between', { 'flex-col': platformMap[platform].info })}>
+            <DeviceInfo platform={platform} />
 
             {isDemo ? undefined : (
               <PageStats suffix={<UploadButton platform={platform} />}>
@@ -45,7 +41,7 @@ export default function PlatformPage() {
                   components={{
                     1: <span className='font-semibold text-(--accent-9)' />,
                   }}
-                  i18nKey='stats.platformGames'
+                  i18nKey={favorite ? 'stats.platformFavoriteGames' : 'stats.platformGames'}
                   values={{
                     game: gameLabel,
                     gameCount: pagination.total,

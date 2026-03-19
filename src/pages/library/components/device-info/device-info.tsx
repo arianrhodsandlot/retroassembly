@@ -1,22 +1,24 @@
 import { useTranslation } from 'react-i18next'
-import type { PlatformInfo } from '#@/controllers/roms/get-platform-info.ts'
+import { platformMap } from '#@/constants/platform.ts'
 import { getPlatformBanner, getPlatformDevicePhoto } from '#@/utils/client/library.ts'
 import { useDate } from '../../hooks/use-date.ts'
 import { CompanyLogo } from '../../platform/components/company-logo.tsx'
 import { DeviceNotes } from './device-notes.tsx'
 
-export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: string; platformInfo?: PlatformInfo }>) {
+export function DeviceInfo({ platform }: Readonly<{ platform: string }>) {
   const { t } = useTranslation()
   const { formatDate, formatDateRelative, isValidDate } = useDate()
 
-  if (!platformInfo) {
-    return
+  const platformData = platformMap[platform]
+  if (!platformData?.info) {
+    return <h1 className='text-5xl font-semibold'>{t(platformData?.displayNameI18nKey || '')}</h1>
   }
 
+  const { info } = platformData
   const banner = getPlatformBanner(platform)
   const devicePhoto = getPlatformDevicePhoto(platform)
 
-  let { developer, manufacturer } = platformInfo
+  let { developer, manufacturer } = info
   if (platform === 'arcade') {
     developer = t('common.variousCompanies')
     manufacturer = t('common.variousCompanies')
@@ -40,7 +42,7 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
     <div className='flex flex-col lg:flex-row'>
       <div className='flex flex-1 flex-col gap-8'>
         <h1>
-          <img alt={platformInfo.name} className='h-16 w-auto lg:px-8' loading='lazy' src={banner} />
+          <img alt={t(platformData.displayNameI18nKey)} className='h-16 w-auto lg:px-8' loading='lazy' src={banner} />
         </h1>
 
         <div className='rounded bg-(--gray-a3) p-4 lg:px-8'>
@@ -51,10 +53,10 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
                 <span>{t('common.released')}</span>
               </div>
               <div className='mt-1 pl-6'>
-                {isValidDate(platformInfo.releaseDate) ? (
+                {isValidDate(info.releaseDate) ? (
                   <>
-                    {formatDate(platformInfo.releaseDate)}
-                    <span className='ml-1.5 text-xs opacity-50'>{formatDateRelative(platformInfo.releaseDate)}</span>
+                    {formatDate(info.releaseDate)}
+                    <span className='ml-1.5 text-xs opacity-50'>{formatDateRelative(info.releaseDate)}</span>
                   </>
                 ) : (
                   <span className='opacity-40'>{t('common.unknown')}</span>
@@ -98,12 +100,12 @@ export function DeviceInfo({ platform, platformInfo }: Readonly<{ platform: stri
             )}
           </div>
         </div>
-        {platformInfo.notes ? <DeviceNotes key={platform} notes={platformInfo.notes} /> : null}
+        {info.notesI18nKey ? <DeviceNotes key={platform} notes={t(info.notesI18nKey)} /> : null}
       </div>
 
       <div className='hidden w-lg shrink-0 pt-20 lg:block'>
         <img
-          alt={platformInfo.name}
+          alt={t(platformData.displayNameI18nKey)}
           className='motion-preset-oscillate motion-duration-2400 mx-auto aspect-video w-4/5 object-contain object-center drop-shadow-2xl [--motion-loop-translate-y:8px]'
           loading='lazy'
           src={devicePhoto}

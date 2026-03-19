@@ -351,6 +351,7 @@
   "sponsor.romLimitDescription": "라이브러리에는 최대 <1>{{maxRomCount}}</1>개의 ROM을 보유할 수 있습니다.",
   "sponsor.title": "RetroAssembly의 미래를 지원하세요",
   "stats.favoriteGames": "<1>{{gameCount}}</1> {{game}} 즐겨찾기",
+  "stats.platformFavoriteGames": "{{platform}}에서 <1>{{gameCount}}</1>개의 즐겨찾기 {{game}}이 있습니다",
   "stats.platformGames": "{{platform}}에서 <1>{{gameCount}}</1>개의 {{game}}이 있습니다",
   "stats.playedGames": "<1>{{gameCount}}</1>개의 {{game}}을 플레이했습니다",
   "stats.totalGames": "총 <3>{{platformCount}}</3>개의 {{platform}}에서 <1>{{gameCount}}</1>개의 {{game}}이 있습니다",

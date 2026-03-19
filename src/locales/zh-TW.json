@@ -351,6 +351,7 @@
   "sponsor.romLimitDescription": "您可以在庫中擁有最多<1>{{maxRomCount}}</1>個ROM。",
   "sponsor.title": "支持 RetroAssembly 的未來",
   "stats.favoriteGames": "<1>{{gameCount}}</1>個{{game}}已收藏",
+  "stats.platformFavoriteGames": "{{platform}} 共 <1>{{gameCount}}</1> 個收藏 {{game}}。",
   "stats.platformGames": "{{platform}} 共 <1>{{gameCount}}</1> {{game}}。",
   "stats.playedGames": "已遊玩 <1>{{gameCount}}</1> {{game}}",
   "stats.totalGames": "總計<1>{{gameCount}}</1>{{game}}，涵蓋<3>{{platformCount}}</3>個{{platform}}",

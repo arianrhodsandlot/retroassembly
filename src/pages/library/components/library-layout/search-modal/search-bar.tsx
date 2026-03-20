@@ -31,7 +31,8 @@ export function SearchBar() {
     { dedupingInterval: 5 * 60 * 1000, keepPreviousData: true, revalidateOnFocus: false, revalidateOnReconnect: false },
   )
 
-  const displayResults = query ? data?.roms : recentlyLaunchedRoms
+  const allResults = query ? data?.roms : recentlyLaunchedRoms
+  const displayResults = allResults?.slice(0, 10)
 
   const selectedUrl = selectedResult
     ? `/library/platform/${encodeURIComponent(selectedResult.platform)}/rom/${encodeURIComponent(selectedResult.fileName)}`
@@ -54,27 +55,39 @@ export function SearchBar() {
     await select()
   }
 
-  useEffect(() => {
-    setSelectedResult(displayResults?.[0])
-  }, [displayResults, setSelectedResult])
+  function move(direction: 'down' | 'up') {
+    if (displayResults?.length) {
+      const index = displayResults.indexOf(selectedResult)
+      const newIndex = ({ down: index + 1, up: index - 1 }[direction] + displayResults.length) % displayResults.length
+      setSelectedResult(displayResults[newIndex])
+    }
+  }
 
   const handleKeydown = useEffectEvent((event: KeyboardEvent) => {
     if (event.code === 'ArrowDown') {
       event.preventDefault()
-      if (displayResults?.length) {
-        const index = displayResults.indexOf(selectedResult)
-        const newIndex = (index + 1 + displayResults.length) % displayResults.length
-        setSelectedResult(displayResults[newIndex])
-      }
+      move('down')
     } else if (event.code === 'ArrowUp') {
       event.preventDefault()
-      if (displayResults?.length) {
-        const index = displayResults.indexOf(selectedResult)
-        const newIndex = (index - 1 + displayResults.length) % displayResults.length
-        setSelectedResult(displayResults[newIndex])
-      }
+      move('up')
     }
   })
+
+  const handlePress = useEffectEvent(async ({ button }) => {
+    if (`${button}` === inputMapping.gamepad.input_player1_down_btn) {
+      move('down')
+    }
+    if (`${button}` === inputMapping.gamepad.input_player1_up_btn) {
+      move('up')
+    }
+    if (`${button}` === inputMapping.confirmButton) {
+      await select()
+    }
+  })
+
+  useEffect(() => {
+    setSelectedResult(allResults?.[0])
+  }, [allResults, setSelectedResult])
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -82,27 +95,7 @@ export function SearchBar() {
     return () => abortController.abort()
   }, [])
 
-  const handleGamepadPress = useEffectEvent(async ({ button }: { button: number }) => {
-    if (`${button}` === inputMapping.gamepad.input_player1_down_btn && displayResults?.length) {
-      const index = displayResults.indexOf(selectedResult)
-      const newIndex = (index + 1 + displayResults.length) % displayResults.length
-      setSelectedResult(displayResults[newIndex])
-    }
-    if (`${button}` === inputMapping.gamepad.input_player1_up_btn && displayResults?.length) {
-      const index = displayResults.indexOf(selectedResult)
-      const newIndex = (index - 1 + displayResults.length) % displayResults.length
-      setSelectedResult(displayResults[newIndex])
-    }
-    if (`${button}` === inputMapping.confirmButton && selectedUrl) {
-      setShowSearchModal(false)
-      setSpatialNavigationPaused(false)
-      if (selectedUrl !== location.pathname) {
-        await navigate(selectedUrl)
-      }
-    }
-  })
-
-  useEffect(() => Gamepad.onPress(handleGamepadPress), [])
+  useEffect(() => Gamepad.onPress(handlePress), [])
 
   return (
     <div

@@ -33,7 +33,7 @@ export function GameAnimatePresence() {
           exit={{ ...initialStyle, backgroundColor: 'var(--accent-9)', opacity: 0.5 }}
           initial={{ ...initialStyle, backgroundColor: 'var(--accent-9)', opacity: 1 }}
           onAnimationComplete={handleAnimationComplete}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.2 }}
         />
       ) : null}
     </AnimatePresence>

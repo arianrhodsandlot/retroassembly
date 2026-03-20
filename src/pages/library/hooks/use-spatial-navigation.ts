@@ -1,5 +1,5 @@
 import { off, on } from 'delegated-events'
-import { useEffect } from 'react'
+import { useEffect, useEffectEvent } from 'react'
 import { useNavigation } from 'react-router'
 import { Gamepad } from '#@/utils/client/gamepad.ts'
 import { useEmulatorLaunched, usePristine, useShowGameOverlayContent, useSpatialNavigationPaused } from '../atoms.ts'
@@ -42,8 +42,10 @@ export function useSpatialNavigation() {
   useEffect(init, [])
 
   // keyboard navigation
-  useEffect(() => {
-    const abortController = new AbortController()
+  const handleKeydown = useEffectEvent(async (event: KeyboardEvent) => {
+    if (isSpatialNavigationPaused) {
+      return
+    }
     const keyboardDirectionMap = {
       [inputMapping.keyboard.input_player1_down]: 'down',
       [inputMapping.keyboard.input_player1_left]: 'left',
@@ -55,80 +57,66 @@ export function useSpatialNavigation() {
       right: 'right',
       up: 'up',
     } as const
-
-    async function handleKeydown(event: KeyboardEvent) {
-      if (isSpatialNavigationPaused) {
-        return
-      }
-      const keyName = getKeyNameFromCode(event.code)
-      const direction = keyboardDirectionMap[keyName]
-      if (direction) {
-        event.preventDefault()
-        setPristine(showFocusIndicators === 'never')
-        await move(direction)
-      } else if (keyName === inputMapping.confirmKey || keyName === 'enter' || keyName === 'space') {
-        event.preventDefault()
-        click(document.activeElement)
-      } else if (keyName === inputMapping.cancelKey || keyName === 'backspace') {
-        event.preventDefault()
-        cancel()
-      }
+    const keyName = getKeyNameFromCode(event.code)
+    const direction = keyboardDirectionMap[keyName]
+    if (direction) {
+      event.preventDefault()
+      setPristine(showFocusIndicators === 'never')
+      await move(direction)
+    } else if (keyName === inputMapping.confirmKey || keyName === 'enter' || keyName === 'space') {
+      event.preventDefault()
+      click(document.activeElement)
+    } else if (keyName === inputMapping.cancelKey || keyName === 'backspace') {
+      event.preventDefault()
+      cancel()
     }
+  })
+
+  useEffect(() => {
+    const abortController = new AbortController()
 
     document.addEventListener('keydown', handleKeydown, { signal: abortController.signal })
     return () => abortController.abort()
-  }, [
-    inputMapping.keyboard,
-    inputMapping.confirmKey,
-    inputMapping.cancelKey,
-    isSpatialNavigationPaused,
-    showFocusIndicators,
-    setPristine,
-  ])
+  }, [])
 
   // gamepad navigation
-  useEffect(() => {
+  const handleButtonDown = useEffectEvent(async ({ button }: { button: number }) => {
+    if (isSpatialNavigationPaused) {
+      return
+    }
     const gamepadDirectionMap = {
       [inputMapping.gamepad.input_player1_down_btn]: 'down',
       [inputMapping.gamepad.input_player1_left_btn]: 'left',
       [inputMapping.gamepad.input_player1_right_btn]: 'right',
       [inputMapping.gamepad.input_player1_up_btn]: 'up',
     } as const
+    const direction = gamepadDirectionMap[button]
+    if (direction) {
+      setPristine(showFocusIndicators === 'never')
+      await move(direction)
+    }
+  })
 
-    const offButtonDown = Gamepad.onButtonDown(async ({ button }) => {
-      if (isSpatialNavigationPaused) {
-        return
-      }
-      const direction = gamepadDirectionMap[button]
-      if (direction) {
-        setPristine(showFocusIndicators === 'never')
-        await move(gamepadDirectionMap[button])
-      }
-    })
+  const handleButtonPress = useEffectEvent(({ button }: { button: number }) => {
+    if (isSpatialNavigationPaused) {
+      return
+    }
+    if (`${button}` === inputMapping.confirmButton) {
+      click(document.activeElement)
+    } else if (`${button}` === inputMapping.cancelButton) {
+      cancel()
+    }
+  })
 
-    const offButtonPress = Gamepad.onPress(({ button }) => {
-      if (isSpatialNavigationPaused) {
-        return
-      }
-      if (`${button}` === inputMapping.confirmButton) {
-        click(document.activeElement)
-      } else if (`${button}` === inputMapping.cancelButton) {
-        cancel()
-      }
-    })
+  useEffect(() => {
+    const offButtonDown = Gamepad.onButtonDown(handleButtonDown)
+    const offButtonPress = Gamepad.onPress(handleButtonPress)
 
     return () => {
       offButtonDown()
       offButtonPress()
     }
-  }, [
-    inputMapping.gamepad,
-    inputMapping.confirmButton,
-    inputMapping.cancelButton,
-    isSpatialNavigationPaused,
-    showFocusIndicators,
-    setPristine,
-  ])
+  }, [])
 
   // focus when an element got hovered
   useEffect(() => {

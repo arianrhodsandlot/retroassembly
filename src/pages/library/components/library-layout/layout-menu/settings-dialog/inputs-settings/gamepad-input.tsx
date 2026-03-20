@@ -1,6 +1,6 @@
 import { Button, TextField } from '@radix-ui/themes'
 import { clsx } from 'clsx'
-import { type ReactNode, useEffect, useRef } from 'react'
+import { type ReactNode, useEffect, useEffectEvent, useRef } from 'react'
 import { useGamepadMapping } from '#@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useGamepads } from '#@/pages/library/hooks/use-gamepads.ts'
 import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
@@ -43,23 +43,21 @@ export function GamepadInput({ button }: Readonly<GamepadInputProps>) {
     }
   }
 
-  useEffect(
-    () =>
-      Gamepad.onPress(async (event) => {
-        if (textField.current !== document.activeElement || isLoading) {
-          return
-        }
-        const newMapping = { ...gamepadMapping, [button.name]: `${event.button}` }
-        const conflicts = Object.entries(gamepadMapping).filter(
-          ([key, code]) => code === `${event.button}` && key !== button.name,
-        )
-        for (const [conflict] of conflicts) {
-          newMapping[conflict] = null
-        }
-        await update({ input: { gamepadMappings: { [event.gamepad.id]: newMapping } } })
-      }),
-    [update, gamepadMapping, isLoading, button.name],
-  )
+  const handleGamepadPress = useEffectEvent(async (event: { button: number; gamepad: { id: string } }) => {
+    if (textField.current !== document.activeElement || isLoading) {
+      return
+    }
+    const newMapping = { ...gamepadMapping, [button.name]: `${event.button}` }
+    const conflicts = Object.entries(gamepadMapping).filter(
+      ([key, code]) => code === `${event.button}` && key !== button.name,
+    )
+    for (const [conflict] of conflicts) {
+      newMapping[conflict] = null
+    }
+    await update({ input: { gamepadMappings: { [event.gamepad.id]: newMapping } } })
+  })
+
+  useEffect(() => Gamepad.onPress(handleGamepadPress), [])
 
   return (
     <label className='flex items-center gap-2'>

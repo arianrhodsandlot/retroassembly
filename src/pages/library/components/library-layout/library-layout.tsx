@@ -34,7 +34,7 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
   const [isSponsorMessageVisible, setIsSponsorMessageVisible] = useState(false)
 
   useEffect(() => {
-    const controller = new AbortController()
+    const abortController = new AbortController()
     if (recentlyLaunchedRoms?.length > 5 && !localStorage.getItem('supress-sponsor-message')) {
       setIsSponsorMessageVisible(true)
     }
@@ -43,10 +43,10 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
       () => {
         setIsSponsorMessageVisible(false)
       },
-      { signal: controller.signal },
+      { signal: abortController.signal },
     )
     return () => {
-      controller.abort()
+      abortController.abort()
     }
   }, [recentlyLaunchedRoms])
 

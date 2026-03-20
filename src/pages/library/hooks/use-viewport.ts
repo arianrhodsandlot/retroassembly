@@ -2,11 +2,9 @@ import { useSyncExternalStore } from 'react'
 import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 
 function subscribe(callback: () => void) {
-  const controller = new AbortController()
-  globalThis.addEventListener('resize', callback, { signal: controller.signal })
-  return () => {
-    controller.abort()
-  }
+  const abortController = new AbortController()
+  globalThis.addEventListener('resize', callback, { signal: abortController.signal })
+  return () => abortController.abort()
 }
 
 function getSnapshot() {

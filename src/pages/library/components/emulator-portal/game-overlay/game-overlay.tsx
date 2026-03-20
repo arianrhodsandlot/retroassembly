@@ -1,5 +1,5 @@
 import { debounce } from 'es-toolkit'
-import { useEffect } from 'react'
+import { useEffect, useEffectEvent } from 'react'
 import { useGamepadMapping } from '#@/pages/library/hooks/use-gamepad-mapping.ts'
 import { useKeyboardMapping } from '#@/pages/library/hooks/use-keyboard-mapping.ts'
 import { getKeyNameFromCode } from '#@/pages/library/utils/keyboard.ts'
@@ -14,31 +14,31 @@ export function GameOverlay() {
   const gamepadMapping = useGamepadMapping()
   const { toggle } = useGameOverlay()
 
+  const handleKeydown = useEffectEvent(async (event: KeyboardEvent) => {
+    if (getKeyNameFromCode(event.code) === keyboardMapping.$pause) {
+      event.preventDefault()
+      await toggle()
+    }
+  })
+
   useEffect(() => {
-    async function handleKeydown(event: KeyboardEvent) {
-      if (getKeyNameFromCode(event.code) === keyboardMapping.$pause) {
-        event.preventDefault()
+    const abortController = new AbortController()
+    document.body.addEventListener('keydown', handleKeydown, { signal: abortController.signal })
+    return () => abortController.abort()
+  }, [])
+
+  const handleGamepadPress = useEffectEvent(
+    debounce(async (event: { gamepad: Gamepad; button: number }) => {
+      const { buttons } = event.gamepad
+      const expectedButtons = [gamepadMapping.input_player1_l1_btn, gamepadMapping.input_player1_r1_btn]
+      const areExpectedButtonPressed = expectedButtons.every((code) => buttons[code].pressed)
+      if (areExpectedButtonPressed) {
         await toggle()
       }
-    }
-    document.body.addEventListener('keydown', handleKeydown)
-    return () => document.body.removeEventListener('keydown', handleKeydown)
-  }, [toggle, keyboardMapping.$pause])
-
-  useEffect(
-    () =>
-      Gamepad.onPress(
-        debounce(async (event) => {
-          const { buttons } = event.gamepad
-          const expectedButtons = [gamepadMapping.input_player1_l1_btn, gamepadMapping.input_player1_r1_btn]
-          const areExpectedButtonPressed = expectedButtons.every((code) => buttons[code].pressed)
-          if (areExpectedButtonPressed) {
-            await toggle()
-          }
-        }, 100),
-      ),
-    [gamepadMapping, toggle],
+    }, 100),
   )
+
+  useEffect(() => Gamepad.onPress(handleGamepadPress), [])
 
   return (
     <div className='pointer-events-none fixed inset-0 z-10 overflow-hidden text-white *:pointer-events-auto *:absolute *:inset-0'>

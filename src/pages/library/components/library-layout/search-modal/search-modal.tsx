@@ -1,6 +1,6 @@
 import { delay } from 'es-toolkit'
 import { AnimatePresence, motion, type TargetAndTransition } from 'motion/react'
-import { useCallback, useEffect } from 'react'
+import { useEffect, useEffectEvent } from 'react'
 import { RadixThemePortal } from '#@/pages/components/radix-theme-portal.tsx'
 import { useEmulatorLaunched, useSpatialNavigationPaused } from '#@/pages/library/atoms.ts'
 import { useInputMapping } from '#@/pages/library/hooks/use-input-mapping.ts'
@@ -30,12 +30,12 @@ export function SearchModal() {
   const isApple = useIsApple()
   const [launched] = useEmulatorLaunched()
 
-  const close = useCallback(() => {
+  const handleClose = useEffectEvent(() => {
     setSpatialNavigationPaused(false)
     setShowSearchModal(false)
-  }, [setSpatialNavigationPaused, setShowSearchModal])
+  })
 
-  const toggle = useCallback(() => {
+  const handleToggle = useEffectEvent(() => {
     if (launched) {
       return
     }
@@ -45,40 +45,40 @@ export function SearchModal() {
     }
     setSpatialNavigationPaused((paused) => !paused)
     setShowSearchModal(!showSearchModal)
-  }, [launched, showSearchModal, setSelectedResult, setSpatialNavigationPaused, setShowSearchModal])
+  })
+
+  const handleKeydown = useEffectEvent((event: KeyboardEvent) => {
+    if (showSearchModal && event.key === 'Escape') {
+      event.preventDefault()
+      handleClose()
+    }
+    const modifierKey = isApple ? event.metaKey : event.ctrlKey
+    if (modifierKey && event.key.toLowerCase() === 'k') {
+      event.preventDefault()
+      handleToggle()
+    }
+  })
+
+  const handleGamepadPress = useEffectEvent(({ button }: { button: number }) => {
+    if (`${button}` === gamepad.input_player1_select_btn) {
+      handleToggle()
+    } else if (`${button}` === cancelButton) {
+      handleClose()
+    }
+  })
 
   useEffect(() => {
     const abortController = new AbortController()
 
-    document.body.addEventListener(
-      'keydown',
-      (event) => {
-        if (showSearchModal && event.key === 'Escape') {
-          event.preventDefault()
-          close()
-        }
-        const modifierKey = isApple ? event.metaKey : event.ctrlKey
-        if (modifierKey && event.key.toLowerCase() === 'k') {
-          event.preventDefault()
-          toggle()
-        }
-      },
-      { signal: abortController.signal },
-    )
+    document.body.addEventListener('keydown', handleKeydown, { signal: abortController.signal })
 
-    const offPress = Gamepad.onPress(({ button }) => {
-      if (`${button}` === gamepad.input_player1_select_btn) {
-        toggle()
-      } else if (`${button}` === cancelButton) {
-        close()
-      }
-    })
+    const offPress = Gamepad.onPress(handleGamepadPress)
 
     return () => {
       abortController.abort()
       offPress()
     }
-  }, [isApple, showSearchModal, close, toggle, gamepad.input_player1_select_btn, cancelButton])
+  }, [])
 
   return (
     <RadixThemePortal>
@@ -90,7 +90,7 @@ export function SearchModal() {
             className='absolute inset-0 z-1 cursor-default! bg-(--color-overlay)'
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
-            onClick={close}
+            onClick={handleClose}
           />
         ) : null}
       </AnimatePresence>

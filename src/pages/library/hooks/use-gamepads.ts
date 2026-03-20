@@ -1,12 +1,10 @@
 import { useSyncExternalStore } from 'react'
 
 function subscribe(callback) {
-  globalThis.addEventListener('gamepadconnected', callback)
-  globalThis.addEventListener('gamepaddisconnected', callback)
-  return () => {
-    globalThis.removeEventListener('gamepadconnected', callback)
-    globalThis.removeEventListener('gamepaddisconnected', callback)
-  }
+  const abortController = new AbortController()
+  globalThis.addEventListener('gamepadconnected', callback, { signal: abortController.signal })
+  globalThis.addEventListener('gamepaddisconnected', callback, { signal: abortController.signal })
+  return () => abortController.abort()
 }
 
 const identities = ['id', 'index', 'connected']

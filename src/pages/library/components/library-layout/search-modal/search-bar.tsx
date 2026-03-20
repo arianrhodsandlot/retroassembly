@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import { useCallback, useEffect, type SubmitEvent } from 'react'
+import { useCallback, useEffect, useEffectEvent, type SubmitEvent } from 'react'
 import { useLoaderData, useLocation, useNavigate } from 'react-router'
 import useSWR from 'swr'
 import { client, parseResponse } from '#@/api/client.ts'
@@ -54,58 +54,55 @@ export function SearchBar() {
     await select()
   }
 
-  const move = useCallback(
-    function move(direction: 'down' | 'up') {
-      if (displayResults?.length) {
-        const index = displayResults.indexOf(selectedResult)
-        const newIndex = ({ down: index + 1, up: index - 1 }[direction] + displayResults.length) % displayResults.length
-        setSelectedResult(displayResults[newIndex])
-      }
-    },
-    [displayResults, selectedResult, setSelectedResult],
-  )
-
   useEffect(() => {
     setSelectedResult(displayResults?.[0])
   }, [displayResults, setSelectedResult])
 
+  const handleKeydown = useEffectEvent((event: KeyboardEvent) => {
+    if (event.code === 'ArrowDown') {
+      event.preventDefault()
+      if (displayResults?.length) {
+        const index = displayResults.indexOf(selectedResult)
+        const newIndex = (index + 1 + displayResults.length) % displayResults.length
+        setSelectedResult(displayResults[newIndex])
+      }
+    } else if (event.code === 'ArrowUp') {
+      event.preventDefault()
+      if (displayResults?.length) {
+        const index = displayResults.indexOf(selectedResult)
+        const newIndex = (index - 1 + displayResults.length) % displayResults.length
+        setSelectedResult(displayResults[newIndex])
+      }
+    }
+  })
+
   useEffect(() => {
     const abortController = new AbortController()
+    document.body.addEventListener('keydown', handleKeydown, { signal: abortController.signal })
+    return () => abortController.abort()
+  }, [])
 
-    document.body.addEventListener(
-      'keydown',
-      (event) => {
-        if (event.code === 'ArrowDown') {
-          event.preventDefault()
-          move('down')
-        } else if (event.code === 'ArrowUp') {
-          event.preventDefault()
-          move('up')
-        }
-      },
-      { signal: abortController.signal },
-    )
-
-    return () => {
-      abortController.abort()
+  const handleGamepadPress = useEffectEvent(async ({ button }: { button: number }) => {
+    if (`${button}` === inputMapping.gamepad.input_player1_down_btn && displayResults?.length) {
+      const index = displayResults.indexOf(selectedResult)
+      const newIndex = (index + 1 + displayResults.length) % displayResults.length
+      setSelectedResult(displayResults[newIndex])
     }
-  }, [move])
+    if (`${button}` === inputMapping.gamepad.input_player1_up_btn && displayResults?.length) {
+      const index = displayResults.indexOf(selectedResult)
+      const newIndex = (index - 1 + displayResults.length) % displayResults.length
+      setSelectedResult(displayResults[newIndex])
+    }
+    if (`${button}` === inputMapping.confirmButton && selectedUrl) {
+      setShowSearchModal(false)
+      setSpatialNavigationPaused(false)
+      if (selectedUrl !== location.pathname) {
+        await navigate(selectedUrl)
+      }
+    }
+  })
 
-  useEffect(
-    () =>
-      Gamepad.onPress(async ({ button }) => {
-        if (`${button}` === inputMapping.gamepad.input_player1_down_btn) {
-          move('down')
-        }
-        if (`${button}` === inputMapping.gamepad.input_player1_up_btn) {
-          move('up')
-        }
-        if (`${button}` === inputMapping.confirmButton) {
-          await select()
-        }
-      }),
-    [move, inputMapping, select],
-  )
+  useEffect(() => Gamepad.onPress(handleGamepadPress), [])
 
   return (
     <div

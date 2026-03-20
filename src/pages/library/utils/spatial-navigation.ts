@@ -65,6 +65,7 @@ export function move(direction?: Direction) {
   }
   const currentActiveElement = document.activeElement
   return new Promise<void>((resolve) => {
+    const abortController = new AbortController()
     async function handleWillFocus(event: Event) {
       moving = true
       focus(currentActiveElement)
@@ -79,10 +80,10 @@ export function move(direction?: Direction) {
       }
       focus(nextActiveElement)
       moving = false
-      document.body.removeEventListener('sn:willfocus', handleWillFocus, true)
+      abortController.abort()
       resolve()
     }
-    document.body.addEventListener('sn:willfocus', handleWillFocus, true)
+    document.body.addEventListener('sn:willfocus', handleWillFocus, { capture: true, signal: abortController.signal })
     SpatialNavigation.move(direction)
   })
 }

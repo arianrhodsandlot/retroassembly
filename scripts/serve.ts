@@ -1,4 +1,5 @@
 import { serve } from '@hono/node-server'
+import app from '#@/server/node.ts'
 import { exec, getTargetRuntime, logServerInfo } from './utils.ts'
 
 const envPort = process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT
@@ -8,10 +9,7 @@ async function serveWorkerd() {
   await exec`wrangler dev --port=${port}`
 }
 
-async function serveNode() {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore we can not guarantee that this file exists
-  const { default: app } = await import('../dist/server/node.js')
+function serveNode() {
   const hostname = '0.0.0.0'
   serve({ ...app, hostname, port }, (info) => {
     logServerInfo(hostname, info.port)
@@ -19,7 +17,11 @@ async function serveNode() {
 }
 
 async function main() {
-  await (getTargetRuntime() === 'workerd' ? serveWorkerd() : serveNode())
+  if (getTargetRuntime() === 'workerd') {
+    await serveWorkerd()
+  } else {
+    serveNode()
+  }
 }
 
 await main()

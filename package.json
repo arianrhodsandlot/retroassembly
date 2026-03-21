@@ -6,17 +6,18 @@
     "#@/*": "./src/*"
   },
   "scripts": {
-    "build": "react-router build",
+    "build": "vp build",
     "build:node": "node --run=build",
     "build:workerd": "node --run=build",
     "check-lockfile": "node scripts/check-lockfile.ts",
-    "dev": "react-router dev",
+    "dev": "vp dev",
     "dev:node": "node --run=dev",
     "dev:test": "node --run=test -- --headed --ui",
     "dev:workerd": "node --run=dev",
-    "lint": "oxlint --type-aware",
+    "lint": "vp check",
+    "lint:fix": "vp check --fix",
     "prepare": "simple-git-hooks || exit 0",
-    "serve": "node dist/server/serve.js",
+    "serve": "node dist/server",
     "serve:node": "node --run=serve",
     "serve:workerd": "wrangler dev --port=8000",
     "setup": "node scripts/setup.ts",
@@ -25,8 +26,7 @@
     "test": "playwright test -c tests/e2e --tsconfig=tests/e2e/tsconfig.playwright.json"
   },
   "dependencies": {
-    "better-sqlite3": "12.8.0",
-    "hono": "4.12.8"
+    "better-sqlite3": "12.8.0"
   },
   "devDependencies": {
     "@arianrhodsandlot/vite-plus-config": "1.0.2",
@@ -77,8 +77,9 @@
     "fuse.js": "7.1.0",
     "gamepad.js": "3.0.1",
     "goodcodes-parser": "2.5.0",
+    "hono": "4.12.8",
     "hono-react-router-adapter": "0.6.5",
-    "i18next": "25.9.0",
+    "i18next": "25.10.0",
     "is-docker": "4.0.0",
     "isbot": "5.1.36",
     "jiti": "2.6.1",
@@ -111,8 +112,6 @@
     "tailwindcss-motion": "1.1.1",
     "tailwindcss-safe-area": "1.3.0",
     "tempy": "3.2.0",
-    "tsdown": "0.21.4",
-    "type-fest": "5.5.0",
     "vite-plugin-devtools-json": "1.0.0",
     "vite-plus": "0.1.13",
     "wrangler": "4.76.0",

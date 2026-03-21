@@ -3,15 +3,14 @@ import { createConfig } from '@arianrhodsandlot/vite-plus-config'
 import { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
-import { omit } from 'es-toolkit'
 import { defaults, noop } from 'es-toolkit/compat'
 import { $, execaNode } from 'execa'
 import fs from 'fs-extra'
 import serverAdapter from 'hono-react-router-adapter/vite'
 import { DateTime } from 'luxon'
 import devtoolsJson from 'vite-plugin-devtools-json'
-import { defineConfig, type Plugin, type UserConfig } from 'vite-plus'
-import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './scripts/utils.ts'
+import { defineConfig, type Plugin } from 'vite-plus'
+import { exec, getTargetRuntime, logServerInfo, prepareWranglerConfig } from './scripts/utils.ts'
 import { getDirectories } from './src/constants/env.ts'
 
 defaults(process.env, {
@@ -65,11 +64,11 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
   const envPort = process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT
   const port = envPort ? Number.parseInt(envPort, 10) || 8000 : 8000
   const plugins = [tailwindcss({ optimize: false }), reactRouter(), [devtoolsJson()], serverInfo()]
-  const config: UserConfig = {
+  const config = defineConfig({
     build: { chunkSizeWarningLimit: 1024 },
     clearScreen: false,
     envPrefix: 'RETROASSEMBLY_BUILD_TIME_VITE_',
-    plugins: plugins as UserConfig['plugins'],
+    plugins,
     server: {
       allowedHosts: true,
       hmr: { overlay: true },
@@ -77,7 +76,7 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
       open: true,
       port,
     },
-  }
+  })
 
   if (getTargetRuntime() === 'workerd') {
     if (env.command === 'serve') {
@@ -103,22 +102,28 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
       await fs.ensureDir(storageDirectory)
       await execaNode`./src/utils/server/migration/initalization.ts`
     }
-    const serverAdapterPlugin = omit(
-      serverAdapter({
-        entry: path.resolve('src', 'server', 'app.ts'),
-        exclude: [
-          ...defaultOptions.exclude,
-          '/.well-known/appspecific/com.chrome.devtools.json',
-          '/src/**',
-          /\?(inline|url|no-inline|raw|import(?:&(inline|url|no-inline|raw))*)$/,
-        ],
-        getLoadContext({ request }: { request: Request }) {
-          return { extra: 'stuff', url: request.url }
-        },
-      }),
-      ['handleHotUpdate'],
-    )
-    plugins.push([serverAdapterPlugin])
+    const serverAdapterPlugin = serverAdapter({
+      entry: path.resolve('src', 'server', 'app.ts'),
+      exclude: [
+        ...defaultOptions.exclude,
+        '/.well-known/appspecific/com.chrome.devtools.json',
+        '/src/**',
+        /\?(inline|url|no-inline|raw|import(?:&(inline|url|no-inline|raw))*)$/,
+      ],
+      getLoadContext({ request }: { request: Request }) {
+        return { extra: 'stuff', url: request.url }
+      },
+    })
+    const vpPackPlugin: Plugin = {
+      apply: 'build',
+      async closeBundle() {
+        if (this.environment.name === 'ssr') {
+          await exec`vp pack`
+        }
+      },
+      name: 'vp-pack-plugin',
+    }
+    plugins.push([serverAdapterPlugin], vpPackPlugin)
     config.resolve = {
       alias: {
         '@entry.server.tsx': path.resolve(
@@ -138,6 +143,13 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
 })
 
 const viteConfigForVP = createConfig({
+  pack: {
+    clean: false,
+    deps: { onlyBundle: false },
+    entry: { 'server/index': 'scripts/serve.ts' },
+    fixedExtension: false,
+    minify: true,
+  },
   staged: {
     'pnpm-lock.yaml': 'node --run=check-lockfile',
   },

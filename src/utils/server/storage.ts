@@ -16,7 +16,7 @@ export function createStorage() {
   return {
     async head(id: string) {
       const filePath = path.join(storageDirectory, id)
-      return fs.pathExists(filePath)
+      return await fs.pathExists(filePath)
     },
 
     async put(id: string, file: Blob) {

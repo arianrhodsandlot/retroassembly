@@ -1,5 +1,5 @@
+import { access, mkdir, readFile, writeFile, rm } from 'node:fs/promises'
 import path from 'node:path'
-import fs from 'fs-extra'
 import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
 import { getDirectories } from '../../constants/env.ts'
@@ -16,7 +16,12 @@ export function createStorage() {
   return {
     async head(id: string) {
       const filePath = path.join(storageDirectory, id)
-      return await fs.pathExists(filePath)
+      try {
+        await access(filePath)
+        return true
+      } catch {
+        return false
+      }
     },
 
     async put(id: string, file: Blob) {
@@ -24,13 +29,13 @@ export function createStorage() {
       const fileTargetDirectory = path.join(storageDirectory, dir)
       const arrayBuffer = await file.arrayBuffer()
       const buffer = Buffer.from(arrayBuffer)
-      await fs.ensureDir(fileTargetDirectory)
-      await fs.writeFile(path.join(fileTargetDirectory, base), buffer)
+      await mkdir(fileTargetDirectory, { recursive: true })
+      await writeFile(path.join(fileTargetDirectory, base), buffer)
     },
 
     async get(id: string) {
       const filePath = path.join(storageDirectory, id)
-      const buffer = await fs.readFile(filePath)
+      const buffer = await readFile(filePath)
       // Create a mock R2ObjectBody-like object for compatibility with createFileResponse
       const mockR2Object = {
         body: buffer,
@@ -42,7 +47,7 @@ export function createStorage() {
 
     async delete(id: string) {
       const filePath = path.join(storageDirectory, id)
-      await fs.remove(filePath)
+      await rm(filePath, { force: true, recursive: true })
     },
   }
 }

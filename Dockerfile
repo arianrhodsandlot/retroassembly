@@ -1,8 +1,8 @@
-ARG BASE_IMAGE=node:25.8.1-alpine
+ARG BUILD_IMAGE=node:25.8.1-slim
+ARG PROD_IMAGE=node:25.8.1-alpine
 
-FROM ${BASE_IMAGE} AS base
+FROM ${BUILD_IMAGE} AS base
 WORKDIR /app
-# enable and download pnpm
 RUN npm i -g pnpm
 
 FROM base AS deps
@@ -19,7 +19,6 @@ COPY . .
 RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
     pnpm i
 RUN node --run=build
-RUN node --run=build
 
 FROM base AS deps-production
 COPY package.json pnpm-lock.yaml ./
@@ -27,7 +26,7 @@ COPY patches patches
 RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
     pnpm i --prod
 
-FROM ${BASE_IMAGE} AS production
+FROM ${PROD_IMAGE} AS production
 WORKDIR /app
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/src/databases ./src/databases

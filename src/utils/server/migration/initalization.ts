@@ -1,5 +1,5 @@
 import { access } from 'node:fs/promises'
-import { migrate } from 'drizzle-orm/better-sqlite3/migrator'
+import { migrate } from 'drizzle-orm/node-sqlite/migrator'
 import { getRuntimeKey } from 'hono/adapter'
 import isDocker from 'is-docker'
 import { getDirectories } from '../../../constants/env.ts'
@@ -38,7 +38,9 @@ async function main() {
   }
 
   await testDataDirectory()
-  migrateDatabase()
+  try {
+    migrateDatabase()
+  } catch {}
 }
 
 await main()

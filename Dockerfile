@@ -20,7 +20,9 @@ RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
     pnpm i
 RUN node --run=build
 
-FROM base AS deps-production
+FROM ${PROD_IMAGE} AS deps-production
+RUN npm i -g pnpm
+WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 COPY patches patches
 RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \

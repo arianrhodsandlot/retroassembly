@@ -52,12 +52,12 @@ export function CoresSettings() {
             <Select.Trigger disabled={isLoading} variant='ghost'>
               <div className='flex items-center gap-2'>
                 <img
-                  alt={platformMap[selectedPlatform].displayNameI18nKey}
+                  alt={t(platformMap[selectedPlatform].displayNameI18nKey)}
                   className='size-5 object-contain object-center'
                   loading='lazy'
                   src={getPlatformIcon(platformMap[selectedPlatform].name)}
                 />
-                {platformMap[selectedPlatform].displayNameI18nKey}
+                {t(platformMap[selectedPlatform].displayNameI18nKey)}
               </div>
             </Select.Trigger>
             <Select.Content>

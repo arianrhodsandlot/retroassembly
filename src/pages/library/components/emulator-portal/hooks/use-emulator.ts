@@ -27,13 +27,10 @@ type RetroarchConfig = Partial<NostalgistOption['retroarchConfig']>
 
 const defaultRetroarchConfig: RetroarchConfig = {
   fastforward_ratio: 10,
-  input_enable_hotkey_btn: 8, // select
-  input_hold_fast_forward_btn: 7, // R2
   input_player1_analog_dpad_mode: 1,
   input_player2_analog_dpad_mode: 1,
   input_player3_analog_dpad_mode: 1,
   input_player4_analog_dpad_mode: 1,
-  input_rewind_btn: 6, // L2
   rewind_enable: true,
   rewind_granularity: 4,
   rgui_menu_color_theme: 1,

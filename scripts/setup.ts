@@ -1,4 +1,4 @@
-import fs from 'fs-extra'
+import { mkdir } from 'node:fs/promises'
 import { getDirectories } from '../src/constants/env.ts'
 import { exec, prepareWranglerConfig } from './utils.ts'
 
@@ -7,7 +7,7 @@ async function main() {
   await Promise.all([
     exec`simple-git-hooks`,
     exec`react-router typegen`,
-    fs.ensureDir(dataDirectory),
+    mkdir(dataDirectory, { recursive: true }),
     prepareWranglerConfig({ force: true }),
   ])
   await Promise.all([exec`drizzle-kit generate`, exec`wrangler types src/types/worker-configuration.d.ts`])

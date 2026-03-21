@@ -1,3 +1,4 @@
+import { mkdir } from 'node:fs/promises'
 import path from 'node:path'
 import { createConfig } from '@arianrhodsandlot/vite-plus-config'
 import { defaultOptions } from '@hono/vite-dev-server'
@@ -5,7 +6,6 @@ import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
 import { defaults, noop } from 'es-toolkit/compat'
 import { $, execaNode } from 'execa'
-import fs from 'fs-extra'
 import serverAdapter from 'hono-react-router-adapter/vite'
 import { DateTime } from 'luxon'
 import devtoolsJson from 'vite-plugin-devtools-json'
@@ -99,7 +99,7 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
   } else {
     if (env.command === 'serve') {
       const { storageDirectory } = getDirectories()
-      await fs.ensureDir(storageDirectory)
+      await mkdir(storageDirectory, { recursive: true })
       await execaNode`./src/utils/server/migration/initalization.ts`
     }
     const serverAdapterPlugin = serverAdapter({

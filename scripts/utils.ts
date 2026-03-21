@@ -1,8 +1,8 @@
+import { readFile, writeFile } from 'node:fs/promises'
 import { styleText } from 'node:util'
 import ciInfo from 'ci-info'
 import { template } from 'es-toolkit/compat'
 import { $ } from 'execa'
-import fs from 'fs-extra'
 import isDocker from 'is-docker'
 import { links } from '../src/constants/links.ts'
 import { metadata } from '../src/constants/metadata.ts'
@@ -20,10 +20,10 @@ export function getTargetRuntime() {
 
 export async function prepareWranglerConfig({ force = false } = {}) {
   if (getTargetRuntime() === 'workerd' || force) {
-    const wranglerTemplate = await fs.readFile('wrangler.template.json', 'utf8')
+    const wranglerTemplate = await readFile('wrangler.template.json', 'utf8')
     const compiled = template(wranglerTemplate)
     const wranglerConfig = compiled(env)
-    await fs.writeFile('wrangler.json', wranglerConfig, 'utf8')
+    await writeFile('wrangler.json', wranglerConfig, 'utf8')
   }
 }
 

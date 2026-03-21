@@ -1,6 +1,6 @@
+import { access, mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { test as base } from '@playwright/test'
-import fs from 'fs-extra'
 import { getCDNUrl } from '../../../src/utils/isomorphic/cdn.ts'
 
 interface Rom {
@@ -21,14 +21,15 @@ const roms = titles.map((title) => {
 
 export const test = base.extend<{ roms: Rom[] }>({
   async roms({ page }, use) {
-    await fs.ensureDir(romsDirectory)
+    await mkdir(romsDirectory, { recursive: true })
     await Promise.all(
       roms.map(async (rom) => {
-        const exists = await fs.pathExists(rom.path)
-        if (!exists) {
+        try {
+          await access(rom.path)
+        } catch {
           const response = await fetch(rom.url)
           const arrayBuffer = await response.arrayBuffer()
-          await fs.writeFile(rom.path, Buffer.from(arrayBuffer))
+          await writeFile(rom.path, Buffer.from(arrayBuffer))
         }
       }),
     )

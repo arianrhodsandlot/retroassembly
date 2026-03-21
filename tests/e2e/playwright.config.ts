@@ -1,7 +1,7 @@
+import { rmSync } from 'node:fs'
 import { defineConfig } from '@playwright/test'
 import { isCI } from 'ci-info'
 import { attempt, once } from 'es-toolkit'
-import fs from 'fs-extra'
 import { temporaryDirectory } from 'tempy'
 
 const envPort = process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT
@@ -9,7 +9,7 @@ const port = envPort ? Number.parseInt(envPort, 10) || 8000 : 8000
 const tmp = temporaryDirectory({ prefix: 'retroassembly-test-' })
 
 const cleanup = once(() => {
-  attempt(() => fs.removeSync(tmp))
+  attempt(() => rmSync(tmp, { force: true, recursive: true }))
 })
 
 process.env.RETROASSEMBLY_BUILD_TIME_VITE_DISABLE_FS_ACCESS_API = 'true'

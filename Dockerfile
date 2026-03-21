@@ -17,14 +17,14 @@ ENV RETROASSEMBLY_BUILD_TIME_VITE_VERSION=$RETROASSEMBLY_BUILD_TIME_VITE_VERSION
 ENV SKIP_INSTALL_SIMPLE_GIT_HOOKS=true
 COPY . .
 RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
-    pnpm i
+    pnpm i --ignore-scripts
 RUN node --run=build
 
 FROM base AS deps-production
 COPY package.json pnpm-lock.yaml ./
 COPY patches patches
 RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
-    pnpm i --prod
+    pnpm i --prod --ignore-scripts
 
 FROM ${BASE_IMAGE} AS production
 WORKDIR /app

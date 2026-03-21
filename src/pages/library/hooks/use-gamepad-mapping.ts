@@ -3,9 +3,9 @@ import { useGamepads } from './use-gamepads.ts'
 import { usePreference } from './use-preference.ts'
 
 const defaultGamepadMapping = {
-  $fast_forward: 'Select + R1', // R2
+  $fast_forward: 'Select + R2', // R2
   $pause: 'L1 + R1',
-  $rewind: 'Select + L1', // L2
+  $rewind: 'Select + L2', // L2
   input_enable_hotkey_btn: '8', // select
   input_player1_a_btn: '1',
   input_player1_b_btn: '0',

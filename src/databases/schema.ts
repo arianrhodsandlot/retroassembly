@@ -34,7 +34,7 @@ export const userTable = sqliteTable(
     username: text().notNull(),
     ...baseSchema,
   },
-  (table) => [index('idx_users_username').on(table.username), index('idx_users_status').on(table.status)],
+  (table) => [index('idx_users_username').on(table.username)],
 )
 
 export const sessionTable = sqliteTable(
@@ -50,12 +50,7 @@ export const sessionTable = sqliteTable(
     userId: text().notNull(),
     ...baseSchema,
   },
-  (table) => [
-    index('idx_sessions_token').on(table.token),
-    index('idx_sessions_user').on(table.userId, table.status),
-    index('idx_sessions_expires').on(table.expiresAt),
-    index('idx_sessions_activity').on(table.lastActivityAt),
-  ],
+  (table) => [index('idx_sessions_user').on(table.userId, table.status)],
 )
 export const romTable = sqliteTable(
   'roms',
@@ -87,6 +82,10 @@ export const romTable = sqliteTable(
     index('idx_roms_user_status_created').on(table.userId, table.status, table.createdAt),
     index('idx_roms_user_status_released').on(table.userId, table.status, table.gameReleaseDate),
     index('idx_roms_user_status_name').on(table.userId, table.status, table.fileName),
+    // For delete-roms.ts: find still-referenced files during cleanup
+    index('idx_roms_file_status').on(table.fileId, table.status),
+    // For get-rom.ts: lookup ROM by filename when ID not provided
+    index('idx_roms_user_platform_filename').on(table.userId, table.platform, table.fileName),
   ],
 )
 
@@ -103,6 +102,8 @@ export const stateTable = sqliteTable(
   (table) => [
     index('idx_states_rom_status').on(table.romId, table.status, table.createdAt),
     index('idx_states_user_status').on(table.userId, table.status),
+    // For get-states.ts: filter states by romId + type (manual/auto)
+    index('idx_states_user_rom_status_type').on(table.userId, table.romId, table.status, table.type),
   ],
 )
 
@@ -142,7 +143,8 @@ export const favoriteTable = sqliteTable(
   },
   (table) => [
     uniqueIndex('idx_favorites_user_rom').on(table.userId, table.romId),
-    index('idx_favorites_user_status').on(table.userId, table.status),
     index('idx_favorites_user_status_created').on(table.userId, table.status, table.createdAt),
+    // For remove-favorite.ts: soft-delete favorite with status check
+    index('idx_favorites_user_rom_status').on(table.userId, table.romId, table.status),
   ],
 )

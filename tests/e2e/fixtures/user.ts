@@ -1,5 +1,4 @@
 import { test as base } from '@playwright/test'
-import { attemptAsync } from 'es-toolkit'
 import { nanoid } from 'nanoid'
 
 interface User {
@@ -19,7 +18,7 @@ export const test = base.extend<{ user: User }>({
       formData.append('username', user.username)
       formData.append('password', user.password)
       const apiUrl = new URL('api/v1/auth/register', baseURL)
-      await attemptAsync(() => fetch(apiUrl, { body: formData, method: 'POST' }))
+      await fetch(apiUrl, { body: formData, method: 'POST' })
 
       await use(user)
     },

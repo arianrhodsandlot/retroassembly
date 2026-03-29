@@ -38,11 +38,7 @@ export function UploadSelectButton({ variant = 'soft' }: Readonly<{ variant?: Bu
                 handleClick(platform)
               }}
             >
-              <img
-                alt={t(platformMap[platform].displayNameI18nKey)}
-                className='size-6'
-                src={getPlatformIcon(platform)}
-              />
+              <img alt='' className='size-6' src={getPlatformIcon(platform)} />
               {t(platformMap[platform].displayNameI18nKey)}
             </DropdownMenu.Item>
           ))}

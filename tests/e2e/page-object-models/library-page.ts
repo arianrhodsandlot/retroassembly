@@ -37,17 +37,27 @@ export class LibraryPage {
     await this.page.getByLabel('menu').filter({ visible: true }).click()
   }
 
-  async uploadROMs(roms: string[]) {
+  async uploadROMs(roms: { path: string; platform: string; displayName: string }[]) {
     const { page } = this
-    await this.goto()
-    await page.locator('button').getByText('add').first().click()
-    await page.getByRole('menuitem').getByText('NES', { exact: true }).click()
-    await page.getByRole('dialog').waitFor({ state: 'visible' })
-    const fileChooserPromise = page.waitForEvent('filechooser')
-    await page.getByText('select files').click()
-    const fileChooser = await fileChooserPromise
-    await fileChooser.setFiles(roms)
-    await page.getByRole('dialog').waitFor({ state: 'detached' })
+    const romsByPlatform: Record<string, { paths: string[]; platform: string }> = {}
+    for (const rom of roms) {
+      const key = rom.displayName
+      romsByPlatform[key] = romsByPlatform[key] || { paths: [], platform: rom.platform }
+      romsByPlatform[key].paths.push(rom.path)
+    }
+
+    for (const [displayName, { paths }] of Object.entries(romsByPlatform)) {
+      await this.goto()
+      await page.locator('button').getByText('add').first().click()
+      await page.waitForTimeout(100)
+      await page.getByRole('menuitem', { exact: true, name: displayName }).click()
+      await page.getByRole('dialog').waitFor({ state: 'visible' })
+      const fileChooserPromise = page.waitForEvent('filechooser')
+      await page.getByText('select files').click()
+      const fileChooser = await fileChooserPromise
+      await fileChooser.setFiles(paths)
+      await page.getByRole('dialog').waitFor({ state: 'detached' })
+    }
   }
 
   async waitForLoaded() {

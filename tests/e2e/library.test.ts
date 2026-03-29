@@ -7,23 +7,27 @@ const test = mergeTests(pagesTest, romsTest, userTest)
 
 test('upload roms', async ({ page, pages: { library, login }, roms, user }) => {
   await login.login(user)
-  await library.uploadROMs(roms.map(({ path }) => path))
+  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
 
   await Promise.all(roms.map(({ title }) => expect(page.getByText(title)).toHaveCount(1)))
 })
 
 test('delete roms', async ({ page, pages: { library, login }, roms, user }) => {
   await login.login(user)
-  await library.uploadROMs(roms.map(({ path }) => path))
+  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
+
+  // Get the first game title before deleting
+  const firstGame = page.locator('.game-entry').first()
+  const firstGameTitle = (await firstGame.textContent()) ?? ''
+  const firstGameName = firstGameTitle.trim().split('\n')[0].trim()
 
   await page.getByRole('main').getByLabel('menu').first().click()
   await page.getByText('delete the rom').click()
   await page.getByRole('button').getByText('delete').click()
 
-  await Promise.all([
-    expect(page.getByText(roms[0].title)).toHaveCount(0),
-    expect(page.getByText(roms[1].title)).toHaveCount(1),
-  ])
+  // Check the deleted game is gone, and at least one other game remains
+  await expect(page.getByText(firstGameName)).toHaveCount(0)
+  await expect(page.locator('.game-entry')).toHaveCount(roms.length - 1)
 })
 
 test('delete multiple roms', async ({ page, pages: { library, login }, roms, user }) => {
@@ -32,7 +36,7 @@ test('delete multiple roms', async ({ page, pages: { library, login }, roms, use
   const checkboxes = main.getByRole('checkbox')
 
   await login.login(user)
-  await library.uploadROMs(roms.map(({ path }) => path))
+  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
 
   await main.getByLabel('menu').first().click()
   await page.getByRole('menuitem').getByText('select').click()
@@ -56,7 +60,7 @@ test('update metadata', async ({ page, pages: { library, login }, roms, user }) 
   ]
 
   await login.login(user)
-  await library.uploadROMs(roms.map(({ path }) => path))
+  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
   await page.locator('.game-entry').first().click()
   await page.getByLabel('edit metadata').first().click()
   for (const { label, value } of testMetadata) {
@@ -76,7 +80,7 @@ test('search', async ({ page, pages: { library, login }, roms, user }) => {
   const results = page.getByRole('dialog').locator('a')
 
   await login.login(user)
-  await library.uploadROMs(roms.map(({ path }) => path))
+  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
 
   await page.getByLabel('search').click()
   await textbox.fill('babelblox')
@@ -94,7 +98,7 @@ test('search', async ({ page, pages: { library, login }, roms, user }) => {
 
 test('launch a game', async ({ page, pages: { library, login }, roms, user }) => {
   await login.login(user)
-  await library.uploadROMs(roms.map(({ path }) => path))
+  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
 
   await page.getByText('babelblox').click()
   await page.getByText('start').click()
@@ -105,7 +109,7 @@ test('launch a game', async ({ page, pages: { library, login }, roms, user }) =>
 
 test('continue a game', async ({ page, pages: { library, login }, roms, user }) => {
   await login.login(user)
-  await library.uploadROMs(roms.map(({ path }) => path))
+  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
 
   await page.getByText('babelblox').click()
   await page.getByText('start').click()

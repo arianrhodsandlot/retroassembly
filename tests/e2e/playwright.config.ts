@@ -1,5 +1,4 @@
 import { defineConfig } from '@playwright/test'
-import { isCI } from 'ci-info'
 import { attempt, once } from 'es-toolkit'
 import fs from 'fs-extra'
 import { temporaryDirectory } from 'tempy'
@@ -25,9 +24,7 @@ export default defineConfig({
   expect: { toHaveScreenshot: { maxDiffPixelRatio: 0.05 } },
   fullyParallel: true,
   reporter: 'html',
-  retries: 5,
   snapshotPathTemplate: '{testDir}/snapshots/{testFilePath}/{testName}/{arg}{ext}',
-  timeout: isCI ? 10_000 : 0,
   use: {
     baseURL: `http://localhost:${port}/`,
     channel: 'chrome',

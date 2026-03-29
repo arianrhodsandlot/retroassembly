@@ -30,9 +30,11 @@ export default defineConfig({
     channel: 'chrome',
   },
   webServer: {
-    command: process.env.PLAYWRIGHT_WEB_SERVER_COMMAND || 'pnpm dev',
+    command: process.env.PLAYWRIGHT_WEB_SERVER_COMMAND || 'pnpm start',
     env: {
       RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY: tmp,
+      RETROASSEMBLY_RUN_TIME_SKIP_HOME: 'true',
+      RETROASSEMBLY_RUN_TIME_SKIP_HOME_IF_LOGGED_IN: 'true',
       ...process.env,
     },
     port,

@@ -60,7 +60,31 @@ export class LibraryPage {
     }
   }
 
-  async waitForLoaded() {
-    await this.page.waitForURL(this.romsURL, { waitUntil: 'load' })
+  async openSearch() {
+    await this.page.locator('body').click()
+    await this.page.keyboard.press('Control+k')
+    await this.page.waitForTimeout(500)
+  }
+
+  async closeSearch() {
+    await this.page.keyboard.press('Escape')
+    await this.page.waitForTimeout(300)
+  }
+
+  async search(query: string) {
+    const input = this.page.locator('input[name="query"]')
+    await input.fill(query)
+    await this.page.waitForTimeout(300)
+  }
+
+  async clearSearch() {
+    const input = this.page.locator('input[name="query"]')
+    await input.clear()
+    await this.page.waitForTimeout(300)
+  }
+
+  async selectSearchResult(index: number) {
+    const results = this.page.locator('ul > li')
+    await results.nth(index).click()
   }
 }

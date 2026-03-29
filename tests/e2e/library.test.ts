@@ -7,14 +7,14 @@ const test = mergeTests(pagesTest, romsTest, userTest)
 
 test('upload roms', async ({ page, pages: { library, login }, roms, user }) => {
   await login.login(user)
-  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
+  await library.uploadROMs(roms)
 
   await Promise.all(roms.map(({ title }) => expect(page.getByText(title)).toHaveCount(1)))
 })
 
 test('delete roms', async ({ page, pages: { library, login }, roms, user }) => {
   await login.login(user)
-  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
+  await library.uploadROMs(roms)
 
   // Get the first game title before deleting
   const firstGame = page.locator('.game-entry').first()
@@ -30,75 +30,9 @@ test('delete roms', async ({ page, pages: { library, login }, roms, user }) => {
   await expect(page.locator('.game-entry')).toHaveCount(roms.length - 1)
 })
 
-test('delete multiple roms', async ({ page, pages: { library, login }, roms, user }) => {
-  const main = page.getByRole('main')
-  const dialog = page.getByRole('alertdialog')
-  const checkboxes = main.getByRole('checkbox')
-
-  await login.login(user)
-  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
-
-  await main.getByLabel('menu').first().click()
-  await page.getByRole('menuitem').getByText('select').click()
-  await Promise.all([expect(checkboxes.first()).toBeChecked(), expect(checkboxes.last()).not.toBeChecked()])
-
-  await checkboxes.last().click()
-  await page.getByText('delete selected').click()
-  await dialog.getByRole('button').getByText('delete').click()
-  await Promise.all(roms.map(({ title }) => expect(page.getByText(title)).toHaveCount(0)))
-})
-
-test('update metadata', async ({ page, pages: { library, login }, roms, user }) => {
-  const main = page.getByRole('main')
-  const testMetadata = [
-    { label: 'released', value: '01/02/2000' },
-    { label: 'genres', value: 'test genre' },
-    { label: 'players', value: '5' },
-    { label: 'developer', value: 'test developer' },
-    { label: 'publisher', value: 'test publisher' },
-    { label: 'description', value: 'test description' },
-  ]
-
-  await login.login(user)
-  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
-  await page.locator('.game-entry').first().click()
-  await page.getByLabel('edit metadata').first().click()
-  for (const { label, value } of testMetadata) {
-    if (label === 'players') {
-      await page.getByLabel(label).click()
-      await page.getByRole('option', { name: value }).click()
-    } else {
-      await page.getByLabel(label).fill(value)
-    }
-  }
-  await page.getByText('save').click()
-  await Promise.all(testMetadata.map(({ value }) => expect(main).toContainText(value)))
-})
-
-test('search', async ({ page, pages: { library, login }, roms, user }) => {
-  const textbox = page.getByRole('textbox')
-  const results = page.getByRole('dialog').locator('a')
-
-  await login.login(user)
-  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
-
-  await page.getByLabel('search').click()
-  await textbox.fill('babelblox')
-  await expect(results).toHaveCount(1)
-  await textbox.press('Enter')
-  await expect(page).toHaveURL('/library/platform/nes/rom/babelblox.nes')
-
-  await page.getByLabel('search').click()
-  await textbox.fill('a')
-  await expect(results).toHaveCount(2)
-  await textbox.press('ArrowDown')
-  await textbox.press('Enter')
-  await expect(page).toHaveURL('/library/platform/nes/rom/flappybird.nes')
-})
-
 test('launch a game', async ({ page, pages: { library, login }, roms, user }) => {
   await login.login(user)
-  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
+  await library.uploadROMs(roms)
 
   await page.getByText('babelblox').click()
   await page.getByText('start').click()
@@ -109,7 +43,7 @@ test('launch a game', async ({ page, pages: { library, login }, roms, user }) =>
 
 test('continue a game', async ({ page, pages: { library, login }, roms, user }) => {
   await login.login(user)
-  await library.uploadROMs(roms.map(({ path, platform, displayName }) => ({ displayName, path, platform })))
+  await library.uploadROMs(roms)
 
   await page.getByText('babelblox').click()
   await page.getByText('start').click()

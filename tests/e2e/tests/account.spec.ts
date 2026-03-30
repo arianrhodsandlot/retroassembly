@@ -1,6 +1,6 @@
 import { expect, mergeTests } from '@playwright/test'
-import { test as pagesTest } from './fixtures/pages.ts'
-import { test as userTest } from './fixtures/user.ts'
+import { test as pagesTest } from '../fixtures/pages.ts'
+import { test as userTest } from '../fixtures/user.ts'
 
 const test = mergeTests(userTest, pagesTest)
 

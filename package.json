@@ -14,7 +14,7 @@
     "dev:node": "node --run=dev",
     "dev:test": "node --run=test -- --headed --ui",
     "dev:workerd": "node --run=dev",
-    "lint": "oxlint --type-aware",
+    "lint": "vp check",
     "prepare": "simple-git-hooks || exit 0",
     "serve": "node dist/server/serve.js",
     "serve:node": "node --run=serve",

@@ -51,7 +51,7 @@ export function GameState({ state }: Readonly<{ state: InferResponseType<typeof 
     <div className='relative'>
       <button
         className={clsx(
-          'flex h-36 w-48 shrink-0 flex-col overflow-hidden rounded border-4 border-(--color-background) bg-(--color-background) shadow',
+          'game-state flex h-36 w-48 shrink-0 flex-col overflow-hidden rounded border-4 border-(--color-background) bg-(--color-background) shadow',
           { 'cursor-default': isMutating },
         )}
         data-sn-enabled

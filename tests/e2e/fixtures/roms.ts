@@ -8,38 +8,30 @@ interface Rom {
   title: string
   url: string
   platform: string
-  displayName: string
+  platformName: string
 }
 
-interface RomDef {
-  platform: string
-  title: string
-  ext: string
-  repo: 'nes-games' | 'snes-games' | 'gba-games' | 'gbc-games'
-  displayName: string
-}
-
-const romDefs: RomDef[] = [
-  { displayName: 'NES', ext: 'nes', platform: 'nes', repo: 'nes-games', title: 'babelblox' },
-  { displayName: 'NES', ext: 'nes', platform: 'nes', repo: 'nes-games', title: 'flappybird' },
-  { displayName: 'Super NES', ext: 'sfc', platform: 'snes', repo: 'snes-games', title: 'hilda' },
-  { displayName: 'Super NES', ext: 'sfc', platform: 'snes', repo: 'snes-games', title: 'superbossgaiden' },
-  { displayName: 'Game Boy Advance', ext: 'gba', platform: 'gba', repo: 'gba-games', title: 'anguna' },
-  { displayName: 'Game Boy Advance', ext: 'gba', platform: 'gba', repo: 'gba-games', title: 'asteroidsb' },
-  { displayName: 'Game Boy Color', ext: 'gbc', platform: 'gbc', repo: 'gbc-games', title: 'ucity' },
-  { displayName: 'Game Boy Color', ext: 'gbc', platform: 'gbc', repo: 'gbc-games', title: 'brickster' },
-]
-
-const roms = romDefs.map((def) => {
+const roms = (
+  [
+    { ext: 'nes', platform: 'nes', platformName: 'NES', repo: 'nes-games', title: 'babelblox' },
+    { ext: 'nes', platform: 'nes', platformName: 'NES', repo: 'nes-games', title: 'flappybird' },
+    { ext: 'sfc', platform: 'snes', platformName: 'Super NES', repo: 'snes-games', title: 'hilda' },
+    { ext: 'sfc', platform: 'snes', platformName: 'Super NES', repo: 'snes-games', title: 'superbossgaiden' },
+    { ext: 'gba', platform: 'gba', platformName: 'Game Boy Advance', repo: 'gba-games', title: 'anguna' },
+    { ext: 'gba', platform: 'gba', platformName: 'Game Boy Advance', repo: 'gba-games', title: 'asteroidsb' },
+    { ext: 'gbc', platform: 'gbc', platformName: 'Game Boy Color', repo: 'gbc-games', title: 'ucity' },
+    { ext: 'gbc', platform: 'gbc', platformName: 'Game Boy Color', repo: 'gbc-games', title: 'brickster' },
+  ] as const
+).map((def) => {
   const romsDirectory = `tests/e2e/fixtures/files/roms/${def.platform}`
   const repoName = `retrobrews/${def.repo}` as const
   const url = getCDNUrl(repoName, `${def.title}.${def.ext}`)
   const { pathname } = new URL(url)
   const { base } = path.parse(pathname)
   const rom: Rom = {
-    displayName: def.displayName,
     path: path.join(romsDirectory, base),
     platform: def.platform,
+    platformName: def.platformName,
     title: def.title,
     url,
   }

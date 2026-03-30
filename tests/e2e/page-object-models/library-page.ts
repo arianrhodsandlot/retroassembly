@@ -37,20 +37,19 @@ export class LibraryPage {
     await this.page.getByLabel('menu').filter({ visible: true }).click()
   }
 
-  async uploadROMs(roms: { path: string; platform: string; displayName: string }[]) {
+  async uploadROMs(roms: { path: string; platform: string; platformName: string }[]) {
     const { page } = this
     const romsByPlatform: Record<string, { paths: string[]; platform: string }> = {}
     for (const rom of roms) {
-      const key = rom.displayName
+      const key = rom.platformName
       romsByPlatform[key] = romsByPlatform[key] || { paths: [], platform: rom.platform }
       romsByPlatform[key].paths.push(rom.path)
     }
 
-    for (const [displayName, { paths }] of Object.entries(romsByPlatform)) {
+    for (const [platformName, { paths }] of Object.entries(romsByPlatform)) {
       await this.goto()
       await page.locator('button').getByText('add').first().click()
-      await page.waitForTimeout(100)
-      await page.getByRole('menuitem', { exact: true, name: displayName }).click()
+      await page.getByRole('menuitem', { exact: true, name: platformName }).click()
       await page.getByRole('dialog').waitFor({ state: 'visible' })
       const fileChooserPromise = page.waitForEvent('filechooser')
       await page.getByText('select files').click()
@@ -58,33 +57,5 @@ export class LibraryPage {
       await fileChooser.setFiles(paths)
       await page.getByRole('dialog').waitFor({ state: 'detached' })
     }
-  }
-
-  async openSearch() {
-    await this.page.locator('body').click()
-    await this.page.keyboard.press('Control+k')
-    await this.page.waitForTimeout(500)
-  }
-
-  async closeSearch() {
-    await this.page.keyboard.press('Escape')
-    await this.page.waitForTimeout(300)
-  }
-
-  async search(query: string) {
-    const input = this.page.locator('input[name="query"]')
-    await input.fill(query)
-    await this.page.waitForTimeout(300)
-  }
-
-  async clearSearch() {
-    const input = this.page.locator('input[name="query"]')
-    await input.clear()
-    await this.page.waitForTimeout(300)
-  }
-
-  async selectSearchResult(index: number) {
-    const results = this.page.locator('ul > li')
-    await results.nth(index).click()
   }
 }

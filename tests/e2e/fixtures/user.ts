@@ -1,5 +1,5 @@
 import { test as base } from '@playwright/test'
-import { nanoid } from 'nanoid'
+import { nanoid } from '#@/utils/server/nanoid.ts'
 
 interface User {
   password: string

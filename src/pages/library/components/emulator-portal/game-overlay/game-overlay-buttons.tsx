@@ -10,7 +10,7 @@ export function GameOverlayButtons() {
   const { t } = useTranslation()
   const { emulator, exit } = useEmulator()
   const { saveManualState } = useGameStates()
-  const { hide, setIsPending } = useGameOverlay()
+  const { hide, isPending, setIsPending } = useGameOverlay()
   const isDemo = useIsDemo()
 
   async function handleClickResume() {
@@ -23,6 +23,9 @@ export function GameOverlayButtons() {
   }
 
   async function handleClickSaveState() {
+    if (isPending) {
+      return
+    }
     setIsPending(true)
     try {
       await saveManualState()
@@ -38,6 +41,9 @@ export function GameOverlayButtons() {
   }
 
   async function handleClickSaveExit() {
+    if (isPending) {
+      return
+    }
     setIsPending(true)
     try {
       await saveManualState()

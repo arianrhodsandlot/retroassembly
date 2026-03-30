@@ -5,10 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: test
-    env:
-      PLAYWRIGHT_WEB_SERVER_COMMAND: 'node --run=start'
-      RETROASSEMBLY_BUILD_TIME_VITE_DISABLE_FS_ACCESS_API: true
-      RETROASSEMBLY_RUN_TIME_PORT: 5173
     steps:
       - uses: actions/checkout@v6
 
@@ -21,8 +17,7 @@ jobs:
 
       - run: pnpm install
       - run: node --run=setup
-      - run: pnpm vp check
-      - run: node --run=build
+      - run: node --run=lint
       - run: node --run=test
 
       - uses: actions/upload-artifact@v7

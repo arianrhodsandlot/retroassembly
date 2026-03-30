@@ -25,7 +25,7 @@ export class LoginPage {
     await this.page.getByLabel('password').first().fill(user.password)
     await this.page.locator('button').getByText('log in').click()
     if (waitForLoaded) {
-      await this.page.waitForURL('library', { waitUntil: 'load' })
+      await this.page.waitForURL('library')
     }
   }
 

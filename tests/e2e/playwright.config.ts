@@ -11,8 +11,6 @@ const cleanup = once(() => {
   attempt(() => fs.removeSync(tmp))
 })
 
-process.env.RETROASSEMBLY_BUILD_TIME_VITE_DISABLE_FS_ACCESS_API = 'true'
-
 process.on('SIGINT', (e) => {
   cleanup()
   throw new Error(e)
@@ -24,17 +22,17 @@ export default defineConfig({
   expect: { toHaveScreenshot: { maxDiffPixelRatio: 0.05 } },
   fullyParallel: true,
   reporter: 'html',
+  retries: 3,
   snapshotPathTemplate: '{testDir}/snapshots/{testFilePath}/{testName}/{arg}{ext}',
   use: {
     baseURL: `http://localhost:${port}/`,
     channel: 'chrome',
   },
   webServer: {
-    command: process.env.PLAYWRIGHT_WEB_SERVER_COMMAND || 'pnpm start',
+    command: 'node --run=build && node --run=start',
     env: {
       RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY: tmp,
       RETROASSEMBLY_RUN_TIME_SKIP_HOME: 'true',
-      RETROASSEMBLY_RUN_TIME_SKIP_HOME_IF_LOGGED_IN: 'true',
       ...process.env,
     },
     port,

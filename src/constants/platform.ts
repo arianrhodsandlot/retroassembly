@@ -240,7 +240,7 @@ const basePlatformMap = {
   genesis: {
     bioses: [{ md5: '45e298905a08f9cfb38fd504cd6dbc84', name: 'bios_MD.bin' }, { name: 'ggenie.bin' }],
     cores: ['genesis_plus_gx'],
-    displayNameI18nKey: 'platform.megadrive',
+    displayNameI18nKey: 'platform.genesis',
     fileExtensions: ['.md', '.gen', '.zip'],
     info: {
       developer: 'Sega Enterprises',

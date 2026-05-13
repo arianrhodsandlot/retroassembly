@@ -48,7 +48,7 @@ export function SearchResultItem({ keyword, rom }: Readonly<SearchResultItemProp
   }
 
   const romUrl = generatePath(routes.libraryPlatformRom, { fileName: rom.fileName, platform: rom.platform })
-  const keywordChars = compact([...keyword.replace(/\s+/, '').toLowerCase()])
+  const keywordChars = compact([...keyword.replace(/\s+/u, '').toLowerCase()])
 
   function handleMouseMove() {
     if (!selected) {

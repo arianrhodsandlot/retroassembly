@@ -63,7 +63,7 @@ export function getKeyNameFromCode(code: string) {
   }
   if (code.startsWith('Numpad')) {
     const keyName = code.slice(6).toLowerCase()
-    if (/\d/.test(keyName)) {
+    if (/\d/u.test(keyName)) {
       return `keypad${keyName}`
     }
   }

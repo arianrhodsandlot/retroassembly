@@ -41,8 +41,8 @@ export function useGamepadMapping() {
       Select: mapping.input_player1_select_btn,
       Start: mapping.input_player1_start_btn,
     }
-    const [hotkey, fastForwardKey] = mapping.$fast_forward.split(/\s+\+\s/)
-    const [, rewindKey] = mapping.$rewind.split(/\s+\+\s/)
+    const [hotkey, fastForwardKey] = mapping.$fast_forward.split(/\s+\+\s/u)
+    const [, rewindKey] = mapping.$rewind.split(/\s+\+\s/u)
     return {
       ...mapping,
       input_enable_hotkey_btn: buttonNameMap[hotkey],

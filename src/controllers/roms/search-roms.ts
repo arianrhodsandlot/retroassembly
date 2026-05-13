@@ -34,7 +34,7 @@ function createSearchConditions(query: string) {
     conditions.push(...createLikeConditions(`%${[...query].join('%')}%`))
   }
   if (query.length > 2) {
-    const words = query.split(/\s+/).filter((word) => word.length > 1)
+    const words = query.split(/\s+/u).filter((word) => word.length > 1)
     if (words.length > 1) {
       for (const word of words) {
         conditions.push(...createLikeConditions(`%${word}%`))
@@ -66,7 +66,7 @@ export async function searchRoms(
     eq(romTable.status, 1),
     platform ? eq(romTable.platform, platform) : inArray(romTable.platform, preference.ui.platforms),
   ]
-  const trimmedQuery = query.trim().replaceAll(/\s+/g, ' ')
+  const trimmedQuery = query.trim().replaceAll(/\s+/gu, ' ')
   const searchConditions = createSearchConditions(trimmedQuery)
   if (searchConditions) {
     conditions.push(searchConditions)
@@ -88,7 +88,7 @@ export async function searchRoms(
     .leftJoin(favoriteTable, favoriteJoinCondition)
     .where(where)
 
-  const allRomResults = allRomResultsRaw.map(({ isFavorite, rom }) => Object.assign(rom, { isFavorite: isFavorite }))
+  const allRomResults = allRomResultsRaw.map(({ isFavorite, rom }) => Object.assign(rom, { isFavorite }))
 
   const fuse = new Fuse(allRomResults, fuseOptions)
   const fuseResults = fuse.search(trimmedQuery)

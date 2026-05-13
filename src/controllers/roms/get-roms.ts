@@ -75,7 +75,7 @@ export async function getRoms({
     .offset(offset)
     .limit(pageSize)
 
-  const roms = romsRaw.map(({ isFavorite, rom }) => Object.assign(rom, { isFavorite: isFavorite }))
+  const roms = romsRaw.map(({ isFavorite, rom }) => Object.assign(rom, { isFavorite }))
 
   const [{ total }] = await library
     .select({ total: count() })

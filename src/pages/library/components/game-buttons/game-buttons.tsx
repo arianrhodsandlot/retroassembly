@@ -13,11 +13,11 @@ import { LaunchButton } from '../../platform/rom/components/launch-button.tsx'
 import { EmulatorPortal } from '../emulator-portal/emulator-portal.tsx'
 import { BioseMissingMessage } from './biose-missing-message.tsx'
 
-const isAppleMobile = /iphone|ipad|ipod/i.test(navigator.userAgent)
-const isChromeLike = /chrome/i.test(navigator.userAgent)
-const isMacLike = /macintosh/i.test(navigator.userAgent)
+const isAppleMobile = /iphone|ipad|ipod/iu.test(navigator.userAgent)
+const isChromeLike = /chrome/iu.test(navigator.userAgent)
+const isMacLike = /macintosh/iu.test(navigator.userAgent)
 const isAppleMobileDesktopMode =
-  !isChromeLike && isMacLike && /safari/i.test(navigator.userAgent) && screen.height <= 1366
+  !isChromeLike && isMacLike && /safari/iu.test(navigator.userAgent) && screen.height <= 1366
 const mayNeedsUserInteraction = isAppleMobile || isAppleMobileDesktopMode
 
 export function GameButtons() {

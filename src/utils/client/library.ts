@@ -41,7 +41,7 @@ export function getLibretroThumbnail({
   const repo = path.join('libretro-thumbnails', trim(normalizedPlatformFullName, '+'))
 
   const fileDirectory = `Named_${capitalize(type)}s`
-  const normalizedFileName = `${name.replaceAll(/[&*/:`<>?\\]|\|"/g, '_')}.png`
+  const normalizedFileName = `${name.replaceAll(/[&*/:`<>?\\]|\|"/gu, '_')}.png`
   const filePath = path.join(fileDirectory, normalizedFileName)
 
   if (host === 'jsdelivr') {

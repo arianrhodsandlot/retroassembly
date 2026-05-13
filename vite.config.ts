@@ -110,7 +110,7 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
           ...defaultOptions.exclude,
           '/.well-known/appspecific/com.chrome.devtools.json',
           '/src/**',
-          /\?(inline|url|no-inline|raw|import(?:&(inline|url|no-inline|raw))*)$/,
+          /\?(inline|url|no-inline|raw|import(?:&(inline|url|no-inline|raw))*)$/u,
         ],
         getLoadContext({ request }: { request: Request }) {
           return { extra: 'stuff', url: request.url }

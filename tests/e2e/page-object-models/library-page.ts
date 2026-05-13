@@ -42,7 +42,7 @@ export class LibraryPage {
     const romsByPlatform: Record<string, { paths: string[]; platform: string }> = {}
     for (const rom of roms) {
       const key = rom.platformName
-      romsByPlatform[key] = romsByPlatform[key] || { paths: [], platform: rom.platform }
+      romsByPlatform[key] ||= { paths: [], platform: rom.platform }
       romsByPlatform[key].paths.push(rom.path)
     }
 

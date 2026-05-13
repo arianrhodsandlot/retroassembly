@@ -38,7 +38,7 @@ export function GameOverlay() {
       Select: gamepadMapping.input_player1_select_btn,
       Start: gamepadMapping.input_player1_start_btn,
     }
-    const expectedButtons = gamepadMapping.$pause.split(/\s+\+\s/).map((buttonName) => buttonNameMap[buttonName])
+    const expectedButtons = gamepadMapping.$pause.split(/\s+\+\s/u).map((buttonName) => buttonNameMap[buttonName])
     const areExpectedButtonPressed = expectedButtons.every((code) => buttons[code].pressed)
     if (areExpectedButtonPressed) {
       await toggle()

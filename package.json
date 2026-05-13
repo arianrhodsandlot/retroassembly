@@ -15,7 +15,6 @@
     "dev:test": "node --run=test -- --headed --ui",
     "dev:workerd": "node --run=dev",
     "lint": "vp check",
-    "prepare": "simple-git-hooks || exit 0",
     "serve": "node dist/server/serve.js",
     "serve:node": "node --run=serve",
     "serve:workerd": "wrangler dev --port=8000",
@@ -29,7 +28,7 @@
     "hono": "4.12.8"
   },
   "devDependencies": {
-    "@arianrhodsandlot/vite-plus-config": "1.0.2",
+    "@arianrhodsandlot/vite-plus-config": "1.2.3",
     "@cloudflare/vite-plugin": "1.30.0",
     "@hono/node-server": "1.19.11",
     "@hono/vite-dev-server": "0.25.1",
@@ -60,7 +59,6 @@
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/spark-md5": "3.0.5",
-    "@typescript/native-preview": "7.0.0-dev.20260321.1",
     "@zip.js/zip.js": "2.8.23",
     "atropos": "2.0.2",
     "browser-fs-access": "0.38.0",
@@ -101,7 +99,6 @@
     "react-i18next": "16.5.8",
     "react-router": "7.13.1",
     "react-router-templates": "github:remix-run/react-router-templates",
-    "simple-git-hooks": "2.13.1",
     "smooth-scroll-into-view-if-needed": "2.0.2",
     "spark-md5": "3.0.2",
     "spatial-navigation-ts": "1.0.8",
@@ -113,43 +110,16 @@
     "tempy": "3.2.0",
     "tsdown": "0.21.4",
     "type-fest": "5.5.0",
+    "typescript": "6.0.3",
     "vite-plugin-devtools-json": "1.0.0",
-    "vite-plus": "0.1.13",
+    "vite-plus": "0.1.21",
     "wrangler": "4.76.0",
     "zod": "4.3.6"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm vp staged"
-  },
-  "prettier": {
-    "htmlWhitespaceSensitivity": "ignore",
-    "jsSingleQuote": true,
-    "jsxSingleQuote": true,
-    "printWidth": 120,
-    "semi": false,
-    "singleQuote": true
   },
   "engines": {
     "node": ">=25.8.1"
   },
-  "packageManager": "pnpm@10.32.1",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "better-sqlite3",
-      "esbuild",
-      "react-router-templates",
-      "sharp",
-      "simple-git-hooks",
-      "unrs-resolver",
-      "workerd"
-    ],
-    "patchedDependencies": {
-      "@microsoft/clarity": "patches/@microsoft__clarity.patch",
-      "goodcodes-parser": "patches/goodcodes-parser.patch",
-      "selector-set": "patches/selector-set.patch",
-      "spatial-navigation-ts": "patches/spatial-navigation-ts.patch"
-    }
-  },
+  "packageManager": "pnpm@11.1.1",
   "hintConfig": {
     "extends": [
       "development"

@@ -6,7 +6,7 @@ WORKDIR /app
 RUN npm i -g pnpm
 
 FROM base AS deps
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY patches patches
 RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
     pnpm fetch
@@ -23,7 +23,7 @@ RUN node --run=build
 FROM ${PROD_IMAGE} AS deps-production
 RUN npm i -g pnpm
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY patches patches
 RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
     pnpm i --prod

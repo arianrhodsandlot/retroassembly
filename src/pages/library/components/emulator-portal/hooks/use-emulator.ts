@@ -150,8 +150,9 @@ export function useEmulator() {
     if (preference.emulator.fullscreen) {
       await toggleFullscreen()
     }
-    noSleep ||= new NoSleep()
     onCancel(noop)
+    noSleep ||= new NoSleep()
+    await noSleep.enable()
   }
 
   async function exit({ reloadAfterExit = false } = {}) {

@@ -1,4 +1,5 @@
 import { attemptAsync, noop } from 'es-toolkit'
+import NoSleep from 'nosleep.js'
 import { Nostalgist } from 'nostalgist'
 import { useEffect, useMemo } from 'react'
 import { useLoaderData } from 'react-router'
@@ -38,7 +39,7 @@ const defaultRetroarchConfig: RetroarchConfig = {
   run_ahead_frames: 1,
 }
 
-let wakeLock: undefined | WakeLockSentinel
+let noSleep: NoSleep
 const originalGetUserMedia = globalThis.navigator?.mediaDevices?.getUserMedia?.bind(globalThis.navigator.mediaDevices)
 export function useEmulator() {
   const rom: Rom = useRom()
@@ -149,9 +150,7 @@ export function useEmulator() {
     if (preference.emulator.fullscreen) {
       await toggleFullscreen()
     }
-    try {
-      wakeLock = await navigator.wakeLock.request('screen')
-    } catch {}
+    noSleep ||= new NoSleep()
     onCancel(noop)
   }
 
@@ -160,13 +159,10 @@ export function useEmulator() {
     if (['paused', 'running'].includes(status)) {
       emulator?.exit()
       setLaunched(false)
+      noSleep.disable()
       const promises: Promise<void>[] = []
       if (document.fullscreenElement) {
         promises.push(document.exitFullscreen())
-      }
-      if (wakeLock) {
-        promises.push(wakeLock.release())
-        wakeLock = undefined
       }
       if (promises.length > 0) {
         await attemptAsync(() => Promise.all(promises))

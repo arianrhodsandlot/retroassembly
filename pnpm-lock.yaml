@@ -207,6 +207,9 @@ importers:
       next-themes:
         specifier: 0.4.6
         version: 0.4.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      nosleep.js:
+        specifier: 0.12.0
+        version: 0.12.0
       nostalgist:
         specifier: 0.21.0
         version: 0.21.0
@@ -3973,6 +3976,9 @@ packages:
   node-releases@2.0.44:
     resolution: {integrity: sha512-5WUyunoPMsvvEhS8AxHtRzP+oA8UCkJ7YRxatWKjngndhDGLiqEVAQKWjFAiAiuL8zMRGzGSJxFnLetoa43qGQ==}
 
+  nosleep.js@0.12.0:
+    resolution: {integrity: sha512-9d1HbpKLh3sdWlhXMhU6MMH+wQzKkrgfRkYV0EBdvt99YJfj0ilCJrWRDYG2130Tm4GXbEoTCx5b34JSaP+HhA==}
+
   nostalgist@0.21.0:
     resolution: {integrity: sha512-xzxDad3yMubgkowJdv/qtQm0aRKIG1kW+GGPyG+n7hvPCPq3jBZ23YZReLkWrp+DVCXEEEdhojkP7eqfWC0MGg==}
     engines: {node: '>=24.7.0'}
@@ -7716,6 +7722,8 @@ snapshots:
       semver: 7.8.0
 
   node-releases@2.0.44: {}
+
+  nosleep.js@0.12.0: {}
 
   nostalgist@0.21.0:
     dependencies:

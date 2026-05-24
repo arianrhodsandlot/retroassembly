@@ -7,7 +7,7 @@ import { DateTime } from 'luxon'
 import { z } from 'zod'
 import type { PlatformName } from '#@/constants/platform.ts'
 import { deleteLaunchRecord } from '#@/controllers/launch-records/delete-launch-record.ts'
-import { createRoms } from '#@/controllers/roms/create-roms.ts'
+import { createRom } from '#@/controllers/roms/create-roms.ts'
 import { deleteRom } from '#@/controllers/roms/delete-rom.ts'
 import { deleteRoms } from '#@/controllers/roms/delete-roms.ts'
 import { getRomContent } from '#@/controllers/roms/get-rom-content.ts'
@@ -26,22 +26,16 @@ export const roms = new Hono()
     zValidator(
       'form',
       z.object({
-        'files[]': z.instanceof(File).array().max(10),
-        md5s: z.string().optional(),
+        file: z.instanceof(File),
+        md5: z.string().optional(),
         platform: z.string<PlatformName>(),
       }),
     ),
 
     async (c) => {
       const form = c.req.valid('form')
-      let md5s = []
-      if (form.md5s) {
-        try {
-          md5s = JSON.parse(form.md5s)
-        } catch {}
-      }
-      const roms = await createRoms({ files: form['files[]'], md5s, platform: form.platform })
-      return c.json(roms)
+      const rom = await createRom({ file: form.file, md5: form.md5, platform: form.platform })
+      return c.json(rom)
     },
   )
 

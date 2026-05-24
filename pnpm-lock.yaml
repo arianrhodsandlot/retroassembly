@@ -4,6 +4,12 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@microsoft/clarity@1.0.2': 6e2d0481958fbc05c134cdb9cfc9416aa81357c2907f7eef3cdadcd0765117a5
+  goodcodes-parser@2.5.0: 0d6b63ddf0231e5a7643df8e6fce96b8eb7f167de7fe13b28159cf77c2a13873
+  selector-set@1.1.5: d9e1ae2c2c305d4a342bb379999ee53e69dbcff1fa8c729ad499740862b311a7
+  spatial-navigation-ts@1.0.8: 20e67dd661a3c61ae62b2ac903799529fec664c7b46c0d1b1ec966364973cf86
+
 importers:
 
   .:
@@ -53,7 +59,7 @@ importers:
         version: 1.2.3(tailwindcss@4.2.2)
       '@microsoft/clarity':
         specifier: 1.0.2
-        version: 1.0.2
+        version: 1.0.2(patch_hash=6e2d0481958fbc05c134cdb9cfc9416aa81357c2907f7eef3cdadcd0765117a5)
       '@playwright/test':
         specifier: 1.58.2
         version: 1.58.2
@@ -155,7 +161,7 @@ importers:
         version: 3.0.1
       goodcodes-parser:
         specifier: 2.5.0
-        version: 2.5.0
+        version: 2.5.0(patch_hash=0d6b63ddf0231e5a7643df8e6fce96b8eb7f167de7fe13b28159cf77c2a13873)
       hono-react-router-adapter:
         specifier: 0.6.5
         version: 0.6.5(hono@4.12.8)(miniflare@4.20260317.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@6.0.3)(wrangler@4.76.0)
@@ -236,7 +242,7 @@ importers:
         version: 3.0.2
       spatial-navigation-ts:
         specifier: 1.0.8
-        version: 1.0.8
+        version: 1.0.8(patch_hash=20e67dd661a3c61ae62b2ac903799529fec664c7b46c0d1b1ec966364973cf86)
       swr:
         specifier: 2.4.1
         version: 2.4.1(react@19.2.4)
@@ -5552,7 +5558,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@microsoft/clarity@1.0.2': {}
+  '@microsoft/clarity@1.0.2(patch_hash=6e2d0481958fbc05c134cdb9cfc9416aa81357c2907f7eef3cdadcd0765117a5)': {}
 
   '@mjackson/node-fetch-server@0.2.0': {}
 
@@ -7179,7 +7185,7 @@ snapshots:
 
   delegated-events@1.1.2:
     dependencies:
-      selector-set: 1.1.5
+      selector-set: 1.1.5(patch_hash=d9e1ae2c2c305d4a342bb379999ee53e69dbcff1fa8c729ad499740862b311a7)
 
   dequal@2.0.3: {}
 
@@ -7444,7 +7450,7 @@ snapshots:
 
   github-from-package@0.0.0: {}
 
-  goodcodes-parser@2.5.0: {}
+  goodcodes-parser@2.5.0(patch_hash=0d6b63ddf0231e5a7643df8e6fce96b8eb7f167de7fe13b28159cf77c2a13873): {}
 
   graceful-fs@4.2.11: {}
 
@@ -7655,7 +7661,7 @@ snapshots:
       '@scalar/hono-api-reference': 0.10.3(hono@4.12.8)
       drizzle-orm: 0.45.1(better-sqlite3@12.8.0)
       drizzle-zod: 0.8.3(drizzle-orm@0.45.1(better-sqlite3@12.8.0))(zod@4.3.6)
-      goodcodes-parser: 2.5.0
+      goodcodes-parser: 2.5.0(patch_hash=0d6b63ddf0231e5a7643df8e6fce96b8eb7f167de7fe13b28159cf77c2a13873)
       hono: 4.12.8
       json5: 2.2.3
       nanoid: 5.1.7
@@ -8134,7 +8140,7 @@ snapshots:
     dependencies:
       compute-scroll-into-view: 3.1.1
 
-  selector-set@1.1.5: {}
+  selector-set@1.1.5(patch_hash=d9e1ae2c2c305d4a342bb379999ee53e69dbcff1fa8c729ad499740862b311a7): {}
 
   semver@6.3.1: {}
 
@@ -8210,7 +8216,7 @@ snapshots:
 
   spark-md5@3.0.2: {}
 
-  spatial-navigation-ts@1.0.8: {}
+  spatial-navigation-ts@1.0.8(patch_hash=20e67dd661a3c61ae62b2ac903799529fec664c7b46c0d1b1ec966364973cf86): {}
 
   std-env@4.1.0: {}
 

@@ -1,10 +1,9 @@
 import path from 'node:path'
-import { and, eq, inArray, type InferInsertModel } from 'drizzle-orm'
-import { chunk, isNotNil, omit, pickBy } from 'es-toolkit'
+import { and, eq, type InferInsertModel } from 'drizzle-orm'
+import { isNotNil, pickBy, omit } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
 import { DateTime } from 'luxon'
-import type { QueryResponse } from 'msleuth/client'
 import { getRunTimeEnv } from '#@/constants/env.ts'
 import { platformMap, type PlatformName } from '#@/constants/platform.ts'
 import { romTable } from '#@/databases/schema.ts'
@@ -59,151 +58,11 @@ function getReleaseYear({ launchbox, libretro }) {
   }
 }
 
-async function prepareRomData(files: File[], gameInfoList: QueryResponse | undefined, platform: PlatformName) {
-  const { currentUser, storage } = getContext().var
-
-  return await Promise.all(
-    files.map(async (file, index) => {
-      const { ext } = path.parse(file.name)
-      const digest = await getFilePartialDigest(file)
-      const fileId = path.join('roms', platform, `${digest}${ext}`)
-      const fileExists = await storage.head(fileId)
-      if (!fileExists) {
-        await storage.put(fileId, file)
-      }
-      const gameInfo = gameInfoList?.[index] || {}
-      for (const key of Object.keys(gameInfo)) {
-        const item = gameInfo[key]
-        if (item && typeof item === 'object') {
-          gameInfo[key] = pickBy(item, (value) => isNotNil(value))
-        }
-      }
-      const { launchbox, libretro } = gameInfo
-      const romData: InferInsertModel<typeof romTable> = {
-        fileId,
-        fileName: file.name,
-        gameDeveloper: launchbox?.developer || libretro?.developer,
-        gameGenres: getGenres({ launchbox, libretro }),
-        gameName: launchbox?.name || libretro?.name,
-        gamePlayers: launchbox?.maxPlayers || libretro?.users,
-        gamePublisher: launchbox?.publisher || libretro?.publisher,
-        gameReleaseDate: getReleaseDate({ launchbox }),
-        gameReleaseYear: getReleaseYear({ launchbox, libretro }),
-        launchboxGameId: launchbox?.databaseId,
-        libretroGameId: libretro?.id,
-        platform,
-        rawGameMetadata: launchbox || libretro ? { launchbox, libretro } : undefined,
-        userId: currentUser.id,
-      }
-
-      return romData
-    }),
-  )
-}
-
-async function findExistingRoms(files: File[], platform: PlatformName) {
-  const { currentUser, db } = getContext().var
-  const { library } = db
-
-  const fileNames = files.map((file) => file.name)
-
-  let existingRoms: any[] = []
-
-  if (fileNames.length > 100) {
-    const fileNameChunks = chunk(fileNames, 100)
-
-    for (const fileNameChunk of fileNameChunks) {
-      const chunkResults = await library
-        .select()
-        .from(romTable)
-        .where(
-          and(
-            eq(romTable.userId, currentUser.id),
-            eq(romTable.platform, platform),
-            eq(romTable.status, 1),
-            inArray(romTable.fileName, fileNameChunk),
-          ),
-        )
-      existingRoms.push(...chunkResults)
-    }
-  } else {
-    existingRoms = await library
-      .select()
-      .from(romTable)
-      .where(
-        and(
-          eq(romTable.userId, currentUser.id),
-          eq(romTable.platform, platform),
-          eq(romTable.status, 1),
-          inArray(romTable.fileName, fileNames),
-        ),
-      )
-  }
-
-  // Create a map for O(1) lookup by fileName
-  const existingRomsMap = new Map(existingRoms.map((rom) => [rom.fileName, rom]))
-
-  // Match existing ROMs to their original file order
-  return files.map((file) => existingRomsMap.get(file.name) || null)
-}
-
-function separateUpdatesAndInserts(romDataList: InferInsertModel<typeof romTable>[], existingRoms: any[]) {
-  const updates: { data: InferInsertModel<typeof romTable>; rom: any }[] = []
-  const inserts: InferInsertModel<typeof romTable>[] = []
-
-  for (const [index, romData] of romDataList.entries()) {
-    const existingRom = existingRoms[index]
-    if (existingRom) {
-      updates.push({ data: romData, rom: existingRom })
-    } else {
-      inserts.push(romData)
-    }
-  }
-
-  return { inserts, updates }
-}
-
-async function performBatchOperations(
-  updates: { data: InferInsertModel<typeof romTable>; rom: any }[],
-  inserts: InferInsertModel<typeof romTable>[],
-) {
-  const { db } = getContext().var
-  const { library } = db
-
-  const results: any[] = []
-
-  const chunkSize = 5
-
-  if (inserts.length > 0) {
-    const insertChunks = chunk(inserts, chunkSize)
-
-    for (const insertChunk of insertChunks) {
-      const insertResults = await library.insert(romTable).values(insertChunk).returning()
-      results.push(...insertResults)
-    }
-  }
-
-  if (updates.length > 0) {
-    const updateChunks = chunk(updates, chunkSize)
-
-    for (const updateChunk of updateChunks) {
-      const updateResults = await Promise.all(
-        updateChunk.map(async ({ data, rom }) => {
-          const updateData = omit(data, ['id'])
-          const result = await library.update(romTable).set(updateData).where(eq(romTable.id, rom.id)).returning()
-          return result[0]
-        }),
-      )
-      results.push(...updateResults)
-    }
-  }
-
-  return results
-}
-
-export async function createRoms({ files, md5s, platform }: { files: File[]; md5s: string[]; platform: PlatformName }) {
+export async function createRom({ file, md5, platform }: { file: File; md5?: string; platform: PlatformName }) {
   const env = getRunTimeEnv()
-  const { currentUser, t } = getContext().var
+  const { currentUser, db, storage, t } = getContext().var
+  const { library } = db
+
   const cutoffDate = DateTime.fromISO('2026-01-01')
   let maxRomCount = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_ROM_COUNT, 10) || Infinity
   if (currentUser && 'created_at' in currentUser && typeof currentUser.created_at === 'string') {
@@ -213,31 +72,85 @@ export async function createRoms({ files, md5s, platform }: { files: File[]; md5
     }
   }
   const romCount = await countRoms()
-  if (romCount + files.length > maxRomCount) {
+  if (romCount + 1 > maxRomCount) {
     throw new HTTPException(400, {
       message: t('error.exceedMaxRomCount', { maxRomCount }),
     })
   }
 
-  for (const file of files) {
-    const ext = path.parse(file.name).ext.toLowerCase()
-    if (!platformMap[platform].fileExtensions.includes(ext)) {
-      throw new HTTPException(400, {
-        message: `File extension ${ext} is not supported for platform ${platform}`,
-      })
-    }
+  const ext = path.parse(file.name).ext.toLowerCase()
+  if (!platformMap[platform].fileExtensions.includes(ext)) {
+    throw new HTTPException(400, {
+      message: `File extension ${ext} is not supported for platform ${platform}`,
+    })
   }
-  let gameInfoList: Awaited<ReturnType<typeof msleuth.identify>> = []
+
+  // Look up game info
+  let gameInfo: Record<string, any> = {}
   try {
-    gameInfoList = await msleuth.identify({
-      files: files.map((file, index) => ({ md5: md5s[index] || '', name: file.name })),
+    const gameInfoList = await msleuth.identify({
+      files: [{ md5: md5 || '', name: file.name }],
       platform,
     })
+    gameInfo = gameInfoList?.[0] || {}
   } catch (error) {
     console.warn(error)
   }
-  const romDataList = await prepareRomData(files, gameInfoList, platform)
-  const existingRoms = await findExistingRoms(files, platform)
-  const { inserts, updates } = separateUpdatesAndInserts(romDataList, existingRoms)
-  return performBatchOperations(updates, inserts)
+
+  for (const key of Object.keys(gameInfo)) {
+    const item = gameInfo[key]
+    if (item && typeof item === 'object') {
+      gameInfo[key] = pickBy(item, (value) => isNotNil(value))
+    }
+  }
+
+  const { launchbox, libretro } = gameInfo
+
+  // Store file
+  const digest = await getFilePartialDigest(file)
+  const fileId = path.join('roms', platform, `${digest}${ext}`)
+  const fileExists = await storage.head(fileId)
+  if (!fileExists) {
+    await storage.put(fileId, file)
+  }
+
+  const romData: InferInsertModel<typeof romTable> = {
+    fileId,
+    fileName: file.name,
+    gameDeveloper: launchbox?.developer || libretro?.developer,
+    gameGenres: getGenres({ launchbox, libretro }),
+    gameName: launchbox?.name || libretro?.name,
+    gamePlayers: launchbox?.maxPlayers || libretro?.users,
+    gamePublisher: launchbox?.publisher || libretro?.publisher,
+    gameReleaseDate: getReleaseDate({ launchbox }),
+    gameReleaseYear: getReleaseYear({ launchbox, libretro }),
+    launchboxGameId: launchbox?.databaseId,
+    libretroGameId: libretro?.id,
+    platform,
+    rawGameMetadata: launchbox || libretro ? { launchbox, libretro } : undefined,
+    userId: currentUser.id,
+  }
+
+  // Check for existing ROM with same fileName + platform
+  const [existingRom] = await library
+    .select()
+    .from(romTable)
+    .where(
+      and(
+        eq(romTable.userId, currentUser.id),
+        eq(romTable.platform, platform),
+        eq(romTable.status, 1),
+        eq(romTable.fileName, file.name),
+      ),
+    )
+    .limit(1)
+
+  if (existingRom) {
+    const updateData = omit(romData, ['id'])
+    const [result] = await library.update(romTable).set(updateData).where(eq(romTable.id, existingRom.id)).returning()
+    return result
+  }
+
+  const [result] = await library.insert(romTable).values(romData).returning()
+  return result
 }

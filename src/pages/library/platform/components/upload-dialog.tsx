@@ -2,7 +2,7 @@ import { Button, Dialog, Progress } from '@radix-ui/themes'
 import { fileOpen } from 'browser-fs-access'
 import confetti from 'canvas-confetti'
 import { clsx } from 'clsx'
-import { chunk, isPlainObject } from 'es-toolkit'
+import { isPlainObject } from 'es-toolkit'
 import { isMatch } from 'es-toolkit/compat'
 import { DateTime } from 'luxon'
 import { useDeferredValue, useState } from 'react'
@@ -43,48 +43,39 @@ export function UploadDialog({ platform, toggleOpen }: Readonly<{ platform: Plat
   const [progress, setProgress] = useState(0)
   const deferedProgress = useDeferredValue(progress)
 
-  async function uploadFiles(_url: string, files: File[]) {
-    const md5s = await Promise.all(files.map((file) => getROMMd5(file, platform)))
-    await client.roms.$post({ form: { 'files[]': files, md5s: JSON.stringify(md5s), platform } })
+  async function uploadFile(file: File) {
+    const md5 = await getROMMd5(file, platform)
+    await client.roms.$post({ form: { file, ...(md5 ? { md5 } : {}), platform } })
   }
 
   const { trigger } = useSWRMutation(
     '/api/v1/roms',
-    async (url: string, { arg: files }: { arg: File[] }) => {
+    async (_url: string, { arg: files }: { arg: File[] }) => {
       let showConfetti = false
       setStatus('loading')
 
       const errors: unknown[] = []
-      for (const filesChunk of chunk(files, 10)) {
-        const newUploadedFiles = { ...uploadedFiles, loading: filesChunk }
-        setUploadedFiles(newUploadedFiles)
-        setProgress(
-          ((newUploadedFiles.success.length +
-            newUploadedFiles.failure.length +
-            Math.floor(newUploadedFiles.loading.length / 2)) /
-            files.length) *
-            100,
-        )
+      const successFiles: File[] = []
+      const failureFiles: File[] = []
+
+      for (const file of files) {
+        setUploadedFiles({ failure: failureFiles, loading: [file], success: successFiles })
+        setProgress(((successFiles.length + failureFiles.length) / files.length) * 100)
 
         try {
-          await uploadFiles(url, filesChunk)
-          newUploadedFiles.success.push(...filesChunk)
+          await uploadFile(file)
+          successFiles.push(file)
           showConfetti = true
         } catch (error) {
-          newUploadedFiles.failure.push(...filesChunk)
+          failureFiles.push(file)
           errors.push(error)
         }
 
-        newUploadedFiles.loading = []
-        setUploadedFiles(newUploadedFiles)
-        setProgress(
-          ((newUploadedFiles.success.length + newUploadedFiles.failure.length + newUploadedFiles.loading.length) /
-            files.length) *
-            100,
-        )
+        setUploadedFiles({ failure: failureFiles, loading: [], success: successFiles })
+        setProgress(((successFiles.length + failureFiles.length) / files.length) * 100)
       }
 
-      if (uploadedFiles.success.length === files.length) {
+      if (failureFiles.length === 0) {
         toggleOpen()
         await reload()
         await mutate((key) => isPlainObject(key) && isMatch(key, { endpoint: 'roms/search' }), false)

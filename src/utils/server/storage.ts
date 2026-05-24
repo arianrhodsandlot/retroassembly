@@ -1,4 +1,5 @@
 import path from 'node:path'
+import type { ReadableStream as NodeReadableStream } from 'node:stream/web'
 import { env } from 'hono/adapter'
 import { getContext } from 'hono/context-storage'
 import { getDirectories } from '../../constants/env.ts'
@@ -22,11 +23,14 @@ export function createStorage() {
     async put(id: string, file: Blob) {
       const { base, dir } = path.parse(id)
       const fileTargetDirectory = path.join(storageDirectory, dir)
-      const arrayBuffer = await file.arrayBuffer()
-      const buffer = Buffer.from(arrayBuffer)
       const { default: fs } = await import('fs-extra')
       await fs.ensureDir(fileTargetDirectory)
-      await fs.writeFile(path.join(fileTargetDirectory, base), buffer)
+      const { createWriteStream } = await import('node:fs')
+      const { Readable } = await import('node:stream')
+      const { pipeline } = await import('node:stream/promises')
+      const readable = Readable.fromWeb(file.stream() as NodeReadableStream)
+      const writable = createWriteStream(path.join(fileTargetDirectory, base))
+      await pipeline(readable, writable)
     },
 
     async get(id: string) {

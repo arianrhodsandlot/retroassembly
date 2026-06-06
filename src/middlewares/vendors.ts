@@ -12,7 +12,7 @@ declare module 'hono' {
 }
 
 export function vendors() {
-  return createMiddleware(async function middleware(c, next) {
+  return createMiddleware(async (c, next) => {
     c.set('db', createDrizzle())
     c.set('storage', createStorage())
     c.set('supabase', createSupabase())

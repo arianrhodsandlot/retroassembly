@@ -1,10 +1,11 @@
 import { Hono } from 'hono'
-import { createRequestHandler } from 'react-router'
+import { RouterContextProvider, createRequestHandler } from 'react-router'
 import app from './app.ts'
 
 const pages = new Hono()
 const requestHandler = createRequestHandler(() => import('virtual:react-router/server-build'), import.meta.env.MODE)
-pages.all('*', (c) => requestHandler(c.req.raw, { cloudflare: { ctx: c.executionCtx, env: c.env } }))
+// @ts-expect-error v8_middleware requires RouterContextProvider, not AppLoadContext
+pages.all('*', (c) => requestHandler(c.req.raw, new RouterContextProvider()))
 
 app.route('', pages)
 

@@ -85,7 +85,7 @@ async function getTempUserOrCurrentUser(c: Context) {
 }
 
 export function globals() {
-  return createMiddleware(async function middleware(c, next) {
+  return createMiddleware(async (c, next) => {
     const token = c.req.header('Authorization')?.replace('Bearer ', '') || getCookie(c, 'token') || ''
     c.set('token', token)
 

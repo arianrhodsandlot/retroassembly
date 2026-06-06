@@ -9,6 +9,7 @@ import { $, execaNode } from 'execa'
 import fs from 'fs-extra'
 import serverAdapter from 'hono-react-router-adapter/vite'
 import { DateTime } from 'luxon'
+import { RouterContextProvider } from 'react-router'
 import devtoolsJson from 'vite-plugin-devtools-json'
 import { defineConfig, type Plugin, type UserConfig } from 'vite-plus'
 import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './scripts/utils.ts'
@@ -109,11 +110,11 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
         exclude: [
           ...defaultOptions.exclude,
           '/.well-known/appspecific/com.chrome.devtools.json',
-          '/src/**',
           /\?(inline|url|no-inline|raw|import(?:&(inline|url|no-inline|raw))*)$/u,
         ],
-        getLoadContext({ request }: { request: Request }) {
-          return { extra: 'stuff', url: request.url }
+        // @ts-expect-error hono-react-router-adapter doesn't support v8_middleware yet; must return RouterContextProvider instead of plain object
+        getLoadContext() {
+          return new RouterContextProvider()
         },
       }),
       ['handleHotUpdate'],

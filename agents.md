@@ -47,6 +47,7 @@ Browser-based retro gaming platform with dual-runtime architecture (Node.js + Cl
 - **Never use** `.reduce`, `.then`, `.catch`. Use `async/await` + `attemptAsync` from `es-toolkit`
 - Error handling: Throw `HTTPException` from `hono/http-exception` for API errors
 - Use luxon for date/time parsing/formatting
+- Do not use type casting to supress type errors. Prefer `@ts-expect-error` with resonable comments instead.
 
 **React**:
 

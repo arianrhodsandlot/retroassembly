@@ -5,7 +5,7 @@ export function useFocusIndicator() {
   const [focusIndicatorStyle, setFocusIndicatorStyle] = useFocusIndicatorStyle()
 
   const syncStyle = useCallback(
-    function syncFocusIndicatorStyle({ transition = true }: { transition?: boolean } = {}) {
+    ({ transition = true }: { transition?: boolean } = {}) => {
       const { activeElement } = document
       if (activeElement instanceof HTMLElement && activeElement.dataset.snEnabled) {
         const { height, left, top, width } = activeElement.getBoundingClientRect()

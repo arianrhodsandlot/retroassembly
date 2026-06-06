@@ -2,7 +2,7 @@ import { createMiddleware } from 'hono/factory'
 import { defaultRedirectTo } from '#@/constants/auth.ts'
 
 export function auth() {
-  return createMiddleware(async function middleware(c, next) {
+  return createMiddleware(async (c, next) => {
     const { currentUser } = c.var
 
     const { origin, pathname, search } = new URL(c.req.raw.url)

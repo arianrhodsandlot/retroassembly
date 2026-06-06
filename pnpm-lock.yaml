@@ -288,8 +288,8 @@ packages:
   '@antfu/install-pkg@1.1.0':
     resolution: {integrity: sha512-MGQsmw10ZyI+EJo45CdSER4zEb+p31LpDAFp2Z3gkSd1yqVZGi0Ebx++YTEMonJy4oChEMLsxZ64j8FH6sSqtQ==}
 
-  '@arianrhodsandlot/oxc-config@1.2.4':
-    resolution: {integrity: sha512-26vZl0N8V7F0f+kKL6l00iaLvntabvITlUjyWnTQeKcvLpXauR2Omsja+DcHs6XpS4heGlaz/kJDuq++t4S7Sw==}
+  '@arianrhodsandlot/oxc-config@1.2.5':
+    resolution: {integrity: sha512-SFkCEegMrgWf/3v9qaNq62KnhRntFWSt1MDs6+5BOWd5Y004NMBJEDrKS/r9HPZuxFzkzp4Oxr1m1id7/r7iSw==}
 
   '@arianrhodsandlot/vite-plus-config@1.2.3':
     resolution: {integrity: sha512-aK4Vyk2B3T9N6q/KNZGj8RkvbSxaoXDC7pJ86W6t6Cq1/Vhy/dz6dIOvSO3gKV2KH5eiFaiJR5u9EkoW2UYr3Q==}
@@ -5140,11 +5140,11 @@ snapshots:
       package-manager-detector: 1.6.0
       tinyexec: 1.2.4
 
-  '@arianrhodsandlot/oxc-config@1.2.4': {}
+  '@arianrhodsandlot/oxc-config@1.2.5': {}
 
   '@arianrhodsandlot/vite-plus-config@1.2.3':
     dependencies:
-      '@arianrhodsandlot/oxc-config': 1.2.4
+      '@arianrhodsandlot/oxc-config': 1.2.5
       '@types/node': 25.9.2
 
   '@asteasolutions/zod-to-openapi@8.5.0(zod@4.4.3)':

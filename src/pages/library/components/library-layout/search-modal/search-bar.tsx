@@ -37,18 +37,15 @@ export function SearchBar() {
   const selectedUrl = selectedResult
     ? `/library/platform/${encodeURIComponent(selectedResult.platform)}/rom/${encodeURIComponent(selectedResult.fileName)}`
     : ''
-  const select = useCallback(
-    async function select() {
-      if (selectedUrl) {
-        setShowSearchModal(false)
-        setSpatialNavigationPaused(false)
-        if (selectedUrl !== location.pathname) {
-          await navigate(selectedUrl)
-        }
+  const select = useCallback(async () => {
+    if (selectedUrl) {
+      setShowSearchModal(false)
+      setSpatialNavigationPaused(false)
+      if (selectedUrl !== location.pathname) {
+        await navigate(selectedUrl)
       }
-    },
-    [location.pathname, selectedUrl, setShowSearchModal, setSpatialNavigationPaused, navigate],
-  )
+    }
+  }, [location.pathname, selectedUrl, setShowSearchModal, setSpatialNavigationPaused, navigate])
 
   async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()

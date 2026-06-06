@@ -26,6 +26,7 @@ export function GameStateDelete({ id }: Readonly<{ id: string }>) {
 
   return (
     <button
+      aria-label={t('common.delete')}
       className='absolute right-0 bottom-0 flex size-8 items-center justify-center rounded text-(--accent-9) hover:bg-(--accent-3)'
       onClick={handleClick}
       title={t('common.delete')}

@@ -20,6 +20,7 @@ export function FooterSection() {
           <div className='flex gap-4 text-lg'>
             {links.map((link) => (
               <a
+                aria-label={t(link.text)}
                 className='flex items-center'
                 href={link.url}
                 key={link.name}

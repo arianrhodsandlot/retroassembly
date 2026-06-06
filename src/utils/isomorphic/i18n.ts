@@ -13,10 +13,8 @@ const resources = mapValues(
   await init({
     debug: false,
     fallbackLng: defaultLanguage,
-    initImmediate: true,
     lng: defaultLanguage,
     resources,
-    showSupportNotice: false,
     supportedLngs: locales.map(({ code }) => code),
   })
 })()

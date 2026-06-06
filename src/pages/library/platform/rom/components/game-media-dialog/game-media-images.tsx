@@ -3,6 +3,7 @@ import { fileOpen } from 'browser-fs-access'
 import { clsx } from 'clsx'
 import type { InferRequestType } from 'hono'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client, parseResponse } from '#@/api/client.ts'
 import { useRom } from '#@/pages/library/hooks/use-rom.ts'
@@ -12,8 +13,8 @@ const {
   ':thumbnailId{.+}': { $delete },
   $post,
 } = client.roms[':id'].thumbnail
-
 export function GameMediaImages() {
+  const { t } = useTranslation()
   const rom = useRom()
   const [thumbnailFileIds, setThumbnailFileIds] = useState<string[]>(rom.gameThumbnailFileIds?.split(',') || [])
 
@@ -60,6 +61,7 @@ export function GameMediaImages() {
       {thumbnailFileIds.map((thumbnailFileId) => (
         <div className='relative size-20 bg-neutral-200' key={thumbnailFileId}>
           <button
+            aria-label={t('common.delete')}
             className='absolute top-0 right-0 flex size-4 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black text-white'
             disabled={isDeletingThumbnail || isUploadingThumbnail}
             onClick={() => handleClickDeleteThumbnail(thumbnailFileId)}

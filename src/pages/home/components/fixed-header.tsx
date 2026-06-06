@@ -20,7 +20,13 @@ export function FixedHeader() {
         <Logo className='motion-preset-expand' height={32} width={32} />
       </Link>
 
-      <button className='flex-1' onClick={handleScrollToTop} title={t('common.scrollToTop')} type='button' />
+      <button
+        aria-label={t('common.scrollToTop')}
+        className='flex-1'
+        onClick={handleScrollToTop}
+        title={t('common.scrollToTop')}
+        type='button'
+      />
 
       <div className='pt-safe-offset-4 flex items-center gap-4 py-4 text-xl'>
         <LanguageSelector />
@@ -41,6 +47,7 @@ export function FixedHeader() {
           <div className='flex items-center gap-4'>
             {links.map((link) => (
               <a
+                aria-label={t(link.text)}
                 key={link.name}
                 className='flex items-center'
                 href={link.url}

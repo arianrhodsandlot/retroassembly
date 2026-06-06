@@ -7,16 +7,15 @@ import { getGlobalCSSVars } from '#@/utils/isomorphic/misc.ts'
 import { SettingsTitle } from '../settings-title.tsx'
 
 const saturationOptions = range(100, -1, -10)
+function updateGlobalSaturation(resolvedPreference: ResolvedPreference) {
+  for (const [key, value] of Object.entries(getGlobalCSSVars(resolvedPreference))) {
+    document.body.style.setProperty(key, value)
+  }
+}
 
 export function AccessibilitySettings() {
   const { t } = useTranslation()
   const { isLoading, preference, update } = usePreference()
-
-  function updateGlobalSaturation(resolvedPreference: ResolvedPreference) {
-    for (const [key, value] of Object.entries(getGlobalCSSVars(resolvedPreference))) {
-      document.body.style.setProperty(key, value)
-    }
-  }
 
   return (
     <div>

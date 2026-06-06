@@ -1,9 +1,10 @@
 import { Badge } from '@radix-ui/themes'
 import { clsx } from 'clsx'
+import type { InferResponseType } from 'hono'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
-import type { client, InferResponseType } from '#@/api/client.ts'
+import type { client } from '#@/api/client.ts'
 import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
 import { getFileUrl } from '#@/pages/library/utils/file.ts'
 import { dateFormatMap } from '#@/utils/isomorphic/i18n.ts'
@@ -12,7 +13,9 @@ import { useEmulator } from '../hooks/use-emulator.ts'
 import { useGameOverlay } from '../hooks/use-game-overlay.ts'
 import { GameStateDelete } from './game-state-delete.tsx'
 
-export function GameState({ state }: Readonly<{ state: InferResponseType<typeof client.states.$get>[number] }>) {
+export function GameState({
+  state,
+}: Readonly<{ state: Extract<InferResponseType<typeof client.states.$get>, any[]>[number] }>) {
   const { i18n, t } = useTranslation()
   const { preference } = usePreference()
   const { hide, setIsPending } = useGameOverlay()

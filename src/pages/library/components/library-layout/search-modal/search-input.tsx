@@ -1,5 +1,6 @@
 import { debounce } from 'es-toolkit'
 import { type ChangeEvent, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSpatialNavigationPaused } from '#@/pages/library/atoms.ts'
 import { useShowSearchModal } from '../atoms.ts'
 import { useQuery } from './atoms.ts'
@@ -7,8 +8,8 @@ import { useQuery } from './atoms.ts'
 interface SearchInputProps {
   isMutating: boolean
 }
-
 export function SearchInput({ isMutating }: Readonly<SearchInputProps>) {
+  const { t } = useTranslation()
   const [, setSpatialNavigationPaused] = useSpatialNavigationPaused()
   const [, setShowSearchModal] = useShowSearchModal()
   const [query, setQuery] = useQuery()
@@ -56,9 +57,10 @@ export function SearchInput({ isMutating }: Readonly<SearchInputProps>) {
       />
 
       <button
+        aria-label={t('common.close')}
         className='flex size-12 items-center justify-center'
         onClick={handleClickClose}
-        title='Close'
+        title={t('common.close')}
         type='button'
       >
         <span className='icon-[mdi--close]' />

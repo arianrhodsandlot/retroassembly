@@ -98,16 +98,15 @@ export function SearchModal() {
       <div className='pointer-events-none absolute inset-0 z-1 *:pointer-events-auto'>
         <AnimatePresence>
           {showSearchModal ? (
-            <motion.div
+            <motion.dialog
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               initial={{ opacity: 0, scale: 0.95 }}
               onAnimationComplete={handleAnimationComplete}
-              role='dialog'
               transition={{ bounce: 0, duration: 0.1 }}
             >
               <SearchBar />
-            </motion.div>
+            </motion.dialog>
           ) : null}
         </AnimatePresence>
       </div>

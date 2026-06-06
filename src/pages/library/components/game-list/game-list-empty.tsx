@@ -1,13 +1,12 @@
-import { Button } from '@radix-ui/themes'
-import { createElement } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { generatePath, Link, useLocation } from 'react-router'
+import { useLocation } from 'react-router'
 import { metadata } from '#@/constants/metadata.ts'
 import { routes } from '#@/pages/routes.ts'
 import { getPlatformIcon } from '#@/utils/client/library.ts'
 import { usePlatform } from '../../hooks/use-platform.ts'
 import { UploadButton } from '../../platform/components/upload-button.tsx'
 import { UploadSelectButton } from '../../platform/components/upload-select-button.tsx'
+import { HomeLinkButton } from './home-link-button.tsx'
 
 export function GameListEmpty() {
   const { t } = useTranslation()
@@ -44,18 +43,7 @@ export function GameListEmpty() {
         <>
           <div className='text-(--gray-11)'>{t('empty.noGamesPlayed')}</div>
           <div className='inline-flex items-center gap-1 text-(--gray-11)'>
-            <Trans
-              components={{
-                1: createElement(() => (
-                  <Button asChild variant='soft'>
-                    <Link to={generatePath(routes.libraryHome)}>
-                      <span className='icon-[mdi--bookshelf]' /> {t('nav.home')}
-                    </Link>
-                  </Button>
-                )),
-              }}
-              i18nKey='library.playSomeGamesFromLibrary'
-            />
+            <Trans components={{ 1: <HomeLinkButton /> }} i18nKey='library.playSomeGamesFromLibrary' />
           </div>
         </>
       ) : null}

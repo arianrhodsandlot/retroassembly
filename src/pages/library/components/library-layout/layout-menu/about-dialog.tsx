@@ -61,6 +61,7 @@ export function AboutDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProp
             ·
             {links.map((link) => (
               <a
+                aria-label={link.name}
                 className='flex-center gap-1'
                 href={link.url}
                 key={link.name}

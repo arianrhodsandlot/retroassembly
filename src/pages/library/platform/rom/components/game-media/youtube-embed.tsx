@@ -29,7 +29,7 @@ function extractYouTubeId(url: string) {
   }
 }
 
-function convertYouTubeIframeURL(url: string) {
+export function convertYouTubeIframeURL(url: string) {
   const id = extractYouTubeId(url)
   if (!id) {
     return

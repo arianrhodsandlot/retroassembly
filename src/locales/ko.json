@@ -241,6 +241,8 @@
   "nav.library": "라이브러리",
   "nav.libraryLower": "라이브러리",
   "nav.settings": "설정",
+  "platform.n64": "Nintendo 64",
+  "platform.n64Note": "64비트 중앙 처리 장치의 이름을 따서 명명되었으며, 1996년 6월 일본, 1996년 9월 북미, 1997년 3월 유럽과 호주, 1997년 9월 프랑스, 1997년 12월 브라질에서 출시되었습니다.\n5세대 게임기의 일부로서 N64는 주로 PlayStation 및 Sega Saturn과 경쟁했습니다. Nintendo 64는 Super Mario 64와 Pilotwings 64(전 세계 출시), 그리고 Saikyo Habu Shogi(일본에서만 출시)의 세 가지 게임과 함께 출시되었습니다.\nN64는 2001년 11월 MiniDVD 기반 GameCube로 계승되었지만, N64 콘솔은 2003년 말 시스템이 단종될 때까지 계속 판매되었습니다.",
   "platform.arcade": "아케이드",
   "platform.arcadeNote": "1971년 스페이스워!(Spacewar!)를 시작으로, 비디오 게임의 가장 초기 형태는 아케이드 게임이었습니다. 전통적인 조이스틱과 버튼 구성부터 독특한 화면, 컨트롤 및 캐비닛을 갖춘 전용 특수 캐비닛까지 다양한 형태의 아케이드 머신이 존재했습니다.",
   "platform.atari2600": "Atari 2600",

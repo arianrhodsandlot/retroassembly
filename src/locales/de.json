@@ -241,6 +241,8 @@
   "nav.library": "Bibliothek",
   "nav.libraryLower": "Bibliothek",
   "nav.settings": "Einstellungen",
+  "platform.n64": "Nintendo 64",
+  "platform.n64Note": "Benannt nach ihrer 64-Bit-CPU, wurde sie im Juni 1996 in Japan, im September 1996 in Nordamerika, im März 1997 in Europa und Australien, im September 1997 in Frankreich und im Dezember 1997 in Brasilien veröffentlicht.\nAls Teil der fünften Konsolengeneration konkurrierte die N64 hauptsächlich mit der PlayStation und dem Sega Saturn. Das Nintendo 64 wurde mit drei Spielen eingeführt: Super Mario 64 und Pilotwings 64, weltweit veröffentlicht; und Saikyo Habu Shogi, nur in Japan veröffentlicht.\nWährend die N64 im November 2001 vom MiniDVD-basierten GameCube abgelöst wurde, blieben N64-Konsolen bis zur Einstellung des Systems Ende 2003 erhältlich.",
   "platform.arcade": "Arcade",
   "platform.arcadeNote": "Ab Spacewar! im Jahr 1971 war die früheste Form von Videospielen das Arcade-Spiel, das verschiedene Spiele waren, die Arcade-Geräte erforderten. Es gab verschiedene Formen von Arcade-Automaten, einschließlich der traditionellen Joystick- und Button-Konfigurationen sowie spezielle dedizierte Kabinen mit einzigartigen Displays, Steuerungen und Gehäusen.",
   "platform.atari2600": "Atari 2600",

@@ -6,11 +6,11 @@ import { cdnHost } from '#@/utils/isomorphic/cdn.ts'
 const extractCache = new Map<string, ReturnType<typeof extractCore>>()
 
 function getCoreCDNUrl(core: string) {
-  const externalCores = ['a5200', 'prosystem', 'stella2014']
+  const externalCores = ['a5200', 'prosystem', 'stella2014', 'mupen64plus-libretro-nx']
   const segments = externalCores.includes(core)
     ? [
         'npm',
-        ['retroassembly-custom-cores', '1.22.2-20251119172557'].join('@'),
+        ['retroassembly-custom-cores', '1.22.2-20260610142137'].join('@'),
         'dist',
         'cores',
         `${core}_libretro.zip`,

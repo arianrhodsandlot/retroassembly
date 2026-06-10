@@ -21,7 +21,7 @@ interface BasePlatform {
   libretroName: string
 }
 
-// This link can be used as a reference for the array, but they may be not identical.
+// This link can be used as a reference for the map, but they may be not identical.
 // https://github.com/RetroPie/RetroPie-Setup/blob/master/platforms.cfg
 const basePlatformMap = {
   arcade: {
@@ -262,6 +262,18 @@ const basePlatformMap = {
       releaseDate: '1989-08-14T00:00:00-07:00',
     },
     libretroName: 'Sega - Mega Drive - Genesis',
+  },
+  n64: {
+    cores: ['mupen64plus-libretro-nx'],
+    displayNameI18nKey: 'platform.n64',
+    fileExtensions: ['.n64', '.z64', '.v64', '.zip'],
+    info: {
+      developer: 'Nintendo R&D2',
+      manufacturer: 'Nintendo Co., Ltd.',
+      notesI18nKey: 'platform.n64Note',
+      releaseDate: '1996-06-23T00:00:00-07:00',
+    },
+    libretroName: 'Nintendo - Nintendo Entertainment System',
   },
   nes: {
     cores: ['fceumm', 'nestopia', 'quicknes'],

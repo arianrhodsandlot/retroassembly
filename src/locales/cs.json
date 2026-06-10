@@ -241,6 +241,8 @@
   "nav.library": "Knihovna",
   "nav.libraryLower": "knihovna",
   "nav.settings": "Nastavení",
+  "platform.n64": "Nintendo 64",
+  "platform.n64Note": "Pojmenována podle 64bitového procesoru, byla vydána v červnu 1996 v Japonsku, v září 1996 v Severní Americe, v březnu 1997 v Evropě a Austrálii, v září 1997 ve Francii a v prosinci 1997 v Brazílii.\nV rámci páté generace herních konzolí N64 soupeřila především s PlayStation a Sega Saturn. Nintendo 64 byla uvedena se třemi hrami: Super Mario 64 a Pilotwings 64, vydané celosvětově; a Saikyo Habu Shogi, vydaná pouze v Japonsku.\nZatímco N64 byla v listopadu 2001 nahrazena konzolí GameCube založenou na MiniDVD, konzole N64 zůstaly dostupné až do ukončení systému na konci roku 2003.",
   "platform.arcade": "Arcade",
   "platform.arcadeNote": "Začínaje hrou Spacewar! v roce 1971, nejranější formy videoher byly arkádové hry, což byly různé hry vyžadující fyzické ovládání. Existovaly různé typy arkádových automatů, včetně tradičních konfigurací joysticku a tlačítek až po speciální skříně s unikátními obrazovkami, ovládáním a kabinetem.",
   "platform.atari2600": "Atari 2600",

@@ -12,6 +12,9 @@ const composeYaml = `services:
       - ./data:/app/data
       # Optional: mount a host ROM library read-only to share it with every user.
       - ./roms:/app/roms:ro
+    # Optional: host under a subpath (e.g. /retro). Set at run time, no rebuild needed.
+    # environment:
+    #   RETROASSEMBLY_RUN_TIME_BASE_URL: /retro
     restart: unless-stopped`
 
 const dockerCommand = String.raw`docker run -d \

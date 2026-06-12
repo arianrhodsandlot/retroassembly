@@ -4,6 +4,7 @@ import { useState, type SubmitEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client, type InferRequestType } from '#@/api/client.ts'
+import { withClientBase } from '#@/utils/client/base-url.ts'
 import { LoginFormFields } from './log-in-form-fields.tsx'
 
 const { $post } = client.auth.register
@@ -28,7 +29,7 @@ export function RegisterForm({ redirectTo }: Readonly<{ redirectTo: string }>) {
     {
       onSuccess() {
         setIsRedirecting(true)
-        location.replace(redirectTo)
+        location.replace(withClientBase(redirectTo))
       },
     },
   )

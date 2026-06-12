@@ -1,4 +1,5 @@
 import { getContext } from 'hono/context-storage'
+import { withBase } from '#@/utils/server/base-url.ts'
 import type { Route } from './+types/login-google.ts'
 
 export async function loader({ request }: Route.LoaderArgs) {
@@ -9,7 +10,9 @@ export async function loader({ request }: Route.LoaderArgs) {
     throw c.redirect('/')
   }
 
-  const oauthRedirectToURL = new URL('/login', new URL(c.req.url).origin)
+  // Absolute URL the OAuth provider redirects the browser back to (a document load), so it must
+  // carry the base path explicitly rather than relying on React Router's basename.
+  const oauthRedirectToURL = new URL(withBase('/login'), new URL(c.req.url).origin)
   const { searchParams } = new URL(request.url)
   const redirectTo = searchParams.get('redirect_to')
   if (redirectTo) {

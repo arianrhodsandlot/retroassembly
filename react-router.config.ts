@@ -6,6 +6,9 @@ import { getTargetRuntime } from './scripts/utils.ts'
 
 export default {
   appDirectory: 'src/pages',
+  // Built with a root basename; subpath hosting (e.g. /retro) is applied at runtime by patching the
+  // server build's basename from RETROASSEMBLY_RUN_TIME_BASE_URL. See utils/server/runtime-base-build.ts.
+  basename: '/',
   buildDirectory: 'dist',
   async buildEnd() {
     if (getTargetRuntime() === 'node') {

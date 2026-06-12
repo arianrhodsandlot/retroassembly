@@ -30,6 +30,9 @@ RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
 
 FROM ${PROD_IMAGE} AS production
 WORKDIR /app
+# Subpath hosting (e.g. /retro) is applied purely at run time — set this env var when running the
+# container, no rebuild needed. Empty (default) serves the app at the site root.
+ENV RETROASSEMBLY_RUN_TIME_BASE_URL=
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/src/databases ./src/databases
 COPY --from=builder /app/dist/client ./dist/client

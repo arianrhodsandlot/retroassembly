@@ -1,9 +1,10 @@
 import { AlertDialog, Button } from '@radix-ui/themes'
 import { useTranslation } from 'react-i18next'
 import { metadata } from '#@/constants/metadata.ts'
+import { withClientBase } from '#@/utils/client/base-url.ts'
 
 function handleClickLogout() {
-  location.assign('/logout')
+  location.assign(withClientBase('/logout'))
 }
 
 export function LogoutDialog(props: Readonly<AlertDialog.RootProps>) {

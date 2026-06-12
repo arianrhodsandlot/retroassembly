@@ -10,8 +10,12 @@ services:
       - ./roms:/app/roms:ro
     # Optional overrides (none are required):
     # environment:
+    #   RETROASSEMBLY_RUN_TIME_BASE_URL: /retro                   # host under a subpath (e.g. https://example.com/retro); empty = root
     #   RETROASSEMBLY_RUN_TIME_ENABLE_SHARED_ROM_LIBRARY: "true"  # force on/off (default: auto-detect)
     #   RETROASSEMBLY_RUN_TIME_SHARED_ROM_DIRECTORY: /app/roms    # use a different mount path
     #   RETROASSEMBLY_RUN_TIME_SHARED_ROM_SCAN_INTERVAL: "300"    # re-scan seconds to pick up host changes; "0" disables
     #   RETROASSEMBLY_RUN_TIME_SHARED_LIBRARY_ONLY: "true"        # disable uploads, serve only the shared library
     restart: unless-stopped
+
+# To host under a subpath (e.g. https://example.com/retro), just set RETROASSEMBLY_RUN_TIME_BASE_URL
+# at run time (uncomment it above) — the same image works at the root or any subpath, no rebuild.

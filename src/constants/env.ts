@@ -20,6 +20,7 @@ export function getRunTimeEnv() {
           node: 'false',
           workerd: `${Boolean(c?.req.url && new URL(metadata.link).origin === new URL(c.req.url).origin)}`,
         }[runtimeKey] || 'false',
+      RETROASSEMBLY_RUN_TIME_BASE_URL: '',
       RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY: path.resolve('data'),
       RETROASSEMBLY_RUN_TIME_ENABLE_SHARED_ROM_LIBRARY: 'false',
       RETROASSEMBLY_RUN_TIME_MAX_AUTO_STATES_PER_ROM: '20',
@@ -54,4 +55,21 @@ export function getDirectories() {
 export function getDatabasePath() {
   const { dataDirectory } = getDirectories()
   return path.join(dataDirectory, 'retroassembly.sqlite')
+}
+
+/**
+ * Normalize a configured base URL to a leading-slash, no-trailing-slash path segment, or '' for the
+ * site root. Examples: 'retro' -> '/retro', '/retro/' -> '/retro', '' or '/' -> ''.
+ * The higher-level base-URL helpers live in utils/server/base-url.ts; this pure function lives here
+ * because it is also consumed by vite.config.ts at build time.
+ */
+export function normalizeBaseUrl(rawBaseUrl: string | undefined) {
+  let baseUrl = (rawBaseUrl || '').trim()
+  if (!baseUrl || baseUrl === '/') {
+    return ''
+  }
+  if (!baseUrl.startsWith('/')) {
+    baseUrl = `/${baseUrl}`
+  }
+  return baseUrl.replace(/\/+$/u, '')
 }

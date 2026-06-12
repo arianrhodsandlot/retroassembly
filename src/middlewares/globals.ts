@@ -9,6 +9,7 @@ import { getPreference } from '#@/controllers/preference/get-preference.ts'
 import { getCurrentUser } from '#@/controllers/users/get-current-user.ts'
 import { locales } from '#@/locales/locales.ts'
 import { defaultLanguage, i18n } from '#@/utils/isomorphic/i18n.ts'
+import { stripBase } from '#@/utils/server/base-url.ts'
 
 declare module 'hono' {
   interface ContextVariableMap {
@@ -37,7 +38,8 @@ function getDetectedLanguage(c: Context) {
 function getLanguage(c: Context) {
   const { detectedLanguage, preference } = c.var
 
-  const path = c.req.path.endsWith('.data') ? c.req.path.slice(0, -5) : c.req.path
+  const rawPath = c.req.path.endsWith('.data') ? c.req.path.slice(0, -5) : c.req.path
+  const path = stripBase(rawPath)
   const segments = path.split('/').slice(1)
   const [segment] = segments
   const isDemo = match('/demo{/*path}')(path)

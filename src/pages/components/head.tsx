@@ -4,11 +4,17 @@ import { useTranslation } from 'react-i18next'
 import { Links, Meta, useLoaderData } from 'react-router'
 import { metadata } from '#@/constants/metadata.ts'
 import type { loader } from '#@/pages/root.tsx'
+import { getClientBase, withClientBase } from '#@/utils/client/base-url.ts'
 import { cdnHost, libretroThumbnailsHost } from '#@/utils/isomorphic/cdn.ts'
 
 export function Head() {
   const { t } = useTranslation()
   const { headElements } = useLoaderData<typeof loader>() || {}
+  // Carry the runtime base path to the browser via a meta tag (CSP-safe — no inline script) so raw,
+  // non-router navigations can read it (see utils/client/base-url.ts). Resolved through the shared
+  // helper so the server (from the startup global) and the client (from this same meta tag) agree,
+  // avoiding a hydration mismatch.
+  const baseUrl = getClientBase()
   const target = useSyncExternalStore(
     () => noop,
     () => (globalThis.self === globalThis.top ? '_self' : '_blank'),
@@ -17,6 +23,7 @@ export function Head() {
 
   return (
     <head>
+      <meta content={baseUrl} name='ra-base-url' />
       <meta charSet='utf-8' />
       <meta content='width=device-width,initial-scale=1,viewport-fit=cover,shrink-to-fit=yes' name='viewport' />
       <meta content={metadata.themeColor} name='theme-color' />
@@ -31,11 +38,11 @@ export function Head() {
       <meta content={t(metadata.descriptionI18nKey)} name='description' />
       <link href={metadata.link} rel='canonical' />
 
-      <link href='/assets/logo/logo-192x192.png' rel='icon' sizes='any' />
-      <link href='/assets/logo/logo.svg' rel='icon' type='image/svg+xml' />
-      <link href='/assets/logo/apple-touch-icon.png' rel='apple-touch-icon' sizes='any' />
+      <link href={withClientBase('/assets/logo/logo-192x192.png')} rel='icon' sizes='any' />
+      <link href={withClientBase('/assets/logo/logo.svg')} rel='icon' type='image/svg+xml' />
+      <link href={withClientBase('/assets/logo/apple-touch-icon.png')} rel='apple-touch-icon' sizes='any' />
 
-      <link href='/manifest.webmanifest' rel='manifest' />
+      <link href={withClientBase('/manifest.webmanifest')} rel='manifest' />
 
       <meta content='website' property='og:type' />
       <meta content={metadata.link} property='og:url' />

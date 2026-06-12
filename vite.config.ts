@@ -65,8 +65,12 @@ function serverInfo() {
 const viteConfigForReactRouter = defineConfig(async (env) => {
   const envPort = process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT
   const port = envPort ? Number.parseInt(envPort, 10) || 8000 : 8000
+  // The build is intentionally base-agnostic: assets are emitted with root-relative URLs (`/assets/...`).
+  // Subpath hosting (e.g. /retro) is applied entirely at runtime from RETROASSEMBLY_RUN_TIME_BASE_URL —
+  // the server prefixes the asset manifest and router basename per process. See utils/server/runtime-base-build.ts.
   const plugins = [tailwindcss({ optimize: false }), reactRouter(), [devtoolsJson()], serverInfo()]
   const config: UserConfig = {
+    base: '/',
     build: { chunkSizeWarningLimit: 1024 },
     clearScreen: false,
     envPrefix: 'RETROASSEMBLY_BUILD_TIME_VITE_',

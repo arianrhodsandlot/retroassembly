@@ -38,6 +38,10 @@ export function GameEntryDropdownMenu({ rom }) {
     return
   }
 
+  if (rom.isShared) {
+    return
+  }
+
   if (pathname === routes.libraryHome) {
     return
   }

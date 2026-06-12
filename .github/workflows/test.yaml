@@ -18,6 +18,7 @@ jobs:
       - run: pnpm install
       - run: node --run=setup
       - run: node --run=lint
+      - run: node --run=test:unit
       - run: node --run=test
 
       - uses: actions/upload-artifact@v7

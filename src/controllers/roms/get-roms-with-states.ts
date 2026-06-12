@@ -1,6 +1,7 @@
 import { and, count, countDistinct, desc, eq, gte, inArray, max } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { favoriteTable, romTable, stateTable, statusEnum } from '#@/databases/schema.ts'
+import { isSharedUserId, romOwnershipCondition } from '#@/utils/server/shared-rom.ts'
 
 export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
   const { currentUser, db, preference } = getContext().var
@@ -20,6 +21,7 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
       libretroGameId: romTable.libretroGameId,
       platform: romTable.platform,
       rawGameMetadata: romTable.rawGameMetadata,
+      userId: romTable.userId,
     })
     .from(romTable)
     .leftJoin(stateTable, and(eq(stateTable.romId, romTable.id), eq(stateTable.status, statusEnum.normal)))
@@ -33,7 +35,7 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
     )
     .where(
       and(
-        eq(romTable.userId, currentUser.id),
+        romOwnershipCondition(currentUser.id),
         eq(romTable.status, statusEnum.normal),
         inArray(romTable.platform, preference.ui.platforms),
       ),
@@ -46,6 +48,7 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
       romTable.launchboxGameId,
       romTable.libretroGameId,
       romTable.platform,
+      romTable.userId,
       favoriteTable.id,
     )
     .having(gte(count(stateTable.id), 1))
@@ -53,10 +56,12 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
     .offset(offset)
     .limit(pageSize)
 
-  const roms = romsRaw.map(({ isFavorite, ...rom }) => Object.assign(rom, { isFavorite: Boolean(isFavorite) }))
+  const roms = romsRaw.map(({ isFavorite, ...rom }) =>
+    Object.assign(rom, { isFavorite: Boolean(isFavorite), isShared: isSharedUserId(rom.userId) }),
+  )
 
   const where = and(
-    eq(romTable.userId, currentUser.id),
+    romOwnershipCondition(currentUser.id),
     eq(romTable.status, statusEnum.normal),
     inArray(romTable.platform, preference.ui.platforms),
   )

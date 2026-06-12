@@ -2,5 +2,16 @@ services:
   retroassembly:
     image: arianrhodsandlot/retroassembly
     ports: [8000:8000]
-    volumes: [./data:/app/data]
+    volumes:
+      - ./data:/app/data
+      # Mount a host ROM library read-only to share it with every user. It is auto-detected and
+      # enabled when it contains platform folders (nes/, snes/, gba/, ... — matched case-insensitively).
+      # No environment variables are required for the shared library.
+      - ./roms:/app/roms:ro
+    # Optional overrides (none are required):
+    # environment:
+    #   RETROASSEMBLY_RUN_TIME_ENABLE_SHARED_ROM_LIBRARY: "true"  # force on/off (default: auto-detect)
+    #   RETROASSEMBLY_RUN_TIME_SHARED_ROM_DIRECTORY: /app/roms    # use a different mount path
+    #   RETROASSEMBLY_RUN_TIME_SHARED_ROM_SCAN_INTERVAL: "300"    # re-scan seconds to pick up host changes; "0" disables
+    #   RETROASSEMBLY_RUN_TIME_SHARED_LIBRARY_ONLY: "true"        # disable uploads, serve only the shared library
     restart: unless-stopped

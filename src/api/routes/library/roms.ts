@@ -3,6 +3,7 @@ import path from 'node:path'
 import { zValidator } from '@hono/zod-validator'
 import { pull } from 'es-toolkit'
 import { Hono } from 'hono'
+import { HTTPException } from 'hono/http-exception'
 import { DateTime } from 'luxon'
 import { z } from 'zod'
 import type { PlatformName } from '#@/constants/platform.ts'
@@ -17,6 +18,7 @@ import { updateRom } from '#@/controllers/roms/update-rom.ts'
 import { getStates } from '#@/controllers/states/get-states.ts'
 import { dateFormatMap } from '#@/utils/isomorphic/i18n.ts'
 import { nanoid } from '#@/utils/server/nanoid.ts'
+import { isSharedUserId } from '#@/utils/server/shared-rom.ts'
 import { createFileResponse } from '../utils.ts'
 
 export const roms = new Hono()
@@ -93,6 +95,9 @@ export const roms = new Hono()
       const id = c.req.param('id')
       const rom = await getRom({ id })
       assert.ok(rom)
+      if (isSharedUserId(rom.userId)) {
+        throw new HTTPException(403, { message: 'Shared ROMs cannot be edited' })
+      }
 
       const extname = path.extname(form.file.name)
       const fileId = path.join('attachments', currentUser.id, rom.platform, rom.id, `${nanoid()}${extname}`)
@@ -106,7 +111,13 @@ export const roms = new Hono()
     ':id/boxart',
 
     async (c) => {
-      await updateRom({ gameBoxartFileIds: null, id: c.req.param('id') })
+      const { currentUser } = c.var
+      const id = c.req.param('id')
+      const rom = await getRom({ id })
+      if (!rom || rom.userId !== currentUser.id) {
+        throw new HTTPException(403, { message: 'Shared ROMs cannot be edited' })
+      }
+      await updateRom({ gameBoxartFileIds: null, id })
       return c.json(null)
     },
   )
@@ -128,6 +139,9 @@ export const roms = new Hono()
       const id = c.req.param('id')
       const rom = await getRom({ id })
       assert.ok(rom)
+      if (isSharedUserId(rom.userId)) {
+        throw new HTTPException(403, { message: 'Shared ROMs cannot be edited' })
+      }
 
       const gameThumbnailFileIds: string[] = rom.gameThumbnailFileIds?.split(',') || []
       const extname = path.extname(form.file.name)
@@ -147,7 +161,9 @@ export const roms = new Hono()
       const id = c.req.param('id')
       const thumbnailId = c.req.param('thumbnailId')
       const rom = await getRom({ id })
-      assert.ok(rom?.userId === currentUser.id)
+      if (!rom || rom.userId !== currentUser.id) {
+        throw new HTTPException(403, { message: 'Shared ROMs cannot be edited' })
+      }
       const gameThumbnailFileIds: string[] = rom.gameThumbnailFileIds?.split(',') || []
       pull(gameThumbnailFileIds, [thumbnailId])
       const updatedRom = await updateRom({

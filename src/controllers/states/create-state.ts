@@ -4,6 +4,7 @@ import { getContext } from 'hono/context-storage'
 import { getRunTimeEnv } from '#@/constants/env.ts'
 import { romTable, stateTable } from '#@/databases/schema.ts'
 import { nanoid } from '#@/utils/server/nanoid.ts'
+import { romOwnershipCondition } from '#@/utils/server/shared-rom.ts'
 import { deleteStates } from './delete-states.ts'
 
 interface CreateStateParams {
@@ -20,11 +21,16 @@ export async function createState({ core, rom, state, thumbnail, type }: CreateS
     throw new Error('Unauthorized')
   }
 
+  // Resolve the rom across the user's own uploads and the shared library so save states work for
+  // shared ROMs too. The state row itself stays owned by the current user.
   const [romResult] = await db.library
     .select()
     .from(romTable)
-    .where(and(eq(romTable.id, rom), eq(romTable.userId, currentUser.id)))
+    .where(and(eq(romTable.id, rom), romOwnershipCondition(currentUser.id)))
     .limit(1)
+  if (!romResult) {
+    throw new Error('ROM not found or access denied')
+  }
 
   const id = nanoid()
   const stateFileId = path.join('states', currentUser.id, romResult.platform, rom, `${id}.state`)

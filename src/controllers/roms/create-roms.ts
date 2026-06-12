@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { and, eq, type InferInsertModel } from 'drizzle-orm'
-import { isNotNil, pickBy, omit } from 'es-toolkit'
+import { omit } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
 import { HTTPException } from 'hono/http-exception'
 import { DateTime } from 'luxon'
@@ -9,59 +9,18 @@ import { platformMap, type PlatformName } from '#@/constants/platform.ts'
 import { romTable } from '#@/databases/schema.ts'
 import { getFilePartialDigest } from '#@/utils/server/file.ts'
 import { msleuth } from '#@/utils/server/msleuth.ts'
+import { extractRomMetadata, normalizeGameInfo } from '#@/utils/server/rom-metadata.ts'
 import { countRoms } from './count-roms.ts'
-
-function getGenres({ launchbox, libretro }) {
-  return (
-    launchbox?.genres
-      ?.split(';')
-      .map((genre) => genre.trim())
-      .join(',') ||
-    libretro?.genres
-      ?.split(',')
-      .map((genre) => genre.trim())
-      .join(',')
-  )
-}
-
-function getReleaseDate({ launchbox }) {
-  if (launchbox?.releaseDate) {
-    const date = DateTime.fromISO(launchbox.releaseDate)
-    if (date.isValid) {
-      return date.toJSDate()
-    }
-  }
-}
-
-function getReleaseYear({ launchbox, libretro }) {
-  if (launchbox) {
-    if (launchbox.releaseYear) {
-      const result = Number.parseInt(launchbox.releaseYear || '', 10)
-      if (result) {
-        return result
-      }
-    }
-
-    if (launchbox.releaseDate) {
-      const result = new Date(launchbox.releaseDate).getFullYear()
-      if (result) {
-        return result
-      }
-    }
-  }
-
-  if (libretro) {
-    const result = Number.parseInt(libretro.releaseyear || '', 10)
-    if (result) {
-      return result
-    }
-  }
-}
 
 export async function createRom({ file, md5, platform }: { file: File; md5?: string; platform: PlatformName }) {
   const env = getRunTimeEnv()
-  const { currentUser, db, storage, t } = getContext().var
+  const { currentUser, db, preference, storage, t } = getContext().var
   const { library } = db
+
+  // Shared library only mode (per-user toggle or instance env): uploads are disabled entirely.
+  if (preference?.ui?.sharedLibraryOnly) {
+    throw new HTTPException(403, { message: 'Uploads are disabled in shared library only mode' })
+  }
 
   const cutoffDate = DateTime.fromISO('2026-01-01')
   let maxRomCount = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_ROM_COUNT, 10) || Infinity
@@ -97,14 +56,7 @@ export async function createRom({ file, md5, platform }: { file: File; md5?: str
     console.warn(error)
   }
 
-  for (const key of Object.keys(gameInfo)) {
-    const item = gameInfo[key]
-    if (item && typeof item === 'object') {
-      gameInfo[key] = pickBy(item, (value) => isNotNil(value))
-    }
-  }
-
-  const { launchbox, libretro } = gameInfo
+  normalizeGameInfo(gameInfo)
 
   // Store file
   const digest = await getFilePartialDigest(file)
@@ -117,17 +69,8 @@ export async function createRom({ file, md5, platform }: { file: File; md5?: str
   const romData: InferInsertModel<typeof romTable> = {
     fileId,
     fileName: file.name,
-    gameDeveloper: launchbox?.developer || libretro?.developer,
-    gameGenres: getGenres({ launchbox, libretro }),
-    gameName: launchbox?.name || libretro?.name,
-    gamePlayers: launchbox?.maxPlayers || libretro?.users,
-    gamePublisher: launchbox?.publisher || libretro?.publisher,
-    gameReleaseDate: getReleaseDate({ launchbox }),
-    gameReleaseYear: getReleaseYear({ launchbox, libretro }),
-    launchboxGameId: launchbox?.databaseId,
-    libretroGameId: libretro?.id,
+    ...extractRomMetadata(gameInfo),
     platform,
-    rawGameMetadata: launchbox || libretro ? { launchbox, libretro } : undefined,
     userId: currentUser.id,
   }
 

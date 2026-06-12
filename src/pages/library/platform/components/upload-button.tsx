@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { PlatformName } from '#@/constants/platform.ts'
 import { DialogRoot } from '../../components/dialog-root.tsx'
+import { useUploadsDisabled } from '../../hooks/use-uploads-disabled.ts'
 import { UploadDialog } from './upload-dialog.tsx'
 
 export function UploadButton({
@@ -10,8 +11,13 @@ export function UploadButton({
   variant = 'soft',
 }: Readonly<{ platform: PlatformName; variant?: ButtonProps['variant'] }>) {
   const { t } = useTranslation()
+  const uploadsDisabled = useUploadsDisabled()
   const [key, setKey] = useState(Date.now)
   const [open, setOpen] = useState(false)
+
+  if (uploadsDisabled) {
+    return null
+  }
 
   function handleClick() {
     setKey(Date.now)

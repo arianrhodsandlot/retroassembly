@@ -79,6 +79,8 @@ export interface Preference {
     saturation: number
     saturationApplyToGame: boolean
     saturationApplyToImages: boolean
+    /** Shared library only mode: hides upload controls and rejects uploads server-side. */
+    sharedLibraryOnly: boolean
     showDistrictOnTitle: boolean
     showFocusIndicators: string
     showSidebar: boolean
@@ -166,6 +168,7 @@ export const defaultPreference: ResolvedPreference = {
     saturation: 100,
     saturationApplyToGame: false,
     saturationApplyToImages: false,
+    sharedLibraryOnly: false,
     showDistrictOnTitle: false,
     showFocusIndicators: 'auto',
     showSidebar: true,

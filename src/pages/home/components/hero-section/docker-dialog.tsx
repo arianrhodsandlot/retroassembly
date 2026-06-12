@@ -8,13 +8,17 @@ const composeYaml = `services:
   retroassembly:
     image: arianrhodsandlot/retroassembly
     ports: [8000:8000]
-    volumes: [./data:/app/data]
+    volumes:
+      - ./data:/app/data
+      # Optional: mount a host ROM library read-only to share it with every user.
+      - ./roms:/app/roms:ro
     restart: unless-stopped`
 
 const dockerCommand = String.raw`docker run -d \
   --name retroassembly \
   -p 8000:8000 \
   -v /path/to/your/data:/app/data \
+  -v /path/to/your/roms:/app/roms:ro \
   arianrhodsandlot/retroassembly`
 
 export function DockerDialog({ onOpenChange, ...props }: Readonly<Dialog.RootProps>) {

@@ -3,6 +3,7 @@ import Fuse from 'fuse.js'
 import { getContext } from 'hono/context-storage'
 import type { PlatformName } from '#@/constants/platform.ts'
 import { favoriteTable, romTable, statusEnum } from '#@/databases/schema.ts'
+import { isSharedUserId, romOwnershipCondition } from '#@/utils/server/shared-rom.ts'
 
 type SearchRomsReturning = Awaited<ReturnType<typeof searchRoms>>
 export type SearchRoms = SearchRomsReturning['roms']
@@ -62,7 +63,7 @@ export async function searchRoms(
   const { library } = db
 
   const conditions = [
-    eq(romTable.userId, currentUser.id),
+    romOwnershipCondition(currentUser.id),
     eq(romTable.status, 1),
     platform ? eq(romTable.platform, platform) : inArray(romTable.platform, preference.ui.platforms),
   ]
@@ -88,7 +89,9 @@ export async function searchRoms(
     .leftJoin(favoriteTable, favoriteJoinCondition)
     .where(where)
 
-  const allRomResults = allRomResultsRaw.map(({ isFavorite, rom }) => Object.assign(rom, { isFavorite }))
+  const allRomResults = allRomResultsRaw.map(({ isFavorite, rom }) =>
+    Object.assign(rom, { isFavorite, isShared: isSharedUserId(rom.userId) }),
+  )
 
   const fuse = new Fuse(allRomResults, fuseOptions)
   const fuseResults = fuse.search(trimmedQuery)

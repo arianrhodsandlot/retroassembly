@@ -2,6 +2,7 @@ import { and, count, desc, eq, inArray, isNotNull, sql } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import type { PlatformName } from '#@/constants/platform.ts'
 import { favoriteTable, romTable, statusEnum } from '#@/databases/schema.ts'
+import { isSharedUserId, romOwnershipCondition } from '#@/utils/server/shared-rom.ts'
 
 type GetRomsReturning = Awaited<ReturnType<typeof getRoms>>
 export type Roms = GetRomsReturning['roms']
@@ -31,13 +32,15 @@ export async function getRoms({
 
   const { library } = db
 
-  const conditions = [eq(romTable.userId, currentUser.id), eq(romTable.status, 1)]
+  const conditions = [romOwnershipCondition(currentUser.id), eq(romTable.status, 1)]
   if (id) {
     conditions.push(eq(romTable.id, id))
   }
   if (platform) {
     conditions.push(eq(romTable.platform, platform))
-  } else {
+  } else if (!id) {
+    // Only apply the enabled-platform filter to list queries; a direct by-id lookup must resolve
+    // regardless of which platforms the user has enabled (e.g. a shared ROM on a disabled platform).
     conditions.push(inArray(romTable.platform, preference.ui.platforms))
   }
   const where = and(...conditions)
@@ -75,7 +78,9 @@ export async function getRoms({
     .offset(offset)
     .limit(pageSize)
 
-  const roms = romsRaw.map(({ isFavorite, rom }) => Object.assign(rom, { isFavorite }))
+  const roms = romsRaw.map(({ isFavorite, rom }) =>
+    Object.assign(rom, { isFavorite, isShared: isSharedUserId(rom.userId) }),
+  )
 
   const [{ total }] = await library
     .select({ total: count() })

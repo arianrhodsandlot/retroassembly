@@ -21,12 +21,16 @@ export function getRunTimeEnv() {
           workerd: `${Boolean(c?.req.url && new URL(metadata.link).origin === new URL(c.req.url).origin)}`,
         }[runtimeKey] || 'false',
       RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY: path.resolve('data'),
+      RETROASSEMBLY_RUN_TIME_ENABLE_SHARED_ROM_LIBRARY: 'false',
       RETROASSEMBLY_RUN_TIME_MAX_AUTO_STATES_PER_ROM: '20',
       RETROASSEMBLY_RUN_TIME_MAX_ROM_COUNT: { node: '', workerd: '1000' }[runtimeKey] || '',
       RETROASSEMBLY_RUN_TIME_MAX_ROM_COUNT_2026: { node: '', workerd: '200' }[runtimeKey] || '',
       RETROASSEMBLY_RUN_TIME_MAX_UPLOAD_AT_ONCE: { node: '1000', workerd: '100' }[runtimeKey] || '100',
       RETROASSEMBLY_RUN_TIME_MSLEUTH_FALLBACK_HOST: 'https://msleuth.fly.dev/',
       RETROASSEMBLY_RUN_TIME_MSLEUTH_HOST: 'https://msleuth.arianrhodsandlot.workers.dev/',
+      RETROASSEMBLY_RUN_TIME_SHARED_LIBRARY_ONLY: 'false',
+      RETROASSEMBLY_RUN_TIME_SHARED_ROM_DIRECTORY: path.resolve('roms'),
+      RETROASSEMBLY_RUN_TIME_SHARED_ROM_SCAN_INTERVAL: '300',
       RETROASSEMBLY_RUN_TIME_SKIP_HOME:
         { node: `${runTimeEnv.NODE_ENV !== 'development'}`, workerd: 'false' }[runtimeKey] || 'false',
       RETROASSEMBLY_RUN_TIME_SKIP_HOME_IF_LOGGED_IN: { node: 'true', workerd: 'false' }[runtimeKey] || 'false',
@@ -43,7 +47,8 @@ export function getDirectories() {
   const runTimeEnv = getRunTimeEnv()
   const dataDirectory = runTimeEnv.RETROASSEMBLY_RUN_TIME_DATA_DIRECTORY
   const storageDirectory = runTimeEnv.RETROASSEMBLY_RUN_TIME_STORAGE_DIRECTORY
-  return { dataDirectory, storageDirectory }
+  const sharedRomDirectory = runTimeEnv.RETROASSEMBLY_RUN_TIME_SHARED_ROM_DIRECTORY
+  return { dataDirectory, sharedRomDirectory, storageDirectory }
 }
 
 export function getDatabasePath() {

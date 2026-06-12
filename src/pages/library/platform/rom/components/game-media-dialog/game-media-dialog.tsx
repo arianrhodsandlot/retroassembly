@@ -33,7 +33,7 @@ export function GameMediaDialog({ children = defaultTrigger }: Readonly<PropsWit
     }
   }
 
-  if (isDemo) {
+  if (isDemo || rom.isShared) {
     return
   }
 

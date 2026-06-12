@@ -10,6 +10,9 @@ export async function deleteRoms(ids: string[]) {
     return
   }
 
+  // Scoped to the current user's own uploads. Shared ROMs (owned by the sentinel shared user)
+  // never match here, so they are never soft-deleted and their host files never enter the cleanup
+  // below. As a further safeguard, storage.delete() is a no-op for shared file ids.
   const deletedRoms = await library
     .update(romTable)
     .set({ status: statusEnum.deleted })

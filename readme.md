@@ -69,6 +69,39 @@ You have two options to get started with RetroAssembly:
 
 See [RetroAssembly's homepage on Docker Hub](https://hub.docker.com/r/arianrhodsandlot/retroassembly#quick-start).
 
+#### Shared ROM Library
+
+When self-hosting, you can expose a shared, read-only ROM library to every user of your instance without anyone having to upload files.
+
+Just mount your ROM directory into the container at `/app/roms` (read-only) — **no environment variables are required**. The shared library is auto-detected and enabled whenever that directory contains recognized platform folders.
+
+The following variables are all optional overrides:
+
+| Environment Variable                               | Description                                                                                          |
+| -------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `RETROASSEMBLY_RUN_TIME_ENABLE_SHARED_ROM_LIBRARY` | Force the shared library on/off (`"true"`/`"false"`). Default: auto-detect from the mounted folder.  |
+| `RETROASSEMBLY_RUN_TIME_SHARED_ROM_DIRECTORY`      | Use a different mount path. Default: `/app/roms`.                                                     |
+| `RETROASSEMBLY_RUN_TIME_SHARED_ROM_SCAN_INTERVAL`  | Seconds between automatic re-scans of the directory (default `300`; `0` disables the periodic scan).  |
+| `RETROASSEMBLY_RUN_TIME_SHARED_LIBRARY_ONLY`       | Set to `"true"` to disable uploads entirely and serve only the shared library, for all users.        |
+
+Inside the mounted directory, group ROMs into subfolders named after RetroAssembly's `PlatformName` keys, matched case-insensitively (e.g. `nes` or `NES`, `snes` or `SNES`, `gba`, `gbc`, `genesis`, `megadrive`, `sfc`, `arcade`...):
+
+```
+roms/
+  nes/
+    Super Mario Bros.nes
+  snes/
+    Chrono Trigger.sfc
+  gba/
+    Metroid Fusion.gba
+  arcade/
+    sf2.zip
+```
+
+Shared ROMs appear in every user's library automatically without uploading. They are never copied into `/app/data/storage`, and the app never deletes or modifies the files in `/app/roms`. The directory is re-scanned on a timer (`RETROASSEMBLY_RUN_TIME_SHARED_ROM_SCAN_INTERVAL`), so adding or removing files on the host is reflected without a restart.
+
+Each user can switch their library to **shared library only** mode under _Settings → General → Library mode_, which hides the upload controls and disables uploads. Set `RETROASSEMBLY_RUN_TIME_SHARED_LIBRARY_ONLY="true"` to enforce this for the whole instance.
+
 ## Supported Platforms
 
 RetroAssembly aims to support a wide range of vintage gaming systems. Emulation is powered by [Nostalgist.js](https://nostalgist.js.org/).

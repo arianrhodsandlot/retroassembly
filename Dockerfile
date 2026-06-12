@@ -36,6 +36,6 @@ COPY --from=builder /app/dist/client ./dist/client
 COPY --from=builder /app/dist/server ./dist/server
 COPY --from=deps-production /app/node_modules ./node_modules
 
-VOLUME ["/app/data"]
+VOLUME ["/app/data", "/app/roms"]
 EXPOSE 8000
 CMD ["node", "--run=start"]

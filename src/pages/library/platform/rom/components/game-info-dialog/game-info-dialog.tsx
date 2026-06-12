@@ -49,7 +49,7 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
     await reload()
   }
 
-  if (isDemo) {
+  if (isDemo || rom.isShared) {
     return
   }
 

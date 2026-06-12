@@ -21,7 +21,8 @@
     "setup": "node scripts/setup.ts",
     "start": "node --run=serve",
     "tag": "node scripts/tag.ts",
-    "test": "playwright test -c tests/e2e --tsconfig=tests/e2e/tsconfig.playwright.json"
+    "test": "playwright test -c tests/e2e --tsconfig=tests/e2e/tsconfig.playwright.json",
+    "test:unit": "node --test \"src/**/*.test.ts\""
   },
   "dependencies": {
     "better-sqlite3": "12.10.0",

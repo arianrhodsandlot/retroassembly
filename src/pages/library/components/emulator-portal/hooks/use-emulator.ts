@@ -1,4 +1,4 @@
-import { attemptAsync, noop } from 'es-toolkit'
+import { attemptAsync, delay, noop } from 'es-toolkit'
 import NoSleep from 'nosleep.js'
 import { Nostalgist } from 'nostalgist'
 import { useEffect, useMemo } from 'react'
@@ -32,13 +32,13 @@ const defaultRetroarchConfig: RetroarchConfig = {
   input_player2_analog_dpad_mode: 1,
   input_player3_analog_dpad_mode: 1,
   input_player4_analog_dpad_mode: 1,
-  rewind_enable: true,
   rewind_granularity: 4,
   rgui_menu_color_theme: 1,
-  run_ahead_enabled: true,
   run_ahead_frames: 1,
+  video_gpu_screenshot: true,
 }
 
+const nativeConsoleError = console.error
 let noSleep: NoSleep
 const originalGetUserMedia = globalThis.navigator?.mediaDevices?.getUserMedia?.bind(globalThis.navigator.mediaDevices)
 export function useEmulator() {
@@ -79,6 +79,8 @@ export function useEmulator() {
         ...defaultRetroarchConfig,
         ...preference.input.keyboardMapping,
         ...gamepadMapping,
+        rewind_enable: !['mupen64plus_next'].includes(core),
+        run_ahead_enabled: !['mupen64plus_next', 'pcsx_rearmed'].includes(core),
         video_smooth: preference.emulator.videoSmooth,
       },
       retroarchCoreConfig: preference.emulator.core[core],
@@ -95,6 +97,7 @@ export function useEmulator() {
     isValidating,
     mutate: prepare,
   } = useSWRImmutable(options, () => Nostalgist.prepare(options))
+  globalThis.emulator = emulator
 
   const isPreparing = !rom || isValidating
 
@@ -103,6 +106,7 @@ export function useEmulator() {
       return
     }
 
+    console.error = () => {}
     if (!withState) {
       emulator.getEmulator().on('beforeLaunch', () => {
         try {
@@ -153,9 +157,18 @@ export function useEmulator() {
     onCancel(noop)
     noSleep ||= new NoSleep()
     await noSleep.enable()
+
+    // ad-hoc patch for mupen64plus_next
+    if (core === 'mupen64plus_next') {
+      await delay(0)
+      emulator.sendCommand('PAUSE_TOGGLE')
+      await delay(0)
+      emulator.sendCommand('PAUSE_TOGGLE')
+    }
   }
 
   async function exit({ reloadAfterExit = false } = {}) {
+    console.error = nativeConsoleError
     const status = emulator?.getStatus() || ''
     if (['paused', 'running'].includes(status)) {
       emulator?.exit()

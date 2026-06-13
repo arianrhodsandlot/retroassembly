@@ -25,6 +25,42 @@ async function getStateAndThumbnail(emulator: Nostalgist, object: { state?: File
   return { state, thumbnail }
 }
 
+async function forceGetEmulatorThumbnail(emulator: Nostalgist, resolution: { width: number; height: number }) {
+  const source = emulator.getCanvas()
+  const { width, height } = source
+  let sw: number
+  let sh: number
+  let sx: number
+  let sy: number
+  if (width / height > resolution.width / resolution.height) {
+    sh = height
+    sw = Math.round(height * (resolution.width / resolution.height))
+    sx = Math.round((width - sw) / 2)
+    sy = 0
+  } else {
+    sw = width
+    sh = Math.round(width / (resolution.width / resolution.height))
+    sx = 0
+    sy = Math.round((height - sh) / 2)
+  }
+  const target = document.createElement('canvas')
+  target.width = sw
+  target.height = sh
+  const context = target.getContext('2d')
+  return await new Promise<File>((resolve) => {
+    requestAnimationFrame(() => {
+      // @ts-expect-error let's assume the context is always available
+      context.drawImage(source, sx, sy, sw, sh, 0, 0, sw, sh)
+      target.toBlob((blob) => {
+        if (blob) {
+          // @ts-expect-error the returned value will be used as hono client form value
+          resolve(blob)
+        }
+      })
+    })
+  })
+}
+
 export function useGameStates() {
   const rom = useRom()
   const { core, emulator } = useEmulator()
@@ -53,7 +89,10 @@ export function useGameStates() {
       if (!emulator || !core || !rom) {
         throw new Error('invalid emulator or core or rom')
       }
-      const { state, thumbnail } = await getStateAndThumbnail(emulator, arg)
+      let { state, thumbnail } = await getStateAndThumbnail(emulator, arg)
+      if (core === 'mupen64plus_next') {
+        thumbnail = await forceGetEmulatorThumbnail(emulator, { height: 3, width: 4 })
+      }
       await $post({ form: { core, rom: rom.id, state, thumbnail, type: 'manual' } })
       await Promise.all([reloadStates(), reloadAutoStates()])
     },
@@ -63,7 +102,10 @@ export function useGameStates() {
     if (!emulator || !core || !rom) {
       throw new Error('invalid emulator or core or rom')
     }
-    const { state, thumbnail } = await emulator.saveState()
+    let { state, thumbnail } = await emulator.saveState()
+    if (core === 'mupen64plus_next') {
+      thumbnail = await forceGetEmulatorThumbnail(emulator, { height: 3, width: 4 })
+    }
     await $post({
       // @ts-expect-error actually we can use Blob here thought it says only File is accepted
       form: { core, rom: rom.id, state, thumbnail, type: 'auto' },

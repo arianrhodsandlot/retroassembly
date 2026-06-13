@@ -264,7 +264,7 @@ const basePlatformMap = {
     libretroName: 'Sega - Mega Drive - Genesis',
   },
   n64: {
-    cores: ['mupen64plus-libretro-nx'],
+    cores: ['mupen64plus_next'],
     displayNameI18nKey: 'platform.n64',
     fileExtensions: ['.n64', '.z64', '.v64', '.zip'],
     info: {

@@ -19,7 +19,7 @@ export const cores = {
   mednafen_vb: { displayName: 'Beetle VB' },
   mednafen_wswan: { displayName: 'Beetle Wonderswan' },
   mgba: { displayName: 'mGBA' },
-  'mupen64plus-libretro-nx': { displayName: 'Mupen64Plus-Next' },
+  mupen64plus_next: { displayName: 'Mupen64Plus-Next' },
   nestopia: { displayName: 'Nestopia' },
   o2em: { displayName: 'O2EM' },
   pcsx_rearmed: { displayName: 'PCSX ReARMed' },

@@ -371,5 +371,8 @@
   "upload.uploadEllipsis": "Nahrávání…",
   "upload.uploadingForPlatform": "Nahráváte ROM pro",
   "upload.uploadingRoms": "Nahrávání ROM",
-  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}} ROM(ů) bylo nahráno."
+  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}} ROM(ů) bylo nahráno.",
+  "game.media.edit": "Upravit média",
+  "game.media.boxArt": "Obal",
+  "game.media.media": "Média"
 }

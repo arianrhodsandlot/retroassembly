@@ -89,7 +89,9 @@ export function useGameStates() {
       if (!emulator || !core || !rom) {
         throw new Error('invalid emulator or core or rom')
       }
-      let { state, thumbnail } = await getStateAndThumbnail(emulator, arg)
+      const result = await getStateAndThumbnail(emulator, arg)
+      const { state } = result
+      let { thumbnail } = result
       if (core === 'mupen64plus_next') {
         thumbnail = await forceGetEmulatorThumbnail(emulator, { height: 3, width: 4 })
       }
@@ -102,7 +104,9 @@ export function useGameStates() {
     if (!emulator || !core || !rom) {
       throw new Error('invalid emulator or core or rom')
     }
-    let { state, thumbnail } = await emulator.saveState()
+    const result = await emulator.saveState()
+    const { state } = result
+    let { thumbnail } = result
     if (core === 'mupen64plus_next') {
       thumbnail = await forceGetEmulatorThumbnail(emulator, { height: 3, width: 4 })
     }

@@ -371,5 +371,8 @@
   "upload.uploadEllipsis": "Upload…",
   "upload.uploadingForPlatform": "You are uploading ROMs for",
   "upload.uploadingRoms": "Uploading ROMs",
-  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}} ROM(s) have been uploaded."
+  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}} ROM(s) have been uploaded.",
+  "game.media.edit": "Edit media",
+  "game.media.boxArt": "Box Art",
+  "game.media.media": "Media"
 }

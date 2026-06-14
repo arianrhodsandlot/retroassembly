@@ -371,5 +371,8 @@
   "upload.uploadEllipsis": "Hochladen…",
   "upload.uploadingForPlatform": "Sie laden ROMs hoch für",
   "upload.uploadingRoms": "ROMs werden hochgeladen",
-  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}} ROM(s) wurden hochgeladen."
+  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}} ROM(s) wurden hochgeladen.",
+  "game.media.edit": "Medien bearbeiten",
+  "game.media.boxArt": "Cover",
+  "game.media.media": "Medien"
 }

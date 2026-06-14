@@ -59,12 +59,9 @@ export function useEmulator() {
     : getFileUrl(rom.fileId) || ''
   const { core } = preference.emulator.platform[rom.platform] || {}
 
-  let { shader } = preference.emulator.platform[rom.platform]
-  if (shader === 'inherit') {
-    shader = preference.emulator.shader
-  } else {
-    shader ??= preference.emulator.shader
-  }
+  const platformShader = preference.emulator.platform[rom.platform].shader
+  const shader =
+    platformShader === 'inherit' ? preference.emulator.shader : (platformShader ?? preference.emulator.shader)
 
   const romObject = useMemo(() => ({ fileContent: romUrl, fileName: rom?.fileName }), [rom, romUrl])
   const bios = preference.emulator.platform[rom.platform].bioses.map(({ fileId, fileName }) => ({
@@ -109,7 +106,7 @@ export function useEmulator() {
       return
     }
 
-    console.error = () => {}
+    console.error = noop
     if (!withState) {
       emulator.getEmulator().on('beforeLaunch', () => {
         try {
@@ -180,9 +177,7 @@ export function useEmulator() {
       if (document.fullscreenElement) {
         promises.push(document.exitFullscreen())
       }
-      if (promises.length > 0) {
-        await attemptAsync(() => Promise.all(promises))
-      }
+      await attemptAsync(() => Promise.all(promises))
       setSpatialNavigationPaused(false)
       setIsFullscreen(false)
       focus(launchButton)

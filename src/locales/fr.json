@@ -371,5 +371,8 @@
   "upload.uploadEllipsis": "Téléverser…",
   "upload.uploadingForPlatform": "Vous téléversez des ROMs pour",
   "upload.uploadingRoms": "Téléversement des ROMs",
-  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}} ROM(s) ont été téléversées."
+  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}} ROM(s) ont été téléversées.",
+  "game.media.edit": "Modifier les médias",
+  "game.media.boxArt": "Pochette",
+  "game.media.media": "Médias"
 }

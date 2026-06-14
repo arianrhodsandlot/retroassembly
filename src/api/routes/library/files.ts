@@ -11,6 +11,6 @@ export const files = new Hono().get(':id{.+}', async (c) => {
   }
   const file = await getFileContent(id)
   if (file) {
-    return createFileResponse(file)
+    return createFileResponse(file, id)
   }
 })

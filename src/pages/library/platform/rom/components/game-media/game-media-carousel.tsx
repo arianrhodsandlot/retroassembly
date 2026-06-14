@@ -2,10 +2,10 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { RadixThemePortal } from '#@/pages/components/radix-theme-portal.tsx'
-import { convertYouTubeIframeURL } from './youtube-embed.tsx'
+import { CarouselSlide } from './carousel-slide.tsx'
 
 export interface MediaItem {
-  type: 'image' | 'video'
+  type: 'cbz' | 'file' | 'image' | 'pdf' | 'video' | 'youtube'
   src: string
 }
 
@@ -32,6 +32,8 @@ export function GameMediaCarousel({
   const [currentIndex, setCurrentIndex] = useState(initialIndex)
   const currentIndexRef = useRef(currentIndex)
   currentIndexRef.current = currentIndex
+  const videoRefs = useRef(new Map<number, HTMLVideoElement>())
+  const youtubeRefs = useRef(new Map<number, HTMLIFrameElement>())
 
   const onEmblaSelect = useCallback(() => {
     if (!emblaApi) {
@@ -42,6 +44,16 @@ export function GameMediaCarousel({
     setCanScrollNext(emblaApi.canScrollNext())
     setCurrentIndex(idx)
     onSlideChange(idx)
+    for (const [i, video] of videoRefs.current) {
+      if (i !== idx) {
+        video.pause()
+      }
+    }
+    for (const [i, iframe] of youtubeRefs.current) {
+      if (i !== idx) {
+        iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*')
+      }
+    }
   }, [emblaApi, onSlideChange])
 
   useEffect(() => {
@@ -142,19 +154,12 @@ export function GameMediaCarousel({
                 <div className='flex h-full'>
                   {items.map((item, index) => (
                     <div className='flex min-h-0 min-w-0 flex-[0_0_100%] items-center justify-center' key={index}>
-                      {item.type === 'video' ? (
-                        <iframe
-                          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-                          allowFullScreen
-                          className='h-full w-full border-none bg-black'
-                          referrerPolicy='strict-origin-when-cross-origin'
-                          sandbox='allow-same-origin allow-scripts allow-forms'
-                          src={convertYouTubeIframeURL(item.src)}
-                          title='YouTube video player'
-                        />
-                      ) : (
-                        <img alt='' className='h-full w-full object-contain' src={item.src} />
-                      )}
+                      <CarouselSlide
+                        index={index}
+                        item={item}
+                        videoRefs={videoRefs.current}
+                        youtubeRefs={youtubeRefs.current}
+                      />
                     </div>
                   ))}
                 </div>
@@ -165,7 +170,7 @@ export function GameMediaCarousel({
               <motion.button
                 animate={{ opacity: 1 }}
                 aria-label='Previous'
-                className='fixed top-1/2 left-[calc(5vw+0.75rem)] z-50 -translate-y-1/2 cursor-pointer rounded-full bg-black/50 p-2 text-white hover:bg-black/70'
+                className='fixed top-1/2 left-[calc(1vw+0.75rem)] z-50 -translate-y-1/2 cursor-pointer rounded-full bg-black/50 p-2 text-white hover:bg-black/70'
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
                 onClick={() => emblaApi?.scrollPrev()}
@@ -179,7 +184,7 @@ export function GameMediaCarousel({
               <motion.button
                 animate={{ opacity: 1 }}
                 aria-label='Next'
-                className='fixed top-1/2 right-[calc(5vw+0.75rem)] z-50 -translate-y-1/2 cursor-pointer rounded-full bg-black/50 p-2 text-white hover:bg-black/70'
+                className='fixed top-1/2 right-[calc(1vw+0.75rem)] z-50 -translate-y-1/2 cursor-pointer rounded-full bg-black/50 p-2 text-white hover:bg-black/70'
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
                 onClick={() => emblaApi?.scrollNext()}

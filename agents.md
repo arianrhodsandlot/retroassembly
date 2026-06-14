@@ -19,7 +19,7 @@ Browser-based retro gaming platform with dual-runtime architecture (Node.js + Cl
 
 **Development**: `pnpm dev` (port 8000). Typically the server should be running, so you don't need to run this. If you are not sure, check whether the 8000 port is in use, which indicates the server is already running.
 **Build**: `pnpm build`
-**Lint**: `pnpm vp check --fix`
+**Lint**: `pnpm vp check --fix`. _DO NOT_ ignore warnings, treat them as errors.
 **Type check**: It's already included in linting, so no separate command needed. _DO NOT_ run `pnpm tsc`.
 
 **E2E Testing** (Playwright):

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client, parseResponse } from '#@/api/client.ts'
 import { useRom } from '#@/pages/library/hooks/use-rom.ts'
-import { getFileUrl } from '#@/pages/library/utils/file.ts'
+import { DialogThumbnail } from './dialog-thumbnail.tsx'
 
 const {
   ':thumbnailId{.+}': { $delete },
@@ -37,7 +37,7 @@ export function GameMediaImages() {
     if (isUploadingThumbnail) {
       return
     }
-    const file = await fileOpen({ extensions: ['.jpg', '.jpeg', '.png', '.svg'] })
+    const file = await fileOpen()
     if (file) {
       const thumbnailIds = await uploadThumbnail({ file })
       setThumbnailFileIds(thumbnailIds?.split(',') || [])
@@ -59,21 +59,13 @@ export function GameMediaImages() {
   return (
     <div className={clsx('flex flex-wrap items-center gap-2', { 'pointer-events-none opacity-60': isLoading })}>
       {thumbnailFileIds.map((thumbnailFileId) => (
-        <div className='relative size-20 bg-neutral-200' key={thumbnailFileId}>
-          <button
-            aria-label={t('common.delete')}
-            className='absolute top-0 right-0 flex size-4 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black text-white'
-            disabled={isDeletingThumbnail || isUploadingThumbnail}
-            onClick={() => handleClickDeleteThumbnail(thumbnailFileId)}
-            title='Delete'
-            type='button'
-          >
-            <span className='icon-[mdi--close]' />
-          </button>
-          <a className='size-20' href={getFileUrl(thumbnailFileId)} rel='noreferrer noopener' target='_blank'>
-            <img alt='Thumbnail' className='size-20 object-contain' loading='lazy' src={getFileUrl(thumbnailFileId)} />
-          </a>
-        </div>
+        <DialogThumbnail
+          deleteLabel={t('common.delete')}
+          disabled={isLoading}
+          fileId={thumbnailFileId}
+          key={thumbnailFileId}
+          onDelete={handleClickDeleteThumbnail}
+        />
       ))}
 
       <div className='flex flex-col gap-2'>

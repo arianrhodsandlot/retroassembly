@@ -371,5 +371,8 @@
   "upload.uploadEllipsis": "Enviar…",
   "upload.uploadingForPlatform": "Você está enviando ROMs para",
   "upload.uploadingRoms": "Enviando ROMs",
-  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}} ROM(s) foram enviadas."
+  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}} ROM(s) foram enviadas.",
+  "game.media.edit": "Editar mídia",
+  "game.media.boxArt": "Box Art",
+  "game.media.media": "Mídia"
 }

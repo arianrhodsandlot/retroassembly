@@ -371,5 +371,8 @@
   "upload.uploadEllipsis": "Carica…",
   "upload.uploadingForPlatform": "Stai caricando ROM per",
   "upload.uploadingRoms": "Caricamento ROM",
-  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}} ROM sono state caricate."
+  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}} ROM sono state caricate.",
+  "game.media.edit": "Modifica media",
+  "game.media.boxArt": "Copertina",
+  "game.media.media": "Media"
 }

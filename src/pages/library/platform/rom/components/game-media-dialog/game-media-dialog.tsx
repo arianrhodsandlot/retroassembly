@@ -1,5 +1,6 @@
 import { Button, DataList, Dialog, IconButton } from '@radix-ui/themes'
 import { type PropsWithChildren, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { DialogRoot } from '#@/pages/library/components/dialog-root.tsx'
 import { useIsDemo } from '#@/pages/library/hooks/use-demo.ts'
 import { useRom } from '#@/pages/library/hooks/use-rom.ts'
@@ -8,18 +9,8 @@ import { getRomGoodcodes } from '#@/utils/client/library.ts'
 import { GameMediaBoxart } from './game-media-boxart.tsx'
 import { GameMediaImages } from './game-media-images.tsx'
 
-const defaultTrigger = (
-  <IconButton
-    aria-label='Edit images'
-    className='transition-opacity! group-hover:opacity-100! lg:opacity-0!'
-    title='Edit images'
-    variant='ghost'
-  >
-    <span className='icon-[mdi--edit]' />
-  </IconButton>
-)
-
-export function GameMediaDialog({ children = defaultTrigger }: Readonly<PropsWithChildren>) {
+export function GameMediaDialog({ children }: Readonly<PropsWithChildren>) {
+  const { t } = useTranslation()
   const rom = useRom()
   const { reload } = useRouter()
   const isDemo = useIsDemo()
@@ -39,7 +30,18 @@ export function GameMediaDialog({ children = defaultTrigger }: Readonly<PropsWit
 
   return (
     <DialogRoot onOpenChange={handleOpenChange} open={open}>
-      <Dialog.Trigger>{children}</Dialog.Trigger>
+      <Dialog.Trigger>
+        {children || (
+          <IconButton
+            aria-label={t('game.media.edit')}
+            className='transition-opacity! group-hover:opacity-100! lg:opacity-0!'
+            title={t('game.media.edit')}
+            variant='ghost'
+          >
+            <span className='icon-[mdi--edit]' />
+          </IconButton>
+        )}
+      </Dialog.Trigger>
 
       <Dialog.Content aria-describedby={undefined} className='lg:w-xl!'>
         <Dialog.Title className='-ml-1! flex items-center gap-2 text-xl font-semibold'>
@@ -51,7 +53,7 @@ export function GameMediaDialog({ children = defaultTrigger }: Readonly<PropsWit
           <DataList.Item>
             <DataList.Label className='flex items-center gap-2 text-sm' minWidth='32px'>
               <span className='icon-[mdi--image]' />
-              Box Art
+              {t('game.media.boxArt')}
             </DataList.Label>
             <DataList.Value>
               <GameMediaBoxart />
@@ -60,8 +62,8 @@ export function GameMediaDialog({ children = defaultTrigger }: Readonly<PropsWit
 
           <DataList.Item>
             <DataList.Label className='flex items-center gap-2 text-sm' minWidth='32px'>
-              <span className='icon-[mdi--image]' />
-              Images
+              <span className='icon-[mdi--image-multiple]' />
+              {t('game.media.media')}
             </DataList.Label>
             <DataList.Value>
               <GameMediaImages />

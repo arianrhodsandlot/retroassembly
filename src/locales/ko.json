@@ -371,5 +371,8 @@
   "upload.uploadEllipsis": "업로드…",
   "upload.uploadingForPlatform": "다음 플랫폼용 ROM을 업로드하고 있습니다:",
   "upload.uploadingRoms": "ROM 업로드 중",
-  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}}개의 ROM이 업로드되었습니다."
+  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}}개의 ROM이 업로드되었습니다.",
+  "game.media.edit": "미디어 편집",
+  "game.media.boxArt": "박스 아트",
+  "game.media.media": "미디어"
 }

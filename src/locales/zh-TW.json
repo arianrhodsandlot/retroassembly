@@ -371,5 +371,8 @@
   "upload.uploadEllipsis": "上傳…",
   "upload.uploadingForPlatform": "您正在為以下平台上傳ROM：",
   "upload.uploadingRoms": "正在上傳 ROM",
-  "upload.uploadSuccessMessage": "🎉 已上傳{{successCount}}/{{totalCount}}個ROM。"
+  "upload.uploadSuccessMessage": "🎉 已上傳{{successCount}}/{{totalCount}}個ROM。",
+  "game.media.edit": "編輯媒體",
+  "game.media.boxArt": "封面",
+  "game.media.media": "媒體"
 }

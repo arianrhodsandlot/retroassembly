@@ -371,5 +371,8 @@
   "upload.uploadEllipsis": "アップロード…",
   "upload.uploadingForPlatform": "次のプラットフォーム用のROMをアップロードしています：",
   "upload.uploadingRoms": "ROMアップロード中",
-  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}}個のROMがアップロードされました。"
+  "upload.uploadSuccessMessage": "🎉 {{successCount}}/{{totalCount}}個のROMがアップロードされました。",
+  "game.media.edit": "メディアを編集",
+  "game.media.boxArt": "ボックスアート",
+  "game.media.media": "メディア"
 }

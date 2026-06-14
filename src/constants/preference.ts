@@ -67,6 +67,14 @@ export interface Preference {
       input_player1_up: string
       input_player1_x: string
       input_player1_y: string
+      input_player1_l_x_minus: string
+      input_player1_l_x_plus: string
+      input_player1_l_y_minus: string
+      input_player1_l_y_plus: string
+      input_player1_r_x_minus: string
+      input_player1_r_x_plus: string
+      input_player1_r_y_minus: string
+      input_player1_r_y_plus: string
       input_rewind: string
     }
   }
@@ -141,10 +149,18 @@ export const defaultPreference: ResolvedPreference = {
       input_player1_a: 'x',
       input_player1_b: 'z',
       input_player1_down: 'down',
+      input_player1_l_x_minus: '',
+      input_player1_l_x_plus: '',
+      input_player1_l_y_minus: '',
+      input_player1_l_y_plus: '',
       input_player1_l1: 'q',
       input_player1_l2: '',
       input_player1_l3: '',
       input_player1_left: 'left',
+      input_player1_r_x_minus: '',
+      input_player1_r_x_plus: '',
+      input_player1_r_y_minus: '',
+      input_player1_r_y_plus: '',
       input_player1_r1: 'w',
       input_player1_r2: '',
       input_player1_r3: '',

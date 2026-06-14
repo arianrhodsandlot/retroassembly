@@ -79,6 +79,9 @@ export function useEmulator() {
         ...defaultRetroarchConfig,
         ...preference.input.keyboardMapping,
         ...gamepadMapping,
+        // this might be a bug of retroarch's emscripten build, y plus and y minus are swapped
+        input_player1_l_y_minus: preference.input.keyboardMapping.input_player1_l_y_plus,
+        input_player1_l_y_plus: preference.input.keyboardMapping.input_player1_l_y_minus,
         rewind_enable: !['mupen64plus_next'].includes(core),
         run_ahead_enabled: !['mupen64plus_next', 'pcsx_rearmed'].includes(core),
         video_smooth: preference.emulator.videoSmooth,
@@ -134,7 +137,6 @@ export function useEmulator() {
     }
     try {
       // @ts-expect-error an ad-hoc patch for disabling request for camera access
-
       globalThis.navigator.mediaDevices.getUserMedia = null
     } catch {}
     await emulator.start()

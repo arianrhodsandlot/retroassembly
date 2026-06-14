@@ -30,6 +30,24 @@ export function KeyboardInputs() {
     },
     {
       buttons: [
+        { iconClass: 'icon-[mdi--arrow-up-circle] relative right-2', name: 'input_player1_l_y_plus' },
+        { iconClass: 'icon-[mdi--arrow-down-circle] relative right-2', name: 'input_player1_l_y_minus' },
+        { iconClass: 'icon-[mdi--arrow-left-circle] relative right-2', name: 'input_player1_l_x_minus' },
+        { iconClass: 'icon-[mdi--arrow-right-circle] relative right-2', name: 'input_player1_l_x_plus' },
+      ],
+      type: 'left-analog',
+    },
+    {
+      buttons: [
+        { iconClass: 'icon-[mdi--arrow-up-circle-outline] relative left-2', name: 'input_player1_r_y_plus' },
+        { iconClass: 'icon-[mdi--arrow-down-circle-outline] relative left-2', name: 'input_player1_r_y_minus' },
+        { iconClass: 'icon-[mdi--arrow-left-circle-outline] relative left-2', name: 'input_player1_r_x_minus' },
+        { iconClass: 'icon-[mdi--arrow-right-circle-outline] relative left-2', name: 'input_player1_r_x_plus' },
+      ],
+      type: 'right-analog',
+    },
+    {
+      buttons: [
         { iconClass: 'icon-[mdi--gamepad-circle-left]', name: 'input_player1_y' },
         { iconClass: 'icon-[mdi--gamepad-circle-up]', name: 'input_player1_x' },
         { iconClass: 'icon-[mdi--gamepad-circle-down]', name: 'input_player1_b' },

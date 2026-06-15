@@ -4,6 +4,8 @@ import { type PropsWithChildren, useState, type SubmitEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client } from '#@/api/client.ts'
+import { libraryModeEnum } from '#@/databases/schema.ts'
+import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 import { DialogRoot } from '#@/pages/library/components/dialog-root.tsx'
 import { useIsDemo } from '#@/pages/library/hooks/use-demo.ts'
 import { useRom } from '#@/pages/library/hooks/use-rom.ts'
@@ -29,6 +31,7 @@ interface GameInfoDialogProps extends PropsWithChildren {
 export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Readonly<GameInfoDialogProps>) {
   const rom = useRom()
   const { t } = useTranslation()
+  const { currentUser } = useGlobalLoaderData()
 
   const { reload } = useRouter()
   const isDemo = useIsDemo()
@@ -49,7 +52,7 @@ export function GameInfoDialog({ autoFocusField, children = defaultTrigger }: Re
     await reload()
   }
 
-  if (isDemo) {
+  if (isDemo || currentUser?.libraryMode === libraryModeEnum.shared) {
     return
   }
 

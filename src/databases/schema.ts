@@ -8,6 +8,11 @@ export const statusEnum = {
   normal: 1,
 }
 
+export const libraryModeEnum = {
+  isolated: 0,
+  shared: 1,
+}
+
 const baseSchema = {
   createdAt: integer({ mode: 'timestamp_ms' })
     .notNull()
@@ -28,6 +33,7 @@ const fileSchema = {
 export const userTable = sqliteTable(
   'users',
   {
+    libraryMode: integer().notNull().default(libraryModeEnum.isolated),
     passwordHash: text().notNull(),
     registrationIp: text(),
     registrationUserAgent: text(),

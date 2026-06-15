@@ -27,11 +27,11 @@ export async function getRoms({
   pageSize = 100,
   platform,
 }: GetRomsParams = {}) {
-  const { currentUser, db, preference } = getContext().var
+  const { currentUser, db, effectiveLibraryUserId, preference } = getContext().var
 
   const { library } = db
 
-  const conditions = [eq(romTable.userId, currentUser.id), eq(romTable.status, 1)]
+  const conditions = [eq(romTable.userId, effectiveLibraryUserId), eq(romTable.status, statusEnum.normal)]
   if (id) {
     conditions.push(eq(romTable.id, id))
   }

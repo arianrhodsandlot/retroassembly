@@ -2,7 +2,8 @@ import assert from 'node:assert'
 import path from 'node:path'
 import { zValidator } from '@hono/zod-validator'
 import { pull } from 'es-toolkit'
-import { Hono } from 'hono'
+import { type Context, Hono } from 'hono'
+import { HTTPException } from 'hono/http-exception'
 import { DateTime } from 'luxon'
 import { z } from 'zod'
 import type { PlatformName } from '#@/constants/platform.ts'
@@ -15,9 +16,17 @@ import { getRom } from '#@/controllers/roms/get-rom.ts'
 import { searchRoms } from '#@/controllers/roms/search-roms.ts'
 import { updateRom } from '#@/controllers/roms/update-rom.ts'
 import { getStates } from '#@/controllers/states/get-states.ts'
+import { libraryModeEnum } from '#@/databases/schema.ts'
 import { dateFormatMap } from '#@/utils/isomorphic/i18n.ts'
 import { nanoid } from '#@/utils/server/nanoid.ts'
 import { createFileResponse } from '../utils.ts'
+
+function assertNotSharedLibrary(c: Context) {
+  const { currentUser, t } = c.var
+  if (currentUser.libraryMode === libraryModeEnum.shared) {
+    throw new HTTPException(403, { message: t('error.sharedLibraryReadOnly') })
+  }
+}
 
 export const roms = new Hono()
   .post(
@@ -87,8 +96,9 @@ export const roms = new Hono()
     ),
 
     async (c) => {
-      const form = c.req.valid('form')
+      assertNotSharedLibrary(c)
 
+      const form = c.req.valid('form')
       const { currentUser, storage } = c.var
       const id = c.req.param('id')
       const rom = await getRom({ id })
@@ -106,6 +116,7 @@ export const roms = new Hono()
     ':id/boxart',
 
     async (c) => {
+      assertNotSharedLibrary(c)
       await updateRom({ gameBoxartFileIds: null, id: c.req.param('id') })
       return c.json(null)
     },
@@ -122,8 +133,9 @@ export const roms = new Hono()
     ),
 
     async (c) => {
-      const form = c.req.valid('form')
+      assertNotSharedLibrary(c)
 
+      const form = c.req.valid('form')
       const { currentUser, storage } = c.var
       const id = c.req.param('id')
       const rom = await getRom({ id })
@@ -143,6 +155,7 @@ export const roms = new Hono()
     ':id/thumbnail/:thumbnailId{.+}',
 
     async (c) => {
+      assertNotSharedLibrary(c)
       const { currentUser } = c.var
       const id = c.req.param('id')
       const thumbnailId = c.req.param('thumbnailId')

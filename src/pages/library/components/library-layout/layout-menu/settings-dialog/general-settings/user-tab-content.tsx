@@ -1,8 +1,10 @@
-import { Button, Callout, Flex, Text } from '@radix-ui/themes'
+import { Button, Callout, Checkbox, Flex, Text } from '@radix-ui/themes'
 import { useState, type SubmitEvent } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSWRConfig } from 'swr'
 import useSWRMutation from 'swr/mutation'
 import { client } from '#@/api/client.ts'
+import { libraryModeEnum } from '#@/databases/schema.ts'
 import { AccountFormField } from '#@/pages/components/account-form-field.tsx'
 import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 
@@ -13,16 +15,20 @@ interface UserTabContentProps {
   onDelete?: () => void
   user: {
     id: string
+    libraryMode: number
   }
 }
 
 export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabContentProps>) {
   const { t } = useTranslation()
+  const { mutate } = useSWRConfig()
   const { currentUser } = useGlobalLoaderData()
   const [passwordError, setPasswordError] = useState<null | string>(null)
   const [passwordSuccess, setPasswordSuccess] = useState(false)
+  const [libraryModeUpdating, setLibraryModeUpdating] = useState(false)
 
   const isCurrentUser = user.id === currentUser.id
+  const isSharedLibrary = user.libraryMode === libraryModeEnum.shared
 
   const { isMutating: isUpdatingPassword, trigger: handleSubmit } = useSWRMutation(
     { endpoint: 'auth/password', method: 'patch' },
@@ -61,22 +67,57 @@ export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabCo
     },
   )
 
+  async function handleLibraryModeChange(checked: boolean) {
+    setLibraryModeUpdating(true)
+    try {
+      await client.users[':id'].$patch({
+        form: { libraryMode: checked ? String(libraryModeEnum.shared) : String(libraryModeEnum.isolated) },
+        param: { id: user.id },
+      })
+      await mutate({ endpoint: 'users', method: 'get' })
+    } finally {
+      setLibraryModeUpdating(false)
+    }
+  }
+
   return (
     <Flex className={isCurrentUser ? '' : 'py-4'} direction='column' gap='4'>
+      {/* Library mode toggle - only for non-super users (shown to super user) */}
       {canDelete ? (
-        <div className='mt-2! lg:w-xl'>
-          <Button
-            className='w-full!'
-            color='red'
-            disabled={isCurrentUser}
-            onClick={onDelete}
-            type='button'
-            variant='soft'
-          >
-            <span className='icon-[mdi--delete]' />
-            {t('auth.deleteUser')}
-          </Button>
-        </div>
+        <>
+          <div className='mt-2! lg:w-xl'>
+            <label className='flex cursor-pointer items-start gap-2'>
+              <Checkbox
+                checked={isSharedLibrary}
+                disabled={libraryModeUpdating}
+                name='libraryMode'
+                onCheckedChange={handleLibraryModeChange}
+              />
+              <div className='flex flex-col'>
+                <Text size='2' weight='medium'>
+                  {t('auth.libraryModeShared')}
+                </Text>
+                <Text className='opacity-70' size='1'>
+                  {t('auth.libraryModeDescription')}
+                </Text>
+              </div>
+            </label>
+          </div>
+
+          <div className='lg:w-xl'>
+            <Button
+              className='w-full!'
+              color='red'
+              disabled={isCurrentUser}
+              onClick={onDelete}
+              type='button'
+              variant='soft'
+            >
+              <span className='icon-[mdi--delete]' />
+              {t('auth.deleteUser')}
+            </Button>
+          </div>
+        </>
       ) : null}
 
       {/* Password change section - only for current user */}

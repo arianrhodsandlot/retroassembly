@@ -1,3 +1,4 @@
+import { asc, eq } from 'drizzle-orm'
 import type { Context } from 'hono'
 import { accepts } from 'hono/accepts'
 import { getCookie } from 'hono/cookie'
@@ -7,6 +8,7 @@ import { getRunTimeEnv } from '#@/constants/env.ts'
 import type { ResolvedPreference } from '#@/constants/preference.ts'
 import { getPreference } from '#@/controllers/preference/get-preference.ts'
 import { getCurrentUser } from '#@/controllers/users/get-current-user.ts'
+import { libraryModeEnum, statusEnum, userTable } from '#@/databases/schema.ts'
 import { locales } from '#@/locales/locales.ts'
 import { defaultLanguage, i18n } from '#@/utils/isomorphic/i18n.ts'
 
@@ -15,6 +17,7 @@ declare module 'hono' {
     authorized: boolean
     currentUser: NonNullable<Awaited<ReturnType<typeof getCurrentUser>>>
     detectedLanguage: string
+    effectiveLibraryUserId: string
     i18n: typeof i18n
     language: string
     preference: ResolvedPreference
@@ -65,19 +68,19 @@ async function getTempUserOrCurrentUser(c: Context) {
 
   let currentUser = await getCurrentUser()
 
-  const isSuperviser =
+  const isSupervisor =
     currentUser?.id && runtimeEnv.RETROASSEMBLY_RUN_TIME_SUPERVISER_USER_IDS.split(',').includes(currentUser?.id)
 
-  if (isSuperviser) {
+  if (isSupervisor) {
     const tempUserId = getCookie(c, 'temp-user-id') || c.req.query('temp-user-id')
     if (tempUserId) {
       if (c.var.supabase) {
         const { data } = await c.var.supabase.auth.admin.getUserById(tempUserId)
         if (data.user) {
-          currentUser = data.user
+          currentUser = { ...data.user, libraryMode: libraryModeEnum.isolated }
         }
       } else {
-        currentUser = { created_at: new Date().toISOString(), id: tempUserId, username: '' }
+        currentUser = { id: tempUserId, libraryMode: libraryModeEnum.isolated, username: '' }
       }
     }
   }
@@ -94,6 +97,22 @@ export function globals() {
     c.set('unauthorized', !currentUser)
     if (currentUser) {
       c.set('currentUser', currentUser)
+
+      // Compute effective library user ID
+      let effectiveLibraryUserId = currentUser.id
+      if (currentUser.libraryMode === libraryModeEnum.shared) {
+        const [superUser] = await c.var.db.library
+          .select({ id: userTable.id })
+          .from(userTable)
+          .where(eq(userTable.status, statusEnum.normal))
+          .orderBy(asc(userTable.createdAt))
+          .limit(1)
+        if (superUser && superUser.id !== currentUser.id) {
+          effectiveLibraryUserId = superUser.id
+        }
+      }
+      c.set('effectiveLibraryUserId', effectiveLibraryUserId)
+
       const preference = await getPreference()
       c.set('preference', preference)
     }

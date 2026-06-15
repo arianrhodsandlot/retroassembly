@@ -2,6 +2,8 @@ import { Checkbox, DropdownMenu, IconButton } from '@radix-ui/themes'
 import { clsx } from 'clsx'
 import { useState } from 'react'
 import { useLocation } from 'react-router'
+import { libraryModeEnum } from '#@/databases/schema.ts'
+import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 import { routes } from '#@/pages/routes.ts'
 import { useSelectedGames } from '../../atoms.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
@@ -11,6 +13,7 @@ import { DeleteDialog } from './delete-dialog.tsx'
 export function GameEntryDropdownMenu({ rom }) {
   const { pathname } = useLocation()
   const isDemo = useIsDemo()
+  const { currentUser } = useGlobalLoaderData()
   const { actions } = useGameActions()
   const [menuOpen, setMenuOpen] = useState(false)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
@@ -34,7 +37,7 @@ export function GameEntryDropdownMenu({ rom }) {
     handler?.()
   }
 
-  if (isDemo) {
+  if (isDemo || currentUser?.libraryMode === libraryModeEnum.shared) {
     return
   }
 

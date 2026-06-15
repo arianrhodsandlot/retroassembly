@@ -5,6 +5,7 @@ import { createUser } from '#@/controllers/users/create-user.ts'
 import { deleteUser } from '#@/controllers/users/delete-user.ts'
 import { getAllUsers } from '#@/controllers/users/get-all-users.ts'
 import { getCurrentUser } from '#@/controllers/users/get-current-user.ts'
+import { updateUser } from '#@/controllers/users/update-user.ts'
 
 export const users = new Hono()
 
@@ -23,6 +24,7 @@ export const users = new Hono()
     zValidator(
       'form',
       z.object({
+        libraryMode: z.coerce.number().optional().default(0),
         password: z.string(),
         username: z.string(),
       }),
@@ -30,6 +32,21 @@ export const users = new Hono()
     async (c) => {
       const form = c.req.valid('form')
       const user = await createUser(form)
+      return c.json(user)
+    },
+  )
+
+  .patch(
+    ':id',
+    zValidator(
+      'form',
+      z.object({
+        libraryMode: z.coerce.number(),
+      }),
+    ),
+    async (c) => {
+      const form = c.req.valid('form')
+      const user = await updateUser({ id: c.req.param('id'), libraryMode: form.libraryMode })
       return c.json(user)
     },
   )

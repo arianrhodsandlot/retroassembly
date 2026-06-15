@@ -1,8 +1,9 @@
-import { Button, Callout, Dialog } from '@radix-ui/themes'
+import { Button, Callout, Checkbox, Dialog, Text } from '@radix-ui/themes'
 import { useState, type SubmitEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSWRMutation from 'swr/mutation'
 import { client, parseResponse } from '#@/api/client.ts'
+import { libraryModeEnum } from '#@/databases/schema.ts'
 import { AccountFormField } from '#@/pages/components/account-form-field.tsx'
 
 interface CreateUserDialogProps {
@@ -17,11 +18,11 @@ export function CreateUserDialog({ onOpenChange, onSuccess, open }: Readonly<Cre
 
   const { isMutating, trigger } = useSWRMutation(
     { endpoint: 'users', method: 'post' },
-    async (_key, { arg }: { arg: { password: string; username: string } }) => {
+    async (_key, { arg }: { arg: { libraryMode: string; password: string; username: string } }) => {
       setError(null)
       return await parseResponse(
         client.users.$post({
-          form: { password: arg.password, username: arg.username },
+          form: { libraryMode: arg.libraryMode, password: arg.password, username: arg.username },
         }),
       )
     },
@@ -41,13 +42,15 @@ export function CreateUserDialog({ onOpenChange, onSuccess, open }: Readonly<Cre
     const formData = new FormData(event.currentTarget)
     const username = formData.get('username')?.toString() || ''
     const password = formData.get('password')?.toString() || ''
+    const libraryMode =
+      formData.get('libraryMode') === 'on' ? String(libraryModeEnum.shared) : String(libraryModeEnum.isolated)
 
     if (formData.get('password') !== formData.get('repeat_password')) {
       setError(t('auth.passwordsDoNotMatch'))
       return
     }
 
-    await trigger({ password, username })
+    await trigger({ libraryMode, password, username })
   }
 
   function handleOpenChange(open: boolean) {
@@ -91,6 +94,19 @@ export function CreateUserDialog({ onOpenChange, onSuccess, open }: Readonly<Cre
               required
               type='password'
             />
+            <div className='mt-2'>
+              <label className='flex cursor-pointer items-start gap-2'>
+                <Checkbox defaultChecked={false} name='libraryMode' />
+                <div className='flex flex-col'>
+                  <Text size='2' weight='medium'>
+                    {t('auth.libraryModeShared')}
+                  </Text>
+                  <Text className='opacity-70' size='1'>
+                    {t('auth.libraryModeDescription')}
+                  </Text>
+                </div>
+              </label>
+            </div>
           </div>
           {error ? (
             <Callout.Root className='mb-4' color='red'>

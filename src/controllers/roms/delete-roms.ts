@@ -1,10 +1,15 @@
 import { and, eq, inArray } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { launchRecordTable, romTable, statusEnum } from '#@/databases/schema.ts'
+import { HTTPException } from 'hono/http-exception'
+import { libraryModeEnum, launchRecordTable, romTable, statusEnum } from '#@/databases/schema.ts'
 
 export async function deleteRoms(ids: string[]) {
-  const { currentUser, db, storage } = getContext().var
+  const { currentUser, db, storage, t } = getContext().var
   const { library } = db
+
+  if (currentUser.libraryMode === libraryModeEnum.shared) {
+    throw new HTTPException(403, { message: t('error.sharedLibraryReadOnly') })
+  }
 
   if (ids.length === 0) {
     return

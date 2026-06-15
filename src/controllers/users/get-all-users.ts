@@ -26,6 +26,7 @@ export async function getAllUsers() {
       createdAt: userTable.createdAt,
       id: userTable.id,
       lastActivityAt: sessionTable.lastActivityAt,
+      libraryMode: userTable.libraryMode,
       username: userTable.username,
     })
     .from(userTable)
@@ -50,6 +51,7 @@ export async function getAllUsers() {
     id: user.id,
     isSuper: user.id === superUser.id,
     lastActivityAt: user.lastActivityAt,
+    libraryMode: user.libraryMode,
     username: user.username,
   }))
 

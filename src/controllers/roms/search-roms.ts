@@ -58,12 +58,12 @@ export async function searchRoms(
     query: string
   } = {} as any,
 ) {
-  const { currentUser, db, preference } = getContext().var
+  const { currentUser, db, effectiveLibraryUserId, preference } = getContext().var
   const { library } = db
 
   const conditions = [
-    eq(romTable.userId, currentUser.id),
-    eq(romTable.status, 1),
+    eq(romTable.userId, effectiveLibraryUserId),
+    eq(romTable.status, statusEnum.normal),
     platform ? eq(romTable.platform, platform) : inArray(romTable.platform, preference.ui.platforms),
   ]
   const trimmedQuery = query.trim().replaceAll(/\s+/gu, ' ')

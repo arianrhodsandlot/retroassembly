@@ -1,6 +1,7 @@
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
-import { romTable } from '#@/databases/schema.ts'
+import { HTTPException } from 'hono/http-exception'
+import { libraryModeEnum, romTable } from '#@/databases/schema.ts'
 import { getRom } from './get-rom.ts'
 
 export async function updateRom(rom: {
@@ -15,7 +16,11 @@ export async function updateRom(rom: {
   gameThumbnailFileIds?: null | string
   id: string
 }) {
-  const { currentUser, db } = getContext().var
+  const { currentUser, db, t } = getContext().var
+
+  if (currentUser.libraryMode === libraryModeEnum.shared) {
+    throw new HTTPException(403, { message: t('error.sharedLibraryReadOnly') })
+  }
 
   const { library } = db
 

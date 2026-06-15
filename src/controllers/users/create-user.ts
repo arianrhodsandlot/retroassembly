@@ -5,7 +5,15 @@ import { statusEnum, userTable } from '#@/databases/schema.ts'
 import { hash } from '#@/utils/server/argon2.ts'
 import { getConnInfo } from '#@/utils/server/misc.ts'
 
-export async function createUser({ password, username }: { password: string; username: string }) {
+export async function createUser({
+  libraryMode = 0,
+  password,
+  username,
+}: {
+  libraryMode?: number
+  password: string
+  username: string
+}) {
   const c = getContext()
   const { db } = c.var
 
@@ -23,6 +31,7 @@ export async function createUser({ password, username }: { password: string; use
   const [user] = await db.library
     .insert(userTable)
     .values({
+      libraryMode,
       passwordHash,
       registrationIp: getConnInfo()?.remote.address,
       registrationUserAgent: c.req.header('User-Agent'),
@@ -32,6 +41,7 @@ export async function createUser({ password, username }: { password: string; use
 
   return {
     id: user.id,
+    libraryMode: user.libraryMode,
     username: user.username,
   }
 }

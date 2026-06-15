@@ -1,6 +1,8 @@
 import { Button, DataList, Dialog, IconButton } from '@radix-ui/themes'
 import { type PropsWithChildren, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { libraryModeEnum } from '#@/databases/schema.ts'
+import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 import { DialogRoot } from '#@/pages/library/components/dialog-root.tsx'
 import { useIsDemo } from '#@/pages/library/hooks/use-demo.ts'
 import { useRom } from '#@/pages/library/hooks/use-rom.ts'
@@ -14,6 +16,7 @@ export function GameMediaDialog({ children }: Readonly<PropsWithChildren>) {
   const rom = useRom()
   const { reload } = useRouter()
   const isDemo = useIsDemo()
+  const { currentUser } = useGlobalLoaderData()
 
   const [open, setOpen] = useState(false)
 
@@ -24,7 +27,7 @@ export function GameMediaDialog({ children }: Readonly<PropsWithChildren>) {
     }
   }
 
-  if (isDemo) {
+  if (isDemo || currentUser?.libraryMode === libraryModeEnum.shared) {
     return
   }
 

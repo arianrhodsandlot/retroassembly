@@ -1,7 +1,7 @@
 import { and, eq, gt } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import { DateTime } from 'luxon'
-import { sessionTable, statusEnum, userTable } from '#@/databases/schema.ts'
+import { libraryModeEnum, sessionTable, statusEnum, userTable } from '#@/databases/schema.ts'
 import { createSupabase } from '#@/utils/server/supabase.ts'
 
 export async function getCurrentUser() {
@@ -9,7 +9,9 @@ export async function getCurrentUser() {
   if (supabase) {
     try {
       const { data } = await supabase.auth.getUser()
-      return data?.user
+      if (data?.user) {
+        return { ...data.user, libraryMode: libraryModeEnum.isolated }
+      }
     } catch {
       return
     }
@@ -80,6 +82,7 @@ export async function getCurrentUser() {
 
   return {
     id: result.users.id,
+    libraryMode: result.users.libraryMode,
     username: result.users.username,
   }
 }

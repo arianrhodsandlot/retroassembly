@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `library_mode` integer DEFAULT 0 NOT NULL;

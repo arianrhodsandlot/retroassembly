@@ -58,7 +58,7 @@ export function AccountsSettings() {
       {/* Super users: Show tabs with users */}
       <Card>
         <Tabs.Root onValueChange={setSelectedUserId} value={selectedUserId || currentUser.id}>
-          <Tabs.List>
+          <Tabs.List wrap='wrap'>
             {users?.map((user) => (
               <Tabs.Trigger key={user.id} value={user.id}>
                 <span className='icon-[mdi--account] mr-2' />

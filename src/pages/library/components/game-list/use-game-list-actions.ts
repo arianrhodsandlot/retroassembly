@@ -1,4 +1,6 @@
 import { useLocation } from 'react-router'
+import { libraryModeEnum } from '#@/databases/schema.ts'
+import { useGlobalLoaderData } from '#@/pages/hooks/use-global-loader-data.ts'
 import { routes } from '../../../routes.ts'
 import { useSelectedGames } from '../../atoms.ts'
 import { useIsDemo } from '../../hooks/use-demo.ts'
@@ -9,10 +11,12 @@ export function useGameListActions() {
   const [selectedGames, setSelectedGames] = useSelectedGames()
   const { pathname, search } = useLocation()
   const isDemo = useIsDemo()
+  const { currentUser } = useGlobalLoaderData()
 
   const isHistoryPage = pathname === routes.libraryHistory
   const isFavoritesPage = pathname === routes.libraryFavorites
-  const shouldHideActions = isDemo || isHistoryPage
+  const isSharedLibrary = currentUser?.libraryMode === libraryModeEnum.shared
+  const shouldHideActions = isDemo || isHistoryPage || isSharedLibrary
 
   const searchParams = new URLSearchParams(search)
   const direction = searchParams.get('direction') || 'asc'

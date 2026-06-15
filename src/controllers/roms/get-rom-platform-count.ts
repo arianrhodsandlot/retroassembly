@@ -3,7 +3,7 @@ import { getContext } from 'hono/context-storage'
 import { romTable, statusEnum } from '#@/databases/schema.ts'
 
 export async function getRomPlatformCount() {
-  const { currentUser, db, preference } = getContext().var
+  const { db, effectiveLibraryUserId, preference } = getContext().var
   const { library } = db
 
   const [{ count }] = await library
@@ -11,7 +11,7 @@ export async function getRomPlatformCount() {
     .from(romTable)
     .where(
       and(
-        eq(romTable.userId, currentUser.id),
+        eq(romTable.userId, effectiveLibraryUserId),
         eq(romTable.status, statusEnum.normal),
         inArray(romTable.platform, preference.ui.platforms),
       ),

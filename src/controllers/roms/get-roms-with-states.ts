@@ -3,7 +3,7 @@ import { getContext } from 'hono/context-storage'
 import { favoriteTable, romTable, stateTable, statusEnum } from '#@/databases/schema.ts'
 
 export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
-  const { currentUser, db, preference } = getContext().var
+  const { currentUser, db, effectiveLibraryUserId, preference } = getContext().var
   const { library } = db
 
   const offset = (page - 1) * pageSize
@@ -33,7 +33,7 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
     )
     .where(
       and(
-        eq(romTable.userId, currentUser.id),
+        eq(romTable.userId, effectiveLibraryUserId),
         eq(romTable.status, statusEnum.normal),
         inArray(romTable.platform, preference.ui.platforms),
       ),
@@ -56,7 +56,7 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
   const roms = romsRaw.map(({ isFavorite, ...rom }) => Object.assign(rom, { isFavorite: Boolean(isFavorite) }))
 
   const where = and(
-    eq(romTable.userId, currentUser.id),
+    eq(romTable.userId, effectiveLibraryUserId),
     eq(romTable.status, statusEnum.normal),
     inArray(romTable.platform, preference.ui.platforms),
   )

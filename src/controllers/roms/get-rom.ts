@@ -1,7 +1,7 @@
 import { and, eq } from 'drizzle-orm'
 import { getContext } from 'hono/context-storage'
 import type { PlatformName } from '#@/constants/platform.ts'
-import { romTable } from '#@/databases/schema.ts'
+import { romTable, statusEnum } from '#@/databases/schema.ts'
 import { getRoms } from './get-roms.ts'
 
 export async function getRom(params: { fileName: string; platform: PlatformName } | { id: string }) {
@@ -13,7 +13,7 @@ export async function getRom(params: { fileName: string; platform: PlatformName 
   }
 
   const { fileName, platform } = params
-  const { currentUser, db } = getContext().var
+  const { db, effectiveLibraryUserId } = getContext().var
   const [result] = await db.library
     .select({ id: romTable.id })
     .from(romTable)
@@ -22,8 +22,8 @@ export async function getRom(params: { fileName: string; platform: PlatformName 
       and(
         eq(romTable.fileName, fileName),
         eq(romTable.platform, platform),
-        eq(romTable.userId, currentUser.id),
-        eq(romTable.status, 1),
+        eq(romTable.userId, effectiveLibraryUserId),
+        eq(romTable.status, statusEnum.normal),
       ),
     )
   if (result) {

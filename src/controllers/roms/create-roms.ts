@@ -6,7 +6,7 @@ import { HTTPException } from 'hono/http-exception'
 import { DateTime } from 'luxon'
 import { getRunTimeEnv } from '#@/constants/env.ts'
 import { platformMap, type PlatformName } from '#@/constants/platform.ts'
-import { romTable } from '#@/databases/schema.ts'
+import { libraryModeEnum, romTable, statusEnum } from '#@/databases/schema.ts'
 import { getFilePartialDigest } from '#@/utils/server/file.ts'
 import { msleuth } from '#@/utils/server/msleuth.ts'
 import { countRoms } from './count-roms.ts'
@@ -62,6 +62,10 @@ export async function createRom({ file, md5, platform }: { file: File; md5?: str
   const env = getRunTimeEnv()
   const { currentUser, db, storage, t } = getContext().var
   const { library } = db
+
+  if (currentUser.libraryMode === libraryModeEnum.shared) {
+    throw new HTTPException(403, { message: t('error.sharedLibraryReadOnly') })
+  }
 
   const cutoffDate = DateTime.fromISO('2026-01-01')
   let maxRomCount = Number.parseInt(env.RETROASSEMBLY_RUN_TIME_MAX_ROM_COUNT, 10) || Infinity
@@ -139,7 +143,7 @@ export async function createRom({ file, md5, platform }: { file: File; md5?: str
       and(
         eq(romTable.userId, currentUser.id),
         eq(romTable.platform, platform),
-        eq(romTable.status, 1),
+        eq(romTable.status, statusEnum.normal),
         eq(romTable.fileName, file.name),
       ),
     )

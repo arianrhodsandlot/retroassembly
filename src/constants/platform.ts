@@ -266,7 +266,7 @@ const basePlatformMap = {
   n64: {
     cores: ['mupen64plus_next'],
     displayNameI18nKey: 'platform.n64',
-    fileExtensions: ['.n64', '.z64', '.v64', '.zip'],
+    fileExtensions: ['.n64', '.z64', '.zip'],
     info: {
       developer: 'Nintendo R&D2',
       manufacturer: 'Nintendo Co., Ltd.',

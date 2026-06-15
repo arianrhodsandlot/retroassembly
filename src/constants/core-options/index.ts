@@ -11,6 +11,7 @@ import { mednafenNgpOptions } from './mednafen-ngp.ts'
 import { mednafenVbOptions } from './mednafen-vb.ts'
 import { mednafenWswanOptions } from './mednafen-wswan.ts'
 import { mgbaOptions } from './mgba.ts'
+import { mupen64plusNextOptions } from './mupen64plus-next.ts'
 import { nestopiaOptions } from './nestopia.ts'
 import { pcsxRearmedOptions } from './pcsx-rearmed.ts'
 import { picodriveOptions } from './picodrive.ts'
@@ -34,6 +35,7 @@ export const coreOptionsMap = {
   mednafen_vb: mednafenVbOptions,
   mednafen_wswan: mednafenWswanOptions,
   mgba: mgbaOptions,
+  mupen64plus_next: mupen64plusNextOptions,
   nestopia: nestopiaOptions,
   pcsx_rearmed: pcsxRearmedOptions,
   picodrive: picodriveOptions,

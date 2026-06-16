@@ -96,7 +96,7 @@ export function CreateUserDialog({ onOpenChange, onSuccess, open }: Readonly<Cre
             />
             <div className='mt-2'>
               <label className='flex cursor-pointer items-start gap-2'>
-                <Checkbox defaultChecked={false} name='libraryMode' />
+                <Checkbox defaultChecked name='libraryMode' />
                 <div className='flex flex-col'>
                   <Text size='2' weight='medium'>
                     {t('auth.libraryModeShared')}

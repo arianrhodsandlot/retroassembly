@@ -36,6 +36,8 @@ const defaultRetroarchConfig: RetroarchConfig = {
   rgui_menu_color_theme: 1,
   run_ahead_frames: 1,
   video_gpu_screenshot: true,
+  // @ts-expect-error this option is not yet listed in types
+  video_viewport_bias_y: 0,
 }
 
 const nativeConsoleError = console.error

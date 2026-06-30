@@ -1,14 +1,16 @@
 import '../utils/server/migration/initalization.ts'
 import '../utils/server/migration/raw-metadata.ts'
 import { serveStatic } from '@hono/node-server/serve-static'
-import { handler } from 'hono-react-router-adapter/node'
-import { RouterContextProvider } from 'react-router'
+import { Hono } from 'hono'
+import { RouterContextProvider, createRequestHandler } from 'react-router'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore we can not guarantee that this file exists
 import * as build from '../../dist/server/index.js'
 import app from './app.ts'
 
-const pages = handler(build, undefined, { getLoadContext: () => new RouterContextProvider() as any })
+const pages = new Hono()
+const requestHandler = createRequestHandler(build, 'production')
+pages.all('*', (c) => requestHandler(c.req.raw, new RouterContextProvider()))
 
 app.use(
   serveStatic({
@@ -22,4 +24,4 @@ app.use(
 
 app.route('', pages)
 
-export default app
+export { default } from './app.ts'

@@ -1,15 +1,12 @@
 import path from 'node:path'
 import { createConfig } from '@arianrhodsandlot/vite-plus-config'
-import { defaultOptions } from '@hono/vite-dev-server'
+import devServer, { defaultOptions } from '@hono/vite-dev-server'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
-import { omit } from 'es-toolkit'
 import { defaults, noop } from 'es-toolkit/compat'
 import { $, execaNode } from 'execa'
 import fs from 'fs-extra'
-import serverAdapter from 'hono-react-router-adapter/vite'
 import { DateTime } from 'luxon'
-import { RouterContextProvider } from 'react-router'
 import devtoolsJson from 'vite-plugin-devtools-json'
 import { defineConfig, type Plugin, type UserConfig } from 'vite-plus'
 import { getTargetRuntime, logServerInfo, prepareWranglerConfig } from './scripts/utils.ts'
@@ -104,21 +101,16 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
       await fs.ensureDir(storageDirectory)
       await execaNode`./src/utils/server/migration/initalization.ts`
     }
-    const serverAdapterPlugin = omit(
-      serverAdapter({
-        entry: path.resolve('src', 'server', 'app.ts'),
-        exclude: [
-          ...defaultOptions.exclude,
-          '/.well-known/appspecific/com.chrome.devtools.json',
-          /\?(inline|url|no-inline|raw|import(?:&(inline|url|no-inline|raw))*)$/u,
-        ],
-        // @ts-expect-error hono-react-router-adapter doesn't support v8_middleware yet; must return RouterContextProvider instead of plain object
-        getLoadContext() {
-          return new RouterContextProvider()
-        },
-      }),
-      ['handleHotUpdate'],
-    )
+    const serverAdapterPlugin = devServer({
+      entry: path.resolve('src', 'server', 'node-dev.ts'),
+      exclude: [
+        ...defaultOptions.exclude,
+        '/.well-known/appspecific/com.chrome.devtools.json',
+        /\?(?:inline|url|no-inline|raw|import(?:&(?:inline|url|no-inline|raw))*)$/u,
+      ],
+      injectClientScript: false,
+    })
+    delete serverAdapterPlugin.handleHotUpdate
     plugins.push([serverAdapterPlugin])
     config.resolve = {
       alias: {

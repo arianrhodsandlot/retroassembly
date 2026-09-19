@@ -1,15 +1,43 @@
 import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
 import { getSafeRedirectTo, resolveAuthMode } from '#@/utils/server/auth.ts'
-import { getOidcUsernameAndRoles } from '#@/utils/server/oidc.ts'
+import { getOidcConfiguration, getOidcUsernameAndRoles } from '#@/utils/server/oidc.ts'
 
 await describe('authentication helpers', async () => {
   await it('accepts only application-relative redirects', () => {
     assert.equal(getSafeRedirectTo('/library/roms?sort=name'), '/library/roms?sort=name')
     assert.equal(getSafeRedirectTo('https://example.com'), '/library')
     assert.equal(getSafeRedirectTo('//example.com'), '/library')
+    assert.equal(getSafeRedirectTo('/a/..//example.com'), '/library')
+    assert.equal(getSafeRedirectTo('/a/%2e%2e//example.com'), '/library')
+    assert.equal(getSafeRedirectTo('/a/../library?sort=name#games'), '/library?sort=name#games')
     assert.equal(getSafeRedirectTo(String.raw`/\example.com`), '/library')
     assert.equal(getSafeRedirectTo(undefined), '/library')
+  })
+
+  await it('retries failed discovery and caches successful discovery across callers', async (t) => {
+    const issuer = 'https://id.example'
+    t.mock.property(process, 'env', {
+      ...process.env,
+      RETROASSEMBLY_RUN_TIME_OIDC_CLIENT_ID: 'retroassembly',
+      RETROASSEMBLY_RUN_TIME_OIDC_CLIENT_SECRET: 'secret',
+      RETROASSEMBLY_RUN_TIME_OIDC_ISSUER: issuer,
+    })
+    const fetchMock = t.mock.method(globalThis, 'fetch', () => Promise.reject(new Error('Temporary provider outage')))
+
+    const failures = await Promise.allSettled([getOidcConfiguration(), getOidcConfiguration()])
+    assert.deepEqual(
+      failures.map((result) => result.status),
+      ['rejected', 'rejected'],
+    )
+    assert.equal(fetchMock.mock.callCount(), 1)
+
+    fetchMock.mock.mockImplementation(() => Promise.resolve(Response.json({ issuer })))
+    const [configuration, concurrentConfiguration] = await Promise.all([getOidcConfiguration(), getOidcConfiguration()])
+    assert.equal(configuration.serverMetadata().issuer, issuer)
+    assert.equal(concurrentConfiguration, configuration)
+    assert.equal(await getOidcConfiguration(), configuration)
+    assert.equal(fetchMock.mock.callCount(), 2)
   })
 
   await it('selects authentication by deployment configuration', () => {

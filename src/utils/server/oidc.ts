@@ -1,3 +1,4 @@
+import { attemptAsync } from 'es-toolkit'
 import { getContext } from 'hono/context-storage'
 import { type Configuration, discovery } from 'openid-client'
 import { getRunTimeEnv } from '#@/constants/env.ts'
@@ -23,12 +24,20 @@ export function getOidcCallbackUrl() {
   return getOidcSettings().redirectUri || new URL('/login/oidc/callback', c.req.url).href
 }
 
-export function getOidcConfiguration() {
+export async function getOidcConfiguration() {
   if (!configurationPromise) {
     const settings = getOidcSettings()
     configurationPromise = discovery(new URL(settings.issuer), settings.clientId, settings.clientSecret)
   }
-  return configurationPromise
+  const pendingConfiguration = configurationPromise
+  const [error, configuration] = await attemptAsync(() => pendingConfiguration)
+  if (!configuration) {
+    if (configurationPromise === pendingConfiguration) {
+      configurationPromise = undefined
+    }
+    throw error
+  }
+  return configuration
 }
 
 export function getOidcUsernameAndRoles(claims: Record<string, unknown>, requireRoles = false) {

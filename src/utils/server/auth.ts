@@ -37,7 +37,7 @@ export function getSafeRedirectTo(value: null | string | undefined) {
   }
   const baseUrl = new URL('https://retroassembly.invalid')
   const redirectUrl = new URL(value, baseUrl)
-  if (redirectUrl.origin !== baseUrl.origin) {
+  if (redirectUrl.origin !== baseUrl.origin || redirectUrl.pathname.startsWith('//')) {
     return defaultRedirectTo
   }
   return `${redirectUrl.pathname}${redirectUrl.search}${redirectUrl.hash}`

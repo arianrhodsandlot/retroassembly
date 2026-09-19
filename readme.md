@@ -69,7 +69,7 @@ You have two options to get started with RetroAssembly:
 
 See [RetroAssembly's homepage on Docker Hub](https://hub.docker.com/r/arianrhodsandlot/retroassembly#quick-start).
 
-### OIDC Authentication for Self-Hosted Instances
+<!--### OIDC Authentication for Self-Hosted Instances
 
 Node.js and Docker deployments can replace password login with a single OpenID Connect provider. Configure all of the following variables to enable OIDC:
 
@@ -96,7 +96,7 @@ The following settings are optional:
 | `RETROASSEMBLY_RUN_TIME_OIDC_SCOPES`          | `openid profile email` | Space-separated scopes                              |
 | `RETROASSEMBLY_RUN_TIME_OIDC_SESSION_MAX_AGE` | `28800000`             | OIDC session lifetime in milliseconds               |
 
-OIDC and Supabase authentication cannot be enabled together. OIDC is not available in the Cloudflare Workers build. Before enabling OIDC on an existing instance, confirm that the first local user's username matches the intended OIDC administrator; the oldest active local user remains RetroAssembly's super user.
+OIDC and Supabase authentication cannot be enabled together. OIDC is not available in the Cloudflare Workers build. Before enabling OIDC on an existing instance, confirm that the first local user's username matches the intended OIDC administrator; the oldest active local user remains RetroAssembly's super user.-->
 
 ## Supported Platforms
 
@@ -123,10 +123,12 @@ RetroAssembly aims to support a wide range of vintage gaming systems. Emulation 
 | Genesis / Megadrive                     | `genesis_plus_gx`                                  |
 | Magnavox - Odyssey2 / Philips Videopac+ | `o2em`                                             |
 | Master System                           | `genesis_plus_gx`, `picodrive`, `gearsystem`       |
+| N64                                     | `mupen64plus_next`                                 |
 | Neo Geo Pocket                          | `mednafen_ngp`                                     |
 | Neo Geo Pocket Color                    | `mednafen_ngp`                                     |
 | NES / Family Computer                   | `fceumm`, `nestopia`, `quicknes`                   |
 | PC Engine (TurboGrafx 16)               | `mednafen_pce_fast`                                |
+| Playstation 1                           | `pcsx_rearmed`                                     |
 | Sega SG-1000                            | `gearsystem`                                       |
 | Super NES / Super Famicom               | `snes9x`, `snes9x2002`, `snes9x2005`, `snes9x2010` |
 | Virtual Boy                             | `mednafen_vb`                                      |

@@ -30,10 +30,10 @@ export function SearchModal() {
   const isApple = useIsApple()
   const [launched] = useEmulatorLaunched()
 
-  const handleClose = useEffectEvent(() => {
+  function handleClose() {
     setSpatialNavigationPaused(false)
     setShowSearchModal(false)
-  })
+  }
 
   const handleToggle = useEffectEvent(() => {
     if (launched) {

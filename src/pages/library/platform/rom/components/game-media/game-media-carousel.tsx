@@ -31,9 +31,8 @@ export function GameMediaCarousel({
   const [canScrollNext, setCanScrollNext] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(initialIndex)
   const currentIndexRef = useRef(currentIndex)
-  currentIndexRef.current = currentIndex
-  const videoRefs = useRef(new Map<number, HTMLVideoElement>())
-  const youtubeRefs = useRef(new Map<number, HTMLIFrameElement>())
+  const videoRefs = useMemo(() => new Map<number, HTMLVideoElement>(), [])
+  const youtubeRefs = useMemo(() => new Map<number, HTMLIFrameElement>(), [])
 
   const onEmblaSelect = useCallback(() => {
     if (!emblaApi) {
@@ -43,27 +42,34 @@ export function GameMediaCarousel({
     setCanScrollPrev(emblaApi.canScrollPrev())
     setCanScrollNext(emblaApi.canScrollNext())
     setCurrentIndex(idx)
+    currentIndexRef.current = idx
     onSlideChange(idx)
-    for (const [i, video] of videoRefs.current) {
+    for (const [i, video] of videoRefs) {
       if (i !== idx) {
         video.pause()
       }
     }
-    for (const [i, iframe] of youtubeRefs.current) {
+    for (const [i, iframe] of youtubeRefs) {
       if (i !== idx) {
         iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*')
       }
     }
-  }, [emblaApi, onSlideChange])
+  }, [emblaApi, onSlideChange, videoRefs, youtubeRefs])
 
   useEffect(() => {
     if (!emblaApi) {
       return
     }
-    onEmblaSelect()
+    let active = true
+    queueMicrotask(() => {
+      if (active) {
+        onEmblaSelect()
+      }
+    })
     emblaApi.on('select', onEmblaSelect)
     emblaApi.on('reInit', onEmblaSelect)
     return () => {
+      active = false
       emblaApi.off('select', onEmblaSelect)
       emblaApi.off('reInit', onEmblaSelect)
     }
@@ -154,12 +160,7 @@ export function GameMediaCarousel({
                 <div className='flex h-full'>
                   {items.map((item, index) => (
                     <div className='flex min-h-0 min-w-0 flex-[0_0_100%] items-center justify-center' key={index}>
-                      <CarouselSlide
-                        index={index}
-                        item={item}
-                        videoRefs={videoRefs.current}
-                        youtubeRefs={youtubeRefs.current}
-                      />
+                      <CarouselSlide index={index} item={item} videoRefs={videoRefs} youtubeRefs={youtubeRefs} />
                     </div>
                   ))}
                 </div>

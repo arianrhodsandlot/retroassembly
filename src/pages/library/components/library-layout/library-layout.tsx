@@ -36,7 +36,11 @@ export default function LibraryLayout({ children }: Readonly<PropsWithChildren>)
   useEffect(() => {
     const abortController = new AbortController()
     if (recentlyLaunchedRoms?.length > 5 && !localStorage.getItem('supress-sponsor-message')) {
-      setIsSponsorMessageVisible(true)
+      queueMicrotask(() => {
+        if (!abortController.signal.aborted) {
+          setIsSponsorMessageVisible(true)
+        }
+      })
     }
     globalThis.addEventListener(
       'supress-sponsor-message',

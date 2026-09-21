@@ -1,6 +1,6 @@
 import { ScrollArea } from '@radix-ui/themes'
 import { attemptAsync } from 'es-toolkit'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { flushSync } from 'react-dom'
 import scrollIntoView from 'smooth-scroll-into-view-if-needed'
 import useSWRImmutable from 'swr/immutable'
@@ -63,7 +63,7 @@ export function GameMedia() {
   const [carouselOpen, setCarouselOpen] = useState(false)
   const [carouselInitialIndex, setCarouselInitialIndex] = useState(0)
   const [originRect, setOriginRect] = useState<DOMRect | null>(null)
-  const thumbRefs = useRef(new Map<number, HTMLElement>())
+  const thumbRefs = useMemo(() => new Map<number, HTMLElement>(), [])
 
   const mediaItems: MediaItem[] = []
   if (video && youtubeThumbnailValid) {
@@ -77,29 +77,38 @@ export function GameMedia() {
   for (const item of userMediaItems) {
     mediaItems.push(item)
   }
-  const handleThumbnailClick = useCallback((index: number, event: React.MouseEvent<HTMLElement>) => {
-    setOriginRect(event.currentTarget.getBoundingClientRect())
-    setCarouselInitialIndex(index)
-    setCarouselOpen(true)
-  }, [])
+  const handleThumbnailClick = useCallback(
+    (index: number, event: React.MouseEvent<HTMLElement>) => {
+      setOriginRect(event.currentTarget.getBoundingClientRect())
+      setCarouselInitialIndex(index)
+      setCarouselOpen(true)
+    },
+    [setOriginRect, setCarouselInitialIndex, setCarouselOpen],
+  )
 
-  const handleSlideChange = useCallback((index: number) => {
-    const el = thumbRefs.current?.get(index)
-    if (el) {
-      setOriginRect(el.getBoundingClientRect())
-    }
-  }, [])
-
-  const handleClose = useCallback((currentIndex: number) => {
-    const el = thumbRefs.current.get(currentIndex)
-    if (el) {
-      scrollIntoView(el, { behavior: 'instant', block: 'nearest', scrollMode: 'if-needed' })
-      flushSync(() => {
+  const handleSlideChange = useCallback(
+    (index: number) => {
+      const el = thumbRefs.get(index)
+      if (el) {
         setOriginRect(el.getBoundingClientRect())
-      })
-    }
-    setCarouselOpen(false)
-  }, [])
+      }
+    },
+    [thumbRefs, setOriginRect],
+  )
+
+  const handleClose = useCallback(
+    (currentIndex: number) => {
+      const el = thumbRefs.get(currentIndex)
+      if (el) {
+        scrollIntoView(el, { behavior: 'instant', block: 'nearest', scrollMode: 'if-needed' })
+        flushSync(() => {
+          setOriginRect(el.getBoundingClientRect())
+        })
+      }
+      setCarouselOpen(false)
+    },
+    [thumbRefs, setOriginRect, setCarouselOpen],
+  )
 
   if (!mediaItems.length) {
     return
@@ -116,7 +125,7 @@ export function GameMedia() {
               item={item}
               key={item.src}
               onClick={handleThumbnailClick}
-              thumbRefs={thumbRefs.current}
+              thumbRefs={thumbRefs}
             />
           ))}
           <div className='flex items-center justify-end p-1.5 lg:w-auto'>

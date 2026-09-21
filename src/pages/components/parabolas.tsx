@@ -425,16 +425,7 @@ function useParabolaAnimation(params: {
         cancelAnimationFrame(animationRef.current)
       }
     }
-  }, [
-    isClient,
-    gravity,
-    heightFactor,
-    containerRef,
-    containerSize.width,
-    containerSize.height,
-    objectCount,
-    createNewAnimationState,
-  ])
+  }, [isClient, gravity, containerRef, containerSize.width, containerSize.height, objectCount, createNewAnimationState])
 
   return {
     activeObjects,

@@ -1,11 +1,11 @@
-import { createContext, type ReactNode, useContext, useRef } from 'react'
+import { createContext, type ReactNode, useContext, useReducer } from 'react'
 import { useGamepadMapping, type GamepadMapping } from '#@/pages/library/hooks/use-gamepad-mapping.ts'
 
 const EmulatorGamepadMappingContext = createContext<GamepadMapping | null>(null)
 
 export function EmulatorSessionProvider({ children }: Readonly<{ children: ReactNode }>) {
   const gamepadMapping = useGamepadMapping()
-  const emulatorGamepadMapping = useRef(gamepadMapping).current
+  const [emulatorGamepadMapping] = useReducer((mapping: GamepadMapping) => mapping, gamepadMapping)
 
   return (
     <EmulatorGamepadMappingContext.Provider value={emulatorGamepadMapping}>

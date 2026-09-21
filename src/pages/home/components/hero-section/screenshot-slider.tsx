@@ -26,7 +26,7 @@ export function ScreenshotSlider() {
       setCurrentIndex((prev) => (prev + 1) % images.length)
     }, SLIDE_DURATION)
     return () => clearInterval(timer)
-  }, [isLoading, currentIndex])
+  }, [isLoading])
 
   return (
     <div className='hidden flex-1 shrink-0 flex-col items-center justify-center gap-10 xl:flex'>

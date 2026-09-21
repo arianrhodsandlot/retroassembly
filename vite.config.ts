@@ -59,7 +59,7 @@ function serverInfo() {
   return plugin
 }
 
-const viteConfigForReactRouter = defineConfig(async (env) => {
+export default defineConfig(async (env) => {
   const envPort = process.env.RETROASSEMBLY_RUN_TIME_PORT || process.env.PORT
   const port = envPort ? Math.trunc(Number(envPort)) || 8000 : 8000
   const plugins = [tailwindcss({ optimize: false }), reactRouter(), [devtoolsJson()], serverInfo()]
@@ -67,6 +67,12 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
     build: { chunkSizeWarningLimit: 1024 },
     clearScreen: false,
     envPrefix: 'RETROASSEMBLY_BUILD_TIME_VITE_',
+    pack: {
+      clean: false,
+      entry: ['scripts/serve.ts', 'src/server/node.ts'],
+      outDir: 'dist',
+      suppressWarnings: [/module level directive may not be preserved/iu],
+    },
     plugins: plugins as UserConfig['plugins'],
     server: {
       allowedHosts: true,
@@ -74,6 +80,9 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
       host: true,
       open: true,
       port,
+    },
+    staged: {
+      'pnpm-lock.yaml': 'node --run=check-lockfile',
     },
   }
 
@@ -99,19 +108,19 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
       const { storageDirectory } = getDirectories()
       await fs.ensureDir(storageDirectory)
       await execaNode`./src/utils/server/migration/initalization.ts`
+      const serverAdapterPlugin = devServer({
+        entry: path.resolve('src', 'server', 'node-dev.ts'),
+        exclude: [
+          ...defaultOptions.exclude,
+          /^\/src\/.+/u,
+          '/.well-known/appspecific/com.chrome.devtools.json',
+          /\?(?:inline|url|no-inline|raw|import(?:&(?:inline|url|no-inline|raw))*)$/u,
+        ],
+        injectClientScript: false,
+      })
+      delete serverAdapterPlugin.handleHotUpdate
+      plugins.push([serverAdapterPlugin])
     }
-    const serverAdapterPlugin = devServer({
-      entry: path.resolve('src', 'server', 'node-dev.ts'),
-      exclude: [
-        ...defaultOptions.exclude,
-        /^\/src\/.+/u,
-        '/.well-known/appspecific/com.chrome.devtools.json',
-        /\?(?:inline|url|no-inline|raw|import(?:&(?:inline|url|no-inline|raw))*)$/u,
-      ],
-      injectClientScript: false,
-    })
-    delete serverAdapterPlugin.handleHotUpdate
-    plugins.push([serverAdapterPlugin])
     config.resolve = {
       alias: {
         '@entry.server.tsx': path.resolve(
@@ -127,26 +136,5 @@ const viteConfigForReactRouter = defineConfig(async (env) => {
     }
   }
 
-  return config
+  return createConfig(config)
 })
-
-const viteConfigForVP = createConfig({
-  lint: {
-    rules: {
-      'jsx-no-literals': 'off',
-      'max-nested-calls': 'off',
-      'node/no-sync': 'off',
-      'react/react-compiler': 'off',
-      'unicorn/prefer-export-from': 'off',
-    },
-  },
-  staged: {
-    'pnpm-lock.yaml': 'node --run=check-lockfile',
-  },
-})
-
-const [_bin, script, arg] = process.argv
-const viteConfig =
-  script.includes('react-router') || ['dev', 'build'].includes(arg) ? viteConfigForReactRouter : viteConfigForVP
-
-export default viteConfig

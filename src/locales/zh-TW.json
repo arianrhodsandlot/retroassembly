@@ -283,7 +283,7 @@
   "platform.magnavoxOdyssey2Note": "Magnavox Odyssey 2是由Magnavox開發和發行的第二代（1976-1992）家用遊戲機。它於1979年2月在北美發行，零售價為179美元。該遊戲機還在歐洲（1979年）以及後來在南美（1983年）和日本（1982年）發行。Odyssey 2包括一個完整的字母數字薄膜鍵盤，用於教育遊戲、選擇選項或程式設計。該遊戲機於1984年3月20日停產。",
   "platform.masterSystem": "Master System",
   "platform.masterSystemNote": "Master System（縮寫為SMS）是世嘉於1985年在日本（作為世嘉Mark III）、1986年在北美和1987年在歐洲製造和發佈的第三代遊戲機。原始SMS可以玩卡匣和信用卡大小的「世嘉卡」，後者的零售價格比卡匣便宜，但代碼較少。SMS還配備了配件，如光槍和3D眼鏡，這些配件被設計為與一系列專門編碼的遊戲配合使用。Master System作為第三代遊戲中任天堂娛樂系統的直接競爭對手發佈。SMS在技術上優於NES，後者的發佈時間明顯早於它，但未能推翻任天堂在日本和北美的重要市場份額優勢。",
-  "platform.megadrive": "Megadrive",
+  "platform.megadrive": "Mega Drive",
   "platform.megadriveNote": "世嘉Genesis，在北美以外的大多數地區被稱為Mega Drive，是由世嘉企業有限公司開發和銷售的16位元家用遊戲機。Genesis是世嘉的第三款遊戲機，也是Master System的繼任者。世嘉於1988年在日本首次發佈了Mega Drive，隨後於1989年在北美以Genesis的名義首次亮相。1990年，該遊戲機在歐洲由Virgin Mastertronic以Mega Drive的名義發行，在澳大拉西亞由Ozisoft發行，在巴西由Tec Toy發行。在韓國，該系統由三星發行，被稱為Super Gam*Boy，後來被稱為Super Aladdin Boy。\n\nGenesis的主要微處理器是以7.6 MHz時脈頻率運行的16/32位元Motorola 68000 CPU。該遊戲機還包括一個Zilog Z80子處理器，主要用於控制聲音硬體，並提供與Master System的向後相容性。",
   "platform.neoGeoPocket": "Neo Geo Pocket",
   "platform.neoGeoPocketColor": "Neo Geo Pocket Color",

@@ -120,7 +120,7 @@ RetroAssembly aims to support a wide range of vintage gaming systems. Emulation 
 | Game Boy Advance                        | `mgba`, `vba_next`                                 |
 | Game Boy Color                          | `mgba`, `gearboy`, `gambatte`, `tgbdual`           |
 | Game Gear                               | `genesis_plus_gx`, `gearsystem`                    |
-| Genesis / Megadrive                     | `genesis_plus_gx`                                  |
+| Genesis / Mega Drive                    | `genesis_plus_gx`                                  |
 | Magnavox - Odyssey2 / Philips Videopac+ | `o2em`                                             |
 | Master System                           | `genesis_plus_gx`, `picodrive`, `gearsystem`       |
 | N64                                     | `mupen64plus_next`                                 |

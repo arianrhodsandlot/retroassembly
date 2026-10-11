@@ -283,7 +283,7 @@
   "platform.magnavoxOdyssey2Note": "Magnavox Odyssey 2는 Magnavox가 개발하고 배포한 2세대(1976-1992) 가정용 비디오 게임 콘솔입니다. 1979년 2월 북미에서 소매가 179달러로 출시되었습니다. 이 콘솔은 유럽(1979년), 나중에 남미(1983년) 및 일본(1982년)에서도 출시되었습니다. Odyssey 2에는 교육 게임, 옵션 선택 또는 프로그래밍에 사용되는 완전한 영숫자 멤브레인 키보드가 포함되어 있었습니다. 이 콘솔은 1984년 3월 20일에 단종되었습니다.",
   "platform.masterSystem": "Master System",
   "platform.masterSystemNote": "Master System(SMS로 약칭)은 세가가 1985년 일본(Sega Mark III로), 1986년 북미 및 1987년 유럽에서 제조하고 출시한 3세대 비디오 게임 콘솔입니다. 원래 SMS는 카트리지와 신용 카드 크기의 \"세가 카드\"를 모두 재생할 수 있었으며, 후자는 카트리지보다 저렴한 가격으로 소매되었지만 코드가 적었습니다. SMS에는 라이트 건과 3D 안경과 같은 액세서리도 있었으며, 특별히 코딩된 일련의 게임과 함께 작동하도록 설계되었습니다. Master System은 3세대 비디오 게임에서 Nintendo Entertainment System의 직접적인 경쟁 제품으로 출시되었습니다. SMS는 출시가 훨씬 빨랐던 NES보다 기술적으로 우수했지만, 일본과 북미에서 닌텐도의 상당한 시장 점유율 우위를 뒤집지 못했습니다.",
-  "platform.megadrive": "Megadrive",
+  "platform.megadrive": "Mega Drive",
   "platform.megadriveNote": "Sega Genesis는 북미 외 대부분의 지역에서 Mega Drive로 알려져 있으며, Sega Enterprises, Ltd.가 개발하고 판매한 16비트 가정용 비디오 게임 콘솔입니다. Genesis는 세가의 세 번째 콘솔이자 Master System의 후속 제품입니다. 세가는 1988년 일본에서 Mega Drive로 콘솔을 처음 출시했고, 1989년 북미에서 Genesis라는 이름으로 데뷔했습니다. 1990년에 콘솔은 유럽에서 Virgin Mastertronic에 의해 Mega Drive로, 오스트랄라시아에서 Ozisoft에 의해, 브라질에서 Tec Toy에 의해 배포되었습니다. 한국에서는 삼성이 시스템을 배포했으며 Super Gam*Boy로, 나중에는 Super Aladdin Boy로 알려졌습니다.\n\nGenesis의 주요 마이크로프로세서는 7.6MHz로 클럭되는 16/32비트 Motorola 68000 CPU입니다. 콘솔에는 주로 사운드 하드웨어를 제어하고 Master System과의 하위 호환성을 제공하는 데 사용된 Zilog Z80 서브 프로세서도 포함되어 있습니다.",
   "platform.neoGeoPocket": "Neo Geo Pocket",
   "platform.neoGeoPocketColor": "Neo Geo Pocket Color",

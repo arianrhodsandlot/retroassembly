@@ -94,7 +94,7 @@ const roms = [
   {
     fileName: '30yearsofnintendont.bin',
     gameDescription:
-      'As a Sega evangelist, you\'ll have to convince players to leave their NES console and avoid the SNES because "Genesis does what Nintendon\'t".  How much market share can you earn thanks to your knowledge of the Megadrive / Genesis games library?',
+      'As a Sega evangelist, you\'ll have to convince players to leave their NES console and avoid the SNES because "Genesis does what Nintendon\'t".  How much market share can you earn thanks to your knowledge of the Mega Drive / Genesis games library?',
     name: '30 Years of Nintendont',
     platform: 'genesis',
   },

@@ -1,9 +1,11 @@
 ARG BUILD_IMAGE=node:26.5.0-slim
 ARG PROD_IMAGE=node:26.5.0-alpine
+ARG PNPM_VERSION=12.11.2
 
 FROM ${BUILD_IMAGE} AS base
 WORKDIR /app
-RUN npm i -g pnpm@11
+ARG PNPM_VERSION
+RUN npm i -g pnpm@${PNPM_VERSION}
 
 FROM base AS deps
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
@@ -21,7 +23,8 @@ RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
 RUN node --run=build
 
 FROM ${PROD_IMAGE} AS deps-production
-RUN npm i -g pnpm@11
+ARG PNPM_VERSION
+RUN npm i -g pnpm@${PNPM_VERSION}
 WORKDIR /app
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY patches patches

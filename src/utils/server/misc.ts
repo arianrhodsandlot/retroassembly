@@ -1,7 +1,7 @@
+import { getConnInfo as getCloudflareWorkersConnInfo } from '@hono/cloudflare-workers'
 import { getConnInfo as getNodeConnInfo } from '@hono/node-server/conninfo'
 import type { Context } from 'hono'
 import { getRuntimeKey } from 'hono/adapter'
-import { getConnInfo as getCloudflareWorkersConnInfo } from 'hono/cloudflare-workers'
 import { getContext } from 'hono/context-storage'
 import { z } from 'zod'
 

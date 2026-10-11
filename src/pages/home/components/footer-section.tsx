@@ -3,10 +3,10 @@ import { links } from '#@/constants/links.ts'
 import { metadata } from '#@/constants/metadata.ts'
 import { Logo } from '#@/pages/components/logo.tsx'
 
+const year = new Date().getFullYear()
+
 export function FooterSection() {
   const { t } = useTranslation()
-
-  const year = new Date().getFullYear()
 
   return (
     <footer className='border border-x-0 border-b-0 border-t-(--gray-4) p-8 text-center text-sm font-light text-(--gray-11)'>

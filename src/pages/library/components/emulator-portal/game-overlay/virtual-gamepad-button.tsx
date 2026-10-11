@@ -110,6 +110,24 @@ function handleGlobalPointerEnd(event: globalThis.PointerEvent) {
   releasePointer(event.pointerId)
 }
 
+function handlePointerMove(event: PointerEvent<HTMLButtonElement>) {
+  if (event.buttons === 0) {
+    releasePointer(event.pointerId)
+    return
+  }
+
+  const buttonId = getVirtualGamepadButtonIdFromPoint(event)
+  if (buttonId) {
+    pressButton(buttonId, event.pointerId)
+  } else {
+    releasePointer(event.pointerId)
+  }
+}
+
+function handlePointerUp(event: PointerEvent<HTMLButtonElement>) {
+  releasePointer(event.pointerId)
+}
+
 export function VirtualGamepadButton({
   buttonName,
   buttonNames,
@@ -168,24 +186,6 @@ export function VirtualGamepadButton({
     }
 
     pressButton(id, event.pointerId)
-  }
-
-  function handlePointerMove(event: PointerEvent<HTMLButtonElement>) {
-    if (event.buttons === 0) {
-      releasePointer(event.pointerId)
-      return
-    }
-
-    const buttonId = getVirtualGamepadButtonIdFromPoint(event)
-    if (buttonId) {
-      pressButton(buttonId, event.pointerId)
-    } else {
-      releasePointer(event.pointerId)
-    }
-  }
-
-  function handlePointerUp(event: PointerEvent<HTMLButtonElement>) {
-    releasePointer(event.pointerId)
   }
 
   return (

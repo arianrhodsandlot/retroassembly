@@ -7,6 +7,11 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
   const { library } = db
 
   const offset = (page - 1) * pageSize
+  const stateJoinCondition = and(
+    eq(stateTable.romId, romTable.id),
+    eq(stateTable.userId, currentUser.id),
+    eq(stateTable.status, statusEnum.normal),
+  )
 
   const romsRaw = await library
     .select({
@@ -23,7 +28,7 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
       rawGameMetadata: romTable.rawGameMetadata,
     })
     .from(romTable)
-    .leftJoin(stateTable, and(eq(stateTable.romId, romTable.id), eq(stateTable.status, statusEnum.normal)))
+    .leftJoin(stateTable, stateJoinCondition)
     .leftJoin(
       favoriteTable,
       and(
@@ -64,7 +69,7 @@ export async function getRomsWithStates({ page = 1, pageSize = 20 } = {}) {
   const res = await library
     .select({ total: countDistinct(romTable.id) })
     .from(romTable)
-    .leftJoin(stateTable, and(eq(stateTable.romId, romTable.id), eq(stateTable.status, statusEnum.normal)))
+    .leftJoin(stateTable, stateJoinCondition)
     .where(where)
     .groupBy(romTable.id)
     .having(gte(count(stateTable.id), 1))

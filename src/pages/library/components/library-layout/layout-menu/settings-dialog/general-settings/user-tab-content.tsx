@@ -67,7 +67,7 @@ export function UserTabContent({ canDelete, onDelete, user }: Readonly<UserTabCo
     },
   )
 
-  async function handleLibraryModeChange(checked: boolean) {
+  async function handleLibraryModeChange(checked: boolean | 'indeterminate') {
     setLibraryModeUpdating(true)
     try {
       await client.users[':id'].$patch({

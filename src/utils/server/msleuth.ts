@@ -1,7 +1,7 @@
 import { attemptAsync, compact } from 'es-toolkit'
 import { env } from 'hono/adapter'
+import { type ClientRequestOptions, hc, parseResponse } from 'hono/client'
 import { getContext } from 'hono/context-storage'
-import { type msleuth as client, createClient, type IdentifyParameter, type QueryParameter } from 'msleuth/client'
 import QuickLRU from 'quick-lru'
 import { getRunTimeEnv } from '#@/constants/env.ts'
 
@@ -13,6 +13,25 @@ function getCFServiceBinding() {
   const c = getContext()
   const { MSLEUTH } = env<Env>(c)
   return MSLEUTH.fetch.bind(MSLEUTH)
+}
+
+type IdentifyParameter = any
+type QueryParameter = any
+
+function createClient(host = 'https://msleuth.arianrhodsandlot.workers.dev', options?: ClientRequestOptions) {
+  const client = hc(new URL('api/v1', host).href, options)
+
+  return {
+    async identify(json: IdentifyParameter) {
+      // @ts-expect-error suppress hono client type error
+      return await parseResponse(client.metadata.identify.$post({ json }))
+    },
+
+    async query(json: QueryParameter) {
+      // @ts-expect-error suppress hono client type error
+      return await parseResponse(client.metadata.query.$post({ json }))
+    },
+  }
 }
 
 function createClients() {
@@ -32,7 +51,7 @@ function createClients() {
   return clients
 }
 
-const queryCache = new QuickLRU<string, Awaited<ReturnType<typeof client.query>>>({ maxSize: 100 })
+const queryCache = new QuickLRU<string, any>({ maxSize: 100 })
 async function query(json: QueryParameter) {
   const cacheKey = JSON.stringify(json)
   if (queryCache.has(cacheKey)) {

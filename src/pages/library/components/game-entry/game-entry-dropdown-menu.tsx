@@ -19,7 +19,7 @@ export function GameEntryDropdownMenu({ rom }) {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [selectedGames, setSelectedGames] = useSelectedGames()
 
-  function handleCheckedChange(checked: boolean) {
+  function handleCheckedChange(checked: boolean | 'indeterminate') {
     setSelectedGames(checked ? [...selectedGames, rom.id] : selectedGames.filter((id) => id !== rom.id))
   }
 

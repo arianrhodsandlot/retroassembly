@@ -36,10 +36,10 @@
     "@hono/node-server": "2.1.4",
     "@hono/vite-dev-server": "0.26.1",
     "@hono/zod-validator": "0.9.1",
-    "@iconify-json/logos": "1.2.15",
+    "@iconify-json/logos": "1.2.16",
     "@iconify-json/mdi": "1.2.3",
     "@iconify-json/noto": "1.2.9",
-    "@iconify-json/simple-icons": "1.2.99",
+    "@iconify-json/simple-icons": "1.2.100",
     "@iconify-json/svg-spinners": "1.2.4",
     "@iconify-json/twemoji": "1.2.5",
     "@iconify/tailwind4": "1.2.3",
@@ -79,7 +79,7 @@
     "fuse.js": "7.5.0",
     "gamepad.js": "3.0.1",
     "goodcodes-parser": "2.5.0",
-    "i18next": "26.4.3",
+    "i18next": "26.4.4",
     "is-docker": "4.0.0",
     "isbot": "5.2.2",
     "jotai": "3.0.1",
@@ -88,7 +88,6 @@
     "luxon": "3.7.2",
     "miniflare": "4.20260730.0",
     "motion": "14.1.0",
-    "msleuth": "github:arianrhodsandlot/msleuth",
     "nanoid": "6.0.2",
     "nanoid-dictionary": "5.0.0",
     "next-themes": "0.4.6",
@@ -101,7 +100,6 @@
     "react-dropzone": "20.1.3",
     "react-i18next": "17.0.16",
     "react-router": "8.4.0",
-    "react-router-hono-fullstack-template": "github:cloudflare/react-router-hono-fullstack-template",
     "smooth-scroll-into-view-if-needed": "2.0.2",
     "spark-md5": "3.0.2",
     "spatial-navigation-ts": "1.0.8",
@@ -114,15 +112,14 @@
     "tsdown": "0.23.1",
     "type-fest": "5.10.0",
     "typescript": "7.0.2",
-    "vite-plugin-devtools-json": "1.1.1",
+    "vite-plugin-devtools-json": "1.1.2",
     "vite-plus": "1.1.0",
     "wrangler": "4.149.0",
-    "zod": "4.6.5"
+    "zod": "4.6.6"
   },
   "engines": {
     "node": ">=26.5.0"
   },
-  "packageManager": "pnpm@12.11.2",
   "hintConfig": {
     "extends": [
       "development"

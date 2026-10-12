@@ -95,12 +95,7 @@ export default defineConfig(async (env) => {
     plugins.push(cloudflare({ viteEnvironment: { name: 'ssr' } }))
     config.resolve = {
       alias: {
-        '@entry.server.tsx': path.resolve(
-          'node_modules',
-          'react-router-hono-fullstack-template',
-          'app',
-          'entry.server.tsx',
-        ),
+        '@entry.server.tsx': path.resolve('src', 'pages', 'entry.workerd.tsx'),
       },
     }
   } else {

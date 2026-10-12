@@ -1,7 +1,7 @@
 import { Card, Select } from '@radix-ui/themes'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { coreDisplayNameMap, type CoreName, coreOptionsMap } from '#@/constants/core.ts'
+import { coreDisplayNameMap, coreOptionsMap } from '#@/constants/core.ts'
 import { platformMap } from '#@/constants/platform.ts'
 import { usePlatform } from '#@/pages/library/hooks/use-platform.ts'
 import { usePreference } from '#@/pages/library/hooks/use-preference.ts'
@@ -27,7 +27,7 @@ export function CoresSettings() {
   const coreOptions = coreOptionsMap[core] || []
   const showReset = platformMap[selectedPlatform].cores.length > 0 && coreOptions.length > 0
 
-  async function handleValueChange(value: CoreName) {
+  async function handleValueChange(value: string) {
     await update({
       emulator: {
         platform: {
@@ -46,7 +46,7 @@ export function CoresSettings() {
         {t('common.emulationFor')}
         <div className='ml-2 flex flex-col gap-2'>
           <Select.Root
-            onValueChange={(value: typeof selectedPlatform) => setSelectedPlatform(value)}
+            onValueChange={(value) => setSelectedPlatform(value as keyof typeof platformMap)}
             size='3'
             value={selectedPlatform}
           >

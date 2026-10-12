@@ -1,4 +1,3 @@
-import { off, on } from 'delegated-events'
 import { useEffect, useEffectEvent } from 'react'
 import { useNavigation } from 'react-router'
 import { Gamepad } from '#@/utils/client/gamepad.ts'
@@ -9,6 +8,8 @@ import { cancel, click, focus, init, move } from '../utils/spatial-navigation.ts
 import { useFocusIndicator } from './use-focus-indicator.ts'
 import { useInputMapping } from './use-input-mapping.ts'
 import { usePreference } from './use-preference.ts'
+
+const delegatedEvents = import.meta.env.SSR ? undefined : await import('delegated-events')
 
 export function useSpatialNavigation() {
   const { state } = useNavigation()
@@ -128,9 +129,9 @@ export function useSpatialNavigation() {
         focus(event.currentTarget)
       }
     }
-    on(eventName, selector, handleMouseOver)
+    delegatedEvents?.on(eventName, selector, handleMouseOver)
 
-    return () => off(eventName, selector, handleMouseOver)
+    return () => delegatedEvents?.off(eventName, selector, handleMouseOver)
   }, [isIdle])
 
   // auto resize or move the focus indicator

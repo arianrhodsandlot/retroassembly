@@ -1,5 +1,8 @@
 import scrollIntoView from 'smooth-scroll-into-view-if-needed'
-import SpatialNavigation, { type Direction } from 'spatial-navigation-ts'
+import type { Direction } from 'spatial-navigation-ts'
+
+const spatialNavigationModule = import.meta.env.SSR ? undefined : await import('spatial-navigation-ts')
+const SpatialNavigation = spatialNavigationModule?.default
 
 function isFocusable(element: unknown): element is HTMLElement {
   const focusableElements = [HTMLAnchorElement, HTMLButtonElement, HTMLInputElement]
@@ -84,7 +87,7 @@ export function move(direction?: Direction) {
       resolve()
     }
     document.body.addEventListener('sn:willfocus', handleWillFocus, { capture: true, signal: abortController.signal })
-    SpatialNavigation.move(direction)
+    SpatialNavigation?.move(direction)
   })
 }
 
@@ -103,12 +106,12 @@ export function resetFocus({ force }: { force?: boolean } = {}) {
 }
 
 export function init() {
-  SpatialNavigation.add({
+  SpatialNavigation?.add({
     restrict: 'self-only',
     selector: '.library-layout [data-sn-enabled]',
   })
 
-  SpatialNavigation.add({
+  SpatialNavigation?.add({
     restrict: 'self-only',
     selector: '.game-overlay [data-sn-enabled]',
   })

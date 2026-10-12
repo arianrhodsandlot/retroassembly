@@ -1,35 +1,23 @@
 ARG BUILD_IMAGE=node:26.5.0-slim
 ARG PROD_IMAGE=node:26.5.0-alpine
-ARG PNPM_VERSION=12.11.2
 
-FROM ${BUILD_IMAGE} AS base
+FROM ${BUILD_IMAGE} AS deps
 WORKDIR /app
-ARG PNPM_VERSION
-RUN npm i -g pnpm@${PNPM_VERSION}
-
-FROM base AS deps
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY patches patches
-RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
-    pnpm fetch
+COPY package.json package-lock.json ./
+RUN --mount=type=cache,id=npm,target=/root/.npm \
+    npm ci
 
 FROM deps AS builder
 ARG RETROASSEMBLY_BUILD_TIME_VITE_VERSION
 ENV RETROASSEMBLY_BUILD_TIME_VITE_VERSION=$RETROASSEMBLY_BUILD_TIME_VITE_VERSION
-ENV SKIP_INSTALL_SIMPLE_GIT_HOOKS=true
 COPY . .
-RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
-    pnpm i
 RUN node --run=build
 
 FROM ${PROD_IMAGE} AS deps-production
-ARG PNPM_VERSION
-RUN npm i -g pnpm@${PNPM_VERSION}
 WORKDIR /app
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY patches patches
-RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
-    pnpm i --prod
+COPY package.json package-lock.json ./
+RUN --mount=type=cache,id=npm,target=/root/.npm \
+    npm ci --omit=dev
 
 FROM ${PROD_IMAGE} AS production
 WORKDIR /app

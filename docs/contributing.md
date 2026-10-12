@@ -16,8 +16,8 @@ You can report bugs using GitHub's issues. When reporting issues, please provide
 
 ### Prerequisites
 
-Make sure you have [Node.js](https://nodejs.org/en/download/current) and [pnpm](https://pnpm.io/installation) installed or activated.
-Their versions should be the same as specified in the "engines" and "packageManager" fields in [package.json](../package.json).
+Make sure you have [Node.js](https://nodejs.org/en/download/current) installed or activated.
+Its version should be the same as specified in the "engines" field in [package.json](../package.json).
 
 ### Steps
 
@@ -25,7 +25,7 @@ Simply run following commands in a terminal then a development server will be la
 
 1. Install Node.js packages
    ```sh
-   pnpm i
+   npm i
    ```
 2. Setup development environment
    ```sh

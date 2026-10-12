@@ -81,9 +81,6 @@ export default defineConfig(async (env) => {
       open: true,
       port,
     },
-    staged: {
-      'pnpm-lock.yaml': 'node --run=check-lockfile',
-    },
   }
 
   if (getTargetRuntime() === 'workerd') {

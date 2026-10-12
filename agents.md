@@ -17,17 +17,17 @@ Browser-based retro gaming platform with dual-runtime architecture (Node.js + Cl
 
 ## Commands
 
-**Development**: `pnpm dev` (port 8000). Typically the server should be running, so you don't need to run this. If you are not sure, check whether the 8000 port is in use, which indicates the server is already running.
-**Build**: `pnpm build`
-**Lint**: `pnpm vp check --fix`. _DO NOT_ ignore warnings, treat them as errors.
-**Type check**: It's already included in linting, so no separate command needed. _DO NOT_ run `pnpm tsc`.
+**Development**: `npm run dev` (port 8000). Typically the server should be running, so you don't need to run this. If you are not sure, check whether the 8000 port is in use, which indicates the server is already running.
+**Build**: `npm run build`
+**Lint**: `npx vp check --fix`. _DO NOT_ ignore warnings, treat them as errors.
+**Type check**: It's already included in linting, so no separate command needed. _DO NOT_ run `tsc` directly.
 
 **E2E Testing** (Playwright):
 
-- Run all: `pnpm test`
-- Run single file: `pnpm test tests/e2e/account.test.ts`
-- Run by name: `pnpm test -- --grep "log in"`
-- Dev mode with UI: `pnpm dev:test -- --headed --ui`
+- Run all: `npm test`
+- Run single file: `npm test -- tests/e2e/account.test.ts`
+- Run by name: `npm test -- --grep "log in"`
+- Dev mode with UI: `npm run dev:test -- --headed --ui`
 
 **Database migrations** (Drizzle):
 

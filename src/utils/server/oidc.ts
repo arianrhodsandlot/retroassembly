@@ -1,7 +1,7 @@
 import { attemptAsync } from 'es-toolkit'
-import { getContext } from 'hono/context-storage'
 import { type Configuration, discovery } from 'openid-client'
 import { getRunTimeEnv } from '#@/constants/env.ts'
+import { getRequestUrl } from './request-url.ts'
 
 let configurationPromise: Promise<Configuration> | undefined
 
@@ -20,8 +20,7 @@ export function getOidcSettings() {
 }
 
 export function getOidcCallbackUrl() {
-  const c = getContext()
-  return getOidcSettings().redirectUri || new URL('/login/oidc/callback', c.req.url).href
+  return getOidcSettings().redirectUri || new URL('/login/oidc/callback', getRequestUrl()).href
 }
 
 export async function getOidcConfiguration() {

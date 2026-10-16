@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
 import { getSafeRedirectTo, resolveAuthMode } from '#@/utils/server/auth.ts'
 import { getOidcConfiguration, getOidcUsernameAndRoles } from '#@/utils/server/oidc.ts'
+import { resolveRequestUrl } from '#@/utils/server/request-url.ts'
 
 await describe('authentication helpers', async () => {
   await it('accepts only application-relative redirects', () => {
@@ -110,5 +111,27 @@ await describe('authentication helpers', async () => {
     assert.throws(() => getOidcUsernameAndRoles({ roles: ['retroassembly'] }))
     assert.throws(() => getOidcUsernameAndRoles({ preferred_username: 'arcade' }, true))
     assert.throws(() => getOidcUsernameAndRoles({ preferred_username: 'arcade', roles: [1] }, true))
+  })
+
+  await it('resolves the public request URL behind a reverse proxy', () => {
+    assert.equal(
+      resolveRequestUrl({
+        forwardedHost: 'retroassembly.example.com',
+        forwardedProtocol: 'https',
+        requestUrl: 'http://retroassembly:3000/login/oidc',
+      }).href,
+      'https://retroassembly.example.com/login/oidc',
+    )
+  })
+
+  await it('uses the first value from chained reverse-proxy headers', () => {
+    assert.equal(
+      resolveRequestUrl({
+        forwardedHost: 'retroassembly.example.com, proxy.internal',
+        forwardedProtocol: 'https, http',
+        requestUrl: 'http://retroassembly:3000/login/oidc',
+      }).origin,
+      'https://retroassembly.example.com',
+    )
   })
 })

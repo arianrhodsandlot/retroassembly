@@ -81,6 +81,8 @@ RETROASSEMBLY_RUN_TIME_OIDC_CLIENT_SECRET=replace-with-client-secret
 
 Register `https://retroassembly.example.com/login/oidc/callback` as the callback URL. RetroAssembly requests `openid profile email` by default. The provider must return the user's username in `preferred_username`.
 
+When RetroAssembly runs behind a reverse proxy, the proxy must set `X-Forwarded-Proto` and `X-Forwarded-Host` so the inferred callback URL uses the public HTTPS origin. Alternatively, configure `RETROASSEMBLY_RUN_TIME_OIDC_REDIRECT_URI` explicitly.
+
 Create a client with your OIDC provider, register the callback URL, and grant access to the intended users or groups.
 
 On the first login, an existing RetroAssembly account is linked when the OIDC `preferred_username` exactly matches its local username. Otherwise, RetroAssembly creates a new account. The link is stored using the stable OIDC issuer and subject claims, so later logins do not depend on the username. An identity cannot claim a username that is already linked to a different OIDC identity.

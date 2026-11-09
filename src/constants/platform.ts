@@ -273,7 +273,7 @@ const basePlatformMap = {
       notesI18nKey: 'platform.n64Note',
       releaseDate: '1996-06-23T00:00:00-07:00',
     },
-    libretroName: 'Nintendo - Nintendo Entertainment System',
+    libretroName: 'Nintendo - Nintendo 64',
   },
   nes: {
     cores: ['fceumm', 'nestopia', 'quicknes'],

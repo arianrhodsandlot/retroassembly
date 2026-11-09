@@ -33,6 +33,11 @@ const knownCompanyMap = new Map(
 )
 
 const repo = 'Mattersons/es-theme-neutral'
+
+export function getCompanyLogoUrls() {
+  return [...new Set(knownCompanyMap.values())].map((fileName) => getCDNUrl(repo, `systems/logo/${fileName}`))
+}
+
 function getCompanyLogo(company: string) {
   if (!company) {
     return

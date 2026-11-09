@@ -1,13 +1,21 @@
+import { eq } from 'drizzle-orm'
 import { attemptAsync } from 'es-toolkit'
 import { platformMap } from '#@/constants/platform.ts'
+import { romTable, statusEnum } from '#@/databases/schema.ts'
 import { shaders } from '#@/pages/library/components/library-layout/layout-menu/settings-dialog/emulating-settings/shaders.ts'
+import { getCompanyLogoUrls } from '#@/pages/library/platform/components/company-logo.tsx'
 import { getCDNUrl, isCDNCacheEnabled } from '#@/utils/isomorphic/cdn.ts'
 import { getCoreUrl, getShaderUrls } from '#@/utils/isomorphic/emulator-files.ts'
 import { fonts, getFontUrl } from '#@/utils/isomorphic/fonts.ts'
+import { getRomLibretroThumbnail, type LibretroThumbnailType } from '#@/utils/isomorphic/libretro-thumbnail.ts'
 import { getCachedFile, resolveCDNCacheTarget } from './cdn-cache.ts'
+import { createDrizzle } from './drizzle.ts'
 
-const categories = ['cores', 'shaders', 'assets'] as const
+// `all` leaves out `thumbnails`: box art and screenshots for every ROM in the library can take several GB
+const categories = ['cores', 'shaders', 'assets', 'thumbnails'] as const
+const defaultCategories = new Set(['assets', 'cores', 'shaders'])
 type Category = (typeof categories)[number]
+const thumbnailTypes: LibretroThumbnailType[] = ['boxart', 'title', 'snap', 'logo']
 
 const concurrency = 4
 
@@ -15,7 +23,7 @@ function toUpstreamUrl(url: string) {
   return url.startsWith('/cdn/') ? resolveCDNCacheTarget(url.slice('/cdn/'.length))?.url : url
 }
 
-function getPrefetchUrls(selected: Set<Category>) {
+async function getPrefetchUrls(selected: Set<Category>) {
   const urls = new Set<string>()
   if (selected.has('cores')) {
     for (const { cores } of Object.values(platformMap)) {
@@ -35,6 +43,9 @@ function getPrefetchUrls(selected: Set<Category>) {
     for (const { path } of fonts) {
       urls.add(getFontUrl(path))
     }
+    for (const url of getCompanyLogoUrls()) {
+      urls.add(url)
+    }
     for (const platform of Object.keys(platformMap)) {
       for (const file of [
         `platforms/icons/${platform}.png`,
@@ -48,19 +59,34 @@ function getPrefetchUrls(selected: Set<Category>) {
       }
     }
   }
+  if (selected.has('thumbnails')) {
+    // The same URLs the library and game pages request, for every ROM of every user
+    const { library } = createDrizzle()
+    const roms = await library
+      .select({ platform: romTable.platform, rawGameMetadata: romTable.rawGameMetadata })
+      .from(romTable)
+      .where(eq(romTable.status, statusEnum.normal))
+    for (const rom of roms) {
+      for (const type of thumbnailTypes) {
+        urls.add(getRomLibretroThumbnail(rom, type, 'libretro'))
+      }
+    }
+  }
   return [...urls].map((url) => toUpstreamUrl(url)).filter(Boolean) as string[]
 }
 
 /**
  * Downloads files into the CDN cache ahead of time, so they are available without internet access.
- * `value` is `all`, or a comma-separated list of `cores`, `shaders` and `assets`.
+ * `value` is a comma-separated list of `cores`, `shaders`, `assets` and `thumbnails`; `all` means all but `thumbnails`.
  */
 export async function prefetchCDNCache(value: string) {
   const requested = new Set(value.split(',').map((category) => category.trim()))
   const selected = new Set<Category>(
-    requested.has('all') ? categories : categories.filter((category) => requested.has(category)),
+    categories.filter(
+      (category) => requested.has(category) || (requested.has('all') && defaultCategories.has(category)),
+    ),
   )
-  const urls = getPrefetchUrls(selected)
+  const urls = await getPrefetchUrls(selected)
   const counts = { cached: 0, failed: 0, missing: 0 }
 
   const queue = [...urls]
@@ -73,6 +99,10 @@ export async function prefetchCDNCache(value: string) {
         counts.cached += 1
       } else {
         counts.missing += 1
+      }
+      const done = counts.cached + counts.missing + counts.failed
+      if (done % 1000 === 0) {
+        console.info(`Prefetched ${done} of ${urls.length} CDN files...`)
       }
     }
   }

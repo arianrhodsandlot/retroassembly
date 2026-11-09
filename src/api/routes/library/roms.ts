@@ -19,6 +19,7 @@ import { getStates } from '#@/controllers/states/get-states.ts'
 import { libraryModeEnum } from '#@/databases/schema.ts'
 import { dateFormatMap } from '#@/utils/isomorphic/i18n.ts'
 import { nanoid } from '#@/utils/server/nanoid.ts'
+import { streamFormData } from '#@/utils/server/stream-form-data.ts'
 import { createFileResponse } from '../utils.ts'
 
 function assertNotSharedLibrary(c: Context) {
@@ -31,6 +32,15 @@ function assertNotSharedLibrary(c: Context) {
 export const roms = new Hono()
   .post(
     '',
+
+    // Reject read-only users before their upload is written to disk
+    async (c, next) => {
+      assertNotSharedLibrary(c)
+      await next()
+    },
+
+    // Stream the uploaded ROM to disk instead of letting zValidator buffer the whole body in memory
+    streamFormData(),
 
     zValidator(
       'form',

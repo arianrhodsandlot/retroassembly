@@ -2,7 +2,7 @@ import { capitalize, trim } from 'es-toolkit'
 import { parse } from 'goodcodes-parser'
 import { Nostalgist } from 'nostalgist'
 import { platformMap } from '../../constants/platform.ts'
-import { getCDNUrl, libretroThumbnailsHost } from '../isomorphic/cdn.ts'
+import { getCDNUrl, libretroThumbnailsHost, toCDNCacheUrl } from '../isomorphic/cdn.ts'
 
 type LibretroThumbnailType = 'boxart' | 'logo' | 'snap' | 'title'
 
@@ -51,7 +51,7 @@ export function getLibretroThumbnail({
 
   const result = new URL([platformFullName, fileDirectory, normalizedFileName].join('/'), libretroThumbnailsHost).href
 
-  return result
+  return toCDNCacheUrl(result)
 }
 
 export function getRomLibretroThumbnail(

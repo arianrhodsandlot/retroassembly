@@ -1,6 +1,7 @@
+import { getRuntimeKey } from 'hono/adapter'
 import { encodeRFC3986URIComponent } from './misc.ts'
 
-const repositoryVersions = {
+export const repositoryVersions = {
   'arianrhodsandlot/retroassembly-assets': 'feab5bc8061c36cf9ad01c35b36ab721c3929ca3', // https://github.com/arianrhodsandlot/retroassembly-assets/commits
   'libretro-thumbnails/Atari_-_2600': '13f3b4c2393c79f8f03850609067fe9db5da40a1', // https://github.com/libretro-thumbnails/Atari_-_2600/commits
   'libretro-thumbnails/Atari_-_5200': '30b60c8a3bf2eff5c977ca09e909b9ef06a8c5c0', // https://github.com/libretro-thumbnails/Atari_-_5200/commits
@@ -43,6 +44,28 @@ const repositoryVersions = {
 export const cdnHost = 'https://cdn.jsdelivr.net/'
 export const libretroThumbnailsHost = 'https://thumbnails.libretro.com/'
 
+// With `RETROASSEMBLY_RUN_TIME_CDN_CACHE=true` on Node, files from these hosts are served through the server's
+// `/cdn/` route, which caches them in the data directory so they keep working without internet access.
+export const cdnCacheHosts = { jsdelivr: cdnHost, 'libretro-thumbnails': libretroThumbnailsHost }
+
+export function isCDNCacheEnabled() {
+  if (typeof document === 'undefined') {
+    return getRuntimeKey() === 'node' && globalThis.process?.env.RETROASSEMBLY_RUN_TIME_CDN_CACHE === 'true'
+  }
+  return globalThis.RETROASSEMBLY_CDN_CACHE === true
+}
+
+export function toCDNCacheUrl(url: string) {
+  if (isCDNCacheEnabled()) {
+    for (const [name, host] of Object.entries(cdnCacheHosts)) {
+      if (url.startsWith(host)) {
+        return `/cdn/${name}/${url.slice(host.length)}`
+      }
+    }
+  }
+  return url
+}
+
 export function getCDNUrl(repo: keyof typeof repositoryVersions, filePpath: string) {
   const [ghUser, ghRepoName] = repo.split('/')
   const version = repositoryVersions[repo]
@@ -56,5 +79,5 @@ export function getCDNUrl(repo: keyof typeof repositoryVersions, filePpath: stri
   ]
   const urlPath = urlPathSegments.join('/')
   url.pathname = urlPath
-  return url.href
+  return toCDNCacheUrl(url.href)
 }

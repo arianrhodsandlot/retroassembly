@@ -4,12 +4,14 @@ import { serveStatic } from '@hono/node-server/serve-static'
 import { Hono } from 'hono'
 import { RouterContextProvider, createRequestHandler } from 'react-router'
 import { getAuthMode } from '#@/utils/server/auth.ts'
+import { startCDNCachePrefetch } from '#@/utils/server/cdn-prefetch.ts'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore we can not guarantee that this file exists
 import * as build from '../../dist/server/index.js'
 import app from './app.ts'
 
 getAuthMode()
+startCDNCachePrefetch()
 
 const pages = new Hono()
 const requestHandler = createRequestHandler(build, 'production')

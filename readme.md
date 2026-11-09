@@ -69,6 +69,17 @@ You have two options to get started with RetroAssembly:
 
 See [RetroAssembly's homepage on Docker Hub](https://hub.docker.com/r/arianrhodsandlot/retroassembly#quick-start).
 
+##### Running Without Internet Access
+
+By default, the browser loads emulator cores, shaders, fonts, and artwork from public CDNs. To serve them from your own server instead, set:
+
+| Variable                              | Default | Description                                                                                                                                                                                                                                                               |
+| ------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `RETROASSEMBLY_RUN_TIME_CDN_CACHE`    | `false` | When `true`, these files are requested through your server, which downloads each one once and keeps it in `data/cache/cdn`                                                                                                                                                |
+| `RETROASSEMBLY_RUN_TIME_CDN_PREFETCH` | Unset   | Downloads files into the cache when the server starts, so they are available before first use: `all`, or a comma-separated list of `cores`, `shaders` and `assets` (fonts and platform artwork). All of them together take about 65 MB. Requires `CDN_CACHE` to be `true` |
+
+Box art and screenshots are only cached once someone views them, and game information is looked up online when a ROM is uploaded, so both need internet access the first time.
+
 <!--### OIDC Authentication for Self-Hosted Instances
 
 Node.js and Docker deployments can replace password login with a single OpenID Connect provider. Configure all of the following variables to enable OIDC:

@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { Links, Meta, useLoaderData } from 'react-router'
 import { metadata } from '#@/constants/metadata.ts'
 import type { loader } from '#@/pages/root.tsx'
-import { cdnHost, libretroThumbnailsHost } from '#@/utils/isomorphic/cdn.ts'
+import { cdnHost, isCDNCacheEnabled, libretroThumbnailsHost } from '#@/utils/isomorphic/cdn.ts'
+import { getFontFaces } from '#@/utils/isomorphic/fonts.ts'
 
 export function Head() {
   const { t } = useTranslation()
@@ -37,6 +38,8 @@ export function Head() {
 
       <link href='/manifest.webmanifest' rel='manifest' />
 
+      <style dangerouslySetInnerHTML={{ __html: getFontFaces() }} />
+
       <meta content='website' property='og:type' />
       <meta content={metadata.link} property='og:url' />
       <meta content={metadata.title} property='og:title' />
@@ -50,7 +53,7 @@ export function Head() {
       <meta content={new URL('/assets/screenshots/library.jpeg', metadata.link).href} name='twitter:image' />
 
       {/* perfermance */}
-      {[cdnHost, libretroThumbnailsHost].map((host) => (
+      {(isCDNCacheEnabled() ? [] : [cdnHost, libretroThumbnailsHost]).map((host) => (
         <link key={host} href={host} rel='dns-prefetch' />
       ))}
 

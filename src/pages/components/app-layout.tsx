@@ -7,6 +7,7 @@ import { type ReactNode, useEffect } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Scripts, ScrollRestoration, useLoaderData, useRouteError } from 'react-router'
 import type { loader } from '#@/pages/root.tsx'
+import { isCDNCacheEnabled } from '#@/utils/isomorphic/cdn.ts'
 import { i18n } from '#@/utils/isomorphic/i18n.ts'
 import { getGlobalCSSVars } from '#@/utils/isomorphic/misc.ts'
 import { preferenceAtom } from '../atoms.ts'
@@ -50,6 +51,9 @@ export function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
             </ThemeProvider>
           </RadixTheme>
         </I18nextProvider>
+        {isCDNCacheEnabled() ? (
+          <script dangerouslySetInnerHTML={{ __html: 'globalThis.RETROASSEMBLY_CDN_CACHE=true' }} />
+        ) : null}
         {currentUser ? (
           <script dangerouslySetInnerHTML={{ __html: `globalThis.CURRENT_USER=${JSON.stringify(currentUser)}` }} />
         ) : null}

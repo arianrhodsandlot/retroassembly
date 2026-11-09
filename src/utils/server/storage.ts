@@ -21,16 +21,26 @@ export function createStorage() {
     },
 
     async put(id: string, file: Blob) {
-      const { base, dir } = path.parse(id)
-      const fileTargetDirectory = path.join(storageDirectory, dir)
+      const filePath = path.join(storageDirectory, id)
       const { default: fs } = await import('fs-extra')
-      await fs.ensureDir(fileTargetDirectory)
+      await fs.ensureDir(path.dirname(filePath))
+      const { DiskFile } = await import('./disk-file.ts')
+      if (file instanceof DiskFile && (await file.moveTo(filePath))) {
+        return
+      }
       const { createWriteStream } = await import('node:fs')
       const { Readable } = await import('node:stream')
       const { pipeline } = await import('node:stream/promises')
-      const readable = Readable.fromWeb(file.stream() as NodeReadableStream)
-      const writable = createWriteStream(path.join(fileTargetDirectory, base))
-      await pipeline(readable, writable)
+      const { nanoid } = await import('./nanoid.ts')
+      // Written under a temporary name first, so an interrupted write never leaves a partial file behind
+      const partialFilePath = `${filePath}.${nanoid()}.partial`
+      try {
+        const readable = Readable.fromWeb(file.stream() as NodeReadableStream)
+        await pipeline(readable, createWriteStream(partialFilePath))
+        await fs.rename(partialFilePath, filePath)
+      } finally {
+        await fs.remove(partialFilePath)
+      }
     },
 
     async get(id: string) {
